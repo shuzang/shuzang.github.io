@@ -1,0 +1,414 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Golang语法基础8-结构体与方法 | Shuzang&#39;s Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="shuzang's personal blog"><link rel=prev href=https://shuzang.github.io/2019/11/golang%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%809-%E6%8E%A5%E5%8F%A3%E4%B8%8E%E5%8F%8D%E5%B0%84/><link rel=next href=https://shuzang.github.io/2019/11/markdowns-skill/><link rel=canonical href=https://shuzang.github.io/2019/11/golang%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%808-%E7%BB%93%E6%9E%84%E4%BD%93%E4%B8%8E%E6%96%B9%E6%B3%95/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><meta name=twitter:card content="summary"><meta name=twitter:title content="Golang语法基础8-结构体与方法"><meta name=twitter:description content="Go中结构体的概念和C相同，甚至声明用的关键字也是struct，因为Go中没有类的概念，因此结构体的地位比较重要。 1. 定义与初始化 简单的结构体"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Golang语法基础8-结构体与方法","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/2019\/11\/golang%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%808-%E7%BB%93%E6%9E%84%E4%BD%93%E4%B8%8E%E6%96%B9%E6%B3%95\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"Golang","wordcount":4345,"url":"https:\/\/shuzang.github.io\/2019\/11\/golang%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%808-%E7%BB%93%E6%9E%84%E4%BD%93%E4%B8%8E%E6%96%B9%E6%B3%95\/","datePublished":"2019-11-26T00:00:00\x2b00:00","dateModified":"2019-11-26T00:00:00\x2b00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"shuzang","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/logo.png","width":127,"height":40}},"description":""}</script><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/css/lib/animate/animate.min.css></head><body><script>window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><nav class=navbar><div class=navbar-container><div class="navbar-header animated bounceIn"><a href=https://shuzang.github.io>Shuzang&#39;s Blog</a></div><div class=navbar-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/life>Life</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><nav class=navbar-mobile><div class=navbar-container><div class=navbar-header><div class="navbar-header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang&#39;s Blog</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=navbar-menu id=mobile-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/life>Life</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><main class=main><div class=container><article class=page><h1 class="post-title animated flipInX">Golang语法基础8-结构体与方法</h1><div class=post-meta><div class=post-meta-main><a class=author href=https://shuzang.github.io rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>shuzang
+</a>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i><a href=https://shuzang.github.io/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/>爱编程爱技术的孩子</a>&nbsp;</span></div><div class=post-meta-other><i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-11-26>2019-11-26</time>&nbsp;
+<i class="fas fa-pencil-alt fa-fw"></i>about 4345 words&nbsp;
+<i class="far fa-clock fa-fw"></i>9 min&nbsp;</div></div><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#1-定义与初始化>1. 定义与初始化</a></li><li><a href=#2-结构体工厂>2. 结构体工厂</a></li><li><a href=#3-结构体标签>3. 结构体标签</a></li><li><a href=#4-匿名字段与内嵌结构体>4. 匿名字段与内嵌结构体</a></li><li><a href=#5-方法>5. 方法</a><ul><li><a href=#5-1-函数和方法的区别>5.1 函数和方法的区别</a></li><li><a href=#5-2-指针或值作为接收者>5.2 指针或值作为接收者</a></li><li><a href=#5-4-内嵌类型的方法与继承>5.4 内嵌类型的方法与继承</a></li><li><a href=#5-5-在类型中嵌入功能>5.5 在类型中嵌入功能</a></li></ul></li></ul></li></ul></nav></div></div><div class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
+<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><ul><li><a href=#1-定义与初始化>1. 定义与初始化</a></li><li><a href=#2-结构体工厂>2. 结构体工厂</a></li><li><a href=#3-结构体标签>3. 结构体标签</a></li><li><a href=#4-匿名字段与内嵌结构体>4. 匿名字段与内嵌结构体</a></li><li><a href=#5-方法>5. 方法</a><ul><li><a href=#5-1-函数和方法的区别>5.1 函数和方法的区别</a></li><li><a href=#5-2-指针或值作为接收者>5.2 指针或值作为接收者</a></li><li><a href=#5-4-内嵌类型的方法与继承>5.4 内嵌类型的方法与继承</a></li><li><a href=#5-5-在类型中嵌入功能>5.5 在类型中嵌入功能</a></li></ul></li></ul></li></ul></nav></div></details></div><div class=post-content><p>Go中结构体的概念和C相同，甚至声明用的关键字也是<code>struct</code>，因为Go中没有类的概念，因此结构体的地位比较重要。</p><a class=post-dummy-target id=1-定义与初始化></a><h2>1. 定义与初始化</h2><p>简单的结构体定义可以使用 <code>type T struct {a, b int}</code> 这样的短代码格式</p><p>完整的结构体定义方式如下：</p><pre><code class=language-go>type identifier struct {
+    field1 type1
+    field2 type2
+    ...
+}
+</code></pre><p>大括号中的每一行称为一个字段，每个字段都有一个类型和一个名字，在一个结构体中，字段名必须是唯一的。结构体名和字段名的命名遵循可见性规则，一个可导出的结构体类型中可以存在不可导出的字段。结构体的字段可以是任意类型，甚至可以是结构体本身、函数或者接口。</p><p>结构体是自定义数据类型，可以像普通变量一样声明：<code>var s T</code>，声明时即会分配内存并默认使用零值初始化。手动初始化的常规方式如下</p><pre><code class=language-go>var s T
+s.a = 5
+s.b = 8
+</code></pre><p>由于结构体也是值类型，使用new函数创建，有如下两种写法</p><pre><code class=language-go>var t *T = new(T)
+t := new(T)
+</code></pre><p>上例第二行是惯用写法，简单方便，t是指向结构体的指针。注意，结构体同普通变量相同。一个完整的例子如下</p><pre><code class=language-go>package main
+import &quot;fmt&quot;
+
+type struct1 struct {
+    i1  int
+    f1  float32
+    str string
+}
+
+func main() {
+    ms := new(struct1)
+    ms.i1 = 10
+    ms.f1 = 15.5
+    ms.str= &quot;Chris&quot;
+
+    fmt.Printf(&quot;The int is: %d\n&quot;, ms.i1)
+    fmt.Printf(&quot;The float is: %f\n&quot;, ms.f1)
+    fmt.Printf(&quot;The string is: %s\n&quot;, ms.str)
+    fmt.Println(ms)
+}
+//Output:
+The int is: 10
+The float is: 15.500000
+The string is: Chris
+&amp;{10 15.5 Chris}
+</code></pre><p>使用点号符给字段赋值：<code>structname.fieldname = value</code> ，同样使用点号符获取结构体字段的值：<code>structname.fieldname</code></p><p>这种使用点号符赋值和获取字段值的方式叫做<strong>选择器(selector)</strong>，无论变量是结构体类型还是结构体指针类型，使用的方法都是相同的，不过指针类型也可以使用解引用的方式赋值和调用</p><pre><code class=language-go>type myStruct struct { i int }
+var v myStruct    // v是结构体类型变量
+var p *myStruct   // p是指向一个结构体类型变量的指针
+v.i
+p.i
+(*p).i
+</code></pre><p>除使用选择器初始化结构体字段外，一个更简短和惯用的结构体初始化方法如下</p><pre><code class=language-go>ms := struct1{10, 15.5, &quot;Chris&quot;}  //结构体类型
+ms := &amp;struct1{10, 15.5, &quot;Chris&quot;}  //结构体指针类型
+ms := &amp;struct1{f1:15.5，i1:10}  //括号内声明字段名，这样可以不按定义的字段顺序，甚至省略部分字段
+</code></pre><p>上例第二行称为混合字面量语法，但底层仍然会调用<code>new()</code>，因此与使用new()初始化是等同的。以`<code>type Point struct {x,y int}</code>为例，这几种初始化方式的内存布局如下</p><p><img src=https://user-images.githubusercontent.com/26682846/69634008-507c2300-108c-11ea-8044-f5a0985f145e.jpg alt=结构体内存布局></p><p>从上图还可以看出，结构体和它包含的数据在内存中是以连续块的形式存在的，即使结构体中嵌套其它的结构体，同样如此。</p><pre><code class=language-go>type Rect1 struct {Min, Max Point }
+type Rect2 struct {Min, Max *Point }
+</code></pre><p><img src="https://github.com/unknwon/the-way-to-go_ZH_CN/raw/master/eBook/images/10.1_fig10.2.jpg?raw=true" alt=嵌套结构体内存布局></p><a class=post-dummy-target id=2-结构体工厂></a><h2>2. 结构体工厂</h2><p>可以为结构体定义一个工厂来创建结构体实例，工厂的名字通常以new或New开头，这是一种很常用的方法。假设定义了如下File结构体类型</p><pre><code class=language-go>type File struct {
+    fd int //文件描述符
+    name string //文件名
+}
+</code></pre><p>下面是为File结构体创建的工厂，返回一个指向结构体的指针</p><pre><code class=language-go>func NewFile(fd int, name string) *File {
+    if fd &lt; 0 {
+        return nil
+    }
+
+    return &amp;File{fd, name}
+}
+</code></pre><p>然后这样调用它</p><pre><code class=language-go>f := NewFile(10, &quot;./test.txt&quot;)
+</code></pre><p>这种方式可以模拟OO编程中使用<code>new</code>的实例化，如果要完全等同，还需要利用可见性规则禁止使用Go内置的<code>new()</code>函数</p><pre><code class=language-go>type matrix struct {
+    ...
+}
+
+func NewMatrix(params) *matrix {
+    m := new(matrix) // 初始化 m
+    return m
+}
+</code></pre><p>然后在其它包里就只能使用工厂创建结构体实例</p><pre><code class=language-go>package main
+import &quot;matrix&quot;
+...
+wrong := new(matrix.matrix)     // 编译失败（matrix 是私有的）
+right := matrix.NewMatrix(...)  // 实例化 matrix 的唯一方式
+</code></pre><a class=post-dummy-target id=3-结构体标签></a><h2>3. 结构体标签</h2><p>实际上，上述的结构体定义方式并不完整，在字段名和类型外，还可以为字段添加标签(tag)。标签是一个字符串，用来对字段进行一定的说明，并不能在编程时使用，只有包<code>reflect</code>能获取它，</p><pre><code class=language-go>package main
+
+import (
+	&quot;fmt&quot;
+	&quot;reflect&quot;
+)
+
+type TagType struct { // tags
+	field1 bool   &quot;An important answer&quot;
+	field2 string &quot;The name of the thing&quot;
+	field3 int    &quot;How much there are&quot;
+}
+
+func main() {
+	tt := TagType{true, &quot;Barak Obama&quot;, 1}
+	for i := 0; i &lt; 3; i++ {
+		refTag(tt, i)
+	}
+}
+
+func refTag(tt TagType, ix int) {
+	ttType := reflect.TypeOf(tt)
+	ixField := ttType.Field(ix)
+	fmt.Printf(&quot;%v\n&quot;, ixField.Tag)
+}
+//Output:
+An important answer
+The name of the thing
+How much there are
+</code></pre><a class=post-dummy-target id=4-匿名字段与内嵌结构体></a><h2>4. 匿名字段与内嵌结构体</h2><p>前面已经提到过，字段名不需要时可以用空白符<code>_</code>代替，但实际上，也可以直接省略，即整个字段只有类型，此时类型就是字段名，这种字段叫做<strong>匿名字段</strong>。如下例，通过类型<code>outer.int</code>来获取存储在匿名字段中的数据，因此也能看出，一个结构体中对每一种数据类型只能有一个匿名字段。</p><pre><code class=language-go>package main
+
+import &quot;fmt&quot;
+
+type T struct {
+	a       int
+	float32 // anonymous field
+}
+
+func main() {
+	t := T{6, 7.5}
+	fmt.Println(t)
+}
+
+//Output:
+{6 7.5}
+</code></pre><p>结构体也是一种数据类型，因此也可以作为匿名字段使用，称为<strong>内嵌结构体</strong>。内嵌结构体提供了一种简单的继承机制，可以从其它类型中继承一部分内容。</p><pre><code class=language-go>package main
+
+import &quot;fmt&quot;
+
+type A struct {
+	ax, ay int
+}
+
+type B struct {
+	A
+	bx, by float32
+}
+
+func main() {
+	b := B{A{1, 2}, 3.0, 4.0}
+	fmt.Println(b.ax, b.ay, b.bx, b.by)
+	fmt.Println(b.A)
+}
+//Output:
+1 2 3 4
+{1 2}
+</code></pre><p>使用内嵌结构体的时候，很可能会出现命名冲突（继承来的字段名和当前结构体的某个字段名相同），这种情况下外层的名字会覆盖内层的名字，但两者的内存空间都会保留，下例中<code>d.b</code>的调用不会出错，指的是float32，而不是<code>B.b</code>，进行内层调用可以使用<code>d.B.b</code></p><pre><code class=language-go>type B struct {a, b int}
+type D struct {B; b float32}
+var d D
+</code></pre><p>但下面这种情况，<code>c.a</code>的调用会导致编译器错误,只能由程序员手动修改</p><pre><code class=language-go>type A struct {a int}
+type B struct {a, b int}
+
+type C struct {A; B}
+var c C
+</code></pre><a class=post-dummy-target id=5-方法></a><h2>5. 方法</h2><p>Go中的方法是作用在接收者上的一个函数，接收者是某种类型的变量。定义方法的一般格式如下</p><pre><code class=language-go>func (recv receiver_type) methodName(parameter_list) (return_value_list) { ... }
+</code></pre><p>在<code>func</code>关键字之后，方法名之前的括号中声明接收者和接收者类型。同样还可以看到，方法的本质仍然是函数，只不过是针对特定变量的函数，除了括号中的接收者声明，其它部分和普通函数没有不同。</p><p>接收者几乎可以是任何类型的变量，包括基本数据类型、数组的别名类型、结构体、函数等，但不可以是接口，因为方法是需要实现的，而接口只是抽象定义。</p><p>如果接收者变量<code>recv</code>已经在其它地方进行了初始化，Method1是它的方法名，那么方法的调用格式为<code>recv.Method1()</code>，同结构体相似，如果<code>recv</code>是指针，调用时自动解引用。</p><p>如果方法不需要使用<code>recv</code>的值，可以用空白符<code>_</code>替换它</p><pre><code class=language-go>func (_ receiver_type) methodName(parameter_list) (return_value_list) { ... }
+</code></pre><p>类型 T（或 *T）上的所有方法的集合叫做类型 T（或 *T）的方法集（method set）。</p><p>一个接收者变量加上它的方法等价于面向对象中的一个类，区别只在于Go中方法的代码与变量定义是分离的，只要在同一个包中即可。</p><p>因为方法是函数，所以方法同样不允许重载，但不同的接收者变量可以有相同名字的方法，及时它们在同一个包中，一个例子如下</p><pre><code class=language-go>func (a *denseMatrix) Add(b Matrix) Matrix
+func (a *sparseMatrix) Add(b Matrix) Matrix
+</code></pre><p>一个结构体方法的例子如下</p><pre><code class=language-go>package main
+
+import &quot;fmt&quot;
+
+type TwoInts struct {
+	a int
+	b int
+}
+
+func main() {
+	two1 := new(TwoInts)
+	two1.a = 12
+	two1.b = 10
+
+	fmt.Printf(&quot;The sum is: %d\n&quot;, two1.AddThem())
+	fmt.Printf(&quot;Add them to the param: %d\n&quot;, two1.AddToParam(20))
+
+	two2 := TwoInts{3, 4}
+	fmt.Printf(&quot;The sum is: %d\n&quot;, two2.AddThem())
+}
+
+func (tn *TwoInts) AddThem() int {
+	return tn.a + tn.b
+}
+
+func (tn *TwoInts) AddToParam(param int) int {
+	return tn.a + tn.b + param
+}
+//Output:
+The sum is: 22
+Add them to the param: 42
+The sum is: 7
+</code></pre><p>一个非结构体类型(数组别名)方法的例子如下</p><pre><code class=language-go>package main
+
+import &quot;fmt&quot;
+
+type IntVector []int
+
+func (v IntVector) Sum() (s int) {
+	for _, x := range v {
+		s += x
+	}
+	return
+}
+
+func main() {
+	fmt.Println(IntVector{1, 2, 3}.Sum()) // 输出是6
+}
+</code></pre><p>变量和定义在它上面的方法必须在同一个包里定义，如下例是错误的，这也是为什么不能定义int这样的基本类型的方法，但可以定义基本类型的别名的方法</p><pre><code class=language-go>package main
+
+import &quot;container/list&quot;
+
+func (p *list.List) Iter() {
+	// ...
+}
+
+func main() {
+	lst := new(list.List)
+	for _= range lst.Iter() {
+	}
+}
+</code></pre><a class=post-dummy-target id=5-1-函数和方法的区别></a><h3>5.1 函数和方法的区别</h3><p>函数将变量作为参数：<strong>Function1(recv)</strong></p><p>方法在变量上被调用：<strong>recv.Method1()</strong></p><p>在接收者是指针时，方法可以改变接收者的值（或状态），这点函数也可以做到（当参数作为指针传递，即通过引用调用时，函数也可以改变参数的状态）。</p><p><strong>不要忘记 Method1 后边的括号 ()，否则会引发编译器错误：<code>method recv.Method1 is not an expression, must be called</code></strong></p><p>接收者必须有一个显式的名字，这个名字必须在方法中被使用。</p><p><strong>receiver_type</strong> 叫做 <strong>（接收者）基本类型</strong>，这个类型必须在和方法同样的包中被声明。</p><p>在 Go 中，（接收者）类型关联的方法不写在类型结构里面，就像类那样；耦合更加宽松；类型和方法之间的关联由接收者来建立。</p><p><strong>方法没有和数据定义（结构体）混在一起：它们是正交的类型；表示（数据）和行为（方法）是独立的。</strong></p><a class=post-dummy-target id=5-2-指针或值作为接收者></a><h3>5.2 指针或值作为接收者</h3><p>如果想要方法改变接收者的数据，就在接收者的指针类型上定义该方法。否则，就在普通的值类型上定义方法。一个例子如下</p><pre><code class=language-go>package main
+
+import (
+	&quot;fmt&quot;
+)
+
+type B struct {
+	thing int
+}
+
+func (b *B) change() { b.thing = 1 }
+
+func (b B) write() string { return fmt.Sprint(b) }
+
+func main() {
+	var b1 B // b1是值
+	b1.change()
+	fmt.Println(b1.write())
+
+	b2 := new(B) // b2是指针
+	b2.change()
+	fmt.Println(b2.write())
+}
+
+/* 输出：
+{1}
+{1}
+*/
+</code></pre><p>指针方法和值方法都可以在指针或非指针上被调用，如上例，b1是值类型，而change()方法作用在指针类型上，b1.change()会被自动转换为(&amp;b1).change()；b2是指针类型，但write()方法是值类型，b2.write()会被自动转换成(*b2).write()</p><p>### 5.3 利用方法读取结构体中的未导出字段</p><p>本文开始对结构体的介绍中，提到结构体对外部可见，而结构体中的字段对外部不可见是可能发送的，对于这种情况，读取或修改结构体中的字段值可以通过作用在结构体上的方法完成，一个例子如下</p><pre><code class=language-go>package person
+
+type Person struct {
+	firstName string
+	lastName  string
+}
+
+func (p *Person) FirstName() string {
+	return p.firstName
+}
+
+func (p *Person) SetFirstName(newName string) {
+	p.firstName = newName
+}
+</code></pre><p>对其中定义的结构体字段进行调用</p><pre><code class=language-go>package main
+
+import (
+	&quot;./person&quot;
+	&quot;fmt&quot;
+)
+
+func main() {
+	p := new(person.Person)
+	// p.firstName undefined
+	// (cannot refer to unexported field or method firstName)
+	// p.firstName = &quot;Eric&quot;
+	p.SetFirstName(&quot;Eric&quot;)
+	fmt.Println(p.FirstName()) // Output: Eric
+}
+</code></pre><a class=post-dummy-target id=5-4-内嵌类型的方法与继承></a><h3>5.4 内嵌类型的方法与继承</h3><p>当一个匿名类型被内嵌在结构体中时，匿名类型的可见方法也同样被内嵌，这在效果上等同于外层类型 <strong>继承</strong> 了这些方法 ， 这个机制提供了一种简单的方式来模拟面向对象语言中的子类和继承相关的效果。一个示例如下</p><pre><code class=language-go>package main
+
+import (
+	&quot;fmt&quot;
+	&quot;math&quot;
+)
+
+type Point struct {
+	x, y float64
+}
+
+func (p *Point) Abs() float64 {
+	return math.Sqrt(p.x*p.x + p.y*p.y)
+}
+
+type NamedPoint struct {
+	Point
+	name string
+}
+
+func main() {
+	n := &amp;NamedPoint{Point{3, 4}, &quot;Pythagoras&quot;}
+	fmt.Println(n.Abs()) // 打印5
+}
+</code></pre><p>使用同名方法可以覆盖父类型中的方法，比如在上例中添加如下代码，会打印100</p><pre><code class=language-go>func (n *NamedPoint) Abs() float64 {
+	return n.Point.Abs() * 100.
+}
+</code></pre><p>因为一个结构体可以嵌入多个匿名类型，所以实际上可以实现简单的多重继承，如下例所示</p><pre><code class=language-go>package main
+
+import (
+	&quot;fmt&quot;
+)
+
+type Camera struct{}
+
+func (c *Camera) TakeAPicture() string {
+	return &quot;Click&quot;
+}
+
+type Phone struct{}
+
+func (p *Phone) Call() string {
+	return &quot;Ring Ring&quot;
+}
+
+type CameraPhone struct {
+	Camera
+	Phone
+}
+
+func main() {
+	cp := new(CameraPhone)
+	fmt.Println(&quot;Our new CameraPhone exhibits multiple behaviors...&quot;)
+	fmt.Println(&quot;It exhibits behavior of a Camera: &quot;, cp.TakeAPicture())
+	fmt.Println(&quot;It works like a Phone too: &quot;, cp.Call())
+}
+//Output:
+Our new CameraPhone exhibits multiple behaviors...
+It exhibits behavior of a Camera: Click
+It works like a Phone too: Ring Ring
+</code></pre><a class=post-dummy-target id=5-5-在类型中嵌入功能></a><h3>5.5 在类型中嵌入功能</h3><p>主要有两种方法来实现在类型中嵌入功能：</p><p>A：聚合（或组合）：包含一个所需功能类型的具名字段。</p><p>B：内嵌：内嵌（匿名地）所需功能类型，像前一节 10.6.5 所演示的那样。</p><p>假设有一个 <code>Customer</code> 类型，我们想让它通过 <code>Log</code> 类型来包含日志功能，<code>Log</code> 类型只是简单地包含一个累积的消息（当然它可以是复杂的）。如果想让特定类型都具备日志功能，你可以实现一个这样的 <code>Log</code> 类型，然后将它作为特定类型的一个字段，并提供 <code>Log()</code>，它返回这个日志的引用。</p><p>使用聚合方式实现如下</p><pre><code class=language-go>package main
+
+import (
+	&quot;fmt&quot;
+)
+
+type Log struct {
+	msg string
+}
+
+type Customer struct {
+	Name string
+	log  *Log
+}
+
+func main() {
+	c := new(Customer)
+	c.Name = &quot;Barak Obama&quot;
+	c.log = new(Log)
+	c.log.msg = &quot;1 - Yes we can!&quot;
+	// shorter
+	c = &amp;Customer{&quot;Barak Obama&quot;, &amp;Log{&quot;1 - Yes we can!&quot;}}
+	// fmt.Println(c) &amp;{Barak Obama 1 - Yes we can!}
+	c.Log().Add(&quot;2 - After me the world will be a better place!&quot;)
+	//fmt.Println(c.log)
+	fmt.Println(c.Log())
+
+}
+
+func (l *Log) Add(s string) {
+	l.msg += &quot;\n&quot; + s
+}
+
+func (l *Log) String() string {
+	return l.msg
+}
+
+func (c *Customer) Log() *Log {
+	return c.log
+}
+//Output:
+1 - Yes we can!
+2 - After me the world will be a better place!
+</code></pre><p>使用内嵌方式实现如下</p><pre><code class=language-go>package main
+
+import (
+	&quot;fmt&quot;
+)
+
+type Log struct {
+	msg string
+}
+
+type Customer struct {
+	Name string
+	Log
+}
+
+func main() {
+	c := &amp;Customer{&quot;Barak Obama&quot;, Log{&quot;1 - Yes we can!&quot;}}
+	c.Add(&quot;2 - After me the world will be a better place!&quot;)
+	fmt.Println(c)
+
+}
+
+func (l *Log) Add(s string) {
+	l.msg += &quot;\n&quot; + s
+}
+
+func (l *Log) String() string {
+	return l.msg
+}
+
+func (c *Customer) String() string {
+	return c.Name + &quot;\nLog:&quot; + fmt.Sprintln(c.Log)
+}
+//Output:
+Barak Obama
+Log:{1 - Yes we can!
+2 - After me the world will be a better place!}
+</code></pre><p>内嵌的类型不需要指针，<code>Customer</code> 也不需要 <code>Add</code> 方法，它使用 <code>Log</code> 的 <code>Add</code> 方法，<code>Customer</code> 有自己的 <code>String</code> 方法，并且在它里面调用了 <code>Log</code> 的 <code>String</code> 方法。</p><p>如果内嵌类型嵌入了其他类型，也是可以的，那些类型的方法可以直接在外层类型中使用。</p><p>因此一个好的策略是创建一些小的、可复用的类型作为一个工具箱，用于组成域类型。</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2019-11-26</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href="//twitter.com/share?url=https%3a%2f%2fshuzang.github.io%2f2019%2f11%2fgolang%25E8%25AF%25AD%25E6%25B3%2595%25E5%259F%25BA%25E7%25A1%25808-%25E7%25BB%2593%25E6%259E%2584%25E4%25BD%2593%25E4%25B8%258E%25E6%2596%25B9%25E6%25B3%2595%2f&amp;text=Golang%e8%af%ad%e6%b3%95%e5%9f%ba%e7%a1%808-%e7%bb%93%e6%9e%84%e4%bd%93%e4%b8%8e%e6%96%b9%e6%b3%95&amp;via=" target=_blank title="Share on Twitter"><i class="fab fa-twitter fa-fw"></i></a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fshuzang.github.io%2f2019%2f11%2fgolang%25E8%25AF%25AD%25E6%25B3%2595%25E5%259F%25BA%25E7%25A1%25808-%25E7%25BB%2593%25E6%259E%2584%25E4%25BD%2593%25E4%25B8%258E%25E6%2596%25B9%25E6%25B3%2595%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook-square fa-fw"></i></a><a href="//reddit.com/submit?url=https%3a%2f%2fshuzang.github.io%2f2019%2f11%2fgolang%25E8%25AF%25AD%25E6%25B3%2595%25E5%259F%25BA%25E7%25A1%25808-%25E7%25BB%2593%25E6%259E%2584%25E4%25BD%2593%25E4%25B8%258E%25E6%2596%25B9%25E6%25B3%2595%2f&amp;title=Golang%e8%af%ad%e6%b3%95%e5%9f%ba%e7%a1%808-%e7%bb%93%e6%9e%84%e4%bd%93%e4%b8%8e%e6%96%b9%e6%b3%95" target=_blank title="Share on Reddit"><i class="fab fa-reddit fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span class=tag><a href=https://shuzang.github.io/tags/golang/><i class="fas fa-tag fa-fw"></i>&nbsp;Golang</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://shuzang.github.io>Home</a></span></section></div><div class=post-nav><a href=https://shuzang.github.io/2019/11/golang%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%809-%E6%8E%A5%E5%8F%A3%E4%B8%8E%E5%8F%8D%E5%B0%84/ class=prev rel=prev title=Golang语法基础9-接口与反射><i class="fas fa-angle-left fa-fw"></i>Golang语法基础9-接口与反射</a>
+<a href=https://shuzang.github.io/2019/11/markdowns-skill/ class=next rel=next title=Markdown奇技淫巧>Markdown奇技淫巧<i class="fas fa-angle-right fa-fw"></i></a></div></div><div class=post-comment></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a></div><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://shuzang.github.io target=_blank>shuzang</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><a href=# class=dynamic-to-top id=dynamic-to-top data-scroll><span>&nbsp;</span>
+</a><script src=/js/lib/jquery/jquery.slim.min.js></script><script src=/js/lib/lazysizes/lazysizes.min.js></script><script src=/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js></script><script>window.scroll=new SmoothScroll('[data-scroll]',{speed:300,speedAsDuration:true});</script><link rel=stylesheet href=/css/lib/katex/katex.min.css><script src=/js/lib/katex/katex.min.js></script><script defer src=/js/lib/katex/auto-render.min.js></script><link rel=stylesheet href=/css/lib/katex/copy-tex.min.css><script defer src=/js/lib/katex/copy-tex.min.js></script><script defer src=/js/lib/katex/mhchem.min.js></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true},{left:"$",right:"$",display:false},]});});</script><script src=/js/blog.min.js></script></body></html>

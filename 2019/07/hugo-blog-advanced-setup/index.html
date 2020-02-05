@@ -1,0 +1,134 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>hugo搭建个人博客3-进阶设置 | Shuzang&#39;s Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="shuzang's personal blog"><link rel=prev href=https://shuzang.github.io/2019/07/%E7%A7%91%E5%AD%A6%E7%B2%BE%E7%A5%9E%E4%B8%8E%E4%BA%BA%E6%96%87%E7%B4%A0%E5%85%BB/><link rel=next href=https://shuzang.github.io/2019/07/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E8%BF%87%E7%A8%8B%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E6%80%9D%E8%80%83/><link rel=canonical href=https://shuzang.github.io/2019/07/hugo-blog-advanced-setup/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><meta name=twitter:card content="summary"><meta name=twitter:title content="hugo搭建个人博客3-进阶设置"><meta name=twitter:description content="hugo虽然生成速度快，管理起来也简单，但是在主题方面真是一言难尽。当初因为emoji的支持问题从Even换到LeaveIt，又换到Keep"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"hugo搭建个人博客3-进阶设置","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/2019\/07\/hugo-blog-advanced-setup\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"博客写作","wordcount":3954,"url":"https:\/\/shuzang.github.io\/2019\/07\/hugo-blog-advanced-setup\/","datePublished":"2019-07-12T00:00:00\x2b00:00","dateModified":"2020-01-07T00:00:00\x2b00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"shuzang","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/logo.png","width":127,"height":40}},"description":""}</script><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/css/lib/animate/animate.min.css></head><body><script>window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><nav class=navbar><div class=navbar-container><div class="navbar-header animated bounceIn"><a href=https://shuzang.github.io>Shuzang&#39;s Blog</a></div><div class=navbar-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/life>Life</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><nav class=navbar-mobile><div class=navbar-container><div class=navbar-header><div class="navbar-header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang&#39;s Blog</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=navbar-menu id=mobile-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/life>Life</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><main class=main><div class=container><article class=page><h1 class="post-title animated flipInX">hugo搭建个人博客3-进阶设置</h1><div class=post-meta><div class=post-meta-main><a class=author href=https://shuzang.github.io rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>shuzang
+</a>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i><a href=https://shuzang.github.io/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/>爱编程爱技术的孩子</a>&nbsp;</span></div><div class=post-meta-other><i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-07-12>2019-07-12</time>&nbsp;
+<i class="fas fa-pencil-alt fa-fw"></i>about 3954 words&nbsp;
+<i class="far fa-clock fa-fw"></i>8 min&nbsp;</div></div><div class=post-featured-image><img src=/svg/loading.min.svg data-sizes=auto data-src=https://user-images.githubusercontent.com/26682846/71819349-a057fc00-30c6-11ea-8634-e43a4d103b19.jpg alt="featured image" class=lazyload></div><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#1-代码高亮>1. 代码高亮</a></li><li><a href=#2-文章特性图片>2. 文章特性图片</a></li><li><a href=#3-内嵌视频>3. 内嵌视频</a></li><li><a href=#4-内嵌音乐播放器>4. 内嵌音乐播放器</a></li><li><a href=#5-使用shortcode简化书写>5. 使用Shortcode简化书写</a><ul><li><a href=#5-1-音频>5.1 音频</a></li><li><a href=#5-2-视频>5.2 视频</a></li><li><a href=#5-3-图片>5.3 图片</a></li><li><a href=#5-4-gist>5.4 gist</a></li></ul></li><li><a href=#6-数学公式>6. 数学公式</a></li><li><a href=#7-字数统计>7. 字数统计</a></li><li><a href=#8-开启gittalk评论>8. 开启gittalk评论</a></li><li><a href=#9-打赏>9. 打赏</a></li><li><a href=#10-url>10. URL</a></li><li><a href=#参考>参考</a></li></ul></li></ul></nav></div></div><div class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
+<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><ul><li><a href=#1-代码高亮>1. 代码高亮</a></li><li><a href=#2-文章特性图片>2. 文章特性图片</a></li><li><a href=#3-内嵌视频>3. 内嵌视频</a></li><li><a href=#4-内嵌音乐播放器>4. 内嵌音乐播放器</a></li><li><a href=#5-使用shortcode简化书写>5. 使用Shortcode简化书写</a><ul><li><a href=#5-1-音频>5.1 音频</a></li><li><a href=#5-2-视频>5.2 视频</a></li><li><a href=#5-3-图片>5.3 图片</a></li><li><a href=#5-4-gist>5.4 gist</a></li></ul></li><li><a href=#6-数学公式>6. 数学公式</a></li><li><a href=#7-字数统计>7. 字数统计</a></li><li><a href=#8-开启gittalk评论>8. 开启gittalk评论</a></li><li><a href=#9-打赏>9. 打赏</a></li><li><a href=#10-url>10. URL</a></li><li><a href=#参考>参考</a></li></ul></li></ul></nav></div></details></div><div class=post-content><p>hugo虽然生成速度快，管理起来也简单，但是在主题方面真是一言难尽。当初因为emoji的支持问题从Even换到LeaveIt，又换到KeepIt，但用到现在还是发现很多需求无法满足，这里总结如下，慢慢去改进</p><ul><li><del>中文URL显示问题</del></li><li>RSS无法正确加载文章的问题</li><li>添加文章目录栏</li><li>代码高亮格式调整</li><li>表格宽度自动调整使铺面页面</li><li>支持基于 <a href=https://github.com/knsv/mermaid>mermaid</a> 的图表和流程图生成功能</li><li>支持对文章的搜索</li><li><del>支持文章更新日期显示</del></li><li><del>支持使用数学公式</del></li><li><del>支持内嵌Bilibili视频</del></li><li><del>支持基于 <a href=https://github.com/MoePlayer/APlayer>APlayer</a> 和 <a href=https://github.com/metowolf/MetingJS>MetingJS</a> 的内嵌音乐播放器</del></li><li>CDN缓存优化，加快网站在国内的加载速度<ul><li>参考<a href=https://mogeko.me/2019/056/>为博客添加免费的 CDN (Cloudflare)</a></li></ul></li><li>提交各大搜索引擎收录</li><li><del>持续集成推送到shuzang.github.io仓库</del></li><li><del>评论系统集成（powered by gitalk）</del></li></ul><a class=post-dummy-target id=1-代码高亮></a><h2>1. 代码高亮</h2><p>KeepIt主题本身对代码高亮的渲染是在本地执行的，使用的是<a href=https://github.com/google/code-prettify>google code prettify</a>，高亮风格少的可怜，何况作者还没提供对高亮风格的选择。因此打算删除这部分内容，通过JavaScript直接在浏览器里进行渲染，使用<code>Highlight.js</code>库。</p><p>为了最大程度的保持原主题文件的代码，我们首先将主题文件夹下<code>layouts/partials/js.html</code>文件复制到Hugo项目文件夹，位于同样的目录。</p><p>删除<code>js.html</code>中以下语句</p><pre><code class=language-html>{{ $prettify := resources.Get &quot;/js/prettify.min.js&quot; }}
+</code></pre><p>然后删除<code>js.html</code>文件中所有<code>$prettify</code>字段。</p><p>接下来复制主题文件夹<code>layouts/partials/head.html</code>文件到项目文件夹，并添加如下内容</p><pre><code class=language-html>&lt;link href=&quot;https://cdn.bootcss.com/highlight.js/9.15.10/styles/atom-one-light.min.css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;script src=&quot;https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;hljs.initHighlightingOnLoad();&lt;/script&gt;
+</code></pre><p>以上代码使用了<a href=https://www.bootcdn.cn/highlight.js/>bootCDN</a>对<code>Highlight.js</code>的支持，并额外添加了对go语言代码高亮的支持。</p><p>最后需要删除主题文件夹中的某些内容，包括</p><ol><li><p><code>assets/js/prettify.min.js</code>文件</p></li><li><p><code>assets/css/main.scss</code>的以下内容</p><pre><code class=language-scss>@import &quot;_common/_prettyprint/default.scss&quot;
+</code></pre></li></ol><p>此时代码就可以以浅色的atom格式高亮了，不过可惜的是不显示代码行数，就只能等以后再说了。</p><p>还要注意的是以后每次更新主题都要删除主题文件夹中以上两个内容。</p><a class=post-dummy-target id=2-文章特性图片></a><h2>2. 文章特性图片</h2><p>实际上这是本身就支持的一个功能，只是很少用。方法是在原本文章的元数据部分新添<code>feature_image</code>和<code>description</code>字段，前者粘贴图片URL，后者书写图片描述。一个添加特性图片后的文章元数据字段内容如下：</p><pre><code class=language-markdown>title: 在博客中内嵌bilibili视频
+date: 2019-11-12
+tags: [博客写作]
+categories: [爱编程爱技术的孩子]
+featured_image: https://i.vimeocdn.com/video/771515958.jpg?mw=1920&amp;mh=1080&amp;q=70
+description: 悲剧傻缺视频集锦的某次截图
+</code></pre><a class=post-dummy-target id=3-内嵌视频></a><h2>3. 内嵌视频</h2><p>内嵌视频可以直接使用html代码，各视频网站分享链接中一般会提供该代码，如以下代码内嵌一个bilibili最近的八尾妖姬的悲剧傻缺视频集锦。</p><pre><code class=language-html>&lt;iframe src=&quot;//player.bilibili.com/player.html?aid=75064361&quot; scrolling=&quot;no&quot; border=&quot;0&quot; frameborder=&quot;no&quot; framespacing=&quot;0&quot; allowfullscreen=&quot;true&quot; style=&quot;width: 100%;height: 600px;&quot; &gt; &lt;/iframe&gt;
+</code></pre><p>效果如下，添加bilibili的视频只需要把<code>aid</code>后面的数字改成视频网址最后的数字即可。</p><p><iframe src="//player.bilibili.com/player.html?aid=75064361" scrolling=no border=0 frameborder=no framespacing=0 allowfullscreen style=width:100%;height:600px></iframe>
+实际上也可以使用短代码来完成这一功能，无需书写复杂的HTML代码，之后介绍。要注意的是，引入视频会导致网页加载速度大幅下滑，如非必要，最好不要引入。</p><a class=post-dummy-target id=4-内嵌音乐播放器></a><h2>4. 内嵌音乐播放器</h2><p>使用 <a href=https://github.com/MoePlayer/APlayer>APlayer</a> 和 <a href=https://github.com/metowolf/MetingJS>MetingJS</a> 可以在博客中内嵌音乐播放器</p><p>首先在head.html中添加如下内容</p><pre><code class=language-html>&lt;!-- require APlayer --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css&quot;&gt;
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js&quot;&gt;&lt;/script&gt;
+&lt;!-- require MetingJS --&gt;
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js&quot;&gt;&lt;/script&gt;
+</code></pre><p>然后在想添加播放器的博文中使用如下语句</p><pre><code class=language-html>&lt;meting-js auto=&quot;https://y.qq.com/n/yqq/song/000xRG4E4diqXD.html&quot;&gt;&lt;/meting-js&gt;
+</code></pre><p>效果如下</p><p><meting-js auto=https://y.qq.com/n/yqq/song/000xRG4E4diqXD.html></meting-js></p><p>需要在浏览器从各音乐播放平台获取播放链接，当然，像视频一样使用iframe也可以。</p><a class=post-dummy-target id=5-使用shortcode简化书写></a><h2>5. 使用Shortcode简化书写</h2><p>Hugo写文章的主要格式是Markdown，但是很多高级的语法默认的渲染引擎是不支持的，需要使用纯HTML代码来编写，这和Markdown的本意是违背的。因此Hugo提供了<a href=https://gohugo.io/templates/shortcode-templates/>Shortcodes</a>来提供对这些语法的支持。</p><p>首先，Shortcodes的模板文件应该放在<code>layouts/shortcodes</code>文件夹下，每个模板作为一个子文件存在。以下我们添加对内嵌视频、Mermaid流程图的短代码支持，分别命名为<code>audio.html</code>，<code>video.html</code>，<code>mermaid.html</code></p><p>短代码的调用方法为将代码放在两个大括号和一个尖括号的包围中，代码本身应与两侧尖括号有一个空格分隔</p><a class=post-dummy-target id=5-1-音频></a><h3>5.1 音频</h3><p>我们之前已经使用 <a href=https://github.com/MoePlayer/APlayer>APlayer</a> 和 <a href=https://github.com/metowolf/MetingJS>MetingJS</a> 在博客中内嵌音乐播放器，这次更改为短代码主要为了简化书写。</p><p>编辑audio.html文件如下</p><pre><code class=language-html>&lt;meting-js auto={{ .Get 0 }}&gt;&lt;/meting-js&gt;
+</code></pre><p>使用如下引号中的代码填充短代码调用内容，参数填充音频网址，即从网易云或QQ音乐网站对应歌曲复制的url</p><pre><code class=language-diff>audio  &quot;https://y.qq.com/n/yqq/song/000xRG4E4diqXD.html&quot;
+</code></pre><a class=post-dummy-target id=5-2-视频></a><h3>5.2 视频</h3><p>主要针对bilibili视频（因为后续可能添加对其它网站视频的支持，故文件名为video.html），video.html文件编辑如下</p><pre><code class=language-html>&lt;iframe src=&quot;//player.bilibili.com/player.html?aid={{ .Get 0 }}&quot; 
+        scrolling=&quot;no&quot; border=&quot;0&quot; frameborder=&quot;no&quot; framespacing=&quot;0&quot; 
+        allowfullscreen=&quot;true&quot; 
+        style=&quot;width: 100%;height: 600px;&quot; &gt; 
+&lt;/iframe&gt;
+</code></pre><p>使用如下代码填充短代码调用内容，参数填充视频代码，即URL最后的一串数字</p><pre><code class=language-markdown>video 75064361
+</code></pre><p>另外，Hugo本身就提供了一些Shortcodes（<a href=https://gohugo.io/content-management/shortcodes/>Build-in</a>），例如</p><a class=post-dummy-target id=5-3-图片></a><h3>5.3 图片</h3><p>markdown图片语法的扩展，一个填充的参数例子如下</p><pre><code class=language-markdown>figure src=&quot;https://cn.bing.com/th?id=OIP.Z0rMYDbFTqFcFNh1bEQSDQHaEo&amp;pid=Api&amp;rs=1&quot; title=&quot;Earth&quot;
+</code></pre><p>使用一些预置的参数对图片进行管理，常用参数包括</p><ul><li>src：要显示的图片的URL</li><li>title：图片名</li><li>caption：图片说明</li><li>height：图片高度</li><li>width：图片宽度</li></ul><p>以上例子效果如下</p><figure><img src="https://cn.bing.com/th?id=OIP.Z0rMYDbFTqFcFNh1bEQSDQHaEo&amp;pid=Api&amp;rs=1"><figcaption><h4>Earth</h4></figcaption></figure><a class=post-dummy-target id=5-4-gist></a><h3>5.4 gist</h3><p>指的是Github gists，如果一个gist的url如下</p><pre><code class=language-diff>https://gist.github.com/spf13/7896402
+</code></pre><p>那么可以使用下面的填充参数</p><pre><code class=language-markdown>gist spf13 7896402
+</code></pre><p>如果gist包括多个文件但我们只想用一个，可以传入文件名作为第三个参数</p><pre><code class=language-markdown>gist spf13 7896402 &quot;img.html&quot;
+</code></pre><a class=post-dummy-target id=6-数学公式></a><h2>6. 数学公式</h2><p>总结论文的时候出现数学公式简直是再寻常不过的事了，但是Hugo本身不提供对这种语法的支持，KeepIt主题也没有提供这个功能，因此需要自己添加。</p><p>主要方法是在已经生成好的HTML页面中使用JavaScript来渲染LaTex形式的数学公式，因此选择了这方面最流行的库<a href=https://www.mathjax.org/>MathJax</a>。</p><p>与代码相同，数学公式也有行内(inline)和区块(block)两种，下面展示了这两种写法</p><pre><code class=language-latex>When $a \ne 0$, there are two solutions to `\(ax^2 + bx + c = 0\)` and they are:
+
+$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$
+</code></pre><p>Hugo官方其实给了一个<a href=https://gohugo.io/content-management/formats/#enable-mathjax>解决办法</a>，分为三步：</p><ol><li><p>引入<code>&lt;script&gt;</code>标签</p><pre><code class=language-js>&lt;script type=&quot;text/javascript&quot; src=&quot;https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;
+&lt;/script&gt;
+</code></pre><p>需要确保这段代码嵌入网站所有页面中，因此把它添加到<code>layouts/partials/head.html</code>文件中。</p></li><li><p>行内公式和特殊字符转义</p><p>第一步执行完后行内公式依然无法显示，如下划线<code>_</code>等特殊字符转义也有问题。因此需要继续添加如下代码，仍然是<code>layouts/partials/head.html</code>文件，两段代码前者做了一些配置，后者自动给<code>className</code>加<code>has-jax</code>后缀。</p><pre><code class=language-js>&lt;script type=&quot;text/x-mathjax-config&quot;&gt;
+MathJax.Hub.Config({
+ tex2jax: {
+   inlineMath: [['$','$'], ['\\(','\\)']],
+   displayMath: [['$$','$$'], ['\[','\]']],
+   processEscapes: true,
+   processEnvironments: true,
+   skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+   TeX: { equationNumbers: { autoNumber: &quot;AMS&quot; },
+        extensions: [&quot;AMSmath.js&quot;, &quot;AMSsymbols.js&quot;] }
+ }
+});
+&lt;/script&gt;
+   
+&lt;script type=&quot;text/x-mathjax-config&quot;&gt;
+ MathJax.Hub.Queue(function() {
+   // Fix &lt;code&gt; tags after MathJax finishes running. This is a
+   // hack to overcome a shortcoming of Markdown. Discussion at
+   // https://github.com/mojombo/jekyll/issues/199
+   var all = MathJax.Hub.getAllJax(), i;
+   for(i = 0; i &lt; all.length; i += 1) {
+       all[i].SourceElement().parentNode.className += ' has-jax';
+   }
+});
+&lt;/script&gt;
+</code></pre></li><li><p>CSS调整</p><p>最后还需要在CSS中对这种特殊的MathJax进行样式处理，否则行内公式的显示会很奇怪。</p><pre><code class=language-css>code.has-jax {
+   font: inherit;
+   font-size: 100%;
+   background: inherit;
+   border: inherit;
+   color: #515151;
+}
+</code></pre></li></ol><p>然后以上方法步骤繁琐最后还不一定起作用，因此采用把所有修改写成一个<code>layouts/partials/mathjax.html</code>文件的方法，把官方提到的三处修改合并成一个partial，然后把MathJax的CDN修改到国内。</p><pre><code class=language-html>&lt;script type=&quot;text/javascript&quot;
+        async
+        src=&quot;https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML&quot;&gt;
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [['$','$'], ['\\(','\\)']],
+    displayMath: [['$$','$$'], ['\[','\]']],
+    processEscapes: true,
+    processEnvironments: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+    TeX: { equationNumbers: { autoNumber: &quot;AMS&quot; },
+         extensions: [&quot;AMSmath.js&quot;, &quot;AMSsymbols.js&quot;] }
+  }
+});
+
+MathJax.Hub.Queue(function() {
+    // Fix &lt;code&gt; tags after MathJax finishes running. This is a
+    // hack to overcome a shortcoming of Markdown. Discussion at
+    // https://github.com/mojombo/jekyll/issues/199
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i = 0; i &lt; all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+});
+&lt;/script&gt;
+
+&lt;style&gt;
+code.has-jax {
+    font: inherit;
+    font-size: 100%;
+    background: inherit;
+    border: inherit;
+    color: #515151;
+}
+&lt;/style&gt;
+</code></pre><p>最后把以上partial模板添加到<code>head.html</code>模板中</p><pre><code class=language-html>{{ partial &quot;mathjax.html&quot; . }}
+</code></pre><p>但直接修改主题中的文件并不合适，因为原作者可能会进行一定的更新（对我这样的半吊子很依赖作者对主题的更新），好在Hugo对文件的寻找是有优先级的，会首先在项目文件中寻找相应的渲染模板，然后才去主题文件夹寻找，因此将<code>layouts/partials/mathjax.html</code>和<code>layouts/partials/head.html</code>这两个修改后的文件复制到Hugo项目的相同位置，此时就可以直接反馈在页面上了。此时在hugo项目根目录查看目录结构如下：</p><pre><code class=language-bash>$ ls
+archetypes/  content/  layouts/    static/
+config.toml  data/     resources/  themes/
+
+$ find layouts -type f | xargs ls -l
+-rw-r--r-- 1 lylw1 197609 2679 11月 12 15:51 layouts/partials/head.html
+-rw-r--r-- 1 lylw1 197609 1056 11月 12 15:51 layouts/partials/mathjax.html
+
+</code></pre><a class=post-dummy-target id=7-字数统计></a><h2>7. 字数统计</h2><p>LeaveIt本身在博文末尾提供了字数统计功能，使用的是<code>.WordCount</code>模板变量，但并不统计中文(<a href=https://github.com/nodejh/hugo-theme-cactus-plus/issues/18>详情</a>)，所以显示的字数总是很小。可以通过在<code>config.toml</code>中添加如下语句启用。</p><pre><code class=language-toml>hasCJKLanguage = true
+</code></pre><a class=post-dummy-target id=8-开启gittalk评论></a><h2>8. 开启gittalk评论</h2><p>在GitHub 上创建一个 <a href=https://github.com/settings/applications/new>Github Application</a>，记录 <code>Client ID</code> 和 <code>Client Secret</code></p><p>编辑<code>config.toml</code>以下字段</p><pre><code class=language-toml>[params.gitalk]
+owner = &quot;shuzang&quot;       # 你的GitHub ID       
+repo = &quot;blog&quot;        # 博客网址    
+clientId = &quot;&quot;    # 刚刚记录的client ID      
+clientSecret = &quot;&quot; # 刚刚记录的client secret
+labels = &quot;gitalk&quot;
+</code></pre><p>提交到仓库后就能看到博文下开启了评论区</p><a class=post-dummy-target id=9-打赏></a><h2>9. 打赏</h2><p>有些主题支持加入打赏图片，但KeepIt不支持，不过这里还是记录一下。利用<a href=http://www.9thws.com/#>第九工厂</a>的免费模板制作好看的打赏二维码。</p><a class=post-dummy-target id=10-url></a><h2>10. URL</h2><p>文章分享和访问时，中文URL是最麻烦的一件事情，为了解决这个问题，我阅读了一遍hugo文档中的<a href=https://gohugo.io/content-management/urls/>URL Management</a>，最终决定使用如下办法。</p><p>首先修改站点配置文件<code>config.toml</code>中的<code>Permalinks</code>字段如下</p><pre><code class=language-toml>[Permalinks]
+ posts = &quot;/:year/:month/:slug/&quot;
+</code></pre><p>初始状态该字段值为<code>posts = &quot;/:year/:month/:filename/&quot;</code>，使用文件名作为URL，但是文件名作为管理和查找的手段，使用英文较为不便，而文章标题为了便于阅读，也不方便命名为英文，只能使用额外的<code>slug</code>字段。</p><p>之后在每篇文章头部的配置信息中添加<code>slug</code>字段即可，一个例子如下</p><pre><code class=language-toml>title: Golang语法基础100问
+date: 2019-12-23
+slug: &quot;100 question of Golang basic syntax&quot;
+tags: [Golang]
+categories: [爱编程爱技术的孩子]
+</code></pre><p>这篇文章最后的URL将会是<code>http://shuzang.github.io/2019/12/100-question-of-golang-basic-syntax/</code></p><a class=post-dummy-target id=参考></a><h2>参考</h2><p>[1] <a href=https://note.qidong.name/2017/06/24/hugo-highlight/>Hugo中添加代码高亮支持</a></p><p>[2] <a href=https://butui.me/post/yet-best-math-formula-support-for-hugo-with-mathjax/>Hugo 静态博客中迄今为止最佳数学公式支持-利用 MathJax &amp; MMark</a></p><p>[3] <a href=https://note.qidong.name/2018/03/hugo-mathjax/>在Hugo中使用MathJax</a></p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2020-01-07</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href="//twitter.com/share?url=https%3a%2f%2fshuzang.github.io%2f2019%2f07%2fhugo-blog-advanced-setup%2f&amp;text=hugo%e6%90%ad%e5%bb%ba%e4%b8%aa%e4%ba%ba%e5%8d%9a%e5%ae%a23-%e8%bf%9b%e9%98%b6%e8%ae%be%e7%bd%ae&amp;via=" target=_blank title="Share on Twitter"><i class="fab fa-twitter fa-fw"></i></a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fshuzang.github.io%2f2019%2f07%2fhugo-blog-advanced-setup%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook-square fa-fw"></i></a><a href="//reddit.com/submit?url=https%3a%2f%2fshuzang.github.io%2f2019%2f07%2fhugo-blog-advanced-setup%2f&amp;title=hugo%e6%90%ad%e5%bb%ba%e4%b8%aa%e4%ba%ba%e5%8d%9a%e5%ae%a23-%e8%bf%9b%e9%98%b6%e8%ae%be%e7%bd%ae" target=_blank title="Share on Reddit"><i class="fab fa-reddit fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span class=tag><a href=https://shuzang.github.io/tags/%E5%8D%9A%E5%AE%A2%E5%86%99%E4%BD%9C/><i class="fas fa-tag fa-fw"></i>&nbsp;博客写作</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://shuzang.github.io>Home</a></span></section></div><div class=post-nav><a href=https://shuzang.github.io/2019/07/%E7%A7%91%E5%AD%A6%E7%B2%BE%E7%A5%9E%E4%B8%8E%E4%BA%BA%E6%96%87%E7%B4%A0%E5%85%BB/ class=prev rel=prev title=科学精神与人文素养><i class="fas fa-angle-left fa-fw"></i>科学精神与人文素养</a>
+<a href=https://shuzang.github.io/2019/07/%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB%E8%BF%87%E7%A8%8B%E7%9A%84%E9%97%AE%E9%A2%98%E5%8F%8A%E6%80%9D%E8%80%83/ class=next rel=next title=论文阅读过程的问题及思考>论文阅读过程的问题及思考<i class="fas fa-angle-right fa-fw"></i></a></div></div><div class=post-comment></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a></div><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://shuzang.github.io target=_blank>shuzang</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><a href=# class=dynamic-to-top id=dynamic-to-top data-scroll><span>&nbsp;</span>
+</a><script src=/js/lib/jquery/jquery.slim.min.js></script><script src=/js/lib/lazysizes/lazysizes.min.js></script><script src=/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js></script><script>window.scroll=new SmoothScroll('[data-scroll]',{speed:300,speedAsDuration:true});</script><link rel=stylesheet href=/css/lib/katex/katex.min.css><script src=/js/lib/katex/katex.min.js></script><script defer src=/js/lib/katex/auto-render.min.js></script><link rel=stylesheet href=/css/lib/katex/copy-tex.min.css><script defer src=/js/lib/katex/copy-tex.min.js></script><script defer src=/js/lib/katex/mhchem.min.js></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true},{left:"$",right:"$",display:false},]});});</script><script src=/js/blog.min.js></script></body></html>

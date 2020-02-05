@@ -1,0 +1,512 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Golang语法基础9-接口与反射 | Shuzang&#39;s Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="shuzang's personal blog"><link rel=prev href=https://shuzang.github.io/2019/11/%E5%8C%BA%E5%9D%97%E9%93%BE%E9%AB%98%E5%85%B3%E8%81%94%E5%BA%A6%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/><link rel=next href=https://shuzang.github.io/2019/11/golang%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%808-%E7%BB%93%E6%9E%84%E4%BD%93%E4%B8%8E%E6%96%B9%E6%B3%95/><link rel=canonical href=https://shuzang.github.io/2019/11/golang%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%809-%E6%8E%A5%E5%8F%A3%E4%B8%8E%E5%8F%8D%E5%B0%84/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><meta name=twitter:card content="summary"><meta name=twitter:title content="Golang语法基础9-接口与反射"><meta name=twitter:description content="1. 接口 上一篇谈到类型 T（或 *T）上的所有方法的集合叫做类型 T（或 *T）的方法集，接口可以用来定义方法集，但是这种定义是抽象的，不包含方法的代"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Golang语法基础9-接口与反射","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/2019\/11\/golang%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%809-%E6%8E%A5%E5%8F%A3%E4%B8%8E%E5%8F%8D%E5%B0%84\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"Golang","wordcount":4142,"url":"https:\/\/shuzang.github.io\/2019\/11\/golang%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%809-%E6%8E%A5%E5%8F%A3%E4%B8%8E%E5%8F%8D%E5%B0%84\/","datePublished":"2019-11-26T00:00:00\x2b00:00","dateModified":"2019-11-26T00:00:00\x2b00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"shuzang","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/logo.png","width":127,"height":40}},"description":""}</script><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/css/lib/animate/animate.min.css></head><body><script>window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><nav class=navbar><div class=navbar-container><div class="navbar-header animated bounceIn"><a href=https://shuzang.github.io>Shuzang&#39;s Blog</a></div><div class=navbar-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/life>Life</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><nav class=navbar-mobile><div class=navbar-container><div class=navbar-header><div class="navbar-header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang&#39;s Blog</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=navbar-menu id=mobile-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/life>Life</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><main class=main><div class=container><article class=page><h1 class="post-title animated flipInX">Golang语法基础9-接口与反射</h1><div class=post-meta><div class=post-meta-main><a class=author href=https://shuzang.github.io rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>shuzang
+</a>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i><a href=https://shuzang.github.io/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/>爱编程爱技术的孩子</a>&nbsp;</span></div><div class=post-meta-other><i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-11-26>2019-11-26</time>&nbsp;
+<i class="fas fa-pencil-alt fa-fw"></i>about 4142 words&nbsp;
+<i class="far fa-clock fa-fw"></i>9 min&nbsp;</div></div><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><ul><li><a href=#1-接口>1. 接口</a><ul><li><a href=#1-1-接口类型值>1.1 接口类型值</a></li><li><a href=#1-2-接口实现>1.2 接口实现</a></li><li><a href=#1-3-接口嵌套>1.3 接口嵌套</a></li><li><a href=#1-4-类型断言>1.4 类型断言</a></li><li><a href=#1-5-使用指针接收者和值接收者实现接口>1.5 使用指针接收者和值接收者实现接口</a></li></ul></li><li><a href=#2-反射>2. 反射</a><ul><li><a href=#2-1-方法和类型的反射>2.1 方法和类型的反射</a></li><li><a href=#2-2-通过反射修改值>2.2 通过反射修改值</a></li><li><a href=#2-3-结构体的反射>2.3 结构体的反射</a></li></ul></li><li><a href=#3-总结-面向对象>3. 总结：面向对象</a><ul><li><a href=#3-1-组合实现继承>3.1 组合实现继承</a></li><li><a href=#3-2-内嵌实现继承>3.2 内嵌实现继承</a></li><li><a href=#3-3-多重继承>3.3 多重继承</a></li></ul></li></ul></li></ul></nav></div></div><div class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
+<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><ul><li><a href=#1-接口>1. 接口</a><ul><li><a href=#1-1-接口类型值>1.1 接口类型值</a></li><li><a href=#1-2-接口实现>1.2 接口实现</a></li><li><a href=#1-3-接口嵌套>1.3 接口嵌套</a></li><li><a href=#1-4-类型断言>1.4 类型断言</a></li><li><a href=#1-5-使用指针接收者和值接收者实现接口>1.5 使用指针接收者和值接收者实现接口</a></li></ul></li><li><a href=#2-反射>2. 反射</a><ul><li><a href=#2-1-方法和类型的反射>2.1 方法和类型的反射</a></li><li><a href=#2-2-通过反射修改值>2.2 通过反射修改值</a></li><li><a href=#2-3-结构体的反射>2.3 结构体的反射</a></li></ul></li><li><a href=#3-总结-面向对象>3. 总结：面向对象</a><ul><li><a href=#3-1-组合实现继承>3.1 组合实现继承</a></li><li><a href=#3-2-内嵌实现继承>3.2 内嵌实现继承</a></li><li><a href=#3-3-多重继承>3.3 多重继承</a></li></ul></li></ul></li></ul></nav></div></details></div><div class=post-content><a class=post-dummy-target id=1-接口></a><h2>1. 接口</h2><p>上一篇谈到类型 T（或 *T）上的所有方法的集合叫做类型 T（或 *T）的方法集，接口可以用来定义方法集，但是这种定义是抽象的，不包含方法的代码实现，接口中也不能包含变量。</p><p>接口定义的方式如下</p><pre><code class=language-go>type Namer interface {
+    Method1(param_list) return_type
+    Method2(param_list) return_type
+    ...
+}
+</code></pre><p>不像大多数面向对象编程语言，Go中可以为定义好的接口声明一个变量，叫做接口值：<code>var ai Namer</code>，其本质是一个指针，未初始化时其值为nil。</p><pre><code class=language-go>type Shape interface {
+	Area() float32
+}
+
+func main() {
+	var s Shape
+	fmt.Println(&quot;value of s is&quot;, s)
+	fmt.Printf(&quot;type of s is %T\n&quot;, s)
+}
+//Output:
+value of s is &lt;nil&gt;
+type of s is &lt;nil&gt;
+</code></pre><a class=post-dummy-target id=1-1-接口类型值></a><h3>1.1 接口类型值</h3><p>上例中可以看到，不仅接口的值为nil，其类型也是nil，这里做一下详细说明。</p><p>变量的类型在声明时指定，且不能改变，就称为静态类型。定义的接口本身属于静态类型，但声明后接口的值却是是动态的，由于接口的本质是一个指针，这个指针会指向实现了接口类型的值。如下例，变量i本身是静态类型Namer，但却先后指向实现了接口类型的St1和St2两个空结构体</p><pre><code class=language-go>type Namer interface {
+	Name()
+}
+
+type St1 struct{}
+func (St1) Name() {}
+type St2 struct{}
+func (St2) Name() {}
+
+func main() {
+	var i Namer = St1{}
+	fmt.Printf(&quot;type is %T\n&quot;, i)
+	fmt.Printf(&quot;value is %v\n&quot;, i)
+	i = St2{}
+	fmt.Printf(&quot;type is %T\n&quot;, i)
+	fmt.Printf(&quot;value is %v\n&quot;, i)
+}
+//Output:
+type is main.St1
+value is {}
+type is main.St2
+value is {}
+</code></pre><p>接口的类型值想要为nil，当且仅当动态值和动态类型都为nil。</p><a class=post-dummy-target id=1-2-接口实现></a><h3>1.2 接口实现</h3><p>方法集的实现基于某种类型(比如结构体)，这是上一节讲到的，因此接口实现的过程就是方法集中方法实现的过程。实现了接口的变量可以赋值给接口值，如下例</p><pre><code class=language-go>package main
+
+import &quot;fmt&quot;
+
+type Shaper interface {
+	Area() float32
+}
+
+type Square struct {
+	side float32
+}
+
+func (sq *Square) Area() float32 {
+	return sq.side * sq.side
+}
+
+func main() {
+	sq1 := new(Square)
+	sq1.side = 5
+
+	var areaIntf Shaper
+	areaIntf = sq1
+	// shorter,without separate declaration:
+	// areaIntf := Shaper(sq1)
+	// or even:
+	// areaIntf := sq1
+	fmt.Printf(&quot;The square has area: %f\n&quot;, areaIntf.Area())
+}
+//Output:
+The square has area: 25.000000
+</code></pre><p>接口被隐式地实现，因此类型不需要显式声明它实现了某个接口。</p><p>一个不包含任何方法的接口称为空接口，形如：interface{}。同时因为空接口不包含任何方法，所以任何类型都默认实现了空接口。</p><p>举个例子，fmt 包中的 Println() 函数，可以接收多种类型的值，比如：int、string、array等。这是因为它的形参就是接口类型，可以接收任意类型的值。</p><pre><code class=language-go>func Println(a ...interface{}) (n int, err error) {}
+</code></pre><p>多个类型可以实现同一个接口，如下例</p><pre><code class=language-go>package main
+
+import &quot;fmt&quot;
+
+type Shaper interface {
+	Area() float32
+}
+
+type Square struct {
+	side float32
+}
+
+func (sq *Square) Area() float32 {
+	return sq.side * sq.side
+}
+
+type Rectangle struct {
+	length, width float32
+}
+
+func (r Rectangle) Area() float32 {
+	return r.length * r.width
+}
+
+func main() {
+
+	r := Rectangle{5, 3} // Area() of Rectangle needs a value
+	q := &amp;Square{5}      // Area() of Square needs a pointer
+	// shapes := []Shaper{Shaper(r), Shaper(q)}
+	// or shorter
+	shapes := []Shaper{r, q}
+	fmt.Println(&quot;Looping through shapes for area ...&quot;)
+	for n, _ := range shapes {
+		fmt.Println(&quot;Shape details: &quot;, shapes[n])
+		fmt.Println(&quot;Area of this shape is: &quot;, shapes[n].Area())
+	}
+}
+//Output:
+Looping through shapes for area ...
+Shape details:  {5 3}
+Area of this shape is:  15
+Shape details:  &amp;{5}
+Area of this shape is:  25
+</code></pre><p>一个类型也可以实现多个接口，这意味着类型除实现某个接口的方法外，还可以实现其它的方法</p><pre><code class=language-go>type Shape interface {
+	Area() float32
+}
+
+type Object interface {
+	Perimeter() float32
+}
+
+type Circle struct {
+	radius float32
+}
+
+func (c Circle) Area() float32 {
+	return math.Pi * (c.radius * c.radius)
+}
+
+func (c Circle) Perimeter() float32 {
+	return 2 * math.Pi * c.radius
+}
+
+func main() {
+	c := Circle{3}
+	var s Shape = c
+	var p Object = c
+	fmt.Println(&quot;area: &quot;, s.Area())
+	fmt.Println(&quot;perimeter: &quot;, p.Perimeter())
+}
+//Output:
+area:  28.274334
+perimeter:  18.849556
+</code></pre><a class=post-dummy-target id=1-3-接口嵌套></a><h3>1.3 接口嵌套</h3><p>Go中的接口可以包含一个或多个其它接口，这相当于直接将这些内嵌接口的方法列举在外层接口中。下例中<code>File</code>接口包含了<code>ReadWrite</code>和<code>Lock</code>接口的所有方法</p><pre><code class=language-go>type ReadWrite interface {
+    Read(b Buffer) bool
+    Write(b Buffer) bool
+}
+
+type Lock interface {
+    Lock()
+    Unlock()
+}
+
+type File interface {
+    ReadWrite
+    Lock
+    Close()
+}
+</code></pre><a class=post-dummy-target id=1-4-类型断言></a><h3>1.4 类型断言</h3><p>一个接口类型的变量可以包含任何类型的值，因此需要有一种方式来检测其动态类型，这种方式就是类型断言</p><pre><code class=language-go>v := varI.(T)
+</code></pre><p>varI是一个接口变量，T是待检测类型，这一语句的作用是检测varI的动态类型是否和T一致，实质是将varI转换为T类型的值</p><pre><code class=language-go>package main
+
+import (
+	&quot;fmt&quot;
+	&quot;math&quot;
+)
+
+type Square struct {
+	side float32
+}
+
+type Circle struct {
+	radius float32
+}
+
+type Shaper interface {
+	Area() float32
+}
+
+func main() {
+	var areaIntf Shaper
+	sq1 := new(Square)
+	sq1.side = 5
+
+	areaIntf = sq1
+	// Is Square the type of areaIntf?
+	if t, ok := areaIntf.(*Square); ok {
+		fmt.Printf(&quot;The type of areaIntf is: %T\n&quot;, t)
+	}
+	if u, ok := areaIntf.(*Circle); ok {
+		fmt.Printf(&quot;The type of areaIntf is: %T\n&quot;, u)
+	} else {
+		fmt.Println(&quot;areaIntf does not contain a variable of type Circle&quot;)
+	}
+}
+
+func (sq *Square) Area() float32 {
+	return sq.side * sq.side
+}
+
+func (ci *Circle) Area() float32 {
+	return ci.radius * ci.radius * math.Pi
+}
+//Output:
+The type of areaIntf is: *main.Square
+areaIntf does not contain a variable of type Circle
+</code></pre><p>不过，也有可能类型断言是无效的，为了更安全的使用类型断言，可以使用如下方式，在上例中也有说明</p><pre><code class=language-go>if v, ok := varI.(T); ok {  // checked type assertion
+    Process(v)
+    return
+}
+// varI is not of type T
+</code></pre><p>不确定接口变量当前类型时，就需要进行多次断言，这时使用switch最为简便，要求是所有<code>case</code>语句中列举的类型(nil除外)都必须实现对应的接口。</p><pre><code class=language-go>switch t := areaIntf.(type) {
+case *Square:
+	fmt.Printf(&quot;Type Square %T with value %v\n&quot;, t, t)
+case *Circle:
+	fmt.Printf(&quot;Type Circle %T with value %v\n&quot;, t, t)
+case nil:
+	fmt.Printf(&quot;nil value: nothing to check?\n&quot;)
+default:
+	fmt.Printf(&quot;Unexpected type %T\n&quot;, t)
+}
+//Output:
+Type Square *main.Square with value &amp;{5}
+</code></pre><p>类型断言还有一种用法，就是测试它是否实现了某个接口，如下</p><pre><code class=language-go>type Stringer interface {
+    String() string
+}
+
+if sv, ok := v.(Stringer); ok {
+    fmt.Printf(&quot;v implements String(): %s\n&quot;, sv.String()) // note: sv, not v
+}
+</code></pre><a class=post-dummy-target id=1-5-使用指针接收者和值接收者实现接口></a><h3>1.5 使用指针接收者和值接收者实现接口</h3><p>虽然上一节中提到作用于变量的方法不区分变量是指针还是值，但是遇到接口时，会变得稍微复杂一点。</p><pre><code class=language-go>package main
+
+import (
+	&quot;fmt&quot;
+)
+
+type List []int
+
+func (l List) Len() int {
+	return len(l)
+}
+
+func (l *List) Append(val int) {
+	*l = append(*l, val)
+}
+
+type Appender interface {
+	Append(int)
+}
+
+func CountInto(a Appender, start, end int) {
+	for i := start; i &lt;= end; i++ {
+		a.Append(i)
+	}
+}
+
+type Lener interface {
+	Len() int
+}
+
+func LongEnough(l Lener) bool {
+	return l.Len()*10 &gt; 42
+}
+
+func main() {
+	// A bare value
+	var lst List
+	// compiler error:
+	// cannot use lst (type List) as type Appender in argument to CountInto:
+	//       List does not implement Appender (Append method has pointer receiver)
+	// CountInto(lst, 1, 10)
+	if LongEnough(lst) { // VALID:Identical receiver type
+		fmt.Printf(&quot;- lst is long enough\n&quot;)
+	}
+
+	// A pointer value
+	plst := new(List)
+	CountInto(plst, 1, 10) //VALID:Identical receiver type
+	if LongEnough(plst) {
+		// VALID: a *List can be dereferenced for the receiver
+		fmt.Printf(&quot;- plst is long enough\n&quot;)
+	}
+}
+</code></pre><p>在 <code>lst</code> 上调用 <code>CountInto</code> 时会导致一个编译器错误，因为 <code>CountInto</code> 需要一个 <code>Appender</code>，而它的方法 <code>Append</code> 只定义在指针上。 在 <code>lst</code> 上调用 <code>LongEnough</code> 是可以的，因为 <code>Len</code> 定义在值上。</p><p>在 <code>plst</code> 上调用 <code>CountInto</code> 是可以的，因为 <code>CountInto</code> 需要一个 <code>Appender</code>，并且它的方法 <code>Append</code> 定义在指针上。 在 <code>plst</code> 上调用 <code>LongEnough</code> 也是可以的，因为指针会被自动解引用。</p><p>Go语言规范中接口方法集的调用规则为：</p><ul><li>类型 *T 的可调用方法集包含接受者为 *T 或 T 的所有方法集</li><li>类型 T 的可调用方法集包含接受者为 T 的所有方法</li><li>类型 T 的可调用方法集不包含接受者为 *T 的方法</li></ul><a class=post-dummy-target id=2-反射></a><h2>2. 反射</h2><p>反射是指在程序运行期间对程序本身进行访问和修改的能力。程序在编译时，变量被转换为内存地址，变量名不会被编译器写入到可执行部分，在运行程序时，程序无法获取自身的信息。</p><p>支持反射的语言可以在程序编译期将变量的反射信息，如字段名称、类型信息、结构体信息等整合到可执行文件中，并给程序提供接口访问反射信息，这样就可以在程序运行期获取类型的反射信息，并且有能力修改它们。</p><p>Go语言的反射系统无法获取到一个可执行文件空间或者一个包中的所有类型信息，仅仅是在运行时通过reflect包来访问指定的类型信息。</p><p><a href=https://mp.weixin.qq.com/s/qJVfEWngSDg3It3UytPuxA>https://mp.weixin.qq.com/s/qJVfEWngSDg3It3UytPuxA</a></p><a class=post-dummy-target id=2-1-方法和类型的反射></a><h3>2.1 方法和类型的反射</h3><p>变量的最基本信息是类型和值，反射包的<code>Type</code>用来表示一个Go类型，反射包的<code>Value</code>为Go值提供了反射接口。</p><p>两个简单的函数，<code>reflect.TypeOf</code>和<code>reflect.ValueOf</code>，返回被检查对象的类型和值。例如，x被定义为<code>var x float64 = 3.4</code>，那么<code>reflect.TypeOf(x)</code>返回<code>type: float64</code>，<code>reflect.ValueOf(x)</code>返回<code>value: 3.4</code></p><p>其本质是检查接口的动态类型和动态值，可从以下函数签名看出</p><pre><code class=language-go>func TypeOf(i interface{}) Type
+func ValueOf(i interface{}) Value
+</code></pre><p>因此，使用Valueof转换获得的值，依然拥有自己的类型和值，反射包的Value有不少方法都可以作用于它，比如<code>kind</code>方法返回一个常量来表示类型，<code>Type</code>方法也返回值的类型，<code>Int</code>和<code>Float</code>等方法可以获取存储在内部的值，<code>Interface</code>方法可以还原接口值。示例如下</p><pre><code class=language-go>package main
+
+import (
+	&quot;fmt&quot;
+	&quot;reflect&quot;
+)
+
+func main() {
+	var x float64 = 3.4
+	fmt.Println(&quot;type:&quot;, reflect.TypeOf(x))
+	v := reflect.ValueOf(x)
+	fmt.Println(&quot;value:&quot;, v)
+	fmt.Println(&quot;type:&quot;, v.Type())
+	fmt.Println(&quot;kind:&quot;, v.Kind())
+	fmt.Println(&quot;value:&quot;, v.Float())
+	fmt.Println(v.Interface())
+	fmt.Printf(&quot;value is %5.2e\n&quot;, v.Interface())
+	y := v.Interface().(float64)
+	fmt.Println(y)
+}
+//Output:
+type: float64
+value: 3.4
+type: float64
+kind: float64
+value: 3.4
+3.4
+value is 3.40e+00
+3.4
+</code></pre><p>由于x是一个float64类型的值，因此使用v.Float()获取它的实际值，其它类型的值可以使用<code>Int(), Bool(), Complex, String()</code></p><p><code>Kind</code>方法总是返回底层类型，如</p><pre><code class=language-go>type MyInt int
+var m MyInt = 5
+v := reflect.ValueOf(m)
+</code></pre><p><code>v.Kind()</code>将返回<code>reflect.Int</code></p><a class=post-dummy-target id=2-2-通过反射修改值></a><h3>2.2 通过反射修改值</h3><p>无论如何，利用反射修改值总是应该极为谨慎的，而且，不是所有的反射值都可以修改，是否可修改可通过<code>CanSet()</code>方法检测。<code>v := reflect.ValueOf(x)</code>函数传递了一个x的拷贝，对拷贝的修改无法影响原值，因此，若想修改原值，应传递指针，<code>v = reflect.ValueOf(&amp;x)</code>。此时v的类型是<code>*float64</code>，但依然不可修改，还需要最后一步，使用<code>Elem()</code>方法，至此才能使用<code>SetFloat()</code>修改原值，一个完整的例子如下</p><pre><code class=language-go>package main
+
+import (
+	&quot;fmt&quot;
+	&quot;reflect&quot;
+)
+
+func main() {
+	var x float64 = 3.4
+	v := reflect.ValueOf(x)
+	// setting a value:
+	// v.SetFloat(3.1415) // Error: will panic: reflect.Value.SetFloat using unaddressable value
+	fmt.Println(&quot;settability of v:&quot;, v.CanSet())
+	v = reflect.ValueOf(&amp;x) // Note: take the address of x.
+	fmt.Println(&quot;type of v:&quot;, v.Type())
+	fmt.Println(&quot;settability of v:&quot;, v.CanSet())
+	v = v.Elem()
+	fmt.Println(&quot;The Elem of v is: &quot;, v)
+	fmt.Println(&quot;settability of v:&quot;, v.CanSet())
+	v.SetFloat(3.1415) // this works!
+	fmt.Println(v.Interface())
+	fmt.Println(v)
+}
+//Output:
+settability of v: false
+type of v: *float64
+settability of v: false
+The Elem of v is:  &lt;float64 Value&gt;
+settability of v: true
+3.1415
+&lt;float64 Value&gt;
+</code></pre><a class=post-dummy-target id=2-3-结构体的反射></a><h3>2.3 结构体的反射</h3><p>对结构体进行反射，需要使用<code>NumField()</code>方法返回结构内的字段数量，然后通过for循环用索引获得每个字段的值<code>Field(i)</code>，最后可以使用索引调用签名在结构体上的方法：<code>Method(i).Call(nil)</code></p><pre><code class=language-go>package main
+
+import (
+	&quot;fmt&quot;
+	&quot;reflect&quot;
+)
+
+type NotknownType struct {
+	s1, s2, s3 string
+}
+
+func (n NotknownType) String() string {
+	return n.s1 + &quot; - &quot; + n.s2 + &quot; - &quot; + n.s3
+}
+
+// variable to investigate:
+var secret interface{} = NotknownType{&quot;Ada&quot;, &quot;Go&quot;, &quot;Oberon&quot;}
+
+func main() {
+	value := reflect.ValueOf(secret) // &lt;main.NotknownType Value&gt;
+	typ := reflect.TypeOf(secret)    // main.NotknownType
+	// alternative:
+	//typ := value.Type()  // main.NotknownType
+	fmt.Println(typ)
+	knd := value.Kind() // struct
+	fmt.Println(knd)
+
+	// iterate through the fields of the struct:
+	for i := 0; i &lt; value.NumField(); i++ {
+		fmt.Printf(&quot;Field %d: %v\n&quot;, i, value.Field(i))
+		// error: panic: reflect.Value.SetString using value obtained using unexported field
+		//value.Field(i).SetString(&quot;C#&quot;)
+	}
+
+	// call the first method, which is String():
+	results := value.Method(0).Call(nil)
+	fmt.Println(results) // [Ada - Go - Oberon]
+}
+//Output:
+main.NotknownType
+struct
+Field 0: Ada
+Field 1: Go
+Field 2: Oberon
+[Ada - Go - Oberon]
+</code></pre><p>但是尝试修改会得到错误，结构体中只有被导出字段才是可设置的。</p><a class=post-dummy-target id=3-总结-面向对象></a><h2>3. 总结：面向对象</h2><p>面向对象最重要的三个方面：封装、继承和多态，在Go中都可以寻找到替代的实现方式</p><ul><li>封装(数据隐藏)：即Go中的可见性规则，不同于别的OO语言中的4种访问性，Go只有两种</li><li>继承： 用组合或内嵌实现，结构体一篇中谈到过这个。</li><li>多态：用接口实现。某个类型的实例可以赋给它所实现的任意接口类型的变量。类型和接口是松耦合的，并且多重继承可以通过实现多个接口实现。Go 接口不是 Java 和 C# 接口的变体，而且接口间是不相关的，并且是大规模编程和可适应的演进型设计的关键</li></ul><a class=post-dummy-target id=3-1-组合实现继承></a><h3>3.1 组合实现继承</h3><p>组合的含义是包含所需功能的具名字段</p><pre><code class=language-go>package main
+
+import (
+	&quot;fmt&quot;
+)
+
+type Log struct {
+	msg string
+}
+
+type Customer struct {
+	Name string
+	log  *Log
+}
+
+func main() {
+	c := new(Customer)
+	c.Name = &quot;Barak Obama&quot;
+	c.log = new(Log)
+	c.log.msg = &quot;1 - Yes we can!&quot;
+	// shorter
+	c = &amp;Customer{&quot;Barak Obama&quot;, &amp;Log{&quot;1 - Yes we can!&quot;}}
+	// fmt.Println(c) &amp;{Barak Obama 1 - Yes we can!}
+	c.Log().Add(&quot;2 - After me the world will be a better place!&quot;)
+	//fmt.Println(c.log)
+	fmt.Println(c.Log())
+
+}
+
+func (l *Log) Add(s string) {
+	l.msg += &quot;\n&quot; + s
+}
+
+func (l *Log) String() string {
+	return l.msg
+}
+
+func (c *Customer) Log() *Log {
+	return c.log
+}
+//Output:
+1 - Yes we can!
+2 - After me the world will be a better place!
+</code></pre><a class=post-dummy-target id=3-2-内嵌实现继承></a><h3>3.2 内嵌实现继承</h3><p>内嵌的含义是匿名的实现所需功能</p><pre><code class=language-go>package main
+
+import (
+	&quot;fmt&quot;
+)
+
+type Log struct {
+	msg string
+}
+
+type Customer struct {
+	Name string
+	Log
+}
+
+func main() {
+	c := &amp;Customer{&quot;Barak Obama&quot;, Log{&quot;1 - Yes we can!&quot;}}
+	c.Add(&quot;2 - After me the world will be a better place!&quot;)
+	fmt.Println(c)
+
+}
+
+func (l *Log) Add(s string) {
+	l.msg += &quot;\n&quot; + s
+}
+
+func (l *Log) String() string {
+	return l.msg
+}
+
+func (c *Customer) String() string {
+	return c.Name + &quot;\nLog:&quot; + fmt.Sprintln(c.Log)
+}
+//Output:
+Barak Obama
+Log:{1 - Yes we can!
+2 - After me the world will be a better place!}
+</code></pre><p>内嵌看起来更简单一点，因此最合适的办法就是利用内嵌创建一些小的、可复用的类型作为工具箱，来被其它类型调用。</p><a class=post-dummy-target id=3-3-多重继承></a><h3>3.3 多重继承</h3><pre><code class=language-go>package main
+
+import (
+	&quot;fmt&quot;
+)
+
+type Camera struct{}
+
+func (c *Camera) TakeAPicture() string {
+	return &quot;Click&quot;
+}
+
+type Phone struct{}
+
+func (p *Phone) Call() string {
+	return &quot;Ring Ring&quot;
+}
+
+type CameraPhone struct {
+	Camera
+	Phone
+}
+
+func main() {
+	cp := new(CameraPhone)
+	fmt.Println(&quot;Our new CameraPhone exhibits multiple behaviors...&quot;)
+	fmt.Println(&quot;It exhibits behavior of a Camera: &quot;, cp.TakeAPicture())
+	fmt.Println(&quot;It works like a Phone too: &quot;, cp.Call())
+}
+//Output:
+Our new CameraPhone exhibits multiple behaviors...
+It exhibits behavior of a Camera: Click
+It works like a Phone too: Ring Ring
+</code></pre></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2019-11-26</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href="//twitter.com/share?url=https%3a%2f%2fshuzang.github.io%2f2019%2f11%2fgolang%25E8%25AF%25AD%25E6%25B3%2595%25E5%259F%25BA%25E7%25A1%25809-%25E6%258E%25A5%25E5%258F%25A3%25E4%25B8%258E%25E5%258F%258D%25E5%25B0%2584%2f&amp;text=Golang%e8%af%ad%e6%b3%95%e5%9f%ba%e7%a1%809-%e6%8e%a5%e5%8f%a3%e4%b8%8e%e5%8f%8d%e5%b0%84&amp;via=" target=_blank title="Share on Twitter"><i class="fab fa-twitter fa-fw"></i></a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fshuzang.github.io%2f2019%2f11%2fgolang%25E8%25AF%25AD%25E6%25B3%2595%25E5%259F%25BA%25E7%25A1%25809-%25E6%258E%25A5%25E5%258F%25A3%25E4%25B8%258E%25E5%258F%258D%25E5%25B0%2584%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook-square fa-fw"></i></a><a href="//reddit.com/submit?url=https%3a%2f%2fshuzang.github.io%2f2019%2f11%2fgolang%25E8%25AF%25AD%25E6%25B3%2595%25E5%259F%25BA%25E7%25A1%25809-%25E6%258E%25A5%25E5%258F%25A3%25E4%25B8%258E%25E5%258F%258D%25E5%25B0%2584%2f&amp;title=Golang%e8%af%ad%e6%b3%95%e5%9f%ba%e7%a1%809-%e6%8e%a5%e5%8f%a3%e4%b8%8e%e5%8f%8d%e5%b0%84" target=_blank title="Share on Reddit"><i class="fab fa-reddit fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span class=tag><a href=https://shuzang.github.io/tags/golang/><i class="fas fa-tag fa-fw"></i>&nbsp;Golang</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://shuzang.github.io>Home</a></span></section></div><div class=post-nav><a href=https://shuzang.github.io/2019/11/%E5%8C%BA%E5%9D%97%E9%93%BE%E9%AB%98%E5%85%B3%E8%81%94%E5%BA%A6%E6%96%87%E7%AB%A0%E6%94%B6%E9%9B%86/ class=prev rel=prev title=区块链高关联度文章收集><i class="fas fa-angle-left fa-fw"></i>区块链高关联度文章收集</a>
+<a href=https://shuzang.github.io/2019/11/golang%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%808-%E7%BB%93%E6%9E%84%E4%BD%93%E4%B8%8E%E6%96%B9%E6%B3%95/ class=next rel=next title=Golang语法基础8-结构体与方法>Golang语法基础8-结构体与方法<i class="fas fa-angle-right fa-fw"></i></a></div></div><div class=post-comment></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a></div><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://shuzang.github.io target=_blank>shuzang</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><a href=# class=dynamic-to-top id=dynamic-to-top data-scroll><span>&nbsp;</span>
+</a><script src=/js/lib/jquery/jquery.slim.min.js></script><script src=/js/lib/lazysizes/lazysizes.min.js></script><script src=/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js></script><script>window.scroll=new SmoothScroll('[data-scroll]',{speed:300,speedAsDuration:true});</script><link rel=stylesheet href=/css/lib/katex/katex.min.css><script src=/js/lib/katex/katex.min.js></script><script defer src=/js/lib/katex/auto-render.min.js></script><link rel=stylesheet href=/css/lib/katex/copy-tex.min.css><script defer src=/js/lib/katex/copy-tex.min.js></script><script defer src=/js/lib/katex/mhchem.min.js></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true},{left:"$",right:"$",display:false},]});});</script><script src=/js/blog.min.js></script></body></html>
