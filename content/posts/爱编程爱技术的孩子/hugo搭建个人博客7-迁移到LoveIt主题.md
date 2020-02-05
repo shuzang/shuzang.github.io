@@ -335,7 +335,7 @@ This is a Admonition.
 
 ### 4.5 流程图
 
-{{< diagram >}}
+{{< mermaid >}}
 sequenceDiagram
     participant Alice
     participant Bob
@@ -347,7 +347,7 @@ sequenceDiagram
     John-->Alice: Great!
     John->Bob: How about you?
     Bob-->John: Jolly good!
-{{< /diagram >}}
+{{< /mermaid >}}
 
 ### 4.6 ECharts
 
