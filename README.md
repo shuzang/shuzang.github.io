@@ -1,8 +1,2 @@
-# My blog
-
-这是 shuzang 的个人博客源码及博文备份仓库，使用 Markdown 书写，用 Hugo 生成静态网页，用 Travis IC 部署到 [shuzang.github.io](https://shuzang.github.io) 上。
-
-主题使用的是 [KeepIt](https://github.com/Fastbyte01/KeepIt)
-
-旧的博客地址[shuzang.github.io/blog](https://shuzang.github.io/blog/)已弃用
+这是 shuzang 的个人博客仓库，使用 [Hugo](https://gohugo.io/) 生成，主题使用[LoveIt](https://github.com/dillonzq/LoveIt)，源码和文章放在`blog`分支下，生成的页面利用Github Action推送到master分支，通过Github Pages展示页面。
 
