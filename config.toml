@@ -1,3 +1,351 @@
-baseURL = "http://example.org/"
-languageCode = "en-us"
-title = "My New Hugo Site"
+baseURL = "https://shuzang.github.io"
+# website language
+languageCode = "en"
+# [en, zh, ...] determines which i18n file to use
+defaultContentLanguage = "en"
+# website title
+title = "Shuzang's Blog"
+# theme
+theme = "LoveIt"
+# whether to use git commit log to generate lastmod record
+enableGitInfo = false
+# whether to include chinese/japanese/korean
+hasCJKLanguage = true
+# default amount of posts in each pages
+paginate = 10
+# whether to use emoji code
+enableEmoji = true
+# whether to use robots.txt
+enableRobotsTXT = true
+# [UA-XXXXXXXX-X] google analytics code
+googleAnalytics = ""
+# copyright description used only for seo schema
+copyright = "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License."
+# date format
+dateFormatToUse = "2006-01-02"
+
+# Markup related configuration in Hugo
+[markup]
+  # Syntax Highlighting (https://gohugo.io/content-management/syntax-highlighting)
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNoStart = 1
+    lineNos = true
+    lineNumbersInTable = true
+    noClasses = false
+    style = "monokai"
+    tabWidth = 4
+  # Goldmark is from Hugo 0.60 the default library used for Markdown
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      definitionList = true
+      footnote = true
+      linkify = true
+      strikethrough = true
+      table = true
+      taskList = true
+      typographer = true
+    [markup.goldmark.renderer]
+      # whether to use HTML tags directly in the document
+      unsafe = true
+  # Table Of Contents settings
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 6
+
+# Author Info
+[author]
+  name = "shuzang"
+  link = ""
+
+# Sitemap Info
+[sitemap]
+  changefreq = "weekly"
+  filename = "sitemap.xml"
+  priority = 0.5
+
+# Permalinks Info (https://gohugo.io/content-management/urls/#permalinks)
+[Permalinks]
+  posts = ":year/:month/:slug"
+
+# Menu Info
+[menu]
+  [[menu.main]]
+    identifier = "posts"
+    name = "Posts"
+    url = "posts"
+    weight = 1
+
+  [[menu.main]]
+    identifier = "categories"
+    name = "Categories"
+    url = "categories"
+    weight = 2  
+
+  [[menu.main]]
+    identifier = "tags"
+    name = "Tags"
+    url = "tags"
+    weight = 3
+
+  [[menu.main]]
+    identifier = "life"
+    name = "Life"
+    url = "life"
+    weight = 4
+
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "about"
+    weight = 5
+
+#  [[menu.main]]
+#    identifier = "zh"
+#    pre = '<i class="fas fa-language fa-fw"></i>'
+#    name = ""
+#    title = "简体中文"
+#    url = "https://hugo-loveit-zh.netlify.com"
+#    weight = 5
+
+[params]
+  # LoveIt theme version
+  version = "0.1.X"
+  # site description
+  description = "shuzang's personal blog"
+  # site keywords
+  keywords = ["blog", "Golang", "Hugo", "blockchain", "go", "life"]
+
+  # Home Page Info
+  ## [post, other] home mode
+  home_mode = "other"
+  ## special amount of posts in each home post page
+  home_paginate = 6
+  ## URL of avatar shown in home page
+  avatar = "images/avatar.png"
+  ## subtitle shown in home page
+  subtitle = "随心所向，素履以往"
+
+  # whether to show social share links in post page
+  socialShare = true
+  toc = true
+  autoCollapseToc = true
+
+  # Footer CopyRight Info
+  ## Site creation time
+  since = 2018
+  ## ICP info only in China (HTML format is allowed)
+  icp = ""
+  ## license info (HTML format is allowed)
+  license= '<a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>'
+
+  # public git repo url to link lastmod git commit only then enableGitInfo is true
+  gitRepo = ""
+
+  # mathematical formulas (KaTeX)
+  [params.math]
+    enable = true
+    block_left_delimiter = ""
+    block_right_delimiter = ""
+    inline_left_delimiter = "$"
+    inline_right_delimiter = "$"
+    # KaTeX extension copy_tex
+    copy_tex = true
+    # KaTeX extension mhchem
+    mhchem = true
+
+  # whether to show link to Raw Markdown content of the post
+  linkToMarkdown = true
+
+  # site verification code for Google/Bing/Yandex/Pinterest/Baidu
+  google_verification = ""
+  bing_verification = ""
+  yandex_verification = ""
+  pinterest_verification = ""
+  baidu_verification = ""
+
+  # CSS and JS Files CDN
+  [params.cdn]
+    ## for example '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/all.min.css" integrity="sha256-fdcFNFiBMrNfWL6OcAGQz6jDgNTRxnrLEd4vJYFWScE=" crossorigin="anonymous">'
+    fontawesome_free_css = ''
+    animate_css = ''
+    gitalk_css = ''
+    gitalk_js = ''
+    valine_js = ''
+    jquery_js = ''
+    lazysizes_js = ''
+    smooth_scroll_js = ''
+    katex_css = ''
+    katex_js = ''
+    katex_auto_render_js = ''
+    katex_copy_tex_css = ''
+    katex_copy_tex_js = ''
+    katex_mhchem_js = ''
+    mermaid_js = ''
+    echarts_js = ''
+    echarts_macarons_js = ''
+    typeit_js = ''
+    jquery_countdown_js = ''
+    aplayer_css = ''
+    aplayer_js = ''
+    meting_js = ''
+
+  # Gravatar Info for preferred avatar in home page
+  [params.gravatar]
+    email = "lylw1996@qq.com"
+
+  # Social Info in home page
+  [params.social]
+    GitHub = "shuzang"
+    #Linkedin = "xxxx"
+    #Twitter = "xxxx"
+    #Instagram = "xxxx"
+    Email = "lylw1996@qq.com"
+    #Facebook = "xxxx"
+    #Telegram = "xxxx"
+    #Medium = "xxxx"
+    #Gitlab = "xxxx"
+    #Youtubelegacy = "xxxx"
+    #Youtubecustom = "xxxx"
+    #Youtubechannel = "xxxx"
+    #Tumblr ="xxxx"
+    #Quora = "xxxx"
+    #Keybase = "xxxx"
+    #Pinterest = "xxxx"
+    #Reddit = "xxxx"
+    #Codepen = "xxxx"
+    #FreeCodeCamp = "xxxx"
+    #Bitbucket = "xxxx"
+    #Stackoverflow = "xxxx"
+    #Weibo = "xxxx"
+    #Odnoklassniki = "xxxx"
+    #VKontakte = "xxxx"
+    #Flickr = "xxxx"
+    #Xing = "xxxx"
+    #Snapchat = "xxxx"
+    #Soundcloud = "xxxx"
+    #Spotify = "xxxx"
+    #Bandcamp = "xxxx"
+    #Paypal = "xxxx"
+    #Fivehundredpx = "xxxx"
+    #Mix = "xxxx"
+    #Goodreads = "xxxx"
+    #Lastfm = "xxxx"
+    #Foursquare = "xxxx"
+    #Hackernews = "xxxx"
+    #Kickstarter = "xxxx"
+    #Patreon = "xxxx"
+    Steam = "76561198343669932"
+    #Twitch = "xxxx"
+    #Strava = "xxxx"
+    Skype = "live:844327696"
+    #Whatsapp = "xxxx"
+    #Zhihu = "xxxx"
+    #Douban = "xxxx"
+    #Angellist = "xxxx"
+    #Slidershare = "xxxx"
+    #Jsfiddle = "xxxx"
+    #Deviantart = "xxxx"
+    #Behance = "xxxx"
+    #Dribble = "xxxx"
+    #Wordpress = "xxxx"
+    #Vine = "xxxx"
+    #Googlescholar = "xxxx"
+    #Researchgate = "xxxx"
+    #Mastodon = "xxxx"
+    #Thingiverse = "xxxx"
+    #Devto = "xxxx"
+
+  # Social Share Links in post page
+  [params.share]
+    enable = true
+    Twitter = true
+    Facebook = true
+    Reddit = true
+    #Linkedin = true
+    #Pinterest = true
+    #HackerNews = true
+    #Mix = true
+    #Tumblr = true
+    #VKontakte = true
+    #Weibo = true
+
+  # Publisher Info just for SEO
+  [params.publisher]
+    name = "shuzang"
+    [params.publisher.logo]
+      url = "logo.png"
+      width = 127
+      height = 40
+
+  # Website Log Info just for SEO
+  [params.logo]
+    url = "logo.png"
+    width = 127
+    height = 40
+
+  # Website Image Info just for SEO
+  [params.image]
+    url = "cover.png"
+    width = 800
+    height = 600
+
+  # Disqus Comment Config (https://disqus.com/)
+  [params.disqus]
+    # Disqus shortname to use Disqus in posts
+    shortname = ""
+
+  # Gittalk Comment Config (https://github.com/gitalk/gitalk)
+  [params.gitalk]
+    owner = ""
+    repo = ""
+    clientId = ""
+    clientSecret = ""
+
+  # Valine Comment Config (https://github.com/xCss/Valine)
+  [params.valine]
+    enable = false
+    appId = ""
+    appKey = ""
+    notify = false
+    verify = true
+    avatar = "mp"
+    placeholder = "Your comment ..."
+    visitor = true
+    recordIP = true
+
+  # Facebook Comment Config (https://developers.facebook.com/docs/plugins/comments)
+  [params.facebook]
+    enable = false
+    width = "100%"
+    numPosts = 10
+    appId = ""
+    languageCode = "en_US"
+
+# Privacy Info (https://gohugo.io/about/hugo-and-gdpr/)
+[privacy]
+  [privacy.googleAnalytics]
+    anonymizeIP = true
+
+  [privacy.youtube]
+    privacyEnhanced = true
+
+# Options to make output .md files
+[mediaTypes]
+  [mediaTypes."text/plain"]
+    suffixes = ["md"]
+
+# Options to make output .md files
+[outputFormats.MarkDown]
+  mediaType = "text/plain"
+  isPlainText = true
+  isHTML = false
+
+# Options to make hugo output files
+[outputs]
+  home = ["HTML", "RSS"]
+  page = ["HTML", "MarkDown"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML", "RSS"]
+  taxonomyTerm = ["HTML"]
