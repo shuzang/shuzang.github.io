@@ -1,4 +1,4 @@
-# A Case Study for Blockchain in Manufacturing “FabRec”...
+# A Case Study for Blockchain in Manufacturing “FabRec”
 
 
 Author：Atin Angrisha, Benjamin Cravera, Mahmud Hasana, Binil Starly

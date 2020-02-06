@@ -1,4 +1,4 @@
-# A Review on the Application of Blockchain to the Next Generation......
+# A Review on the Application of Blockchain to the Next Generation
 
 
 Fernández-Caramés T M, Fraga-Lamas P. A Review on the Application of Blockchain for the Next Generation of Cybersecure Industry 4.0 Smart Factories[J]. arXiv preprint arXiv:1902.09604, 2019.

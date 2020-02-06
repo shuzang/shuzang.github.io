@@ -1,4 +1,4 @@
-# Decentralized Caching for Content Delivery Based on BlockchainA...
+# Decentralized Caching for Content Delivery Based on BlockchainA
 
 
 节点能力限制，不能缓存全部内容，只能缓存内容子集，缓冲哪部分内容，就是这篇文章中Cache Helper做的事

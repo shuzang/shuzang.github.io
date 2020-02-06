@@ -1,4 +1,4 @@
-# Work-in-Progress Integrating Low-Power IoT devices to...
+# Work-in-Progress Integrating Low-Power IoT devices to
 
 
 Özyılmaz, Kazım Rıfat, and Arda Yurdakul. "Work-in-Progress: Integrating low-power IoT devices to a blockchain-based infrastructure." 2017 International Conference on Embedded Software (EMSOFT). IEEE, 2017.

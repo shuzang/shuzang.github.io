@@ -1,4 +1,4 @@
-# EdgeChain An Edge-IoT Framework and Prototype...
+# EdgeChain An Edge-IoT Framework and Prototype
 
 
 ## EdgeChain设计

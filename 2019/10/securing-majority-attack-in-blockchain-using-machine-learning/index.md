@@ -1,4 +1,4 @@
-# Securing Majority-Attack in Blockchain Using Machine Learning...
+# Securing Majority-Attack in Blockchain Using Machine Learning
 
 
 Dey S. A Proof of Work: Securing Majority-Attack in Blockchain Using Machine Learning and Algorithmic Game Theory[J]. International Journal of Wireless and Microwave Technologies, 2018, 8(5): 1-9.

@@ -1,4 +1,4 @@
-# An Attribute-Based Access Control Model in RFID Systems...
+# An Attribute-Based Access Control Model in RFID Systems
 
 
 

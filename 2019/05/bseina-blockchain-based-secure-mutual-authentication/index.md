@@ -1,4 +1,4 @@
-# BSeIn:A blockchain-based secure mutual authentication...
+# BSeIn:A blockchain-based secure mutual authentication
 
 
 Lin C, He D, Huang X, et al. BSeIn: A blockchain-based secure mutual authentication with fine-grained access control system for industry 4.0[J]. Journal of Network and Computer Applications, 2018, 116: 42-52.

@@ -1,4 +1,4 @@
-# Distributed Blockchain-Based Data Protection Framework for Modern Power Systems...
+# Distributed Blockchain-Based Data Protection Framework for Modern Power Systems
 
 
 Author：Gaoqi Liang , Steven R. Weller, Fengji Luo , Junhua Zhao, Zhao Yang Dong
