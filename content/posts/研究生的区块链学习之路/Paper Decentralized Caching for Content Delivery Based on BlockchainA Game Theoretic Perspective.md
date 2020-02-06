@@ -1,5 +1,5 @@
 ---
-title: Decentralized Caching for Content Delivery Based on BlockchainA...
+title: Decentralized Caching for Content Delivery Based on BlockchainA
 date: 2018-10-25T13:27:00+08:00
 tags: [论文]
 categories: [研究生的区块链学习之路]

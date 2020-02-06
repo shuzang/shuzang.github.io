@@ -1,5 +1,5 @@
 ---
-title: A Case Study for Blockchain in Manufacturing “FabRec”...
+title: A Case Study for Blockchain in Manufacturing “FabRec”
 date: 2019-03-25T10:13:00+08:00
 tags: [论文]
 categories: [研究生的区块链学习之路]

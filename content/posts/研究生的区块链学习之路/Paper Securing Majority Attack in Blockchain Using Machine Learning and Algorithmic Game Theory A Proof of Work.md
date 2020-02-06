@@ -1,5 +1,5 @@
 ---
-title: Securing Majority-Attack in Blockchain Using Machine Learning...
+title: Securing Majority-Attack in Blockchain Using Machine Learning
 date: 2019-10-10
 tags: [论文]
 categories: [研究生的区块链学习之路]

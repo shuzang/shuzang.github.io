@@ -1,5 +1,5 @@
 ---
-title: BSeIn:A blockchain-based secure mutual authentication...
+title: BSeIn:A blockchain-based secure mutual authentication
 date: 2019-05-16T14:22:00+08:00
 tags: [论文]
 categories: [研究生的区块链学习之路]

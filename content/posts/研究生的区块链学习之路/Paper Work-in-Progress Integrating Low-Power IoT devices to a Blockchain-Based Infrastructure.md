@@ -1,5 +1,5 @@
 ---
-title: Work-in-Progress Integrating Low-Power IoT devices to...
+title: Work-in-Progress Integrating Low-Power IoT devices to
 date: 2018-10-23T11:22:00+08:00
 tags: [论文]
 categories: [研究生的区块链学习之路]
