@@ -1,199 +1,391 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>hugo搭建个人博客5-主题开发 | Shuzang&#39;s Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="shuzang's personal blog"><link rel=prev href=https://shuzang.github.io/2019/09/hugo-build-blog-deployment-optimization/><link rel=next href=https://shuzang.github.io/2019/09/git%E5%AD%A6%E4%B9%A0-%E5%AD%90%E6%A8%A1%E5%9D%97%E7%AE%A1%E7%90%86%E4%B8%8E%E4%BD%BF%E7%94%A8/><link rel=canonical href=https://shuzang.github.io/2019/09/hugo-blog-theme-development/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><meta name=twitter:card content="summary"><meta name=twitter:title content="hugo搭建个人博客5-主题开发"><meta name=twitter:description content="本来想自己做主题开发的，但一看发现要实现的功能太多，自己又缺乏前端的开发经验，只能在原主题上做一些小调节了。关于主题开发的中文资料没有，这里"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"hugo搭建个人博客5-主题开发","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/2019\/09\/hugo-blog-theme-development\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"博客写作","wordcount":2461,"url":"https:\/\/shuzang.github.io\/2019\/09\/hugo-blog-theme-development\/","datePublished":"2019-09-30T00:00:00\x2b00:00","dateModified":"2019-11-17T00:00:00\x2b00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"shuzang","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/logo.png","width":127,"height":40}},"description":""}</script><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/css/lib/animate/animate.min.css></head><body><script>window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><nav class=navbar><div class=navbar-container><div class="navbar-header animated bounceIn"><a href=https://shuzang.github.io>Shuzang&#39;s Blog</a></div><div class=navbar-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/life>Life</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><nav class=navbar-mobile><div class=navbar-container><div class=navbar-header><div class="navbar-header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang&#39;s Blog</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=navbar-menu id=mobile-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/life>Life</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><main class=main><div class=container><article class=page><h1 class="post-title animated flipInX">hugo搭建个人博客5-主题开发</h1><div class=post-meta><div class=post-meta-main><a class=author href=https://shuzang.github.io rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>shuzang
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>hugo搭建个人博客5-主题开发 | Shuzang's Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="shuzang's personal blog"><link rel=prev href=https://shuzang.github.io/2019/09/hugo-build-blog-deployment-optimization/><link rel=next href=https://shuzang.github.io/2019/09/git%E5%AD%A6%E4%B9%A0-%E5%AD%90%E6%A8%A1%E5%9D%97%E7%AE%A1%E7%90%86%E4%B8%8E%E4%BD%BF%E7%94%A8/><link rel=canonical href=https://shuzang.github.io/2019/09/hugo-blog-theme-development/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><meta name=twitter:card content="summary"><meta name=twitter:title content="hugo搭建个人博客5-主题开发"><meta name=twitter:description content="本来想自己做主题开发的，但一看发现要实现的功能太多，自己又缺乏前端的开发经验，只能在原主题上做一些小调节了。关于主题开发的中文资料没有，这里"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"hugo搭建个人博客5-主题开发","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/2019\/09\/hugo-blog-theme-development\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"博客写作","wordcount":2653,"url":"https:\/\/shuzang.github.io\/2019\/09\/hugo-blog-theme-development\/","datePublished":"2019-09-30T00:00:00\x2b00:00","dateModified":"2019-11-17T00:00:00\x2b00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"shuzang","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/logo.png","width":127,"height":40}},"description":""}</script><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/css/lib/animate/animate.min.css></head><body><script>window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><nav class=navbar><div class=navbar-container><div class="navbar-header animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=navbar-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/life>Life</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><nav class=navbar-mobile><div class=navbar-container><div class=navbar-header><div class="navbar-header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=navbar-menu id=mobile-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/life>Life</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><main class=main><div class=container><article class=page><h1 class="post-title animated flipInX">hugo搭建个人博客5-主题开发</h1><div class=post-meta><div class=post-meta-main><a class=author href=https://shuzang.github.io rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>shuzang
 </a>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i><a href=https://shuzang.github.io/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/>爱编程爱技术的孩子</a>&nbsp;</span></div><div class=post-meta-other><i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-09-30>2019-09-30</time>&nbsp;
-<i class="fas fa-pencil-alt fa-fw"></i>about 2461 words&nbsp;
-<i class="far fa-clock fa-fw"></i>5 min&nbsp;</div></div><div class=post-featured-image><img src=/svg/loading.min.svg data-sizes=auto data-src=https://user-images.githubusercontent.com/26682846/71819353-a0f09280-30c6-11ea-875d-8efd606ff635.jpg alt="featured image" class=lazyload></div><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><ul><li><ul><li><ul><li><a href=#开发主题准备>开发主题准备</a></li><li><a href=#开发主题>开发主题</a></li></ul></li></ul></li></ul></li></ul></nav></div></div><div class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
-<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><ul><li><ul><li><ul><li><a href=#开发主题准备>开发主题准备</a></li><li><a href=#开发主题>开发主题</a></li></ul></li></ul></li></ul></li></ul></nav></div></details></div><div class=post-content><p>本来想自己做主题开发的，但一看发现要实现的功能太多，自己又缺乏前端的开发经验，只能在原主题上做一些小调节了。关于主题开发的中文资料没有，这里参考<a href=https://github.com/digitalcraftsman/hugo-steam-theme/blob/master/exampleSite/content/post/creating-a-new-theme.md>create a new theme</a>一文</p><a class=post-dummy-target id=开发主题准备></a><h4>开发主题准备</h4><p>Ubuntu安装hugo</p><pre><code class=language-bash>$ snap install hugo --channel=extended
-hugo (extended/stable) 0.58.3 from Hugo Authors installed
-</code></pre><p>该命令将安装<code>extended</code>Sass/SCSS版本(apt-get 安装的hugo版本较低)</p><p>建立博客文件</p><pre><code class=language-bash>$ hugo new site newTheme
+<i class="fas fa-pencil-alt fa-fw"></i>about 2653 words&nbsp;
+<i class="far fa-clock fa-fw"></i>6 min&nbsp;</div></div><div class=post-featured-image><img src=/svg/loading.min.svg data-sizes=auto data-src=https://user-images.githubusercontent.com/26682846/71819353-a0f09280-30c6-11ea-875d-8efd606ff635.jpg alt="featured image" class=lazyload></div><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#开发主题准备>开发主题准备</a></li><li><a href=#开发主题>开发主题</a></li></ul></li></ul></li></ul></nav></div></div><div class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
+<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><ul><li><ul><li><a href=#开发主题准备>开发主题准备</a></li><li><a href=#开发主题>开发主题</a></li></ul></li></ul></li></ul></nav></div></details></div><div class=post-content><p>本来想自己做主题开发的，但一看发现要实现的功能太多，自己又缺乏前端的开发经验，只能在原主题上做一些小调节了。关于主题开发的中文资料没有，这里参考<a href=https://github.com/digitalcraftsman/hugo-steam-theme/blob/master/exampleSite/content/post/creating-a-new-theme.md target=_blank>create a new theme</a>一文</p><a class=post-dummy-target id=开发主题准备></a><h4>开发主题准备</h4><p>Ubuntu安装hugo</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ snap install hugo --channel<span class=o>=</span>extended
+hugo <span class=o>(</span>extended/stable<span class=o>)</span> 0.58.3 from Hugo Authors installed
+</code></pre></td></tr></table></div></div><p>该命令将安装<code>extended</code>Sass/SCSS版本(apt-get 安装的hugo版本较低)</p><p>建立博客文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ hugo new site newTheme
 $ ls -l
-total 28
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 15:52 archetypes
--rw-r--r-- 1 shuzang shuzang   82 Sep 25 15:52 config.toml
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 15:52 content
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 15:52 data
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 15:52 layouts
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 15:52 static
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 15:52 themes
-</code></pre><p>创建主题</p><pre><code class=language-bash>$ hugo new theme LeaveIt
-$ find themes -type f | xargs ls -l
--rw-r--r-- 1 shuzang shuzang    8 Sep 25 16:09 themes/LeaveIt/archetypes/default.md
--rw-r--r-- 1 shuzang shuzang    0 Sep 25 16:09 themes/LeaveIt/layouts/404.html
--rw-r--r-- 1 shuzang shuzang    0 Sep 25 16:09 themes/LeaveIt/layouts/_default/list.html
--rw-r--r-- 1 shuzang shuzang    0 Sep 25 16:09 themes/LeaveIt/layouts/_default/single.html
--rw-r--r-- 1 shuzang shuzang    0 Sep 25 16:09 themes/LeaveIt/layouts/index.html
--rw-r--r-- 1 shuzang shuzang    0 Sep 25 16:09 themes/LeaveIt/layouts/partials/footer.html
--rw-r--r-- 1 shuzang shuzang    0 Sep 25 16:09 themes/LeaveIt/layouts/partials/header.html
--rw-r--r-- 1 shuzang shuzang 1081 Sep 25 16:09 themes/LeaveIt/LICENSE.md
--rw-r--r-- 1 shuzang shuzang  436 Sep 25 16:09 themes/LeaveIt/theme.toml
-</code></pre><p><code>find themes -type f</code>将themes目录及其子目录的所有一般文件列出</p><p><code>xargs ls -l</code>在<code>find</code>命令基础上列出这些文件的基本信息</p><p>LeaveIt 包含 templates (以 .html为后缀的文件), license 文件, 主题描述 (theme.toml 文件), 和一个空的archetype.</p><p>license文件默认填充MIT协议</p><p>根据引号中的描述编辑theme.toml文件，声明主题基本信息，参照<a href=https://github.com/gohugoio/hugoThemes#themetoml>hugoThemes</a>的说明</p><pre><code class=language-bash>$ nano themes/LeaveIt/theme.toml
-name = &quot;Theme Name&quot;
-license = &quot;MIT&quot;
-licenselink = &quot;Link to theme's license&quot;
-description = &quot;Theme description&quot;
-homepage = &quot;Website of your theme&quot;
-tags = [&quot;blog&quot;, &quot;company&quot;]
-features = [&quot;some&quot;, &quot;awesome&quot;, &quot;features&quot;]
-min_version = &quot;0.57.0&quot;
+total <span class=m>28</span>
+drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 15:52 archetypes
+-rw-r--r-- <span class=m>1</span> shuzang shuzang   <span class=m>82</span> Sep <span class=m>25</span> 15:52 config.toml
+drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 15:52 content
+drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 15:52 data
+drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 15:52 layouts
+drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 15:52 static
+drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 15:52 themes
+</code></pre></td></tr></table></div></div><p>创建主题</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ hugo new theme LeaveIt
+$ find themes -type f <span class=p>|</span> xargs ls -l
+-rw-r--r-- <span class=m>1</span> shuzang shuzang    <span class=m>8</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/archetypes/default.md
+-rw-r--r-- <span class=m>1</span> shuzang shuzang    <span class=m>0</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/layouts/404.html
+-rw-r--r-- <span class=m>1</span> shuzang shuzang    <span class=m>0</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/layouts/_default/list.html
+-rw-r--r-- <span class=m>1</span> shuzang shuzang    <span class=m>0</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/layouts/_default/single.html
+-rw-r--r-- <span class=m>1</span> shuzang shuzang    <span class=m>0</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/layouts/index.html
+-rw-r--r-- <span class=m>1</span> shuzang shuzang    <span class=m>0</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/layouts/partials/footer.html
+-rw-r--r-- <span class=m>1</span> shuzang shuzang    <span class=m>0</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/layouts/partials/header.html
+-rw-r--r-- <span class=m>1</span> shuzang shuzang <span class=m>1081</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/LICENSE.md
+-rw-r--r-- <span class=m>1</span> shuzang shuzang  <span class=m>436</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/theme.toml
+</code></pre></td></tr></table></div></div><p><code>find themes -type f</code>将themes目录及其子目录的所有一般文件列出</p><p><code>xargs ls -l</code>在<code>find</code>命令基础上列出这些文件的基本信息</p><p>LeaveIt 包含 templates (以 .html为后缀的文件), license 文件, 主题描述 (theme.toml 文件), 和一个空的archetype.</p><p>license文件默认填充MIT协议</p><p>根据引号中的描述编辑theme.toml文件，声明主题基本信息，参照<a href=https://github.com/gohugoio/hugoThemes#themetoml target=_blank>hugoThemes</a>的说明</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ nano themes/LeaveIt/theme.toml
+<span class=nv>name</span> <span class=o>=</span> <span class=s2>&#34;Theme Name&#34;</span>
+<span class=nv>license</span> <span class=o>=</span> <span class=s2>&#34;MIT&#34;</span>
+<span class=nv>licenselink</span> <span class=o>=</span> <span class=s2>&#34;Link to theme&#39;s license&#34;</span>
+<span class=nv>description</span> <span class=o>=</span> <span class=s2>&#34;Theme description&#34;</span>
+<span class=nv>homepage</span> <span class=o>=</span> <span class=s2>&#34;Website of your theme&#34;</span>
+<span class=nv>tags</span> <span class=o>=</span> <span class=o>[</span><span class=s2>&#34;blog&#34;</span>, <span class=s2>&#34;company&#34;</span><span class=o>]</span>
+<span class=nv>features</span> <span class=o>=</span> <span class=o>[</span><span class=s2>&#34;some&#34;</span>, <span class=s2>&#34;awesome&#34;</span>, <span class=s2>&#34;features&#34;</span><span class=o>]</span>
+<span class=nv>min_version</span> <span class=o>=</span> <span class=s2>&#34;0.57.0&#34;</span>
 
-[author]
-    name = &quot;Your name&quot;
-    homepage = &quot;Your website&quot;
+<span class=o>[</span>author<span class=o>]</span>
+    <span class=nv>name</span> <span class=o>=</span> <span class=s2>&#34;Your name&#34;</span>
+    <span class=nv>homepage</span> <span class=o>=</span> <span class=s2>&#34;Your website&#34;</span>
 
-# If porting an existing theme
-[original]
-    author = &quot;Name of original author&quot;
-    homepage = &quot;His/Her website&quot;
-    repo = &quot;Link to source code of original theme&quot;
-</code></pre><p>编辑config.toml文件，在文件名添加theme字段，启用主题</p><pre><code class=language-bash>$ nano config.toml
-baseURL = &quot;http://example.org/&quot;
-languageCode = &quot;en-us&quot;
-title = &quot;My New Hugo Site&quot;
-theme = &quot;LeaveIt&quot;
-</code></pre><p>重新生成网站，public文件夹和themes/LeaveIt都将生成js和css文件夹用于控制格式</p><pre><code class=language-bash>$ hugo --verbose
+<span class=c1># If porting an existing theme</span>
+<span class=o>[</span>original<span class=o>]</span>
+    <span class=nv>author</span> <span class=o>=</span> <span class=s2>&#34;Name of original author&#34;</span>
+    <span class=nv>homepage</span> <span class=o>=</span> <span class=s2>&#34;His/Her website&#34;</span>
+    <span class=nv>repo</span> <span class=o>=</span> <span class=s2>&#34;Link to source code of original theme&#34;</span>
+</code></pre></td></tr></table></div></div><p>编辑config.toml文件，在文件名添加theme字段，启用主题</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ nano config.toml
+<span class=nv>baseURL</span> <span class=o>=</span> <span class=s2>&#34;http://example.org/&#34;</span>
+<span class=nv>languageCode</span> <span class=o>=</span> <span class=s2>&#34;en-us&#34;</span>
+<span class=nv>title</span> <span class=o>=</span> <span class=s2>&#34;My New Hugo Site&#34;</span>
+<span class=nv>theme</span> <span class=o>=</span> <span class=s2>&#34;LeaveIt&#34;</span>
+</code></pre></td></tr></table></div></div><p>重新生成网站，public文件夹和themes/LeaveIt都将生成js和css文件夹用于控制格式</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ hugo --verbose
 $ ls -l public
-total 24
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 15:56 categories
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 16:09 css
--rw-r--r-- 1 shuzang shuzang  468 Sep 25 16:43 index.xml
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 16:09 js
--rw-r--r-- 1 shuzang shuzang  437 Sep 25 16:43 sitemap.xml
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 15:56 tags
-$ find themes/LeaveIt -type d | xargs ls -ld
-drwxr-xr-x 5 shuzang shuzang 4096 Sep 25 16:32 themes/LeaveIt
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 16:09 themes/LeaveIt/archetypes
-drwxr-xr-x 4 shuzang shuzang 4096 Sep 25 16:09 themes/LeaveIt/layouts
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 16:09 themes/LeaveIt/layouts/_default
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 16:09 themes/LeaveIt/layouts/partials
-drwxr-xr-x 4 shuzang shuzang 4096 Sep 25 16:09 themes/LeaveIt/static
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 16:09 themes/LeaveIt/static/css
-drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 16:09 themes/LeaveIt/static/js
-</code></pre><a class=post-dummy-target id=开发主题></a><h4>开发主题</h4><p>删除public文件夹，执行hugo server命令并添加&ndash;watch参数，打开浏览器查看网站，修改主题文件，浏览器页面将会实时更改</p><p>建议：不要直接在主题上开发，使用git，在开发分支开发，确认功能无误后合并到主分支</p><pre><code class=language-bash># 删除public文件夹
+total <span class=m>24</span>
+drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 15:56 categories
+drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:09 css
+-rw-r--r-- <span class=m>1</span> shuzang shuzang  <span class=m>468</span> Sep <span class=m>25</span> 16:43 index.xml
+drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:09 js
+-rw-r--r-- <span class=m>1</span> shuzang shuzang  <span class=m>437</span> Sep <span class=m>25</span> 16:43 sitemap.xml
+drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 15:56 tags
+$ find themes/LeaveIt -type d <span class=p>|</span> xargs ls -ld
+drwxr-xr-x <span class=m>5</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:32 themes/LeaveIt
+drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/archetypes
+drwxr-xr-x <span class=m>4</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/layouts
+drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/layouts/_default
+drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/layouts/partials
+drwxr-xr-x <span class=m>4</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/static
+drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/static/css
+drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/static/js
+</code></pre></td></tr></table></div></div><a class=post-dummy-target id=开发主题></a><h4>开发主题</h4><p>删除public文件夹，执行hugo server命令并添加&ndash;watch参数，打开浏览器查看网站，修改主题文件，浏览器页面将会实时更改</p><p>建议：不要直接在主题上开发，使用git，在开发分支开发，确认功能无误后合并到主分支</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># 删除public文件夹</span>
 $ rm -rf public
-# 以watch模式实时查看改动
+<span class=c1># 以watch模式实时查看改动</span>
 $ hugo server --watch --verbose
-</code></pre><p>更新Home Page 模板，位于layout/目录下：</p><ul><li>index.html</li><li>_default/list.html</li><li>_default/single.html</li></ul><p>现在，模板文件是空的，添加以下内容到模板文件</p><pre><code class=language-bash>$ nano themes/LeaveIt/layouts/index.html
+</code></pre></td></tr></table></div></div><p>更新Home Page 模板，位于layout/目录下：</p><ul><li>index.html</li><li>_default/list.html</li><li>_default/single.html</li></ul><p>现在，模板文件是空的，添加以下内容到模板文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ nano themes/LeaveIt/layouts/index.html
 &lt;html&gt; 
 &lt;body&gt; 
   &lt;p&gt;hugo says hello!&lt;/p&gt; 
 &lt;/body&gt; 
 &lt;/html&gt;
-</code></pre><p>浏览器将显示p标签中的语句</p><p>hugo中有三种类型的模板，home页面模板刚刚已修改，single类型的模板用于生成单个内容的文件，list类型的模板用于生成多个内容的文件，即single.html和list.html</p><p>还存在partial，content views和terms三种类型的模板，这里不做详细介绍。</p><p>更新index.html使之能显示主页</p><pre><code class=language-html>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+</code></pre></td></tr></table></div></div><p>浏览器将显示p标签中的语句</p><p>hugo中有三种类型的模板，home页面模板刚刚已修改，single类型的模板用于生成单个内容的文件，list类型的模板用于生成多个内容的文件，即single.html和list.html</p><p>还存在partial，content views和terms三种类型的模板，这里不做详细介绍。</p><p>更新index.html使之能显示主页</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html><span class=cp>&lt;!DOCTYPE html&gt;</span>
+<span class=p>&lt;</span><span class=nt>html</span><span class=p></span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=nt>body</span><span class=p></span><span class=p>&gt;</span>
   {{ range first 10 .Data.Pages }}
-    &lt;h1&gt;{{ .Title }}&lt;/h1&gt;
+    <span class=p>&lt;</span><span class=nt>h1</span><span class=p></span><span class=p>&gt;</span>{{ .Title }}<span class=p>&lt;</span><span class=p>/</span><span class=nt>h1</span><span class=p>&gt;</span>
   {{ end }}
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><p>hugo使用Go模板引擎，引擎将扫描模板文件中”{{“和”}}“中间的命令内容并执行，上面的index.html文件中包含三个命令</p><ol><li>range</li><li>.Title</li><li>end</li></ol><p>range是迭代器，用于遍历前十个page，hugo创建的每个html文件都属于page，所以遍历pages将查看创建的每个文件</p><p>.Title打印<code>title</code>变量的值，hugo从markdown文件前面的格式说明中获取该值</p><p>end结束range开启的迭代</p><p>hugo会在创建html文件前将所有内容加载到变量中，然后模板对其进行处理</p><p>因此，更新后的index.html文件将显示first.md和second.md两篇博文的标题</p><p>到此开发一个主题的所有知识就全部介绍完毕了，剩下的就是熟悉Go模板的命令及使用它。但这里还有一些内容可以令我们更容易地创建模板</p><p>修改single.html文件使之展示博文内容</p><pre><code class=language-html>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-  &lt;title&gt;{{ .Title }}&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;h1&gt;{{ .Title }}&lt;/h1&gt;
+<span class=p>&lt;</span><span class=p>/</span><span class=nt>body</span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=p>/</span><span class=nt>html</span><span class=p>&gt;</span>
+</code></pre></td></tr></table></div></div><p>hugo使用Go模板引擎，引擎将扫描模板文件中”{{“和”}}“中间的命令内容并执行，上面的index.html文件中包含三个命令</p><ol><li>range</li><li>.Title</li><li>end</li></ol><p>range是迭代器，用于遍历前十个page，hugo创建的每个html文件都属于page，所以遍历pages将查看创建的每个文件</p><p>.Title打印<code>title</code>变量的值，hugo从markdown文件前面的格式说明中获取该值</p><p>end结束range开启的迭代</p><p>hugo会在创建html文件前将所有内容加载到变量中，然后模板对其进行处理</p><p>因此，更新后的index.html文件将显示first.md和second.md两篇博文的标题</p><p>到此开发一个主题的所有知识就全部介绍完毕了，剩下的就是熟悉Go模板的命令及使用它。但这里还有一些内容可以令我们更容易地创建模板</p><p>修改single.html文件使之展示博文内容</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html><span class=cp>&lt;!DOCTYPE html&gt;</span>
+<span class=p>&lt;</span><span class=nt>html</span><span class=p></span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=nt>head</span><span class=p></span><span class=p>&gt;</span>
+  <span class=p>&lt;</span><span class=nt>title</span><span class=p></span><span class=p>&gt;</span>{{ .Title }}<span class=p>&lt;</span><span class=p>/</span><span class=nt>title</span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=p>/</span><span class=nt>head</span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=nt>body</span><span class=p></span><span class=p>&gt;</span>
+  <span class=p>&lt;</span><span class=nt>h1</span><span class=p></span><span class=p>&gt;</span>{{ .Title }}<span class=p>&lt;</span><span class=p>/</span><span class=nt>h1</span><span class=p>&gt;</span>
   {{ .Content }}
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><p>修改index.html为博文标题标题添加链接</p><pre><code class=language-html>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
+<span class=p>&lt;</span><span class=p>/</span><span class=nt>body</span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=p>/</span><span class=nt>html</span><span class=p>&gt;</span>
+</code></pre></td></tr></table></div></div><p>修改index.html为博文标题标题添加链接</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html><span class=cp>&lt;!DOCTYPE html&gt;</span>
+<span class=p>&lt;</span><span class=nt>html</span><span class=p></span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=nt>body</span><span class=p></span><span class=p>&gt;</span>
   {{ range first 10 .Data.Pages }}
-    &lt;h1&gt;&lt;a href=&quot;{{ .Permalink }}&quot;&gt;{{ .Title }}&lt;/a&gt;&lt;/h1&gt;
+    <span class=p>&lt;</span><span class=nt>h1</span><span class=p></span><span class=p>&gt;</span><span class=p>&lt;</span><span class=nt>a</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;{{ .Permalink }}&#34;</span><span class=p></span><span class=p>&gt;</span>{{ .Title }}<span class=p>&lt;</span><span class=p>/</span><span class=nt>a</span><span class=p>&gt;</span><span class=p>&lt;</span><span class=p>/</span><span class=nt>h1</span><span class=p>&gt;</span>
   {{ end }}
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><p>在content目录创建about.md文件，作为主页面顶级菜单</p><pre><code class=language-markdown>+++
-title = &quot;about&quot;
-description = &quot;about this site&quot;
-date = &quot;2014-09-27&quot;
-slug = &quot;about time&quot;
+<span class=p>&lt;</span><span class=p>/</span><span class=nt>body</span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=p>/</span><span class=nt>html</span><span class=p>&gt;</span>
+</code></pre></td></tr></table></div></div><p>在content目录创建about.md文件，作为主页面顶级菜单</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-markdown data-lang=markdown>+++
+title = &#34;about&#34;
+description = &#34;about this site&#34;
+date = &#34;2014-09-27&#34;
+slug = &#34;about time&#34;
 +++
 
-## about us
-
-i'm speechless
-</code></pre><p>浏览器主页面将显示about菜单，单击即可跳转查看其内容，但它和博文标题放在一起，因此修改index.html文件</p><pre><code class=language-html>&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;body&gt;
-  &lt;h1&gt;posts&lt;/h1&gt;
+<span class=gu>## about us
+</span><span class=gu></span>
+i&#39;m speechless
+</code></pre></td></tr></table></div></div><p>浏览器主页面将显示about菜单，单击即可跳转查看其内容，但它和博文标题放在一起，因此修改index.html文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html><span class=cp>&lt;!DOCTYPE html&gt;</span>
+<span class=p>&lt;</span><span class=nt>html</span><span class=p></span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=nt>body</span><span class=p></span><span class=p>&gt;</span>
+  <span class=p>&lt;</span><span class=nt>h1</span><span class=p></span><span class=p>&gt;</span>posts<span class=p>&lt;</span><span class=p>/</span><span class=nt>h1</span><span class=p>&gt;</span>
   {{ range first 10 .Data.Pages }}
-    {{ if eq .Type &quot;post&quot;}}
-      &lt;h2&gt;&lt;a href=&quot;{{ .Permalink }}&quot;&gt;{{ .Title }}&lt;/a&gt;&lt;/h2&gt;
+    {{ if eq .Type &#34;post&#34;}}
+      <span class=p>&lt;</span><span class=nt>h2</span><span class=p></span><span class=p>&gt;</span><span class=p>&lt;</span><span class=nt>a</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;{{ .Permalink }}&#34;</span><span class=p></span><span class=p>&gt;</span>{{ .Title }}<span class=p>&lt;</span><span class=p>/</span><span class=nt>a</span><span class=p>&gt;</span><span class=p>&lt;</span><span class=p>/</span><span class=nt>h2</span><span class=p>&gt;</span>
     {{ end }}
   {{ end }}
 
-  &lt;h1&gt;pages&lt;/h1&gt;
+  <span class=p>&lt;</span><span class=nt>h1</span><span class=p></span><span class=p>&gt;</span>pages<span class=p>&lt;</span><span class=p>/</span><span class=nt>h1</span><span class=p>&gt;</span>
   {{ range .Data.Pages }}
-    {{ if eq .Type &quot;page&quot; }}
-      &lt;h2&gt;&lt;a href=&quot;{{ .Permalink }}&quot;&gt;{{ .Title }}&lt;/a&gt;&lt;/h2&gt;
+    {{ if eq .Type &#34;page&#34; }}
+      <span class=p>&lt;</span><span class=nt>h2</span><span class=p></span><span class=p>&gt;</span><span class=p>&lt;</span><span class=nt>a</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;{{ .Permalink }}&#34;</span><span class=p></span><span class=p>&gt;</span>{{ .Title }}<span class=p>&lt;</span><span class=p>/</span><span class=nt>a</span><span class=p>&gt;</span><span class=p>&lt;</span><span class=p>/</span><span class=nt>h2</span><span class=p>&gt;</span>
     {{ end }}
   {{ end }}
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre><p>主页面将分两部分显示：博文和页面。并链接到不同的页面。</p><p>改变配置文件中的permalinks，设置页面名</p><pre><code class=language-toml>[permalinks]
-	page = &quot;/:title/&quot;
-	about = &quot;/:filename/&quot;
-</code></pre><p>如果模板文件存在重叠，可以把重叠部分以共享模板的形式放在themes/LeaveIt/layouts/partials/目录。通常，模板文件引用都会有一个指定的路径，但是partials没有，hugo会沿着TODO定义的搜索路径去使用，因此可以编辑这里的内容来覆盖主题的表达。</p><pre><code class=language-bash>$ vi themes/LeaveIt/layouts/partials/header.html
+<span class=p>&lt;</span><span class=p>/</span><span class=nt>body</span><span class=p>&gt;</span>
+<span class=p>&lt;</span><span class=p>/</span><span class=nt>html</span><span class=p>&gt;</span>
+</code></pre></td></tr></table></div></div><p>主页面将分两部分显示：博文和页面。并链接到不同的页面。</p><p>改变配置文件中的permalinks，设置页面名</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-toml data-lang=toml><span class=p>[</span><span class=nx>permalinks</span><span class=p>]</span>
+	<span class=nx>page</span> <span class=p>=</span> <span class=s2>&#34;/:title/&#34;</span>
+	<span class=nx>about</span> <span class=p>=</span> <span class=s2>&#34;/:filename/&#34;</span>
+</code></pre></td></tr></table></div></div><p>如果模板文件存在重叠，可以把重叠部分以共享模板的形式放在themes/LeaveIt/layouts/partials/目录。通常，模板文件引用都会有一个指定的路径，但是partials没有，hugo会沿着TODO定义的搜索路径去使用，因此可以编辑这里的内容来覆盖主题的表达。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ vi themes/LeaveIt/layouts/partials/header.html
 &lt;!DOCTYPE html&gt;
 &lt;html&gt;
 &lt;head&gt;
-	&lt;title&gt;{{ .Title }}&lt;/title&gt;
+	&lt;title&gt;<span class=o>{</span><span class=o>{</span> .Title <span class=o>}</span><span class=o>}</span>&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
 
 $ vi themes/LeaveIt/layouts/partials/footer.html
 &lt;/body&gt;
 &lt;/html&gt;
-</code></pre><p>partials和普通模板调用的不同是没有路径，比如</p><pre><code class=language-html>{{ template &quot;theme/partials/header.html&quot; . }}
+</code></pre></td></tr></table></div></div><p>partials和普通模板调用的不同是没有路径，比如</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html>{{ template &#34;theme/partials/header.html&#34; . }}
 vs
-{{ partial &quot;header.html&quot; . }}
-</code></pre><p>更新index.html文件内容</p><pre><code class=language-html>{{ partial &quot;header.html&quot; . }}
+{{ partial &#34;header.html&#34; . }}
+</code></pre></td></tr></table></div></div><p>更新index.html文件内容</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html>{{ partial &#34;header.html&#34; . }}
 
-  &lt;h1&gt;posts&lt;/h1&gt;
+  <span class=p>&lt;</span><span class=nt>h1</span><span class=p></span><span class=p>&gt;</span>posts<span class=p>&lt;</span><span class=p>/</span><span class=nt>h1</span><span class=p>&gt;</span>
   {{ range first 10 .Data.Pages }}
-    {{ if eq .Type &quot;post&quot;}}
-      &lt;h2&gt;&lt;a href=&quot;{{ .Permalink }}&quot;&gt;{{ .Title }}&lt;/a&gt;&lt;/h2&gt;
+    {{ if eq .Type &#34;post&#34;}}
+      <span class=p>&lt;</span><span class=nt>h2</span><span class=p></span><span class=p>&gt;</span><span class=p>&lt;</span><span class=nt>a</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;{{ .Permalink }}&#34;</span><span class=p></span><span class=p>&gt;</span>{{ .Title }}<span class=p>&lt;</span><span class=p>/</span><span class=nt>a</span><span class=p>&gt;</span><span class=p>&lt;</span><span class=p>/</span><span class=nt>h2</span><span class=p>&gt;</span>
     {{ end }}
   {{ end }}
 
-  &lt;h1&gt;pages&lt;/h1&gt;
+  <span class=p>&lt;</span><span class=nt>h1</span><span class=p></span><span class=p>&gt;</span>pages<span class=p>&lt;</span><span class=p>/</span><span class=nt>h1</span><span class=p>&gt;</span>
   {{ range .Data.Pages }}
-    {{ if or (eq .Type &quot;page&quot;) (eq .Type &quot;about&quot;) }}
-      &lt;h2&gt;&lt;a href=&quot;{{ .Permalink }}&quot;&gt;{{ .Type }} - {{ .Title }} - {{ .RelPermalink }}&lt;/a&gt;&lt;/h2&gt;
+    {{ if or (eq .Type &#34;page&#34;) (eq .Type &#34;about&#34;) }}
+      <span class=p>&lt;</span><span class=nt>h2</span><span class=p></span><span class=p>&gt;</span><span class=p>&lt;</span><span class=nt>a</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;{{ .Permalink }}&#34;</span><span class=p></span><span class=p>&gt;</span>{{ .Type }} - {{ .Title }} - {{ .RelPermalink }}<span class=p>&lt;</span><span class=p>/</span><span class=nt>a</span><span class=p>&gt;</span><span class=p>&lt;</span><span class=p>/</span><span class=nt>h2</span><span class=p>&gt;</span>
     {{ end }}
   {{ end }}
 
-{{ partial &quot;footer.html&quot; . }}
-</code></pre><p>更新single.html文件</p><pre><code class=language-html>{{ partial &quot;header.html&quot; . }}
+{{ partial &#34;footer.html&#34; . }}
+</code></pre></td></tr></table></div></div><p>更新single.html文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html>{{ partial &#34;header.html&#34; . }}
 
-  &lt;h1&gt;{{ .Title }}&lt;/h1&gt;
+  <span class=p>&lt;</span><span class=nt>h1</span><span class=p></span><span class=p>&gt;</span>{{ .Title }}<span class=p>&lt;</span><span class=p>/</span><span class=nt>h1</span><span class=p>&gt;</span>
   {{ .Content }}
 
-{{ partial &quot;footer.html&quot; . }}
-</code></pre><p>此时浏览器中主页面about菜单将额外展示类型和标题</p><p>更新single.html文件，添加对博文日期的渲染</p><pre><code class=language-html>{{ partial &quot;header.html&quot; . }}
+{{ partial &#34;footer.html&#34; . }}
+</code></pre></td></tr></table></div></div><p>此时浏览器中主页面about菜单将额外展示类型和标题</p><p>更新single.html文件，添加对博文日期的渲染</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html>{{ partial &#34;header.html&#34; . }}
 
-  &lt;h1&gt;{{ .Title }}&lt;/h1&gt;
-  &lt;h2&gt;{{ .Date.Format &quot;Mon, Jan 2, 2006&quot; }}&lt;/h2&gt;
+  <span class=p>&lt;</span><span class=nt>h1</span><span class=p></span><span class=p>&gt;</span>{{ .Title }}<span class=p>&lt;</span><span class=p>/</span><span class=nt>h1</span><span class=p>&gt;</span>
+  <span class=p>&lt;</span><span class=nt>h2</span><span class=p></span><span class=p>&gt;</span>{{ .Date.Format &#34;Mon, Jan 2, 2006&#34; }}<span class=p>&lt;</span><span class=p>/</span><span class=nt>h2</span><span class=p>&gt;</span>
   {{ .Content }}
 
-{{ partial &quot;footer.html&quot; . }}
-</code></pre><p>此时浏览器博文页面将展示创建日期</p><p>有多种方式使日期只展示在博文页面中，一种是在index.html中添加if条件语间，另一种是为博文创建单独的模板。当主题比较复杂时，创建针对博文的单独模板</p><pre><code class=language-bash>$ mkdir themes/LeaveIt/layouts/post
+{{ partial &#34;footer.html&#34; . }}
+</code></pre></td></tr></table></div></div><p>此时浏览器博文页面将展示创建日期</p><p>有多种方式使日期只展示在博文页面中，一种是在index.html中添加if条件语间，另一种是为博文创建单独的模板。当主题比较复杂时，创建针对博文的单独模板</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ mkdir themes/LeaveIt/layouts/post
 $ nano themes/LeaveIt/layouts/_default/single.html
-{{ partial &quot;header.html&quot; . }}
+<span class=o>{</span><span class=o>{</span> partial <span class=s2>&#34;header.html&#34;</span> . <span class=o>}</span><span class=o>}</span>
 
-  &lt;h1&gt;{{ .Title }}&lt;/h1&gt;
-  {{ .Content }}
+  &lt;h1&gt;<span class=o>{</span><span class=o>{</span> .Title <span class=o>}</span><span class=o>}</span>&lt;/h1&gt;
+  <span class=o>{</span><span class=o>{</span> .Content <span class=o>}</span><span class=o>}</span>
 
-{{ partial &quot;footer.html&quot; . }}
+<span class=o>{</span><span class=o>{</span> partial <span class=s2>&#34;footer.html&#34;</span> . <span class=o>}</span><span class=o>}</span>
 $ nano themes/LeaveIt/layouts/post/single.html
-{{ partial &quot;header.html&quot; . }}
+<span class=o>{</span><span class=o>{</span> partial <span class=s2>&#34;header.html&#34;</span> . <span class=o>}</span><span class=o>}</span>
 
-  &lt;h1&gt;{{ .Title }}&lt;/h1&gt;
-  &lt;h2&gt;{{ .Date.Format &quot;Mon, Jan 2, 2006&quot; }}&lt;/h2&gt;
-  {{ .Content }}
+  &lt;h1&gt;<span class=o>{</span><span class=o>{</span> .Title <span class=o>}</span><span class=o>}</span>&lt;/h1&gt;
+  &lt;h2&gt;<span class=o>{</span><span class=o>{</span> .Date.Format <span class=s2>&#34;Mon, Jan 2, 2006&#34;</span> <span class=o>}</span><span class=o>}</span>&lt;/h2&gt;
+  <span class=o>{</span><span class=o>{</span> .Content <span class=o>}</span><span class=o>}</span>
 
-{{ partial &quot;footer.html&quot; . }}
-</code></pre><p>移除了默认的single模板中对日期的指定，而在post的single模板添加</p><p>进一步关于Go模板的语法参见<a href=https://github.com/digitalcraftsman/hugo-steam-theme/blob/master/exampleSite/content/post/goisforlovers.md>Introduction to Go Templates</a></p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2019-11-17</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href="//twitter.com/share?url=https%3a%2f%2fshuzang.github.io%2f2019%2f09%2fhugo-blog-theme-development%2f&amp;text=hugo%e6%90%ad%e5%bb%ba%e4%b8%aa%e4%ba%ba%e5%8d%9a%e5%ae%a25-%e4%b8%bb%e9%a2%98%e5%bc%80%e5%8f%91&amp;via=" target=_blank title="Share on Twitter"><i class="fab fa-twitter fa-fw"></i></a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fshuzang.github.io%2f2019%2f09%2fhugo-blog-theme-development%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook-square fa-fw"></i></a><a href="//reddit.com/submit?url=https%3a%2f%2fshuzang.github.io%2f2019%2f09%2fhugo-blog-theme-development%2f&amp;title=hugo%e6%90%ad%e5%bb%ba%e4%b8%aa%e4%ba%ba%e5%8d%9a%e5%ae%a25-%e4%b8%bb%e9%a2%98%e5%bc%80%e5%8f%91" target=_blank title="Share on Reddit"><i class="fab fa-reddit fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span class=tag><a href=https://shuzang.github.io/tags/%E5%8D%9A%E5%AE%A2%E5%86%99%E4%BD%9C/><i class="fas fa-tag fa-fw"></i>&nbsp;博客写作</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://shuzang.github.io>Home</a></span></section></div><div class=post-nav><a href=https://shuzang.github.io/2019/09/hugo-build-blog-deployment-optimization/ class=prev rel=prev title=hugo搭建个人博客4-部署优化><i class="fas fa-angle-left fa-fw"></i>hugo搭建个人博客4-部署优化</a>
+<span class=o>{</span><span class=o>{</span> partial <span class=s2>&#34;footer.html&#34;</span> . <span class=o>}</span><span class=o>}</span>
+</code></pre></td></tr></table></div></div><p>移除了默认的single模板中对日期的指定，而在post的single模板添加</p><p>进一步关于Go模板的语法参见<a href=https://github.com/digitalcraftsman/hugo-steam-theme/blob/master/exampleSite/content/post/goisforlovers.md target=_blank>Introduction to Go Templates</a></p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2019-11-17</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href="//twitter.com/share?url=https%3a%2f%2fshuzang.github.io%2f2019%2f09%2fhugo-blog-theme-development%2f&text=hugo%e6%90%ad%e5%bb%ba%e4%b8%aa%e4%ba%ba%e5%8d%9a%e5%ae%a25-%e4%b8%bb%e9%a2%98%e5%bc%80%e5%8f%91&via=" target=_blank title="Share on Twitter"><i class="fab fa-twitter fa-fw"></i></a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fshuzang.github.io%2f2019%2f09%2fhugo-blog-theme-development%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook-square fa-fw"></i></a><a href="//reddit.com/submit?url=https%3a%2f%2fshuzang.github.io%2f2019%2f09%2fhugo-blog-theme-development%2f&title=hugo%e6%90%ad%e5%bb%ba%e4%b8%aa%e4%ba%ba%e5%8d%9a%e5%ae%a25-%e4%b8%bb%e9%a2%98%e5%bc%80%e5%8f%91" target=_blank title="Share on Reddit"><i class="fab fa-reddit fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span class=tag><a href=https://shuzang.github.io/tags/%E5%8D%9A%E5%AE%A2%E5%86%99%E4%BD%9C/><i class="fas fa-tag fa-fw"></i>&nbsp;博客写作</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://shuzang.github.io>Home</a></span></section></div><div class=post-nav><a href=https://shuzang.github.io/2019/09/hugo-build-blog-deployment-optimization/ class=prev rel=prev title=hugo搭建个人博客4-部署优化><i class="fas fa-angle-left fa-fw"></i>hugo搭建个人博客4-部署优化</a>
 <a href=https://shuzang.github.io/2019/09/git%E5%AD%A6%E4%B9%A0-%E5%AD%90%E6%A8%A1%E5%9D%97%E7%AE%A1%E7%90%86%E4%B8%8E%E4%BD%BF%E7%94%A8/ class=next rel=next title="Git学习 子模块管理与使用">Git学习 子模块管理与使用<i class="fas fa-angle-right fa-fw"></i></a></div></div><div class=post-comment></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a></div><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://shuzang.github.io target=_blank>shuzang</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><a href=# class=dynamic-to-top id=dynamic-to-top data-scroll><span>&nbsp;</span>
 </a><script src=/js/lib/jquery/jquery.slim.min.js></script><script src=/js/lib/lazysizes/lazysizes.min.js></script><script src=/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js></script><script>window.scroll=new SmoothScroll('[data-scroll]',{speed:300,speedAsDuration:true});</script><link rel=stylesheet href=/css/lib/katex/katex.min.css><script src=/js/lib/katex/katex.min.js></script><script defer src=/js/lib/katex/auto-render.min.js></script><link rel=stylesheet href=/css/lib/katex/copy-tex.min.css><script defer src=/js/lib/katex/copy-tex.min.js></script><script defer src=/js/lib/katex/mhchem.min.js></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true},{left:"$",right:"$",display:false},]});});</script><script src=/js/blog.min.js></script></body></html>
