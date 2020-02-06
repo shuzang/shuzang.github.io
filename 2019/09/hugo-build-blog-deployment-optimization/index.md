@@ -162,86 +162,27 @@ script:
 
 最为繁琐的域名备案过程可以跳过，因为博客挂载在github pages，而只有服务器在国内的网站才需要备案。
 
+### 2.2 DNS解析
+
+使用CNAME别名映射域名，比设置A记录更方便，最重要的是A记录无法开启https。参数设置如下图所示。
+
+![CNAME设置](https://user-images.githubusercontent.com/26682846/73837574-b6371900-484c-11ea-9fcd-4edee5880b77.png)
+
+访问网址时可能会加www前缀，因此可以设置一个二级域名解析，方法相同。
+
 ### 2.2 GitHub 上的设置
 
-购买好域名后，首先到 Github 上，你部署博客的那个 Git 仓库的设置里，在 `Custom domain` 这里填上你购买的域名
+到 Github `shuzang.github.io`仓库设置里，在 `Custom domain` 这里填写`shuzang.top`域名并保存。
 
 ![github域名设置](https://user-images.githubusercontent.com/26682846/65857582-b56e1200-e396-11e9-8449-52e5d2378683.png)
 
-或者在创建一个名为 `CNAME` 的文件放在根目录，其中的内容**只**写上你的域名，像这样
-
-```bash
-example.com
-```
-
-如果使用了 Travis CI 这类持续集成服务来部署博客的话推荐使用第二种方式进行设置。
-
-如果 `Custom domain` 下方有 `Enforce HTTPS` 这个选项的话一并勾选上
+ `Custom domain` 下方 `Enforce HTTPS` 这个选项一并勾选，Github 跟 Let’s Encrypt 有合作，如果勾选了这个选项，Let’s Encrypt 就会给你的博客签发一张 SSL 证书，免费的。
 
 ![](https://mogeko.github.io/blog-images/r/048/gh_setting_HTTPS.png)
 
-Github 跟 Let’s Encrypt 有合作，如果勾选了这个选项，Let’s Encrypt 就会给你的博客签发一张 SSL 证书，免费的。
 
-### 2.3 DNS 上的设置
 
-终于到了最关键的一步了。
-
-**现在要做的是让域名指向正确的 IP 地址，GitHub 为此提供了四条 IP，使用 [A 记录](https://zh.wikipedia.org/wiki/%E5%9F%9F%E5%90%8D%E7%B3%BB%E7%BB%9F#%E8%AE%B0%E5%BD%95%E7%B1%BB%E5%9E%8B) 指向这四条 IP 地址就可以了**
-
-这四条 IP 分别是 (来自 [GitHub 的官方文档](https://help.github.com/en/articles/setting-up-an-apex-domain))：
-
-> **185.199.108.153  185.199.109.153  185.199.110.153  185.199.111.153**
-
-你需要到你购买域名的域名商的域名管理页面进行设置，虽然不同的域名商域名管理页面不同，不过原理都是相同的。
-
-这里以 万网 为例，在域名控制台点击域名，选择左侧的**域名解析 -> 解析设置**
-
-![域名解析记录](https://user-images.githubusercontent.com/26682846/65857585-b606a880-e396-11e9-817f-45aa26b479f9.png)
-
-选择**添加记录**
-
-![域名解析](https://user-images.githubusercontent.com/26682846/65857584-b606a880-e396-11e9-842c-1bf4233f133e.png)
-
-> **类型 (Type)：A**  
-> **主机 (Host)：@**  
-> **指向 (Points to)：185.199.108.153**  
-> **TTL：保持默认** @ 表示顶级域名，也就是你注册的域名本身  
-
-以相同的方式配置剩下的三条 IP 地址
-
-> **类型 (Type)：A**  
-> **主机 (Host)：@**  
-> **指向 (Points to)：185.199.109.153**  
-> **TTL：保持默认**  
-
-> **类型 (Type)：A**  
-> **主机 (Host)：@**  
-> **指向 (Points to)：185.199.110.153**  
-> **TTL：保持默认**  
-
-> **类型 (Type)：A**  
-> **主机 (Host)：@**  
-> **指向 (Points to)：185.199.111.153**  
-> **TTL：保持默认**  
-
-等几分钟 (刷新 DNS 缓存)，然后在浏览器中输入你的域名，回车；不出意外的话你应该可以看到你的博客了。
-
-### 2.4 设置二级域名
-
-除了通过顶级域名进行访问外你还可以设置二级域名，例如 `www.shuzang.top` `
-
-只需要在**添加记录**时调整参数即可。
-
-![二级域名解析](https://user-images.githubusercontent.com/26682846/65857583-b56e1200-e396-11e9-81da-544fd33784d9.png)
-
-不过这次添加的类型 (Type) 不是 **A 记录**而是 **CNAME**
-
-> **类型 (Type)：CNAME**  
-> **主机 (Host)：www**  
-> **指向 (Points to)：shuzang.top  
-> **TTL：保持默认**  
-
-此时，你不仅可以通过 `example.com` 访问你的博客，还可以通过 `www.example.com` 访问到你的博客。
+等几分钟 (刷新 DNS 缓存)，然后在浏览器中输入`shuzang.top`，回车，不出意外看到了自己的博客。
 
 ### 2.5 其他玩法
 
