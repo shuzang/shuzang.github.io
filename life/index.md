@@ -114,7 +114,7 @@
     box-shadow: 0px 0px 40px -15px rgba(0, 0, 0, 0.5);
   }
   .LostinRussia_back {
-    background: url("https://img1.doubanio.com/view/photo/l/public/p2580677448.webp");
+    background: url("https://user-images.githubusercontent.com/26682846/74016151-e4436700-49cc-11ea-98ae-aaa249239352.jpg");
   }
   .Basicwear_back {
     background: url("https://www.lenet.jp/magazine/wp-content/uploads/2018/01/IMG_0256_s.jpg");
@@ -125,7 +125,7 @@
 <div class="card" id="bright">
   <div class="info_section">
     <div class="header">
-      <img class="locandina" src="https://img3.doubanio.com/view/photo/s_ratio_poster/public/p2581835383.webp"/>
+      <img class="locandina" src="https://user-images.githubusercontent.com/26682846/74015766-36d05380-49cc-11ea-9b2b-04dc6c2c1e7f.jpg"/>
       <h1>囧妈</h1>
       <span class="minutes">2020-01 徐峥，袁泉</span>
     </div>
@@ -142,7 +142,7 @@
 <div class="card" id="bright">
   <div class="info_section">
     <div class="header">
-      <img class="locandina" src="https://img3.doubanio.com/view/subject/l/public/s29980542.jpg"/>
+      <img class="locandina" src="https://user-images.githubusercontent.com/26682846/74015663-05f01e80-49cc-11ea-8458-88be6a79758b.jpg"/>
       <h1>基本穿搭</h1>
       <span class="minutes">2020-01 [日]大山旬</span>
     </div>
