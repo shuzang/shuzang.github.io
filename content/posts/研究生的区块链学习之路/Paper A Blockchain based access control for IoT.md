@@ -3,7 +3,7 @@ title: A Blockchain based access control for IoT
 date: 2020-02-06
 tags: [论文]
 categories: [研究生的区块链学习之路]
-
+toc: true
 ---
 
 Imen Riabi, Yosr Dhif, Hella Kaffel Ben Ayed, Khaled Zaatouri. A Blockchain based access control for IoT[C]. International Wireless Communications & Mobile Computing Conference (IWCMC), 2019.
@@ -126,7 +126,7 @@ sequenceDiagram
 
    ![Accepting an access request](https://user-images.githubusercontent.com/26682846/73933418-5d808280-4917-11ea-87b9-5cf5cc6f0d06.gif)
 
-## 6. Discussing
+## 6. Idea
 
 作者确实利用区块链设计了一个完整可行的访问控制方案，解决了单点故障和可扩展性问题。在该方案中，作者将矿工纳入权限授予过程，保证了权限的不可篡改，和区块链结合的较为深入，这是一个亮点。但依然存在以下两个问题：
 
