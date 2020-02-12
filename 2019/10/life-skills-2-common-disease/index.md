@@ -9,11 +9,9 @@
 
 成人有206块骨头，分为颅骨、躯干骨和四肢骨三部分，主要的骨头如下图所示
 
-![全身骨](https://user-images.githubusercontent.com/26682846/67158543-e2955b00-f36b-11e9-94d0-d57cf8403aa7.jpg)
+![全身骨](https://s2.ax1x.com/2020/02/12/1Hs98U.jpg)
 
-主要肌肉找不到合适的图，就不放了。主要的器官分布如下
-
-![主要器官](http://www.baishanxi.com/uploads/allimg/130806/1-130P6200ZA47.jpg)
+主要肌肉和主要器官找不到合适的图，就不放了。
 
 ## 2. 常见疾病
 
