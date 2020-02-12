@@ -1,7 +1,7 @@
 # hugo搭建个人博客4-部署优化
 
 
-## 1. 持续集成
+## 1. 使用CI持续集成
 
 为了存放博客网站源码和博文，一直使用的都是blog仓库，但这同时导致了博客的域名只能是`shuzang.github.io/blog`，不符合习惯，因为大家习惯性的都会输入`username.github.io`来寻找每个人的个人博客。
 
@@ -22,24 +22,24 @@
 
 `Token description`随便填，只要之后查看的时候知道是博客的就行。勾选所有`repo`列表项目，其它项目不要选。点击`Generate token`生成Token。
 
-![申请Token](https://user-images.githubusercontent.com/26682846/65833196-f9620800-e2ff-11e9-923c-5ab7726e1b4d.png)
+![申请Token](https://s2.ax1x.com/2020/02/12/1HVOiD.png)
 
 之后跳转的页面会显示Token的值，一定要记下来，因为离开这个页面之后这个值就再也无法查看。我因为已经做过一次了，这里就只查看一下。
 
-![blog token](https://user-images.githubusercontent.com/26682846/65833191-f8c97180-e2ff-11e9-83a5-d21174067cff.png)
+![blog token](https://s2.ax1x.com/2020/02/12/1HVjRH.png)
 
 ### 1.3 设置Travis CI
 
  [Travis CI](https://travis-ci.org/account/repositories)是一个持续集成的工具，使用GitHub账号登陆，然后开启`blog`仓库，选择`setting`。
 
-![开启blog仓库持续集成](https://user-images.githubusercontent.com/26682846/65833195-f9620800-e2ff-11e9-8009-b9e901addc64.png)
+![开启blog仓库持续集成](https://s2.ax1x.com/2020/02/12/1HVbdK.png)
 
 在设置页面填写**Environment Variables**。
 
 - **Name** 填写： `GITHUB_TOKEN`
 - **Value** 填写：刚刚在 GitHub 申请到的 Token 的值
 
-![填写环境变量](https://user-images.githubusercontent.com/26682846/65833197-f9fa9e80-e2ff-11e9-80eb-84318c6447a8.png)
+![填写环境变量](https://s2.ax1x.com/2020/02/12/1HVhRJ.png)
 
 填写完成后点击`Add`添加
 
@@ -138,15 +138,121 @@ script:
 
 <font color="green">绿色</font> 代表部署成功  <font color="yellow">黄色</font> 代表正在部署  <font color="red">红色</font> 代表部署失败  <font color="gray">灰色</font> 代表部署被取消
 
-![持续集成通过](https://user-images.githubusercontent.com/26682846/65833193-f8c97180-e2ff-11e9-8cb0-d3659fd2b0c7.png)
+![持续集成通过](https://s2.ax1x.com/2020/02/12/1HVos1.png)
 
 然后访问[博客首页](https://shuzang.github.io)，不出意外就可以看到新的改动了。如果部署失败，在网页端的日志记录中找到失败原因，然后修改代码重新提交即可，新的提交通过后，原先失败的提交将会被解决。
 
-## 2. 添加独立域名
+## 2 使用Github Action持续集成
+
+[GitHub Actions](https://github.com/features/actions) 是 GitHub 在2018年10月推出的一个[持续集成服务](http://www.ruanyifeng.com/blog/2015/09/continuous-integration.html)，之前一直是试用阶段，去年(2019年)年末刚刚开放，据说比[Travis CI](http://www.ruanyifeng.com/blog/2017/12/travis_ci_tutorial.html) 更简单更好用，所以打算把持续集成工具切换到它。同时，之前博客部署使用了两个仓库，一个放源码，一个放生成的网页文件，目前来看可以统一成一个。本篇文章就打算做这两件事。
+
+Github Actions入门可以阅读[官方文档](https://help.github.com/en/actions/automating-your-workflow-with-github-actions)或者阮一峰大神的[GitHub Actions 入门教程](http://www.ruanyifeng.com/blog/2019/09/getting-started-with-github-actions.html)
+
+### 2.1 新建分支保存源码
+
+统一使用`shuzang.github.io`这个仓库，`master`分支用于放置生成的博客网页文件，这是Github Pages的要求，新建分支`blog`存放博客源码和写的文章。
+
+```bash
+# 新建并切换到新分支
+$ git checkout -b blog
+$ git branch
+* blog
+  master
+# 设置本地blog分支追踪远程blog分支
+$ git branch --set-upstream blog origin/blog
+# 查看分支跟踪关系
+$ git branch -vv
+* blog   c63526c [origin/blog] Update posts
+  master aa725ba [origin/master: behind 1] Automated deployment: Wed Feb  5 09:25:59 UTC 2020 d8e4f52983c7d7b2128076df3b267bd27259d447
+```
+
+删除原来Travis CI用到的`.travis.yml`文件
+
+```bash
+$ rm .travis.yml
+```
+
+然后将本地blog分支的内容推送到远程，在网页端进入`shuzang.github.io`仓库的设置页面，将默认分支设置为blog分支。
+
+![设置默认分支](https://s2.ax1x.com/2020/02/12/1HePXR.png)
+
+### 2.2 设置持续集成
+
+生成公私钥用于持续集成
+
+```bash
+ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f blog -N ""
+# You will get 2 files in current file:
+#   blog.pub (public key)
+#   blog     (private key)
+```
+
+然后进入`shuzang.github.io`仓库设置页面，在`Deploy Keys`中添加公钥，在`Secrets`中添加私钥，私钥名设置为`ACTIONS_DEPLOY_KEY`
+
+然后新建YAML配置文件，Github Action要求配置文件位于`.github/workflows`目录下，新建完成后目录结构如下
+
+```bash
+$ ls ./.github/workflows
+main.yml
+```
+
+Github Action使用一种模块化的思路，即将很多持续集成的操作写成独立的脚本文件，放到代码仓库，让其它开发者是哦那个，因此进行持续集成时，可以直接引用别人写好的action，整个持续集成的过程，就是一个actions组合的过程。GitHub 做了一个[官方市场](https://github.com/marketplace?type=actions)，可以搜索到他人提交的 actions。另外，还有一个 [awesome actions](https://github.com/sdras/awesome-actions) 的仓库，也可以找到不少 action。
+
+我们的基本思路如下
+
+1. 整个流程在blog分支push时触发
+2. 只有一个job，运行在ubuntu-18.04环境下
+3. 使用[official action: checkout](https://github.com/actions/checkout)获取仓库源码，注意添加参数clone主题子模块
+4. 使用[peaceiris/actions-hugo: GitHub Actions for Hugo](https://github.com/peaceiris/actions-hugo)部署hugo环境，注意使用`extentded`版本（主题要求）
+5. 直接执行hugo命令
+6. 使用[peaceiris/actions-gh-pages](https://github.com/peaceiris/actions-gh-pages)将当前分支`public`目录下的内容部署到master分支，
+
+完整的`main.yml`脚本内容如下
+
+```yaml
+name: hugo push to github pages
+
+on:
+  push:
+    branches:
+    - blog
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        submodules: true
+
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v2
+      with:
+        hugo-version: '0.59.1'
+        extended: true
+
+    - name: Build
+      run: hugo --minify
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v2
+      env:
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        PUBLISH_BRANCH: master
+        PUBLISH_DIR: ./public
+```
+
+保存上面的文件后，将本地仓库推送到远程，Github检测到`.github/workflow`目录和里面的`main.yml`文件，就会自动运行，在网页端可以查看运行日志，如果出现错误可以根据日志内容就行修改。
+
+![Github Action 日志文件](https://s2.ax1x.com/2020/02/12/1HeehD.png)
+
+等到workflow运行结束，访问博客页面，就可以看到更新成功了。切换到master分支，也可以看到推送的网页文件，不过因为设置了默认分支为blog，以后打开网页端该仓库，以及在本地clone的时候，默认都是blog分支。
+
+## 3. 添加独立域名
 
 给部署在 GitHub Pages 上的博客添加独立域名，是早就想做的事，以前是因为没什么需求，.me域名比较贵，国内购买域名备案又比较麻烦，所以一直没做。这次选择了.top域名，买了三年才67，可以了，三年以后开始工作再考虑换.me域名，毕竟这个冷门的字段应该没人要。而且发现部署在github pages不需要备案，因为服务器不在国内。
 
-### 2.1 选购域名
+### 3.1 选购域名
 
 可能很多人已经买好了域名了，你可以[跳过这部分](#GitHub 上的设置)
 
@@ -162,23 +268,23 @@ script:
 
 最为繁琐的域名备案过程可以跳过，因为博客挂载在github pages，而只有服务器在国内的网站才需要备案。
 
-### 2.2 DNS解析
+### 3.2 DNS解析
 
 使用CNAME别名映射域名，比设置A记录更方便，最重要的是A记录无法开启https。参数设置如下图所示。
 
-![CNAME设置](https://user-images.githubusercontent.com/26682846/73837574-b6371900-484c-11ea-9fcd-4edee5880b77.png)
+![CNAME设置](https://s2.ax1x.com/2020/02/12/1Heu1H.png)
 
 访问网址时可能会加www前缀，因此可以设置一个二级域名解析，方法相同。
 
-### 2.2 GitHub 上的设置
+### 3.3 GitHub 上的设置
 
 到 Github `shuzang.github.io`仓库设置里，在 `Custom domain` 这里填写`shuzang.top`域名并保存。
 
-![github域名设置](https://user-images.githubusercontent.com/26682846/65857582-b56e1200-e396-11e9-8449-52e5d2378683.png)
+![github域名设置](https://s2.ax1x.com/2020/02/12/1He3HP.png)
 
  `Custom domain` 下方 `Enforce HTTPS` 这个选项一并勾选，Github 跟 Let’s Encrypt 有合作，如果勾选了这个选项，Let’s Encrypt 就会给你的博客签发一张 SSL 证书，免费的。
 
-![](https://mogeko.github.io/blog-images/r/048/gh_setting_HTTPS.png)
+![启用HTTPS](https://s2.ax1x.com/2020/02/12/1HeJN8.png)
 
 
 
@@ -192,7 +298,7 @@ shuzang.top
 
 等几分钟 (刷新 DNS 缓存)，然后在浏览器中输入`shuzang.top`，回车，不出意外看到了自己的博客。
 
-### 2.5 其他玩法
+### 3.4 其他玩法
 
 除了将域名绑定给博客外博客，还可以用域名干一些别的事。
 

@@ -1,9 +1,11 @@
-# hugo搭建个人博客5-主题开发
+# hugo搭建个人博客5-主题美化
 
 
-本来想自己做主题开发的，但一看发现要实现的功能太多，自己又缺乏前端的开发经验，只能在原主题上做一些小调节了。关于主题开发的中文资料没有，这里参考[create a new theme](https://github.com/digitalcraftsman/hugo-steam-theme/blob/master/exampleSite/content/post/creating-a-new-theme.md)一文
+## 1. 基础知识
 
-#### 开发主题准备
+通过一个简单的主题开发流程，理解需要的基本知识，为自己进行主题修改和美化打基础，这里参考[create a new theme](https://github.com/digitalcraftsman/hugo-steam-theme/blob/master/exampleSite/content/post/creating-a-new-theme.md)一文。
+
+### 开发准备
 
 Ubuntu安装hugo
 
@@ -110,7 +112,7 @@ drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 16:09 themes/LeaveIt/static/css
 drwxr-xr-x 2 shuzang shuzang 4096 Sep 25 16:09 themes/LeaveIt/static/js
 ```
 
-#### 开发主题
+### 开发流程
 
 删除public文件夹，执行hugo server命令并添加--watch参数，打开浏览器查看网站，修改主题文件，浏览器页面将会实时更改
 
@@ -349,4 +351,271 @@ $ nano themes/LeaveIt/layouts/post/single.html
 
 移除了默认的single模板中对日期的指定，而在post的single模板添加
 
-进一步关于Go模板的语法参见[Introduction to Go Templates](https://github.com/digitalcraftsman/hugo-steam-theme/blob/master/exampleSite/content/post/goisforlovers.md)
+至此对主题的基本结构有了了解，接下来应该进一步学习Hugo中Go模板的语法，参见[Introduction to Go Templates](https://github.com/digitalcraftsman/hugo-steam-theme/blob/master/exampleSite/content/post/goisforlovers.md)
+
+注意，以下的调整都是对原主题样式的调整，需要修改主题源码，因此最好clone主题仓库进行开发。
+
+## 2. 调整引用样式
+
+主题原有的引用样式如下
+
+> 引用样式示例
+
+修改`assets/css/_common/_core/base.scss`文件如下调整引用样式
+
+```diff
+  }
+
+  blockquote {
+-    font-size: 1rem;
+-    display: block;
+-    border-width: 1px 0;
+-    border-style: solid;
+-    border-color: $light-border-color;
+-    padding: 1.5em 1.2em 0.5em 1.2em;
+-    margin: 0 0 2em 0;
+-    position: relative;
+-
+-    &:before {
+-      content: '\201C';
+-      position: absolute;
+-      top: 0em;
+-      left: 50%;
+-      transform: translate(-50%, -50%);
+-      width: 3rem;
+-      height: 2rem;
+-      font: 6em/1.08em 'PT Sans', sans-serif;
+-      color: $light-post-link-color;
+-      text-align: center;
+-
+-       .dark-theme &{
+-         color: $dark-post-link-color;
+-       }
+-    }
+-    &:after {
+-      content: "#blockquote" attr(cite);
+-      display: block;
+-      text-align: right;
+-      font-size: 0.875em;
+-      color: $light-post-link-color;
+-
+-       .dark-theme &{
+-         color: $dark-post-link-color;
+-       }
+-    }
++    font: 14px/22px normal helvetica, sans-serif;
++    margin-top: 10px;
++    margin-bottom: 10px;
++    margin-left: 2%;
++    margin-right: 0%;
++    padding-left: 15px;
++    padding-top: 10px;
++    padding-right: 10px;
++    padding-bottom: 10px;
++    border-left: 3px solid #ccc;
++    background-color:#f1f1f1;  
+
+    .dark-theme & {
+-      border-color: $dark-border-color;
++      background-color:#252529;
+    }
+  } 
+```
+
+## 3. 添加阅读进度条
+
+首先在`layouts/partials/header.html`文件中如下所示插入代码
+
+```diff
+<nav class="navbar">
++    {{ if (and .IsPage (not .Params.notsb)) }}
++        <div class="top-scroll-bar"></div>
++    {{ end }}
+    <div class="container">
+        <div class="navbar-header header-logo">
+        	<a href="{{ .Site.BaseURL }}">{{ .Site.Title }}</a>
+@@ -13,7 +16,10 @@
+    </div>
+</nav>
+<nav class="navbar-mobile" id="nav-mobile" style="display: none">
++    {{ if (and .IsPage (not .Params.notsb)) }}
++        <div class="top-scroll-bar"></div>
++    {{ end }}
+    <div class="container">
+        <div class="navbar-header">
+            <div>  <a href="javascript:void(0);" class="theme-switch"><i class="iconfont icon-sun"></i></a>&nbsp;<a href="{{.Site.BaseURL}}">{{ .Site.Title }}</a></div>
+            <div class="menu-toggle">
+
+```
+
+然后在`assets/css/_cusstom.scss`文件中添加进度条样式
+
+```scss
+// 顶部阅读进度条
+.top-scroll-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    display: none;
+    width: 0;
+    height: 3px;
+    background: #ef3982;
+  } 
+```
+
+之后新建一个 js 脚本文件 `assets/js/_custom.js` ，来控制进度条
+
+```js
+// 顶部阅读进度条
+$(document).ready(function () {
+    $(window).scroll(function(){
+      $(".top-scroll-bar").attr("style", "width: " + ($(this).scrollTop() / ($(document).height() - $(this).height()) * 100) + "%; display: block;");
+    });
+  }); 
+```
+
+最后， js 脚本引入到博客中，使其生效。
+
+在 `/layouts/partials/js.html` 文件中添加以下内容，然后将 `$custom` 加入到变量 `$vendorscript` 中
+
+```html
+{{ $custom := resources.Get "/js/_custom.js" }}
+```
+
+重新编译后预览博客就可以看到阅读进度条了。
+
+## 4. 添加侧边栏目录
+
+原本LeaveIt主题不支持文章目录导航，可以按如下方法添加，但样式不是很合适
+
+首先在`/assets/css/_custom.scss`添加侧边栏目录(toc)样式
+
+```scss
+// 添加toc栏
+  .post-toc {
+    position: absolute;
+    width: 200px;
+    margin-left: 800px;
+    padding: 10px;
+    word-wrap: break-word;
+    box-sizing: border-box;
+
+    .post-toc-title {
+        margin: 0;
+        font-weight: 400;
+        text-transform: uppercase;
+    }
+
+    .post-toc-content {
+        &.always-active ul {
+            display: block;
+        }
+
+        >nav>ul {
+            margin: 10px 0;
+        }
+
+        ul {
+            padding-left: 0;
+            list-style: none;
+
+            ul {
+            padding-left: 15px;
+            display: none;
+            }
+
+            .has-active > ul {
+                display: block;
+            }
+        }
+    }
+
+    a:hover {
+        color: #c05b4d;
+        -webkit-transform: scale(1.1);
+        -ms-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+
+    a {
+        display: block;
+        line-height: 30px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        -webkit-transition-duration: .2s;
+        transition-duration: .2s;
+        -webkit-transition-property: -webkit-transform;
+        transition-property: -webkit-transform;
+        transition-property: transform;
+        transition-property: transform,-webkit-transform;
+        -webkit-transition-timing-function: ease-out;
+        transition-timing-function: ease-out;
+    }
+}
+@media only screen and (max-width: 1224px) {
+    .post-toc {
+        display: none;
+    }
+} 
+```
+
+然后在 `layouts/partials/` 下新建 `toc.html` 文件，内容如下
+
+```html
+<div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">{{ T "toc" }}</h2>
+  {{ $globalAutoCollapseToc := .Site.Params.autoCollapseToc | default false }}
+  <div class="post-toc-content{{ if not (or .Params.autoCollapseToc (and $globalAutoCollapseToc (ne .Params.autoCollapseToc false))) }} always-active{{ end }}">
+    {{.TableOfContents}}
+  </div>
+</div>
+
+<script type="text/javascript">
+  window.onload = function () {
+    var fix = $('.post-toc');
+    var end = $('.post-comment');
+    var fixTop = fix.offset().top, fixHeight = fix.height();
+    var endTop, miss;
+    var offsetTop = fix[0].offsetTop;
+    $(window).scroll(function () {
+      var docTop = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
+      if (end.length > 0) {
+        endTop = end.offset().top;
+        miss = endTop - docTop - fixHeight;
+      }
+      if (fixTop < docTop) {
+        fix.css({ 'position': 'fixed' });
+        if ((end.length > 0) && (endTop < (docTop + fixHeight))) {
+          fix.css({ top: miss });
+        } else {
+          fix.css({ top: 0 });
+        }
+      } else {
+        fix.css({ 'position': 'absolute' });
+        fix.css({ top: offsetTop });
+      }
+    })
+  }
+</script>  
+```
+
+在文章页的模板 `layouts/_default/single.html` 中`</header>`标签后引入toc模板
+
+```html
+ {{ if ( .Site.Params.toc | default true ) }}
+     {{ partial "toc.html" . }}
+ {{ end }}
+```
+
+添加后重新使用hugo生成静态页面，只要文章有多级标题，就能在侧边栏看到导航目录
+
+最后在站点配置文件`config.toml`中添加如下配置
+
+```toml
+toc = true                # 是否开启目录
+autoCollapseToc = true   # Auto expand and collapse toc
+```
+
+

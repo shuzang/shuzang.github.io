@@ -3,12 +3,12 @@
 
 Markdown由Aaron Swartz和John Gruber共同设计
 
-- Aaron Swartz的博客：http://www.aaronsw.com/
-- John Gruber的博客： https://daringfireball.net/ 
+- Aaron Swartz的博客：[http://www.aaronsw.com/](http://www.aaronsw.com/)
+- John Gruber的博客： [https://daringfireball.net/ ](https://daringfireball.net/ )
 
 作者中的Aaron Swartz是天才程序员，著名社交网站[Reddit](http://www.reddit.com/)的联合创始人，14岁参与RSS 1.0规格标准的制订，致力于网络信息开放。在2011年7月19日，因被指控从MIT和JSTOR下载480万篇学术论文并以免费形式上传于网络被捕，2013年1月自杀身亡，年仅26岁。    
 
-![Aaron Swartz](https://laregledujeu.org/files/2013/01/Aaron_Swartz.jpg)
+![Aaron Swartz](https://s2.ax1x.com/2020/02/12/1H8TOS.jpg)
 
 Markdown的优点很多，下面稍微列举一下
 
@@ -324,15 +324,20 @@ H<sub>2</sub>O
 <img src="https://laregledujeu.org/files/2013/01/Aaron_Swartz.jpg" width="512" height="384" />
 ```
 
-效果如下(这里的效果不明显是因为博客网站已经控制了图片显示的大小)
+通过将多张图片放在一个一行多列的表格中，线宽设置为0， 可以让这些图片并排显示，代码如下
 
-<img src="https://laregledujeu.org/files/2013/01/Aaron_Swartz.jpg" width="512" height="384" />
+```html
+<table><tr>
+<td><img src="https://s2.ax1x.com/2020/02/12/1H3q8x.md.jpg" alt="风景1" style="zoom: 67%;" /></td>
+<td><img src="https://s2.ax1x.com/2020/02/12/1H3DbQ.md.jpg" alt="风景2" style="zoom: 67%;" /></td>
+</tr></table>
+```
 
-通过将多张图片放在一个一行多列的表格中，线宽设置为0， 可以让这些图片并排显示，示例如下
+效果如下
 
 <table><tr>
-<td><img src="https://user-images.githubusercontent.com/26682846/72606485-a5843900-3959-11ea-9d86-ef50add2b5fa.png" alt="咖啡馆" style="zoom: 67%;" /></td>
-<td><img src="https://user-images.githubusercontent.com/26682846/72606487-a5843900-3959-11ea-8967-7e4ff388246a.png" alt="看起来是二次元" style="zoom: 67%;" /></td>
+<td><img src="https://s2.ax1x.com/2020/02/12/1H3q8x.md.jpg" alt="风景1" style="zoom: 67%;" /></td>
+<td><img src="https://s2.ax1x.com/2020/02/12/1H3DbQ.md.jpg" alt="风景2" style="zoom: 67%;" /></td>
 </tr></table>
 
 ### 页内跳转
@@ -420,10 +425,10 @@ H<sub>2</sub>O
 
 ## 参考与扩展
 
-[1] [Github-Markdown](https://github.com/younghz/Markdown)
+[1]  [Github-Markdown](https://github.com/younghz/Markdown)
 
-[2] [Set table column width via Markdown](<https://stackoverflow.com/questions/36121672/set-table-column-width-via-markdown>)
+[2]  [Set table column width via Markdown](<https://stackoverflow.com/questions/36121672/set-table-column-width-via-markdown>)
 
-[3] [Markdown资源列表](https://github.com/nicejade/nice-front-end-tutorial/blob/master/tutorial/markdown-tutorial.md)
+[3]  [Markdown资源列表](https://github.com/nicejade/nice-front-end-tutorial/blob/master/tutorial/markdown-tutorial.md)
 
 
