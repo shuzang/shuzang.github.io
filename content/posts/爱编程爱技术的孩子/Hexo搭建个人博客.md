@@ -1,9 +1,10 @@
 ---
-title: Hexo 搭建博客
+title: Hexo 搭建个人博客
 date: 2018-04-17T20:30:00+08:00
-lastmod: 2019-11-16
+lastmod: 2020-02-12
 tags: [博客写作]
 categories: [爱编程爱技术的孩子]
+slug: using Hexo build persoanl blog
 ---
 
 [Hexo](https://hexo.io/zh-cn/index.html)是一款快速、简洁且高效的静态博客框架，使用Markdown渲染引擎解析文章，拥有着丰富的[主题社区](https://hexo.io/themes/)，可以帮助我们快速建立自己的博客，正在成为越来越多的技术人员制作自己博客的首选。
@@ -433,6 +434,11 @@ hexo+github模式的个人博客部署好了之后，hexo_blog文件夹中存在
 
 所以我们应未雨绸缪，经多方查找，终于找到了一种比较简单而有效的方法，即使用Travis CI做持续集成，项目文件放在`hexo`分支下，渲染后的静态文件在`master`分支下，只需要更新`hexo`分支中的文章就可以自动更新，进行配置也只需要克隆`hexo`分支然后进行改动，不需要每次都重新`hexo init`并配置
 
+## 主题收集
+
+- [Next主题](https://github.com/theme-next/hexo-theme-next)
+- [Chic主题](https://github.com/Siricee/hexo-theme-Chic)
+
 ## 参考
 
 [1] [segmentfault-hexo原理浅析](https://segmentfault.com/a/1190000008784436)
@@ -443,9 +449,10 @@ hexo+github模式的个人博客部署好了之后，hexo_blog文件夹中存在
 
 [4] [Yearito-Hexo搭建个人博客系列](http://yearito.cn/tags/Hexo/)
 
-[5] [Next主题](https://github.com/theme-next/hexo-theme-next)
+[5] [hexo和next主题相关设置](https://www.jianshu.com/p/3a01cc514ce7?utm_source=oschina-app)
 
-- [hexo和next主题相关设置](https://www.jianshu.com/p/3a01cc514ce7?utm_source=oschina-app)
-- [打造个性超赞博客Hexo+NexT+GithubPages的超深度优化](https://reuixiy.github.io/technology/computer/computer-aided-art/2017/06/09/hexo-next-optimization.html)
-- [hexo的next主题个性化教程:打造炫酷网站](http://shenzekun.cn/hexo%E7%9A%84next%E4%B8%BB%E9%A2%98%E4%B8%AA%E6%80%A7%E5%8C%96%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B.html)
-- [关于HEXO搭建个人博客的点点滴滴](https://juejin.im/post/5a6ee00ef265da3e4b770ac1)
+[6] [打造个性超赞博客Hexo+NexT+GithubPages的超深度优化](https://reuixiy.github.io/technology/computer/computer-aided-art/2017/06/09/hexo-next-optimization.html)
+
+[7] [hexo的next主题个性化教程:打造炫酷网站](http://shenzekun.cn/hexo%E7%9A%84next%E4%B8%BB%E9%A2%98%E4%B8%AA%E6%80%A7%E5%8C%96%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B.html)
+
+[8] [关于HEXO搭建个人博客的点点滴滴](https://juejin.im/post/5a6ee00ef265da3e4b770ac1)

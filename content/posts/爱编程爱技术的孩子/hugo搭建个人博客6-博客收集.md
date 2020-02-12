@@ -1,46 +1,36 @@
 ---
 title: hugo搭建个人博客6-博客收集
 date: 2019-11-17
+lastmod: 2020-02-12
 tags: [博客写作]
 categories: [爱编程爱技术的孩子]
 
 slug: Hugo blog themes collection
-featured_image: https://user-images.githubusercontent.com/26682846/71819354-a1892900-30c6-11ea-866c-a42b14f3f0db.jpg
+featured_image: https://s2.ax1x.com/2020/02/12/1H3DbQ.jpg
 ---
 
-本文用来收集有参考价值的博客，无论是内容上的还是主题页面修改上的，亦或者兼而有之。也收集喜欢的主题
+本文用来收集喜欢的主题和有参考价值的博客(使用Hexo或Hugo的)。
 
 ## 主题
 
-| Hexo                                               | Hugo                                           |
-| -------------------------------------------------- | ---------------------------------------------- |
-| [Chic](https://github.com/Siricee/hexo-theme-Chic) | [LeaveIt](https://github.com/liuzc/LeaveIt)    |
-|                                                    | [KeepIt](https://github.com/Fastbyte01/KeepIt) |
-|                                                    | [LoveIt](https://github.com/dillonzq/LoveIt)   |
+-   [LeaveIt](https://github.com/liuzc/LeaveIt)
+-   [KeepIt](https://github.com/Fastbyte01/KeepIt)
+-   [LoveIt](https://github.com/dillonzq/LoveIt)
+- [AllinOne](https://github.com/orianna-zzo/AllinOne)
 
 ## 博客
-
-Hexo-Next
 
 - [Yearito's Blog](http://yearito.cn/)
 - [深入浅出区块链](https://learnblockchain.cn/)
 
-Hexo-Chic
-
 - [Sirice's Blog](https://siricee.github.io/)
-
-Hugo-LeaveIt
 
 - [Mogeko's Blog](https://mogeko.me/)
 - [Wyane's Blog](https://huaien.co/)
 
-Hugo-LoveIt
-
 - [Dillon's Blog](https://dillonzq.com/)
 
-Orianna
-
--  https://orianna-zzo.github.io/AllinOne-html/ 
+- [Orianna的博客](https://orianna-zzo.github.io/AllinOne-html/ )
 
 
 
