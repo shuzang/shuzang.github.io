@@ -170,30 +170,30 @@ dateFormatToUse = "2006-01-02"
     ## for example '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/all.min.css" integrity="sha256-fdcFNFiBMrNfWL6OcAGQz6jDgNTRxnrLEd4vJYFWScE=" crossorigin="anonymous">'
     fontawesome_free_css = ''
     animate_css = ''
-    gitalk_css = ''
-    gitalk_js = ''
+    gitalk_css = '<link href="https://cdn.bootcss.com/gitalk/1.5.0/gitalk.css" rel="stylesheet">'
+    gitalk_js = '<script src="https://cdn.bootcss.com/gitalk/1.5.0/gitalk.js"></script>'
     valine_js = ''
-    jquery_js = ''
-    lazysizes_js = ''
-    smooth_scroll_js = ''
-    katex_css = ''
-    katex_js = ''
-    katex_auto_render_js = ''
-    katex_copy_tex_css = ''
-    katex_copy_tex_js = ''
-    katex_mhchem_js = ''
-    mermaid_js = ''
+    jquery_js = '<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>'
+    lazysizes_js = '<script src="https://cdn.bootcss.com/lazysizes/5.1.2/lazysizes.min.js"></script>'
+    smooth_scroll_js = '<script src="https://cdn.bootcss.com/smooth-scroll/16.1.0/smooth-scroll.js"></script>'
+    katex_css = '<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet">'
+    katex_js = '<script src="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.js"></script>'
+    katex_auto_render_js = '<script src="https://cdn.bootcss.com/KaTeX/0.11.1/contrib/auto-render.js"></script>'
+    katex_copy_tex_css = '<link href="https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.css" rel="stylesheet">'
+    katex_copy_tex_js = '<script src="https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.js"></script>'
+    katex_mhchem_js = '<script src="https://cdn.bootcss.com/KaTeX/0.11.1/contrib/mhchem.js"></script>'
+    mermaid_js = '<script src="https://cdn.bootcss.com/mermaid/8.3.1/mermaid.js"></script>'
     echarts_js = ''
     echarts_macarons_js = ''
     typeit_js = ''
     jquery_countdown_js = ''
-    aplayer_css = ''
-    aplayer_js = ''
+    aplayer_css = '<link href="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.css" rel="stylesheet">'
+    aplayer_js = '<script src="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js"></script>'
     meting_js = ''
 
   # Gravatar Info for preferred avatar in home page
   [params.gravatar]
-    email = "lylw1996@qq.com"
+    email = ""
 
   # Social Info in home page
   [params.social]
