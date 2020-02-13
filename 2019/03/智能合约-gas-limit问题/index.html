@@ -1,4 +1,16 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>智能合约-gas limit问题 | Shuzang's Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="shuzang's personal blog"><link rel=prev href=https://shuzang.top/2019/03/lightcahina-lightweight-blockchain-system-for-industrial-internet-of-things/><link rel=next href=https://shuzang.top/2019/03/a-case-study-for-blockchain-in-manufacturing-fabrec/><link rel=canonical href=https://shuzang.top/2019/03/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6-gas-limit%E9%97%AE%E9%A2%98/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><meta name=twitter:card content="summary"><meta name=twitter:title content="智能合约-gas limit问题"><meta name=twitter:description content="在搭建的以太坊私链上进行智能合约部署时，出现了以下问题
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>智能合约-gas limit问题 | Shuzang's Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="shuzang's personal blog"><link rel=prev href=https://shuzang.top/2019/03/lightcahina-lightweight-blockchain-system-for-industrial-internet-of-things/><link rel=next href=https://shuzang.top/2019/03/a-case-study-for-blockchain-in-manufacturing-fabrec/><link rel=canonical href=https://shuzang.top/2019/03/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6-gas-limit%E9%97%AE%E9%A2%98/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><meta property="og:title" content="智能合约-gas limit问题"><meta property="og:description" content="在搭建的以太坊私链上进行智能合约部署时，出现了以下问题
+
+
+1
+2
+
+
+INFO [03-21|13:50:11.690] Served eth_sendTransaction               reqid=24 t=684.186µs    err=&#34;exceeds block gas limit&#34;
+Error: exceeds block gas limit undefined
+
+
+出现该错误的原因如错误描述，是当前合约所需的gas超过了区块的最大gas。这可能与参数gasLimit有关。在创世区块的配置文件中，我们使用了默认的配置值，为0x2fefd8，转换为10进制即3141592。
+注：在线转换工具"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.top/2019/03/%E6%99%BA%E8%83%BD%E5%90%88%E7%BA%A6-gas-limit%E9%97%AE%E9%A2%98/"><meta property="article:published_time" content="2019-03-21T22:00:00+08:00"><meta property="article:modified_time" content="2019-03-21T22:00:00+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="智能合约-gas limit问题"><meta name=twitter:description content="在搭建的以太坊私链上进行智能合约部署时，出现了以下问题
 
 
 1
