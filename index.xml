@@ -112,7 +112,7 @@ box-shadow: 0px 0px 20px -10px rgba(0, 0, 0, 0.5);
 box-shadow: 0px 0px 40px -15px rgba(0, 0, 0, 0.5);
 }
 .LostinRussia_back {
-background: url("https://user-images.githubusercontent.com/26682846/74016151-e4436700-49cc-11ea-98ae-aaa249239352.jpg");
+background: url("https://s2.ax1x.com/2020/02/12/1bmBcQ.jpg");
 }
 .Basicwear_back {
 background: url("https://www.lenet.jp/magazine/wp-content/uploads/2018/01/IMG_0256_s.jpg");
@@ -121,9 +121,9 @@ background: url("https://www.lenet.jp/magazine/wp-content/uploads/2018/01/IMG_02
 &lt;div class="card" id="bright">
 &lt;div class="info_section">
 &lt;div class="header">
-&lt;img class="locandina" src="https://user-images.githubusercontent.com/26682846/74015766-36d05380-49cc-11ea-9b2b-04dc6c2c1e7f.jpg"/>
+&lt;img class="locandina" src="https://s2.ax1x.com/2020/02/12/1bm01g.jpg"/>
 &lt;h1>囧妈&lt;/h1>
-&lt;span class="minutes">2020-01 徐峥，袁泉&lt;/span>
+&lt;span class="minutes">徐峥，袁泉&lt;br>2020年1月25日 &lt;/span>
 &lt;/div>
 &lt;div class="description">
 &lt;p>
@@ -137,9 +137,9 @@ background: url("https://www.lenet.jp/magazine/wp-content/uploads/2018/01/IMG_02
 &lt;div class="card" id="bright">
 &lt;div class="info_section">
 &lt;div class="header">
-&lt;img class="locandina" src="https://user-images.githubusercontent.com/26682846/74015663-05f01e80-49cc-11ea-8458-88be6a79758b.jpg"/>
+&lt;img class="locandina" src="https://s2.ax1x.com/2020/02/12/1bmxjH.jpg"/>
 &lt;h1>基本穿搭&lt;/h1>
-&lt;span class="minutes">2020-01 [日]大山旬&lt;/span>
+&lt;span class="minutes">[日]大山旬&lt;br>20201月11日-1月14日&lt;/span>
 &lt;/div>
 &lt;div class="description">
 &lt;p>

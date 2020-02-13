@@ -618,4 +618,18 @@ toc = true                # 是否开启目录
 autoCollapseToc = true   # Auto expand and collapse toc
 ```
 
+## 5. 图片添加阴影
+
+在 `assets/css/style.scss`中添加以下代码
+
+```scss
+// 图片阴影
+.post-content {
+	img {
+        box-shadow: 0 0 15px 5px rgba(0, 0, 0, .28);
+        max-width: 1080px;
+	}
+}
+```
+
 
