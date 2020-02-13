@@ -1,0 +1,86 @@
+# 区块链实验7-合约审计
+
+
+由于访问控制的核心工作是基于智能合约的，智能合约的安全性显得尤为重要，行业内这方面的研究方向称之为`审计`，因此当前打算选取合适的自动审计工具来对编写完成的合约进行分析。
+
+参考文章：[关于形式化验证两大工具 (Vass & Mythril) 测试对比](https://learnblockchain.cn/2019/10/15/VaasMythril/)
+
+在经过大量查找后发现，商业化应用的审计工具以上文中的两款最为普及。我们首先使用成都链安的Vass工具进行分析，然而发现，在合约中存在内联汇编时，Vass无法编译合约，更谈不上审计，然而内联汇编在我们的合约中是必要的，因此换用Mythril。
+
+Mythril 工具是由以太坊开源社区所提供的安全分析工具，github仓库地址为
+
+-  https://github.com/ConsenSys/mythril 
+
+建立在Mythril上的合约分析平台[MythX](https://github.com/b-mueller/awesome-mythx-smart-contract-security-tools)具有更高的可用性并覆盖了更广泛的安全问题，因此最终使用MythX完成统计分析。
+
+## 正文
+
+MythX拥有Remix、VScode和Truffle的插件，因此无论以哪种方式编辑合约，都可以轻松的进行安全分析，但首先需要拥有MythX的账户。
+
+在 https://dashboard.mythx.io/#/registration 页面使用邮箱进行注册
+
+![注册](https://user-images.githubusercontent.com/26682846/70290021-91550400-1811-11ea-901d-e46e5d76d00f.png)
+
+之后关联MetaMask以太坊账户，MythX将提供一个密码供Remix等工具中的插件使用，也可以自己设定，但设定的密码要求长度为6-64位，至少一个小写字符，一个大写字符，一个数字和一个符号。
+
+> Password needs to contain: Length: 8 and 64 characters; One lowercase (a-z) and uppercase (A-Z) letter; One digit (0-9); One symbol (e.g. !"#$%&/()., )
+
+打开Remix界面，在插件列表搜索MythX，点击`Activate`将插件激活
+
+![激活插件](https://user-images.githubusercontent.com/26682846/70290039-9dd95c80-1811-11ea-81bf-0afb50ce5e9c.png)
+
+以Remix自带的示例合约ballot.sol为例，首先编译该合约，然后切换到MythX选项卡，输入之前关联到MythX的以太坊账户地址，MythX提供的或自己更改后的密码，点击`Save`，然后点击`Analyze`
+
+![登录并进行分析](https://user-images.githubusercontent.com/26682846/70290100-d416dc00-1811-11ea-9eee-5b55d63bcf47.png)
+
+经过一段时间的等待后，将可以在`Report`界面查看到安全分析结果
+
+![查看分析结果](https://user-images.githubusercontent.com/26682846/70290130-e7c24280-1811-11ea-9cfe-ac270c65ceab.png)
+
+也可以点击上图Log记录中的链接进入MythX Dashboard查看详细结果
+
+![详细分析结果](https://user-images.githubusercontent.com/26682846/70290165-f872b880-1811-11ea-9249-c14f56fb1f8a.png)
+
+点击`Analysed Files`查看错误的详细位置与说明，然后更改源代码，重新测试，直到合约安全性达到自己想要的结果。
+
+![迭代修改](https://user-images.githubusercontent.com/26682846/70290183-0c1e1f00-1812-11ea-803e-4754134cd36c.png)
+
+检测到的合约弱点(漏洞)以SWC-XXX编号的形式出现，由 https://swcregistry.io/ 可查看完整的安全问题列表和解释。但是，免费的MythX只能检测10种安全问题，Pro版和企业版可以检测26种安全问题，三种版本的区别如下
+
+![版本区别](https://user-images.githubusercontent.com/26682846/70290206-1c35fe80-1812-11ea-96d0-7d99a251e5b8.png)
+
+具体对每种安全问题的支持程度见该页面： https://mythx.io/swc-coverage/ 
+
+当前调试过程种，遇到的典型安全问题是 SWC-101:Integer Overflow and Underflow 问题，问题的具体分析可参考 [solidity-issue #796](https://github.com/ethereum/solidity/issues/796)
+
+## 访问控制合约检测结果
+
+我们所编写的RC，ACC和JC三个合约在经过多次修改后，将出现的安全问题降低到了可接受的程度，如下图所示
+
+![访问控制合约检测结果](https://user-images.githubusercontent.com/26682846/70290241-366fdc80-1812-11ea-82b1-59e36e33ff9a.png)
+
+三个合约出现的低级安全问题均为SWC-103: Floating Pragma ，即编译器的版本指定为一个范围，但这样具有更好的适用性，因此不进行修改
+
+```js
+ pragma solidity >=0.4.22 <0.6.0;
+```
+
+ACC出现的15个中级安全问题在详情列表中无法查看
+
+![ACC的安全问题](https://user-images.githubusercontent.com/26682846/70290259-4ab3d980-1812-11ea-882d-15c929c77f73.png)
+
+邮件询问后官方的回复如下，字节码级别的错误如果不依靠安全工具很难检出并修正，因此我们只能忽略掉这些安全问题。
+
+>  **Josh Reid** (MythX)        
+>
+> Dec 5, 11:11    AST     
+>
+> Hello,          
+>
+> Thanks for reaching out to MythX support! We are currently investigating    any potential issues that may be causing these vulnerabilities to not be    displayed fully, however this may also be due to the vulnerabilities being    detected only on the bytecode.           
+>
+> Unfortunately, at this time we do no have the ability to display bytecode    vulnerabilities as we cannot specify where they are. However, this is    something we are looking to evaluate and differentiate on more as we go    forward. I apologize for any confusion this may have caused and will be    sure to update you if we find any issues as we continue to look into this.    In the meantime, thanks so much for your patience and cooperation! Is there    anything else I can help you with at this time?          
+>
+> Best,    
+>
+>  Josh           

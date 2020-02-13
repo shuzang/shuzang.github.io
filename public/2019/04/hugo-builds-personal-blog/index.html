@@ -1,0 +1,302 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>hugo搭建个人博客1-基础建站 | Shuzang's Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="shuzang's personal blog"><link rel=prev href=https://shuzang.top/2019/04/%E7%94%9F%E5%91%BD%E6%B8%85%E5%8D%95/><link rel=next href=https://shuzang.top/2019/05/blockchain-paradigm-and-internet-of-things/><link rel=canonical href=https://shuzang.top/2019/04/hugo-builds-personal-blog/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><meta property="og:title" content="hugo搭建个人博客1-基础建站"><meta property="og:description" content="Hugo是由Go语言实现的静态网站生成器，可以快速建立一个静态网站，虽然多数情况下用来搭建个人博客，但实际上可做的事不止于此，还可以用作展示"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.top/2019/04/hugo-builds-personal-blog/"><meta property="article:published_time" content="2019-04-26T10:45:00+08:00"><meta property="article:modified_time" content="2020-01-06T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="hugo搭建个人博客1-基础建站"><meta name=twitter:description content="Hugo是由Go语言实现的静态网站生成器，可以快速建立一个静态网站，虽然多数情况下用来搭建个人博客，但实际上可做的事不止于此，还可以用作展示"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"hugo搭建个人博客1-基础建站","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.top\/2019\/04\/hugo-builds-personal-blog\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.top\/cover.png","width":800,"height":600},"genre":"posts","keywords":"博客写作","wordcount":3478,"url":"https:\/\/shuzang.top\/2019\/04\/hugo-builds-personal-blog\/","datePublished":"2019-04-26T10:45:00\x2b08:00","dateModified":"2020-01-06T00:00:00\x2b00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"shuzang","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.top\/logo.png","width":127,"height":40}},"description":""}</script><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/css/lib/animate/animate.min.css></head><body><script>window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><nav class=navbar><div class=navbar-container><div class="navbar-header animated bounceIn"><a href=https://shuzang.top>Shuzang's Blog</a></div><div class=navbar-menu><a class=menu-item href=https://shuzang.top/posts>Posts</a><a class=menu-item href=https://shuzang.top/categories>Categories</a><a class=menu-item href=https://shuzang.top/tags>Tags</a><a class=menu-item href=https://shuzang.top/life>Life</a><a class=menu-item href=https://shuzang.top/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><nav class=navbar-mobile><div class=navbar-container><div class=navbar-header><div class="navbar-header-title animated bounceIn"><a href=https://shuzang.top>Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=navbar-menu id=mobile-menu><a class=menu-item href=https://shuzang.top/posts>Posts</a><a class=menu-item href=https://shuzang.top/categories>Categories</a><a class=menu-item href=https://shuzang.top/tags>Tags</a><a class=menu-item href=https://shuzang.top/life>Life</a><a class=menu-item href=https://shuzang.top/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><main class=main><div class=container><article class=page><h1 class="post-title animated flipInX">hugo搭建个人博客1-基础建站</h1><div class=post-meta><div class=post-meta-main><a class=author href=https://shuzang.top rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>shuzang
+</a>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i><a href=https://shuzang.top/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/>爱编程爱技术的孩子</a>&nbsp;</span></div><div class=post-meta-other><i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-04-26>2019-04-26</time>&nbsp;
+<i class="fas fa-pencil-alt fa-fw"></i>about 3478 words&nbsp;
+<i class="far fa-clock fa-fw"></i>7 min&nbsp;<span id=/2019/04/hugo-builds-personal-blog/ class=leancloud_visitors data-flag-title=hugo搭建个人博客1-基础建站>
+<i class="far fa-eye fa-fw"></i><span class=leancloud-visitors-count></span>pageviews
+</span>&nbsp;</div></div><div class=post-featured-image><img src=/svg/loading.min.svg data-sizes=auto data-src=https://s2.ax1x.com/2020/02/12/1HpTqe.png alt="featured image" class=lazyload></div><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#1-安装hugo>1. 安装Hugo</a><ul><li><a href=#11-windows>1.1 Windows</a></li><li><a href=#12-ubuntu>1.2 Ubuntu</a></li></ul></li><li><a href=#2-生成网站>2. 生成网站</a></li><li><a href=#3-安装主题>3. 安装主题</a></li><li><a href=#4-网站配置>4. 网站配置</a><ul><li><a href=#41-添加菜单栏页面>4.1 添加菜单栏页面</a></li><li><a href=#42-网站基本资料>4.2 网站基本资料</a></li><li><a href=#43-头像>4.3 头像</a></li><li><a href=#44-首页社交链接>4.4 首页社交链接</a></li><li><a href=#45-网站favicon>4.5 网站Favicon</a></li></ul></li><li><a href=#5-文章发布>5. 文章发布</a><ul><li><a href=#51-新建文章>5.1 新建文章</a></li><li><a href=#52-推送到远程>5.2 推送到远程</a></li></ul></li></ul></nav></div></div><div class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
+<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><a href=#1-安装hugo>1. 安装Hugo</a><ul><li><a href=#11-windows>1.1 Windows</a></li><li><a href=#12-ubuntu>1.2 Ubuntu</a></li></ul></li><li><a href=#2-生成网站>2. 生成网站</a></li><li><a href=#3-安装主题>3. 安装主题</a></li><li><a href=#4-网站配置>4. 网站配置</a><ul><li><a href=#41-添加菜单栏页面>4.1 添加菜单栏页面</a></li><li><a href=#42-网站基本资料>4.2 网站基本资料</a></li><li><a href=#43-头像>4.3 头像</a></li><li><a href=#44-首页社交链接>4.4 首页社交链接</a></li><li><a href=#45-网站favicon>4.5 网站Favicon</a></li></ul></li><li><a href=#5-文章发布>5. 文章发布</a><ul><li><a href=#51-新建文章>5.1 新建文章</a></li><li><a href=#52-推送到远程>5.2 推送到远程</a></li></ul></li></ul></nav></div></details></div><div class=post-content><p><a href=https://gohugo.io/ target=_blank>Hugo</a>是由Go语言实现的静态网站生成器，可以快速建立一个静态网站，虽然多数情况下用来搭建个人博客，但实际上可做的事不止于此，还可以用作展示在线书籍、个人简历等。我换到Hugo的原因是文章数量变多以后，Hexo的生成速度变慢，难以忍受，同样的文章数量下，Hugo渲染文章几乎是即时的，不必等待，就很舒服。</p><a class=post-dummy-target id=fnref:1></a><p>本文为Hugo搭建个人博客系列的第一篇，基础建站，目的是先把博客网站搭建起来，并做一些基本配置，这些配置参考了<code>Mogeko的个人博客</code><sup><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup></p><a class=post-dummy-target id=1-安装hugo></a><h2>1. 安装Hugo</h2><p>安装使用繁琐也是一个我抛弃Hexo的原因，Hexo依赖于Node.js，运行需要电脑里安装node和npm，另外，开发者们提供了各种npm模块用来增强Hexo的功能，虽然使Hexo变得强大，但在维护、备份和恢复静态博客上带了诸多不便。Hugo则没有这方面的担忧，虽然使用Go开发，但安装时是独立的安装包，不需要额外安装任何东西，备份或者迁移都极为方便，甚至可以直接将博客源文件放在Onedrive中同步。</p><a class=post-dummy-target id=fnref:2></a><p>详细的安装说明参见官方文档<sup><a href=#fn:2 class=footnote-ref role=doc-noteref>2</a></sup>，这里介绍win10和Ubuntu18.04的快速安装。</p><a class=post-dummy-target id=11-windows></a><h3>1.1 Windows</h3><p>win10下使用<a href=https://chocolatey.org/ target=_blank>chocolatey</a>包管理工具快速安装Hugo</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># 更新chocolatey到最新</span>
+&gt; choco upgrade chocolatey
+
+<span class=c1># 安装hugo-extended，因为将要使用的主题使用scss</span>
+&gt; choco install hugo-extended -y
+
+<span class=c1># 检查安装</span>
+&gt; choco list --local
+chocolatey 0.10.15
+hugo-extended 0.58.3
+<span class=m>2</span> packages installed.
+</code></pre></td></tr></table></div></div><a class=post-dummy-target id=12-ubuntu></a><h3>1.2 Ubuntu</h3><p>Ubuntu下使用apt-get会安装低版本Hugo，因此使用snap安装</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ snap install hugo --channel<span class=o>=</span>extended
+hugo <span class=o>(</span>extended/stable<span class=o>)</span> 0.58.3 from Hugo Authors installed
+</code></pre></td></tr></table></div></div><p>注意要安装extended版本，主要是因为很多主题都需要扩展版的功能，如果确认自己的主题不需要(阅读主题说明)，可以按照正常的版本。</p><a class=post-dummy-target id=2-生成网站></a><h2>2. 生成网站</h2><p>执行下列命令将在本地生成博客网站项目文件夹，是之后所有操作执行的根目录(之后简称为项目根目录)，我的项目文件夹名为blog。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ hugo new site blog
+$ ls blog -l
+total 1
+drwxr-xr-x <span class=m>1</span> lylw1 <span class=m>197609</span>  <span class=m>0</span>  9月 <span class=m>26</span> 14:45 archetypes/
+-rw-r--r-- <span class=m>1</span> lylw1 <span class=m>197609</span> <span class=m>82</span>  9月 <span class=m>26</span> 14:45 config.toml
+drwxr-xr-x <span class=m>1</span> lylw1 <span class=m>197609</span>  <span class=m>0</span>  9月 <span class=m>26</span> 14:45 content/
+drwxr-xr-x <span class=m>1</span> lylw1 <span class=m>197609</span>  <span class=m>0</span>  9月 <span class=m>26</span> 14:45 data/
+drwxr-xr-x <span class=m>1</span> lylw1 <span class=m>197609</span>  <span class=m>0</span>  9月 <span class=m>26</span> 14:45 layouts/
+drwxr-xr-x <span class=m>1</span> lylw1 <span class=m>197609</span>  <span class=m>0</span>  9月 <span class=m>26</span> 14:45 static/
+drwxr-xr-x <span class=m>1</span> lylw1 <span class=m>197609</span>  <span class=m>0</span>  9月 <span class=m>26</span> 14:45 themes/
+</code></pre></td></tr></table></div></div><p>浏览器打开github网站，创建和项目文件夹同名的仓库，该仓库用于存储博客项目所有文件。创建完成后，在本地电脑进入项目根目录，执行下列命令，将blog文件夹关联到远程仓库blog。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># 进入blog文件夹</span>
+$ <span class=nb>cd</span> blog
+<span class=c1># 关联远程仓库</span>
+$ git init
+$ git add .
+$ git commit -m <span class=s2>&#34;Initial commit&#34;</span>
+$ git remote add origin https://github.com/shuzang/blog.git
+$ git push -u origin master
+</code></pre></td></tr></table></div></div><p>使用单独的仓库是为了备份博客网站源码和写作的文章，防止意外导致项目文件夹被破坏，到时候需要重新建立网站和进行配置，文章也可能丢失。</p><a class=post-dummy-target id=3-安装主题></a><h2>3. 安装主题</h2><a class=post-dummy-target id=fnref:3></a><p>Hugo没有默认主题，需要自己从官方的主题列表<sup><a href=#fn:3 class=footnote-ref role=doc-noteref>3</a></sup>下载安装。当然不是所有的主题都会在官方的主题列表中找到，因为需要主题作者自己提交，还有大量的主题单独存在于github或其它的版本控制仓库中，可以自己去寻找。总体来看，Hugo的主题数量和质量可能都不如Hexo，比如Next这种主题已经形成了庞大的开发社区，有大量的人在使用和维护，Hugo中就没有这种影响力很大的主题了，但还是有不少非常漂亮的主题。</p><p><a href=https://github.com/Fastbyte01/KeepIt target=_blank>KeepIt</a>是其中一个较为简单优雅的主题，基于<a href=https://raw.githubusercontent.com/liuzc/LeaveIt/ target=_blank>LeaveIt</a>主题二次开发而成，遵循「Less is more」的原则，是我最喜欢的主题。因为主题通常是单独的github仓库，因此将其作为博客项目的子模块进行管理。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># 将主题项目作为子模块添加</span>
+$ git submodule add https://github.com/Fastbyte01/KeepIt.git themes/KeepIt
+<span class=c1># 查看根目录增加的.gitmodules文件，该文件用于保存子模块信息</span>
+$ git status
+On branch master
+Your branch is up to date with <span class=s1>&#39;origin/master&#39;</span>.
+
+Changes to be committed:
+  <span class=o>(</span>use <span class=s2>&#34;git reset HEAD &lt;file&gt;...&#34;</span> to unstage<span class=o>)</span>
+
+        new file:   .gitmodules
+        new file:   themes/KeepIt
+<span class=c1># 查看子模块信息</span>
+$ git submodule
+ 87c33888f3fa86b8cc096bc3f6d7f2efe9ccba66 themes/KeepIt <span class=o>(</span>v4-53-g87c3388<span class=o>)</span>
+</code></pre></td></tr></table></div></div><p>复制主题提供的站点配置文件<code>config.toml</code>到Hugo根目录，覆盖Hugo本身的站点配置文件（第一次使用可以将exampleSite目录下的内容全部复制过来）</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ cp themes/KeepIt/exampleSite/. .
+</code></pre></td></tr></table></div></div><p>运行<code>hugo server</code>命令，在浏览器键入网址<a href=http://localhost:1313 target=_blank>http://localhost:1313</a>预览主题效果（首页图片未加载是因为还没有放置头像文件）</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://s2.ax1x.com/2020/02/12/1Hpbad.png alt="KeepIt theme preview" class=lazyload><figcaption class=image-caption>KeepIt theme preview</figcaption></figure></p><a class=post-dummy-target id=4-网站配置></a><h2>4. 网站配置</h2><a class=post-dummy-target id=41-添加菜单栏页面></a><h3>4.1 添加菜单栏页面</h3><p>预览界面中可以看到菜单栏只有三个菜单，<code>Blog</code>、<code>Categories</code>和<code>About</code>，前两者分别是文章列表和分类页面，<code>About</code>则用来展示网站和自己的说明。</p><a class=post-dummy-target id=fnref:4></a><p>也可以自己建立新的菜单页面<sup><a href=#fn:4 class=footnote-ref role=doc-noteref>4</a></sup> ，比如我新建<code>life</code>页面用作展示阅读的书籍、电影和游览的景点。建立页面文件的命令如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ hugo new life.md
+</code></pre></td></tr></table></div><a class=post-dummy-target id=fnref:5></a></div><p>然后编辑项目根目录下的站点配置文件<code>config.toml</code>，添加页面说明。其中<code>weight</code>字段的值决定了该页面在菜单栏的顺序<sup><a href=#fn:5 class=footnote-ref role=doc-noteref>5</a></sup>，其值越大，顺序越靠后。按照习惯，<code>About</code>页面放在最后，所以其<code>weight</code>字段值设置为5。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-toml data-lang=toml><span class=c># 添加Tags和Life菜单，并修改About菜单的weight字段值为5（为了调整菜单栏显示顺序）</span>
+  <span class=p>[</span><span class=p>[</span><span class=nx>menu</span><span class=p>.</span><span class=nx>main</span><span class=p>]</span><span class=p>]</span>
+    <span class=nx>name</span> <span class=p>=</span> <span class=s2>&#34;Tags&#34;</span>
+    <span class=nx>url</span> <span class=p>=</span> <span class=s2>&#34;/tags/&#34;</span>
+    <span class=nx>weight</span> <span class=p>=</span> <span class=mi>3</span>
+
+  <span class=p>[</span><span class=p>[</span><span class=nx>menu</span><span class=p>.</span><span class=nx>main</span><span class=p>]</span><span class=p>]</span>
+    <span class=nx>name</span> <span class=p>=</span> <span class=s2>&#34;Life&#34;</span>
+    <span class=nx>url</span> <span class=p>=</span> <span class=s2>&#34;/life/&#34;</span>
+    <span class=nx>weight</span> <span class=p>=</span> <span class=mi>4</span>
+</code></pre></td></tr></table></div></div><p>新建的life.md文件和原来的about.md文件都位于content目录下，编辑文件内容从而决定实际的页面显示内容。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ ls content -l
+total 2
+-rw-r--r-- <span class=m>1</span> lylw1 <span class=m>197609</span>  <span class=m>658</span>  9月 <span class=m>16</span> 11:34 about.md
+-rw-r--r-- <span class=m>1</span> lylw1 <span class=m>197609</span> <span class=m>3343</span>  9月 <span class=m>25</span> 11:34 life.md
+</code></pre></td></tr></table></div></div><a class=post-dummy-target id=42-网站基本资料></a><h3>4.2 网站基本资料</h3><p>编辑站点配置文件的以下内容</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-toml data-lang=toml><span class=nx>title</span> <span class=p>=</span> <span class=s2>&#34;shuzang&#39;s blog&#34;</span>  <span class=c># 网站标题</span>
+<span class=p>[</span><span class=nx>params</span><span class=p>]</span>
+    <span class=nx>since</span> <span class=p>=</span> <span class=mi>2018</span>                     <span class=c># 站点建立时间</span>
+    <span class=nx>author</span> <span class=p>=</span> <span class=s2>&#34;shuzang&#34;</span>               <span class=c># 作者名</span>
+    <span class=nx>subtitle</span> <span class=p>=</span> <span class=s2>&#34;世界钟爱热爱生活的人&#34;</span>       <span class=c># 子标题</span>
+    <span class=nx>home_mode</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span> <span class=c># post or other      # post模式会在主页面显示文章</span>
+    
+    <span class=nx>description</span> <span class=p>=</span> <span class=s2>&#34;shuzang的个人博客&#34;</span> <span class=c># 网站描述</span>
+    <span class=nx>keywords</span> <span class=p>=</span> <span class=s2>&#34;blog, Golang, Hugo, blockchain &#34;</span> <span class=c># 网站关键词</span>
+</code></pre></td></tr></table></div></div><a class=post-dummy-target id=43-头像></a><h3>4.3 头像</h3><p>新建<code>static/images</code>文件夹，将头像文件存放在这里</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ mkdir static/images
+<span class=c1># 复制头像文件到images文件夹,复制完成后目录结构如下</span>
+$ ls staitc -lR
+static:
+total 0
+drwxr-xr-x <span class=m>1</span> 书葬 <span class=m>197610</span> <span class=m>0</span> 11月 <span class=m>17</span> 14:41 images/
+
+static/images:
+total 88
+-rw-r--r-- <span class=m>1</span> 书葬 <span class=m>197610</span> <span class=m>87641</span> 9月  <span class=m>28</span> 18:21 avatar.png
+</code></pre></td></tr></table></div></div><p>修改站点配置文件<code>params</code>部分的<code>avatar</code>字段值</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-toml data-lang=toml><span class=p>[</span><span class=nx>params</span><span class=p>]</span>
+	<span class=nx>avatar</span> <span class=p>=</span> <span class=s2>&#34;images/avatar.png&#34;</span> <span class=c>#comment it to use gravatar</span>
+</code></pre></td></tr></table></div></div><p>也可以使用自己图床中的头像图片链接，或者如果有gravatar头像，可以在配置文件中寻找相关字段填写账号。</p><a class=post-dummy-target id=44-首页社交链接></a><h3>4.4 首页社交链接</h3><p>修改站点配置文件中<code>params.social</code>部分的内容，需要的社交链接取消注释即可启用，比如我只启用了github和Email，github只需要填用户名，完整的URL在主题源码中自动生成。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-toml data-lang=toml><span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>social</span><span class=p>]</span>
+    <span class=nx>GitHub</span> <span class=p>=</span> <span class=s2>&#34;/shuzang&#34;</span>
+    <span class=nx>Email</span>   <span class=p>=</span> <span class=s2>&#34;xxxxx@qq.com&#34;</span>
+</code></pre></td></tr></table></div></div><a class=post-dummy-target id=45-网站favicon></a><h3>4.5 网站Favicon</h3><p>使用<a href="https://www.google.com/search?q=favicon+generator" target=_blank>favicon generator</a> 生成配套的图标，放到/static目录下，可以设置网站在各平台的显示图标，放置后目录结构如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ ls static -l
+total 278
+-rw-r--r-- <span class=m>1</span> 书葬 <span class=m>197610</span> <span class=m>10366</span> 4月  <span class=m>26</span>  <span class=m>2019</span> android-chrome-192x192.png
+-rw-r--r-- <span class=m>1</span> 书葬 <span class=m>197610</span> <span class=m>38060</span> 4月  <span class=m>26</span>  <span class=m>2019</span> android-chrome-512x512.png
+-rw-r--r-- <span class=m>1</span> 书葬 <span class=m>197610</span>  <span class=m>9529</span> 4月  <span class=m>26</span>  <span class=m>2019</span> apple-touch-icon.png
+-rw-r--r-- <span class=m>1</span> 书葬 <span class=m>197610</span>   <span class=m>246</span> 4月  <span class=m>26</span>  <span class=m>2019</span> browserconfig.xml
+-rw-r--r-- <span class=m>1</span> 书葬 <span class=m>197610</span> <span class=m>87641</span> 5月  <span class=m>19</span> 22:50 cover.png
+-rw-r--r-- <span class=m>1</span> 书葬 <span class=m>197610</span> <span class=m>15086</span> 4月  <span class=m>26</span>  <span class=m>2019</span> favicon.ico
+-rw-r--r-- <span class=m>1</span> 书葬 <span class=m>197610</span>   <span class=m>638</span> 4月  <span class=m>26</span>  <span class=m>2019</span> favicon-16x16.png
+-rw-r--r-- <span class=m>1</span> 书葬 <span class=m>197610</span>  <span class=m>1127</span> 4月  <span class=m>26</span>  <span class=m>2019</span> favicon-32x32.png
+drwxr-xr-x <span class=m>1</span> 书葬 <span class=m>197610</span>     <span class=m>0</span> 11月 <span class=m>17</span> 14:41 images/
+-rw-r--r-- <span class=m>1</span> 书葬 <span class=m>197610</span> <span class=m>87641</span> 5月  <span class=m>19</span> 22:50 logo.png
+-rw-r--r-- <span class=m>1</span> 书葬 <span class=m>197610</span>  <span class=m>6431</span> 4月  <span class=m>26</span>  <span class=m>2019</span> mstile-150x150.png
+-rw-r--r-- <span class=m>1</span> 书葬 <span class=m>197610</span>   <span class=m>603</span> 4月  <span class=m>26</span>  <span class=m>2019</span> safari-pinned-tab.svg
+-rw-r--r-- <span class=m>1</span> 书葬 <span class=m>197610</span>   <span class=m>426</span> 4月  <span class=m>26</span>  <span class=m>2019</span> site.webmanifest
+</code></pre></td></tr></table></div></div><p>然后修改站点配置文件中以下内容</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-toml data-lang=toml><span class=p>[</span><span class=nx>author</span><span class=p>]</span>
+  <span class=nx>name</span> <span class=p>=</span> <span class=s2>&#34;shuzang&#34;</span>
+
+  <span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>publisher</span><span class=p>]</span>
+    <span class=nx>name</span> <span class=p>=</span> <span class=s2>&#34;shuzang&#34;</span>
+
+    <span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>publisher</span><span class=p>.</span><span class=nx>logo</span><span class=p>]</span>
+      <span class=nx>url</span> <span class=p>=</span> <span class=s2>&#34;logo.png&#34;</span>
+      <span class=nx>width</span> <span class=p>=</span> <span class=mi>127</span>
+      <span class=nx>height</span> <span class=p>=</span> <span class=mi>40</span>
+
+  <span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>logo</span><span class=p>]</span>
+    <span class=nx>url</span> <span class=p>=</span> <span class=s2>&#34;logo.png&#34;</span>
+    <span class=nx>width</span> <span class=p>=</span> <span class=mi>127</span>
+    <span class=nx>height</span> <span class=p>=</span> <span class=mi>40</span>
+
+  <span class=p>[</span><span class=nx>params</span><span class=p>.</span><span class=nx>image</span><span class=p>]</span>
+    <span class=nx>url</span> <span class=p>=</span> <span class=s2>&#34;cover.png&#34;</span>
+    <span class=nx>width</span> <span class=p>=</span> <span class=mi>800</span>
+    <span class=nx>height</span> <span class=p>=</span> <span class=mi>600</span>
+</code></pre></td></tr></table></div></div><p>以上基本配置完成后，网站首页如下</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://s2.ax1x.com/2020/02/12/1HCWjK.png alt="configuration finished" class=lazyload><figcaption class=image-caption>configuration finished</figcaption></figure></p><a class=post-dummy-target id=5-文章发布></a><h2>5. 文章发布</h2><a class=post-dummy-target id=51-新建文章></a><h3>5.1 新建文章</h3><p>在content目录下创建<code>posts</code>文件夹，写作的文章全部放到该目录下，在每篇文章开头添加元数据字段，可以是YAML或TOML格式，示例如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-toml data-lang=toml><span class=nx>title</span> <span class=p>=</span> <span class=s2>&#34;Getting Started with Hugo&#34;</span>
+<span class=nx>description</span> <span class=p>=</span> <span class=s2>&#34;&#34;</span>
+<span class=nx>type</span> <span class=p>=</span> <span class=p>[</span><span class=s2>&#34;posts&#34;</span><span class=p>,</span><span class=s2>&#34;post&#34;</span><span class=p>]</span>
+<span class=nx>tags</span> <span class=p>=</span> <span class=p>[</span>
+    <span class=s2>&#34;go&#34;</span><span class=p>,</span>
+    <span class=s2>&#34;golang&#34;</span><span class=p>,</span>
+    <span class=s2>&#34;hugo&#34;</span><span class=p>,</span>
+    <span class=s2>&#34;development&#34;</span><span class=p>,</span>
+<span class=p>]</span>
+<span class=nx>date</span> <span class=p>=</span> <span class=s2>&#34;2014-04-02&#34;</span>
+<span class=nx>categories</span> <span class=p>=</span> <span class=p>[</span>
+    <span class=s2>&#34;Development&#34;</span><span class=p>,</span>
+    <span class=s2>&#34;golang&#34;</span><span class=p>,</span>
+<span class=p>]</span>
+<span class=nx>series</span> <span class=p>=</span> <span class=p>[</span><span class=s2>&#34;Hugo 101&#34;</span><span class=p>]</span>
+<span class=p>[</span> <span class=nx>author</span> <span class=p>]</span>
+  <span class=nx>name</span> <span class=p>=</span> <span class=s2>&#34;Hugo Authors&#34;</span>
+</code></pre></td></tr></table></div></div><p>一般情况只需要选择<code>title</code>、<code>date</code>、<code>tags</code>等几个简单字段填充即可，需要注意的是字段的值即使只有一个，也要用中括号包围。</p><a class=post-dummy-target id=52-推送到远程></a><h3>5.2 推送到远程</h3><a class=post-dummy-target id=fnref:6></a><p>编辑站点配置文件，设置网站URL，设置HTML文件生存放的文件夹。之所以将默认生成的public文件夹更改为docs文件夹，是因为github pages<sup><a href=#fn:6 class=footnote-ref role=doc-noteref>6</a></sup>使用只会从项目的docs目录读取文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-toml data-lang=toml><span class=c># 编辑博客源网址</span>
+<span class=nx>baseURL</span> <span class=p>=</span> <span class=s2>&#34;https://shuzang.github.io/blog/&#34;</span>
+<span class=c># 添加publishDir字段，将网页生成的public目录更改为docs目录</span>
+<span class=nx>publishDir</span> <span class=p>=</span> <span class=s2>&#34;docs&#34;</span>
+</code></pre></td></tr></table></div></div><p>使用<code>hugo</code>命令生成页面，然后推送项目到远程仓库。但要注意，以后每次生成页面前需要先删除原来的docs文件夹，从而清理旧文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ hugo
+$ git add .
+$ git commit -m <span class=s2>&#34;添加主题并生成博客网站&#34;</span>
+$ git push origin master
+</code></pre></td></tr></table></div></div><p>推送完成后从浏览器打开blog仓库，在<code>setting—>GitHub Pages</code>勾选从<code>/docs</code>目录读取网站。关于网页如何托管在Github的详细说明可以参考<a href=https://gohugo.io/hosting-and-deployment/hosting-on-github/ target=_blank>Host on Github</a></p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://s2.ax1x.com/2020/02/12/1HChnO.png alt="github pages setting" class=lazyload><figcaption class=image-caption>github pages setting</figcaption></figure></p><p>点击上图中顶部生成的URL即可查看自己的网站</p><p>注：题图来自网络。</p><section class=footnotes role=doc-endnotes><hr><ol><li role=doc-endnote><p><a class=post-dummy-target id=fn:1></a><a href=https://github.com/Mogeko/Blog target=_blank>Mogeko的博客仓库</a> <a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li role=doc-endnote><p><a class=post-dummy-target id=fn:2></a><a href=https://gohugo.io/getting-started/quick-start/ target=_blank>Hugo Quick Start</a> <a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li role=doc-endnote><p><a class=post-dummy-target id=fn:3></a><a href=https://themes.gohugo.io/ target=_blank>Hugo themes</a> <a href=#fnref:3 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li role=doc-endnote><p><a class=post-dummy-target id=fn:4></a><a href=https://gohugo.io/templates/menu-templates/ target=_blank>菜单栏添加页面</a> <a href=#fnref:4 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li role=doc-endnote><p><a class=post-dummy-target id=fn:5></a><a href=https://discourse.gohugo.io/t/ordering-menu-items/1841 target=_blank>菜单栏标题排序</a> <a href=#fnref:5 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li role=doc-endnote><p><a class=post-dummy-target id=fn:6></a><a href=https://pages.github.com/ target=_blank>Github pages</a> <a href=#fnref:6 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></section></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2020-01-06</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href="//twitter.com/share?url=https%3a%2f%2fshuzang.top%2f2019%2f04%2fhugo-builds-personal-blog%2f&text=hugo%e6%90%ad%e5%bb%ba%e4%b8%aa%e4%ba%ba%e5%8d%9a%e5%ae%a21-%e5%9f%ba%e7%a1%80%e5%bb%ba%e7%ab%99&via=" target=_blank title="Share on Twitter"><i class="fab fa-twitter fa-fw"></i></a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fshuzang.top%2f2019%2f04%2fhugo-builds-personal-blog%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook-square fa-fw"></i></a><a href="//reddit.com/submit?url=https%3a%2f%2fshuzang.top%2f2019%2f04%2fhugo-builds-personal-blog%2f&title=hugo%e6%90%ad%e5%bb%ba%e4%b8%aa%e4%ba%ba%e5%8d%9a%e5%ae%a21-%e5%9f%ba%e7%a1%80%e5%bb%ba%e7%ab%99" target=_blank title="Share on Reddit"><i class="fab fa-reddit fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span class=tag><a href=https://shuzang.top/tags/%E5%8D%9A%E5%AE%A2%E5%86%99%E4%BD%9C/><i class="fas fa-tag fa-fw"></i>&nbsp;博客写作</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://shuzang.top>Home</a></span></section></div><div class=post-nav><a href=https://shuzang.top/2019/04/%E7%94%9F%E5%91%BD%E6%B8%85%E5%8D%95/ class=prev rel=prev title=生命清单><i class="fas fa-angle-left fa-fw"></i>生命清单</a>
+<a href=https://shuzang.top/2019/05/blockchain-paradigm-and-internet-of-things/ class=next rel=next title="Blockchain Paradigm and Internet of Things">Blockchain Paradigm and Internet of Things<i class="fas fa-angle-right fa-fw"></i></a></div></div><div class=post-comment><div id=vcomments></div><script src=/js/lib/valine/Valine.min.min.js></script><script type=text/javascript>(function(){if(window.location.hostname=="localhost")
+return;new Valine({el:"#vcomments",appId:"GteMvevTjOBmhvFh2QGsopGO-gzGzoHsz",appKey:"fL4SYl06GIe012PswFdY17VC",meta:["nick","mail"],notify:"false",verify:"true",avatar:"hide",placeholder:"Your comment ...",visitor:"true",recordIP:"true",lang:"en",});})();</script><noscript>Please enable JavaScript to view the <a href=https://valine.js.org/>comments powered by Valine.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a></div><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://shuzang.top target=_blank>shuzang</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><a href=# class=dynamic-to-top id=dynamic-to-top data-scroll><span>&nbsp;</span>
+</a><script src=https://cdn.bootcss.com/jquery/3.4.1/jquery.js></script><script src=https://cdn.bootcss.com/lazysizes/5.1.2/lazysizes.min.js></script><script src=https://cdn.bootcss.com/smooth-scroll/16.1.0/smooth-scroll.js></script><script>window.scroll=new SmoothScroll('[data-scroll]',{speed:300,speedAsDuration:true});</script><link href=https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css rel=stylesheet><script src=https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/auto-render.js></script><link href=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.css rel=stylesheet><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/mhchem.js></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true},{left:"$",right:"$",display:false},]});});</script><script src=/js/blog.min.js></script></body></html>
