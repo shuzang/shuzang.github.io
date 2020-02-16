@@ -1,9 +1,8 @@
 ---
 title: Efficient Distributed Authentication and Access Control System
 date: 2020-02-09
-tags: [论文]
+tags: [论文笔记]
 categories: [研究生的区块链学习之路]
-toc: true
 ---
 
 Benhadj Djilali H., Tandjaoui D. (2019) Efficient Distributed Authentication and Access Control System Management for Internet of Things Using Blockchain. In: Renault É., Boumerdassi S., Leghris C., Bouzefrane S. (eds) Mobile, Secure, and Programmable Networking. MSPN 2019. Lecture Notes in Computer Science, vol 11557. Springer, Cham

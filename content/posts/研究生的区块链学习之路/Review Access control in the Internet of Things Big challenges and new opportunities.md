@@ -1,7 +1,7 @@
 ---
 title: Access control in the Internet of Things Big challenges and new opportunities
 date: 2019-01-08T15:04:00+08:00
-tags: [论文]
+tags: [论文笔记]
 categories: [研究生的区块链学习之路]
 ---
 

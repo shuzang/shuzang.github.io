@@ -1,7 +1,7 @@
 ---
 title: An Attribute-Based Access Control Model in RFID Systems
 date: 2019-11-11
-tags: [论文]
+tags: [论文笔记]
 categories: [研究生的区块链学习之路]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Blockchain and the Internet of Things in the Industrial Sector
 date: 2018-10-24T12:25:00+08:00
-tags: [论文]
+tags: [论文笔记]
 categories: [研究生的区块链学习之路]
 ---
 

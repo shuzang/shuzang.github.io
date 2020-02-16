@@ -1,7 +1,7 @@
 ---
-title: 利用onedrive同步zotero数据文件夹
+title: 文献管理-利用Onedrive同步Zotero数据文件夹
 date: 2019-11-09
-tags: [论文]
+tags: [学术知识]
 categories: [爱编程爱技术的孩子]
 ---
 

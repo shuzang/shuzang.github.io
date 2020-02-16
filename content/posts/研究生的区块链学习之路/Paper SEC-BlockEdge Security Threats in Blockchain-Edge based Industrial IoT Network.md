@@ -1,7 +1,7 @@
 ---
 title: SEC-BlockEdge Security Threats in Blockchain-Edge based IIoT Network
 date: 2019-10-24
-tags: [论文]
+tags: [论文笔记]
 categories: [研究生的区块链学习之路]
 ---
 

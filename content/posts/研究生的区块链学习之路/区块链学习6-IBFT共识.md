@@ -1,7 +1,7 @@
 ---
 title: Istanbul Byzantine Fault Tolerance
 date: 2019-10-29
-tags: [区块链学习]
+tags: [区块链]
 categories: [研究生的区块链学习之路]
 ---
 

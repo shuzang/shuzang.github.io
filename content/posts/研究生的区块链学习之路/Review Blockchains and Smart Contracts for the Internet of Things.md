@@ -1,7 +1,7 @@
 ---
 title: Blockchains and Smart Contracts for the Internet of Things
 date: 2018-10-22T10:19:00+08:00
-tags: [论文]
+tags: [论文笔记]
 categories: [研究生的区块链学习之路]
 ---
 

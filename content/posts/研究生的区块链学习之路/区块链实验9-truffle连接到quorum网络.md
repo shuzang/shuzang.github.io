@@ -1,7 +1,7 @@
 ---
 title: 区块链实验9-truffle连接到quorum网络
 date: 2019-12-24
-tags: [区块链开发]
+tags: [课题记录]
 categories: [研究生的区块链学习之路]
 slug: "Experiment 9-Connecting Truffle to Quorum"
 ---

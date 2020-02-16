@@ -2,7 +2,7 @@
 title: Blockchain for IoT Security and Privacy:The Case Study of a Smart Home
 date: 2019-01-07T14:55:00+08:00
 lastmod: 2019-11-14
-tags: [论文]
+tags: [论文笔记]
 categories: [研究生的区块链学习之路]
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: Industry 4.0 Development and Application of Intelligent Manufacturing 
 date: 2019-04-15T14:22:00+08:00
-tags: [论文]
+tags: [论文笔记]
 categories: [研究生的区块链学习之路]
 ---
 

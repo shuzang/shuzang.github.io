@@ -1,7 +1,7 @@
 ---
 title: A Review on the Application of Blockchain to the Next Generation
 date: 2019-05-23T17:11:00+08:00
-tags: [论文]
+tags: [论文笔记]
 categories: [研究生的区块链学习之路]
 ---
 

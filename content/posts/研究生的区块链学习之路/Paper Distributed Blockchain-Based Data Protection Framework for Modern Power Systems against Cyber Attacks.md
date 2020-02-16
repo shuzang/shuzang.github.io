@@ -1,7 +1,7 @@
 ---
 title: Distributed Blockchain-Based Data Protection Framework for Modern Power Systems
 date: 2019-04-01T11:16:00+08:00
-tags: [论文]
+tags: [论文笔记]
 categories: [研究生的区块链学习之路]
 ---
 

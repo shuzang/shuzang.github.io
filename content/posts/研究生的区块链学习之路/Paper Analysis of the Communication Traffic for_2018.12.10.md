@@ -1,7 +1,7 @@
 ---
 title: Analysis of the Communication Traffic for Blockchain Synchronization of IoT Devices
 date: 2018-12-10T10:45:00+08:00
-tags: [论文]
+tags: [论文笔记]
 categories: [研究生的区块链学习之路]
 ---
 

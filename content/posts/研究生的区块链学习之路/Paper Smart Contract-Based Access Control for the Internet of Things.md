@@ -1,7 +1,7 @@
 ---
 title: Smart Contract-Based Access Control for the Internet of Things
 date: 2019-05-14T19:10:00+08:00
-tags: [论文]
+tags: [论文笔记]
 categories: [研究生的区块链学习之路]
 ---
 
