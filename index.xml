@@ -111,6 +111,9 @@ box-shadow: 0px 0px 20px -10px rgba(0, 0, 0, 0.5);
 #bright:hover {
 box-shadow: 0px 0px 40px -15px rgba(0, 0, 0, 0.5);
 }
+.Midway_back {
+background: url("https://s2.ax1x.com/2020/02/16/39Ai0U.jpg");
+}
 .LostinRussia_back {
 background: url("https://s2.ax1x.com/2020/02/12/1bmBcQ.jpg");
 }
@@ -118,6 +121,22 @@ background: url("https://s2.ax1x.com/2020/02/12/1bmBcQ.jpg");
 background: url("https://www.lenet.jp/magazine/wp-content/uploads/2018/01/IMG_0256_s.jpg");
 }
 &lt;/style>
+&lt;div class="card" id="bright">
+&lt;div class="info_section">
+&lt;div class="header">
+&lt;img class="locandina" src="https://s2.ax1x.com/2020/02/16/39Ai0U.jpg"/>
+&lt;h1>决战中途岛&lt;/h1>
+&lt;span class="minutes">罗兰·艾默里奇(导演)&lt;br>2020年2月12日 &lt;/span>
+&lt;/div>
+&lt;div class="description">
+&lt;p>
+电影讲述的是第二次世界大战太平洋战争重要转折点——中途岛海战：经此一役，日本海军受到“降维打击”，美日海上实力反转，从而扭转了整个太平洋战场的局势。影片通过参战士兵和飞行员一个个鲜活的故事，带领观众逐步进入1942年6月初发生在太平洋中途岛附近那场令人难以置信的战争……&lt;br>
+&lt;a href="https://movie.douban.com/subject/26786669/">豆瓣链接&lt;/a>
+&lt;/p>
+&lt;/div>
+&lt;/div>
+&lt;div class="blur_back Midway_back">&lt;/div>
+&lt;/div>
 &lt;div class="card" id="bright">
 &lt;div class="info_section">
 &lt;div class="header">
