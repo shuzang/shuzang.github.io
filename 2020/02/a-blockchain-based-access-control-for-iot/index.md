@@ -9,7 +9,7 @@ Keywords: Access control, Blockchain, Smart Contract, Internet of Things
 
 注：本文图片来自原论文。
 
-## 1. Introduction
+## 1. 引入
 
 作者的考虑主要基于三点
 
@@ -19,7 +19,7 @@ Keywords: Access control, Blockchain, Smart Contract, Internet of Things
 
 文章其它部分的组织结构为：第二部分为相关工作，第三部分为区块链技术介绍(阅读时略过)，第四部分为区块链安全机制介绍，第五部分阐述提出的访问控制模型，第六部分通过实验实施提出的方案，最后总结全文。
 
-## 2. Related Works
+## 2. 相关工作
 
 该部分说明了已有物联网访问控制方案不合适的原因
 
@@ -29,7 +29,7 @@ Keywords: Access control, Blockchain, Smart Contract, Internet of Things
 
 **Cap-BAC**：Capability based access control，主要指OAuth-IoT，主要的问题是中心化结构会带来可扩展性问题和高延迟，同时该模型不支持可移动性。
 
-## 3. BC Security Mechanisms
+## 3. 区块链安全机制
 
 该部分讨论区块链的安全机制从而评估其安全级别，区块链提供的安全服务和对应的实现机制如下表所示：
 
@@ -43,7 +43,7 @@ Keywords: Access control, Blockchain, Smart Contract, Internet of Things
 | 可追溯性       | 所有交易记录在区块链中       |
 | 防篡改         | 需要大量的算力才能破坏区块链 |
 
-## 4. The Proposal
+## 4. 方案
 
 作者选择将 Capability-BAC 和 Identity-BAC 两个模型相结合，利用token向请求者授权(Capability-BAC)，利用访问控制列表ACL记录请求者和对应的访问权限(Identity-BAC)。资源所有者在智能合约中存储ACL，资源请求者发起请求从而逐步填充ACL的内容，从而令区块链替代传统的中心化授权服务器。
 
@@ -89,7 +89,7 @@ sequenceDiagram
 
 一旦请求者收到资源所有者返回的接受注册请求的交易，就发送一个授权请求交易到矿工，其中包含资源与权限。矿工通过智能合约中定义的ACL验证其是否真的拥有对所请求资源的权限。如果确认拥有权限，就生成一个token，包含请求者地址、资源、权限和表示token生命周期的时间戳，矿工对token进行签名并加密，利用授权响应交易将其发送给请求者节点。如果验证后发现没有权限(智能合约返回无效请求)，矿工就发送一个拒绝授权响应交易给请求者的地址。接收到token后，请求者发送包含token的访问请求交易到资源请求者的地址，资源所有者解密token，验证是否被矿工签名，如果是，访问通过，否则拒绝访问请求。
 
-## 5. Simulation
+## 5. 仿真
 
 作者使用V2X(Vehicle to everything)通信系统验证方案的可行性，使用该系统意味着和汽车通信的对象可能是其它汽车、基础设施或任意连接到汽车网络的其它对象。将驾驶员辅助系统ADAS作为资源，汽车作为资源所有者，任何已连接的对象都可以是资源请求者。
 
@@ -121,7 +121,7 @@ sequenceDiagram
 
    ![Accepting an access request](https://user-images.githubusercontent.com/26682846/73933418-5d808280-4917-11ea-87b9-5cf5cc6f0d06.gif)
 
-## 6. Idea
+## 6. 总结与启发
 
 作者确实利用区块链设计了一个完整可行的访问控制方案，解决了单点故障和可扩展性问题。在该方案中，作者将矿工纳入权限授予过程，保证了权限的不可篡改，和区块链结合的较为深入，这是一个亮点。但依然存在以下两个问题：
 

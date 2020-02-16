@@ -1,8 +1,6 @@
 # Ethereum Classic
 
 
-### ETC遭受疑似51%攻击事件
-
 最近ETC遭受疑似51%攻击的影响很大，虽然最后的结果还没出来，仍不确定是真的遭受了51%攻击，还是之前官方所称的ASIC矿机测试带来的问题。但我们现在默认以前一种情况分析。
 
 有[文章](https://mp.weixin.qq.com/s?__biz=MzU2MTE1NDk2Mg==&mid=2247491744&idx=1&sn=a425dae6bb7e083110b3150b758a3131&chksm=fc7fbe5dcb08374b4459ad93a783beeeff705939b312ca20f3f9d3e70af97effa596e38d7854&mpshare=1&scene=23&srcid=0115yOkGBCrn5L7SENkeTO5r#rd)分析称造成该攻击的直接原因是“ETC市值下降，网络算力萎缩，使攻击者能较容易地通过租赁算力的方式发起攻击”。同时究其本质是PoW共识算法面临的风险。给出的建议包括：
@@ -15,8 +13,6 @@
 
 - ETH是Ethereum，正式的以太坊，市值第二大币种
 - ETC是Ethereum Classic，以太坊经典，The DAO事件后以太坊硬分叉的产物
-
-<!--more-->
 
 ### The DAO事件
 
