@@ -1,7 +1,7 @@
 ---
 title: hugo搭建个人博客2-文章写作
 date: 2019-05-15 
-lastmod: 2020-01-06
+lastmod: 2020-02-17
 tags: [博客写作]
 categories: [爱编程爱技术的孩子]
 
@@ -461,5 +461,7 @@ gist spf13 7896402
 gist spf13 7896402 "img.html"
 ```
 
+### 书影音页面
 
+因为添加书籍、电影记录过于繁琐，决定删除该页面，相关的代码放在[github gist](https://gist.github.com/shuzang/c067f021518224252f4ea3b84748170f)中
 

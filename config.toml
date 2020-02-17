@@ -90,16 +90,10 @@ dateFormatToUse = "2006-01-02"
     weight = 3
 
   [[menu.main]]
-    identifier = "life"
-    name = "Life"
-    url = "life"
-    weight = 4
-
-  [[menu.main]]
     identifier = "about"
     name = "About"
     url = "about"
-    weight = 5
+    weight = 4
 
 #  [[menu.main]]
 #    identifier = "zh"
