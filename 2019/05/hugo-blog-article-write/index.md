@@ -453,6 +453,8 @@ gist spf13 7896402
 gist spf13 7896402 "img.html"
 ```
 
+### 书影音页面
 
+因为添加书籍、电影记录过于繁琐，决定删除该页面，相关的代码放在[github gist](https://gist.github.com/shuzang/c067f021518224252f4ea3b84748170f)中
 
 
