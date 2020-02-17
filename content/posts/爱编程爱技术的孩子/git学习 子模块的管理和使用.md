@@ -123,7 +123,7 @@ $ git push origin master
     
     ```bash
     $ git rm --cached themes/KeepIt
-$ rm -rf themes/KeepIt
+	$ rm -rf themes/KeepIt
     ```
     
 1.  删除`.gitmodules`文件中相关子模块信息
