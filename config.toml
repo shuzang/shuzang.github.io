@@ -24,6 +24,7 @@ copyright = "This work is licensed under a Creative Commons Attribution-NonComme
 # date format
 dateFormatToUse = "2006-01-02"
 
+
 # Markup related configuration in Hugo
 [markup]
   # Syntax Highlighting (https://gohugo.io/content-management/syntax-highlighting)
@@ -114,6 +115,8 @@ dateFormatToUse = "2006-01-02"
   defaultTheme = "auto"
   # public git repo url to link lastmod git commit only then enableGitInfo is true
   gitRepo = ""
+  toc = true
+  autoCollapseToc = true
 
   # Header info
   [params.header]
