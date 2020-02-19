@@ -29,7 +29,3 @@ music: true
 - 注明来源为本站首页网址 [shuzang.github.io](https://shuzang.github.io/)，或所转内容在本站的完整网址
 
 本站图片，除原创作品之外，多数来自互联网。 此类图片的原版权所有者可在任何时候、以任何理由要求本站停止使用有关图片，其中包括被本站编辑（比如加注中文说明）过的图片， 联系方式见本站首页。
-
-<br>
-
-{{< music server="tencent" type="song" id="000xRG4E4diqXD" >}}
