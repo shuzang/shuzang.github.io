@@ -13,7 +13,7 @@ slug: github commit messages guide
 
 下面的图片展示了 git 如何随着时间存储数据，其中每个「Version」都是一个 commit：
 
-![checking over time](https://user-images.githubusercontent.com/26682846/71801318-9538a800-3095-11ea-8163-15dc0cf1ac19.png)
+![checking over time](https://s2.ax1x.com/2020/02/19/3AIT4f.png)
 
 ## 2. Commit message
 

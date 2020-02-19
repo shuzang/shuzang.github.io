@@ -9,19 +9,17 @@ categories: [爱编程爱技术的孩子]
 
 Go/Golang起源于2007年，并于2009年正式对外发布，是一个完全开源的项目，背后的支持者是谷歌公司，核心设计者是三位著名IT工程师：Ken Thompson，Rob Pike，Robert Griesemer。分别是如下从左到右三位
 
-![Go语言核心设计者](https://user-images.githubusercontent.com/26682846/69148911-51530900-0b10-11ea-9c23-6939ca51252a.jpg)
-
-
+![Go语言核心设计者](https://s2.ax1x.com/2020/02/19/3AxHPJ.jpg)
 
 其中Ken Thompson是 Unix操作系统的设计者，并因此获得图灵奖，也是C语言前身B语言的设计者，UTF-8编码设计者之一，计算机史的重要人物，2006年加入谷歌，和另外两人一起设计了Go语言。 Rob Pike是Ken的老搭档。
 
 随后又有lan Lance Taylor和Russ Cox两人加入团队，前者是gccgo编译器的作者和cgo工具链的维护者，后者加入团队后着手Go语言标准包的开发。下图分别是他们两个
 
-![Go语言核心开发者](https://user-images.githubusercontent.com/26682846/69148905-4f894580-0b10-11ea-9574-3c09e2e0cabe.jpg)
+![Go语言核心开发者](https://s2.ax1x.com/2020/02/19/3AxT54.jpg)
 
 Go语言以囊地鼠(Gopher)为图标和吉祥物，这是一种原产于加拿大的啮齿类动物，Go语言开发者也一般自称为Gopher。下图中左边是囊地鼠，右边是Go logo.
 
-![Gopher](https://user-images.githubusercontent.com/26682846/69148909-50ba7280-0b10-11ea-923a-fbe67ab96459.jpg)
+![Gopher](https://s2.ax1x.com/2020/02/19/3AxXKx.jpg)
 
 Go语言相比于其它语言的最大优势在于它的执行性能与开发效率，这得益于Go在并发编程、内存回收等许多方面的良好设计，并因此大规模用于服务器编程、网络编程、数据库和云平台领域。
 
@@ -87,13 +85,13 @@ go语言环境搭建是一切操作的基础，windowns下快速安装可以使�
 
 打开Golang中国官网 [golang.org](https://golang.google.cn/) 
 
-![golang中国区官网](https://user-images.githubusercontent.com/26682846/70707293-ca5e0e80-1d12-11ea-9a68-4fc4013db2eb.png)
+![golang中国区官网](https://s2.ax1x.com/2020/02/19/3AziRA.png)
 
 点击首页的`Download Go`按钮，将跳转到[golang.org/dl](https://golang.google.cn/dl/)页面，在该页面Golang为windows，macOS和Linux三种环境都提供了安装包，还提供了源码的打包文件。这里不介绍macOS的安装，因为没有使用经验。
 
 目前的最新版本是本月刚发布的Go1.13
 
-![golang下载页面](https://user-images.githubusercontent.com/26682846/70707305-d0ec8600-1d12-11ea-9b23-3b9afe8f62e9.png)
+![golang下载页面](https://s2.ax1x.com/2020/02/19/3AzEsP.png)
 
 windows默认下载文件为`go1.13.windows-amd64.msi`，双击启动即可安装，默认安装位置为`C:\Go`，并将自动设置环境变量。如果下载了以`.zip`为后缀的版本，则需要自己解压到合适的路径，并自己设置环境变量。
 
@@ -101,7 +99,7 @@ Linux默认下载文件为`go1.13.linux-amd64.tar.gz`，将其解压缩到`/usr/
 
 windows和Linux都同时提供了32位和64位的安装版本，除此外，Linux还有一种针对ARM架构的版本，也存在针对一些特殊架构的版本。
 
-![golang安装版本](https://user-images.githubusercontent.com/26682846/70707336-e19cfc00-1d12-11ea-9707-9433114d77a3.png)
+![golang安装版本](https://s2.ax1x.com/2020/02/19/3AzmdS.png)
 
 ### 3.2 安装和配置环境变量
 
@@ -175,7 +173,7 @@ $ sudo tar -xzf go1.13.linux-amd64.tar.gz -C /usr/local
 $ rm go1.13.linux-amd64.tar.gz
 ```
 
-![解压后的golang文件](https://user-images.githubusercontent.com/26682846/64866217-9751a380-d66d-11e9-93de-6dc821dc9657.png)
+![解压后的golang文件](https://s2.ax1x.com/2020/02/19/3EFd7q.png)
 
 设置环境变量
 
@@ -185,7 +183,7 @@ $ sudo nano /etc/profile
 export PATH=$PATH:/usr/local/go/bin
 ```
 
-![Linux环境变量设置](https://user-images.githubusercontent.com/26682846/64866240-a0db0b80-d66d-11e9-946d-c693013d6dd0.png)
+![Linux环境变量设置](https://s2.ax1x.com/2020/02/19/3EF2u9.png)
 
 更新的环境变量可以通过下面的命令使其直接生效
 
@@ -196,7 +194,7 @@ $ go version
 go version go1.13 linux/amd64
 ```
 
-![linux go环境变量查看](https://user-images.githubusercontent.com/26682846/64866250-a9334680-d66d-11e9-98a5-330da8ca8920.png)
+![linux go环境变量查看](https://s2.ax1x.com/2020/02/19/3EkN8O.png)
 
 上述命令只能暂时使go可用，正式生效需重启系统。
 
