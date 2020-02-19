@@ -12,7 +12,7 @@
 
 ## 2. TCP/IP的层次结构
 
-![TCP_IP协议基础](https://user-images.githubusercontent.com/26682846/71582499-75f5c400-2b45-11ea-8e0f-c3adde6101a2.png)
+![TCP_IP协议基础](https://s2.ax1x.com/2020/02/19/3EEC0s.png)
 
 
 

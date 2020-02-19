@@ -81,7 +81,7 @@ B. ping 域名
 
 ## 3. 流程介绍
 
-![ping程序实现](https://user-images.githubusercontent.com/26682846/71582497-74c49700-2b45-11ea-82e2-70d31ca79912.jpg)
+![ping程序实现](https://s2.ax1x.com/2020/02/19/3EEkt0.png)
 
 ## 4. 代码
 

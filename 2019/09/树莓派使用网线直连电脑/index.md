@@ -18,27 +18,27 @@
 
 打开网络和共享中心，可看到已联网的网络`以太网`和树莓派连接的网络`以太网3`
 
-![网络与共享中心](https://user-images.githubusercontent.com/26682846/64222051-723c9280-cf01-11e9-970f-49406d5cc781.png)
+![网络与共享中心](https://s2.ax1x.com/2020/02/19/3AXugP.png)
 
 **设置网络共享**
 
 点击`以太网3->属性->共享选项卡->双击“Internet协议版本4（TCP/IP)” –> 选择“使用下面的ip地址” `，填入后点击确认
 
-![以太网3IP设定](https://user-images.githubusercontent.com/26682846/64222080-939d7e80-cf01-11e9-9bd4-22cae78500f0.png)
+![以太网3 IP设定](https://s2.ax1x.com/2020/02/19/3AXUg0.png)
 
 点击`以太网->属性->共享选项卡->勾选“允许其他网络用户通过此计算机的Internet连接来连接” –> 在家庭网络连接下面的下拉菜单中选择 “以太网3” `，点击确认（出现将ip设置为“192.168.137.1”的提示也点击确定，这里出现这个是因为事先设定了以太网3的IP）
 
-![网络共享设置](https://user-images.githubusercontent.com/26682846/64222094-a44df480-cf01-11e9-8d29-0ecaf4bf9fd3.png)
+![网络共享设置](https://s2.ax1x.com/2020/02/19/3AXoUH.png)
 
 **查询树莓派的IP**
 
 在PowerShell或cmd中输入`arp -a`，寻找地址`192.168.137.1`下面的IP，第一个符合IP分配规则的地址就是树莓派的地址，如果查询不到，重新拔插树莓派的网线后再次查询即可。
 
-![arp命令查询树莓派IP](https://user-images.githubusercontent.com/26682846/64222105-aca62f80-cf01-11e9-816a-b8f8029d3bf6.png)
+![arp命令查询树莓派IP](https://s2.ax1x.com/2020/02/19/3AjSaQ.png)
 
 也可以使用`Advanced IP Scanner Portable`工具扫描查询，名称为`raspberrypi.mshome.net`的既是树莓派，见名知意。
 
-![Advanced IP Scanner扫描树莓派IP](https://user-images.githubusercontent.com/26682846/64222121-b92a8800-cf01-11e9-852d-e0ea30855175.png)
+![Advanced IP Scanner扫描树莓派IP](https://s2.ax1x.com/2020/02/19/3AjFx0.png)
 
 **使用ssh工具连接**
 

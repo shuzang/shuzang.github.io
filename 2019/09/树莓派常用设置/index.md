@@ -15,7 +15,7 @@
 
 小米，百度，360的随身WiFi使用的都是mt7601u。其它关于小米随身WiFi的一些参数，查询如下：
 
-![小米随身WiFi的参数](https://user-images.githubusercontent.com/26682846/69613216-29adf480-106c-11ea-9487-6d1dce356399.png)
+![小米随身WiFi的参数](https://s2.ax1x.com/2020/02/19/3AL0zV.png)
 
 ### 1.2 树莓派设置
 
@@ -187,4 +187,4 @@ static domain_name_servers=192.168.191.1
 
 备份系统很简单，将配置好的SD卡插入电脑，使用将系统写入SD卡的win32diskimager软件，新建以`.img`为后缀的文件，在路径栏选择该文件，选择读取等待进度条完成即可。需要注意的是，这样备份的镜像文件大小是SD卡的容量大小，所以，如果备份了一个32G大的SD卡镜像，之后无法写入16G的新SD卡。
 
-![备份树莓派系统](https://user-images.githubusercontent.com/26682846/69613225-2dda1200-106c-11ea-8032-afdb6b54ded0.png)
+![备份树莓派系统](https://s2.ax1x.com/2020/02/19/3AL6Z4.png)

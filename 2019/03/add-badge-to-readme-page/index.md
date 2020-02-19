@@ -33,7 +33,7 @@ GitHub 项目的 README.md 中可以添加徽章（Badge）对项目进行标记
 
 会看到如下界面
 
-![徽章生成](https://user-images.githubusercontent.com/26682846/55003924-404f0800-5014-11e9-956e-cbfe33a3ea0b.png)
+![徽章生成](https://s2.ax1x.com/2020/02/19/3AoAKJ.png)
 
 在which中选择`release`或`release-pre`，在user下填入用户名，在repo下填入项目名，以Tencent的tinker项目为例，徽章预览如图所示，点击下面的Copy Badge URL即可复制链接。然后放到README中使用即可。
 
@@ -43,7 +43,7 @@ GitHub 项目的 README.md 中可以添加徽章（Badge）对项目进行标记
 
 如果想要生成的徽章字样和颜色shields没有，[shields.io](<https://shields.io/>)也支持自定义一个自己想要的徽章，从主页拉到`Your Badge`部分，如下图
 
-![自定义徽章](https://user-images.githubusercontent.com/26682846/55003977-56f55f00-5014-11e9-8758-33c21b13fee1.png)
+![自定义徽章](https://s2.ax1x.com/2020/02/19/3Aon56.png)
 
 在上图中的框中填入相关信息，三条横线从前到后依次是`label`,`message`,`color`，color有选项可以选择，上图的预览样式如下：
 
