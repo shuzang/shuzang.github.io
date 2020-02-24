@@ -494,7 +494,7 @@ $$
 简单的代码实现如下
 
 ```go
-func rightRotate(BinTree AVL) {
+func leftRotate(BinTree AVL) {
     tmp := AVL.Right
     AVL.Right = tmp.Left
     tmp.Left = AVL
@@ -551,9 +551,9 @@ func rightRotate(BinTree AVL) {
 
 ```go
 func leftThenRightRotate(BinTree AVL) {
-    tmp := LeftRotate(AVL.Left)
+    tmp := leftRotate(AVL.Left)
     AVL.Left = tmp
-    return RightRotate(AVL)
+    return rightRotate(AVL)
 }
 ```
 
@@ -578,12 +578,90 @@ func ajust(BinTree AVL) {
 }
 ```
 
+由于查找不涉及结点的增删，所以算法和实现同二叉搜索树相同。
 
+## 5. 哈夫曼树
 
-## 参考资料																																			
+### 5.1 定义
+
+设二叉树有 n 个叶子结点，每个叶子结点带有权值 w<sub>k</sub>，从根结点到每个叶子结点的长度位 l<sub>k</sub>，则每个叶子结点的**带权路径长度**（WPL）之和为：
+$$
+WPL = \sum_{k=1}^{n} w_k l_k
+$$
+WPL 最小的二叉树就叫做哈夫曼树（或者最优二叉树）。其特点有
+
+- 没有度为1的结点
+
+- n个叶子结点的哈夫曼树共有2n-1个结点，因为对二叉树而言有$n_0=n_2+1$
+
+- 哈夫曼树的任意非叶节点的左右子树交换后仍然是哈夫曼树
+
+- 对同一组权值存在不同构的两棵哈夫曼树，例子如下
+
+  ![权值相同但不同构的哈夫曼树](https://s2.ax1x.com/2020/02/24/3GlEwT.png)
+
+### 5.2 构造
+
+构造哈夫曼树的思路极为简单，即每次把权值最小的两棵二叉树合并，以{1，2，3，4，5}这组数为例，构造过程如下
+
+![哈夫曼树构造过程](https://s2.ax1x.com/2020/02/24/3G12VK.png)
+
+其构造的关键在于每次寻找剩余结点中的最小值，最简单的实现是使用堆
+
+```go
+type TreeNode struct {
+    Weight int
+    Left *TreeNode
+    Right *TreeNode
+}
+
+func Huffman(H MinHeap) {
+    //假设MinHeap类型已实现标准库中堆的相关接口，H已存好所有权值
+    var T TreeNode
+    heap.Init(H)
+    for i := 1; i < H.Len(); i++ {
+        T = TreeNode{}
+        T.Left = H.Pop(H)
+        T.Right = H.Pop(H)
+        T.Weight = T.Left.Weight + T.Right.Weight
+        H.Push(H, T)
+    }
+    T = H.Pop(H)
+    return T
+}
+```
+
+### 5.3 哈夫曼编码
+
+该问题的描述为：给定一段字符串，如何堆字符进行编码，可以使得该字符串的编码存储空间最少
+
+> 例：假设有一段文本，包含58个字符，并由以下7个字符构成：a，e，i，s，t，空格(sp)，换行(nl)；这7个字符出现的次数不同，如何对这7个字符进行编码，可以使得总编码空间最少
+
+如果用等长ASCII编码，则一共 58×8=464 位；如果用等长3位编码，则一共 58×3=174位；最后一种方法是不等长编码，即出现频率高的字符编码短，出现频率低的字符编码长。
+
+使用不等长编码时，为了避免二义性，可以使用前缀码（prefix code），即任何字符的编码都不是另一字符编码的前缀。将二叉树用于编码，遵循下面的规则
+
+- 左右分支：0，1
+- 字符只在叶节点上
+
+假设四个字符的频率分别为：a-4, u-1, x-2, z-1，两个可用的编码树如下
+
+![编码树举例](https://s2.ax1x.com/2020/02/24/3GaWI1.png)
+
+| 字符 | a    | e    | i    | s    | t    | sp   | nl   |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| 权值 | 10   | 15   | 12   | 3    | 4    | 13   | 1    |
+
+按照构造哈夫曼树的方法，可以构造棵编码代价最小的二叉树，假设之前例子中的7个字符权值如上表，则可构造得到如下的哈夫曼编码树
+
+![哈夫曼编码树](https://s2.ax1x.com/2020/02/24/3GB4TH.png)
+
+## 参考资料																																	
 
 [1] [中国大学MOOC平台-浙江大学数据结构](https://www.icourse163.org/course/ZJU-93001?tid=1450069451)
 
 [2] [bilibili-浙江大学数据结构](https://www.bilibili.com/video/av43521866)
 
 [3] [CSDN-Golang实现平衡二叉树](https://blog.csdn.net/qq_36183935/article/details/80315808)
+
+

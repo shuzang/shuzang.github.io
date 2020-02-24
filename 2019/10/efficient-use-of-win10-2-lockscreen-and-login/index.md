@@ -103,7 +103,7 @@ C:\Users\user\AppData\Local\Packages\Microsoft. Windows .ContentDeliveryManager_
 
 在新建的`utilman.exe`中新建字符串值，值名为`debugger`，值数据为`C:\ Windows \System32\cmd.exe`
 
-![新建值](https://winaero.com/blog/wp-content/uploads/2017/12/Capture-Login-Screen-Screenshot- Windows -10.png)
+![新建值](https://winaero.com/blog/wp-content/uploads/2017/12/Capture-Login-Screen-Screenshot-Windows-10.png)
 
 至此，我们将cmd命令行关联到了轻松使用，接下来需要先下载 Windows 地截图命令行工具[nircmd](http://www.nirsoft.net/utils/nircmd.html)，下载完成后解压到C盘根目录，并重命名为nircmd。
 
