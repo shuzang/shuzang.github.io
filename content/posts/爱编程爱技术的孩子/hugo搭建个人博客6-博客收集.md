@@ -22,15 +22,12 @@ featured_image: https://s2.ax1x.com/2020/02/12/1H3DbQ.jpg
 
 - [Yearito's Blog](http://yearito.cn/)
 - [深入浅出区块链](https://learnblockchain.cn/)
-
 - [Sirice's Blog](https://siricee.github.io/)
-
 - [Mogeko's Blog](https://mogeko.me/)
 - [Wyane's Blog](https://huaien.co/)
-
 - [Dillon's Blog](https://dillonzq.com/)
-
 - [Orianna的博客](https://orianna-zzo.github.io/AllinOne-html/ )
+- [MARKSZ的Blog](https://molunerfinn.com/)：PicGo的开发者
 
 
 
