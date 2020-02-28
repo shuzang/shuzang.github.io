@@ -83,11 +83,11 @@ go语言环境搭建是一切操作的基础，windowns下快速安装可以使�
 
 ### 3.1 下载
 
-打开Golang中国官网 [golang.org](https://golang.google.cn/) 
+打开Golang中国官网 [golang.google.cn](https://golang.google.cn/) 
 
 ![golang中国区官网](https://s2.ax1x.com/2020/02/19/3AziRA.png)
 
-点击首页的`Download Go`按钮，将跳转到[golang.org/dl](https://golang.google.cn/dl/)页面，在该页面Golang为windows，macOS和Linux三种环境都提供了安装包，还提供了源码的打包文件。这里不介绍macOS的安装，因为没有使用经验。
+点击首页的`Download Go`按钮，将跳转到[golang.google.cn/dl](https://golang.google.cn/dl/)页面，在该页面Golang为windows，macOS和Linux三种环境都提供了安装包，还提供了源码的打包文件。这里不介绍macOS的安装，因为没有使用经验。
 
 目前的最新版本是本月刚发布的Go1.13
 
@@ -97,7 +97,7 @@ windows默认下载文件为`go1.13.windows-amd64.msi`，双击启动即可安�
 
 Linux默认下载文件为`go1.13.linux-amd64.tar.gz`，将其解压缩到`/usr/local`，同时需要手动将`/usr/local/go/bin`添加到PATH环境变量中。
 
-windows和Linux都同时提供了32位和64位的安装版本，除此外，Linux还有一种针对ARM架构的版本，也存在针对一些特殊架构的版本。
+windows和Linux都同时提供了32位和64位的安装版本，除此外，Linux还提供针对其它架构（如arm）的版本。
 
 ![golang安装版本](https://s2.ax1x.com/2020/02/19/3AzmdS.png)
 
@@ -145,7 +145,7 @@ set GOGCCFLAGS=-m64 -mthreads -fno-caret-diagnostics -Qunused-arguments -fmessag
 
 我们需要关心的唯一一个环境变量是GOPATH，可以看到，默认的GOPATH是`c:\Users\lylw1\go`，其中`lylw1`是自己的用户名。
 
-GOPATH所代表的路径是go的工作区，可以任意选择任意自己喜欢的文件夹作为go的工作区，如果不想使用默认的路径，需要自己进行修改，最简单的修改方式为使用`setx`命令，更多的环境变量修改方式可以查看[Setting GOPATH](https://github.com/golang/go/wiki/SettingGOPATH#windows)，需要注意的一点是GOPATH不能设置为Go的安装目录`C:\go`
+GOPATH所代表的路径是go的工作区，可以选择任意自己喜欢的文件夹作为go的工作区，如果不想使用默认的路径，需要自己进行修改，最简单的修改方式为使用`setx`命令，更多的环境变量修改方式可以查看[Setting GOPATH](https://github.com/golang/go/wiki/SettingGOPATH#windows)，需要注意的一点是GOPATH不能设置为Go的安装目录`C:\go`
 
 ```powershell
 > setx GOPATH d:\go
@@ -208,8 +208,6 @@ go version go1.13 linux/amd64
 
 - `GOOS`与`GOARCH`：目标操作系统和处理器架构，
 - `GOHOSTOS`和`GOHOSTARCH`是宿主机操作系统和处理器架构。
-
-以上四个环境变量一般是编译时使用的。
 
 - `GOBIN`：编译器和链接器的安装位置，默认是`$GOROOT/bin`，一般将其设置为空值，Go会使用默认值。
 
