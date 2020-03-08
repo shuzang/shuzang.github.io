@@ -1,0 +1,448 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>数据结构-树的常见题型 | Shuzang's Blog</title><meta name=Description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><meta property="og:title" content="数据结构-树的常见题型"><meta property="og:description" content="下列题目中二叉树结点的定义如下 1 2 3 4 type TreeNode struct { Val int Left *TreeNode } 1. 二叉树 1.1 二叉树的深度 输入一棵二叉树的根节点，求该树的深度。从根节点到叶节点依次经过"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.top/2020/03/common-question-of-tree/"><meta property="article:published_time" content="2020-03-03T00:00:00+00:00"><meta property="article:modified_time" content="2020-03-07T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="数据结构-树的常见题型"><meta name=twitter:description content="下列题目中二叉树结点的定义如下 1 2 3 4 type TreeNode struct { Val int Left *TreeNode } 1. 二叉树 1.1 二叉树的深度 输入一棵二叉树的根节点，求该树的深度。从根节点到叶节点依次经过"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel=canonical href=https://shuzang.top/2020/03/common-question-of-tree/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=prev href=https://shuzang.top/2020/02/life-weekly-9/><link rel=next href=https://shuzang.top/2020/03/%E9%9B%95%E5%88%80/><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/css/lib/forkawesome/fork-awesome.min.css><link rel=stylesheet href=/css/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"数据结构-树的常见题型","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.top\/2020\/03\/common-question-of-tree\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.top\/cover.png","width":800,"height":600},"genre":"posts","keywords":"数据结构与算法","wordcount":1840,"url":"https:\/\/shuzang.top\/2020\/03\/common-question-of-tree\/","datePublished":"2020-03-03T00:00:00\x2b00:00","dateModified":"2020-03-07T00:00:00\x2b00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.top\/logo.png","width":127,"height":40}},"description":""}</script></head><body><script>if(!window.localStorage||!window.localStorage.getItem('theme')){window.isDark=window.matchMedia('(prefers-color-scheme: dark)').matches;}else{window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';}
+window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class="header-title animated bounceIn"><a href=https://shuzang.top>Shuzang's Blog</a></div><div class=menu><a class=menu-item href=https://shuzang.top/posts>Posts</a><a class=menu-item href=https://shuzang.top/tags>Tags</a><a class=menu-item href=https://shuzang.top/categories>Categories</a><a class=menu-item href=https://shuzang.top/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></header><header class=mobile id=header-mobile><div class=header-wrapper><div class=header-container><div class="header-title animated bounceIn"><a href=https://shuzang.top>Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=https://shuzang.top/posts>Posts</a><a class=menu-item href=https://shuzang.top/tags>Tags</a><a class=menu-item href=https://shuzang.top/categories>Categories</a><a class=menu-item href=https://shuzang.top/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></header><script>window.desktopHeaderMode="fixed";window.mobileHeaderMode="auto";</script><main class=main><div class=container><article class="page single"><h1 class="single-title animated flipInX">数据结构-树的常见题型</h1><div class=meta><div class=meta-line><a class=author href=https://shuzang.top/about/ rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>shuzang
+</a>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i><a href=https://shuzang.top/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/>爱编程爱技术的孩子</a>&nbsp;</span></div><div class=meta-line><i class="far fa-calendar-alt fa-fw"></i><time datetime=2020-03-03>2020-03-03</time>&nbsp;
+<i class="fas fa-pencil-alt fa-fw"></i>about 1840 words&nbsp;
+<i class="far fa-clock fa-fw"></i>4 min&nbsp;</div></div><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#1-二叉树>1. 二叉树</a><ul><li><a href=#11-二叉树的深度>1.1 二叉树的深度</a></li><li><a href=#12-二叉树的最小深度>1.2 二叉树的最小深度</a></li><li><a href=#13-翻转二叉树>1.3 翻转二叉树</a></li><li><a href=#14-判断对称二叉树>1.4 判断对称二叉树</a></li><li><a href=#15-二叉树的锯齿形层次遍历>1.5 二叉树的锯齿形层次遍历</a></li><li><a href=#16-由树的两种遍历序列还原二叉树>1.6 由树的两种遍历序列还原二叉树</a></li><li><a href=#17-路径总和>1.7 路径总和</a></li></ul></li><li><a href=#2-二叉搜索树>2. 二叉搜索树</a><ul><li><a href=#21-验证二叉搜索树>2.1 验证二叉搜索树</a></li></ul></li></ul></nav></div></div><div class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
+<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><a href=#1-二叉树>1. 二叉树</a><ul><li><a href=#11-二叉树的深度>1.1 二叉树的深度</a></li><li><a href=#12-二叉树的最小深度>1.2 二叉树的最小深度</a></li><li><a href=#13-翻转二叉树>1.3 翻转二叉树</a></li><li><a href=#14-判断对称二叉树>1.4 判断对称二叉树</a></li><li><a href=#15-二叉树的锯齿形层次遍历>1.5 二叉树的锯齿形层次遍历</a></li><li><a href=#16-由树的两种遍历序列还原二叉树>1.6 由树的两种遍历序列还原二叉树</a></li><li><a href=#17-路径总和>1.7 路径总和</a></li></ul></li><li><a href=#2-二叉搜索树>2. 二叉搜索树</a><ul><li><a href=#21-验证二叉搜索树>2.1 验证二叉搜索树</a></li></ul></li></ul></nav></div></details></div><div class=content><p>下列题目中二叉树结点的定义如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go> <span class=kd>type</span> <span class=nx>TreeNode</span> <span class=kd>struct</span> <span class=p>{</span>
+     <span class=nx>Val</span> <span class=kt>int</span>
+     <span class=nx>Left</span> <span class=o>*</span><span class=nx>TreeNode</span>
+ <span class=p>}</span>
+</code></pre></td></tr></table></div></div><h2 id=1-二叉树>1. 二叉树</h2><h3 id=11-二叉树的深度>1.1 二叉树的深度</h3><p>输入一棵二叉树的根节点，求该树的深度。从根节点到叶节点依次经过的节点（含根、叶节点）形成树的一条路径，最长路径的长度为树的深度。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>maxDepth</span><span class=p>(</span><span class=nx>root</span> <span class=o>*</span><span class=nx>TreeNode</span><span class=p>)</span> <span class=kt>int</span> <span class=p>{</span>
+    <span class=k>if</span> <span class=nx>root</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=mi>0</span>
+    <span class=p>}</span>
+    <span class=nx>HL</span> <span class=o>:=</span> <span class=nf>maxDepth</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Left</span><span class=p>)</span>
+    <span class=nx>HR</span> <span class=o>:=</span> <span class=nf>maxDepth</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>)</span>
+    <span class=k>if</span> <span class=nx>HL</span> <span class=p>&gt;</span> <span class=nx>HR</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=nx>HL</span> <span class=o>+</span> <span class=mi>1</span>
+    <span class=p>}</span><span class=k>else</span><span class=p>{</span>
+        <span class=k>return</span> <span class=nx>HR</span> <span class=o>+</span> <span class=mi>1</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h3 id=12-二叉树的最小深度>1.2 二叉树的最小深度</h3><p>给定一个二叉树，找出其最小深度。最小深度是从根节点到最近叶子节点的最短路径上的节点数量。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>minDepth</span><span class=p>(</span><span class=nx>root</span> <span class=o>*</span><span class=nx>TreeNode</span><span class=p>)</span> <span class=kt>int</span> <span class=p>{</span>
+    <span class=k>if</span> <span class=nx>root</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=mi>0</span>
+    <span class=p>}</span>
+    <span class=k>if</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Left</span> <span class=o>==</span> <span class=kc>nil</span> <span class=o>&amp;&amp;</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Right</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=mi>1</span>
+    <span class=p>}</span>
+    <span class=nx>HL</span> <span class=o>:=</span> <span class=nf>minDepth</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Left</span><span class=p>)</span>
+    <span class=nx>HR</span> <span class=o>:=</span> <span class=nf>minDepth</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>)</span>
+    <span class=k>if</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Left</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=nx>HR</span> <span class=o>+</span> <span class=mi>1</span>
+    <span class=p>}</span><span class=k>else</span> <span class=k>if</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Right</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=nx>HL</span> <span class=o>+</span> <span class=mi>1</span>
+    <span class=p>}</span><span class=k>else</span><span class=p>{</span>
+        <span class=k>if</span> <span class=nx>HL</span> <span class=p>&lt;</span> <span class=nx>HR</span> <span class=p>{</span>
+            <span class=k>return</span> <span class=nx>HL</span> <span class=o>+</span> <span class=mi>1</span>
+        <span class=p>}</span><span class=k>else</span><span class=p>{</span>
+            <span class=k>return</span> <span class=nx>HR</span> <span class=o>+</span> <span class=mi>1</span>
+        <span class=p>}</span>        
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h3 id=13-翻转二叉树>1.3 翻转二叉树</h3><p>对一棵二叉树进行镜像翻转，比如输入为</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go>     <span class=mi>4</span>
+   <span class=o>/</span>   \
+  <span class=mi>2</span>     <span class=mi>7</span>
+ <span class=o>/</span> <span class=err>\</span>   <span class=o>/</span> \
+<span class=mi>1</span>   <span class=mi>3</span> <span class=mi>6</span>   <span class=mi>9</span>
+</code></pre></td></tr></table></div></div><p>那么翻转后的输出为</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go>     <span class=mi>4</span>
+   <span class=o>/</span>   \
+  <span class=mi>7</span>     <span class=mi>2</span>
+ <span class=o>/</span> <span class=err>\</span>   <span class=o>/</span> \
+<span class=mi>9</span>   <span class=mi>6</span> <span class=mi>3</span>   <span class=mi>1</span>
+</code></pre></td></tr></table></div></div><p>递归的理解是翻转后的树是将左子树和右子树分别翻转后再进行翻转，写出来的程序有点像后序遍历</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>invertTree</span><span class=p>(</span><span class=nx>root</span> <span class=o>*</span><span class=nx>TreeNode</span><span class=p>)</span> <span class=o>*</span><span class=nx>TreeNode</span> <span class=p>{</span>
+    <span class=k>if</span> <span class=nx>root</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=nx>root</span><span class=p>.</span><span class=nx>Left</span> <span class=p>=</span> <span class=nf>invertTree</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Left</span><span class=p>)</span>
+        <span class=nx>root</span><span class=p>.</span><span class=nx>Right</span> <span class=p>=</span> <span class=nf>invertTree</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>)</span>
+        <span class=nx>root</span><span class=p>.</span><span class=nx>Left</span><span class=p>,</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Right</span> <span class=p>=</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>,</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Left</span>
+    <span class=p>}</span>
+    <span class=k>return</span> <span class=nx>root</span>
+<span class=p>}</span>    
+</code></pre></td></tr></table></div></div><p>第三条翻转语句也可以放在左右子树翻转之前，即先对当前结点的左右子树翻转，再分别翻转左右子树。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>invertTree</span><span class=p>(</span><span class=nx>root</span> <span class=o>*</span><span class=nx>TreeNode</span><span class=p>)</span> <span class=o>*</span><span class=nx>TreeNode</span> <span class=p>{</span>
+    <span class=k>if</span> <span class=nx>root</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=nx>root</span><span class=p>.</span><span class=nx>Left</span><span class=p>,</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Right</span> <span class=p>=</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>,</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Left</span>
+        <span class=nx>root</span><span class=p>.</span><span class=nx>Left</span> <span class=p>=</span> <span class=nf>invertTree</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Left</span><span class=p>)</span>
+        <span class=nx>root</span><span class=p>.</span><span class=nx>Right</span> <span class=p>=</span> <span class=nf>invertTree</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>)</span>
+    <span class=p>}</span>
+    <span class=k>return</span> <span class=nx>root</span>
+<span class=p>}</span> 
+</code></pre></td></tr></table></div></div><h3 id=14-判断对称二叉树>1.4 判断对称二叉树</h3><p>给定一个二叉树，检查它是否是镜像对称的。</p><p>递归的方法最简单</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>isSymmetric</span><span class=p>(</span><span class=nx>root</span> <span class=o>*</span><span class=nx>TreeNode</span><span class=p>)</span> <span class=kt>bool</span> <span class=p>{</span>
+    <span class=k>return</span> <span class=nf>isMirror</span><span class=p>(</span><span class=nx>root</span><span class=p>,</span> <span class=nx>root</span><span class=p>)</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=nf>isMirror</span><span class=p>(</span><span class=nx>l</span><span class=p>,</span><span class=nx>r</span> <span class=o>*</span><span class=nx>TreeNode</span><span class=p>)</span> <span class=kt>bool</span> <span class=p>{</span>
+    <span class=k>if</span> <span class=nx>l</span> <span class=o>==</span> <span class=kc>nil</span> <span class=o>&amp;&amp;</span> <span class=nx>r</span> <span class=o>==</span><span class=kc>nil</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=kc>true</span>
+    <span class=p>}</span>
+    <span class=k>if</span> <span class=nx>l</span> <span class=o>==</span> <span class=kc>nil</span> <span class=o>||</span> <span class=nx>r</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=kc>false</span>
+    <span class=p>}</span>
+    <span class=k>if</span> <span class=nx>l</span><span class=p>.</span><span class=nx>Val</span> <span class=o>!=</span> <span class=nx>r</span><span class=p>.</span><span class=nx>Val</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=kc>false</span>
+    <span class=p>}</span> 
+    <span class=k>return</span> <span class=nf>isMirror</span><span class=p>(</span><span class=nx>l</span><span class=p>.</span><span class=nx>Left</span><span class=p>,</span> <span class=nx>r</span><span class=p>.</span><span class=nx>Right</span><span class=p>)</span> <span class=o>&amp;&amp;</span> <span class=nf>isMirror</span><span class=p>(</span><span class=nx>l</span><span class=p>.</span><span class=nx>Right</span><span class=p>,</span> <span class=nx>r</span><span class=p>.</span><span class=nx>Left</span><span class=p>)</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h3 id=15-二叉树的锯齿形层次遍历>1.5 二叉树的锯齿形层次遍历</h3><p>给定一个二叉树，返回其节点值的锯齿形层次遍历。（即先从左往右，再从右往左进行下一层遍历，以此类推，层与层之间交替进行）。例如：给定二叉树 <code>[3,9,20,null,null,15,7]</code>,</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go>   <span class=mi>3</span>
+  <span class=o>/</span> \
+ <span class=mi>9</span>  <span class=mi>20</span>
+   <span class=o>/</span>  \
+  <span class=mi>15</span>   <span class=mi>7</span>
+</code></pre></td></tr></table></div></div><p>返回锯齿形层次遍历如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=p>[</span>
+  <span class=p>[</span><span class=mi>3</span><span class=p>]</span><span class=p>,</span>
+  <span class=p>[</span><span class=mi>20</span><span class=p>,</span><span class=mi>9</span><span class=p>]</span><span class=p>,</span>
+  <span class=p>[</span><span class=mi>15</span><span class=p>,</span><span class=mi>7</span><span class=p>]</span>
+<span class=p>]</span>
+</code></pre></td></tr></table></div></div><p>与层次遍历的想法基本相同，只是添加了一个层次判断，在奇数层按原来的方法构造切片，在偶数层反向构造切片。由于Go的特性，这种方法很容易实现。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>zigzagLevelOrder</span><span class=p>(</span><span class=nx>root</span> <span class=o>*</span><span class=nx>TreeNode</span><span class=p>)</span> <span class=p>[</span><span class=p>]</span><span class=p>[</span><span class=p>]</span><span class=kt>int</span> <span class=p>{</span>
+    <span class=k>if</span> <span class=nx>root</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=kc>nil</span>
+    <span class=p>}</span>
+    <span class=nx>result</span> <span class=o>:=</span> <span class=p>[</span><span class=p>]</span><span class=p>[</span><span class=p>]</span><span class=kt>int</span><span class=p>{</span><span class=p>}</span>
+    <span class=nx>queue</span> <span class=o>:=</span> <span class=nx>list</span><span class=p>.</span><span class=nf>New</span><span class=p>(</span><span class=p>)</span>
+    <span class=nx>queue</span><span class=p>.</span><span class=nf>PushBack</span><span class=p>(</span><span class=nx>root</span><span class=p>)</span>
+    <span class=k>for</span> <span class=nx>tmp</span> <span class=o>:=</span> <span class=mi>1</span><span class=p>;</span> <span class=nx>queue</span><span class=p>.</span><span class=nf>Len</span><span class=p>(</span><span class=p>)</span> <span class=o>!=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>tmp</span><span class=o>++</span> <span class=p>{</span>
+        <span class=nx>level</span> <span class=o>:=</span> <span class=p>[</span><span class=p>]</span><span class=kt>int</span><span class=p>{</span><span class=p>}</span>
+        <span class=nx>currentLevel</span> <span class=o>:=</span> <span class=nx>queue</span><span class=p>.</span><span class=nf>Len</span><span class=p>(</span><span class=p>)</span>
+        <span class=k>for</span> <span class=nx>i</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=nx>currentLevel</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span> <span class=p>{</span>
+            <span class=nx>root</span> <span class=o>:=</span> <span class=nx>queue</span><span class=p>.</span><span class=nf>Remove</span><span class=p>(</span><span class=nx>queue</span><span class=p>.</span><span class=nf>Front</span><span class=p>(</span><span class=p>)</span><span class=p>)</span><span class=p>.</span><span class=p>(</span><span class=o>*</span><span class=nx>TreeNode</span><span class=p>)</span> 
+            <span class=k>if</span> <span class=nx>tmp</span> <span class=o>%</span> <span class=mi>2</span> <span class=o>==</span> <span class=mi>1</span> <span class=p>{</span>
+                <span class=nx>level</span> <span class=p>=</span> <span class=nb>append</span><span class=p>(</span><span class=nx>level</span><span class=p>,</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Val</span><span class=p>)</span>                 
+            <span class=p>}</span><span class=k>else</span><span class=p>{</span>
+                <span class=nx>level</span> <span class=p>=</span> <span class=nb>append</span><span class=p>(</span><span class=p>[</span><span class=p>]</span><span class=kt>int</span><span class=p>{</span><span class=nx>root</span><span class=p>.</span><span class=nx>Val</span><span class=p>}</span><span class=p>,</span><span class=nx>level</span><span class=o>...</span><span class=p>)</span>
+            <span class=p>}</span>            
+            <span class=k>if</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Left</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+                <span class=nx>queue</span><span class=p>.</span><span class=nf>PushBack</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Left</span><span class=p>)</span>
+            <span class=p>}</span>
+            <span class=k>if</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Right</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+                <span class=nx>queue</span><span class=p>.</span><span class=nf>PushBack</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>)</span>
+            <span class=p>}</span>
+        <span class=p>}</span>
+        <span class=nx>result</span> <span class=p>=</span> <span class=nb>append</span><span class=p>(</span><span class=nx>result</span><span class=p>,</span> <span class=nx>level</span><span class=p>)</span>
+    <span class=p>}</span>
+    <span class=k>return</span> <span class=nx>result</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h3 id=16-由树的两种遍历序列还原二叉树>1.6 由树的两种遍历序列还原二叉树</h3><p>假设树中没有重复元素，根据两种遍历序列构造出原来的二叉树。需要注意的是，两种遍历序列中必须有中序遍历，也就是说，只给出先序和后序是无法确定棵二叉树的。</p><p>首先介绍如何根据先序和中序遍历确定一棵二叉树，步骤如下</p><ol><li>根据先序遍历序列的第一个结点确定根结点</li><li>根据根结点在中序遍历序列中分割出左右两个子序列</li><li>对左子树和右子树分别递归使用相同的方法继续分解</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>buildTree</span><span class=p>(</span><span class=nx>preorder</span> <span class=p>[</span><span class=p>]</span><span class=kt>int</span><span class=p>,</span> <span class=nx>inorder</span> <span class=p>[</span><span class=p>]</span><span class=kt>int</span><span class=p>)</span> <span class=o>*</span><span class=nx>TreeNode</span> <span class=p>{</span>
+        <span class=k>if</span> <span class=nb>len</span><span class=p>(</span><span class=nx>inorder</span><span class=p>)</span> <span class=o>==</span> <span class=mi>0</span><span class=p>{</span>
+            <span class=k>return</span> <span class=kc>nil</span>
+        <span class=p>}</span>
+        <span class=nx>idx</span> <span class=o>:=</span> <span class=o>-</span><span class=mi>1</span>
+        <span class=k>for</span> <span class=nx>i</span><span class=p>,</span><span class=nx>v</span><span class=o>:=</span><span class=k>range</span> <span class=nx>inorder</span><span class=p>{</span>
+            <span class=k>if</span> <span class=nx>v</span> <span class=o>==</span> <span class=nx>preorder</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=p>{</span>
+                <span class=nx>idx</span> <span class=p>=</span> <span class=nx>i</span>
+            <span class=p>}</span>
+        <span class=p>}</span>
+        <span class=nx>root</span> <span class=o>:=</span> <span class=o>&amp;</span><span class=nx>TreeNode</span><span class=p>{</span><span class=nx>Val</span><span class=p>:</span><span class=nx>preorder</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=p>}</span>
+        <span class=nx>root</span><span class=p>.</span><span class=nx>Left</span> <span class=p>=</span> <span class=nf>buildTree</span><span class=p>(</span><span class=nx>preorder</span><span class=p>[</span><span class=mi>1</span><span class=p>:</span><span class=nx>idx</span><span class=o>+</span><span class=mi>1</span><span class=p>]</span><span class=p>,</span><span class=nx>inorder</span><span class=p>[</span><span class=p>:</span><span class=nx>idx</span><span class=p>]</span><span class=p>)</span>
+        <span class=nx>root</span><span class=p>.</span><span class=nx>Right</span> <span class=p>=</span> <span class=nf>buildTree</span><span class=p>(</span><span class=nx>preorder</span><span class=p>[</span><span class=nx>idx</span><span class=o>+</span><span class=mi>1</span><span class=p>:</span><span class=p>]</span><span class=p>,</span><span class=nx>inorder</span><span class=p>[</span><span class=nx>idx</span><span class=o>+</span><span class=mi>1</span><span class=p>:</span><span class=p>]</span><span class=p>)</span>
+        <span class=k>return</span> <span class=nx>root</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>后序遍历的思想类似</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>buildTree</span><span class=p>(</span><span class=nx>inorder</span> <span class=p>[</span><span class=p>]</span><span class=kt>int</span><span class=p>,</span> <span class=nx>postorder</span> <span class=p>[</span><span class=p>]</span><span class=kt>int</span><span class=p>)</span> <span class=o>*</span><span class=nx>TreeNode</span> <span class=p>{</span>
+    <span class=k>if</span> <span class=nb>len</span><span class=p>(</span><span class=nx>inorder</span><span class=p>)</span> <span class=o>==</span> <span class=mi>0</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=kc>nil</span>
+    <span class=p>}</span>
+    <span class=nx>idx</span> <span class=o>:=</span> <span class=o>-</span><span class=mi>1</span>
+    <span class=k>for</span> <span class=nx>i</span><span class=p>,</span><span class=nx>v</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>inorder</span> <span class=p>{</span>
+        <span class=k>if</span> <span class=nx>v</span> <span class=o>==</span> <span class=nx>postorder</span><span class=p>[</span><span class=nb>len</span><span class=p>(</span><span class=nx>postorder</span><span class=p>)</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span> <span class=p>{</span>
+            <span class=nx>idx</span> <span class=p>=</span> <span class=nx>i</span>
+        <span class=p>}</span>
+    <span class=p>}</span>
+    <span class=nx>root</span> <span class=o>:=</span> <span class=o>&amp;</span><span class=nx>TreeNode</span><span class=p>{</span><span class=nx>Val</span><span class=p>:</span><span class=nx>postorder</span><span class=p>[</span><span class=nb>len</span><span class=p>(</span><span class=nx>postorder</span><span class=p>)</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span><span class=p>}</span>
+    <span class=nx>root</span><span class=p>.</span><span class=nx>Left</span> <span class=p>=</span> <span class=nf>buildTree</span><span class=p>(</span><span class=nx>inorder</span><span class=p>[</span><span class=p>:</span><span class=nx>idx</span><span class=p>]</span><span class=p>,</span> <span class=nx>postorder</span><span class=p>[</span><span class=p>:</span><span class=nx>idx</span><span class=p>]</span><span class=p>)</span>
+    <span class=nx>root</span><span class=p>.</span><span class=nx>Right</span> <span class=p>=</span> <span class=nf>buildTree</span><span class=p>(</span><span class=nx>inorder</span><span class=p>[</span><span class=nx>idx</span><span class=o>+</span><span class=mi>1</span><span class=p>:</span><span class=p>]</span><span class=p>,</span> <span class=nx>postorder</span><span class=p>[</span><span class=nx>idx</span><span class=p>:</span><span class=nb>len</span><span class=p>(</span><span class=nx>postorder</span><span class=p>)</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span><span class=p>)</span>
+    <span class=k>return</span> <span class=nx>root</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h3 id=17-路径总和>1.7 路径总和</h3><p>给定一个二叉树和一个目标和，判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和。</p><p>示例: 给定如下二叉树，以及目标和 sum = 22，</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go>              <span class=mi>5</span>
+             <span class=o>/</span> \
+            <span class=mi>4</span>   <span class=mi>8</span>
+           <span class=o>/</span>   <span class=o>/</span> \
+          <span class=mi>11</span>  <span class=mi>13</span>  <span class=mi>4</span>
+         <span class=o>/</span>  <span class=err>\</span>      \
+        <span class=mi>7</span>    <span class=mi>2</span>      <span class=mi>1</span>
+</code></pre></td></tr></table></div></div><p>返回 <code>true</code>, 因为存在目标和为 22 的根节点到叶子节点的路径 <code>5->4->11->2</code>。</p><p>基本的解题思路是利用层次遍历，更新每层结点的值为和父结点的值的和，然后在遇到叶子结点时判断是否和给定数值相同。当然，用其他的遍历也可以。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>hasPathSum</span><span class=p>(</span><span class=nx>root</span> <span class=o>*</span><span class=nx>TreeNode</span><span class=p>,</span> <span class=nx>sum</span> <span class=kt>int</span><span class=p>)</span> <span class=kt>bool</span> <span class=p>{</span>
+    <span class=k>if</span> <span class=nx>root</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=kc>false</span>
+    <span class=p>}</span>
+    <span class=nx>queue</span> <span class=o>:=</span> <span class=nx>list</span><span class=p>.</span><span class=nf>New</span><span class=p>(</span><span class=p>)</span>
+    <span class=nx>queue</span><span class=p>.</span><span class=nf>PushBack</span><span class=p>(</span><span class=nx>root</span><span class=p>)</span>
+    <span class=k>for</span> <span class=nx>queue</span><span class=p>.</span><span class=nf>Len</span><span class=p>(</span><span class=p>)</span> <span class=o>!=</span> <span class=mi>0</span> <span class=p>{</span>
+        <span class=nx>root</span> <span class=p>=</span> <span class=nx>queue</span><span class=p>.</span><span class=nf>Remove</span><span class=p>(</span><span class=nx>queue</span><span class=p>.</span><span class=nf>Front</span><span class=p>(</span><span class=p>)</span><span class=p>)</span><span class=p>.</span><span class=p>(</span><span class=o>*</span><span class=nx>TreeNode</span><span class=p>)</span>
+        <span class=k>if</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Left</span> <span class=o>==</span> <span class=kc>nil</span> <span class=o>&amp;&amp;</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Right</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+            <span class=k>if</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Val</span> <span class=o>==</span> <span class=nx>sum</span> <span class=p>{</span>
+                <span class=k>return</span> <span class=kc>true</span>
+            <span class=p>}</span>
+        <span class=p>}</span>
+        <span class=k>if</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Left</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+            <span class=nx>root</span><span class=p>.</span><span class=nx>Left</span><span class=p>.</span><span class=nx>Val</span> <span class=o>+=</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Val</span>
+            <span class=nx>queue</span><span class=p>.</span><span class=nf>PushBack</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Left</span><span class=p>)</span>
+        <span class=p>}</span>
+        <span class=k>if</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Right</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+            <span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>.</span><span class=nx>Val</span> <span class=o>+=</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Val</span>
+            <span class=nx>queue</span><span class=p>.</span><span class=nf>PushBack</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>)</span>
+        <span class=p>}</span>
+    <span class=p>}</span>
+    <span class=k>return</span> <span class=kc>false</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>如果需要记录路径，可以使用如下方案</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>pathSum</span><span class=p>(</span><span class=nx>root</span> <span class=o>*</span><span class=nx>TreeNode</span><span class=p>,</span> <span class=nx>sum</span> <span class=kt>int</span><span class=p>)</span> <span class=p>[</span><span class=p>]</span><span class=p>[</span><span class=p>]</span><span class=kt>int</span> <span class=p>{</span>
+    <span class=kd>var</span> <span class=nx>ret</span> <span class=p>[</span><span class=p>]</span><span class=p>[</span><span class=p>]</span><span class=kt>int</span>
+    <span class=kd>var</span> <span class=nx>path</span> <span class=p>[</span><span class=p>]</span><span class=kt>int</span>
+    
+    <span class=k>return</span> <span class=nf>dfs</span><span class=p>(</span><span class=nx>root</span><span class=p>,</span><span class=nx>path</span><span class=p>,</span><span class=nx>ret</span><span class=p>,</span><span class=nx>sum</span><span class=p>)</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=nf>dfs</span><span class=p>(</span><span class=nx>root</span> <span class=o>*</span><span class=nx>TreeNode</span><span class=p>,</span><span class=nx>path</span> <span class=p>[</span><span class=p>]</span><span class=kt>int</span><span class=p>,</span><span class=nx>ret</span> <span class=p>[</span><span class=p>]</span><span class=p>[</span><span class=p>]</span><span class=kt>int</span><span class=p>,</span><span class=nx>sum</span> <span class=kt>int</span><span class=p>)</span> <span class=p>[</span><span class=p>]</span><span class=p>[</span><span class=p>]</span><span class=kt>int</span><span class=p>{</span>
+        <span class=k>if</span> <span class=nx>root</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+            <span class=k>return</span> <span class=nx>ret</span>
+        <span class=p>}</span>
+        <span class=nx>sum</span> <span class=o>-=</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Val</span>
+        <span class=nx>path</span> <span class=p>=</span> <span class=nb>append</span><span class=p>(</span><span class=nx>path</span><span class=p>,</span><span class=nx>root</span><span class=p>.</span><span class=nx>Val</span><span class=p>)</span>
+        
+        <span class=k>if</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Left</span> <span class=o>==</span> <span class=kc>nil</span> <span class=o>&amp;&amp;</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Right</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+            <span class=k>if</span> <span class=nx>sum</span> <span class=o>==</span> <span class=mi>0</span> <span class=p>{</span>
+                <span class=nx>slice</span> <span class=o>:=</span> <span class=nb>make</span><span class=p>(</span><span class=p>[</span><span class=p>]</span><span class=kt>int</span><span class=p>,</span><span class=nb>len</span><span class=p>(</span><span class=nx>path</span><span class=p>)</span><span class=p>)</span>
+	            <span class=nb>copy</span><span class=p>(</span><span class=nx>slice</span><span class=p>,</span><span class=nx>path</span><span class=p>)</span>
+                <span class=nx>ret</span> <span class=p>=</span> <span class=nb>append</span><span class=p>(</span><span class=nx>ret</span><span class=p>,</span><span class=nx>slice</span><span class=p>)</span>
+            <span class=p>}</span>
+            <span class=k>return</span> <span class=nx>ret</span>
+        <span class=p>}</span>       
+        <span class=k>if</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Left</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+            <span class=nx>ret</span> <span class=p>=</span> <span class=nf>dfs</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Left</span><span class=p>,</span><span class=nx>path</span><span class=p>,</span><span class=nx>ret</span><span class=p>,</span><span class=nx>sum</span><span class=p>)</span>
+        <span class=p>}</span>
+        <span class=k>if</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Right</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+            <span class=nx>ret</span> <span class=p>=</span> <span class=nf>dfs</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>,</span><span class=nx>path</span><span class=p>,</span><span class=nx>ret</span><span class=p>,</span><span class=nx>sum</span><span class=p>)</span>
+        <span class=p>}</span>
+        <span class=k>return</span> <span class=nx>ret</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h2 id=2-二叉搜索树>2. 二叉搜索树</h2><h3 id=21-验证二叉搜索树>2.1 验证二叉搜索树</h3><p>给定一个二叉树，判断其是否是一个有效的二叉搜索树。</p><p>假设一个二叉搜索树具有如下特征：</p><ul><li>节点的左子树只包含小于当前节点的数。</li><li>节点的右子树只包含大于当前节点的数。</li><li>所有左子树和右子树自身必须也是二叉搜索树。</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>isValidBST</span><span class=p>(</span><span class=nx>root</span> <span class=o>*</span><span class=nx>TreeNode</span><span class=p>)</span> <span class=kt>bool</span> <span class=p>{</span>
+    <span class=k>return</span> <span class=nf>isBST</span><span class=p>(</span><span class=nx>root</span><span class=p>,</span> <span class=nx>math</span><span class=p>.</span><span class=nx>MinInt64</span><span class=p>,</span> <span class=nx>math</span><span class=p>.</span><span class=nx>MaxInt64</span><span class=p>)</span>
+<span class=p>}</span>
+<span class=kd>func</span> <span class=nf>isBST</span><span class=p>(</span><span class=nx>root</span> <span class=o>*</span><span class=nx>TreeNode</span><span class=p>,</span> <span class=nx>left</span><span class=p>,</span> <span class=nx>right</span> <span class=kt>int</span><span class=p>)</span> <span class=kt>bool</span> <span class=p>{</span>
+    <span class=k>if</span> <span class=nx>root</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=kc>true</span>
+    <span class=p>}</span>
+    <span class=k>if</span> <span class=nx>left</span> <span class=o>&gt;=</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Val</span> <span class=o>||</span> <span class=nx>right</span> <span class=o>&lt;=</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Val</span> <span class=p>{</span>
+    	<span class=k>return</span> <span class=kc>false</span>
+    <span class=p>}</span>
+    <span class=k>return</span> <span class=nf>isBST</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Left</span><span class=p>,</span> <span class=nx>left</span><span class=p>,</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Val</span><span class=p>)</span> <span class=o>&amp;&amp;</span> <span class=nf>isBST</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>,</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Val</span><span class=p>,</span> <span class=nx>right</span><span class=p>)</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2020-03-07</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=https://shuzang.top/2020/03/common-question-of-tree/index.md target=_blank></a></span></div><div class=post-info-share><span><a href="//twitter.com/share?url=https%3a%2f%2fshuzang.top%2f2020%2f03%2fcommon-question-of-tree%2f&text=%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84-%e6%a0%91%e7%9a%84%e5%b8%b8%e8%a7%81%e9%a2%98%e5%9e%8b&via=" target=_blank title="Share on Twitter"><i class="fab fa-twitter fa-fw"></i></a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fshuzang.top%2f2020%2f03%2fcommon-question-of-tree%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook-square fa-fw"></i></a><a href="//reddit.com/submit?url=https%3a%2f%2fshuzang.top%2f2020%2f03%2fcommon-question-of-tree%2f&title=%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84-%e6%a0%91%e7%9a%84%e5%b8%b8%e8%a7%81%e9%a2%98%e5%9e%8b" target=_blank title="Share on Reddit"><i class="fab fa-reddit fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span class=tag><a href=https://shuzang.top/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/><i class="fas fa-tag fa-fw"></i>&nbsp;数据结构与算法</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://shuzang.top>Home</a></span></section></div><div class=post-nav><a href=https://shuzang.top/2020/02/life-weekly-9/ class=prev rel=prev title="书藏的生活周刊第 9 期 (20200228)"><i class="fas fa-angle-left fa-fw"></i>书藏的生活周刊第 9 期 (20200228)</a>
+<a href=https://shuzang.top/2020/03/%E9%9B%95%E5%88%80/ class=next rel=next title=雕刀>雕刀<i class="fas fa-angle-right fa-fw"></i></a></div></div><div class=comment><div id=disqus_thread></div><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><div id=valine></div><script>document.addEventListener("DOMContentLoaded",function(event){new Valine({el:'#valine',appId:'GteMvevTjOBmhvFh2QGsopGO-gzGzoHsz',appKey:'fL4SYl06GIe012PswFdY17VC',placeholder:'Your comment ...',verify:true,avatar:'hide',pageSize:10,lang:'en',visitor:true,recordIP:true,});});</script><noscript>Please enable JavaScript to view the <a href=https://valine.js.org/>comments powered by Valine.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a></div><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://shuzang.top/about/ target=_blank>shuzang</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><a href=# class="dynamic-to-top animated faster" id=dynamic-to-top><span>&nbsp;</span>
+</a><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true},{left:"$",right:"$",display:false},]});});</script><link href=https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css rel=stylesheet><link href=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.css rel=stylesheet><link rel=stylesheet href=/css/lib/valine/dark.css><script src=https://dillonzq.disqus.com/embed.js></script><script src=https://cdn.bootcss.com/lazysizes/5.1.2/lazysizes.min.js></script><script src=https://cdn.bootcss.com/smooth-scroll/16.1.0/smooth-scroll.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/auto-render.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/mhchem.js></script><script src=/js/lib/valine/Valine.min.js></script><script src=/js/theme.min.js></script></body></html>

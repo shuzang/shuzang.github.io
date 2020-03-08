@@ -132,13 +132,11 @@
 
 链表是最常用的表示一般二叉树的方法。一个简单表示如下
 
-```c
-typedef struct TreeNode *BinTree;
-typedef BinTree Position;
-struct TreeNode{
-    ElementType Data;
-    BinTree Left;
-    BinTree Right;
+```go
+type TreeNode struct{
+    Data ElementType
+    Left *TreeNode
+    Right *TreeNode
 }
 ```
 
@@ -159,11 +157,11 @@ struct TreeNode{
 对应的程序实现如下
 
 ```Go
-func PreOrderTraverse(BinTree BT) {
-	if BT != nil {
-        visit(BT.data)
-		PreOrderTraverse(BT.left)
-		PreOrderTraverse(BT.right)
+func PreOrderTraverse(root *TreeNode) {
+	if root != nil {
+        visit(root.Data)
+		PreOrderTraverse(root.Left)
+		PreOrderTraverse(root.Right)
 	}
 }
 ```
@@ -177,19 +175,19 @@ func PreOrderTraverse(BinTree BT) {
 
 
 ```go
-func PreOrderTraversal(BinTree BT)
-	stack := CreatStack(MaxSize)
-	for BT != nil || stack.Len() != 0 {
-        for BT != nil {
-            Push(stack,BT)
-            visit(T.data)
-            BT = BT.left
-        }
-        if stack.Len() != 0 {
-            BT = Pop(stack)
-            BT = BT.right
-        }
-    }
+func PreOrderTraversal(root *TreeNode)
+	stack := CreatStack()
+	for root != nil || stack.Len() != 0 {
+		for root != nil {
+			stack.PushBack(root)
+            visit(root.Data)
+			root = root.Left
+		}
+		if stack.Len() != 0 {
+			root = stack.Remove(stack.Back()).(*TreeNode)
+			root = root.Right
+		}
+	}
 }
 ```
 
@@ -204,11 +202,11 @@ func PreOrderTraversal(BinTree BT)
 对应的程序实现如下
 
 ```go
-func InOrderTraverse(BinTree BT) {
-	if BT != nil {  
-		PreOrderTraverse(BT.left)
-        visit(BT.data)
-		PreOrderTraverse(BT.right)
+func InOrderTraverse(root *Treenode) {
+	if root != nil {  
+		PreOrderTraverse(root.Left)
+        visit(root.Data)
+		PreOrderTraverse(root.Right)
 	}
 }
 ```
@@ -218,19 +216,19 @@ func InOrderTraverse(BinTree BT) {
 中序遍历也可以使用非递归的方法实现。实际上，前序、中序和后序走的路线是相同的，唯一的区别是访问结点的时机不同，在中序遍历中，是在第二次遇到结点时访问结点，如上图所示，因此中序非递归遍历的程序如下
 
 ```go
-func InOrderTraversal(BinTree BT)
-	stack := CreatStack(MaxSize)
-	for BT != nil || stack.Len() != 0 {
-        for BT != nil {
-            Push(stack,BT)            
-            BT = BT.left
-        }
-        if stack.Len() != 0 {
-            BT = Pop(stack)
-            visit(T.data)
-            BT = BT.right
-        }
-    }
+func InOrderTraversal(root *TreeNode)
+	stack := CreatStack()
+	for root != nil || stack.Len() != 0 {
+		for root != nil {
+			stack.PushBack(root)
+			root = root.Left
+		}
+		if stack.Len() != 0 {
+			root = stack.Remove(stack.Back()).(*TreeNode)
+            visit(root.Data)
+			root = root.Right
+		}
+	}
 }
 ```
 
@@ -245,11 +243,11 @@ func InOrderTraversal(BinTree BT)
 对应的程序实现如下
 
 ```go
-func PostOrderTraverse(BinTree BT) {
-	if BT != nil {  
-		PreOrderTraverse(BT.left)
-		PreOrderTraverse(BT.right)
-        visit(BT.data)
+func PostOrderTraverse(root *TreeNode) {
+	if root != nil {  
+		PreOrderTraverse(root.Left)
+		PreOrderTraverse(root.Right)
+        visit(root.Data)
 	}
 }
 ```
@@ -260,26 +258,25 @@ func PostOrderTraverse(BinTree BT) {
 
 ```go
 func PostOrderTraversal(BinTree BT) {
-    stack := Creatstacktack(Maxstackize)
-    tag := make(map[BinTree]bool)
-    forBT!= nil || stack.Len() != 0 {
-        forBT!= nil {
-           Push(stack,T)
-           tag[T] = true
-           BT= T.left
-        }
-        if stack.Len() != 0 {
-           BT= stack.top()
-           if tag[T] {
-               tag[T] == false
-               BT= T.right
-           }else{
-               BT= Pop(stack,T)
-               visit(T.data)
-               BT= nil
-            }
-        }
-    }
+    stack := Creatstacktack()
+    tag := make(map[*TreeNode]bool)
+	for root != nil || stack.Len() != 0 {
+		for root != nil {
+			stack.PushBack(root)
+			root = root.Left
+		}
+		if stack.Len() != 0 {
+			root = stack.Back().Value.(*TreeNode)
+			if !tag[root] {
+				tag[root] = true
+				root = root.Right
+			} else {
+				root = stack.Remove(stack.Back()).(*TreeNode)
+                visit(root.Data)
+				root = nil
+			}
+		}
+	}
 }
 ```
 
@@ -294,20 +291,20 @@ func PostOrderTraversal(BinTree BT) {
 程序实现如下
 
 ```go
-func LevelOrderTraversal(BinTree BT) {
-    if BT == nil {
+func LevelOrderTraversal(root *TreeNode) {
+    if root == nil {
         return
     }
-    queue := CreatQueue(MaxSize)
-    Push(queue, BT)
+    queue := CreatQueue()
+    queue.PushBack(root)
     for queue.Len() != 0 {
-        BT = Pop(queue)
-        fmt.Println(BT.data)
-        if BT.left != nil {
-            Push(queue, BT.left)
+        root = queue.Remove(queue.Front()).(*TreeNode)
+        visit(root.Data)
+        if root.Left != nil {
+            queue.PushBack(root.Left)
         }
-        if BT.right != nil {
-            Push(queue, BT.right)
+        if root.Right != nil {
+            queue.PushBack(root.Right)
         }
     }
 }
@@ -346,15 +343,17 @@ func LevelOrderTraversal(BinTree BT) {
 递归的实现思路如下
 
 ```go
-func Find(ElementType X, BinTree BST) {
-    if BST == nil 
-        return nil;
-    if X > BST->Data
-        return Find(X, BST->Right);
-    else if X < BST->Data
-        return Find(X, BST->Left);
-    else
-        return BST;
+func searchBST(root *TreeNode, val int) *TreeNode {
+    if root == nil {
+        return nil
+    }
+    if val < root.Val {
+        return searchBST(root.Left, val)
+    }else if val > root.Val {
+        return searchBST(root.Right, val)
+    }else{
+        return root
+    }
 }
 ```
 
@@ -364,13 +363,13 @@ func Find(ElementType X, BinTree BST) {
 func IterFind(ElementType X, BinTree BST){
     for BST != nil {
         if X > BST->Data 
-            BST = BST->Right;
+            BST = BST->Right
         else if X < BST->Data
-            BST = BST->Left;
+            BST = BST->Left
         else
             return BST;
     }
-    return nil;
+    return nil
 }
 ```
 
@@ -384,24 +383,26 @@ func IterFind(ElementType X, BinTree BST){
 查找最小元素的递归方法参考实现如下
 
 ``` go
-func FindMin(BinTree BST){
-    if BST == nil 
-        return nil;
-    else if BST->Left == nil
-        return BST;
+func FindMin(root *TreeNode) *TreeNode {
+    if root == nil 
+        return nil
+    else if root->Left == nil
+        return root
     else
-        return FindMin(BST->Left);
+        return FindMin(root->Left)
 }
 ```
 
 查找最大元素的迭代方法参考实现如下
 
 ```go
-func FindMax(BinTree BST){
-    if BST != nil
-        for BST->Right != nil
-            BST = BST->Right;
-    return BST;
+func findMax(root *TreeNode) *TreeNode {
+	if root != nil {
+		for root.Right != nil {
+			root = root.Right
+		}
+	}
+	return root
 }
 ```
 
@@ -410,16 +411,17 @@ func FindMax(BinTree BST){
 二叉搜索树插入的关键是找到要插入的位置，可以采用和查找类似的方法，一个参考实现如下
 
 ```go
-func Insert(ElementType X, BinTree BST){
-    if BST == nil {
-        BST = &BinTree{X, nil, nil}
-    }else{
-        if X < BST->Data
-            BST->Left = Insert(X, BST->Left);
-        else if X > BST->Data
-            BST->Right=Insert(X,BST->Right);
-    }
-    return BST;
+func insertIntoBST(root *TreeNode, val int) *TreeNode {
+	if root == nil {
+		root = &TreeNode{val, nil, nil}
+	} else {
+		if val > root.Val {
+			root.Right = insertIntoBST(root.Right, val)
+		} else if val < root.Val {
+			root.Left = insertIntoBST(root.Left, val)
+		}
+	}
+	return root
 }
 ```
 
@@ -442,25 +444,27 @@ func Insert(ElementType X, BinTree BST){
 参考实现如下
 
 ```go
-func Delete(ElementType X, BinTree BST){
-    if BST == nil 
-        return nil
-    if X < BST->Data
-        BST->Left = Delete(X, BST->Left);
-    else if X > BST->Data
-        BST->Right = Delete(X, BST->Right);
-    else
-        if BST->Left != nil && BST->Right != nil {
-            BST.Data = FindMin(BST->Right);
-            BST->Right = Delete(BST->Data, BST->Right);
-        }else{
-            Tmp = BST;
-            if BST->Left != nil
-                BST = BST->Right;
-            else if BST->Right == nil
-                BST = BST->Left;
-        }
-    return BST;
+func deleteNode(root *TreeNode, key int) *TreeNode {
+	if root == nil {
+		return nil
+	}
+	if key < root.Val {
+		root.Left = deleteNode(root.Left, key)
+	} else if key > root.Val {
+		root.Right = deleteNode(root.Right, key)
+	} else {
+		if root.Left != nil && root.Right != nil {
+			root.Val = findMin(root.Right).Val
+			root.Right = deleteNode(root.Right, root.Val)
+		} else {
+			if root.Left == nil {
+				root = root.Right
+			} else if root.Right == nil {
+				root = root.Left
+			}
+		}
+	}
+	return root
 }
 ```
 
@@ -495,14 +499,14 @@ $$
 简单的代码实现如下
 
 ```go
-func leftRotate(BinTree AVL) {
-    tmp := AVL.Right
-    AVL.Right = tmp.Left
-    tmp.Left = AVL
-    
-    AVL.Height = max(AVL.Left.Height, AVL.Right.Height) + 1
-    tmp.Height = max(tmp.Left.Height, tmp.Right.Height) + 1
-    return tmp
+func leftRotate(root *TreeNode) *TreeNode {
+	tmp := root.Right
+	root.Right = tmp.Left
+	tmp.Left = root
+
+	root.Height = max(getHeight(root.Left), getHeight(root.Right)) + 1
+	tmp.Height = max(getHeight(tmp.Left), getHeight(tmp.Right)) + 1
+	return tmp
 }
 ```
 
@@ -515,10 +519,10 @@ func leftRotate(BinTree AVL) {
 简单的代码实现如下
 
 ```go
-func rightThenLeftRotate(BinTree AVL) {
-    tmp := rightRotate(AVL.Right)
-    AVL.Right = tmp
-    return leftRotate(AVL)
+func rightThenLeftRotate(root *TreeNode) *TreeNode {
+	tmp := rightRotate(root.Right)
+	root.Right = tmp
+	return leftRotate(root)
 }
 ```
 
@@ -531,14 +535,14 @@ func rightThenLeftRotate(BinTree AVL) {
 简单的代码实现如下
 
 ```go
-func rightRotate(BinTree AVL) {
-    tmp := AVL.Left
-    AVL.Left = tmp.Right
-    tmp.Right = AVL
-    
-    AVL.Height = max(AVL.Left.Height, AVL.Right.Height) + 1
-    tmp.Height = max(tmp.Left.Height, tmp.Right.Height) + 1
-    return tmp
+func rightRotate(root *TreeNode) *TreeNode {
+	tmp := root.Left
+	root.Left = tmp.Right
+	tmp.Right = root
+
+	root.Height = max(getHeight(root.Left), getHeight(root.Right)) + 1
+	tmp.Height = max(getHeight(tmp.Left), getHeight(tmp.Right)) + 1
+	return tmp
 }
 ```
 
@@ -551,33 +555,58 @@ func rightRotate(BinTree AVL) {
 简单的代码实现
 
 ```go
-func leftThenRightRotate(BinTree AVL) {
-    tmp := leftRotate(AVL.Left)
-    AVL.Left = tmp
-    return rightRotate(AVL)
+func leftThenRightRotate(root *TreeNode) *TreeNode {
+	tmp := leftRotate(root.Left)
+	root.Left = tmp
+	return rightRotate(root)
 }
 ```
 
 对于AVL树的所有操作都建立在这四个基本操作之上，在插入和删除操作完成后，调用调整函数，然后在调整函数中分情况调用这四个函数。调整函数的实现如下
 
 ```go
-func ajust(BinTree AVL) {
-    if AVL.Right.Height - AVL.Left.Height == 2 {
-        if AVL.Right.Right.Height > AVL.Right.Left.Height {
-            AVL = leftRotate(AVL)
-        }else{
-            AVL = rightThenLeftRotate(AVL)
-        }
-    }else if AVL.Left.Height = AVL.Right.Height == 2 {
-        if AVL.Left.Left.Height > AVL.Left.Right.Heigth {
-            AVL = rightRotate(AVL)
-        }else{
-            AVL = leftThenRightRotate(AVL)
-        }
-    }
-    return AVL
+func ajust(root *TreeNode) *TreeNode {
+	if root == nil {
+		return nil
+	}
+	compare := getHeight(root.Right) - getHeight(root.Left)
+	if compare == 2 {
+		if getHeight(root.Right.Right) > getHeight(root.Right.Left) {
+			root = leftRotate(root)
+		} else {
+			root = rightThenLeftRotate(root)
+		}
+	} else if compare == -2 {
+		if getHeight(root.Left.Left) > getHeight(root.Left.Right) {
+			root = rightRotate(root)
+		} else {
+			root = leftThenRightRotate(root)
+		}
+	}
+	return root
 }
 ```
+
+其中用到寻找最大值和获取高度两个工具函数，实现如下
+
+```go
+func getHeight(root *TreeNode) int {
+	if root == nil {
+		return 0
+	}
+	return root.Height
+}
+
+func max(a int, b int) int {
+	if a > b {
+		return a
+	} else {
+		return b
+	}
+}
+```
+
+
 
 由于查找不涉及结点的增删，所以算法和实现同二叉搜索树相同。
 
@@ -665,4 +694,4 @@ func Huffman(H MinHeap) {
 
 [3] [CSDN-Golang实现平衡二叉树](https://blog.csdn.net/qq_36183935/article/details/80315808)
 
-
+ 
