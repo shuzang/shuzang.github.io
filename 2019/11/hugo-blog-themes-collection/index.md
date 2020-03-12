@@ -20,6 +20,7 @@
 - [Dillon's Blog](https://dillonzq.com/)
 - [Orianna的博客](https://orianna-zzo.github.io/AllinOne-html/ )
 - [MARKSZ的Blog](https://molunerfinn.com/)：PicGo的开发者
+- [始终的博客](https://liam.page/)：Hexo-Next主题优秀博客
 
 
 
