@@ -28,6 +28,7 @@ featured_image: https://s2.ax1x.com/2020/02/12/1H3DbQ.jpg
 - [Dillon's Blog](https://dillonzq.com/)
 - [Orianna的博客](https://orianna-zzo.github.io/AllinOne-html/ )
 - [MARKSZ的Blog](https://molunerfinn.com/)：PicGo的开发者
+- [始终的博客](https://liam.page/)：Hexo-Next主题优秀博客
 
 
 
