@@ -1,7 +1,7 @@
 # 软件或网站收藏
 
 
-**win10：**
+## win10
 
 - [snipaste](https://www.snipaste.com/)：一般都用QQ截图，这一工具可以无需登录QQ，按F1键即可截图，该有的功能都有
 - [ShareX]( https://getsharex.com/ )：也是截图软件，可能比snipaste强一点，添加截图后OCR或者拼接等基本处理能力，添加自动上传图床的能力等
@@ -20,29 +20,11 @@
 - [DiskGenius](http://www.diskgenius.cn/)：磁盘划分
 - [folder-explorer](https://github.com/d2-projects/folder-explorer)：分析文件目录，统计数据并以树形结构和图表的形式展示结果，也可以导出多种格式留存
 
-**Android：**
+## Android
 
 - 存储空间清理：用于清理手机空文件夹
 
-**chrome插件：**
-
-- Google学术搜索按钮：查询文献，获取文献引用
-- Adblock Plus：广告拦截
-- HitUP-Find Top Things：在浏览器新标签页展示github流行项目
-- 划词翻译
-
-**网页工具：**
-
-- [CleverPDF](https://www.cleverpdf.com/cn)：PDF和其它文件格式的转换，PDF删除页面，加解密，提取图像，压缩，拆分等功能
-- [GPSspg](http://www.gpsspg.com/maps.htm)：在线经纬度查询，在地图上点击地点或搜索栏搜索，可以查看指定地点的经纬度
-- [Chinese Etymology](https://hanziyuan.net/#research)：汉字字源搜索，能找到每个汉字演变的各个阶段，感受汉字的魅力。
-- [异步社区](https://www.epubit.com/index)：计算机经典书籍推荐，网站简洁优雅，不一定在这里买书，但寻找某个领域的计算机经典书籍可以在这里找
-- [docsify](https://docsify.js.org/#/zh-cn/)：文档站点生成，为产品写文档时可以挂靠在这里，写普通的技术文章也可以，没有限制。
-- [倾城之链](https://nicelinks.site/)：分享全球优秀网站，可以发现、学习很多有用或有趣的事物。
-- [路过图床](https://imgchr.com/)：免费公共图床，所见过的最好用的，只是已经用了github做图床，所以不用它了。
-- [beautiful.ai]( https://www.beautiful.ai/ )：更方便的创建PPT
-
-**网站**
+## 网站
 
 - [行动村](https://actionvillager.com/home)：公益项目组队，适合参加公益活动，但地点一般在上海、杭州
 - [Microsculpture](http://microsculpture.net/)：一个很酷的网站，有各种昆虫的照片，每一只都可以放大看细节，非常精致和有趣，帮助我们了解昆虫的世界。
@@ -56,4 +38,23 @@
   - [Python文档](https://docs.python.org/3.8/contents.html)
 - [80x86汇编小站](http://www.x86asm.com/#)
 - [IT学习路线](https://www.mallocfree.com/basic/c/c-0-preface.htm)
+
+## chrome插件
+
+- Google学术搜索按钮：查询文献，获取文献引用
+- Adblock Plus：广告拦截
+- HitUP-Find Top Things：在浏览器新标签页展示github流行项目
+- 划词翻译
+
+## 网页工具
+
+- [CleverPDF](https://www.cleverpdf.com/cn)：PDF和其它文件格式的转换，PDF删除页面，加解密，提取图像，压缩，拆分等功能
+- [GPSspg](http://www.gpsspg.com/maps.htm)：在线经纬度查询，在地图上点击地点或搜索栏搜索，可以查看指定地点的经纬度
+- [Chinese Etymology](https://hanziyuan.net/#research)：汉字字源搜索，能找到每个汉字演变的各个阶段，感受汉字的魅力。
+- [异步社区](https://www.epubit.com/index)：计算机经典书籍推荐，网站简洁优雅，不一定在这里买书，但寻找某个领域的计算机经典书籍可以在这里找
+- [docsify](https://docsify.js.org/#/zh-cn/)：文档站点生成，为产品写文档时可以挂靠在这里，写普通的技术文章也可以，没有限制。
+- [倾城之链](https://nicelinks.site/)：分享全球优秀网站，可以发现、学习很多有用或有趣的事物。
+- [路过图床](https://imgchr.com/)：免费公共图床，所见过的最好用的，只是已经用了github做图床，所以不用它了。
+- [beautiful.ai]( https://www.beautiful.ai/ )：更方便的创建PPT
+
 
