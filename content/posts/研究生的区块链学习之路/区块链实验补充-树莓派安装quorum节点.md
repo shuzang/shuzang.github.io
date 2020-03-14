@@ -1,7 +1,7 @@
 ---
-title: 区块链实验补充-树莓派安装quorum节点
+title: 树莓派安装quorum节点
 date: 2019-09-09
-tags: [树莓派, 课题记录, 区块链]
+tags: [树莓派, 科研记录, 区块链]
 categories: [研究生的区块链学习之路]
 ---
 

@@ -1,35 +1,27 @@
 ---
-title: 区块链实验2-搭建quorum网络
+title: 区块链实验2-搭建Quorum私链网络
 date: 2019-10-02
-tags: [课题记录, 区块链]
+tags: [科研记录, 区块链]
 categories: [研究生的区块链学习之路]
+slug: build Quorum private blockchain network
 ---
 
-## 一. 前言
+本文是论文复现部分的第一篇，主要介绍如何搭建Quorum私有区块链网络，在第三部分实验改进中，将不再单独介绍私链平台搭建，和这里使用的私链相同。
 
-之前使用两台电脑和两台树莓派搭建quorum网络，但到最后由于网络质量的问题，共识无法正常运行，导致合约部署无法完成。
+## 1. 网络拓扑
 
-```bash
-INFO [09-14|10:56:00.419] Commit new mining work                   number=1 sealhash=1305ae…019d90 uncles=0 txs=0 gas=0 fees=0 elapsed=556.954µs
-TRACE[09-14|10:56:00.420] Dial error                               task="staticdial 5e62fd3b39e5ae25 192.168.191.5:30303" err="dial tcp 192.168.191.5:30303: connect: connection refused"
-DEBUG[09-14|10:56:00.421] Can't resolve node                       id=0x8e6a40         err="discovery is disabled"
-TRACE[09-14|10:56:00.421] Dial task done                           task="staticdial 5e62fd3b39e5ae25 192.168.191.5:30303"
-TRACE[09-14|10:56:00.420] handleRequest                            address=0x93C20b1ffA9BF8738BF194d5203e3D2E2A48428d state="Accept request" seq=1 number=1 hash=23cc4d…b11876
-TRACE[09-14|10:56:00.422] Dial error                               task="staticdial c31b4abe77e8a91a 192.168.191.4:30303" err="dial tcp 192.168.191.4:30303: connect: connection refused"
-```
+在正式开始本实验之前，已经尝试过使用两台电脑和两台树莓派搭建Quorum网络，主要使用的是虚拟机，但到最后由于网络质量的问题，共识协议无法正常运行，导致合约部署无法完成。主要原因估计是PC上的节点装在了虚拟机里，虚拟机又使用桥接模式，导致最后丢包率和延迟都比较高。因此这次对实验做一定的调整，主要有两点：
 
-主要原因估计是PC上的节点装在了虚拟机里，虚拟机又使用桥接模式，导致最后丢包率和延迟都比较高。因此这次对实验做一定的调整，主要有两点：
-
-1. 撤销laptop的节点，只使用台式机，节点仍然安装在虚拟机中，但不使用桥接模式，而是通过外接无线网卡直接连到网络；
+1. 撤销laptop的节点，只使用台式机，节点仍然安装在虚拟机中，但不使用桥接模式，而是通过外接无线网卡直接连到路由器的无线网络；
 2. 扩展节点数量到6个，虚拟机中设置4个验证者节点，以端口号区分，两台树莓派分别代表一个普通节点，在之后加入。
 
-最终使用了两台树莓派和一台计算机搭建完成6节点的quorum网络，仍采用了IBFT共识，未启用隐私管理器。网络拓扑如下：
+最终使用了两台树莓派和一台计算机搭建完成6节点的Quorum网络，采用了IBFT共识，未启用隐私管理器。网络拓扑如下：
 
-![quorum网络拓扑](https://user-images.githubusercontent.com/26682846/71329597-0b9bbd00-2562-11ea-8ed6-102b74fafe66.png)
+![网络拓扑设计](https://s1.ax1x.com/2020/03/14/8l9ZqJ.png)
 
 注意，当前虚拟机和树莓派都是通过无线网卡接入路由器共享的无线网络(网络名为quorum)
 
-### 1. 设备和操作系统选择
+### 1.1 设备和操作系统选择
 
 实验平台共使用了一台台式电脑和两台树莓派。设备和操作系统的详细信息如下，台式电脑的内存和硬盘信息是虚拟机分配的容量。
 
@@ -39,7 +31,7 @@ TRACE[09-14|10:56:00.422] Dial error                               task="staticd
 | Raspberry Pi 3 Model B Plus | quad-core ARM Cortex A53, 1.4GHz | Raspbian  Buster         | 1GB  | 32GB(microSD card) |
 | Raspberry Pi 3 Model B      | quad-core ARM Cortex A53, 1.2GHz | Raspbian Buster          | 1GB  | 16GB(microSD card) |
 
-### 2. 静态ip分配
+### 1.2 静态ip分配
 
 台式电脑的操作环境是在虚拟机上完成的，涉及到网络相关操作，这里事先对各设备进行静态ip的分配
 
@@ -52,11 +44,11 @@ TRACE[09-14|10:56:00.422] Dial error                               task="staticd
 | Pi 3B+         | lightnode1 | node4    | 192.168.191.3       | Raspbian Buster  |
 | Pi 3B          | lightnode2 | node5    | 192.168.191.4       | Raspbian Buster  |
 
-## 二、台式电脑环境设置
+## 2. 主机设置
 
 在VMware中安装Ubuntu 18.04虚拟机，安装完成后完成如下基础配置操作：
 
-### 1. 更新源和系统
+### 2.1 更新源和系统
 
 根据自己需要选择是否更换软件源，此处我使用了原生的源
 
@@ -65,7 +57,7 @@ $ sudo apt-get update
 $ sudo apt-get upgrade
 ```
 
-### 2. 调整系统时间
+### 2.2 调整系统时间
 
 查看系统时区是否正确
 
@@ -86,7 +78,7 @@ systemd-timesyncd.service active: yes
 $ timedatectl set-timezone Asia/Shanghai
 ```
 
-### 3. 设置主机名
+### 2.3 设置主机名
 
 ```bash
 $ sudo hostnamectl set-hostname validator
@@ -107,7 +99,7 @@ $ hostnamectl
       Architecture: x86-64
 ```
 
-### 4. 设置静态ip
+### 2.4 设置静态ip
 
 执行`ifconfig`命令需要安装`net-tools`工具
 
@@ -119,11 +111,11 @@ Ubuntu18.04必须使用[netplan](https://ubuntu.com/blog/ubuntu-bionic-netplan)�
 
 在设置页面选择无线网络，然后点击网络连接的quorum网络的小齿轮图标，进入网络设置页面
 
-![](https://user-images.githubusercontent.com/26682846/71355675-c2c42280-25ba-11ea-802c-ead9b76d0ec1.png)
+![](https://s1.ax1x.com/2020/03/14/8lCt6U.png)
 
 点击`IPv4`选项卡，选择`Manual`，输入我们之前预先设计的IP`192.168.191.2`，子网掩码、网关和DNS都做相应的设置，然后点击应用。
 
-![](https://user-images.githubusercontent.com/26682846/71355931-99f05d00-25bb-11ea-8f9d-7a2c0f2094c2.png)
+![](https://s1.ax1x.com/2020/03/14/8lCDt1.png)
 
 查看设置好的网络地址
 
@@ -140,9 +132,9 @@ wlxb8de5e4dad9c: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 ```
 
-最后取消有限网络的自动连接，确保网络连接处于`quorum`无线网络上，不过还需要在每次虚拟机启动时手动断开网卡和主机的连接，然后连到虚拟机上。
+最后取消有线网络的自动连接，确保网络连接处于`quorum`无线网络上，不过还需要在每次虚拟机启动时手动断开网卡和主机的连接，然后连到虚拟机上。
 
-### 5. 安装golang
+### 2.5 安装golang
 
 获取与安装go1.13
 
@@ -171,7 +163,7 @@ go version go1.13 linux/amd64
 
 注：真正生效必须重启系统
 
-### 6. 安装geth for quorum
+### 2.6 安装geth for quorum
 
 获取编译后的二进制包
 
@@ -204,7 +196,7 @@ GOPATH=
 GOROOT=/home/travis/.gimme/versions/go1.11.12.linux.amd64
 ```
 
-### 7. 获取并编译istanbul-tools
+### 2.7 获取并编译istanbul-tools
 
 istanbul-tools用来初始化istanbul-BFT共识网络及进行网络测试
 
@@ -229,11 +221,11 @@ $ ./build/bin/istanbul --version
 istanbul version v1.0.1
 ```
 
-## 三. 树莓派启动及环境配置
+## 3. 树莓派启动及配置
 
-以Pi 3B+为例，Pi3B配置操作基本相同
+以Pi 3B+为例，Pi 3B配置操作基本相同
 
-### 1. 树莓派启动
+### 3.1 树莓派启动
 
 将Raspbian Buster镜像写入准备好的SD卡，重新加载在电脑中的SD卡会出现boot盘，同时也是树莓派的`/boot`目录。在boot盘根目录新建名为`ssh`的文件，开启SSH连接。同时新建`wpa_supplicant.conf`文件，编辑其内容如下：
 
@@ -253,9 +245,9 @@ network={
 
 使用扫描到的ip通过Putty利用SSH协议进行登录。
 
-### 2. 树莓派基本配置
+### 3.2 树莓派基本配置
 
-**(1) 更新源及系统**
+#### A. 更新源及系统
 
 编辑/etc/apt/sources.list文件
 
@@ -290,7 +282,7 @@ $ sudo apt-get update
 $ sudo apt-get upgrade
 ```
 
-**(2) 安装xrdp供远程连接**
+#### B. 安装xrdp供远程连接
 
 ```bash
 $ sudo apt-get install xrdp
@@ -300,7 +292,7 @@ ii  xorgxrdp                              1:0.2.9-1                             
 ii  xrdp                                  0.9.9-1                               armhf        Remote Desktop Protocol (RDP) server
 ```
 
-**(3) 开启ftp供文件传输**
+#### C. 开启ftp供文件传输
 
 安装vsftpd
 
@@ -330,7 +322,7 @@ write command.write_enable=YES
 $ sudo service vsftpd start
 ```
 
-**(4) 修改pi账户密码，时区和主机名**
+#### D. 修改pi账户密码，时区和主机名
 
 ```bash
 $ sudo raspi-config
@@ -372,7 +364,7 @@ ff02::2         ip6-allrouters
 
 退出终端并使用新密码重新登录，主机名将更改为node5。注意此时用户名仍为pi。
 
-**(5) 设置静态ip**
+#### E. 设置静态ip
 
 编辑`/etc/dhcpcd.conf`文件
 
@@ -392,7 +384,9 @@ static domain_name_servers=192.168.191.1
 
 重启并以新的ip登录树莓派。
 
-(6) 获取并安装geth
+#### F. 获取并安装geth
+
+已经交叉编译过了，这里下载的是最后生成的文件，放到了Github上。交叉编译的过程可以参考本系列文章的两篇补充说明。
 
 ```bash
 $ git clone -b gethonly https://github.com/shuzang/quorum-raspbian.git
@@ -418,9 +412,9 @@ GOPATH=
 GOROOT=/usr/lib/go-1.11
 ```
 
-## 四. 私链网络搭建及测试运行
+## 4. 私链网络搭建及测试运行
 
-### 1. 台式电脑
+### 4.1 主机
 
 各节点数据和相关文件的前期生成都在台式电脑中由istanbul-tools工具完成。切换到台式电脑，在istanbul目录下创建各节点的工作目录
 
@@ -753,7 +747,7 @@ $ ps
 
 第一次启动不需要使用`ps`和`killall`命令，只有之后忘记客户端是否启动的时候才需要
 
-### 2. 树莓派
+### 4.2 树莓派
 
 以raspberry pi 3B+为例，介绍添加节点到当前网络的操作，raspberry pi 3B操作相似。
 
@@ -889,9 +883,7 @@ $ ps | grep geth
 
 接下来可在任一设备的节点目录下通过websocket进行操作。
 
-至此利用quorum搭建私链网络完毕，用作之后的实验平台，接下来进行交易验证、合约部署和测试。
+至此利用Quorum搭建私链网络完毕，用作之后的实验平台，接下来进行交易验证、合约部署和测试。
 
-## 参考
 
-[解决Hyper-V内虚拟机网络延迟高的问题(ping延时大)](https://www.ywlib.com/archives/109.html)
 

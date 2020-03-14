@@ -1,12 +1,12 @@
 ---
-title: 区块链实验9-truffle连接到quorum网络
+title: 区块链实验6-truffle连接到quorum网络
 date: 2019-12-24
-tags: [课题记录]
+tags: [科研记录]
 categories: [研究生的区块链学习之路]
 slug: "Experiment 9-Connecting Truffle to Quorum"
 ---
 
-手动配置的复杂性难以言表，这次的优化实验决定使用truffle进行部署测试。
+本文是方案优化部分第三篇，也是最后一篇，介绍合约在Quorum区块链网络中的部署过程和访问控制的测试实现。经历了上次的实验，发现手动配置的复杂性难以言表，这次的优化实验决定使用truffle进行部署测试。
 
 ### 1. 账户设置
 

@@ -2,7 +2,7 @@
 title: hugo搭建个人博客2-文章写作
 date: 2019-05-15 
 lastmod: 2020-02-17
-tags: [博客写作]
+tags: [Hugo]
 categories: [爱编程爱技术的孩子]
 
 slug: Hugo blog article write

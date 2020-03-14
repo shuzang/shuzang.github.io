@@ -2,7 +2,7 @@
 title: hugo搭建个人博客3-进阶设置
 date: 2019-07-12
 lastmod: 2020-02-12
-tags: [博客写作]
+tags: [Hugo]
 categories: [爱编程爱技术的孩子]
 
 slug: Hugo blog advanced setup
