@@ -1,7 +1,7 @@
 # 区块链实验6-truffle连接到quorum网络
 
 
-本文是方案优化部分第三篇，也是最后一篇，介绍合约在Quorum区块链网络中的部署过程和访问控制的测试实现。经历了上次的实验，发现手动配置的复杂性难以言表，这次的优化实验决定使用truffle进行部署测试。
+本文是方案优化部分第三篇，也是最后一篇，介绍合约在Quorum区块链网络中的部署过程和访问控制的测试实现。由于论文复现的时候发现手动配置的复杂性难以言表，这次的优化实验决定使用truffle进行部署测试。
 
 ### 1. 账户设置
 
@@ -334,6 +334,8 @@ Summary
 ```
 
 ### 6. 合约交互
+
+尝试了三种方式，但最后只有 truffle console 这种方式真正完成了。
 
 #### ~~6.1 truffle-contract~~
 
@@ -712,10 +714,10 @@ myACC.events.ReturnAccessResult({
 
 实验结果如下
 
-![request access authorized](https://user-images.githubusercontent.com/26682846/71580820-4a6edb80-2b3d-11ea-94dc-f83103fe7813.png)
-![monitor access authorized](https://user-images.githubusercontent.com/26682846/71580822-5064bc80-2b3d-11ea-840a-8ec459d90aad.png)
-![request blocked](https://user-images.githubusercontent.com/26682846/71580828-58246100-2b3d-11ea-944e-8470521b6855.png)
-![monitor request blocked](https://user-images.githubusercontent.com/26682846/71580836-5d81ab80-2b3d-11ea-8f98-ac21f734d647.png)
+![request access authorized](https://s1.ax1x.com/2020/03/15/81cdmj.png)
+![monitor access authorized](https://s1.ax1x.com/2020/03/15/81c6pT.png)
+![request blocked](https://s1.ax1x.com/2020/03/15/81gC38.png)
+![monitor request blocked](https://s1.ax1x.com/2020/03/15/81gK3T.png)
 
 ### 7. 错误测试
 
@@ -777,8 +779,8 @@ truffle(lightnode2)> Register.deployed().then(function(instance) {instance.getAt
 
 错误测试的结果如下
 
-![request static check failed](https://user-images.githubusercontent.com/26682846/71580858-71c5a880-2b3d-11ea-869b-63801f68f137.png)
-![monitor static check failed](https://user-images.githubusercontent.com/26682846/71580863-78ecb680-2b3d-11ea-8210-45b7fe194370.png)
+![request static check failed](https://s1.ax1x.com/2020/03/15/81gQvF.png)
+![monitor static check failed](https://s1.ax1x.com/2020/03/15/81g8b9.png)
 
 ### 8. 总结
 
