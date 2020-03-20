@@ -8,7 +8,9 @@
 -   [LeaveIt](https://github.com/liuzc/LeaveIt)
 -   [KeepIt](https://github.com/Fastbyte01/KeepIt)
 -   [LoveIt](https://github.com/dillonzq/LoveIt)
-- [AllinOne](https://github.com/orianna-zzo/AllinOne)
+-   [AllinOne](https://github.com/orianna-zzo/AllinOne)
+-   [hexo-theme-pure](https://github.com/cofess/hexo-theme-pure)
+-   [hexo-theme-Chic](https://github.com/Siricee/hexo-theme-Chic)
 
 ## 博客
 
