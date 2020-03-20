@@ -16,7 +16,9 @@ featured_image: https://s2.ax1x.com/2020/02/12/1H3DbQ.jpg
 -   [LeaveIt](https://github.com/liuzc/LeaveIt)
 -   [KeepIt](https://github.com/Fastbyte01/KeepIt)
 -   [LoveIt](https://github.com/dillonzq/LoveIt)
-- [AllinOne](https://github.com/orianna-zzo/AllinOne)
+-   [AllinOne](https://github.com/orianna-zzo/AllinOne)
+-   [hexo-theme-pure](https://github.com/cofess/hexo-theme-pure)
+-   [hexo-theme-Chic](https://github.com/Siricee/hexo-theme-Chic)
 
 ## 博客
 
