@@ -277,12 +277,13 @@ func FloydShortestPath(g *Graph, vertex int) {
 
 ![拓扑排序](https://s1.ax1x.com/2020/03/19/8yKVYt.png)
 
-拓扑排序必定是一个有向无环图（DAG），因此，该算法也可以用于判断一个图是否为有向无环图。程序实现如下
+拓扑排序必定是一个有向无环图（DAG），因此，该算法也可以用于判断一个图是否为有向无环图。程序实现如下，返回的result是拓扑排序结果，ve是关键路径需要用到的事件最早发生时间。
 
 ```go
-func TopologicalSort(g *Graph) []int {
-	result := []int{} //拓扑排序的结果数组
-	count := 1        //判断图中是否有环
+func TopologicalSort(g *Graph) ([]int, []int) {
+	result := make([]int, 1) //拓扑排序的结果数组
+	ve := make([]int, g.VNum+1)
+	count := 0 //判断图中是否有环
 
 	//计算各结点的入度并存储
 	indegree := make([]int, g.VNum+1)
@@ -313,13 +314,22 @@ func TopologicalSort(g *Graph) []int {
 				if indegree[k] == 0 {
 					queue.PushBack(k)
 				}
+				if ve[vertex]+v > ve[k] {
+					ve[k] = ve[vertex] + v
+				}
+			}
+			if v == 0 {
+				if ve[vertex]+v > ve[k] {
+					ve[k] = ve[vertex] + v
+				}
 			}
 		}
 	}
 	if count != g.VNum {
 		fmt.Println("This is a DAG!")
+		return nil, nil
 	}
-	return result
+	return result, ve
 }
 ```
 
@@ -370,8 +380,157 @@ func TopologicalSort(g *Graph) []int {
 
 程序实现如下
 
+```
+func CriticalPath(g *Graph) (int, []int) {
+	path, ve := TopologicalSort(g)
+	if len(path) == 1 || path == nil {
+		return 0, nil
+	}
+	vl := make([]int, len(path))
+	for i := 1; i < len(vl); i++ {
+		vl[i] = MAX_INT
+	}
+	vl[len(ve)-1] = ve[len(ve)-1]
 
+	for i := len(vl) - 2; i > 0; i-- {
+		for k, v := range g.AdjMatrix[i] {
+			if v >= 0 && vl[k]-v < vl[i] {
+				vl[i] = vl[k] - v
+			}
+		}
+	}
+	result := []int{}
+	for i := 1; i < g.VNum+1; i++ {
+		for j := 1; j < g.VNum+1; j++ {
+			if g.AdjMatrix[i][j] >= 0 {
+				if ve[i] == vl[j]-g.AdjMatrix[i][j] {
+					result = append(result, i)
+				}
+			}
+		}
+	}
+	result = append(result, path[len(path)-1])
+	return ve[len(ve)-1], result
+}
+```
 
 ## 8. 最小生成树
 
-未完待续……
+生成树指包含全部顶点且树的 V-1 条边全部在图里的树，其中 V 为顶点数目。最小生成树（Minimum Spanning Tree）就是边的权重和最小的生成树。需要注意两点
+
+1. 向生成树中任加一条边都一定会构成回路
+2. 最小生成树存在等价于图连通
+
+生成最小生成树最常见的有 Prim 和 Kruskal 两种算法，这两种都是贪心算法。
+
+### 8.1 Kruskal算法
+
+算法的核心思想用一句话描述就是「不构成环的情况下，每次选取最小的边」，最小边的选取可以使用最小堆，环的判断可以使用并查集。
+
+![Kruskal算法](https://s1.ax1x.com/2020/03/22/8IP2RI.png)
+
+代码实现如下，最小堆的实现使用了 标准库中的container/heap，usetFind是并查集的查找函数
+
+```go
+func usetFind(x int, uset []int) int {
+	for x != uset[x] {
+		x = uset[x]
+	}
+	return x
+}
+
+func KruskalMiniSpanTree(g *Graph) (int, []int) {
+	var total int
+	result := []Edge{}
+	h := &Heap{}
+	heap.Init(h)
+
+	for i := 1; i < g.VNum+1; i++ {
+		for j := i; j < g.VNum+1; j++ {
+			if g.AdjMatrix[i][j] > 0 {
+				heap.Push(h, Edge{i, j, g.AdjMatrix[i][j]})
+			}
+		}
+	}
+
+	uset := make([]int, g.VNum+1) //用数组表示并查集
+	for i := 1; i < len(uset); i++ {
+		uset[i] = i
+	}
+
+	for h.Len() != 0 {
+		e := heap.Pop(h).(Edge)
+		if usetFind(e.from, uset) != usetFind(e.to, uset) {
+			result = append(result, e)
+			uset[uset[e.to]] = uset[e.from]
+			total += e.weight
+		}
+	}
+	return total, uset
+}
+```
+
+### 8.2 Prim算法
+
+记 V 是联通网的顶点集，U 是求得的生成树的顶点集，TE 是求得的生成树的边集。普利姆算法步骤如下
+
+1. 开始时，$U={v_0}, TE = \emptyset$
+2. 计算 U 到其余顶点 V-U 的最小代价，将该顶点纳入 U，边纳入TE
+3. 重复第二步直到 U=V
+
+一个例子如下
+
+![Prim算法](https://s1.ax1x.com/2020/03/22/8IFD4H.png)
+
+代码实现如下
+
+```go
+func PrimMiniSpanTree(g *Graph, start int) (int, []int) {
+	total := 0
+	parent := make([]int, g.VNum+1)
+	dist := make([]int, g.VNum+1)
+
+	parent[start] = -1
+
+	for i := 1; i < len(dist); i++ {
+		if i == start {
+			continue
+		}
+		if g.AdjMatrix[start][i] > 0 {
+			dist[i] = g.AdjMatrix[start][i]
+		} else {
+			dist[i] = MAX_INT
+		}
+	}
+
+	count := 1
+	vertex, mini := start, MAX_INT
+
+	for count < g.VNum {
+		mini = MAX_INT
+		for i := 1; i < len(dist); i++ {
+			if dist[i] != 0 && dist[i] < mini {
+				vertex, mini = i, dist[i]
+			}
+		}
+
+		total += dist[vertex]
+		dist[vertex] = 0
+		count++
+
+		for k, t := range g.AdjMatrix[vertex] {
+			if dist[k] != 0 && t > 0 && t < dist[k] {
+				dist[k] = t
+				parent[k] = vertex
+			}
+		}
+	}
+	return total, parent
+}
+```
+
+### 8.3 两种算法比较
+
+Kruskal的算法时间复杂度为$O(eloge)$，只和边的数目 e 有关，与顶点个数 n 无关，适用于稀疏图
+
+Prim算法时间复杂度为$O(n^2)$，只和顶点个数 n 有关，与边的数目 e 无关，适用于稠密图
