@@ -571,7 +571,7 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 </span><span class=lnt>2
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>TypeOf</span><span class=p>(</span><span class=nx>i</span> <span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span> <span class=nx>Type</span>
 <span class=kd>func</span> <span class=nf>ValueOf</span><span class=p>(</span><span class=nx>i</span> <span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span> <span class=nx>Value</span>
-</code></pre></td></tr></table></div></div><p>因此，使用Valueof转换获得的值，依然拥有自己的类型和值，反射包的Value有不少方法都可以作用于它，比如<code>kind</code>方法返回一个常量来表示类型，<code>Type</code>方法也返回值的类型，<code>Int</code>和<code>Float</code>等方法可以获取存储在内部的值，<code>Interface</code>方法可以还原接口值。示例如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table></div></div><p>因此，使用ValueOf转换获得的值，依然拥有自己的类型和值，反射包的Value有不少方法都可以作用于它，比如<code>kind</code>方法返回一个常量来表示类型，<code>Type</code>方法也返回值的类型，<code>Int</code>和<code>Float</code>等方法可以获取存储在内部的值，<code>Interface</code>方法可以还原接口值。示例如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4

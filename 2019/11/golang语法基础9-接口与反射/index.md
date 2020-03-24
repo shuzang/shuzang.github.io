@@ -408,7 +408,7 @@ func TypeOf(i interface{}) Type
 func ValueOf(i interface{}) Value
 ```
 
-因此，使用Valueof转换获得的值，依然拥有自己的类型和值，反射包的Value有不少方法都可以作用于它，比如`kind`方法返回一个常量来表示类型，`Type`方法也返回值的类型，`Int`和`Float`等方法可以获取存储在内部的值，`Interface`方法可以还原接口值。示例如下
+因此，使用ValueOf转换获得的值，依然拥有自己的类型和值，反射包的Value有不少方法都可以作用于它，比如`kind`方法返回一个常量来表示类型，`Type`方法也返回值的类型，`Int`和`Float`等方法可以获取存储在内部的值，`Interface`方法可以还原接口值。示例如下
 
 ```go
 package main
