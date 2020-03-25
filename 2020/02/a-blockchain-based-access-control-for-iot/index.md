@@ -101,25 +101,25 @@ sequenceDiagram
 
 - 资源所有者节点接口：运行后显示所连接的汽车节点的地址和汽车节点部署的智能合约的地址，另外，还会显示汽车所有者可执行的操作列表，包括检查以前的请求、设置新的ACL属性、响应注册或访问请求、退出列表。
 
-  ![Connected car node interface](https://user-images.githubusercontent.com/26682846/73933416-5c4f5580-4917-11ea-9472-1f6729e715cc.png)
+  ![Connected car node interface](/images/Paper-A-Blockchain-based-access-control-for-IoT/73933416-5c4f5580-4917-11ea-9472-1f6729e715cc.png)
 
 - 请求者节点接口：该接口要求请求者输入自己的账户地址和密码，验证通过后显示资源请求者可执行的操作列表，包括检查之前接收到的交易，发送注册请求、申请token的请求或访问请求，退出列表。
 
-  ![Requester node interface](https://user-images.githubusercontent.com/26682846/73933411-5a859200-4917-11ea-82aa-ac18b5d7decb.png)
+  ![Requester node interface](/images/Paper-A-Blockchain-based-access-control-for-IoT/73933411-5a859200-4917-11ea-82aa-ac18b5d7decb.png)
 
 - 矿工接口：该接口显示节点地址和矿工可执行的操作列表，包括检查之前的请求、响应对token的申请和退出列表。
 
-  ![miner interface](https://user-images.githubusercontent.com/26682846/73933415-5bb6bf00-4917-11ea-9ac4-1578c14dbae5.png)
+  ![miner interface](/images/Paper-A-Blockchain-based-access-control-for-IoT/73933415-5bb6bf00-4917-11ea-9ac4-1578c14dbae5.png)
 
 授权过程被划分为两阶段，第一阶段矿工基于智能合约中的ACL验证和授予token，第二阶段资源所有者基于验证token有效性授予访问权限。
 
 1. 矿工基于ACL中定义的权限进行授权，发送对应的token
 
-   ![Accepting an authorization request](https://user-images.githubusercontent.com/26682846/73933417-5ce7ec00-4917-11ea-84a5-78e8d4a43852.gif)
+   ![Accepting an authorization request](/images/Paper-A-Blockchain-based-access-control-for-IoT/73933417-5ce7ec00-4917-11ea-84a5-78e8d4a43852.gif)
 
 2. 资源所有者验证token有效后授予访问权限
 
-   ![Accepting an access request](https://user-images.githubusercontent.com/26682846/73933418-5d808280-4917-11ea-87b9-5cf5cc6f0d06.gif)
+   ![Accepting an access request](/images/Paper-A-Blockchain-based-access-control-for-IoT/73933418-5d808280-4917-11ea-87b9-5cf5cc6f0d06.gif)
 
 ## 6. 总结与启发
 

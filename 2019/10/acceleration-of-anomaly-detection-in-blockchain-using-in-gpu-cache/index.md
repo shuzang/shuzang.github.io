@@ -21,7 +21,7 @@ Pham等人提出的方法使用图来代表以用户为中心的交易流，如�
 
 
 
-![Overview of user graph](https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/8661738/8672218/8672252/114100a244-fig-3-source-small.gif)
+![Overview of user graph](/images/Paper-Acceleration-of-Anomaly-Detection-in-Blockchain-Using-In-GPU-Cache/114100a244-fig-3-source-small.gif)
 
 ## K-means异常检测
 

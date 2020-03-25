@@ -243,7 +243,7 @@ GitHub需要SSH Key识别出你推送的提交确实是你推送的，而不是�
 
 首先在Github创建一个**同名仓库**
 
-![新建仓库](https://s2.ax1x.com/2020/02/19/3A5tOA.png)
+![新建仓库](/images/git学习-入门/3A5tOA.png)
 ![新建仓库](https://user-images.githubusercontent.com/26682846/71865229-126b2800-313d-11ea-928e-ee03fc5ffdd1.png)
 
 创建完成后跳转界面给我们提供了三个选择
@@ -290,15 +290,15 @@ Branch 'master' set up to track remote branch 'master' from 'origin'.
 
 返回的结果告诉我们分支master设置为跟踪来自origin的远程分支master，代码已推送到远程仓库。此时查看远程仓库如下
 
-![gittest仓库](https://s2.ax1x.com/2020/02/19/3A5DfS.png)
+![gittest仓库](/images/git学习-入门/3A5DfS.png)
 
 点击左侧中间的`2 commits`可以查看提交的具体情况
 
-![提交信息](https://s2.ax1x.com/2020/02/19/3A52mn.png)
+![提交信息](/images/git学习-入门/3A52mn.png)
 
 继续点击每个具体的提交可以查看代码或文件的改动
 
-![add a line](https://s2.ax1x.com/2020/02/19/3A5opF.png)
+![add a line](/images/git学习-入门/3A5opF.png)
 
 查看别人的代码时，可以从这里查看一次次提交的改动和commit信息，有助于帮助我们学习别人的代码和编写思路
 
@@ -401,7 +401,7 @@ a91c248 HEAD@{3}: commit (initial): first commit
 ## 6. 暂存区和工作区
 
 工作区就是电脑里能看到的目录，比如我们的gittest文件夹。该文件夹里的隐藏目录`.git`则不属于工作区，它是版本库。版本库里有暂存区，还有自动创建的第一个分支master，以及指向master的一个指针叫HEAD
- ![工作区与版本库图解](https://s2.ax1x.com/2020/02/19/3AIQns.png)
+ ![工作区与版本库图解](/images/git学习-入门/3AIQns.png)
 `git add`实际上是把文件修改添加到暂存区；
 `git commit`实际上是把暂存区的所有内容提交到当前分支
 

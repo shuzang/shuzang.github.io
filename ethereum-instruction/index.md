@@ -35,13 +35,13 @@
 
 刚打开的时候mist会同步全网信息，需要的时间可能久一点，同步完成后可以进行创建账户、设置密码和转账等操作。其界面如下：
 
-![mist界面](https://user-images.githubusercontent.com/26682846/54515592-7ac30000-4997-11e9-8a8e-c5f8d4500f96.png)
+![mist界面](/images/区块链学习5-以太坊基础知识/54515592-7ac30000-4997-11e9-8a8e-c5f8d4500f96.png)
 
 ### 2.2 Remix
 
 [Remix](https://remix.ethereum.org/#optimize=false&version=builtin)是一个基于浏览器的编译器和IDE，是用C++开发的，客户端不需要安装，能够使用Solidity语言构建以太坊合约并调试。界面如下：
 
-![Remix界面](https://user-images.githubusercontent.com/26682846/54515603-84e4fe80-4997-11e9-9d6c-3d19be7d9236.png)
+![Remix界面](/images/区块链学习5-以太坊基础知识/54515603-84e4fe80-4997-11e9-9d6c-3d19be7d9236.png)
 
 ### 2.3 go-ethereum
 
@@ -53,7 +53,7 @@
 
 以太坊整体架构如图
 
-![架构和组成](https://user-images.githubusercontent.com/26682846/69927821-72463180-14f4-11ea-984d-07f4ea13a42b.jpeg)
+![架构和组成](/images/区块链学习5-以太坊基础知识/69927821-72463180-14f4-11ea-984d-07f4ea13a42b.jpeg)
 
 分三层：底层服务，核心层，顶层应用
 

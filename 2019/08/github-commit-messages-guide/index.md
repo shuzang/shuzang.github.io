@@ -7,7 +7,7 @@
 
 下面的图片展示了 git 如何随着时间存储数据，其中每个「Version」都是一个 commit：
 
-![checking over time](https://s2.ax1x.com/2020/02/19/3AIT4f.png)
+![checking over time](/images/git学习-commit信息编写指南/3AIT4f.png)
 
 ## 2. Commit message
 

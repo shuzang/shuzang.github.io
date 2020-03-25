@@ -9,13 +9,13 @@ Kumar, Tanesh & Braeken, An & Ramani, Vidhya & Ahmad, Ijaz & Harjula, Erkki & Yl
 
 作者使用的木屋用例包含了一些关键的工业流程。以下是该用例的6个主要阶段。
 
-![木屋建造场景](https://user-images.githubusercontent.com/26682846/67540293-71f99000-f717-11e9-9002-39f667b685f6.png)
+![木屋建造场景](/images/Paper-SEC-BlockEdge-Security-Threats-in-Blockchain-Edge-based-Industrial-IoT-Network/67540293-71f99000-f717-11e9-9002-39f667b685f6.png)
 
 ## 区块链-边缘计算框架
 
 结合区块链和边缘计算为 IIoT 提供便利，提出了一个框架，由 Local, Edge, Global, Ledger 四层组成
 
-![框架总览](https://user-images.githubusercontent.com/26682846/67540292-70c86300-f717-11e9-8d03-ace95cb3c931.png)
+![框架总览](/images/Paper-SEC-BlockEdge-Security-Threats-in-Blockchain-Edge-based-Industrial-IoT-Network/67540292-70c86300-f717-11e9-8d03-ace95cb3c931.png)
 
 **本地层**负责收集原始数据，上传到边缘和云。
 
@@ -62,7 +62,7 @@ Kumar, Tanesh & Braeken, An & Ramani, Vidhya & Ahmad, Ijaz & Harjula, Erkki & Yl
 
 但区块链的能力应当不至于此，通过智能合约和Dapp，可以提供更强大的功能，如一些流程、文书工作的自动化，以及平时以云为后端运行的各种应用。也许不再将云视作对立，将其一同纳入区块链范畴是一种思路，但将参与各方的服务器组织起来进行协同计算以及提供分布式的云存储同样可行。
 
-![去掉云的框架](https://user-images.githubusercontent.com/26682846/67552427-b009aa80-f73d-11e9-86b1-e794b249b565.png)
+![去掉云的框架](/images/Paper-SEC-BlockEdge-Security-Threats-in-Blockchain-Edge-based-Industrial-IoT-Network/67552427-b009aa80-f73d-11e9-86b1-e794b249b565.png)
 
 区块链的节点应散布在整个架构的所有设备中，终端IoT设备是否作为区块链节点存在应分类讨论或根据场景决定，安装哪种类型的节点（全节点、轻节点还是[slock.it](https://slock.it/incubed/)这种IoT设备专用节点）根据设备能力确定。如设计中有云的存在，云也应当作为区块链节点。
 

@@ -19,7 +19,7 @@ MythX拥有Remix、VScode和Truffle的插件，因此无论以哪种方式编辑
 
 在 https://dashboard.mythx.io/#/registration 页面使用邮箱进行注册
 
-![注册](https://s1.ax1x.com/2020/03/14/8lZFRs.png)
+![注册](/images/区块链实验5-优化合约审计、测试与部署/8lZFRs.png)
 
 之后关联MetaMask以太坊账户，MythX将提供一个密码供Remix等工具中的插件使用，也可以自己设定，但设定的密码要求长度为6-64位，至少一个小写字符，一个大写字符，一个数字和一个符号，该要求的原文如下：
 
@@ -29,27 +29,27 @@ MythX拥有Remix、VScode和Truffle的插件，因此无论以哪种方式编辑
 
 打开Remix界面，在插件列表搜索MythX，点击`Activate`将插件激活
 
-![激活插件](https://s1.ax1x.com/2020/03/14/8lZ1zR.png)
+![激活插件](/images/区块链实验5-优化合约审计、测试与部署/8lZ1zR.png)
 
 以Remix自带的示例合约ballot.sol为例，首先编译该合约，然后切换到MythX选项卡，输入之前关联到MythX的以太坊账户地址，MythX提供的或自己更改后的密码，点击`Save`，然后点击`Analyze`
 
-![登录并进行分析](https://s1.ax1x.com/2020/03/14/8lZdFe.png)
+![登录并进行分析](/images/区块链实验5-优化合约审计、测试与部署/8lZdFe.png)
 
 经过一段时间的等待后，将可以在`Report`界面查看到安全分析结果
 
-![查看分析结果](https://s1.ax1x.com/2020/03/14/8lZcef.png)
+![查看分析结果](/images/区块链实验5-优化合约审计、测试与部署/8lZcef.png)
 
 也可以点击上图Log记录中的链接进入MythX Dashboard查看详细结果
 
-![详细分析结果](https://s1.ax1x.com/2020/03/14/8lZfYQ.png)
+![详细分析结果](/images/区块链实验5-优化合约审计、测试与部署/8lZfYQ.png)
 
 点击`Analysed Files`查看错误的详细位置与说明，然后更改源代码，重新测试，直到合约安全性达到自己想要的结果。
 
-![迭代修改](https://s1.ax1x.com/2020/03/14/8lZoyq.png)
+![迭代修改](/images/区块链实验5-优化合约审计、测试与部署/8lZoyq.png)
 
 检测到的合约弱点(漏洞)以SWC-XXX编号的形式出现，由 https://swcregistry.io/ 可查看完整的安全问题列表和解释。但是，免费的MythX只能检测10种安全问题，Pro版和企业版可以检测26种安全问题，三种版本的区别如下
 
-![版本区别](https://s1.ax1x.com/2020/03/14/8lZbwT.png)
+![版本区别](/images/区块链实验5-优化合约审计、测试与部署/8lZbwT.png)
 
 具体对每种安全问题的支持程度见该页面： https://mythx.io/swc-coverage/ 
 
@@ -59,7 +59,7 @@ MythX拥有Remix、VScode和Truffle的插件，因此无论以哪种方式编辑
 
 我们所编写的RC，ACC和JC三个合约在经过多次修改后，将出现的安全问题降低到了可接受的程度，如下图所示
 
-![访问控制合约检测结果](https://s1.ax1x.com/2020/03/14/8leP0K.png)
+![访问控制合约检测结果](/images/区块链实验5-优化合约审计、测试与部署/8leP0K.png)
 
 三个合约出现的低级安全问题均为SWC-103: Floating Pragma ，即编译器的版本指定为一个范围，但这样具有更好的适用性，因此不进行修改
 
@@ -69,7 +69,7 @@ MythX拥有Remix、VScode和Truffle的插件，因此无论以哪种方式编辑
 
 ACC出现的15个中级安全问题在详情列表中无法查看
 
-![ACC的安全问题](https://s1.ax1x.com/2020/03/14/8leZpd.png)
+![ACC的安全问题](/images/区块链实验5-优化合约审计、测试与部署/8leZpd.png)
 
 邮件询问后官方的回复如下，字节码级别的错误如果不依靠安全工具很难检出并修正，因此我们只能忽略掉这些安全问题。
 

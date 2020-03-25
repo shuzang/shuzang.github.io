@@ -86,7 +86,7 @@ LightChain层的结构如图2，
 
 图2. Architecture of LightChain layer，由Conchain，Webchain和Chainbase三部分组成。类似于C/S架构，Conchain/Webchain是Client端。模块间通信通过本地Socket完成。
 
-![Architecture of LightChain layer](https://user-images.githubusercontent.com/26682846/54593385-651e0b00-4a69-11e9-83f2-daf521e5160a.png)
+![Architecture of LightChain layer](/images/Paper-LightChain--A-Lightweight--Blockchain-System-for-Industrial-Internet-of-Things/54593385-651e0b00-4a69-11e9-83f2-daf521e5160a.png)
 
 Webchain：将API层发送的操作类型和JSON流转换称预定义的信息类型和二进制流
 

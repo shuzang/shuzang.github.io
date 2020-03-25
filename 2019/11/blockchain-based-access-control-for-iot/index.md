@@ -92,7 +92,7 @@ FairAccess中利用比特币完成的访问控制基本流程如上所示，Zysk
 
 目前区块链解决这一问题的方案总结如下：
 
-![Blockchain-Based Access Control for IoT](https://user-images.githubusercontent.com/26682846/69717985-25570980-1148-11ea-94a5-089b6a3db7f2.png)
+![Blockchain-Based Access Control for IoT](/images/总结-区块链用于物联网访问控制/69717985-25570980-1148-11ea-94a5-089b6a3db7f2.png)
 
 由此可见，使用区块链替代集中式的中央权威的同时，结合分层管理的方式，已经一定程度解决了节点能力弱的问题，唯一在细节上的区别是区块链仅用于提供存储能力还是同时提供存储与计算能力，这里存储指代的内容大致包括设备收集或产生的数据、访问控制记录、ACL、(属性-权限)关联关系和属性集等内容，计算指在区块链中完成权限的比较与授予。之前提到的论文中，一部分仅将权限存储在区块链内，权限的比较（即策略的执行过程）是在链下进行的，这称作仅利用了存储功能，将权限、策略执行过程全部放在区块链中执行，称为同时利用了区块链的存储与计算功能。后一种方式充分发挥了智能合约的能力，在智能合约中执行访问控制策略，有助于防止设备恶意拒绝已授予的访问权限。
 
@@ -146,7 +146,7 @@ Smart Contract-Based Access Control for the Internet of Things
 
 每个ACC实现一对节点的访问控制，JC进行恶意行为判决，RC存储JC和ACCs信息并提供管理合约的功能。如下图所示。
 
-![](https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/6488907/8709863/8386853/zhang3-2847705-small.gif)
+![](/images/总结-区块链用于物联网访问控制/zhang3-2847705-small.gif)
 
 给我们的借鉴是恶意行为记录，判决，处罚，以及如何在时间上做限定。
 
@@ -204,7 +204,7 @@ Work-in-Progress: Integrating Low-Power IoT devices to a Blockchain-Based Infras
 
 **合约执行流程**
 
-![smartCcontractExecution](https://user-images.githubusercontent.com/26682846/55848576-fde30a80-5b7f-11e9-8b9a-c33a0a9224a8.png)
+![smartCcontractExecution](/images/总结-区块链用于物联网访问控制/55848576-fde30a80-5b7f-11e9-8b9a-c33a0a9224a8.png)
 
 ```bash
 When mobile blockchain meets edge computing
@@ -218,7 +218,7 @@ When mobile blockchain meets edge computing
 
 **实验模型**
 
-![Real mobile BC mining experimental](https://user-images.githubusercontent.com/26682846/55848593-089d9f80-5b80-11e9-8fdc-e744af4e374b.png)
+![Real mobile BC mining experimental](/images/总结-区块链用于物联网访问控制/55848593-089d9f80-5b80-11e9-8fdc-e744af4e374b.png)
 
 
 

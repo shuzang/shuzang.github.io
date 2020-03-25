@@ -28,11 +28,11 @@ Oscar Novo. Blockchain Meets IoT:An Architecture for Scalable Access Management 
 
 Ali Dorri设计的架构由smart home, overlay network, cloud storage三部分组成
 
-![Ali的方案架构](https://user-images.githubusercontent.com/26682846/54513845-8c0a0d80-4993-11e9-92f6-ea1029425358.png)
+![Ali的方案架构](/images/总结-Dorri和Novo两人的论文对比/54513845-8c0a0d80-4993-11e9-92f6-ea1029425358.png)
 
 Oscar Novo设计的架构由区块链网络，Management Hub，无线传感器网络三部分组成
 
-![去中心化的访问控制系统](https://user-images.githubusercontent.com/26682846/54514563-74338900-4995-11e9-9eb9-9e1c6f4baa11.png)
+![去中心化的访问控制系统](/images/总结-Dorri和Novo两人的论文对比/54514563-74338900-4995-11e9-9eb9-9e1c6f4baa11.png)
 
 我们在下表中对两个架构的各方面进行对比，但首先声明一些基本内容：
 

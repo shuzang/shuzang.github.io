@@ -714,10 +714,10 @@ myACC.events.ReturnAccessResult({
 
 实验结果如下
 
-![request access authorized](https://s1.ax1x.com/2020/03/15/81cdmj.png)
-![monitor access authorized](https://s1.ax1x.com/2020/03/15/81c6pT.png)
-![request blocked](https://s1.ax1x.com/2020/03/15/81gC38.png)
-![monitor request blocked](https://s1.ax1x.com/2020/03/15/81gK3T.png)
+![request access authorized](/images/区块链实验6-truffle连接到quorum网络/81cdmj.png)
+![monitor access authorized](/images/区块链实验6-truffle连接到quorum网络/81c6pT.png)
+![request blocked](/images/区块链实验6-truffle连接到quorum网络/81gC38.png)
+![monitor request blocked](/images/区块链实验6-truffle连接到quorum网络/81gK3T.png)
 
 ### 7. 错误测试
 
@@ -779,8 +779,8 @@ truffle(lightnode2)> Register.deployed().then(function(instance) {instance.getAt
 
 错误测试的结果如下
 
-![request static check failed](https://s1.ax1x.com/2020/03/15/81gQvF.png)
-![monitor static check failed](https://s1.ax1x.com/2020/03/15/81g8b9.png)
+![request static check failed](/images/区块链实验6-truffle连接到quorum网络/81gQvF.png)
+![monitor static check failed](/images/区块链实验6-truffle连接到quorum网络/81g8b9.png)
 
 ### 8. 总结
 

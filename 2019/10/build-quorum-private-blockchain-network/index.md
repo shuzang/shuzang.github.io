@@ -12,7 +12,7 @@
 
 最终使用了两台树莓派和一台计算机搭建完成6节点的Quorum网络，采用了IBFT共识，未启用隐私管理器。网络拓扑如下：
 
-![网络拓扑设计](https://s1.ax1x.com/2020/03/14/8l9ZqJ.png)
+![网络拓扑设计](/images/区块链实验2-搭建Quorum网络/8l9ZqJ.png)
 
 注意，当前虚拟机和树莓派都是通过无线网卡接入路由器共享的无线网络(网络名为quorum)
 
@@ -106,11 +106,11 @@ Ubuntu18.04必须使用[netplan](https://ubuntu.com/blog/ubuntu-bionic-netplan)�
 
 在设置页面选择无线网络，然后点击网络连接的quorum网络的小齿轮图标，进入网络设置页面
 
-![](https://s1.ax1x.com/2020/03/14/8lCt6U.png)
+![](/images/区块链实验2-搭建Quorum网络/8lCt6U.png)
 
 点击`IPv4`选项卡，选择`Manual`，输入我们之前预先设计的IP`192.168.191.2`，子网掩码、网关和DNS都做相应的设置，然后点击应用。
 
-![](https://s1.ax1x.com/2020/03/14/8lCDt1.png)
+![](/images/区块链实验2-搭建Quorum网络/8lCDt1.png)
 
 查看设置好的网络地址
 

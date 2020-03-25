@@ -13,7 +13,7 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-L
 
  或者在`启用或关闭windows功能`直接勾选`适用于Windows的Linux子系统`。
 
-![选择WSL](https://user-images.githubusercontent.com/26682846/64679858-28c6e700-d4af-11e9-9ade-ccd5b9a87395.png)
+![选择WSL](/images/win10-使用WSL/64679858-28c6e700-d4af-11e9-9ade-ccd5b9a87395.png)
 
 出现提示时重新启动计算机
 
@@ -21,7 +21,7 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-L
 
 要自己选一个Linux分发版，比较方便的是从win10商店安装，我选了用的顺手的Ubuntu18.04 LTS
 
-![Ubuntu 18 04 for WSL](https://user-images.githubusercontent.com/26682846/64679855-28c6e700-d4af-11e9-8509-f95adbf0f0ea.png)
+![Ubuntu 18 04 for WSL](/images/win10-使用WSL/64679855-28c6e700-d4af-11e9-8509-f95adbf0f0ea.png)
 
 ### 初始化
 
@@ -29,7 +29,7 @@ Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Windows-Subsystem-L
 
 安装完成后，系统会提示创建新的用户账户和密码，这将是登录的默认用户，意味着下次打开WSL将不需要输入用户名密码而自动登录，而且，默认情况下它是sudo组的成员。更多说明参见[用户账户和权限](https://docs.microsoft.com/zh-cn/windows/wsl/user-support)
 
-![安装好的WSL](https://user-images.githubusercontent.com/26682846/64679857-28c6e700-d4af-11e9-8ad0-89566df73c22.png)
+![安装好的WSL](/images/win10-使用WSL/64679857-28c6e700-d4af-11e9-8ad0-89566df73c22.png)
 
 ### 安装并使用WSL2
 

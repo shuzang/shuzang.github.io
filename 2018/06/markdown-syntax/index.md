@@ -8,7 +8,7 @@ Markdown由Aaron Swartz和John Gruber共同设计
 
 作者中的Aaron Swartz是天才程序员，著名社交网站[Reddit](http://www.reddit.com/)的联合创始人，14岁参与RSS 1.0规格标准的制订，致力于网络信息开放。在2011年7月19日，因被指控从MIT和JSTOR下载480万篇学术论文并以免费形式上传于网络被捕，2013年1月自杀身亡，年仅26岁。    
 
-![Aaron Swartz](https://s2.ax1x.com/2020/02/12/1H8TOS.jpg)
+![Aaron Swartz](/images/Markdown语法介绍/1H8TOS.jpg)
 
 Markdown的优点很多，下面稍微列举一下
 

@@ -22,24 +22,24 @@
 
 `Token description`随便填，只要之后查看的时候知道是博客的就行。勾选所有`repo`列表项目，其它项目不要选。点击`Generate token`生成Token。
 
-![申请Token](https://s2.ax1x.com/2020/02/12/1HVOiD.png)
+![申请Token](/images/hugo搭建个人博客4-部署优化/1HVOiD.png)
 
 之后跳转的页面会显示Token的值，一定要记下来，因为离开这个页面之后这个值就再也无法查看。我因为已经做过一次了，这里就只查看一下。
 
-![blog token](https://s2.ax1x.com/2020/02/12/1HVjRH.png)
+![blog token](/images/hugo搭建个人博客4-部署优化/1HVjRH.png)
 
 ### 1.3 设置Travis CI
 
  [Travis CI](https://travis-ci.org/account/repositories)是一个持续集成的工具，使用GitHub账号登陆，然后开启`blog`仓库，选择`setting`。
 
-![开启blog仓库持续集成](https://s2.ax1x.com/2020/02/12/1HVbdK.png)
+![开启blog仓库持续集成](/images/hugo搭建个人博客4-部署优化/1HVbdK.png)
 
 在设置页面填写**Environment Variables**。
 
 - **Name** 填写： `GITHUB_TOKEN`
 - **Value** 填写：刚刚在 GitHub 申请到的 Token 的值
 
-![填写环境变量](https://s2.ax1x.com/2020/02/12/1HVhRJ.png)
+![填写环境变量](/images/hugo搭建个人博客4-部署优化/1HVhRJ.png)
 
 填写完成后点击`Add`添加
 
@@ -138,7 +138,7 @@ script:
 
 <font color="green">绿色</font> 代表部署成功  <font color="yellow">黄色</font> 代表正在部署  <font color="red">红色</font> 代表部署失败  <font color="gray">灰色</font> 代表部署被取消
 
-![持续集成通过](https://s2.ax1x.com/2020/02/12/1HVos1.png)
+![持续集成通过](/images/hugo搭建个人博客4-部署优化/1HVos1.png)
 
 然后访问[博客首页](https://shuzang.github.io)，不出意外就可以看到新的改动了。如果部署失败，在网页端的日志记录中找到失败原因，然后修改代码重新提交即可，新的提交通过后，原先失败的提交将会被解决。
 
@@ -174,7 +174,7 @@ $ rm .travis.yml
 
 然后将本地blog分支的内容推送到远程，在网页端进入`shuzang.github.io`仓库的设置页面，将默认分支设置为blog分支。
 
-![设置默认分支](https://s2.ax1x.com/2020/02/12/1HePXR.png)
+![设置默认分支](/images/hugo搭建个人博客4-部署优化/1HePXR.png)
 
 ### 2.2 设置持续集成
 
@@ -244,7 +244,7 @@ jobs:
 
 保存上面的文件后，将本地仓库推送到远程，Github检测到`.github/workflow`目录和里面的`main.yml`文件，就会自动运行，在网页端可以查看运行日志，如果出现错误可以根据日志内容就行修改。
 
-![Github Action 日志文件](https://s2.ax1x.com/2020/02/12/1HeehD.png)
+![Github Action 日志文件](/images/hugo搭建个人博客4-部署优化/1HeehD.png)
 
 等到workflow运行结束，访问博客页面，就可以看到更新成功了。切换到master分支，也可以看到推送的网页文件，不过因为设置了默认分支为blog，以后打开网页端该仓库，以及在本地clone的时候，默认都是blog分支。
 
@@ -272,7 +272,7 @@ jobs:
 
 使用CNAME别名映射域名，比设置A记录更方便，最重要的是A记录无法开启https。参数设置如下图所示。
 
-![CNAME设置](https://s2.ax1x.com/2020/02/12/1Heu1H.png)
+![CNAME设置](/images/hugo搭建个人博客4-部署优化/1Heu1H.png)
 
 访问网址时可能会加www前缀，因此可以设置一个二级域名解析，方法相同。
 
@@ -280,11 +280,11 @@ jobs:
 
 到 Github `shuzang.github.io`仓库设置里，在 `Custom domain` 这里填写`shuzang.top`域名并保存。
 
-![github域名设置](https://s2.ax1x.com/2020/02/12/1He3HP.png)
+![github域名设置](/images/hugo搭建个人博客4-部署优化/1He3HP.png)
 
  `Custom domain` 下方 `Enforce HTTPS` 这个选项一并勾选，Github 跟 Let’s Encrypt 有合作，如果勾选了这个选项，Let’s Encrypt 就会给你的博客签发一张 SSL 证书，免费的。
 
-![启用HTTPS](https://s2.ax1x.com/2020/02/12/1HeJN8.png)
+![启用HTTPS](/images/hugo搭建个人博客4-部署优化/1HeJN8.png)
 
 
 
