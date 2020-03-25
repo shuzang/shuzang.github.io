@@ -3,6 +3,7 @@ title: Truffle框架安装使用
 date: 2019-11-06
 tags: [区块链]
 categories: [研究生的区块链学习之路]
+typora-root-url: ..\..\..\static
 ---
 
 Truffle和Ganache的安装使用

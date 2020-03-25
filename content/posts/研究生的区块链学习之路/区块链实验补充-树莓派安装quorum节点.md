@@ -3,6 +3,7 @@ title: 树莓派安装quorum节点
 date: 2019-09-09
 tags: [树莓派, 科研记录, 区块链]
 categories: [研究生的区块链学习之路]
+typora-root-url: ..\..\..\static
 ---
 
 在熟悉了树莓派并和虚拟机顺利组网以后，首要面临的事情就是在树莓派中安装quorum节点，由于暂时不使用隐私保护功能，不安装隐私管理器`Tessera`或`Constellation`。需要安装的只包括：

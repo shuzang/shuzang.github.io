@@ -3,6 +3,7 @@ title: Address checksum
 date: 2020-01-01
 tags: [区块链]
 categories: [研究生的区块链学习之路]
+typora-root-url: ..\..\..\static
 ---
 
 在智能合约中显式传入地址类型时，可能会出现如下错误

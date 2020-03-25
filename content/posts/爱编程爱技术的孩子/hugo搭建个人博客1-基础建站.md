@@ -7,6 +7,7 @@ categories: [爱编程爱技术的孩子]
 
 slug: Hugo builds personal blog
 featured_image: https://s2.ax1x.com/2020/02/12/1HpTqe.png
+typora-root-url: ..\..\..\static
 ---
 
 [Hugo](https://gohugo.io/)是由Go语言实现的静态网站生成器，可以快速建立一个静态网站，虽然多数情况下用来搭建个人博客，但实际上可做的事不止于此，还可以用作展示在线书籍、个人简历等。我换到Hugo的原因是文章数量变多以后，Hexo的生成速度变慢，难以忍受，同样的文章数量下，Hugo渲染文章几乎是即时的，不必等待，就很舒服。
@@ -118,7 +119,7 @@ $ cp themes/KeepIt/exampleSite/. .
 
 运行`hugo server`命令，在浏览器键入网址[http://localhost:1313](http://localhost:1313)预览主题效果（首页图片未加载是因为还没有放置头像文件）
 
-![KeepIt theme preview](https://s2.ax1x.com/2020/02/12/1Hpbad.png)
+![KeepIt theme preview](/images/hugo搭建个人博客1-基础建站/1Hpbad.png)
 
 ## 4. 网站配置
 
@@ -261,7 +262,7 @@ drwxr-xr-x 1 书葬 197610     0 11月 17 14:41 images/
 
 以上基本配置完成后，网站首页如下
 
-![configuration finished](https://s2.ax1x.com/2020/02/12/1HCWjK.png)
+![configuration finished](/images/hugo搭建个人博客1-基础建站/1HCWjK.png)
 
 ## 5. 文章发布
 
@@ -315,7 +316,7 @@ $ git push origin master
 
 推送完成后从浏览器打开blog仓库，在`setting—>GitHub Pages`勾选从`/docs`目录读取网站。关于网页如何托管在Github的详细说明可以参考[Host on Github](https://gohugo.io/hosting-and-deployment/hosting-on-github/)
 
-![github pages setting](https://s2.ax1x.com/2020/02/12/1HChnO.png)
+![github pages setting](/images/hugo搭建个人博客1-基础建站/1HChnO.png)
 
 点击上图中顶部生成的URL即可查看自己的网站
 

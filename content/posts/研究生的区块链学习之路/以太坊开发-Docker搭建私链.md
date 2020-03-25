@@ -3,6 +3,7 @@ title: Docker搭建以太坊私链
 date: 2019-03-12T11:24:00+08:00
 tags: [区块链]
 categories: [研究生的区块链学习之路]
+typora-root-url: ..\..\..\static
 ---
 
 在以太坊github的[官方项目地址](https://github.com/ethereum/go-ethereum)发现其支持Docker启动，同时因为Docker相对于虚拟机的易用性，决定尝试使用Docker搭建以太坊联盟链

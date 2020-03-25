@@ -4,6 +4,7 @@ date: 2019-12-24
 tags: [科研记录]
 categories: [研究生的区块链学习之路]
 slug: "Experiment 9-Connecting Truffle to Quorum"
+typora-root-url: ..\..\..\static
 ---
 
 本文是方案优化部分第三篇，也是最后一篇，介绍合约在Quorum区块链网络中的部署过程和访问控制的测试实现。由于论文复现的时候发现手动配置的复杂性难以言表，这次的优化实验决定使用truffle进行部署测试。
@@ -719,10 +720,10 @@ myACC.events.ReturnAccessResult({
 
 实验结果如下
 
-![request access authorized](https://s1.ax1x.com/2020/03/15/81cdmj.png)
-![monitor access authorized](https://s1.ax1x.com/2020/03/15/81c6pT.png)
-![request blocked](https://s1.ax1x.com/2020/03/15/81gC38.png)
-![monitor request blocked](https://s1.ax1x.com/2020/03/15/81gK3T.png)
+![request access authorized](/images/区块链实验6-truffle连接到quorum网络/81cdmj.png)
+![monitor access authorized](/images/区块链实验6-truffle连接到quorum网络/81c6pT.png)
+![request blocked](/images/区块链实验6-truffle连接到quorum网络/81gC38.png)
+![monitor request blocked](/images/区块链实验6-truffle连接到quorum网络/81gK3T.png)
 
 ### 7. 错误测试
 
@@ -784,8 +785,8 @@ truffle(lightnode2)> Register.deployed().then(function(instance) {instance.getAt
 
 错误测试的结果如下
 
-![request static check failed](https://s1.ax1x.com/2020/03/15/81gQvF.png)
-![monitor static check failed](https://s1.ax1x.com/2020/03/15/81g8b9.png)
+![request static check failed](/images/区块链实验6-truffle连接到quorum网络/81gQvF.png)
+![monitor static check failed](/images/区块链实验6-truffle连接到quorum网络/81g8b9.png)
 
 ### 8. 总结
 

@@ -4,6 +4,7 @@ date: 2019-12-13
 tags: [课题记录]
 categories: [研究生的区块链学习之路]
 draft: true
+typora-root-url: ..\..\..\static
 ---
 
 ## 属性集
