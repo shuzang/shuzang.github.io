@@ -114,7 +114,21 @@ SCI期刊分区：3区
 
 我们的方法可以应用于大量的物联网用例，不需要特殊的硬件。但是，它需要一个初始化阶段。初始化阶段中，一个设备被设计为bubble的Master（它拥有私钥/公钥对），可以认为它类似于证书颁发机构。任何给定的设备都可以是Master。此外，bubble中除Master之外的其它设备称为Follower。每个Follower生成椭圆曲线（EC）私钥/公钥对。然后，每个Follower由一个名为ticket的结构识别，该结构表示64字节的轻量级证书，其中包含：（1）groupID（grpID），表示设备所属bubble，（2）objectID（objID），代表bubble中的Follower标识符，（3）pubAddr，代表Follower的公共地址。它代表了Follower公钥的Keccak（SHA-3）哈希的前20个字节。（4）一个Signature结构，它使用bubble的Master的私钥表示椭圆曲线数字签名算法（ECDSA）签名。与传统的签名算法相比，例如Rivest Shamir Adleman（RSA），ECDSA具有多种优势，特别是关于密钥大小和签名时间，更适合物联网。Signature涵盖了groupID，objcetID和pubAddr的串联的Keccack哈希。结构如下：
 
-![Bubbles of Trust：a decentralized Blockchain-based authentication system for IoT](/images/Paper-Bubbles-of-Trust-a-decentralized-Blockchain-based-authentication/69927697-e7fdcd80-14f3-11ea-86fb-1ab7c7743be0.png)
+---
+
+GroupID：XX
+
+ObjectID：YY
+
+PubAddr：@@
+
+---
+
+Signature（keccakhash（XX || YY || @@））
+
+---
+
+
 
 #### B. System's functioning
 
