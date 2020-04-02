@@ -45,7 +45,7 @@ arXiv预印（非正式发表）
 
 图1.
 
-![Ali的方案架构](/images/Paper-Blockchain-in-Internet-of-Things_-challenges-and-solutions/54513845-8c0a0d80-4993-11e9-92f6-ea1029425358-1585142114319.png)
+![Ali的方案架构](/images/Paper-Blockchain-in-Internet-of-Things_-challenges-and-solutions/54513845-8c0a0d80-4993-11e9-92f6-ea1029425358.png)
 
 考虑两个情况：
 
@@ -90,7 +90,7 @@ overlay BC由所有CH维护，包含访问交易和云存储发送的多签名�
 
 图2.
 
-![恒温器数据送到云存储](/images/Paper-Blockchain-in-Internet-of-Things_-challenges-and-solutions/54513881-a5ab5500-4993-11e9-8334-824cc0d00051-1585142123780.png)
+![恒温器数据送到云存储](/images/Paper-Blockchain-in-Internet-of-Things_-challenges-and-solutions/54513881-a5ab5500-4993-11e9-8334-824cc0d00051.png)
 
 共享存储和本地存储的过程要简单很多
 

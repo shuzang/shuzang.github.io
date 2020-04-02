@@ -1,5 +1,5 @@
 ---
-title: LightCahin:A Lightweight Blockchain System for Industrial Internet of Things
+title: LightChain:A Lightweight Blockchain System for Industrial Internet of Things
 date: 2019-03-19T11:00:00+08:00
 tags: [论文笔记]
 categories: [研究生的区块链学习之路]
@@ -71,7 +71,7 @@ IIoT被大量采用，但有如下问题：
 
 图1. Four-layer framework of LightChain
 
-![Four-layer framework of LightChain](https://user-images.githubusercontent.com/26682846/54593367-5afc0c80-4a69-11e9-89b7-5af1a4c45b77.png)
+![Four-layer framework of LightChain](https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/9424/8736410/8664132/wang1-2904049-large.gif)
 
 各层功能如下：
 
@@ -91,7 +91,7 @@ LightChain层的结构如图2，
 
 图2. Architecture of LightChain layer，由Conchain，Webchain和Chainbase三部分组成。类似于C/S架构，Conchain/Webchain是Client端。模块间通信通过本地Socket完成。
 
-![Architecture of LightChain layer](/images/Paper-LightChain--A-Lightweight--Blockchain-System-for-Industrial-Internet-of-Things/54593385-651e0b00-4a69-11e9-83f2-daf521e5160a.png)
+![Architecture of LightChain layer](https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/9424/8736410/8664132/wang2-2904049-large.gif)
 
 Webchain：将API层发送的操作类型和JSON流转换称预定义的信息类型和二进制流
 

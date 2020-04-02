@@ -51,7 +51,7 @@ IoT设备数量迅速增长并逐渐对许多关键领域产生重要影响，�
 
 这篇论文的方案还使用一个智能合约定义访问控制涉及的所有操作，该合约是唯一的且无法从区块链中删除，管理者（Manager）与智能合约交互来定义访问控制策略。整体架构图如下
 
-![去中心化的访问控制系统](/images/Paper-Blockchain-Meets-IoT-An-Architecture-for-Scalable-Access-Management-in-IoT/3Z4Yt0.png)
+![去中心化的访问控制系统](https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/6488907/8334665/8306880/novo2-2812239-small.gif)
 
 ### 2.1 涉及的角色
 
@@ -106,7 +106,7 @@ IoT设备数量迅速增长并逐渐对许多关键领域产生重要影响，�
 
 介绍架构中不同部分间的交互，如下图3，分为四阶段。图中未列出所有交互，但下文会有详细列举。这些交互是注册后系统中的访问控制策略的修改和注册后设备的管理者的修改
 
-![基于区块链的数据访问-四阶段](/images/Paper-Blockchain-Meets-IoT-An-Architecture-for-Scalable-Access-Management-in-IoT/3e8e9U.png)
+![基于区块链的数据访问-四阶段](https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/6488907/8334665/8306880/novo3-2812239-small.gif)
 
 1. Network Set-up
 
@@ -154,7 +154,7 @@ IoT设备数量迅速增长并逐渐对许多关键领域产生重要影响，�
 
 虽然最终的目标是公有区块链网络，但这篇论文仅仅是概念验证，所以作者选用以太坊搭建了一个私有区块链。智能合约的设计结构如下，IoT设备信息、管理者信息，访问控制策略的细节都存在如下图所示的两个不同结构中，这个结构很相似于哈希表
 
-![智能合约结构](/images/Paper-Blockchain-Meets-IoT-An-Architecture-for-Scalable-Access-Management-in-IoT/3e8QBR.png)
+![智能合约结构](https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/6488907/8334665/8306880/novo4-2812239-small.gif)
 
 管理中心可帮助IoT设备与区块链网络连接，通过JavaScript语言调用Web3 JavaScript API与以太坊节点通信，并使用名为node-coap的CoAP JavaScript库与IoT设备连接。
 

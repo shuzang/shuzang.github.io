@@ -50,7 +50,7 @@ ControlChain[^3]使用了四种区块链，分别负责记录设备和用户的�
 2. 基于投票的共识，减小资源有限的IoT设备的计算压力，因此是轻量级的
 3. 离线工作，因为控制和授权信息不需要通过连接的蓝牙设备扫描和广播
 
-![Architecture framework](/images/Paper-LVChain-A-Lightweight-and-Vote-based-Blockchain-for-Access-Control-in-the-IoT/1XYOxJ.png)
+<img src="https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/8767367/8780575/8780687/162-fig-1-source-large.gif" alt="Architecture framework" style="zoom: 50%;" />
 
 架构总体结构如下图所示，分为三层：数据层、网络层和共识层。
 
@@ -60,7 +60,7 @@ ControlChain[^3]使用了四种区块链，分别负责记录设备和用户的�
 
 受限于蓝牙设备的计算能力，使用了基于投票的共识算法。为了减少通信开销，共识算法设计为：请求授权的用户在收到大部分授权用户的投票信息时被授权。
 
-![架构工作流](/images/Paper-LVChain-A-Lightweight-and-Vote-based-Blockchain-for-Access-Control-in-the-IoT/1XYjM9.png)
+![架构工作流](https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/8767367/8780575/8780687/162-fig-2-source-large.gif)
 
 整个架构的工作流程如上图，当一个用户尝试操作一个设备时，设备会首先根据数据层的授权信息将用户区分为授权用户和非授权用户。如果是非授权用户，设备向整个P2P网络的授权用户发送授权请求，然后授权用户进行投票，每个用户对每个请求只有一票，同意则进行投票，不同意什么都不做。接下来，在共识层中，设备接收投票回应，检查回应的有效性并计算有效投票数量。在一段确定的时间内，如果投票用户的数量超过了授权用户数量的一半，请求者被授权，其信息存储在数据层中并添加到授权信息。如果是授权用户，一方面设备转发控制请求并将控制信息按时间戳添加到区块链，另一方面如果请求针对自己，设备直接进行响应。
 
@@ -92,7 +92,7 @@ ControlChain[^3]使用了四种区块链，分别负责记录设备和用户的�
 
 ### 4.2 仿真
 
-![工作平台](/images/Paper-LVChain-A-Lightweight-and-Vote-based-Blockchain-for-Access-Control-in-the-IoT/1XYxq1.png)
+<img src="https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/8767367/8780575/8780687/162-fig-3-source-large.gif" alt="工作平台" style="zoom: 67%;" />
 
 作者如上图所示实施了文中提出的架构，使用智能手机代表用户，配备MCU和蓝牙的智能家庭设备代表终端设备。与树莓派相比，这里设备的计算和存储能力更弱，因此能证明本文架构在资源有限的IoT环境下的适用性。软硬件具体情况如下
 
@@ -103,7 +103,7 @@ ControlChain[^3]使用了四种区块链，分别负责记录设备和用户的�
 
 当一个未授权用户想要操作设备时，设备查找授权信息确定用户未授权，然后通过蓝牙将授权请求广播给所有授权用户，授权用户接到请求后，如下图所示做出是否同意的决策，选择「NO」不会发送任何信息，选择「YES」发送投票信息。
 
-![授权请求](https://s2.ax1x.com/2020/02/14/1XYvrR.png)
+<img src="https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/8767367/8780575/8780687/162-fig-4-source-large.gif" alt="授权请求" style="zoom:67%;" />
 
 一系列测试的结果如下表所示，共使用了两个嵌入式设备，并使授权用户的数量逐渐增加，反映了网络扩张的过程。结果中可以看出，投票用户超过一半时用户被授权。
 

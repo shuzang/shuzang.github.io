@@ -24,9 +24,7 @@ Pham等人提出的方法使用图来代表以用户为中心的交易流，如�
 
 该图用于提取每个区块链用户的特征量，例如，顶点入边的数目是收入交易的数目，出边的数目是支出交易的数目，Pham使用收入交易数目、支出交易数目、平均收入金额、平均支出金额等六个特征量进行异常检测，此外还使用了K-means聚类、马氏距离和局部离群因子三种异常检测算法。采用基于用户图的方法，对比特币网络中两期盗窃案件做了分析。但，即使检测到了异常交易，也很难判断是否真的是欺诈交易，因为大部分盗窃的具体信息并不公布。
 
-
-
-![Overview of user graph](/images/Paper-Acceleration-of-Anomaly-Detection-in-Blockchain-Using-In-GPU-Cache/114100a244-fig-3-source-small.gif)
+![Overview of user graph](https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/8661738/8672218/8672252/114100a244-fig-3-source-large.gif)
 
 ## K-means异常检测
 

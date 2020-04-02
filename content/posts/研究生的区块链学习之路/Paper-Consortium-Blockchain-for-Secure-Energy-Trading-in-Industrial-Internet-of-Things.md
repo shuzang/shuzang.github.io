@@ -47,7 +47,7 @@ typora-root-url: ..\..\..\static
 
    下图展示了EAG中的四个实体：交易服务器(transaction)，信用银行(credit bank)，账户池(account pool)，存储池(memory pool)。交易服务器从能量节点收集能量请求，并匹配能量交易。这里使用能量币(energe coin)来作为加密数字货币流通。每个能源节点都有一个能量币账户来存储个人交易记录。有一个相应的钱包来管理这个帐户中的个人能量币。用公钥作钱包地址，所有钱包和相应的钱包地址与能量币账户之间的映射关系存储在本地账户池中。EAG中的帐户池记录和管理能量节点的个人钱包地址中的能量币资金。内存池存储本地能量节点的所有交易记录。
 
-   ![Consortium Blockchain for Secure Energy Trading in Industrial Internet of Things](/images/Paper-Consortium-Blockchain-for-Secure-Energy-Trading-in-Industrial-Internet-of-Things/69927789-4a56ce00-14f4-11ea-808d-dabb81c70e84.png)
+   ![Consortium Blockchain for Secure Energy Trading in Industrial Internet of Things](https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/9424/8426041/8234700/zhang2-2786307-large.gif)
 
 3. Smart meters：每个IIoT节点中的内置智能电表可实时计算和记录交易能量。买家根据电表的记录向卖家支付费用。
 

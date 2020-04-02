@@ -14,13 +14,13 @@ Kumar, Tanesh & Braeken, An & Ramani, Vidhya & Ahmad, Ijaz & Harjula, Erkki & Yl
 
 作者使用的木屋用例包含了一些关键的工业流程。以下是该用例的6个主要阶段。
 
-![木屋建造场景](/images/Paper-SEC-BlockEdge-Security-Threats-in-Blockchain-Edge-based-Industrial-IoT-Network/67540293-71f99000-f717-11e9-9002-39f667b685f6.png)
+![木屋建造场景](https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/8944089/8949080/8949107/Paper06-fig-1-source-large.gif)
 
 ## 区块链-边缘计算框架
 
 结合区块链和边缘计算为 IIoT 提供便利，提出了一个框架，由 Local, Edge, Global, Ledger 四层组成
 
-![框架总览](/images/Paper-SEC-BlockEdge-Security-Threats-in-Blockchain-Edge-based-Industrial-IoT-Network/67540292-70c86300-f717-11e9-8d03-ace95cb3c931.png)
+![框架总览](https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/8944089/8949080/8949107/Paper06-fig-2-source-large.gif)
 
 **本地层**负责收集原始数据，上传到边缘和云。
 
