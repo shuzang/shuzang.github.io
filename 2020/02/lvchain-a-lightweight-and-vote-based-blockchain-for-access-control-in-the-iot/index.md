@@ -1,7 +1,7 @@
 # LVChain： A Lightweight and Vote-based Blockchain for Access Control in the IoT
 
 
-Yu, Yue & Zhang, Sheng & Chen, Chao & Zhong, Xiaoxiong. (2018). LVChain: A Lightweight and Vote-based Blockchain for Access Control in the IoT. 870-874. 10.1109/CompComm.2018.8780687. 
+Yu, Yue & Zhang, Sheng & Chen, Chao & Zhong, Xiaoxiong. (2018). LVChain: A Lightweight and Vote-based Blockchain for Access Control in the IoT. 870-874. 
 
 DOI: [10.1109/CompComm.2018.8780687](https://www.researchgate.net/deref/http%3A%2F%2Fdx.doi.org%2F10.1109%2FCompComm.2018.8780687)
 
