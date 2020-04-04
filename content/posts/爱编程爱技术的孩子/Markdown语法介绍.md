@@ -7,7 +7,6 @@ categories: [爱编程爱技术的孩子]
 
 slug: Markdown syntax
 math: true
-typora-root-url: ..\..\..\static
 ---
 
 Markdown由Aaron Swartz和John Gruber共同设计
@@ -17,7 +16,7 @@ Markdown由Aaron Swartz和John Gruber共同设计
 
 作者中的Aaron Swartz是天才程序员，著名社交网站[Reddit](http://www.reddit.com/)的联合创始人，14岁参与RSS 1.0规格标准的制订，致力于网络信息开放。在2011年7月19日，因被指控从MIT和JSTOR下载480万篇学术论文并以免费形式上传于网络被捕，2013年1月自杀身亡，年仅26岁。    
 
-![Aaron Swartz](/images/Markdown语法介绍/1H8TOS.jpg)
+![Aaron Swartz](https://tse3-mm.cn.bing.net/th?id=OIP.3gYYIbdHi-ZmoY65LaErfgHaF7&pid=Api&rs=1)
 
 Markdown的优点很多，下面稍微列举一下
 
@@ -208,22 +207,6 @@ console.log(i + j);
 | ---- | ---- |
 | 书藏 | 作者 |
 
-某些时候Markdown的渲染引擎无法时表格铺满页面，比如LeaveIt主体的表格渲染，这时可以添加HTML语法辅助，示例如下
-
-```markdown
-| 姓名             | 角色             |
-| ---------------- | ---------------- |
-| <img width=600/> | <img width=600/> |
-| 书藏             | 作者             |
-```
-
-效果如下
-
-| 姓名             | 角色             |
-| ---------------- | ---------------- |
-| <img width=600/> | <img width=600/> |
-| 书藏             | 作者             |
-
 ### 缩进
 
 修改代码块的缩进，方法是选择多行代码，然后按 `Tab` 键增加缩进，按 `Shift + Tab` 键减少缩进。
@@ -337,17 +320,18 @@ H<sub>2</sub>O
 
 ```html
 <table><tr>
-<td><img src="https://s2.ax1x.com/2020/02/12/1H3q8x.md.jpg" alt="风景1" style="zoom: 67%;" /></td>
-<td><img src="https://s2.ax1x.com/2020/02/12/1H3DbQ.md.jpg" alt="风景2" style="zoom: 67%;" /></td>
+<td><img src="http://bimgs.plmeizi.com/images/bing/2019/OHR.BeaujolaisRegion_ZH-CN1585928268_1920x1080.jpg" alt="风景1" style="zoom: 67%;" /></td>
+<td><img src="http://bimgs.plmeizi.com/images/bing/2020/OHR.MalhamStars_ZH-CN4163177154_1920x1080.jpg" alt="风景2" style="zoom: 67%;" /></td>
 </tr></table>
 ```
 
 效果如下
 
 <table><tr>
-<td><img src="https://s2.ax1x.com/2020/02/12/1H3q8x.md.jpg" alt="风景1" style="zoom: 67%;" /></td>
-<td><img src="https://s2.ax1x.com/2020/02/12/1H3DbQ.md.jpg" alt="风景2" style="zoom: 67%;" /></td>
+<td><img src="http://bimgs.plmeizi.com/images/bing/2019/OHR.BeaujolaisRegion_ZH-CN1585928268_1920x1080.jpg" alt="风景1" style="zoom: 67%;" /></td>
+<td><img src="http://bimgs.plmeizi.com/images/bing/2020/OHR.MalhamStars_ZH-CN4163177154_1920x1080.jpg" alt="风景2" style="zoom: 67%;" /></td>
 </tr></table>
+
 
 ### 页内跳转
 

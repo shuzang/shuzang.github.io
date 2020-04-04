@@ -6,7 +6,7 @@ tags: [Hugo]
 categories: [爱编程爱技术的孩子]
 
 slug: Hugo blog article write
-featured_image: https://s2.ax1x.com/2020/02/12/1HSMXF.jpg
+featuredImage: http://bimgs.plmeizi.com/images/bing/2020/OHR.Cirkelbroen_ZH-CN9645986135_1920x1080.jpg
 ---
 
 本文介绍关于文章的一些问题，包括分类管理、排版技巧、特殊语法等。

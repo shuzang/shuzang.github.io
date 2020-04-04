@@ -6,7 +6,7 @@ tags: [Hugo]
 categories: [爱编程爱技术的孩子]
 
 slug: Hugo blog advanced setup
-featured_image: https://s2.ax1x.com/2020/02/12/1HVF29.jpg
+featuredImage: http://bimgs.plmeizi.com/images/bing/2020/OHR.TrakaiLithuania_ZH-CN0447602818_1920x1080.jpg
 ---
 
 本篇文章介绍如何为Hugo开启更多的功能。

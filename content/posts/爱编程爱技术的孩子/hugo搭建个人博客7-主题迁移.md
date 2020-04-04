@@ -6,7 +6,7 @@ tags: [Hugo]
 categories: [爱编程爱技术的孩子]
 
 slug: migrate to LoveIt themes
-featured_image: https://s2.ax1x.com/2020/02/12/1H3q8x.jpg
+featured_image: http://bimgs.plmeizi.com/images/bing/2019/OHR.HairyHighlanders_ZH-CN5546635143_1920x1080.jpg
 ---
 
 [KeepIt]( https://github.com/Fastbyte01/KeepIt )主题的作者在issue中明确回答了不会添加目录功能，但最近一段时间我越来越喜欢写长文，或者在梳理结构的时候把原先几篇作为材料重新整理成一篇长文，目录功能是在是必不可少。除此之外，RSS、代码高亮格式、对mermaid的支持、文章更新日期等大量遗留的问题也令人不堪其扰，这些都是很常用的功能但都没有很好的解决。

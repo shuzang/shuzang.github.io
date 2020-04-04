@@ -6,7 +6,7 @@ tags: [Hugo]
 categories: [爱编程爱技术的孩子]
 
 slug: Hugo blog themes collection
-featured_image: https://s2.ax1x.com/2020/02/12/1H3DbQ.jpg
+featuredImage: http://bimgs.plmeizi.com/images/bing/2019/OHR.PortlandDawn_ZH-CN6187930845_1920x1080.jpg
 ---
 
 本文用来收集喜欢的主题和有参考价值的博客(使用Hexo或Hugo的)。

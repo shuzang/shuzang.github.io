@@ -6,7 +6,7 @@ tags: [Hugo]
 categories: [爱编程爱技术的孩子]
 
 slug: Hugo build blog Deployment optimization
-featured_image: https://s2.ax1x.com/2020/02/12/1HVXJe.jpg
+featuredImage: http://bimgs.plmeizi.com/images/bing/2020/OHR.SnowHare_ZH-CN9767012872_1920x1080.jpg
 typora-root-url: ..\..\..\static
 ---
 

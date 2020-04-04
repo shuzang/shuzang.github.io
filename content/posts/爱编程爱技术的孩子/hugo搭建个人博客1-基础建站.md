@@ -6,7 +6,7 @@ tags: [Hugo]
 categories: [爱编程爱技术的孩子]
 
 slug: Hugo builds personal blog
-featured_image: https://s2.ax1x.com/2020/02/12/1HpTqe.png
+featuredImage: http://bimgs.plmeizi.com/images/bing/2020/OHR.CubsEmerge_ZH-CN1697031244_1920x1080.jpg
 typora-root-url: ..\..\..\static
 ---
 
