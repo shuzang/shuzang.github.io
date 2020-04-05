@@ -106,7 +106,7 @@ dateFormatToUse = "2006-01-02"
 
 [params]
   # LoveIt theme version
-  version = "0.1.X"
+  version = "0.2.X"
   # site description
   description = "书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"
   # site keywords
@@ -290,7 +290,7 @@ dateFormatToUse = "2006-01-02"
 
   # Publisher Info just for SEO
   [params.publisher]
-    name = "xxxx"
+    name = "shuzang"
     [params.publisher.logo]
       url = "logo.png"
       width = 127
