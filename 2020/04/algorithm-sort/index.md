@@ -11,7 +11,7 @@
 
 注意，下面我们所有的讨论都是基于递增排序的
 
-## 1. 插入排序
+## 1. 直接插入排序
 
 核心思想是：将序列的第一个记录看成是一个有序的子序列，然后从第二个记录开始逐个进行插入，直至整个序列有序为止。
 
@@ -125,7 +125,7 @@ func BubbleSort(nums []int) []int {
 
 冒泡比较适合单链表排序
 
-## 4. 选择排序
+## 4. 简单选择排序
 
 核心思想是：在要排序的一组数中，选出最小（或者最大）的一个数与第一个位置的数进行交换，然后在剩下的数中再找最小（或者最大）的与第二个位置的数交换，依次类推，直至第 n-1 个元素（倒数第二个数）与第 n 个元素 (最后一个数) 比较为止。
 
@@ -159,11 +159,50 @@ func SelectionSort(nums []int) []int {
 
 程序代码：
 
-![](http://upload-images.jianshu.io/upload_images/2077144-1f9f26963b67ec88.PNG)
+```go
+/* @description: 堆排序，堆的建立与调整使用标准库函数
+   @author: shuzang 2020-04-02
+   @param: nums []int 待排序数组
+   @return: _ []int 已排序数组
+*/
+func HeapSort(nums []int) []int {
+	result := []int{}
+	// 初始化堆
+	for i := (len(nums) - 1) / 2; i >= 1; i-- {
+		nums = heapAdjust(nums, i)
+	}
+	//每次取出根元素并重新调整堆
+	for len(nums)-1 != 0 {
+		t := len(nums) - 1
+		nums[1], nums[t] = nums[t], nums[1]
+		result = append([]int{nums[t]}, result...)
+		nums = nums[:t]
+		nums = heapAdjust(nums, 1)
+	}
+	return result
+}
 
-堆调整程序图
+/* @description: 堆调整函数，调整数组使其符合堆的要求
+   @author: shuzang 2020-04-04
+   @param: nums []int 传入的待调整数组，start int 调整的元素下标
+   @return: _ []int 调整好的数组
 
-![](http://upload-images.jianshu.io/upload_images/2077144-ecd81407e1740188.PNG)
+*/
+func heapAdjust(nums []int, start int) []int {
+	var parent, child int
+	for parent = start; parent*2 < len(nums); parent = child {
+		child = parent * 2
+		if child+1 < len(nums) && nums[child+1] > nums[child] {
+			child++
+		}
+		if nums[child] <= nums[parent] {
+			break
+		}
+		nums[child], nums[parent] = nums[parent], nums[child]
+	}
+	return nums
+}
+```
 
 堆排序是不稳定的，空间复杂度是 $O(1)$，时间复杂度是 $O（nlog_2n）$（注：一次堆调整的时间复杂度是 $O（log_2n）$）
 
@@ -180,6 +219,12 @@ func SelectionSort(nums []int) []int {
 递归程序代码如下
 
 ```go
+/* @description: 快速排序的递归解法
+   @author: shuzang 2020-04-04
+   @param: nums []int 待排序数组，low int 第一个指向标记，high int 第二个指向标记
+		   初始参数传入时，low和high应该为第一个元素和最后一个元素
+   @return: _ []int 完成排序或部分完成排序的数组的数组
+*/
 func QuickSort(nums []int, low, high int) []int {
 	if low < high {
 		pivot := nums[low]
@@ -200,50 +245,119 @@ func QuickSort(nums []int, low, high int) []int {
 }
 ```
 
-非递归程序代码如下
-
-![](http://upload-images.jianshu.io/upload_images/2077144-7614627c5dcc2d7f.PNG)
-
-![](http://upload-images.jianshu.io/upload_images/2077144-64e139257bbb4e16.PNG)
-
-快速排序不稳定，平均情况下，时间复杂度为$O(nlogn)$，传入数组本身有序是最坏情况，时间复杂度为$O(n^2)$，空间复杂度（考虑递归调用的最大深度）在平均情况下为$O(logn)$，在最坏情况下为$O(n)$
+快速排序不稳定，平均情况下，时间复杂度为 $ O(nlogn) $，传入数组本身有序是最坏情况，时间复杂度为$O(n^2)$，空间复杂度（考虑递归调用的最大深度）在平均情况下为$O(logn)$，在最坏情况下为$O(n)$
 
 ## 7. 归并排序
 
-思想：将两个（或者两个以上）的有序表合并成一个新的有序表，即把待排序序列分为若干个子序列，每个子序列都是有序的。然后再把有序子序列合并为整体有序序列。
+核心思想是：将两个（或者两个以上）的有序表合并成一个新的有序表，即把待排序序列分为若干个子序列，每个子序列都是有序的。然后再把有序子序列合并为整体有序序列，两个子序列归并时，准备两个指针从两个子序列从头扫描到尾，将扫描到的元素按序插入结果数组。
 
 ![](http://upload-images.jianshu.io/upload_images/2077144-142c6fe3cc7df2ad.jpg)
 
-程序代码：
+两个子序列归并的代码如下
 
-![](http://upload-images.jianshu.io/upload_images/2077144-6c60ca8a6a985ffc.PNG)
+```go
+/*@description: 归并两个子序列
+  @author: shuzang 2020-04-04
+  @param: left, right []int 待合并的两个子序列，
+  @return: _ []int 合并后的子序列
+*/
+func merge(left, right []int) []int {
+	result := make([]int, 0)
+	m, n := 0, 0
+	for m < len(left) && n < len(right) {
+		if left[m] > right[n] {
+			result = append(result, right[n])
+			n++
+		} else {
+			result = append(result, left[m])
+			m++
+		}
+	}
+	result = append(append(result, left[m:]...), right[n:]...)
+	return result
+}
+```
 
-![](http://upload-images.jianshu.io/upload_images/2077144-038df22e7facd4b3.PNG)
+归并排序的递归程序代码如下
 
-![](http://upload-images.jianshu.io/upload_images/2077144-7f33f1597dd79792.PNG)
+```go
+/*@description: 归并排序的递归解法
+  @author: shuzang 2020-04-04
+  @param: nums []int 待排序数组
+  @return: _ []int 已排序数组
+*/
+func MergeSort(nums []int) []int {
+	if len(nums) < 2 {
+		return nums
+	}
+	i := len(nums) / 2
+	left := MergeSort(nums[:i])
+	right := MergeSort(nums[i:])
+	result := merge(left, right)
+	return result
+}
+```
 
+归并排序的非递归程序如下
 
+```go
+/*@description: 归并排序的非递归解法
+  @author: shuzang 2020-04-04
+  @param: nums []int 待排序数组
+  @return: _ []int 已排序数组
+*/
+func MergeSort(nums []int) []int {
+	for i := 1; i <= len(nums); i *= 2 {
+		var j int
+		for ; j <= len(nums)-2*i; j += 2 * i {
+			result := merge(nums[j:i+j], nums[i+j:i*2+j])
+			copy(nums[j:i*2+j], result)
+		}
+		if i+j < len(nums) {
+			copy(nums[j:], merge(nums[j:i+j], nums[i+j:]))
+		}
+	}
+	return nums
+}
+```
 
 归并排序是稳定的，时间复杂度为$O（nlogn）$，空间复杂度为$O(n)$
 
 ## 8. 基数排序
 
-思想：【低位优先，链式队列】，将数字按位数划分出 n 个关键字，每次针对一个关键字进行排序，然后针对排序后的序列进行下个关键字的排序，循环至所有关键字都是用过，则排序完成。
+以上的排序都是基于大小比较的，这种思路下的最坏时间复杂度的下界是$O(nlogn)$，想要更快，可以在比较大小的同时做一些其它的事情，这就是基数排序。
 
-程序代码：建立下标为 0--9 的队列，然后依次按关键字（低位优先）将数据入队，然后再出队。直至所有数据都排完。
+基数排序是基于桶排序的，假设我们有 N 个数字，每个整数的值在 0到99之间（于是有 M=100 个不同的值），线性时间内对它们进行排序的方法是：建立一个长度为100的数组，每个数组的值是一个指向链表的指针，遍历所有数字，将与数组下标相同的值添加到该数组元素对应的链表中，最后按下标从小到大输出所有非空的数组元素对应的链表。每个数组元素可以看作一个桶，桶里装着所有相同的值，这样排序的时间复杂度是$O(M+N)$
 
-时间复杂度：O（d*n）d 代表数字的个数，n 代表要排序的数的总数
+![桶排序](/images/算法-排序/桶排序.png)
 
-空间复杂度：O（n）
+依然假设我们有 N=10 个整数，每个整数的值在0到999之间（于是有 M=1000个不同的值），如果使用同样的方法构造数组，则数组太大，这里使用的办法就是基数排序了。对于序列：64，8，216，512，27，729，0，1，343，125，首先建立长度为10的数组（这里的10就是基数），然后按照个位数字将数据放入与数组下标相同的桶，这是第一趟排序，也就是下图 Pass 1（第2行）行，此时所有元素个位有序；第二趟排序按十位数入桶，对应第3行到第5行，此时得到的序列是：0，1，8，512，216，125，27，729，343，64；最后一趟排序按百位数入桶，对应第6行到最后一行，最终得到序列0，1，8，27，64，125，216，343，512，729，此时得到的序列就是有序的。关键字就是每一位的数字，顺序是从个位到百位，这叫做低位优先。
 
-稳定性：稳定
+![基数排序](/images/算法-排序/基数排序.png)
 
-* * *
+基数排序是稳定的，时间复杂度为$O(d(n+rd)$，d 代表关键字长度，上例为3（每个数字最多3位），n 代表要排序的数的总数，上例为10，rd代表关键字基数，上例为10（0~9 共10种情况）。空间复杂度为$O(n)$
 
-排序算法时间, 空间复杂度汇总:
+基数排序不仅用于数字的排序，也用于多关键字的排序，以扑克牌为例，有花色和面值两种关键字，排序如下
 
-![](http://upload-images.jianshu.io/upload_images/2077144-9785539c2b812eb4.jpg)
+![多关键字排序](/images/算法-排序/多关键字排序.png)
 
-排序算法比较图
+注意这里提到用了「主位优先」，在数字排序的例子里含义其实就是高位优先，与我们之前使用的低位优先正好相反。这里如果使用低位优先（也叫做次位优先），就是按面值建立桶。
+
+## 9. 排序算法比较
+
+所有排序算法时间, 空间复杂度汇总
+
+| 排序方法 | 平均时间                 | 最坏时间    | 辅助空间    | 稳定性 |
+| -------- | ------------------------ | ----------- | ----------- | ------ |
+| 直接插入 | $O(n^2)$                 | $O(n^2)$    | $O(1)$      | 稳定   |
+| 希尔排序 | $O(nlogn2) = O(n^{1.3})$ | $O(n^2)$    | $O(n)$      | 不稳定 |
+| 冒泡排序 | $O(n^2)$                 | $O(n^2)$    | $O(1)$      | 稳定   |
+| 简单选择 | $O(n^2)$                 | $O(n^2)$    | $O(1)$      | 不稳定 |
+| 快速排序 | $O(nlogn)$               | $O(n^2)$    | $O(logn)$   | 不稳定 |
+| 堆排序   | $O(nlogn)$               | $O(nlogn)$  | $O(1)$      | 不稳定 |
+| 归并排序 | $O(nlogn)$               | $O(nlogn)$  | $O(n)$      | 稳定   |
+| 基数排序 | $O(d(r+n))$              | $O(d(r+n))$ | $O(rd + n)$ | 稳定   |
+
+
 
 
