@@ -71,7 +71,7 @@ comment: true
 ```
 
 * **title**: 文章标题.
-* **subtitle**: {{< version 0.2.0 >}} 文章副标题.
+* **subtitle**: 文章副标题.
 * **date**: 这篇文章创建的日期时间. 它通常是从文章的前置参数中的 `date` 字段获取的, 但是也可以在 [网站配置](../theme-documentation-basics/#site-configuration) 中设置.
 * **lastmod**: 上次修改内容的日期时间.
 * **draft**: 如果设为 `true`, 除非 `hugo` 命令使用了 `--buildDrafts`/`-D` 参数, 这篇文章不会被渲染.
@@ -87,7 +87,7 @@ comment: true
 * **toc**: 如果设为 `true`, 这篇文章会显示右侧目录.
 * **autoCollapseToc**: 如果设为 `true`, 文章目录会自动折叠.
 * **math**: 如果设为 `true`, 将自动渲染文章中的数学公式.
-* **mapbox**: {{< version 0.2.0 >}} 和 [网站配置](../theme-documentation-basics/#site-configuration) 中的 `params.mapbox` 对象相同.
+* **mapbox**:  和 [网站配置](../theme-documentation-basics/#site-configuration) 中的 `params.mapbox` 对象相同.
 * **lightgallery**: 如果设为 `true`, 文章中的图片将可以按照画廊形式呈现.
 * **linkToMarkdown**: 如果设为 `true`, 内容的页脚将显示指向原始 Markdown 文件的链接.
 * **share**: 和 [网站配置](../theme-documentation-basics/#site-configuration) 中的 `params.share` 对象相同.
@@ -888,9 +888,9 @@ data = [
 
 `echarts` shortcode 还有以下命名参数:
 
-* **width** *[可选]* (**第一个**位置参数)：{{< version 0.2.0 >}} 数据可视化的宽度, 默认值是 `100%`.
+* **width** *[可选]* (**第一个**位置参数)： 数据可视化的宽度, 默认值是 `100%`.
 
-* **height** *[可选]* (**第二个**位置参数)：{{< version 0.2.0 >}} 数据可视化的高度, 默认值是 `30rem`.
+* **height** *[可选]* (**第二个**位置参数)： 数据可视化的高度, 默认值是 `30rem`.
 
 #### Music
 
@@ -962,7 +962,7 @@ data = [
 
 `music` shortcode 有一些可以应用于以上三种方式的其它命名参数:
 
-* **theme** *[可选]*：{{< version 0.2.0 changed >}} 音乐播放器的主题色, 默认值是 `#448aff`.
+* **theme** *[可选]*音乐播放器的主题色, 默认值是 `#448aff`.
 
 * **fixed** *[可选]*：是否开启固定模式, 默认值是 `false`.
 
