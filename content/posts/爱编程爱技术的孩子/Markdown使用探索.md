@@ -2,7 +2,7 @@
 title: Markdown使用探索
 date: 2018-07-01
 lastmod: 2020-01-06
-tags: [Hugo]
+tags: [Markdown]
 categories: [爱编程爱技术的孩子]
 slug: markdown usage
 typora-root-url: ..\..\..\static
