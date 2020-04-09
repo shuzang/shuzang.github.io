@@ -106,7 +106,7 @@ dateFormatToUse = "2006-01-02"
 
 [params]
   # LoveIt theme version
-  version = "0.2.X"
+  version = "0.1.X"
   # site description
   description = "书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"
   # site keywords
@@ -116,7 +116,7 @@ dateFormatToUse = "2006-01-02"
   # public git repo url to link lastmod git commit only then enableGitInfo is true
   gitRepo = ""
   toc = true
-  autoCollapseToc = true
+  autoCollapseToc = false
 
   # Header info
   [params.header]
@@ -159,11 +159,13 @@ dateFormatToUse = "2006-01-02"
 
   # Social Info in home page
   [params.social]
-    GitHub = "shuzang"
+    Email = "lylw1996@qq.com"
+    Skype = "live:844327696"
+    GitHub = "shuzang"  
+    bilibili = "15452558"
     #Linkedin = "xxxx"
     #Twitter = "xxxx"
-    #Instagram = "xxxx"
-    Email = "lylw1996@qq.com"
+    #Instagram = "xxxx"    
     #Facebook = "xxxx"
     #Telegram = "xxxx"
     #Medium = "xxxx"
@@ -201,7 +203,6 @@ dateFormatToUse = "2006-01-02"
     #Steam = "76561198343669932"
     #Twitch = "xxxx"
     #Strava = "xxxx"
-    Skype = "live:844327696"
     #Whatsapp = "xxxx"
     #Zhihu = "xxxx"
     #Douban = "xxxx"
