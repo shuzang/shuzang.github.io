@@ -1,12 +1,12 @@
 ---
-title: hugo搭建个人博客5-主题美化
+title: hugo搭建个人博客4-主题美化
 date: 2019-09-30
 lastmod: 2020-02-12
 tags: [Hugo]
 categories: [爱编程爱技术的孩子]
 
 slug: Hugo blog theme beautify
-featuredImage: http://bimgs.plmeizi.com/images/bing/2019/OHR.TempleofSaturn_ZH-CN7983217544_1920x1080.jpg
+featuredImage: https://cdn.wispx.cn/wallpaper/2018/07/28/f45cfdcb1f79bc01d95c22adc63a2854.jpg!wallpaper.detail
 ---
 
 ## 1. 基础知识
