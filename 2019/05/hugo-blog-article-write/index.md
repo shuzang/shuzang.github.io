@@ -1,7 +1,7 @@
 # hugo搭建个人博客2-文章写作
 
 
-本文介绍关于文章的一些问题，包括分类管理、排版技巧、特殊语法等。
+本文是 Hugo 使用记录的第二篇，介绍关于文章写作的一些问题，包括分类管理、排版技巧、特殊语法等，所有语法基于 LoveIt 主题。
 
 Hugo支持的文章格式为`.md`，即用markdown语言编辑的文章。所有的文章都放在`content/posts`目录下，支持级联目录，即在`posts`目录下按分类建立多个子文件夹放置文章，比如本博客的文章按分类放在四个子文件夹下。
 
@@ -11,40 +11,76 @@ $ ls posts
 平日里的白日梦/      研究生的区块链学习之路/
 ```
 
-## 1. Front-Matter
+下面是三条方便清晰管理和生成文章的目录结构建议:
 
-每篇文章需要使用[Front-Matter](https://gohugo.io/content-management/front-matter/)指定一些参数，一个例子如下
+* 保持博客文章存放在 `content/posts` 目录, 例如: `content/posts/我的第一篇文章.md`
+* 保持简单的静态页面存放在 `content` 目录, 例如: `content/about.md`
+* 保持图片之类的媒体资源存放在 `static` 目录, 例如: `static/images/screenshot.png`
+
+## 1. 前置参数
+
+Hugo 允许在文章内容前面添加 `yaml`, `toml` 或者 `json` 格式的前置参数，LoveIt 默认文章模板提供的前置参数有
 
 ```yaml
 ---
-title: hugo搭建个人博客2-写作技巧  
-date: 2019-05-15 
-lastmod: 2020-01-06
-tags: [博客写作]
-categories: [爱编程爱技术的孩子]
+title: "我的第一篇文章"
+subtitle: ""
+date: 2020-03-04T15:58:26+08:00
+lastmod: 2020-03-04T15:58:26+08:00
+draft: true
+author: ""
+authorLink: ""
+description: ""
+license: ""
 
-slug: Hugo builds a personal blog 2
-featured_image: https://strangesounds.org/wp-content/uploads/2016/08/milky-way-bolivia-Salar-de-Uyuni.jpg
-toc: true
+tags: []
+categories: []
+hiddenFromHomePage: false
+
+featuredImage: ""
+featuredImagePreview: ""
+
+toc: false
+autoCollapseToc: true
+math: true
+mapbox:
+    accessToken: ""
+    lightStyle: ""
+    darkStyle: ""
+    navigation: true
+    geolocate: true
+    scale: true
+    fullscreen: true
+lightgallery: true
+linkToMarkdown: true
+share:
+  enable: true
+comment: true
 ---
 ```
 
-Front-Matter就是`---`包围的内容，当然，`---`是YAML格式的写法，也可以使用`+++`或`{ }`，分别是TOML和JSON格式的写法。
-
-Hugo支持的Front-Matter格式的变量有20多个，几个主要的变量如下
-
-| 变量        | 作用                                                         |
-| ----------- | ------------------------------------------------------------ |
-| title       | 文章名                                                       |
-| date        | 文章创建日期                                                 |
-| description | 文章内容描述                                                 |
-| draft       | 草稿，设置为true，这篇文章将不会被渲染到网站，一些需要长时间编辑的文章可以使用该变量 |
-| keywords    | 文章关键词                                                   |
-| lastmod     | 文章最后一次修改的时间                                       |
-| linkTitle   | 用于创建文章链接，设置该值后，Hugo将在使用该值而不是title变量值作为文章链接，同时，文章的排序也会根据该值进行 |
-| slug        | 该值将出现在文章URL尾部，替换基于文件名的URL                 |
-| url         | 设置一个相对于网站根目录的url                                |
-| taxonomies  | 用户定义的一个分类字段，像KeepIt主题中的tags, categories, featured_image都属于这种 |
+* **title**: 文章标题.
+* **subtitle**: {{< version 0.2.0 >}} 文章副标题.
+* **date**: 这篇文章创建的日期时间. 它通常是从文章的前置参数中的 `date` 字段获取的, 但是也可以在 [网站配置](../theme-documentation-basics/#site-configuration) 中设置.
+* **lastmod**: 上次修改内容的日期时间.
+* **draft**: 如果设为 `true`, 除非 `hugo` 命令使用了 `--buildDrafts`/`-D` 参数, 这篇文章不会被渲染.
+* **author**: 文章作者.
+* **authorLink**: 文章作者的链接.
+* **description**: 文章内容的描述.
+* **license**: 这篇文章特殊的许可.
+* **tags**: 文章的标签.
+* **categories**: 文章所属的类别.
+* **hiddenFromHomePage**: 如果设为 `true`, 这篇文章将不会显示在主页上, 但是此行为可以在 [网站配置](../theme-documentation-basics/#site-configuration) 中设置的.
+* **featuredImage**: 文章的特色图片.
+* **featuredImagePreview**: 用在主页预览的文章特色图片.
+* **toc**: 如果设为 `true`, 这篇文章会显示右侧目录.
+* **autoCollapseToc**: 如果设为 `true`, 文章目录会自动折叠.
+* **math**: 如果设为 `true`, 将自动渲染文章中的数学公式.
+* **mapbox**: {{< version 0.2.0 >}} 和 [网站配置](../theme-documentation-basics/#site-configuration) 中的 `params.mapbox` 对象相同.
+* **lightgallery**: 如果设为 `true`, 文章中的图片将可以按照画廊形式呈现.
+* **linkToMarkdown**: 如果设为 `true`, 内容的页脚将显示指向原始 Markdown 文件的链接.
+* **share**: 和 [网站配置](../theme-documentation-basics/#site-configuration) 中的 `params.share` 对象相同.
+* **comment**: 如果设为 `true`, 将启用评论系统.
 
 ## 2. 标签与分类
 
@@ -171,290 +207,872 @@ categories: [爱编程爱技术的孩子]
 
 除Markdown基本语法外，灵活运用Hugo提供的一些功能，可以增加文章的灵活性。
 
-### 4.1 题图
+### 4.1 Font Awesome
 
-也就是文章开头的图片，在有些主题中也会用于缩略图显示。添加方法是在元数据字段使用`feature_image`和`description`字段，前者粘贴图片URL，后者书写图片描述。一个添加特性图片后的文章元数据字段内容如下：
+**LoveIt** 主题使用 [Font Awesome](https://fontawesome.com/) 作为图标库.
+你同样可以在文章中轻松使用这些图标.
 
-```yaml
-title: 在博客中内嵌bilibili视频
-date: 2019-11-12
-tags: [博客写作]
-categories: [爱编程爱技术的孩子]
-featured_image: https://i.vimeocdn.com/video/771515958.jpg?mw=1920&mh=1080&q=70
-description: 悲剧傻缺视频集锦的某次截图
+从 [Font Awesome 网站](https://fontawesome.com/icons?d=gallery) 上获取所需的图标 `class`.
+
+```markdown
+去露营啦! {?:}(fas fa-campground): 很快就回来.
+
+真开心! {?:}(far fa-grin-tears):
 ```
 
-### 4.2 代码高亮
+呈现的输出效果如下:
 
-KeepIt主题本身对代码高亮的渲染是在本地执行的，使用的是[google code prettify](https://github.com/google/code-prettify)，高亮风格较少而且作者没提供配置选项，通过使用`Highlight.js`库可以自定义代码高亮格式[^3]。
+去露营啦! :(fas fa-campground): 很快就回来.
 
-[^3]:[Hugo中添加代码高亮支持](https://note.qidong.name/2017/06/24/hugo-highlight)
+真开心! :(far fa-grin-tears):
 
-为了最大程度的保持原主题文件的代码，我们首先将主题文件夹下`layouts/partials/js.html`文件复制到Hugo项目文件夹，令其位于同样的目录，然后删除文件中的以下语句
+### 4.2 脚注
 
-```html
-{{ $prettify := resources.Get "/js/prettify.min.js" }}
+This is a footnote[^footnode]
+
+[^footnode]: This is a footnote
+
+Test all features in development[^link test].
+
+[^link test]: https://www.google.com/
+
+### 4.3 字符注音或注释
+
+**LoveIt** 主题支持一种 **字符注音或者注释** Markdown 扩展语法:
+
+```markdown
+[Hugo]{?^}(一个开源的静态网站生成工具)
 ```
 
-之后删除`js.html`文件中所有`$prettify`字段。
+呈现的输出效果如下:
 
-复制主题文件夹`layouts/partials/head.html`文件到项目文件夹，并添加如下内容
+[Hugo]^(一个开源的静态网站生成工具)
 
-```html
-<link href="https://cdn.bootcss.com/highlight.js/9.15.10/styles/atom-one-light.min.css" rel="stylesheet">
-<script src="https://cdn.bootcss.com/highlight.js/9.15.10/highlight.min.js"></script>
-<script src="https://cdn.bootcss.com/highlight.js/9.15.10/languages/go.min.js"></script>
-<script>hljs.initHighlightingOnLoad();</script>
+### 4.4 分数
+
+**LoveIt** 主题支持一种 **分数** Markdown 扩展语法:
+
+```markdown
+[浅色]{?/}[深色]
+
+[99]{?/}[100]
 ```
 
-以上代码使用了[bootCDN](https://www.bootcdn.cn/highlight.js/)对`Highlight.js`进行加速，并额外添加了对go语言代码高亮的支持。
+呈现的输出效果如下:
 
-最后需要删除主题文件夹中的某些内容，包括
+[浅色]/[深色]
 
-1. `assets/js/prettify.min.js`文件
-
-2. `assets/css/main.scss`的以下内容
-
-   ```scss
-   @import "_common/_prettyprint/default.scss"
-   ```
-
-此时代码就可以以浅色的atom格式高亮了，不过可惜的是不显示代码行数，就只能等以后再说了。
-
-还要注意的是以后每次更新主题都要删除主题文件夹中以上两个内容。
-
-### 4.3 视频
-
-可以使用html代码直接在文章中嵌入视频，因为各视频网站一般会在分享链接中提供iframe格式的代码，以B站为例，复制如下代码放在文章中相应的位置即可
-
-```html
-<iframe src="//player.bilibili.com/player.html?aid=75064361" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width: 100%;height: 600px;" > </iframe>
-```
-
-注意添加`style`字段调整高度与宽度，否则可能显示效果不会很好，上面的代码效果如下
-
-<iframe src="//player.bilibili.com/player.html?aid=75064361" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width: 100%;height: 600px;" > </iframe>
-也可以使用短代码来完成，Hugo提供了[Shortcodes](https://gohugo.io/templates/shortcode-templates/)功能可以帮助我们定制一些语法，仍以B站视频为例，在项目根目录建立`/layouts/shortcodes`文件夹，在该文件夹内新建`bilibili.html`文件，文件内容编辑如下
-
-```html
-<iframe src="//player.bilibili.com/player.html?aid={{ .Get 0 }}" 
-        scrolling="no" border="0" frameborder="no" framespacing="0" 
-        allowfullscreen="true" 
-        style="width: 100%;height: 600px;" > 
-</iframe>
-```
-
-以后在文章中添加视频就可以使用如下格式的代码，其中的参数为视频代码，可以在视频URL中找到
-
-```bash
-video 75064361
-```
-
-使用iframe即使在本地的Typora编辑器也可以查看效果，但是代码较多，而是用shortcodes可以精简代码，但只有开启预览或将文章推送到云端才能看到，各有利弊，自己权衡。
-
-最后还需要提一点，引入视频会导致网页加载速度大幅下滑，如非必要，最好不要引入。
-
-### 4.4 音频
-
-在文章中嵌入音频也是一个需求，尤其是歌曲，使用频率比较高，我们在这里注意使用使用 [APlayer](https://github.com/MoePlayer/APlayer) 和 [MetingJS](https://github.com/metowolf/MetingJS) 完成这一功能。
-
-在`layouts`目录下的head.html文件中添加如下内容
-
-```html
-<!-- require APlayer -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-<!-- require MetingJS -->
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-```
-
-然后在文章中可以通过如下语句添加音频
-
-```html
-<meting-js auto="https://y.qq.com/n/yqq/song/000xRG4E4diqXD.html"></meting-js>
-```
-
-播放链接可以通过浏览器从各音乐平台获取，当然，和视频一样使用iframe格式的代码嵌入也是可以的
-
-最后，也可以使用shortcodes缩短音频代码，在`layouts/shortcodes`目录下新建audio.html文件，编辑内容如下
-
-```html
-<meting-js auto={{ .Get 0 }}></meting-js>
-```
-
-在文章中就可以像下面这样使用，参数为音频网址
-
-```bash
-audio  "https://y.qq.com/n/yqq/song/000xRG4E4diqXD.html"
-```
+[90]/[100]
 
 ### 4.5 数学公式
 
-文章中使用数学公式也是一种需求，但是Hugo本身不提供对这种语法的支持，KeepIt主题也没有提供这个功能，因此需要自己添加[^4]。
+**LoveIt** 基于 [$ \KaTeX $](https://katex.org/) 提供数学公式的支持.
 
-[^4]:[在Hugo中使用MathJax](https://note.qidong.name/2018/03/hugo-mathjax/)
+在你的 [网站配置](../theme-documentation-basics/#site-configuration) 中的 `[params.math]` 下面设置属性 `enable = true`,
+并在文章的前置参数中设置属性 `math: true`来启用数学公式的自动渲染.
 
-主要方法是在已经生成好的HTML页面中使用JavaScript来渲染LaTex形式的数学公式，因此选择了这方面最流行的库[MathJax](https://www.mathjax.org/)。
+{{< admonition tip >}}
+有一份 [$ \KaTeX $ 中支持的 $ \TeX $ 函数](https://katex.org/docs/supported.html) 清单.
+{{< /admonition >}}
 
-与代码相同，数学公式也有行内(inline)和区块(block)两种，下面展示了这两种写法
+#### 公式块
 
-```latex
-When $a \ne 0$, there are two solutions to `\(ax^2 + bx + c = 0\)` and they are:
+默认的公式块分割符是 `$$`/`$$` 和 `\\[`/`\\]`:
 
-$$x = {-b \pm \sqrt{b^2-4ac} \over 2a}$$
+```markdown
+$$ c = \pm\sqrt{a^2 + b^2} $$
+
+\\[ f(x)=\int_{-\infty}^{\infty} \hat{f}(\xi) e^{2 \pi i \xi x} d \xi \\]
 ```
 
-Hugo官方其实给了一个[解决办法](https://gohugo.io/content-management/formats/#enable-mathjax)，分为三步：
+呈现的输出效果如下:
 
-1. 引入`<script>`标签
+$$ c = \pm\sqrt{a^2 + b^2} $$
 
-   ```js
-   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-   </script>
-   ```
+\\[ f(x)=\int_{-\infty}^{\infty} \hat{f}(\xi) e^{2 \pi i \xi x} d \xi \\]
 
-    需要确保这段代码嵌入网站所有页面中，因此把它添加到`layouts/partials/head.html`文件中。
+#### 行内公式
 
-2. 行内公式和特殊字符转义
+默认的行内公式分割符是  `$`/`$` 和 `\\(`/`\\)`:
 
-   第一步执行完后行内公式依然无法显示，如下划线`_`等特殊字符转义也有问题。因此需要继续添加如下代码，仍然是`layouts/partials/head.html`文件，两段代码前者做了一些配置，后者自动给`className`加`has-jax`后缀。
+```markdown
+$ c = \pm\sqrt{a^2 + b^2} $ 和 \\( f(x)=\int_{-\infty}^{\infty} \hat{f}(\xi) e^{2 \pi i \xi x} d \xi \\)
+```
 
-   ```js
-   <script type="text/x-mathjax-config">
-   MathJax.Hub.Config({
-     tex2jax: {
-       inlineMath: [['$','$'], ['\\(','\\)']],
-       displayMath: [['$$','$$'], ['\[','\]']],
-       processEscapes: true,
-       processEnvironments: true,
-       skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-       TeX: { equationNumbers: { autoNumber: "AMS" },
-            extensions: ["AMSmath.js", "AMSsymbols.js"] }
-     }
-   });
-   </script>
-   
-   <script type="text/x-mathjax-config">
-     MathJax.Hub.Queue(function() {
-       // Fix <code> tags after MathJax finishes running. This is a
-       // hack to overcome a shortcoming of Markdown. Discussion at
-       // https://github.com/mojombo/jekyll/issues/199
-       var all = MathJax.Hub.getAllJax(), i;
-       for(i = 0; i < all.length; i += 1) {
-           all[i].SourceElement().parentNode.className += ' has-jax';
-       }
-   });
-   </script>
-   ```
+呈现的输出效果如下:
 
-3. CSS调整
+$ c = \pm\sqrt{a^2 + b^2} $ 和 \\( f(x)=\int_{-\infty}^{\infty} \hat{f}(\xi) e^{2 \pi i \xi x} d \xi \\)
 
-   最后还需要在CSS中对这种特殊的MathJax进行样式处理，否则行内公式的显示会很奇怪。
+{{< admonition tip >}}
+你可以在 [网站配置](../theme-documentation-basics/#site-configuration) 中自定义公式块和行内公式的分割符.
+{{< /admonition >}}
 
-   ```css
-   code.has-jax {
-       font: inherit;
-       font-size: 100%;
-       background: inherit;
-       border: inherit;
-       color: #515151;
-   }
-   ```
+#### Copy-tex
 
-然后以上方法步骤繁琐最后还不一定起作用，因此采用把所有修改写成一个`layouts/partials/mathjax.html`文件的方法，把官方提到的三处修改合并成一个partial，然后把MathJax的CDN修改到国内。
+**[Copy-tex](https://github.com/Khan/KaTeX/tree/master/contrib/copy-tex)** 是一个 **$ \KaTeX $** 的插件.
 
-```html
-<script type="text/javascript"
-        async
-        src="https://cdn.bootcss.com/mathjax/2.7.3/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-MathJax.Hub.Config({
-  tex2jax: {
-    inlineMath: [['$','$'], ['\\(','\\)']],
-    displayMath: [['$$','$$'], ['\[','\]']],
-    processEscapes: true,
-    processEnvironments: true,
-    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
-    TeX: { equationNumbers: { autoNumber: "AMS" },
-         extensions: ["AMSmath.js", "AMSsymbols.js"] }
-  }
-});
+通过这个扩展, 在选择并复制 $ \KaTeX $ 渲染的公式时, 会将其 $ \LaTeX $ 源代码复制到剪贴板.
 
-MathJax.Hub.Queue(function() {
-    // Fix <code> tags after MathJax finishes running. This is a
-    // hack to overcome a shortcoming of Markdown. Discussion at
-    // https://github.com/mojombo/jekyll/issues/199
-    var all = MathJax.Hub.getAllJax(), i;
-    for(i = 0; i < all.length; i += 1) {
-        all[i].SourceElement().parentNode.className += ' has-jax';
+在你的 [网站配置](../theme-documentation-basics/#site-configuration) 中的 `[params.math]` 下面设置属性 `copyTex = true` 来启用 Copy-tex.
+
+选择并复制上一节中渲染的公式, 可以发现复制的内容为 LaTeX 源代码.
+
+#### mhchem
+
+**[mhchem](https://github.com/Khan/KaTeX/tree/master/contrib/mhchem)** 是一个 **$ \KaTeX $** 的插件.
+
+通过这个扩展, 你可以在文章中轻松编写漂亮的化学方程式.
+
+在你的 [网站配置](../theme-documentation-basics/#site-configuration) 中的 `[params.math]` 下面设置属性 `mhchem = true` 来启用 mhchem.
+
+```markdown
+$$ \ce{CO2 + C -> 2 CO} $$
+
+$$ \ce{Hg^2+ ->[I-] HgI2 ->[I-] [Hg^{II}I4]^2-} $$
+```
+
+呈现的输出效果如下:
+
+$$ \ce{CO2 + C -> 2 CO} $$
+
+$$ \ce{Hg^2+ ->[I-] HgI2 ->[I-] [Hg^{II}I4]^2-} $$
+
+## 5. 扩展shortcode
+
+关于shortcode的说明见附录I，LoveIt提供了一些shortcode的扩展语法，下面介绍可能会用到的几种。其它的（包括link、mapbox等）自行查看主题文档介绍
+
+#### Admonition
+
+`admonition` shortcode 支持 **12** 种 帮助你在页面中插入提示的横幅.
+
+*支持 Markdown 或者 HTML 格式.*
+
+{{< admonition >}}
+一个 **注意** 横幅
+{{< /admonition >}}
+
+{{< admonition abstract >}}
+一个 **摘要** 横幅
+{{< /admonition >}}
+
+{{< admonition info >}}
+一个 **信息** 横幅
+{{< /admonition >}}
+
+{{< admonition tip >}}
+一个 **技巧** 横幅
+{{< /admonition >}}
+
+{{< admonition success >}}
+一个 **成功** 横幅
+{{< /admonition >}}
+
+{{< admonition question >}}
+一个 **问题** 横幅
+{{< /admonition >}}
+
+{{< admonition warning >}}
+一个 **警告** 横幅
+{{< /admonition >}}
+
+{{< admonition failure >}}
+一个 **失败** 横幅
+{{< /admonition >}}
+
+{{< admonition danger >}}
+一个 **危险** 横幅
+{{< /admonition >}}
+
+{{< admonition bug >}}
+一个 **Bug** 横幅
+{{< /admonition >}}
+
+{{< admonition example >}}
+一个 **示例** 横幅
+{{< /admonition >}}
+
+{{< admonition quote >}}
+一个 **引用** 横幅
+{{< /admonition >}}
+
+`admonition` shortcode 有三个命名参数:
+
+* **type** *[必需]* (**第一个**位置参数)：`admonition` 横幅的类型, 默认值是 `note`.
+
+* **title** *[可选]* (**第二个**位置参数)：`admonition` 横幅的标题, 默认值是 **type** 参数的值.
+
+* **details** *[可选]* (**第三个**位置参数)：横幅内容是否可展开/可折叠, 默认值是 `false`.
+
+一个 `admonition` 示例:
+
+```markdown
+{{</* admonition type=tip title="This is a tip" details=true */>}}
+一个 **技巧** 横幅
+{{</* /admonition */>}}
+或者
+{{</* admonition tip "This is a tip" true */>}}
+一个 **技巧** 横幅
+{{</* /admonition */>}}
+```
+
+呈现的输出效果如下:
+
+{{< admonition tip "This is a tip" true >}}
+一个 **技巧** 横幅
+{{< /admonition >}}
+
+#### Style
+
+`style` shortcode 用来在你的文章中插入自定义样式，有两个位置参数：第一个参数是自定义样式的内容，第二个参数是包裹你要更改样式的内容的 HTML 标签, 默认值是 `p`.
+
+一个示例如下
+
+```markdown
+{{</* style "text-align: right;" */>}}
+This is a right-aligned paragraph.
+{{</* /style */>}}
+```
+
+呈现的输出效果如下:
+
+{{< style "text-align: right;" >}}
+This is a right-aligned paragraph.
+{{< /style >}}
+
+#### Bilibili
+
+`bilibili` shortcode 提供了一个内嵌的用来播放 bilibili 视频的响应式播放器，如果视频只有一个部分, 则仅需要视频的 `av` ID, 例如:
+
+```code
+https://www.bilibili.com/video/av47027633
+```
+
+一个 `bilibili` 示例:
+
+```markdown
+{{</* bilibili 47027633 */>}}
+或者
+{{</* bilibili av=47027633 */>}}
+```
+
+呈现的输出效果如下:
+
+{{< bilibili av=47027633 >}}
+
+如果视频包含多个部分, 则除了视频的 `av` ID之外, 还需要 `p`, 默认值为 `1`, 例如:
+
+```code
+https://www.bilibili.com/video/av36570401?p=3
+```
+
+一个带有 `p` 参数的 `bilibili` 示例:
+
+```markdown
+{{</* bilibili 36570401 3 */>}}
+或者
+{{</* bilibili av=36570401 p=3 */>}}
+```
+
+#### Mermaid
+
+[mermaid](https://mermaidjs.github.io/) 是一个可以帮助你在文章中生成图表和流程图的库, 类似 Markdown 的语法，只需将你的 mermaid 代码插入 `mermaid` shortcode 中即可.
+
+一个 **流程图** `mermaid` 示例如下
+
+```markdown
+{{</* mermaid */>}}
+graph LR;
+    A[Hard edge] -->|Link text| B(Round edge)
+    B --> C{Decision}
+    C -->|One| D[Result one]
+    C -->|Two| E[Result two]
+{{</* /mermaid */>}}
+```
+
+呈现的输出效果如下:
+
+{{< mermaid >}}
+graph LR;
+    A[Hard edge] -->|Link text| B(Round edge)
+    B --> C{Decision}
+    C -->|One| D[Result one]
+    C -->|Two| E[Result two]
+{{< /mermaid >}}
+
+其它如时序图、甘特图、类图、状态图、Git图和饼图的用法自行查看文档。
+
+#### ECharts
+
+[ECharts](https://echarts.apache.org/) 是一个帮助生成交互式数据可视化的库，提供了常规的 [折线图](https://echarts.apache.org/zh/option.html#series-line), [柱状图](https://echarts.apache.org/zh/option.html#series-line), [散点图](https://echarts.apache.org/zh/option.html#series-scatter), [饼图](https://echarts.apache.org/zh/option.html#series-pie), [K线图](https://echarts.apache.org/zh/option.html#series-candlestick), 用于统计的 [盒形图](https://echarts.apache.org/zh/option.html#series-boxplot), 用于地理数据可视化的 [地图](https://echarts.apache.org/zh/option.html#series-map), [热力图](https://echarts.apache.org/zh/option.html#series-heatmap), [线图](https://echarts.apache.org/zh/option.html#series-lines), 用于关系数据可视化的 [关系图](https://echarts.apache.org/zh/option.html#series-graph), [treemap](https://echarts.apache.org/zh/option.html#series-treemap), [旭日图](https://echarts.apache.org/zh/option.html#series-sunburst), 多维数据可视化的 [平行坐标](https://echarts.apache.org/zh/option.html#series-parallel), 还有用于 BI 的 [漏斗图](https://echarts.apache.org/zh/option.html#series-funnel), [仪表盘](https://echarts.apache.org/zh/option.html#series-gauge), 并且支持图与图之间的混搭。只需在 `echarts` shortcode 中以 `JSON`/`YAML`/`TOML`格式插入 ECharts 选项即可.
+
+一个 `JSON` 格式的 `echarts` 示例:
+
+```json
+{{</* echarts */>}}
+{
+  "title": {
+    "text": "折线统计图",
+    "top": "2%",
+    "left": "center"
+  },
+  "tooltip": {
+    "trigger": "axis"
+  },
+  "legend": {
+    "data": ["邮件营销", "联盟广告", "视频广告", "直接访问", "搜索引擎"],
+    "top": "10%"
+  },
+  "grid": {
+    "left": "5%",
+    "right": "5%",
+    "bottom": "5%",
+    "top": "20%",
+    "containLabel": true
+  },
+  "toolbox": {
+    "feature": {
+      "saveAsImage": {
+        "title": "保存为图片"
+      }
     }
-});
-</script>
-
-<style>
-code.has-jax {
-    font: inherit;
-    font-size: 100%;
-    background: inherit;
-    border: inherit;
-    color: #515151;
+  },
+  "xAxis": {
+    "type": "category",
+    "boundaryGap": false,
+    "data": ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
+  },
+  "yAxis": {
+    "type": "value"
+  },
+  "series": [
+    {
+      "name": "邮件营销",
+      "type": "line",
+      "stack": "总量",
+      "data": [120, 132, 101, 134, 90, 230, 210]
+    },
+    {
+      "name": "联盟广告",
+      "type": "line",
+      "stack": "总量",
+      "data": [220, 182, 191, 234, 290, 330, 310]
+    },
+    {
+      "name": "视频广告",
+      "type": "line",
+      "stack": "总量",
+      "data": [150, 232, 201, 154, 190, 330, 410]
+    },
+    {
+      "name": "直接访问",
+      "type": "line",
+      "stack": "总量",
+      "data": [320, 332, 301, 334, 390, 330, 320]
+    },
+    {
+      "name": "搜索引擎",
+      "type": "line",
+      "stack": "总量",
+      "data": [820, 932, 901, 934, 1290, 1330, 1320]
+    }
+  ]
 }
-</style>
+{{</* /echarts */>}}
 ```
 
-最后把以上partial模板添加到`head.html`模板中
+一个 `YAML` 格式的 `echarts` 示例:
 
-```html
-{{ partial "mathjax.html" . }}
+```yaml
+{{</* echarts */>}}
+title:
+    text: 折线统计图
+    top: 2%
+    left: center
+tooltip:
+    trigger: axis
+legend:
+    data:
+        - 邮件营销
+        - 联盟广告
+        - 视频广告
+        - 直接访问
+        - 搜索引擎
+    top: 10%
+grid:
+    left: 5%
+    right: 5%
+    bottom: 5%
+    top: 20%
+    containLabel: true
+toolbox:
+    feature:
+        saveAsImage:
+            title: 保存为图片
+xAxis:
+    type: category
+    boundaryGap: false
+    data:
+        - 周一
+        - 周二
+        - 周三
+        - 周四
+        - 周五
+        - 周六
+        - 周日
+yAxis:
+    type: value
+series:
+    - name: 邮件营销
+      type: line
+      stack: 总量
+      data:
+          - 120
+          - 132
+          - 101
+          - 134
+          - 90
+          - 230
+          - 210
+    - name: 联盟广告
+      type: line
+      stack: 总量
+      data:
+          - 220
+          - 182
+          - 191
+          - 234
+          - 290
+          - 330
+          - 310
+    - name: 视频广告
+      type: line
+      stack: 总量
+      data:
+          - 150
+          - 232
+          - 201
+          - 154
+          - 190
+          - 330
+          - 410
+    - name: 直接访问
+      type: line
+      stack: 总量
+      data:
+          - 320
+          - 332
+          - 301
+          - 334
+          - 390
+          - 330
+          - 320
+    - name: 搜索引擎
+      type: line
+      stack: 总量
+      data:
+          - 820
+          - 932
+          - 901
+          - 934
+          - 1290
+          - 1330
+          - 1320
+{{</* /echarts */>}}
 ```
 
-但直接修改主题中的文件并不合适，因为原作者可能会进行一定的更新（对我这样的半吊子很依赖作者对主题的更新），好在Hugo对文件的寻找是有优先级的，会首先在项目文件中寻找相应的渲染模板，然后才去主题文件夹寻找，因此将`layouts/partials/mathjax.html`和`layouts/partials/head.html`这两个修改后的文件复制到Hugo项目的相同位置，此时就可以直接反馈在页面上了。此时在hugo项目根目录查看目录结构如下：
+一个 `TOML` 格式的 `echarts` 示例:
 
-```bash
-$ ls
-archetypes/  content/  layouts/    static/
-config.toml  data/     resources/  themes/
+```toml
+{{</* echarts */>}}
+[title]
+text = "折线统计图"
+top = "2%"
+left = "center"
 
-$ find layouts -type f | xargs ls -l
--rw-r--r-- 1 lylw1 197609 2679 11月 12 15:51 layouts/partials/head.html
--rw-r--r-- 1 lylw1 197609 1056 11月 12 15:51 layouts/partials/mathjax.html
+[tooltip]
+trigger = "axis"
 
+[legend]
+data = [
+  "邮件营销",
+  "联盟广告",
+  "视频广告",
+  "直接访问",
+  "搜索引擎"
+]
+top = "10%"
+
+[grid]
+left = "5%"
+right = "5%"
+bottom = "5%"
+top = "20%"
+containLabel = true
+
+[toolbox]
+[toolbox.feature]
+[toolbox.feature.saveAsImage]
+title = "保存为图片"
+
+[xAxis]
+type = "category"
+boundaryGap = false
+data = [
+  "周一",
+  "周二",
+  "周三",
+  "周四",
+  "周五",
+  "周六",
+  "周日"
+]
+
+[yAxis]
+type = "value"
+
+[[series]]
+name = "邮件营销"
+type = "line"
+stack = "总量"
+data = [
+  120.0,
+  132.0,
+  101.0,
+  134.0,
+  90.0,
+  230.0,
+  210.0
+]
+
+[[series]]
+name = "联盟广告"
+type = "line"
+stack = "总量"
+data = [
+  220.0,
+  182.0,
+  191.0,
+  234.0,
+  290.0,
+  330.0,
+  310.0
+]
+
+[[series]]
+name = "视频广告"
+type = "line"
+stack = "总量"
+data = [
+  150.0,
+  232.0,
+  201.0,
+  154.0,
+  190.0,
+  330.0,
+  410.0
+]
+
+[[series]]
+name = "直接访问"
+type = "line"
+stack = "总量"
+data = [
+  320.0,
+  332.0,
+  301.0,
+  334.0,
+  390.0,
+  330.0,
+  320.0
+]
+
+[[series]]
+name = "搜索引擎"
+type = "line"
+stack = "总量"
+data = [
+  820.0,
+  932.0,
+  901.0,
+  934.0,
+  1290.0,
+  1330.0,
+  1320.0
+]
+{{</* /echarts */>}}
 ```
 
+呈现的输出效果如下:
 
-## 附录
+{{< echarts >}}
+{
+  "title": {
+    "text": "折线统计图",
+    "top": "2%",
+    "left": "center"
+  },
+  "tooltip": {
+    "trigger": "axis"
+  },
+  "legend": {
+    "data": ["邮件营销", "联盟广告", "视频广告", "直接访问", "搜索引擎"],
+    "top": "10%"
+  },
+  "grid": {
+    "left": "5%",
+    "right": "5%",
+    "bottom": "5%",
+    "top": "20%",
+    "containLabel": true
+  },
+  "toolbox": {
+    "feature": {
+      "saveAsImage": {
+        "title": "保存为图片"
+      }
+    }
+  },
+  "xAxis": {
+    "type": "category",
+    "boundaryGap": false,
+    "data": ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
+  },
+  "yAxis": {
+    "type": "value"
+  },
+  "series": [
+    {
+      "name": "邮件营销",
+      "type": "line",
+      "stack": "总量",
+      "data": [120, 132, 101, 134, 90, 230, 210]
+    },
+    {
+      "name": "联盟广告",
+      "type": "line",
+      "stack": "总量",
+      "data": [220, 182, 191, 234, 290, 330, 310]
+    },
+    {
+      "name": "视频广告",
+      "type": "line",
+      "stack": "总量",
+      "data": [150, 232, 201, 154, 190, 330, 410]
+    },
+    {
+      "name": "直接访问",
+      "type": "line",
+      "stack": "总量",
+      "data": [320, 332, 301, 334, 390, 330, 320]
+    },
+    {
+      "name": "搜索引擎",
+      "type": "line",
+      "stack": "总量",
+      "data": [820, 932, 901, 934, 1290, 1330, 1320]
+    }
+  ]
+}
+{{< /echarts >}}
 
-### 写作工具
+`echarts` shortcode 还有以下命名参数:
+
+* **width** *[可选]* (**第一个**位置参数)：{{< version 0.2.0 >}} 数据可视化的宽度, 默认值是 `100%`.
+
+* **height** *[可选]* (**第二个**位置参数)：{{< version 0.2.0 >}} 数据可视化的高度, 默认值是 `30rem`.
+
+#### Music
+
+`music` shortcode 基于 [APlayer](https://github.com/MoePlayer/APlayer) 和 [MetingJS](https://github.com/metowolf/MetingJS) 提供了一个内嵌的响应式音乐播放器，有三种使用方式
+
+##### 自定义音乐 URL
+
+`music` shortcode 有以下命名参数来使用自定义音乐 URL:
+
+* **server** *[必需]*：音乐的链接.
+
+* **type** *[可选]*：音乐的名称.
+
+* **artist** *[可选]*：音乐的创作者.
+
+* **cover** *[可选]*：音乐的封面链接.
+
+一个使用自定义音乐 URL 的 `music` 示例:
+
+```markdown
+{{</* music url="https://rainymood.com/audio1110/0.m4a" name=rainymood artist=rainymood cover="https://rainymood.com/i/badge.jpg" */>}}
+```
+
+呈现的输出效果如下:
+
+{{< music url="https://rainymood.com/audio1110/0.m4a" name=rainymood artist=rainymood cover="https://rainymood.com/i/badge.jpg" >}}
+
+##### 音乐平台 URL 的自动识别 
+
+`music` shortcode 有一个命名参数来使用音乐平台 URL 的自动识别:
+
+* **auto** *[必需]]* (**第一个**位置参数)：用来自动识别的音乐平台 URL, 支持 `netease`, `tencent` 和 `xiami` 平台.
+
+一个使用音乐平台 URL 的自动识别的 `music` 示例:
+
+```markdown
+{{</* music auto="https://music.163.com/#/playlist?id=60198" */>}}
+或者
+{{</* music "https://music.163.com/#/playlist?id=60198" */>}}
+```
+
+呈现的输出效果如下:
+
+{{< music auto="https://music.163.com/#/playlist?id=60198" >}}
+
+##### 自定义音乐平台, 类型和 ID 
+
+`music` shortcode 有以下命名参数来使用自定义音乐平台:
+
+* **server** *[必需]* (**第一个**位置参数)：[`netease`, `tencent`, `kugou`, `xiami`, `baidu`]，音乐平台.
+
+* **type** *[必需]* (**第二个**位置参数)：[`song`, `playlist`, `album`, `search`, `artist`]，音乐类型.
+
+* **id** *[必需]* (**第三个**位置参数)：歌曲 ID, 或者播放列表 ID, 或者专辑 ID, 或者搜索关键词, 或者创作者 ID.
+
+一个使用自定义音乐平台的 `music` 示例:
+
+```markdown
+{{</* music server="netease" type="song" id="1868553" */>}}
+或者
+{{</* music netease song 1868553 */>}}
+```
+
+呈现的输出效果如下:
+
+{{< music netease song 1868553 >}}
+
+##### 其它参数 
+
+`music` shortcode 有一些可以应用于以上三种方式的其它命名参数:
+
+* **theme** *[可选]*：{{< version 0.2.0 changed >}} 音乐播放器的主题色, 默认值是 `#448aff`.
+
+* **fixed** *[可选]*：是否开启固定模式, 默认值是 `false`.
+
+* **mini** *[可选]*：是否开启迷你模式, 默认值是 `false`.
+
+* **autoplay** *[可选]*：是否自动播放音乐, 默认值是 `false`.
+
+* **volume** *[可选]*：第一次打开播放器时的默认音量, 会被保存在浏览器缓存中, 默认值是 `0.7`.
+
+* **mutex** *[可选]*：是否自动暂停其它播放器, 默认值是 `true`.
+
+`music` shortcode 还有一些只适用于音乐列表方式的其它命名参数:
+
+* **loop** *[可选]*：[`all`, `one`, `none`]，音乐列表的循环模式, 默认值是 `none`.
+
+* **order** *[可选]*：[`list`, `random`]，音乐列表的播放顺序, 默认值是 `list`.
+
+* **list-folded** *[可选]*：初次打开的时候音乐列表是否折叠, 默认值是 `false`.
+
+* **list-max-height** *[可选]*：音乐列表的最大高度, 默认值是 `340px`.
+
+#### Typeit
+
+`typeit` shortcode 基于 [TypeIt](https://typeitjs.com/) 提供了打字动画，只需将需要打字动画的内容插入 `typeit` shortcode 中即可。允许使用 `Markdown` 格式的简单内容, 并且 **不包含** 富文本的块内容, 例如图像等等...
+
+一个 `typeit` 示例:
+
+```markdown
+{{</* typeit */>}}
+这一个带有基于 [TypeIt](https://typeitjs.com/) 的 **打字动画** 的 *段落*...
+{{</* /typeit */>}}
+```
+
+呈现的输出效果如下:
+
+{{< typeit >}}
+这一个带有基于 [TypeIt](https://typeitjs.com/) 的 **打字动画** 的 *段落*...
+{{< /typeit >}}
+
+#### Image
+
+`image` shortcode 是 `figure` shortcode的替代，可以充分利用 [lazysizes](https://github.com/aFarkas/lazysizes) 和 [lightgallery.js](https://github.com/sachinchoolur/lightgallery.js) 两个依赖库.
+
+主要使用的参数如下:
+
+* **src** *[必需]* (**第一个**位置参数)：图片的 URL.
+
+* **alt** *[可选]* (**第二个**位置参数)：图片无法显示时的替代文本, 默认值是 **src** 参数的值.
+
+* **caption** *[可选]* (**第三个**位置参数)：图片标题.
+
+* **title** *[可选]*：当悬停在图片上会显示的提示.
+
+* **class** *[可选]*：HTML `figure` 标签的 `class` 属性.
+
+* **src_s** *[可选]*：图片缩略图的 URL, 用在画廊模式中, 默认值是 **src** 参数的值.
+
+* **src_l** *[可选]*：高清图片的 URL, 用在画廊模式中, 默认值是 **src** 参数的值.
+
+* **height** *[可选]*：图片的 `height` 属性.
+
+* **width** *[可选]*：图片的 `width` 属性.
+
+* **linked** *[可选]*：图片是否需要被链接, 默认值是 `true`.
+
+* **rel** *[可选]*：HTML `a` 标签 的 `rel` 补充属性, 仅在 **linked** 属性设置成 `true` 时有效.
+
+* **large** *[可选]*：图片是否是大尺寸的, 用来加载动画, 仅在 **linked** 属性设置成 `false` 时有效.
+
+一个 `image` 示例:
+
+```markdown
+{{</* image src="/images/theme-documentation-extended-shortcodes/lighthouse.jpg" caption="Lighthouse (`image`)" src-s="/images/theme-documentation-extended-shortcodes/lighthouse-small.jpg" src-l="/images/theme-documentation-extended-shortcodes/lighthouse-large.jpg" */>}}
+```
+
+## 6. 写作工具
 
 + 使用Chrome下的插件诸如`stackedit`与`markdown-here`等，不用担心平台受限 
 + 在线如CSDN、简书、知乎、Github等都支持Markdown写作，现在越来越多的网站都已经开始支持Markdown格式的文章
-+ 客户端软件目前使用Typora，其它如VS code、有道云笔记、为知笔记等都支持markdown写作      
++ 客户端软件目前使用Typora，其它如VS code、有道云笔记、为知笔记等都支持markdown写作   
 
-### Shortcodes说明
+## 附录I Shortcode  
 
 Hugo写文章的主要格式是Markdown，但是很多高级的语法默认的渲染引擎是不支持的，需要使用纯HTML代码来编写，这和Markdown的本意是违背的。因此Hugo提供了[Shortcodes](https://gohugo.io/templates/shortcode-templates/)来提供对这些语法的支持。
 
-短代码的调用方法为将代码放在两个大括号和一个尖括号的包围中，代码本身应与两侧尖括号有一个空格分隔
+短代码的调用方法为将代码放在两个大括号和一个尖括号的包围中，代码本身应与两侧尖括号有一个空格分隔。Hugo本身提供了一些Shortcodes（[Build-in](https://gohugo.io/content-management/shortcodes/)），但大部分都由于各种原因不能用，可用的两个分别是 Github Gist 和 Figure
 
-另外，Hugo本身就提供了一些Shortcodes（[Build-in](https://gohugo.io/content-management/shortcodes/)），比如github gist，如果一个gist的url如下
-
-```diff
-https://gist.github.com/spf13/7896402
-```
-
-那么可以使用下面的填充参数
+[`figure` 的文档](https://gohugo.io/content-management/shortcodes/#figure)，一个 `figure` 示例:
 
 ```markdown
-gist spf13 7896402
+{{</* figure src="/images/theme-documentation-built-in-shortcodes/lighthouse.jpg" title="Lighthouse (figure)" */>}}
 ```
 
-如果gist包括多个文件但我们只想用一个，可以传入文件名作为第三个参数
+输出的 HTML 看起来像这样:
+
+```html
+<figure>
+    <img src="/images/theme-documentation-built-in-shortcodes/lighthouse.jpg"/>
+    <figcaption>
+        <h4>Lighthouse (figure)</h4>
+    </figcaption>
+</figure>
+```
+
+[`gist` 的文档](https://gohugo.io/content-management/shortcodes/#gist)，一个 `gist` 示例:
 
 ```markdown
-gist spf13 7896402 "img.html"
+{{</* gist spf13 7896402 */>}}
 ```
 
-### 书影音页面
+呈现的输出效果如下:
+
+{{< gist spf13 7896402 >}}
+
+输出的 HTML 看起来像这样:
+
+```html
+<script type="application/javascript" src="https://gist.github.com/spf13/7896402.js"></script>
+```
+
+## 附录II 书影音页面
 
 因为添加书籍、电影记录过于繁琐，决定删除该页面，相关的代码放在[github gist](https://gist.github.com/shuzang/c067f021518224252f4ea3b84748170f)中
-
 

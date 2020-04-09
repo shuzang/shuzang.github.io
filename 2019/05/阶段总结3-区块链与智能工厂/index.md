@@ -1,9 +1,11 @@
 # 阶段总结3-区块链与智能工厂
 
 
-## 1. 区块链能为智能工厂带来什么好处（即我们做这种结合的意义）
+## 1. 背景
 
-传统工厂向智能工厂转变是为了提高生产和管理效率，并高度灵活地适应不断变化的生产要求[1]。这一目的的达成部分依赖于大量来自于制造设备，工业生产流程，工厂运行等过程的数据收集。为了完成这样的收集过程，工厂中部署的终端设备节点数量和网络规模不断扩大，各种新兴技术如3D打印，AR/VR，CPS，IoT和边缘计算等不断集成。传统的中心化架构无法再为这样庞大的系统提供有效支持，工厂的通信体系结构因此需要转变为涉及工业流程所有实体的分布式体系结构。区块链技术是可选的解决方案之一，其优点包括：
+传统工厂向智能工厂转变是为了提高生产和管理效率，并高度灵活地适应不断变化的生产要求[^munera2015control]。这一目的的达成部分依赖于大量来自于制造设备，工业生产流程，工厂运行等过程的数据收集。为了完成这样的收集过程，工厂中部署的终端设备节点数量和网络规模不断扩大，各种新兴技术如3D打印，AR/VR，CPS，IoT和边缘计算等不断集成。传统的中心化架构无法再为这样庞大的系统提供有效支持，工厂的通信体系结构因此需要转变为涉及工业流程所有实体的分布式体系结构。区块链技术是可选的解决方案之一，其优点包括：
+
+[^munera2015control]:E. Munera, J. Poza-Lujan, J. Posadas-Yagüe, J. Simo, J. F. Blanes, and P. Albertos, ‘‘Control kernel in smart factory environments: Smart resources integration,’’ in Proc. IEEE Int. Conf. Cyber Technol. Automat., Control, Intell. Syst. (CYBER), Shenyang, China, Jun. 2015, pp. 2002–2005.
 
 - 分布式应用。具有较大计算负载的工业应用依赖于昂贵的集中式服务器，采用区块链技术，可以利用去中心化应用(dapp)分担计算负载，有效减少运维成本，提升用户体验。
 - 软/固件更新。由于安全问题更新工厂中的IIoT设备十分常见，通常情况下，更新过程需要在遍布工厂的众多设备中手动执行。使用区块链可以简化这一繁琐而低效的更新流程，将软件更新同时分发给尽可能多的智能设备，并同时保证完整性和安全性。
@@ -22,9 +24,7 @@
 
 问题3：区块链出现之前，这一方向对基于云的中心化架构的替代方案是什么？
 
->  [1] E. Munera, J. Poza-Lujan, J. Posadas-Yagüe, J. Simo, J. F. Blanes, and P. Albertos, ‘‘Control kernel in smart factory environments: Smart resources integration,’’ in Proc. IEEE Int. Conf. Cyber Technol. Automat., Control, Intell. Syst. (CYBER), Shenyang, China, Jun. 2015, pp. 2002–2005.
-
-## 2. 区块链若和智能工厂结合，还面对哪些问题？
+## 2. 需解决的问题
 
 这些问题主要包括三个方面：
 
@@ -167,10 +167,6 @@
 #### 3.4.1 合约设计
 
 主体包括数据存储合约和访问控制两个合约
-
-访问控制合约中应包括以下函数
-
-- 设备注册：
 
 #### 3.4.2 交互流程
 

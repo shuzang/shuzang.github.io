@@ -81,7 +81,7 @@ B. ping 域名
 
 ## 3. 流程介绍
 
-![ping程序实现](/images/Goweb-ping实现/3EEkt0.png)
+![ping程序实现](/images/Ping程序实现/3EEkt0.png)
 
 ## 4. 代码
 
