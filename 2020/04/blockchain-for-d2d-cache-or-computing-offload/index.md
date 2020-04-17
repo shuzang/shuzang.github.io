@@ -1,4 +1,4 @@
-# 区块链与D2D
+# 区块链与D2D内容缓存/计算卸载
 
 
 ## 1. 概念引入
@@ -37,7 +37,7 @@
 [^lacuesta_spontaneous_2014]:Lacuesta R, Lloret J, Sendra S, Peñalver L. Spontaneous ad hoc mobile cloud computing network. The Scientific World Journal 2014; 2014: 1–19. DOI: 10.1155/2014/232419
 [^hammam_trust_2013]:Hammam A, Senbel S. A trust management system for ad-hoc mobile clouds. In Computer Engineering & Systems (ICCES), 2013 8th International Conference on, IEEE, 2013
 
-## 3. 区块链提供信任
+## 3. 引入区块链的例子
 
 这一部分取自论文[^qiao2019blockchain]，是一个利用区块链提供不可信 D2D 节点间信任的例子。
 
@@ -69,3 +69,61 @@
 3. 对资源提供者的信誉度评估在得到正确的计算结果后执行，作者也提供了公式推导
 
 整个系统的安全性通过三个方面保证：共识和信誉评估系统保证计算卸载环境可靠；智能合约保证交易记录和信誉度不被篡改；LBS保证通信安全。
+
+## 4. 一些思路
+
+使用一个公链提供基于位置的服务，所有设备在区块链中注册获取其身份，可以更新自己的资源状态或发起资源请求，由于计算卸载是小范围的，设备还需要提供自身的位置，但位置信息应被加密保护，从而保证隐私。
+
+此外区块链中还维持一个信誉评估系统，根据每次资源交易的结果更新设备信誉度。
+
+访问控制系统在其中起到的作用是，接受到资源请求后，根据位置属性和信誉度获取附近设备的地址，设备地址应该作为一种资源提供。得到附近的设备地址后，发起请求建立资源请求者者和资源提供者的 D2D 通信，该D2D网络同时也是一个区块链，任务分配、计算卸载等过程都在这个本地区块链执行。资源请求者得到结果并验证正确后，将这个临时的区块链链接到公链相应的区块，并在主链中更新信誉度和支付数字货币。
+
+该结构类似于哈希表，主链是不断延长的哈希表结构，每个区块是哈希表的一个元素，而每个哈希表元素对应一条或多条临时区块链。
+
+核心思想是将支付、信誉评估、任务分配、计算卸载等功能分离，放在各自适合的区块链中。
+
+### 4.1 功能划分
+
+我们的基本思路是根据需求将各种功能划分到公链和私链上。基本的出发点是，公链的处理速度不够快，计算卸载和内容缓存都对速度有一定要求，而私链覆盖范围不够大，设备可能在任何时间任何地点有内容缓存或计算卸载的需求。因此最终决定将对处理速度有要求的功能放到私链，将设备发现和移动性等功能放到公链，然后通过一定的方法将两条区块链相关联。
+
+#### 公链
+
+首先基于位置的服务（LBS）需要在公链上实现。论文[^qiao2019blockchain]使用了一个可信 LBS，设备只有在其中注册后才能成为合法的 D2D-ECN （D2D边缘计算网络）参与者，然后 LBS 会分配设备ID 和证书（也可以是 IP 或 MAC 地址）用来唯一识别设备，接着发给设备一对公私钥用于通信，最后是钱包地址，用于资源交易（购买或出售存储或计算能力）。资源请求者将资源需求发到 LBS，资源所有者将可用资源数量和使用限制发到 LBS，LBS 验证它们的证书后将这些内容写入智能合约。因此在该论文中，LBS是独立于区块链之外的可信实体，我们知道，第三方的可信是相对的，尤其在关于位置的隐私上，我们更抱有戒心，因此可以直接利用智能合约在公链上提供基于位置的服务。
+
+为了激励用户参与计算卸载和内容缓存，使用资源提供者的资源需要支付数字货币，我们可以直接使用公链的货币，如以太坊，因此如第一部分所述，资源请求者还需要知道资源提供者的钱包地址。
+
+经过分析，我们应在公链上实施的功能包括：设备注册，位置管理，支付。支付可以直接使用公链的账户地址，注册需要维持一个注册表，以设备 ID 为主键，关联设备地址、IP或MAC地址以及设备的公链账户地址。鉴于可能发生的恶意行为，我们可以维持一个简单的恶意行为判决机制或一个信誉系统。这里的关键问题是设备位置的隐私，由于公链中信息是透明的，位置不可以直接进行存储，最好是对其进行加密，所以可能还需要在设备注册时传入一个公钥用于对设备地址加密。资源请求者发起请求后，公链中的 LBS 根据请求者的位置查找其附近的设备，并将这些设备的 IP/MAC 传给请求者，用于建立 D2D 网络。资源匹配、任务划分、计算卸载等其它功能都在D2D网络中进行。
+
+这里不确定的是资源匹配的过程是否在公链中实施，也就是说，是直接将请求者附近所有设备的位置发送过去，还是进行资源匹配后将符合要求的设备位置发送过去。
+
+#### 私链
+
+资源请求者收到附近设备的 IP/MAC 地址后，发起广播请求建立 D2D 网络，然后在 D2D 网络之上建立私有区块链，利用私有区块链提供的智能合约实现任务划分和计算卸载/内容缓存。任务完成后，将整条私链（或私链的哈希）交给公链存储，依附在公链当前的区块上，形成一种类似于如下的结构。
+
+![两条区块链关联](/images/总结-区块链与D2D/两条区块链关联.png)
+
+如同现有的线上支付系统，资源提供者完成任务后在公链中标记任务完成，资源请求者确认后，事先锁定在智能合约中的数字货币被支付。整个交易完成，最后可能会根据交易情况评估信誉或记录恶意行为。
+
+### 4.2 多链关联
+
+就是上面说的将临时区块链的数据链接到公链相关的区块，这一思路的来源是 Dorri 的论文[^dorri2017blockchain]，论文关于 Local BC 包含的交易有一段说明如下
+
+[^dorri2017blockchain]:Dorri A, Kanhers S S, Jurdak R, 等. Blockchain for IoT security and privacy: The case study of a smart home[C/OL]//2017 IEEE International Conference on Pervasive Computing and Communications Workshops (PerCom Workshops). Kona, HI: IEEE, 2017: 618–623. DOI:[10.1109/PERCOMW.2017.7917634](https://doi.org/10.1109/PERCOMW.2017.7917634).
+
+> Besides the headers, each block contains a number of transactions. For each transaction five parameters are stored in the local BC as shown in the top left corner of the Figure 2. The first two parameters are used to chain transactions of the same device to each other and identify each transaction uniquely in the BC. The transaction’s corresponding device ID is inserted on the third field. ”Transaction type” refers to the type of transaction that can be genesis, access, store, or monitor transactions. The transaction is stored on the fifth field if it comes from the overlay network, otherwise, this filed is kept blank. The local BC is kept and managed by a local miner.
+
+其中提到的 Figure 2 如下，Local BC的区块体是一系列交易的集合，每个交易的第一个字段填充相同设备上一个交易的交易号，用来将相同设备的所有交易链接到一起。每个交易的交易号是第二个字段，设备ID是第三个字段。如果交易来自 Overlay，交易内容存在第五个字段，否则留空。
+
+![Figure 2: overlay of smart home](/images/总结-区块链与D2D/54513763-4e0ce980-4993-11e9-9433-6c0ad7714b7b.png)
+
+### 4.3 当前难点
+
+难点也是可行性问题在于
+
+1. 支付合约的设计实现
+2. 如何根据加密后的位置查找附近设备
+3. 已知 IP/MAC 地址如何组件 D2D 网络
+4. 如何利用合约实现内容缓存/计算卸载
+5. 完成任务的私链如何存在公链上
+   - 如果存哈希，私链主体内容存在哪里
+   - 如果存内容，公链的区块是否能容纳
