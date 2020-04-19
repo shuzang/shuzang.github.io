@@ -258,7 +258,7 @@ func PostOrderTraverse(root *TreeNode) {
 
 ```go
 func PostOrderTraversal(BinTree BT) {
-    stack := Creatstacktack()
+    stack := Creatstack()
     tag := make(map[*TreeNode]bool)
 	for root != nil || stack.Len() != 0 {
 		for root != nil {
