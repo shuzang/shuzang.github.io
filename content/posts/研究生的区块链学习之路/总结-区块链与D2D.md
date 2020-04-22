@@ -1,8 +1,8 @@
 ---
-title: 区块链与D2D内容缓存/计算卸载
+title: 阶段总结7-区块链与D2D内容缓存/计算卸载
 date: 2020-04-03
 lastmod: 2020-04-15
-tags: [论文笔记]
+tags: [科研记录]
 math : true
 lightgallery: true
 categories: [研究生的区块链学习之路]

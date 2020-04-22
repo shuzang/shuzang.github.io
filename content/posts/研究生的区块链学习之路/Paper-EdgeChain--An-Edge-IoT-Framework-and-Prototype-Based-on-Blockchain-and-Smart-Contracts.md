@@ -63,19 +63,6 @@ EdgeChain可以两种模式部署，独立模式如smart home，以及分布式�
 
 注册起始于判断设备类型，对legacy设备，IoT代理会为每个设备创建账户并在注册合约中注册，non-legacy设备可以通过安装的客户端直接与区块链交互。
 
-```mermaid
-graph TD
-A[IoT Device Registration]-->B{Devices}
-B-->|Legacy| C[IoT proxy registers and creates accounts for devices]
-B-->|Non-Legacy| D[Devices register and create account itself]
-C-->E[Add attributes of devices to smart contracts]
-D-->E[Add attributes of devices to smart contracts]
-E-->F[Listen to the activities]
-
-```
-
-
-
 ![Devices registration workflow](https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/6488907/8738925/8510796/pan7-2878154-large.gif)
 
 注册信息的内容主要根据制造商使用说明定义，主要包括输入/输出数据类型、边缘资源请求、mac地址、ip地址、网络端口、通信协议和指示标志。此外，每个设备都有一个唯一的区块链账户地址。注册后，边缘服务器验证上述信息，并添加更多的参数如优先级，账户余额，信用和请求时间戳等用于设备管理。具体定义在数据库的字段如下图所示
