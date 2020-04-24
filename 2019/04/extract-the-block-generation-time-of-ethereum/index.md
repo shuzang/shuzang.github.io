@@ -8,9 +8,9 @@
 - 爬取以太坊区块浏览器中的时间数据，然后格式化形成数据集输出
 - 同步以太坊的所有区块（头），利用以太坊本身提供的接口提取每个区块的时间戳信息，然后将时间戳转换为真实的日期格式形成数据集输出，[时间戳转换在线工具](<https://tool.lu/timestamp/>)
 
-查询资料过程中，了解到谷歌已提供以太坊的区块信息数据集。虽然数据集本身没有时间信息，但可以导出时间戳进行转换，了解到谷歌使用的工具是[ethereum-etl](<https://github.com/blockchain-etl/ethereum-etl#blockscsv>)，故最终的解决方案是：使用ethereum-etl导出时间戳，编写Python程序转换时间戳并导出数据集。
+查询资料过程中，了解到谷歌已提供以太坊的区块信息数据集[^Bigquery]。虽然数据集本身没有时间信息，但可以导出时间戳进行转换，了解到谷歌使用的工具是[ethereum-etl](<https://github.com/blockchain-etl/ethereum-etl#blockscsv>)，故最终的解决方案是：使用ethereum-etl导出时间戳，编写Python程序转换时间戳并导出数据集。
 
-> [谷歌宣布其 BigQuery 服务已支持以太坊区块链数据分析](<https://www.infoq.cn/article/ethereum-bigquery-public-dataset-smart-contract-analytics>)
+[^Bigquery]:[谷歌宣布其 BigQuery 服务已支持以太坊区块链数据分析](<https://www.infoq.cn/article/ethereum-bigquery-public-dataset-smart-contract-analytics>)
 
 <!--more-->
 
@@ -115,7 +115,7 @@ with open(filename) as f:
 
 生成的数据集格式如下，第一列为区块号，第二列为时间戳，第三列为转换后的时间信息，以逗号分隔，共20万条数据。在第一行手动添加表头。
 
-> 此时的以太坊主链总区块数在750万个左右。
+注：此时的以太坊主链总区块数在750万个左右。
 
 ```bash
 Number,Timestamp,Block generation time

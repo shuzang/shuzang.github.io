@@ -33,19 +33,15 @@
 &lt;p>Conference Location：Hong Kong, China&lt;/p>
 &lt;p>Cited times：30&lt;/p>
 &lt;h2 id="abstract">Abstract&lt;/h2>
-&lt;p>过去几年，工业和信息技术领域经历了深刻的变革，进入了工业4.0时代，将从嵌入式系统演变到网络物理系统（CPS）。制造业将通过互联网，整合内部和外部网络，朝着智能化方向发展。本文介绍工业4.0的发展，并以120的智慧信息技术（WIT120）为例介绍网络物理系统，然后通过数字工厂到智能工厂的例子介绍工业4.0在智能制造中的应用。最后分析工业4.0在未来的发展方向，为其在智能制造中的应用提供参考。&lt;/p></description></item><item><title>阶段总结2-区块链用于 IoT/IIoT：智能工厂案例</title><link>https://shuzang.github.io/2019/04/blockchain-for-iot/iiota-smart-factory-case-study/</link><pubDate>Fri, 12 Apr 2019 20:24:00 +0800</pubDate><guid>https://shuzang.github.io/2019/04/blockchain-for-iot/iiota-smart-factory-case-study/</guid><description>随着物联网的高速发展，越来越多的智能设备接入到了人们的日常生活和工业生产当中。尤其在智能工厂领域，物联网设备的使用大幅提高了工厂自动化程度，</description></item><item><title>提取以太坊的区块产生时间</title><link>https://shuzang.github.io/2019/04/%E6%8F%90%E5%8F%96%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%9A%84%E5%8C%BA%E5%9D%97%E4%BA%A7%E7%94%9F%E6%97%B6%E9%97%B4/</link><pubDate>Fri, 05 Apr 2019 21:35:00 +0800</pubDate><guid>https://shuzang.github.io/2019/04/%E6%8F%90%E5%8F%96%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%9A%84%E5%8C%BA%E5%9D%97%E4%BA%A7%E7%94%9F%E6%97%B6%E9%97%B4/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
+&lt;p>过去几年，工业和信息技术领域经历了深刻的变革，进入了工业4.0时代，将从嵌入式系统演变到网络物理系统（CPS）。制造业将通过互联网，整合内部和外部网络，朝着智能化方向发展。本文介绍工业4.0的发展，并以120的智慧信息技术（WIT120）为例介绍网络物理系统，然后通过数字工厂到智能工厂的例子介绍工业4.0在智能制造中的应用。最后分析工业4.0在未来的发展方向，为其在智能制造中的应用提供参考。&lt;/p></description></item><item><title>阶段总结2-区块链用于 IoT/IIoT：智能工厂案例</title><link>https://shuzang.github.io/2019/04/blockchain-for-iot/iiota-smart-factory-case-study/</link><pubDate>Fri, 12 Apr 2019 20:24:00 +0800</pubDate><guid>https://shuzang.github.io/2019/04/blockchain-for-iot/iiota-smart-factory-case-study/</guid><description>随着物联网的高速发展，越来越多的智能设备接入到了人们的日常生活和工业生产当中。尤其在智能工厂领域，物联网设备的使用大幅提高了工厂自动化程度，</description></item><item><title>提取以太坊的区块产生时间</title><link>https://shuzang.github.io/2019/04/extract-the-block-generation-time-of-ethereum/</link><pubDate>Fri, 05 Apr 2019 21:35:00 +0800</pubDate><guid>https://shuzang.github.io/2019/04/extract-the-block-generation-time-of-ethereum/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
 &lt;p>目的是提取以太坊的区块产生时间形成数据集，初步的思路有两种：&lt;/p>
 &lt;ul>
 &lt;li>爬取以太坊区块浏览器中的时间数据，然后格式化形成数据集输出&lt;/li>
 &lt;li>同步以太坊的所有区块（头），利用以太坊本身提供的接口提取每个区块的时间戳信息，然后将时间戳转换为真实的日期格式形成数据集输出，&lt;a href="https://tool.lu/timestamp/" target="_blank">时间戳转换在线工具&lt;/a>
 &lt;/li>
 &lt;/ul>
-&lt;p>查询资料过程中，了解到谷歌已提供以太坊的区块信息数据集。虽然数据集本身没有时间信息，但可以导出时间戳进行转换，了解到谷歌使用的工具是&lt;a href="https://github.com/blockchain-etl/ethereum-etl#blockscsv" target="_blank">ethereum-etl&lt;/a>
-，故最终的解决方案是：使用ethereum-etl导出时间戳，编写Python程序转换时间戳并导出数据集。&lt;/p>
-&lt;blockquote>
-&lt;p>&lt;a href="https://www.infoq.cn/article/ethereum-bigquery-public-dataset-smart-contract-analytics" target="_blank">谷歌宣布其 BigQuery 服务已支持以太坊区块链数据分析&lt;/a>
-&lt;/p>
-&lt;/blockquote></description></item><item><title>Distributed Blockchain-Based Data Protection Framework for Modern Power Systems</title><link>https://shuzang.github.io/2019/04/distributed-blockchain-based-data-protection-framework-for-modern-power-systems/</link><pubDate>Mon, 01 Apr 2019 11:16:00 +0800</pubDate><guid>https://shuzang.github.io/2019/04/distributed-blockchain-based-data-protection-framework-for-modern-power-systems/</guid><description>&lt;p>Author：Gaoqi Liang , Steven R. Weller, Fengji Luo , Junhua Zhao, Zhao Yang Dong&lt;/p>
+&lt;p>查询资料过程中，了解到谷歌已提供以太坊的区块信息数据集&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>。虽然数据集本身没有时间信息，但可以导出时间戳进行转换，了解到谷歌使用的工具是&lt;a href="https://github.com/blockchain-etl/ethereum-etl#blockscsv" target="_blank">ethereum-etl&lt;/a>
+，故最终的解决方案是：使用ethereum-etl导出时间戳，编写Python程序转换时间戳并导出数据集。&lt;/p></description></item><item><title>Distributed Blockchain-Based Data Protection Framework for Modern Power Systems</title><link>https://shuzang.github.io/2019/04/distributed-blockchain-based-data-protection-framework-for-modern-power-systems/</link><pubDate>Mon, 01 Apr 2019 11:16:00 +0800</pubDate><guid>https://shuzang.github.io/2019/04/distributed-blockchain-based-data-protection-framework-for-modern-power-systems/</guid><description>&lt;p>Author：Gaoqi Liang , Steven R. Weller, Fengji Luo , Junhua Zhao, Zhao Yang Dong&lt;/p>
 &lt;p>Published in：IEEE Transactions on Smart Grid 2018(Early Access)&lt;/p>
 &lt;p>期刊级别：SCI I区&lt;/p>
 &lt;p>被引量：19次&lt;/p>
