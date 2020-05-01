@@ -151,9 +151,9 @@ dateFormatToUse = "2006-01-02"
       social = true
     # Home Page Posts
     [params.home.posts]
-      enable = false
+      enable = true
       # special amount of posts in each home posts page
-      paginate = 6
+      paginate = 2
       # default behavior when you don't set "hiddenFromHomePage" in front matter
       defaultHiddenFromHomePage = false
 
