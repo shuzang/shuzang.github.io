@@ -154,7 +154,7 @@ Zotero 本身只提供 300M 免费的存储空间，这些空间存储 PDF 文�
 
 Zotero 的数据和文件的同步是分离的，数据指的是文献的分类、标签和各种元数据信息，文件指的是PDF和笔记等各种附件，这就给了我们机会[^2]。如上图所示，在「同步」设置页面，对数据同步的选项全部勾选，而文件同步的选项全部取消勾选。
 
-[^2]:[利用ONEDRIVE同步ZOTERO数据文件夹的方法]([https://www.junjienotes.com/tips/%E5%88%A9%E7%94%A8onedrive%E5%90%8C%E6%AD%A5zotero%E6%95%B0%E6%8D%AE%E6%96%87%E4%BB%B6%E5%A4%B9%E7%9A%84%E6%96%B9%E6%B3%95/](https://www.junjienotes.com/tips/利用onedrive同步zotero数据文件夹的方法/))
+[^2]:[利用ONEDRIVE同步ZOTERO数据文件夹的方法](https://www.junjienotes.com/tips/利用onedrive同步zotero数据文件夹的方法/)
 
 然后切换到「高级—>文件和文件夹」选项卡，点击打开数据文件夹，获取数据文件的存储路径。
 
