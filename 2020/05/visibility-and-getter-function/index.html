@@ -1,0 +1,186 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>可见性与Getter函数 | Shuzang's Blog</title><meta name=Description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><meta property="og:title" content="可见性与Getter函数"><meta property="og:description" content="转自：Solidity 0.6.4 中文文档 Solidity 有两种函数调用：内部调用（Internal Function Calls）和外部调用（External Function Calls）。前者指"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.github.io/2020/05/visibility-and-getter-function/"><meta property="article:published_time" content="2020-05-04T00:00:00+00:00"><meta property="article:modified_time" content="2020-05-04T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="可见性与Getter函数"><meta name=twitter:description content="转自：Solidity 0.6.4 中文文档 Solidity 有两种函数调用：内部调用（Internal Function Calls）和外部调用（External Function Calls）。前者指"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel=canonical href=https://shuzang.github.io/2020/05/visibility-and-getter-function/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=prev href=https://shuzang.github.io/2020/05/string-equality-comparison/><link rel=next href=https://shuzang.github.io/2020/05/pure-and-view/><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/css/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"可见性与Getter函数","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/2020\/05\/visibility-and-getter-function\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"Solidity","wordcount":1493,"url":"https:\/\/shuzang.github.io\/2020\/05\/visibility-and-getter-function\/","datePublished":"2020-05-04T00:00:00\x2b00:00","dateModified":"2020-05-04T00:00:00\x2b00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"shuzang","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/logo.png","width":127,"height":40}},"description":""}</script></head><body><script>if(!window.localStorage||!window.localStorage.getItem('theme')){window.isDark=window.matchMedia('(prefers-color-scheme: dark)').matches;}else{window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';}
+window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class="header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch title="Switch Theme">
+<i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a></div></div></header><header class=mobile id=header-mobile><div class=header-wrapper><div class=header-container><div class="header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch title="Switch Theme">
+<i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a></div></div></header><script>window.desktopHeaderMode="fixed";window.mobileHeaderMode="auto";</script><main class=main><div class=container><article class="page single"><h1 class="single-title animated flipInX">可见性与Getter函数</h1><div class=meta><div class=meta-line><a class=author href=https://shuzang.top/about/ rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>深入浅出区块链
+</a>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i><a href=https://shuzang.github.io/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/>研究生的区块链学习之路</a>&nbsp;</span></div><div class=meta-line><i class="far fa-calendar-alt fa-fw"></i><time datetime=2020-05-04>2020-05-04</time>&nbsp;
+<i class="fas fa-pencil-alt fa-fw"></i>about 1493 words&nbsp;
+<i class="far fa-clock fa-fw"></i>3 min&nbsp;</div></div><aside class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class="post-toc-content always-active"><nav id=TableOfContents><ul><li><a href=#1-可见性>1. 可见性</a></li><li><a href=#2-getter-函数>2. Getter 函数</a></li></ul></nav></div></aside><aside class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
+<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><a href=#1-可见性>1. 可见性</a></li><li><a href=#2-getter-函数>2. Getter 函数</a></li></ul></nav></div></details></aside><div class=content><p>转自：<a href=https://learnblockchain.cn/docs/solidity/contracts.html#getter target=_blank>Solidity 0.6.4 中文文档</a></p><p>Solidity 有两种函数调用：内部调用（Internal Function Calls）和外部调用（External Function Calls）。前者指直接或递归地调用合约内部函数，不会产生实际的 EVM 调用，因此也被称为「消息嗲用」，后者指从合约外部调用合约中的函数，会产生一个 EVM 调用。</p><h2 id=1-可见性>1. 可见性</h2><p>因此，函数和状态变量有四种可见性。函数可以指定为 <code>external</code>，<code>public</code>，<code>internal</code> 或 <code>private</code>，对于状态变量， 默认是 <code>internal</code> 且不能设置为 <code>external</code>。</p><ul><li><code>external</code>：外部函数作为合约接口的一部分，意味着我们可以从其他合约和交易中调用。 一个外部函数 <code>f</code> 不能从内部调用（即 <code>f</code> 不起作用，但 <code>this.f()</code>可以）。 当收到大量数据的时候，外部函数有时候会更有效率，因为数据不会从calldata复制到内存.</li><li><code>public</code>：public 函数是合约接口的一部分，可以在内部或通过消息调用。对于 public 状态变量， 会自动生成一个 getter 函数（见下面）。</li><li><code>internal</code>：这些函数和状态变量只能是内部访问（即从当前合约内部或从它派生的合约访问），不使用 <code>this</code> 调用。</li><li><code>private</code>：private 函数和状态变量仅在当前定义它们的合约中使用，并且不能被派生合约使用。</li></ul><blockquote><p>合约中的所有内容对外部观察者都是可见的。设置一些 <code>private</code> 类型只能阻止其他合约访问和修改这些信息， 但是对于区块链外的整个世界它仍然是可见的。</p></blockquote><p>可见性标识符的定义位置，对于状态变量来说是在类型后面，对于函数是在参数列表和返回关键字中间，如下例</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-solidity data-lang=solidity><span class=kr>pragma solidity</span>  <span class=o>&gt;=</span><span class=mi>0</span><span class=p>.</span><span class=mi>4</span><span class=p>.</span><span class=mi>16</span> <span class=o>&lt;</span><span class=mi>0</span><span class=p>.</span><span class=mi>7</span><span class=p>.</span><span class=mi>0</span><span class=p>;</span>
+
+<span class=kd>contract</span> <span class=n>C</span> <span class=p>{</span>
+    <span class=kd>function</span> <span class=n>f</span><span class=p>(</span><span class=kt>uint</span> <span class=n>a</span><span class=p>)</span> <span class=kr>private</span> <span class=kr>pure</span> <span class=k>returns</span> <span class=p>(</span><span class=kt>uint</span> <span class=n>b</span><span class=p>)</span> <span class=p>{</span> <span class=k>return</span> <span class=n>a</span> <span class=o>+</span> <span class=mi>1</span><span class=p>;</span> <span class=p>}</span>
+    <span class=kd>function</span> <span class=n>setData</span><span class=p>(</span><span class=kt>uint</span> <span class=n>a</span><span class=p>)</span> <span class=kr>internal</span> <span class=p>{</span> <span class=n>data</span> <span class=o>=</span> <span class=n>a</span><span class=p>;</span> <span class=p>}</span>
+    <span class=kt>uint</span> <span class=kr>public</span> <span class=n>data</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>在下面的例子中，<code>D</code> 可以调用 <code>c.getData（）</code> 来获取状态存储中 <code>data</code> 的值，但不能调用 <code>f</code> 。 合约 <code>E</code> 继承自 <code>C</code> ，因此可以调用 <code>compute</code>。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-solidity data-lang=solidity><span class=kr>pragma solidity</span> <span class=o>&gt;=</span><span class=mi>0</span><span class=p>.</span><span class=mi>4</span><span class=p>.</span><span class=mi>0</span> <span class=o>&lt;</span><span class=mi>0</span><span class=p>.</span><span class=mi>7</span><span class=p>.</span><span class=mi>0</span><span class=p>;</span>
+
+<span class=kd>contract</span> <span class=n>C</span> <span class=p>{</span>
+    <span class=kt>uint</span> <span class=kr>private</span> <span class=n>data</span><span class=p>;</span>
+
+    <span class=kd>function</span> <span class=n>f</span><span class=p>(</span><span class=kt>uint</span> <span class=n>a</span><span class=p>)</span> <span class=kr>private</span> <span class=k>returns</span><span class=p>(</span><span class=kt>uint</span> <span class=n>b</span><span class=p>)</span> <span class=p>{</span> <span class=k>return</span> <span class=n>a</span> <span class=o>+</span> <span class=mi>1</span><span class=p>;</span> <span class=p>}</span>
+    <span class=kd>function</span> <span class=n>setData</span><span class=p>(</span><span class=kt>uint</span> <span class=n>a</span><span class=p>)</span> <span class=kr>public</span> <span class=p>{</span> <span class=n>data</span> <span class=o>=</span> <span class=n>a</span><span class=p>;</span> <span class=p>}</span>
+    <span class=kd>function</span> <span class=n>getData</span><span class=p>(</span><span class=p>)</span> <span class=kr>public</span> <span class=k>returns</span><span class=p>(</span><span class=kt>uint</span><span class=p>)</span> <span class=p>{</span> <span class=k>return</span> <span class=n>data</span><span class=p>;</span> <span class=p>}</span>
+    <span class=kd>function</span> <span class=n>compute</span><span class=p>(</span><span class=kt>uint</span> <span class=n>a</span><span class=p>,</span> <span class=kt>uint</span> <span class=n>b</span><span class=p>)</span> <span class=kr>internal</span> <span class=k>returns</span> <span class=p>(</span><span class=kt>uint</span><span class=p>)</span> <span class=p>{</span> <span class=k>return</span> <span class=n>a</span><span class=o>+</span><span class=n>b</span><span class=p>;</span> <span class=p>}</span>
+<span class=p>}</span>
+
+<span class=c1>// 下面代码编译错误
+</span><span class=c1></span><span class=kd>contract</span> <span class=n>D</span> <span class=p>{</span>
+    <span class=kd>function</span> <span class=n>readData</span><span class=p>(</span><span class=p>)</span> <span class=kr>public</span> <span class=p>{</span>
+        <span class=n>C</span> <span class=n>c</span> <span class=o>=</span> <span class=k>new</span> <span class=n>C</span><span class=p>(</span><span class=p>)</span><span class=p>;</span>
+        <span class=kt>uint</span> <span class=n>local</span> <span class=o>=</span> <span class=n>c</span><span class=p>.</span><span class=n>f</span><span class=p>(</span><span class=mi>7</span><span class=p>)</span><span class=p>;</span> <span class=c1>// 错误：成员 `f` 不可见
+</span><span class=c1></span>        <span class=n>c</span><span class=p>.</span><span class=n>setData</span><span class=p>(</span><span class=mi>3</span><span class=p>)</span><span class=p>;</span>
+        <span class=n>local</span> <span class=o>=</span> <span class=n>c</span><span class=p>.</span><span class=n>getData</span><span class=p>(</span><span class=p>)</span><span class=p>;</span>
+        <span class=n>local</span> <span class=o>=</span> <span class=n>c</span><span class=p>.</span><span class=n>compute</span><span class=p>(</span><span class=mi>3</span><span class=p>,</span> <span class=mi>5</span><span class=p>)</span><span class=p>;</span> <span class=c1>// 错误：成员 `compute` 不可见
+</span><span class=c1></span>    <span class=p>}</span>
+<span class=p>}</span>
+
+<span class=kd>contract</span> <span class=n>E</span> <span class=kr>is</span> <span class=n>C</span> <span class=p>{</span>
+    <span class=kd>function</span> <span class=n>g</span><span class=p>(</span><span class=p>)</span> <span class=kr>public</span> <span class=p>{</span>
+        <span class=n>C</span> <span class=n>c</span> <span class=o>=</span> <span class=k>new</span> <span class=n>C</span><span class=p>(</span><span class=p>)</span><span class=p>;</span>
+        <span class=kt>uint</span> <span class=n>val</span> <span class=o>=</span> <span class=n>compute</span><span class=p>(</span><span class=mi>3</span><span class=p>,</span> <span class=mi>5</span><span class=p>)</span><span class=p>;</span> <span class=c1>// 访问内部成员（从继承合约访问父合约成员）
+</span><span class=c1></span>    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h2 id=2-getter-函数>2. Getter 函数</h2><p>编译器自动为所有 <strong>public</strong> 状态变量创建 getter 函数。对于下面给出的合约，编译器会生成一个名为 <code>data</code> 的函数， 该函数没有参数，返回值是一个 <code>uint</code> 类型，即状态变量 <code>data</code> 的值。 状态变量的初始化可以在声明时完成。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-solidity data-lang=solidity><span class=kr>pragma solidity</span>  <span class=o>&gt;=</span><span class=mi>0</span><span class=p>.</span><span class=mi>4</span><span class=p>.</span><span class=mi>0</span> <span class=o>&lt;</span><span class=mi>0</span><span class=p>.</span><span class=mi>7</span><span class=p>.</span><span class=mi>0</span><span class=p>;</span>
+
+<span class=kd>contract</span> <span class=n>C</span> <span class=p>{</span>
+    <span class=kt>uint</span> <span class=kr>public</span> <span class=n>data</span> <span class=o>=</span> <span class=mi>42</span><span class=p>;</span>
+<span class=p>}</span>
+
+<span class=kd>contract</span> <span class=n>Caller</span> <span class=p>{</span>
+    <span class=n>C</span> <span class=n>c</span> <span class=o>=</span> <span class=k>new</span> <span class=n>C</span><span class=p>(</span><span class=p>)</span><span class=p>;</span>
+    <span class=kd>function</span> <span class=n>f</span><span class=p>(</span><span class=p>)</span> <span class=kr>public</span> <span class=p>{</span>
+        <span class=kt>uint</span> <span class=n>local</span> <span class=o>=</span> <span class=n>c</span><span class=p>.</span><span class=n>data</span><span class=p>(</span><span class=p>)</span><span class=p>;</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>getter 函数具有外部（external）可见性。如果在内部访问 getter（即没有 <code>this.</code> ），它被认为一个状态变量。 如果使用外部访问（即用 <code>this.</code> ），它被认作为一个函数。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-solidity data-lang=solidity><span class=kr>pragma solidity</span> <span class=o>^</span><span class=mi>0</span><span class=p>.</span><span class=mi>4</span><span class=p>.</span><span class=mi>0</span> <span class=o>&lt;</span><span class=mi>0</span><span class=p>.</span><span class=mi>7</span><span class=p>.</span><span class=mi>0</span><span class=p>;</span>
+
+<span class=kd>contract</span> <span class=n>C</span> <span class=p>{</span>
+    <span class=kt>uint</span> <span class=kr>public</span> <span class=n>data</span><span class=p>;</span>
+    <span class=kd>function</span> <span class=n>x</span><span class=p>(</span><span class=p>)</span> <span class=kr>public</span> <span class=p>{</span>
+        <span class=n>data</span> <span class=o>=</span> <span class=mi>3</span><span class=p>;</span> <span class=c1>// 内部访问
+</span><span class=c1></span>        <span class=kt>uint</span> <span class=n>val</span> <span class=o>=</span> <span class=nb>this</span><span class=p>.</span><span class=n>data</span><span class=p>(</span><span class=p>)</span><span class=p>;</span> <span class=c1>// 外部访问
+</span><span class=c1></span>    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>如果你有一个数组类型的 <code>public</code> 状态变量，那么你只能通过生成的 getter 函数访问数组的单个元素。 这个机制以避免返回整个数组时的高成本gas。 可以使用如 <code>data(0)</code> 用于指定参数要返回的单个元素。 如果要在一次调用中返回整个数组，则需要写一个函数，例如：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-solidity data-lang=solidity><span class=kr>pragma solidity</span> <span class=o>&gt;=</span><span class=mi>0</span><span class=p>.</span><span class=mi>4</span><span class=p>.</span><span class=mi>0</span> <span class=o>&lt;</span><span class=mi>0</span><span class=p>.</span><span class=mi>7</span><span class=p>.</span><span class=mi>0</span><span class=p>;</span>
+
+<span class=kd>contract</span> <span class=n>arrayExample</span> <span class=p>{</span>
+  <span class=c1>// public state variable
+</span><span class=c1></span>  <span class=kt>uint</span><span class=p>[</span><span class=p>]</span> <span class=kr>public</span> <span class=n>myArray</span><span class=p>;</span>
+
+  <span class=c1>// 指定生成的Getter 函数
+</span><span class=c1></span>  <span class=cm>/*
+</span><span class=cm>  function myArray(uint i) public view returns (uint) {
+</span><span class=cm>      return myArray[i];
+</span><span class=cm>  }
+</span><span class=cm>  */</span>
+
+  <span class=c1>// 返回整个数组
+</span><span class=c1></span>  <span class=kd>function</span> <span class=n>getArray</span><span class=p>(</span><span class=p>)</span> <span class=kr>public</span> <span class=kr>view</span> <span class=k>returns</span> <span class=p>(</span><span class=kt>uint</span><span class=p>[</span><span class=p>]</span> <span class=kr>memory</span><span class=p>)</span> <span class=p>{</span>
+      <span class=k>return</span> <span class=n>myArray</span><span class=p>;</span>
+  <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>现在可以使用 <code>getArray()</code> 获得整个数组，而 <code>myArray(i)</code> 是返回单个元素。</p><p>下一个例子稍微复杂一些：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-solidity data-lang=solidity><span class=kr>pragma solidity</span> <span class=o>^</span><span class=mi>0</span><span class=p>.</span><span class=mi>4</span><span class=p>.</span><span class=mi>0</span> <span class=o>&lt;</span><span class=mi>0</span><span class=p>.</span><span class=mi>7</span><span class=p>.</span><span class=mi>0</span><span class=p>;</span>
+
+<span class=kd>contract</span> <span class=n>Complex</span> <span class=p>{</span>
+    <span class=kd>struct</span> <span class=n>Data</span> <span class=p>{</span>
+        <span class=kt>uint</span> <span class=n>a</span><span class=p>;</span>
+        <span class=kt>bytes3</span> <span class=n>b</span><span class=p>;</span>
+        <span class=kd>mapping</span> <span class=p>(</span><span class=kt>uint</span> <span class=o>=&gt;</span> <span class=kt>uint</span><span class=p>)</span> <span class=n>map</span><span class=p>;</span>
+    <span class=p>}</span>
+    <span class=kd>mapping</span> <span class=p>(</span><span class=kt>uint</span> <span class=o>=&gt;</span> <span class=kd>mapping</span><span class=p>(</span><span class=kt>bool</span> <span class=o>=&gt;</span> <span class=n>Data</span><span class=p>[</span><span class=p>]</span><span class=p>)</span><span class=p>)</span> <span class=kr>public</span> <span class=n>data</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>这将会生成以下形式的函数</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-solidity data-lang=solidity><span class=kd>function</span> <span class=n>data</span><span class=p>(</span><span class=kt>uint</span> <span class=n>arg1</span><span class=p>,</span> <span class=kt>bool</span> <span class=n>arg2</span><span class=p>,</span> <span class=kt>uint</span> <span class=n>arg3</span><span class=p>)</span> <span class=kr>public</span> <span class=k>returns</span> <span class=p>(</span><span class=kt>uint</span> <span class=n>a</span><span class=p>,</span> <span class=kt>bytes3</span> <span class=n>b</span><span class=p>)</span> <span class=p>{</span>
+    <span class=n>a</span> <span class=o>=</span> <span class=n>data</span><span class=p>[</span><span class=n>arg1</span><span class=p>]</span><span class=p>[</span><span class=n>arg2</span><span class=p>]</span><span class=p>[</span><span class=n>arg3</span><span class=p>]</span><span class=p>.</span><span class=n>a</span><span class=p>;</span>
+    <span class=n>b</span> <span class=o>=</span> <span class=n>data</span><span class=p>[</span><span class=n>arg1</span><span class=p>]</span><span class=p>[</span><span class=n>arg2</span><span class=p>]</span><span class=p>[</span><span class=n>arg3</span><span class=p>]</span><span class=p>.</span><span class=n>b</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>请注意，因为没有好的方法来提供映射的键，所以结构中的映射被省略。</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2020-05-04</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=https://shuzang.github.io/2020/05/visibility-and-getter-function/index.md target=_blank>Read Markdown</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://shuzang.github.io/2020/05/visibility-and-getter-function/ data-title=可见性与Getter函数 data-hashtags=Solidity><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://shuzang.github.io/2020/05/visibility-and-getter-function/ data-hashtag=Solidity><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Reddit" data-sharer=reddit data-url=https://shuzang.github.io/2020/05/visibility-and-getter-function/><i class="fab fa-reddit fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span class=tag><a href=https://shuzang.github.io/tags/solidity/><i class="fas fa-tag fa-fw"></i>&nbsp;Solidity</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://shuzang.github.io>Home</a></span></section></div><div class=post-nav><a href=https://shuzang.github.io/2020/05/string-equality-comparison/ class=prev rel=prev title=字符串匹配><i class="fas fa-angle-left fa-fw"></i>字符串匹配</a>
+<a href=https://shuzang.github.io/2020/05/pure-and-view/ class=next rel=next title=函数修饰词pure和view>函数修饰词pure和view<i class="fas fa-angle-right fa-fw"></i></a></div></div><div class=comment><div id=disqus_thread></div><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><div id=valine></div><script>document.addEventListener("DOMContentLoaded",function(event){new Valine({el:'#valine',appId:'GteMvevTjOBmhvFh2QGsopGO-gzGzoHsz',appKey:'fL4SYl06GIe012PswFdY17VC',placeholder:'Your comment ...',verify:true,avatar:'hide',pageSize:10,lang:'en',visitor:true,recordIP:true,});});</script><noscript>Please enable JavaScript to view the <a href=https://valine.js.org/>comments powered by Valine.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a></div><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://shuzang.top/about/ target=_blank>shuzang</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><a href=# class="dynamic-to-top animated faster" id=dynamic-to-top><span>&nbsp;</span>
+</a><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true},{left:"$",right:"$",display:false},]});});</script><link href=https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css rel=stylesheet><link href=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.css rel=stylesheet><link rel=stylesheet href=/css/lib/valine/dark.css><script src=https://dillonzq.disqus.com/embed.js></script><script src=https://cdn.bootcss.com/smooth-scroll/16.1.0/smooth-scroll.js></script><script src=https://cdn.bootcss.com/lazysizes/5.1.2/lazysizes.min.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/auto-render.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/mhchem.js></script><script src=/js/lib/valine/Valine.min.js></script><script src=/js/lib/sharer/sharer.min.js></script><script src=/js/theme.min.js></script></body></html>
