@@ -1,15 +1,18 @@
 ---
-title: 智能合约-合约间调用
+title: 合约间调用
 date: 2019-11-08
-tags: [区块链]
+tags: [Solidity]
 categories: [研究生的区块链学习之路]
 typora-root-url: ..\..\..\static
+slug: Call between contracts
 ---
 
 之前的实验合约间的调用没有成功，这次就仔细地研究一下合约间地调用机制。分为两种情况
 
 1. 调用者和被调用者在一个sol文件中
 2. 调用者和被调用者在不同的sol文件中
+
+本文提到的合约调用方法的实质是抽象合约的使用。
 
 ### 同sol文件的智能合约调用
 

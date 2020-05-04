@@ -1,7 +1,7 @@
 ---
 title: Address checksum
 date: 2020-01-01
-tags: [区块链]
+tags: [Solidity]
 categories: [研究生的区块链学习之路]
 typora-root-url: ..\..\..\static
 ---
