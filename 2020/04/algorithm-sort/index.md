@@ -1,13 +1,19 @@
 # 算法-排序
 
 
-排序算法又分为内部排序（待排序记录存放在计算机存储器中进行的排序过程）和外部排序（由于待排序记录数量大，以致内存一次不能容纳全部记录，在排序过程中需要对外存进行访问）。这里主要描述内部排序。内部排序可以分为（大的方面 5 类，小的方面 8 类）：插入排序（直接插入排序、希尔排序）、选择排序（简单选择排序、堆排序）、交换排序（冒泡排序、快速排序）、归并排序、基数排序；以下对这 8 类排序算法进行一一详细说明。
+排序算法分为**内部排序**（待排序记录存放在内存中进行的排序过程）和**外部排序**（由于待排序记录数量大，以致内存一次不能容纳全部记录，在排序过程中需要对外存进行访问）。我们一般提到的基本都属于内部排序，一共可以分为5大类、8小类，如下
 
-![](http://upload-images.jianshu.io/upload_images/2077144-6c368d2239e22de5.png)
+- 插入排序：直接插入排序、希尔排序
+- 选择排序：简单选择排序、堆排序
+- 交换排序：冒泡排序、快速排序
+- 归并排序
+- 基数排序
 
-排序稳定性的定义如下
+这篇文章对这 8 类排序算法进行详细说明，不过在此之前，先介绍排序稳定性的概念，因为时间复杂度、空间复杂度和排序稳定性是排序算法的三个重要度量。
 
-> 假设 $k_i = k_j(1 \le i \le n, 1 \le j \le n, i \ne j)$，且在排序前的序列中 $r_i$ 领先于 $r_j$ （即 $i \le j$）。如果排序后 $r_i$ 仍领先于 $r_j$ ，则称所用的排序方法是稳定的；反之，若可能使得排序后的序列中 $r_j$ 领先于 $r_i$，则称所用的排序方法是不稳定的。
+排序稳定性其实就是相同的两个数在排序前后的先后位置是否发生了变化，具体的数学定义如下
+
+> 假设 $r_i = r_j(1 \le i \le n, 1 \le j \le n, i \ne j)$，且在排序前的序列中 $r_i$ 领先于 $r_j$ （即 $i \le j$）。如果排序后 $r_i$ 仍领先于 $r_j$ ，则称所用的排序方法是稳定的；反之，若可能使得排序后的序列中 $r_j$ 领先于 $r_i$，则称所用的排序方法是不稳定的。
 
 注意，下面我们所有的讨论都是基于递增排序的
 
@@ -15,7 +21,7 @@
 
 核心思想是：将序列的第一个记录看成是一个有序的子序列，然后从第二个记录开始逐个进行插入，直至整个序列有序为止。
 
-![](http://upload-images.jianshu.io/upload_images/2077144-b2538c0df361e00d.jpg)
+![](/images/算法-排序/2077144-b2538c0df361e00d.jpg)
 
 
 
@@ -23,19 +29,23 @@
 
 ```go 
 func InsertSort(nums []int) []int {
-	var i, j, tmp int // tmp用来临时存储本轮待比较元素
-	for i = 1; i < len(nums); i++ {
-		tmp = nums[i] // 临时存储本轮待比较元素
-		for j = i; j > 0 && tmp < nums[j-1]; j-- {
-			nums[j] = nums[j-1] // 数组元素后移
-		}
-		nums[j] = tmp // 在正确的位置插入元素
+  var i, j, tmp int // tmp用来临时存储本轮待比较元素
+  for i = 1; i < len(nums); i++ {
+	tmp = nums[i] // 临时存储本轮待比较元素
+	for j = i; j > 0 && tmp < nums[j-1]; j-- {
+	  nums[j] = nums[j-1] // 数组元素后移
 	}
-	return nums
+	nums[j] = tmp // 在正确的位置插入元素
+  }
+  return nums
 }
 ```
 
-时间复杂度为$O(N^2)$。最好情况，也就是待排序数组有序情况下，时间复杂度为$O(N)$，即单纯的遍历一遍。空间复杂度为$O(1)$。直接插入排序是稳定的。
+时间复杂度为$O(N^2)$，最好情况，也就是待排序数组有序情况下，时间复杂度为$O(N)$，即单纯的遍历一遍。
+
+空间复杂度为$O(1)$。
+
+直接插入排序是稳定的。
 
 ## 2. 希尔排序
 
@@ -55,19 +65,19 @@ func InsertSort(nums []int) []int {
 
 ```go
 func ShellSort(nums []int) []int {
-	var i, j int
-	// dk为增量，初始为待排序数组长度的一半，然后每轮循环减半
-	for dk := len(nums) / 2; dk > 0; dk /= 2 {
-		// 内层循环是间隔为dk的插入排序
-		for i = dk; i < len(nums); i++ {
-			tmp := nums[i]
-			for j = i; j >= dk && tmp < nums[j-dk]; j -= dk {
-				nums[j] = nums[j-dk]
-			}
-			nums[j] = tmp
-		}
+  var i, j int
+  // dk为增量，初始为待排序数组长度的一半，然后每轮循环减半
+  for dk := len(nums) / 2; dk > 0; dk /= 2 {
+	// 内层循环是间隔为dk的插入排序
+	for i = dk; i < len(nums); i++ {
+	  tmp := nums[i]
+	  for j = i; j >= dk && tmp < nums[j-dk]; j -= dk {
+		nums[j] = nums[j-dk]
+	  }
+	  nums[j] = tmp
 	}
-	return nums
+  }
+  return nums
 }
 ```
 
@@ -84,20 +94,20 @@ func ShellSort(nums []int) []int {
 
 核心思想是：在要排序的一组数中，自上而下的对相邻的两个数依次进行比较和调整，较大的数往下沉，较小的数往上冒。
 
-![](http://upload-images.jianshu.io/upload_images/2077144-d98f8e37f35366d6.jpg)
+![](/images/算法-排序/2077144-d98f8e37f35366d6.jpg)
 
 冒泡是最简单的排序，代码实现如下
 
 ```go
 func BubbleSort(nums []int) []int {
-	for i := len(nums) - 1; i > 0; i-- {
-		for j := 0; j < i; j++ {
-			if nums[j] > nums[j+1] {
-				nums[j], nums[j+1] = nums[j+1], nums[j]
-			}
-		}
+  for i := len(nums) - 1; i > 0; i-- {
+	for j := 0; j < i; j++ {
+	  if nums[j] > nums[j+1] {
+		nums[j], nums[j+1] = nums[j+1], nums[j]
+	  }
 	}
-	return nums
+  }
+  return nums
 }
 ```
 
@@ -107,19 +117,19 @@ func BubbleSort(nums []int) []int {
 
 ```go
 func BubbleSort(nums []int) []int {
-	var flag bool
-	for i := len(nums) - 1; i > 0; i-- {
-		for j := 0; j < i; j++ {
-			if nums[j] > nums[j+1] {
-				nums[j], nums[j+1] = nums[j+1], nums[j]
-				flag = true
-			}
-		}
-		if !flag { //如果当前数组已有序，跳出循环
-			break
-		}
+  var flag bool
+  for i := len(nums) - 1; i > 0; i-- {
+	for j := 0; j < i; j++ {
+	  if nums[j] > nums[j+1] {
+		nums[j], nums[j+1] = nums[j+1], nums[j]
+		flag = true
+	  }
 	}
-	return nums
+    if !flag { //如果当前数组已有序，跳出循环
+      break
+    }
+  }
+  return nums
 }
 ```
 
@@ -135,19 +145,19 @@ func BubbleSort(nums []int) []int {
 
 ```go
 func SelectionSort(nums []int) []int {
-	var min int
-	for i := 0; i < len(nums)-1; i++ {
-		min = i
-		for j := i + 1; j < len(nums); j++ {
-			if nums[j] < nums[min] {
-				min = j
-			}
-		}
-		if min != i {
-			nums[i], nums[min] = nums[min], nums[i]
-		}
+  var min int
+  for i := 0; i < len(nums)-1; i++ {
+	min = i
+	for j := i + 1; j < len(nums); j++ {
+	  if nums[j] < nums[min] {
+		min = j
+	  }
 	}
-	return nums
+	if min != i {
+	  nums[i], nums[min] = nums[min], nums[i]
+	}
+  }
+  return nums
 }
 ```
 
@@ -196,7 +206,7 @@ func heapAdjust(nums []int, start int) []int {
 			child++
 		}
 		if nums[child] <= nums[parent] {
-			break
+			continue
 		}
 		nums[child], nums[parent] = nums[parent], nums[child]
 	}
@@ -212,9 +222,9 @@ func heapAdjust(nums []int, start int) []int {
 
 非递归方法的核心思想是：利用栈来存储两个指向标记的值，其它与递归的快速排序不相上下。
 
-![一趟排序的过程](http://upload-images.jianshu.io/upload_images/2077144-e6fddeb29cbeae9a.jpg)
+![一趟排序的过程](/images/算法-排序/2077144-e6fddeb29cbeae9a.jpg)
 
-![整个快速排序的过程](http://upload-images.jianshu.io/upload_images/2077144-2a1063ef6b6e61ae.jpg)
+![整个快速排序的过程](/images/算法-排序/2077144-2a1063ef6b6e61ae.jpg)
 
 递归程序代码如下
 
@@ -347,16 +357,16 @@ func MergeSort(nums []int) []int {
 
 所有排序算法时间, 空间复杂度汇总
 
-| 排序方法 | 平均时间                 | 最坏时间    | 辅助空间    | 稳定性 |
-| -------- | ------------------------ | ----------- | ----------- | ------ |
-| 直接插入 | $O(n^2)$                 | $O(n^2)$    | $O(1)$      | 稳定   |
-| 希尔排序 | $O(nlogn2) = O(n^{1.3})$ | $O(n^2)$    | $O(n)$      | 不稳定 |
-| 冒泡排序 | $O(n^2)$                 | $O(n^2)$    | $O(1)$      | 稳定   |
-| 简单选择 | $O(n^2)$                 | $O(n^2)$    | $O(1)$      | 不稳定 |
-| 快速排序 | $O(nlogn)$               | $O(n^2)$    | $O(logn)$   | 不稳定 |
-| 堆排序   | $O(nlogn)$               | $O(nlogn)$  | $O(1)$      | 不稳定 |
-| 归并排序 | $O(nlogn)$               | $O(nlogn)$  | $O(n)$      | 稳定   |
-| 基数排序 | $O(d(r+n))$              | $O(d(r+n))$ | $O(rd + n)$ | 稳定   |
+| 排序方法 | 平均时间     | 最坏时间    | 辅助空间    | 稳定性 |
+| -------- | ------------ | ----------- | ----------- | ------ |
+| 直接插入 | $O(n^2)$     | $O(n^2)$    | $O(1)$      | 稳定   |
+| 希尔排序 | $O(n^{1.3})$ | $O(n^2)$    | $O(n)$      | 不稳定 |
+| 冒泡排序 | $O(n^2)$     | $O(n^2)$    | $O(1)$      | 稳定   |
+| 简单选择 | $O(n^2)$     | $O(n^2)$    | $O(1)$      | 不稳定 |
+| 快速排序 | $O(nlogn)$   | $O(n^2)$    | $O(logn)$   | 不稳定 |
+| 堆排序   | $O(nlogn)$   | $O(nlogn)$  | $O(1)$      | 不稳定 |
+| 归并排序 | $O(nlogn)$   | $O(nlogn)$  | $O(n)$      | 稳定   |
+| 基数排序 | $O(d(r+n))$  | $O(d(r+n))$ | $O(rd + n)$ | 稳定   |
 
 
 
