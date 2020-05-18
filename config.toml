@@ -116,7 +116,7 @@ dateFormatToUse = "2006-01-02"
   # public git repo url to link lastmod git commit only then enableGitInfo is true
   gitRepo = ""
   toc = true
-  autoCollapseToc = false
+  autoCollapseToc = true
 
   # Header info
   [params.header]
