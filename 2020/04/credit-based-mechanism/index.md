@@ -128,7 +128,7 @@ $max \\{\alpha(\beta)-(m - k), 1 \\}$ 的含义是，每发生一个新的恶意
 
 奖励函数 $Cr_i^P$ 定义不变， $\omega_k$ 代表第 $k$ 种操作的权重，$n_k$ 代表第 $k$ 种操作的数量，但权重的取值范围限定在 1-10
 $$
-Cr_i^P = \sum_{k=1}^4 \omega_k n_k
+Cr_i^P = max \\{ Cr_{imax}^P , \sum_{k=1}^4 \omega_k n_k \\}
 $$
 
 
