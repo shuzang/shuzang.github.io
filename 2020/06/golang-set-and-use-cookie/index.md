@@ -74,6 +74,8 @@ path=/; domain=.hackr.jp;
 | Secure       | 仅在HTTPS安全通信时才会发送Cookie                            |
 | HttpOnly     | 加以限制，使Cookie不能被JavaScript脚本访问                   |
 
+**expires属性**：有两种方法来设置过期时间：一种是直接设置 `Expires` 字段，一种是设置 `MaxAge` 字段。前者表示到期的具体时间点，后者表示 Cookie 的有效时长（单位是秒）。这并不是 Go 语言的设计，而是不同浏览器的混乱标准使然，比如虽然 HTTP/1.1 有意废弃 `Expires`，不过 IE 6、7、8 却不支持 `MaxAge` 字段。通常，考虑到默认时区问题，本地时间不可靠，推荐通过 `MaxAge` 字段设置 Cookie 过期时间，不过对于 Web 应用而言，通常不设置过期时间，让 Cookie 随着浏览器关闭而失效即可。
+
 **domain属性**：domain 属性指定的域名可做到与结尾匹配一致，比如，当指定 example.com 后，除 example.com 本身外，www.example.com 或 www2.example.com 等都可以发送 Cookie，所以，除了针对具体指定的多个域名发送Cookie之外，不指定domain属性显得更安全
 
 **secure属性**：指定 secure 属性的方法为 `Set-Cookie: name=value; secure`
@@ -90,7 +92,84 @@ Cookie: status=enable
 
 ## 3. Session 管理
 
+某些 Web 页面只想让特定的人浏览，或者干脆仅本人可见，为达到这个目标，需要添加认证功能。HTTP/1.1 实用的认证包括 BASIC认证、DIGEST认证、SSL客户端认证、FormBase认证等，由于使用上的便利性和安全性问题，前两种几乎不适用，SSL客户端认证则由于导入及费用问题未得到普及，目前常用的是最后一种：基于表单的认证。
 
+基于表单的认证方法并不是在HTTP协议中定义的，而是由客户端通过表单向服务器提交登录信息，然后由服务器安装自定义的实现方式进行验证，不同的应用使用的验证方式多有不同，但多数情况下，是基于用户输入的用户ID（通常是任意字符串或邮件地址）和密码等登录信息进行认证。
+
+鉴于 HTTP 是无状态协议，之前已认证成功额用户状态无法保留，因此一般使用 Cookie 来管理 Session(会话)。
+
+![](/images/Golang设置与使用cookie/epub_907764_193.jpg)
+
+如上图所示，基本的步骤为
+
+1. 客户端把用户ID和密码等登录信息放入报文的实体部分，通常是以POST方法把请求发送给服务器。而这时，会使用HTTPS通信来进行HTML表单画面的显示和用户输入数据的发送。
+2. 服务器会发放用以识别用户的Session ID。通过验证从客户端发送过来的登录信息进行身份认证，然后把用户的认证状态与Session ID绑定后记录在服务器端。向客户端返回响应时，会在首部字段Set-Cookie内写入Session ID（如PHPSESSID=028a8c…）。你可以把Session ID想象成一种用以区分不同用户的等位号。然而，如果Session ID被第三方盗走，对方就可以伪装成你的身份进行恶意操作了。因此必须防止Session ID被盗，或被猜出。为了做到这点，Session ID应使用难以推测的字符串，且服务器端也需要进行有效期的管理，保证其安全性。另外，为减轻跨站脚本攻击（XSS）造成的损失，建议事先在Cookie内加上httponly属性。
+3. 客户端接收到从服务器端发来的Session ID后，会将其作为Cookie保存在本地。下次向服务器发送请求时，浏览器会自动发送Cookie，所以SessionID也随之发送到服务器。服务器端可通过验证接收到的Session ID识别用户和其认证状态。
+
+需要注意，上述介绍并不是唯一的实现方式，实际上，不仅基于表单认证的登录信息及认证过程没有标准化，服务端如何保持密码等登录信息也没有标准化。通常，一种安全的保存方法是，先利用给密码加盐（salt）的方式增加额外信息，再使用散列（hash）函数计算出散列值后保存。但是我们也经常看到直接保存明文密码的做法，而这样的做法具有导致密码泄露的风险。
+
+## 4. Go中Cookie的设置与读取
+
+### 4.1 设置Cookie
+
+Go语言中通过 net/http 包中的 SetCookie 来设置 Cookie：
+
+```go
+http.SetCookie(w ResponseWriter, cookie *Cookie)
+```
+
+w 表示需要写入的 response，cookie 是一个 struct，让我们来看看对象是怎样的：
+
+```go
+type Cookie str、uct {
+    Name        string
+    Value       string
+    Path        string
+    Domain      string
+    Expires     time.Time
+    RawExpires  string
+    // MaxAge=0 意味着没有指定 Max-Age 的值
+    // MaxAge<0 意味着现在就删除 Cookie，等价于 Max-Age=0
+    // MaxAge>0 意味着 Max-Age 属性存在并以秒为单位存在
+    MaxAge      int
+    Secure      bool
+    HttpOnly    bool
+    Raw         string
+    Unparsed    []string // 未解析的 attribute-value 属性位对
+}
+```
+
+下面来看一个如何设置 Cookie 的例子：
+
+```go
+expiration := time.Now()
+expiration := expiration.AddDate(1, 0, 0)
+cookie := http.Cookie{
+    Name: "username", 
+    Value: "zuolan", 
+    Expires: expiration
+}
+http.SetCookie(writer, &Cookie)
+```
+
+### 4.2 读取 Cookie
+
+上面的例子演示了如何设置 Cookie 数据，这里演示如何读取 Cookie：
+
+```go
+cookie, _ := r.Cookie("username")
+fmt.Fprint(w, cookie)
+```
+
+还有另外一种读取方式：
+
+```go
+for _, cookie := range r.Cookies() {    
+    fmt.Fprint(w, cookie.Name)
+}
+```
+
+可以看到通过 request 获取 Cookie 非常方便。
 
 ## 参考
 
