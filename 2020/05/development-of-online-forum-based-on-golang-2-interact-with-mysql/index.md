@@ -1,15 +1,13 @@
 # 基于Go语言开发在线论坛2-通过模型类与MySQL数据库交互
 
 
-学院君提供的教程，这里进行复现并深入理解，文章内容可能略有改动，会添加一些自己的理解。[原文地址](https://xueyuanjun.com/post/21534)
+在本篇教程中，我们将在 MySQL 中创建一个 `chitchat` 数据库作为论坛项目的数据库。我选择了在本地安装 MySQL Server，但也可以基于 Docker 容器运行。
 
 <!--more-->
 
-在本篇教程中，我们将在 MySQL 中创建一个 `chitchat` 数据库作为论坛项目的数据库。我选择了在本地安装 MySQL Server，但也可以基于 Docker 容器运行。
-
 ## 1. 项目初始化
 
-开始之前首先来初始化项目目录，项目命名为 `chitchat`，在电脑任意位置中创建项目目录，然后初始化目录结构如下
+首先创建项目目录，命名为 `chitchat`，然后初始化目录结构如下
 
 ![初始化的目录结构](/images/基于Go语言开发在线论坛2-通过模型类与MySQL数据库交互/目录结构.png)
 
@@ -24,7 +22,7 @@
 - `routes`：用于存放路由文件和路由器实现代码
 - `views`：用于存放视图模板文件
 
-在 Github 网页端创建同名仓库，然后在本地执行如下命令初始化（我们使用 Github 存储代码）
+在 Github 网页端创建同名仓库，然后在本地执行如下命令初始化仓库（我们使用 Github 存储代码）
 
 ```bash
 echo "# chitchat" >> README.md
@@ -35,7 +33,7 @@ git remote add origin https://github.com/shuzang/chitchat.git
 git push -u origin master
 ```
 
-然后在 `chitchat` 目录下执行如下命令初始化 `go.mod`，后续通过 Go Module 来管理依赖
+然后在 `chitchat` 目录下初始化 Go 项目， 后续通过 Go Module 来管理依赖
 
 ```bash
 $ go mod init github.com/shuzang/chitchat
@@ -85,11 +83,15 @@ create table posts (
 
 ![](/images/基于Go语言开发在线论坛2-通过模型类与MySQL数据库交互/数据库连接测试.png)
 
+大量的语句逐条执行很容易出错，可以通过脚本形式批量执行[^sql脚本]。
+
+[^sql脚本]:[mysql下如何执行sql脚本](https://www.cnblogs.com/kenkofox/archive/2011/01/14/1935422.html)
+
 ## 3. 与数据库交互
 
 ### 3.1 数据库驱动
 
-数据表创建完成后，接下来，如何在 Go 应用代码中与数据库交互呢？Go 语言开发组并没有为此提供官方的数据库驱动实现，只是提供了数据库交互接口，我们可以通过实现这些接口的第三方扩展包完成与 MySQL 数据库的交互，本项目选择的扩展包是 [go-mysql-driver](https://github.com/go-sql-driver/mysql) 。
+数据表创建完成后，接下来，需要在 Go 应用代码中与数据库交互，Go 语言开发组并没有为此提供官方的数据库驱动实现，只是提供了数据库交互接口，我们可以通过实现这些接口的第三方扩展包完成与 MySQL 数据库的交互，本项目选择的扩展包是 [go-mysql-driver](https://github.com/go-sql-driver/mysql) 。
 
 我们可以在 Go 应用中编写模型类基于这个扩展包提供的方法与 MySQL 交互完成增删改查操作，开始之前，可以运行如下命令安装这个依赖：
 
