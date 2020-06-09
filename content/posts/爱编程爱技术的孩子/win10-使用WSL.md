@@ -102,7 +102,23 @@ NewACC.sol  NewJC.sol  NewRC.sol
 $ sudo rm -rf ~/win10
 ```
 
+### 备份及还原系统
 
+在 powershell 或 其它 terminal 下备份和还原，注意要停止 WSL 再操作，备份系统的命令为
+
+```bash
+$ wsl --export Ubuntu c:\temp\Ubuntu.tar
+```
+
+Ubuntu 为要导出的 WSL 分发版名称
+
+还原子系统的命令为
+
+```bash
+$ wsl --import Ubuntu c:\WSL c:\temp\Ubuntu.tar
+```
+
+c:\WSL为安装位置
 
 #### 参考
 

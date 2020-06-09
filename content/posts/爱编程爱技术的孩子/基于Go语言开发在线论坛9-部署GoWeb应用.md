@@ -7,7 +7,6 @@ tags: [Go Web]
 categories: [爱编程爱技术的孩子]
 slug: Development of online forum based on golang 9-deploy go web application
 typora-root-url: ..\..\..\static
-featuredImage: https://qcdn.xueyuanjun.com/storage/uploads/images/gallery/2020-04/scaled-1680-/1_GWhEhNO9-uLl7hfeWNd0Ig.jpg
 ---
 
 部署 Go 应用相对简单，因为所有应用代码都被打包成一个二进制文件了（视图模板、静态资源和配置文件等非 Go 代码除外），并且不需要依赖其他库，不需要额外的运行时环境（比如 Java 需要再安装 JVM），也不需要部署额外的 HTTP 服务器。
