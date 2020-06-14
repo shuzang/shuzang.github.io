@@ -2,19 +2,18 @@
 title: 基于Go语言开发在线论坛3-访问论坛首页
 author: xueyuanjun
 date: 2020-05-29T09:08:00+08:00 
-lastmod: 2020-05-29
-tags: [Go Web]
+lastmod: 2020-06-14
+tags: [Go Web, 在线论坛项目]
 categories: [爱编程爱技术的孩子]
 slug: Development of online forum based on golang 3-Visit Forum Homepage
 typora-root-url: ..\..\..\static
-featuredImage: https://qcdn.xueyuanjun.com/storage/uploads/images/gallery/2020-03/scaled-1680-/Jietu20200330-021118.jpg
 ---
 
-学院君提供的教程，这里进行复现并深入理解，文章内容可能略有改动，会添加一些自己的理解。[原文地址](https://xueyuanjun.com/post/21545)
+前两篇分别介绍了整体设计及数据表的创建、模型类的编写，本篇了解如何在服务端处理用户请求，并启动论坛首页。文章转自学院君的教程，略有改动。
 
 <!--more-->
 
-前面两篇教程分别介绍了基于 Go 语言构建在线论坛的整体设计以及数据表的创建、模型类的编写，本篇来看看如何在服务端处理用户请求。
+![首页视图](/images/基于Go语言开发在线论坛3-访问论坛首页/Jietu20200330-021118.jpg)
 
 用户请求的处理流程如下：
 
@@ -25,7 +24,7 @@ featuredImage: https://qcdn.xueyuanjun.com/storage/uploads/images/gallery/2020-0
 
 接下来我们按照这个流程来编写服务端代码。
 
-## 1. 定义路由器
+## 1. 路由器定义
 
 这里我们基于 [gorilla/mux](https://github.com/gorilla/mux) 来实现路由器，所以需要安装对应依赖：
 

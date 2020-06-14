@@ -1,75 +1,136 @@
 ---
 title: Golang语法基础2-命令、包与模块
 date: 2019-09-19
+lastmod: 2020-06-13
 tags: [Golang]
 categories: [爱编程爱技术的孩子]
+slug: Golang basic grammer 2-command package module
 ---
 
-本篇介绍Go中的基础命令，包和垃圾回收机制
+本篇介绍Go中的基础命令，包和模块。
 
 ## 1. 命令
 
-Go在安装后自带一个命令行工具，名为`go`，用来下载、编译、安装、测试Go的包和源文件，关于Go CLI的发展历史和设计理念，可以查看[About the go command](https://golang.google.cn/doc/articles/go_command.html)，这里只介绍如何使用这些命令。
+Go 在安装后自带一个命令行工具，名为 `go`，用来下载、编译、安装、测试 Go 的包和源文件，关于 Go CLI 的发展历史和设计理念，可以查看 [About the go command](https://golang.google.cn/doc/articles/go_command.html)，这里只介绍如何使用这些命令。
 
-我们之前已经接触过几种命令，包括查看环境变量的`go env`，查看go版本的`go version`，用于编译和安装的`go install`和`go build`，已经对它们有了一定的了解，这里继续详细解释这些以及剩下的命令，明确它们的作用，弄清楚它们的区别。
-
-首先使用`go --help`可以查看go的所有命令
+Go 命令的用法如下
 
 ```bash
-Go is a tool for managing Go source code.
-
-Usage:
-
-        go <command> [arguments]
-
-The commands are:
-
-        bug         start a bug report
-        build       compile packages and dependencies
-        clean       remove object files and cached files
-        doc         show documentation for package or symbol
-        env         print Go environment information
-        fix         update packages to use new APIs
-        fmt         gofmt (reformat) package sources
-        generate    generate Go files by processing source
-        get         download and install packages and dependencies
-        install     compile and install packages and dependencies
-        list        list packages or modules
-        mod         module maintenance
-        run         compile and run Go program
-        test        test packages
-        tool        run specified go tool
-        version     print Go version
-        vet         report likely mistakes in packages
-
-Use "go help <command>" for more information about a command.
-
-Additional help topics:
-
-        buildmode   build modes
-        c           calling between Go and C
-        cache       build and test caching
-        environment environment variables
-        filetype    file types
-        go.mod      the go.mod file
-        gopath      GOPATH environment variable
-        gopath-get  legacy GOPATH go get
-        goproxy     module proxy protocol
-        importpath  import path syntax
-        modules     modules, module versions, and more
-        module-get  module-aware go get
-        packages    package lists and patterns
-        testflag    testing flags
-        testfunc    testing functions
-
-Use "go help <topic>" for more information about that topic.
+go <command> [arguments]
 ```
 
-可以看到，主体分为两部分，一部分是命令(command)，一部分是话题(topic)。话题是对Go中一些概念作解释，是一个文档，使用`go helo <topic>`来查看这些说明，不过这些随后介绍，这里首先来看各种命令。
+可用命令如下，使用 `go help <command>` 可获取对应命令的帮助信息
+
+```bash
+bug         start a bug report
+build       compile packages and dependencies
+clean       remove object files and cached files
+doc         show documentation for package or symbol
+env         print Go environment information
+fix         update packages to use new APIs
+fmt         gofmt (reformat) package sources
+generate    generate Go files by processing source
+get         add dependencies to current module and install them
+install     compile and install packages and dependencies
+list        list packages or modules
+mod         module maintenance
+run         compile and run Go program
+test        test packages
+tool        run specified go tool
+version     print Go version
+vet         report likely mistakes in packages
+```
+
+其它的一些帮助主题如下，使用 `go help <topic>` 可以查看相关主题的说明
+
+```bash
+buildmode   build modes
+c           calling between Go and C
+cache       build and test caching
+environment environment variables
+filetype    file types
+go.mod      the go.mod file
+gopath      GOPATH environment variable
+gopath-get  legacy GOPATH go get
+goproxy     module proxy protocol
+importpath  import path syntax
+modules     modules, module versions, and more
+module-get  module-aware go get
+module-auth module authentication using go.sum
+module-private module configuration for non-public modules
+packages    package lists and patterns
+testflag    testing flags
+testfunc    testing functions
+```
+
+我们之前已经接触过几种命令，包括查看环境变量的 `go env`，查看go版本的 `go version`，用于编译和安装的`go install`和`go build`，已经对它们有了一定的了解，下面详细解释所有的命令，明确它们的作用，弄清楚它们的区别。
 
 ### 1.1 command
 
 当前命令一共17个，使用` go help <command>`可以查看这些命令的详细说明
+
+#### go build
+
+```bash
+go build [-o output] [-i] [build flags] [packages]
+```
+
+`go build` 编译导入的包和依赖，但会忽略掉以 `_test.go` 结尾的文件，因为这些文件是用来测试的。
+
+编译`main`包时，输出的可执行文件会放到**当前**目录下，可执行文件的后缀取决于操作系统，只有在windows下后缀才会是`.exe`，而可执行文件的名字同编译的go文件名相同，如ed.go会编译成ed.exe。
+
+编译多个包或单个非`main`包时，编译器不会输出可执行文件，仅仅作为这些包是否可编译的一个检查。
+
+以 hello world 程序为例，编译后的 hello.exe 文件位于项目根目录下
+
+```bash
+$ go build github.com/shuzang/hello
+$ ls
+go.mod  go.sum  gotest.exe  main.go
+```
+
+加入 `-o` 参数可以指定输出文件，`-i`则在编译后自动执行安装过程（默认只会编译不会安装）
+
+#### go install
+
+`go install` 命令在编译的基础上增添了安装这一步，`安装` 的基本含义是将生成的可执行文件放到指定的目录，默认为 GOBIN 环境变量指定的目录，即 `$GOPATH/bin`。仍以`hello`为例，如下命令执行后，`hello.exe`文件将位于`$GOPATH/bin`目录下
+
+```powershell
+> go install github.com/shuzang/hello
+```
+
+#### go get
+
+```bash
+go get [-d] [-t] [-u] [-v] [-insecure] [build flags] [packages]
+```
+
+`go get` 相比 `go install` 又多了一步：解析与添加依赖到当前包。完成这一步后自动编译和安装它们。
+
+`go get` 下载的默认路径是 `GOPATH/pkg/mod` ，默认下载最新版本，但版本的选择规则比较复杂，可以查看命令说明。下面是一个使用实例
+
+```powershell
+> go get -v github.com/google/codesearch/index
+github.com/google/codesearch (download)
+github.com/google/codesearch/sparse
+github.com/google/codesearch/index
+```
+
+`-v`参数输出下载安装的详细过程，并输出debug信息，其它的一些可选参数说明如下
+
+- `-d`只下载不安装
+- `-fix`在对下载的包解析依赖项或编译前先运行修复工具
+- `-t`下载为指定的包生成测试需要的包
+- `-u`用于更新已有的包和依赖
+
+#### go run
+
+以上三个命令虽然都包含编译过程，但也到此为止，在生成可执行文件后将不再做任何操作，需要自己来执行。`go run`命令则在编译后直接执行运行操作，以`hello`为例
+
+```powershell
+> go run github.com/shuzang/hello
+Hello, Go!
+```
 
 #### go version
 
@@ -99,29 +160,20 @@ bin\guru.exe: go1.13.4
 bin\hello.exe: go1.13.4
 ```
 
-添加`-v`参数还会将无法识别的文件信息也打印出来，以`stringutil`为例
+添加`-m`参数会打印包导入的模块信息，添加`-v`参数会将无法识别的文件信息也打印出来，以`stringutil`为例
 
 ```powershell
 > go version -v src/github.com/shuzang/stringutil
 src\github.com\shuzang\stringutil\reverse.go: not executable file
 ```
 
-添加`-m`参数则会打印包导入的模块信息，仍以`bin`目录为例
-
-```powershell
-> go version -m bin
-...
-bin\godef.exe: go1.13.4
-        path    github.com/rogpeppe/godef
-        mod     github.com/rogpeppe/godef       v1.1.1  h1:NujOtt9q9vIClRTB3sCZpavac+NMRaIayzrcz1h4fSE=
-        dep     9fans.net/go    v0.0.0-20181112161441-237454027057      h1:OcHlKWkAMJEF1ndWLGxp5dnJQkYM/YImUOvsBoz6h5E=
-        dep     golang.org/x/tools      v0.0.0-20181130195746-895048a75ecf      h1:1efYtlcDNt7EL138lS6P4KphZ1KEMWvhFa3FsLbTWEY=
-...
-```
-
 #### go env
 
-`go env`的基本作用是打印go的环境变量信息，但是添加`-json`参数可以以JSON的格式打印，不过并没有默认的脚本形式可读性高。另外，使用`-w`参数可以设置某个环境变量的值，比如
+```bash
+go env [-json] [-u] [-w] [var ...]
+```
+
+`go env`的基本作用是打印go的环境变量信息，添加`-json`参数可以以 JSON 的格式打印，但没有默认的脚本形式可读性高。添加 `-w` 参数可以设置某个环境变量的值，比如
 
 ```powershell
 > go env -w GOPATH=d:\go
@@ -133,75 +185,9 @@ bin\godef.exe: go1.13.4
 > go env -u GOPATH
 ```
 
-#### go build
-
-程序运行的必要过程是编译，`go build`用来完成编译功能。实际上，使用`go build`编译会将依赖的包一同编译，但会忽略掉以`_test.go`结尾的文件，因为这些文件是用来测试的。
-
-编译`main`包时，输出的可执行文件会放到**当前**目录下，可执行文件的后缀取决于操作系统，只有在windows下后缀才会是`.exe`，而可执行文件的名字同编译的go文件名相同，如ed.go会编译成ed.exe。
-
-编译多个包或单个非`main`包时，编译器不会输出可执行文件，仅仅作为这些包是否可编译的一个检查。
-
-以我们的第一个hello.go程序为例，下列命令执行完成后，hello.exe文件位于`C:\User\lylw1\go`目录下
-
-```powershell
-PS C:\Users\lylw1\go> go build github.com/shuzang/hello
-```
-
-而如果我们进入包目录执行，hello.exe文件会随之存放在包的目录下
-
-```powershell
-> cd $GOPATH\src\github.com\shuzang\hello
-> go build
-> ls
-hello.go  hello.exe
-```
-
-`go build`有两个常用参数，`-o`指定输出文件，不再放到默认的`bin`目录，`-i`则在编译后自动执行安装过程
-
-#### go install
-
-`go install`命令在编译的基础上增添了安装这一步，`安装`的基本含义是将生成的可执行文件放到指定的目录，默认为GOBIN环境变量指定的目录，而GOBIN的默认值是`$GOPATH/bin`。仍以`hello`为例，如下命令执行后，`hello.exe`文件将位于`$GOPATH/bin`目录下
-
-```powershell
-> go install github.com/shuzang/hello
-```
-
-#### go get
-
-`go get`与导入包息息相关，是最常用的命令之一。代码编辑过程中，我们经常需要使用别人的包，这些包一般位于各种分布式版本控制仓库中，存放在云端，比如github，我们需要将它们下载下来，然后编译安装，才能继续使用。`go get`正是一个集下载、编译、安装为一体的命令。以`github.com/google/codesearch/index`包为例
-
-```powershell
-> go get -v github.com/google/codesearch/index
-github.com/google/codesearch (download)
-github.com/google/codesearch/sparse
-github.com/google/codesearch/index
-```
-
-`-v`参数输出下载安装的详细过程，并输出debug信息。包会下载到`$GOPATH/src/github.com/google/codesearch/index`目录，`index.a`文件生成到`$GOPATH/pkg\windows_amd64\github.com\google\codesearch`目录，如果生成可执行文件，会放到`$GOPATH/bin`目录，不过该包并没有。
-
-`go get`拥有大量的可选参数，其中
-
-- `-d`只下载不安装
-- `-fix`在对下载的包解析依赖项或编译前先运行修复工具
-- `-t`下载为指定的包生成测试需要的包
-- `-u`用于更新已有的包和依赖
-
-`go get`下载的默认路径是GOPATH的第一个路径，这也是为什么设定多个GOPATH路径没有意义的原因。在检查或更新包时，Go会寻找符合本地已安装的Go版本的分支或标签，如果本地版本是`go1`，那么就会下载`go1`的分支或标签，否则会下载默认分支的包。
-
-如果下载或更新的是一个git仓库，其中的submodule会一同下载或更新
-
-#### go run
-
-以上三个命令虽然都包含编译过程，但也到此为止，在生成可执行文件后将不再做任何操作，需要自己来执行。`go run`命令则在编译后直接执行运行操作，以`hello`为例
-
-```powershell
-> go run github.com/shuzang/hello
-Hello, Go!
-```
-
 #### 其它
 
-除了上述提到的常用命令，还有大量其它的命令，有些可能使用频率不高，或者有些不需要我们关注，因此只简单介绍其作用。`go test`和`go mod`两个命令比较特别，后面的文章单独介绍。
+其它的命令使用频率没有上面几个高，因此只简单介绍其作用，用的时候再去查用法即可，`go test`和`go mod`两个命令以后单独介绍。
 
 - `go bug`，作用是打开默认浏览器并启动新的 Bug 报告，该报告包含有用的系统信息。
 - `go clean`，移除源码包中编译生成的文件
@@ -217,7 +203,7 @@ Hello, Go!
 
 ### 1.2 topic
 
-topic有15个，签名已经提到，topic的本质是对Go中的一些概念作解释，所以它实际上是一些文档说明，使用`go help <topic>`查看，这些topic包括
+topic有15个，本质是对Go中的一些概念作解释，所以它实际上是一些文档说明，使用`go help <topic>`查看，这些topic包括
 
 - buildmode：构建模式的描述
 - c：Go和c的相互调用
@@ -366,29 +352,9 @@ include $(GOROOT)/src/Make.pkg
 
  通过 `chmod 777 ./Makefile`确保它的可执行性，然后在终端使用make工具
 
-## 3. 垃圾回收
+## 3. 模块
 
-Go代码运行在Go的runtime（这部分代码可以在runtime包中找到）上，类似于java虚拟机，它负责管理包括内存分配、垃圾回收、栈处理、goroutine、channel、slice、map和reflection等。可以在`$GOROOT/src/runtime`找到关于runtime的说明。
-
-Go的可执行文件一般比相应的源码文件大很多，这是因为runtime潜入了每一个可执行文件中，因此，Go运行不依赖于其它任何文件。
-
-垃圾回收器(GC)正是runtime上独立运行的一个进程，它会自动搜索不再使用的变量和结构，然后释放它们的内存。通过调用`runtime.GC()`可以手动触发垃圾回收，但很少需要这样做。
-
-如果想知道当前的内存状态，可以使用
-
-```go
-// fmt.Printf("%d\n", runtime.MemStats.Alloc/1024)
-// 此处代码在 Go 1.5.1下不再有效，更正为
-var m runtime.MemStats
-runtime.ReadMemStats(&m)
-fmt.Printf("%d Kb\n", m.Alloc / 1024)
-```
-
- 上面的程序会给出已分配内存的总量，单位是 Kb。进一步的测量参考 [package runtime](https://golang.google.cn/pkg/runtime/)
-
-## 4. go mod
-
-自Go 1.11起，开始支持使用Go Module进行包管理，这里参考Go Blog中的[Using Go Modules](https://blog.golang.org/using-go-modules)一文对其进行说明。
+自Go 1.11起，开始支持使用 Go Module 进行包管理，这里参考Go Blog中的[Using Go Modules](https://blog.golang.org/using-go-modules)一文对其进行说明。
 
 模块(module)通过存在项目根目录下`go.mod`文件起作用，项目中使用的所有包的集合定义在该文件中。`go.mod`文件定义了模块路径，用于项目中包的导入路径。以delve的`go.mod`文件为例
 
@@ -427,7 +393,7 @@ require (
 
 由此可以注意到的是，使用模块进行包管理已经独立于原来使用`$GOPATH`进行包管理的方式，所有的代码不必全部放在一个工作区中。在任意位置建立项目目录，`go.mod`文件会存放在项目根目录中，所有项目源代码根据该文件进行包管理。如果`go.mod`文件放在`$GOPATH/src`，即原来的统一工作区，是不起作用的，会被旧的GOPATH模式屏蔽。自Go 1.13开始，module模式已经成为了Go开发的默认模式。
 
-### 4.1 创建新模块
+### 3.1 创建新模块
 
 在`$GOPATH/src`外的任意位置创建项目目录，`cd`进入该目录，创建`hello.go`文件
 
@@ -487,7 +453,7 @@ go 1.13
 
 `go.mod`文件位于项目根目录，其中的模块路径也只显示到项目根目录，子目录中包的导入路径由模块路径+子目录路径组成。我们在当前项目目录下创建`world`子目录，其导入路径将会是`example.com/hello/world`
 
-### 4.2 添加依赖
+### 3.2 添加依赖
 
 使用Go模块的首要目的是提升别的开发者使用我们编写的代码的体验。编辑`hello.go`文件，导入`rsc.io/quote`，然后用它来实施`Hello`
 
@@ -567,7 +533,7 @@ rsc.io/sampler v1.3.0/go.mod h1:T1hPZKmBbMNahiBKFy5HrXp6adAjACjK9...
 
 `go.mod`和`go.sum`文件都应该包含到版本控制系统中，也就是说随着源代码文件一起提交到远程仓库。
 
-### 4.3 更新依赖
+### 3.3 更新依赖
 
 Go模块使用的版本号分三部分：主版本号(major)，次版本号(minor)和修订版本号(patch)。例如，`v0.1.2`，主版本号是`0`，次版本号是`1`，修订版本号是`2`。首先以一个次版本号的更新举例说明
 
@@ -640,7 +606,7 @@ ok      example.com/hello    0.022s
 
 通过`@`来指定具体的版本号，`go get`的参数实际上应该带有版本号，不明确指定会使用默认的`@latest`，从而使用最新版本。
 
-### 4.4 在主版本号上添加依赖
+### 3.4 在主版本号上添加依赖
 
 主版本号的更新是不同的，会看作一个独立的依赖。在`hello.go`中添加一个新的函数`Proverb()`，它使用了`rsc.io/quote`的`v3`版本，导入格式为`rsc.io/quote/v3`
 
@@ -693,7 +659,7 @@ rsc.io/quote/v3 v3.1.0
 
 Go模块的每个主版本号(v1, v2, and so on)都使用一个不同的模块路径，从`v2`开始，路径必须以主版本号结尾，比如`rsc.io/quote`的`v3`版本模块路径为`rsc.io/quote/v3`，这种惯例称作 [semantic import versioning](https://research.swtch.com/vgo-import) ，给不兼容的包提供了不同的名字。相反，同一个主版本号，如`v1.6.0`应该向前兼容，和`rsc.io/quote`使用同一个名字，在同一个项目中，每个主版本号Go只允许出现一种，比如`v1.5.2`和`v1.6.0`不能同时存在，但不同的主版本号可以同时存在，这是为了使程序可以逐步过渡到新的版本。
 
-### 4.5 更新依赖到新的主版本号
+### 3.5 更新依赖到新的主版本号
 
 比如从`rsc.io/quote`迁移到`rsc.io/quote/v3`，由于大版本更新，某些不兼容的API可能被删除、重命名或做其它的更改，阅读文档，我们可以发现`HelloV3`相对于`Hello`做了如下改动
 
@@ -750,7 +716,7 @@ PASS
 ok      example.com/hello       0.014s
 ```
 
-### 4.6 移除不使用的依赖
+### 3.6 移除不使用的依赖
 
 我们已经不再使用`rsc.io/quote`，但它依然存在于`go list -m all`的输出和`go.mod`文件中
 
@@ -805,3 +771,22 @@ $
 - [Publishing Go Modules](https://blog.golang.org/publishing-go-modules)
 - [Go Modules: v2 and Beyond](https://blog.golang.org/v2-go-modules)
 
+## 4. 垃圾回收
+
+Go代码运行在Go的runtime（这部分代码可以在runtime包中找到）上，类似于java虚拟机，它负责管理包括内存分配、垃圾回收、栈处理、goroutine、channel、slice、map和reflection等。可以在`$GOROOT/src/runtime`找到关于runtime的说明。
+
+Go的可执行文件一般比相应的源码文件大很多，这是因为runtime潜入了每一个可执行文件中，因此，Go运行不依赖于其它任何文件。
+
+垃圾回收器(GC)正是runtime上独立运行的一个进程，它会自动搜索不再使用的变量和结构，然后释放它们的内存。通过调用`runtime.GC()`可以手动触发垃圾回收，但很少需要这样做。
+
+如果想知道当前的内存状态，可以使用
+
+```go
+// fmt.Printf("%d\n", runtime.MemStats.Alloc/1024)
+// 此处代码在 Go 1.5.1下不再有效，更正为
+var m runtime.MemStats
+runtime.ReadMemStats(&m)
+fmt.Printf("%d Kb\n", m.Alloc / 1024)
+```
+
+ 上面的程序会给出已分配内存的总量，单位是 Kb。进一步的测量参考 [package runtime](https://golang.google.cn/pkg/runtime/)

@@ -2,14 +2,14 @@
 title: 基于Go语言开发在线论坛2-通过模型类与MySQL数据库交互
 author: xueyuanjun
 date: 2020-05-27T18:25:20+08:00 
-lastmod: 2020-06-08
+lastmod: 2020-06-14
 tags: [Go Web, 在线论坛项目]
 categories: [爱编程爱技术的孩子]
 slug: Development of online forum based on golang 2-Interact with MySQL
 typora-root-url: ..\..\..\static
 ---
 
-在本篇教程中，我们将在 MySQL 中创建一个 `chitchat` 数据库作为论坛项目的数据库。我选择了在本地安装 MySQL Server，但也可以基于 Docker 容器运行。
+在本篇教程中，我们将在 MySQL 中创建一个 `chitchat` 数据库作为论坛项目的数据库。我选择了在本地安装 MySQL Server，但也可以基于 Docker 容器运行。转自学院君的教程，略有改动。
 
 <!--more-->
 
@@ -132,7 +132,6 @@ func init() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	return
 }
 
 // create a random UUID with from RFC 4122
@@ -362,7 +361,7 @@ func SessionDeleteAll() (err error) {
 }
 ```
 
-这里面定义了基于 `Db` 数据库连接实例实现用户模型和会话模型相关的增删改查操作，具体的语法可以参考 `go-mysql-driver` 的 [官方文档](https://github.com/go-sql-driver/mysql)，这里不详细展开，具体细节，我们留到后面专门介绍数据库模块时再详细说明。
+这里面定义了基于 `Db` 数据库连接实例实现用户模型和会话模型相关的增删改查操作，具体的语法可以参考 `go-mysql-driver` 的 [官方文档](https://github.com/go-sql-driver/mysql)。
 
 ### 3.4 主题模型相关类
 
@@ -533,8 +532,6 @@ func (user *User) CreatePost(conv Thread, body string) (post Post, err error) {
 
 ## 4. 小结
 
-在上述编写的模型类中，模型类与数据表是如何映射的呢？这个由 `go-mysql-driver` 底层实现，每次从数据库查询到结果之后，可以通过 `Scan` 方法将数据表字段值映射到对应的结构体模型类，而将模型类保存到数据库时，又可以基于字段映射关系将结构体属性值转化为对应的数据表字段值。对应的底层交互逻辑如下所示：
+在上述编写的模型类中，模型类与数据表的映射由 `go-mysql-driver` 底层实现，每次从数据库查询到结果之后，可以通过 `Scan` 方法将数据表字段值映射到对应的结构体模型类，而将模型类保存到数据库时，又可以基于字段映射关系将结构体属性值转化为对应的数据表字段值。
 
-![](https://qcdn.xueyuanjun.com/storage/uploads/images/gallery/2020-03/image-15852338353183.jpg)
-
-底层数据库交互逻辑定义好了之后，接下来，我们就可以编写上层实现代码了，下一篇学院君将给大家演示在线论坛项目上层路由和处理器方法的实现。
+底层数据库交互逻辑定义好了之后，接下来，我们就可以编写上层实现代码了，下一篇介绍在线论坛项目上层路由和处理器方法的实现。
