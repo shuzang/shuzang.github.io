@@ -115,3 +115,5 @@ Markdown文档编辑器，所见即所得，写作工具。[下载地址](https:
 文献管理工具，科研必备，转了半天还是它最好用。[下载地址](https://www.zotero.org/)
 
 ![Zotero](/images/win10效率优化6-软件体系整理/72677631-7a285800-3ad9-11ea-8319-9c6c398ca377.png)
+
+大量的工具都可以通过 chocolately 安装，包括 Edge，Github Desktop，VSCode，Go，Typora，pandoc，iobit uninstaller，git，rainmeter，zotero，uplay 和 steam，openVPN，NZXT，Notion，7zip。
