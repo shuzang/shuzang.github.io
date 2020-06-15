@@ -1,11 +1,15 @@
 # Golang语法基础9-接口与反射
 
 
+本篇介绍 Golang 中的接口与反射。
+
+<!--more-->
+
 ## 1. 接口
 
-上一篇谈到类型 T（或 *T）上的所有方法的集合叫做类型 T（或 *T）的方法集，接口可以用来定义方法集，但是这种定义是抽象的，不包含方法的代码实现，接口中也不能包含变量。
+类型 T（或 *T）上的所有方法的集合叫做类型 T（或 *T）的方法集，我们可以使用接口来定义方法集，但是这种定义是抽象的，不包含方法的代码实现，接口中也不能包含变量。
 
-接口定义的方式如下
+接口定义的基本格式如下
 
 ```go
 type Namer interface {
@@ -15,7 +19,99 @@ type Namer interface {
 }
 ```
 
-不像大多数面向对象编程语言，Go中可以为定义好的接口声明一个变量，叫做接口值：`var ai Namer`，其本质是一个指针，未初始化时其值为nil。
+### 1.1 接口理解
+
+接口可以是空的，也就是不包含任何方法，空接口的底层实现是一个名为 eface 的结构体
+
+```go
+type eface struct {
+    _type *_type
+    data  unsafe.Pointer
+}
+
+type _type struct {
+    size       uintptr // type size
+    ptrdata    uintptr // size of memory prefix holding all pointers
+    hash       uint32  // hash of type; avoids computation in hash tables
+    tflag      tflag   // extra type information flags
+    align      uint8   // alignment of variable with this type
+    fieldalign uint8   // alignment of struct field with this type
+    kind       uint8   // enumeration for C
+    alg        *typeAlg  // algorithm table
+    gcdata    *byte    // garbage collection data
+    str       nameOff  // string form
+    ptrToThis typeOff  // type for pointer to this type, may be zero
+}
+```
+
+非空接口的底层实现与空接口不同，是一个名为 iface 的结构体，非空接口中定义的方法的具体实现都放在 itab.fun 变量中
+
+```go
+type iface struct {
+    tab  *itab
+    data unsafe.Pointer
+}
+
+// layout of Itab known to compilers
+// allocated in non-garbage-collected memory
+// Needs to be in sync with
+// ../cmd/compile/internal/gc/reflect.go:/^func.dumptypestructs.
+type itab struct {
+    inter  *interfacetype
+    _type  *_type
+    link   *itab
+    bad    int32
+    inhash int32      // has this itab been added to hash?
+    fun    [1]uintptr // variable sized
+}
+
+type interfacetype struct {
+    typ     _type
+    pkgpath name
+    mhdr    []imethod
+}
+
+type imethod struct {   //这里的 method 只是一种函数声明的抽象，比如  func Print() error
+    name nameOff
+    ityp typeOff
+}
+```
+
+itab 可以简单理解为 接口类型+具体类型，interfacetype 是接口类型，包含包路径、方法等信息。_type 则是具体类型，空接口也包含这个字段。
+
+关于接口值的理解是一件很重要的事，但是比较复杂。我们通过了解接口的内存布局来理解接口的本质，从而理解接口值。先看一个例子
+
+```go
+type Stringer interface {
+    String() string
+}
+
+type Binary uint64
+
+func (i Binary) String() string {
+    return strconv.Uitob64(i.Get(), 2)
+}
+
+func (i Binary) Get() uint64 {
+    return uint64(i)
+}
+
+func main() {
+    b := Binary{}
+    s := Stringer(b)
+    fmt.Print(s.String())
+}
+```
+
+对比非空接口的底层实现，发现接口在内存中实际上由两个成员组成，如下图，tab 指向虚表，data 指向实际引用的数据
+
+![](/images/Golang语法基础9-接口与反射/20150126190937373.png)
+
+虚表描绘了实际的类型信息及接口的方法集，具体有哪些部分我们以及从 itab 结构体中看到了。在这里注意在这里是 Stringer 接口的函数指针列表，而不是实际类型 Binary 的函数指针列表，只有在运行时遇到 s := Stringer(b) 这样的语句，才会生成接口对应的 Binary 类型的虚表。这样，当判定一种类型是否满足某个接口时，只需要判断类型的方法集是否完全包含接口的方法集即可。
+
+### 1.2 接口值
+
+我们可以将一个变量声明为接口类型，`var ai Namer`，未初始化时，接口值为 nil。
 
 ```go
 type Shape interface {
@@ -32,24 +128,29 @@ value of s is <nil>
 type of s is <nil>
 ```
 
-### 1.1 接口类型值
+我们可以理解接口变量的值为 nil，那么为什么类型也是 nil 呢？上一小节我们理解接口的时候知道，接口其实就是定义在结构体中的两个指针，未初始化时这两个指针都是 nil，因此接口值是 nil，接口类型也是nil。
 
-上例中可以看到，不仅接口的值为nil，其类型也是nil，这里做一下详细说明。
-
-变量的类型在声明时指定，且不能改变，就称为静态类型。定义的接口本身属于静态类型，但声明后接口的值却是是动态的，由于接口的本质是一个指针，这个指针会指向实现了接口类型的值。如下例，变量i本身是静态类型Namer，但却先后指向实现了接口类型的St1和St2两个空结构体
+当我们初始化接口变量后，两个指针都有了具体指向的值，此时接口的值就是接口指向的类型的值，接口的类型就是实现了接口的变量类型。如下例，变量 i 本身是接口类型 Namer，先后指向实现了接口类型的 St1 和 St2 两个空结构体，其值和类型就发生了变化。
 
 ```go
 type Namer interface {
 	Name()
 }
 
-type St1 struct{}
-func (St1) Name() {}
+type St1 struct {
+	a int
+}
+
+func (st1 St1) Name() {
+	fmt.Println(st1.a)
+}
+
 type St2 struct{}
+
 func (St2) Name() {}
 
 func main() {
-	var i Namer = St1{}
+	var i Namer = St1{2}
 	fmt.Printf("type is %T\n", i)
 	fmt.Printf("value is %v\n", i)
 	i = St2{}
@@ -58,16 +159,14 @@ func main() {
 }
 //Output:
 type is main.St1
-value is {}
+value is {2}
 type is main.St2
 value is {}
 ```
 
-接口的类型值想要为nil，当且仅当动态值和动态类型都为nil。
+### 1.3 接口的实现
 
-### 1.2 接口实现
-
-方法集的实现基于某种类型(比如结构体)，这是上一节讲到的，因此接口实现的过程就是方法集中方法实现的过程。实现了接口的变量可以赋值给接口值，如下例
+接口的实现是一种隐式的实现，只要某个类型的方法集完全包含接口的方法集，就属于实现了该接口，实现了接口的变量可以赋值给接口值。
 
 ```go
 package main
@@ -102,17 +201,13 @@ func main() {
 The square has area: 25.000000
 ```
 
-接口被隐式地实现，因此类型不需要显式声明它实现了某个接口。
-
-一个不包含任何方法的接口称为空接口，形如：interface{}。同时因为空接口不包含任何方法，所以任何类型都默认实现了空接口。
-
-举个例子，fmt 包中的 Println() 函数，可以接收多种类型的值，比如：int、string、array等。这是因为它的形参就是接口类型，可以接收任意类型的值。
+空接口可以声明为 interface{}，同时因为空接口不包含任何方法，所以任何类型都默认实现了空接口。举个例子，fmt 包中的 Println() 函数，可以接收多种类型的值，比如：int、string、array等。这是因为它的形参就是接口类型，可以接收任意类型的值。
 
 ```go
 func Println(a ...interface{}) (n int, err error) {}
 ```
 
-多个类型可以实现同一个接口，如下例
+多个类型可以实现同一个接口，如下例，一个类型也可以实现多个接口。
 
 ```go
 package main
@@ -160,44 +255,9 @@ Shape details:  &{5}
 Area of this shape is:  25
 ```
 
-一个类型也可以实现多个接口，这意味着类型除实现某个接口的方法外，还可以实现其它的方法
+### 1.4 接口嵌套
 
-```go
-type Shape interface {
-	Area() float32
-}
-
-type Object interface {
-	Perimeter() float32
-}
-
-type Circle struct {
-	radius float32
-}
-
-func (c Circle) Area() float32 {
-	return math.Pi * (c.radius * c.radius)
-}
-
-func (c Circle) Perimeter() float32 {
-	return 2 * math.Pi * c.radius
-}
-
-func main() {
-	c := Circle{3}
-	var s Shape = c
-	var p Object = c
-	fmt.Println("area: ", s.Area())
-	fmt.Println("perimeter: ", p.Perimeter())
-}
-//Output:
-area:  28.274334
-perimeter:  18.849556
-```
-
-### 1.3 接口嵌套
-
-Go中的接口可以包含一个或多个其它接口，这相当于直接将这些内嵌接口的方法列举在外层接口中。下例中`File`接口包含了`ReadWrite`和`Lock`接口的所有方法
+Go 中的接口可以包含一个或多个其它接口，这相当于直接将这些内嵌接口的方法列举在外层接口中。下例中`File`接口包含了`ReadWrite`和`Lock`接口的所有方法
 
 ```go
 type ReadWrite interface {
@@ -217,15 +277,15 @@ type File interface {
 }
 ```
 
-### 1.4 类型断言
+### 1.5 类型断言
 
-一个接口类型的变量可以包含任何类型的值，因此需要有一种方式来检测其动态类型，这种方式就是类型断言
+如果一个变量是接口变量，实际上其值的类型是不确定的，我们使用类型断言来检测值的具体类型
 
 ```go
 v := varI.(T)
 ```
 
-varI是一个接口变量，T是待检测类型，这一语句的作用是检测varI的动态类型是否和T一致，实质是将varI转换为T类型的值
+varI是一个接口变量，T是待检测类型，这一语句的作用是检测 varI 的动态类型是否和 T 一致，实质是将 varI 转换为 T 类型的值
 
 ```go
 package main
@@ -276,7 +336,7 @@ The type of areaIntf is: *main.Square
 areaIntf does not contain a variable of type Circle
 ```
 
-不过，也有可能类型断言是无效的，为了更安全的使用类型断言，可以使用如下方式，在上例中也有说明
+类型断言可能失败，为了更安全的使用类型断言，使用如下的方式
 
 ```go
 if v, ok := varI.(T); ok {  // checked type assertion
@@ -286,7 +346,7 @@ if v, ok := varI.(T); ok {  // checked type assertion
 // varI is not of type T
 ```
 
-不确定接口变量当前类型时，就需要进行多次断言，这时使用switch最为简便，要求是所有`case`语句中列举的类型(nil除外)都必须实现对应的接口。
+由于断言是一个比较的过程，因此需要多次尝试，使用 switch 语句最为简便，不过要求所有 `case` 语句中列举的类型(nil除外)都必须实现对应的接口。
 
 ```go
 switch t := areaIntf.(type) {
@@ -303,7 +363,7 @@ default:
 Type Square *main.Square with value &{5}
 ```
 
-类型断言还有一种用法，就是测试它是否实现了某个接口，如下
+类型断言还有一种反向用法，就是测试它是否实现了某个接口，如下
 
 ```go
 type Stringer interface {
@@ -315,9 +375,11 @@ if sv, ok := v.(Stringer); ok {
 }
 ```
 
-### 1.5 使用指针接收者和值接收者实现接口
+所以我们可以意识到，断言格式 `varI.(T)` 中的 `varI` 可以是任意变量，`T` 是任意类型，断言的实质就是将变量转换为 `T` 类型的值，然后进行比较。
 
-虽然上一节中提到作用于变量的方法不区分变量是指针还是值，但是遇到接口时，会变得稍微复杂一点。
+### 1.6 使用指针接收者和值接收者实现接口
+
+虽然作用于变量的方法不区分变量是指针还是值，但是遇到接口时，会变得稍微复杂一点。
 
 ```go
 package main
