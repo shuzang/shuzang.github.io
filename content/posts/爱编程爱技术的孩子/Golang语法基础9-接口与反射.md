@@ -460,22 +460,22 @@ Go语言规范中接口方法集的调用规则为：
 
 支持反射的语言可以在程序编译期将变量的反射信息，如字段名称、类型信息、结构体信息等整合到可执行文件中，并给程序提供接口访问反射信息，这样就可以在程序运行期获取类型的反射信息，并且有能力修改它们。
 
-Go语言的反射系统无法获取到一个可执行文件空间或者一个包中的所有类型信息，仅仅是在运行时通过reflect包来访问指定的类型信息。
+Go 语言的反射系统无法获取到一个可执行文件空间或者一个包中的所有类型信息，仅仅是在运行时通过 reflect 包来访问指定的类型信息。
 
  https://mp.weixin.qq.com/s/qJVfEWngSDg3It3UytPuxA 
 
 ### 2.1 方法和类型的反射
 
-变量的最基本信息是类型和值，反射包的`Type`用来表示一个Go类型，反射包的`Value`为Go值提供了反射接口。
+Go 的反射包中比较重要和常用的有三个类型：`Kind`，`Type`，`Value`，其中 `Type`用来表示一个Go类型，`Value`为Go值提供了反射接口。
 
-两个简单的函数，`reflect.TypeOf`和`reflect.ValueOf`，返回被检查对象的类型和值。例如，x被定义为`var x float64 = 3.4`，那么`reflect.TypeOf(x)`返回`type: float64`，`reflect.ValueOf(x)`返回`value: 3.4`
-
-其本质是检查接口的动态类型和动态值，可从以下函数签名看出
+`reflect.TypeOf` 和 `reflect.ValueOf` 分别是定义在这两者之上的方法，函数原型如下
 
 ```go
 func TypeOf(i interface{}) Type
 func ValueOf(i interface{}) Value
 ```
+
+其本质是检查接口的动态类型和动态值，一般用来返回被检查对象的类型和值。例如，x被定义为`var x float64 = 3.4`，那么`reflect.TypeOf(x)`返回`type: float64`，`reflect.ValueOf(x)`返回`value: 3.4`
 
 因此，使用ValueOf转换获得的值，依然拥有自己的类型和值，反射包的Value有不少方法都可以作用于它，比如`kind`方法返回一个常量来表示类型，`Type`方法也返回值的类型，`Int`和`Float`等方法可以获取存储在内部的值，`Interface`方法可以还原接口值。示例如下
 

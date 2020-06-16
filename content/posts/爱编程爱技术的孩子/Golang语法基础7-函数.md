@@ -1,8 +1,11 @@
 ---
 title: Golang语法基础7-函数
 date: 2019-11-25
+lastmod: 2020-06-16
 tags: [Golang]
 categories: [爱编程爱技术的孩子]
+slug: Golang basic grmmar7-function
+typora-root-url: ..\..\..\static
 ---
 
 ## 1. 函数声明与定义
@@ -228,15 +231,11 @@ Go语言拥有一些不需要导入就可以使用的内置函数，之前已经
 | print、println     | 底层打印函数，在部署环境中建议使用 fmt 包                    |
 | complex、real imag | 用于创建和操作复数                                           |
 
-## 5. 闭包
+## 5. 匿名函数与闭包
 
-当我们不希望给函数起名字时，可以使用匿名函数，例如`func(x, y int) int { return x + y }`
+匿名函数是类似 `func(x, y int) int { return x + y }` 这样没有名字的函数。
 
-这样一个函数不能独立存在，但可以被赋值给某个变量，如`fplus := func(x, y int) int { return x + y }`，这样函数的地址就保存到了变量中，之后可以通过变量名对函数进行调用：`fplus(3, 4)`
-
-也可以直接调用匿名函数： `func(x, y int) int { return x + y } (3, 4)`
-
-下面是一个计算从 1 到 1 百万整数的总和的匿名函数：
+匿名函数可以被直接调用，下面是一个计算从 1 到 1 百万整数的总和的匿名函数。表示参数列表的第一对括号必须紧挨着关键字 `func`，因为匿名函数没有名称。花括号 `{}` 涵盖着函数体，最后的一对括号表示对该匿名函数的调用。 
 
 ```go
 func() {
@@ -247,9 +246,7 @@ func() {
 }()
 ```
 
-表示参数列表的第一对括号必须紧挨着关键字 `func`，因为匿名函数没有名称。花括号 `{}` 涵盖着函数体，最后的一对括号表示对该匿名函数的调用。 
-
-匿名函数可以像其它函数一样接受参数，下例展示了如何传递参数到匿名函数中
+另外，匿名函数可以像其它函数一样接受参数，下例展示了如何传递参数到匿名函数中
 
 ```go
 func (u string) {
@@ -258,7 +255,20 @@ func (u string) {
 }(v)
 ```
 
-使用闭包还可以将函数作为返回值
+还应该知道的，匿名函数可以被赋值给某个变量，如`fplus := func(x, y int) int { return x + y }`，这样函数的地址就保存到了变量中，之后可以通过变量名对函数进行调用：`fplus(3, 4)`
+
+所谓闭包就是函数及其引用环境的组合，这么说比较难理解，举个例子
+
+```go
+func f(i int) func() int {
+    return func() int {
+        i++
+        return i
+    }
+}
+```
+
+在这里例子里，返回值是一个函数，这个函数本身没有定义变量，而是引用了它所在环境的变量 i，这就形成了一个闭包。从这里可以看出，闭包与匿名函数息息相关，因为匿名函数被用作函数返回值非常合适。下面是一个完整的例子
 
 ```go
 package main
@@ -283,9 +293,9 @@ func Adder() func(int) int {
 1 - 21 - 321
 ```
 
-上例还可以说明一个问题，即闭包函数会保存并积累其中的变量的值，不管 外部函数退出与否，它都能够继续操作外部函数中的局部变量。 如上例， 在多次调用中，变量 x 的值是被保留的，即 `0 + 1 = 1`，然后 `1 + 20 = 21`，最后 `21 + 300 = 321` 
+从这里例子中我们注意到 x 的值是不断累加的，这也就意味着闭包函数其实会保存并积累其中的变量的值，不管外部函数退出与否，它都能够继续操作外部函数中的局部变量。 这里可以理解为函数被赋值给 f 之后，其实将整个闭包包括环境都赋值给了 f，变量 f 的生存周期内，其值是不变的，所以结果才会累积。
 
- 这种返回值为另一个函数的函数可以被称之为工厂函数，在需要创建一系列相似的函数的时候非常有用。下面的函数演示了如何动态返回追加后缀的函数： 
+这种返回值为另一个函数的函数的形式也被称之为工厂函数，在需要创建一系列相似的函数的时候非常有用。下面的函数演示了如何动态返回追加后缀的函数： 
 
 ```go
 func MakeAddSuffix(suffix string) func(string) string {
@@ -314,43 +324,111 @@ addJpeg("file") // returns: file.jpeg
 
 ## 6. defer和追踪
 
-关键字 defer 允许我们推迟到函数返回之前（或任意位置执行 `return` 语句之后）一刻才执行某个语句或函数。之所以在return语句之后，是因为 `return` 语句同样可以包含一些操作，而不是单纯地返回某个值。
+关键字 defer 是 Go 中一个非常有用的特性，作用是将某个语句或函数推迟到函数返回之前执行。准确的说，defer 的执行时机有三种：
+
+1. 包含 defer 语句的函数返回前
+2. 包含 defer 语句的函数执行到末尾
+3. 所在的 goroutine 发生 panic 时
+
+一个例子如下
 
 ```go
-package main
-import "fmt"
-
 func main() {
-	function1()
-}
-
-func function1() {
-	fmt.Printf("In function1 at the top\n")
-	defer function2()
-	fmt.Printf("In function1 at the bottom!\n")
-}
-
-func function2() {
-	fmt.Printf("Function2: Deferred until the end of the calling function!")
+    defer fmt.Println("Fourth")
+    fmt.Println("First")
+    fmt.Println("Third")
 }
 //Output:
-In Function1 at the top
-In Function1 at the bottom!
-Function2: Deferred until the end of the calling function!
+First
+Third
+Fourth
 ```
 
-使用defer的语句同样可以接收参数
+defer 语句中调用的函数参数的值在 defer 语句被定义时就确定了，如下例
 
 ```go
-func a() {
-	i := 0
-	defer fmt.Println(i)
-	i++
-	return
+i := 1
+defer fmt.Println("Deferred print:", i)
+i++
+fmt.Println("Normal print:", i)
+// Output:
+Normal print: 2
+Deferred print: 1
+```
+
+但与匿名函数结合起来后，变量的值在函数运行时才会确定
+
+```go
+func f1() (r int) {
+    r = 1
+    defer func() {
+        r++
+        fmt.Println(r)
+    }()
+    r = 2
+    return
+}
+
+func main() {
+    f1()
+}
+// Output:
+3
+```
+
+上例中出现了 return 语句，defer 与 return 的执行顺序比较复杂，这里要先理解两件事
+
+1. defer 函数执行时机是外层函数设置返回值之后，即将返回之前
+2. return xxx 操作并不是原子的
+
+下面的例子中， return 0 实际上可以拆分为 r = 0; return 两条语句，因此输出是1不是0
+
+```go
+func f1() (r int) {
+    defer func() {
+        r++
+    }()
+    return 0
+}
+func main() {
+    fmt.Println(f1())
 }
 ```
 
-多个defer会以逆序执行，即后进先出
+来一个更复杂的例子
+
+```go
+func double(x int) int {
+    return x + x
+}
+
+func triple(x int) (r int) {
+    defer func() {
+        r += x
+    }()
+    return double(x)
+}
+
+func main() {
+    fmt.Println(triple(3))
+}
+// Output:
+9
+```
+
+上面的例子实际上等价于
+
+```go
+func triple(x int) (r int) {
+    r = double(x)
+    func() {
+        r += x
+    }()
+    return
+}
+```
+
+多个 defer 同时使用时，以逆序执行，即后进先出
 
 ```go
 func f() {
@@ -362,7 +440,7 @@ func f() {
 4 3 2 1 0
 ```
 
-defer关键字一般用于释放某些已分配的资源或在函数执行完进行一些收尾工作，比如
+defer 关键字一般用于释放某些已分配的资源或在函数执行完进行一些收尾工作，比如
 
 1. 关闭文件流
 
@@ -391,143 +469,6 @@ defer关键字一般用于释放某些已分配的资源或在函数执行完进
    //open a database connection
    defer disconnectFromDB()
    ```
-
-一个综合模拟以上四种情况的代码如下
-
-```go
-package main
-
-import "fmt"
-
-func main() {
-	doDBOperations()
-}
-
-func connectToDB() {
-	fmt.Println("ok, connected to db")
-}
-
-func disconnectFromDB() {
-	fmt.Println("ok, disconnected from db")
-}
-
-func doDBOperations() {
-	connectToDB()
-	fmt.Println("Defering the database disconnect.")
-	defer disconnectFromDB() //function called here with defer
-	fmt.Println("Doing some DB operations ...")
-	fmt.Println("Oops! some crash or network error ...")
-	fmt.Println("Returning from function here!")
-	return //terminate the program
-	// deferred function executed here just before actually returning, even if
-	// there is a return or abnormal termination before
-}
-//Output:
-ok, connected to db
-Defering the database disconnect.
-Doing some DB operations ...
-Oops! some crash or network error ...
-Returning from function here!
-ok, disconnected from db
-```
-
-使用defer语句还可以实现代码追踪，只要在进入和离开某个函数时打印相关消息，即可以提炼为下面两个函数
-
-```go
-func trace(s string) { fmt.Println("entering:", s) }
-func untrace(s string) { fmt.Println("leaving:", s) }
-```
-
-以下是调用这两个函数的例子
-
-```go
-package main
-
-import "fmt"
-
-func trace(s string)   { fmt.Println("entering:", s) }
-func untrace(s string) { fmt.Println("leaving:", s) }
-
-func a() {
-	trace("a")
-	defer untrace("a")
-	fmt.Println("in a")
-}
-
-func b() {
-	trace("b")
-	defer untrace("b")
-	fmt.Println("in b")
-	a()
-}
-
-func main() {
-	b()
-}
-//Output:
-entering: b
-in b
-entering: a
-in a
-leaving: a
-leaving: b
-```
-
-进一步简化代码如下
-
-```go
-package main
-
-import "fmt"
-
-func trace(s string) string {
-	fmt.Println("entering:", s)
-	return s
-}
-
-func un(s string) {
-	fmt.Println("leaving:", s)
-}
-
-func a() {
-	defer un(trace("a"))
-	fmt.Println("in a")
-}
-
-func b() {
-	defer un(trace("b"))
-	fmt.Println("in b")
-	a()
-}
-
-func main() {
-	b()
-}
-```
-
-最后，还可以使用defer来记录函数参数与返回值，这是一种在调试时使用defer语句的手法
-
-```go
-package main
-
-import (
-	"io"
-	"log"
-)
-
-func func1(s string) (n int, err error) {
-	defer func() {
-		log.Printf("func1(%q) = %d, %v", s, n, err)
-	}()
-	return 7, io.EOF
-}
-
-func main() {
-	func1("Go")
-}
-//Output:
-Output: 2011/10/04 10:46:11 func1("Go") = 7, EOF
-```
 
 ## 7. 编写规范
 
