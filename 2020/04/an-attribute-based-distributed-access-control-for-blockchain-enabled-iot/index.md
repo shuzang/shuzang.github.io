@@ -47,7 +47,7 @@ SC 提供了如下功能
 1. addmanufacturer()：只能由 SC 所有者调用，传入制造商账户地址，将该地址代表的制造商加如合法制造商列表
 2. addsubject()：只能由合法制造商列表中的成员调用，负责注册新的 IoT 设备
 3. addobattr()：由 object 调用，设置针对某个 subject 的 SOA，接收设备地址和一个描述属性的字符串
-4. delemanufaceurer()，deleteobattr()：如函数名
+4. delemanufacturer()，deleteobattr()：如函数名
 
 ### 2.2 Object Contract
 
