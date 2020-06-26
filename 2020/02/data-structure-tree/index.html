@@ -39,11 +39,11 @@ $$
 </span><span class=lnt>6
 </span><span class=lnt>7
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-Go data-lang=Go><span class=kd>func</span> <span class=nf>PreOrderTraverse</span><span class=p>(</span><span class=nx>root</span> <span class=o>*</span><span class=nx>TreeNode</span><span class=p>)</span> <span class=p>{</span>
-	<span class=k>if</span> <span class=nx>root</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+    <span class=k>if</span> <span class=nx>root</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
         <span class=nf>visit</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Data</span><span class=p>)</span>
-		<span class=nf>PreOrderTraverse</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Left</span><span class=p>)</span>
-		<span class=nf>PreOrderTraverse</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>)</span>
-	<span class=p>}</span>
+        <span class=nf>PreOrderTraverse</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Left</span><span class=p>)</span>
+        <span class=nf>PreOrderTraverse</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>)</span>
+    <span class=p>}</span>
 <span class=p>}</span>
 </code></pre></td></tr></table></div></div><p>上述程序使用了递归的方法，也可以使用非递归的方法，基本的思路是使用堆栈。</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=/images/%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84-%e6%a0%91/1vXQVU.png alt=先序遍历 title=先序遍历 class=lazyload><figcaption class=image-caption>先序遍历</figcaption></figure></p><p>如上图所示，在树的遍历过程中，每个结点被遇到三次，在第一次遇到时，我们将结点入栈，在最后一次离开时，我们将结点出栈。先序遍历就是在第一次遇到结点(入栈)时访问结点，因此程序如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
@@ -64,8 +64,8 @@ $$
 	<span class=k>for</span> <span class=nx>root</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=o>||</span> <span class=nx>stack</span><span class=p>.</span><span class=nf>Len</span><span class=p>(</span><span class=p>)</span> <span class=o>!=</span> <span class=mi>0</span> <span class=p>{</span>
 		<span class=k>for</span> <span class=nx>root</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
 			<span class=nx>stack</span><span class=p>.</span><span class=nf>PushBack</span><span class=p>(</span><span class=nx>root</span><span class=p>)</span>
-            <span class=nf>visit</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Data</span><span class=p>)</span>
-			<span class=nx>root</span> <span class=p>=</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Left</span>
+			<span class=nf>visit</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Data</span><span class=p>)</span>
+			 <span class=nx>root</span> <span class=p>=</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Left</span>
 		<span class=p>}</span>
 		<span class=k>if</span> <span class=nx>stack</span><span class=p>.</span><span class=nf>Len</span><span class=p>(</span><span class=p>)</span> <span class=o>!=</span> <span class=mi>0</span> <span class=p>{</span>
 			<span class=nx>root</span> <span class=p>=</span> <span class=nx>stack</span><span class=p>.</span><span class=nf>Remove</span><span class=p>(</span><span class=nx>stack</span><span class=p>.</span><span class=nf>Back</span><span class=p>(</span><span class=p>)</span><span class=p>)</span><span class=p>.</span><span class=p>(</span><span class=o>*</span><span class=nx>TreeNode</span><span class=p>)</span>
@@ -81,11 +81,11 @@ $$
 </span><span class=lnt>6
 </span><span class=lnt>7
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>InOrderTraverse</span><span class=p>(</span><span class=nx>root</span> <span class=o>*</span><span class=nx>Treenode</span><span class=p>)</span> <span class=p>{</span>
-	<span class=k>if</span> <span class=nx>root</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>  
-		<span class=nf>PreOrderTraverse</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Left</span><span class=p>)</span>
+    <span class=k>if</span> <span class=nx>root</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>  
+        <span class=nf>InOrderTraverse</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Left</span><span class=p>)</span>
         <span class=nf>visit</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Data</span><span class=p>)</span>
-		<span class=nf>PreOrderTraverse</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>)</span>
-	<span class=p>}</span>
+        <span class=nf>InOrderTraverse</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>)</span>
+    <span class=p>}</span>
 <span class=p>}</span>
 </code></pre></td></tr></table></div></div><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=/images/%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84-%e6%a0%91/1vX0aD.png alt=中序遍历 title=中序遍历 class=lazyload><figcaption class=image-caption>中序遍历</figcaption></figure></p><p>中序遍历也可以使用非递归的方法实现。实际上，前序、中序和后序走的路线是相同的，唯一的区别是访问结点的时机不同，在中序遍历中，是在第二次遇到结点时访问结点，如上图所示，因此中序非递归遍历的程序如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
@@ -110,7 +110,7 @@ $$
 		<span class=p>}</span>
 		<span class=k>if</span> <span class=nx>stack</span><span class=p>.</span><span class=nf>Len</span><span class=p>(</span><span class=p>)</span> <span class=o>!=</span> <span class=mi>0</span> <span class=p>{</span>
 			<span class=nx>root</span> <span class=p>=</span> <span class=nx>stack</span><span class=p>.</span><span class=nf>Remove</span><span class=p>(</span><span class=nx>stack</span><span class=p>.</span><span class=nf>Back</span><span class=p>(</span><span class=p>)</span><span class=p>)</span><span class=p>.</span><span class=p>(</span><span class=o>*</span><span class=nx>TreeNode</span><span class=p>)</span>
-            <span class=nf>visit</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Data</span><span class=p>)</span>
+			<span class=nf>visit</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Data</span><span class=p>)</span>
 			<span class=nx>root</span> <span class=p>=</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Right</span>
 		<span class=p>}</span>
 	<span class=p>}</span>
@@ -124,9 +124,9 @@ $$
 </span><span class=lnt>7
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>PostOrderTraverse</span><span class=p>(</span><span class=nx>root</span> <span class=o>*</span><span class=nx>TreeNode</span><span class=p>)</span> <span class=p>{</span>
 	<span class=k>if</span> <span class=nx>root</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>  
-		<span class=nf>PreOrderTraverse</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Left</span><span class=p>)</span>
-		<span class=nf>PreOrderTraverse</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>)</span>
-        <span class=nf>visit</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Data</span><span class=p>)</span>
+		<span class=nf>PostOrderTraverse</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Left</span><span class=p>)</span>
+		<span class=nf>PostOrderTraverse</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>)</span>
+		<span class=nf>visit</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Data</span><span class=p>)</span>
 	<span class=p>}</span>
 <span class=p>}</span>
 </code></pre></td></tr></table></div></div><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=/images/%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84-%e6%a0%91/1vXrPH.png alt=后序遍历 title=后序遍历 class=lazyload><figcaption class=image-caption>后序遍历</figcaption></figure></p><p>后序遍历是在第三次遇到结点时访问结点，它的非递归实现要复杂一点，需要增加一个栈标记到达结点的次序</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
@@ -153,23 +153,23 @@ $$
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>PostOrderTraversal</span><span class=p>(</span><span class=nx>BinTree</span> <span class=nx>BT</span><span class=p>)</span> <span class=p>{</span>
     <span class=nx>stack</span> <span class=o>:=</span> <span class=nf>Creatstack</span><span class=p>(</span><span class=p>)</span>
     <span class=nx>tag</span> <span class=o>:=</span> <span class=nb>make</span><span class=p>(</span><span class=kd>map</span><span class=p>[</span><span class=o>*</span><span class=nx>TreeNode</span><span class=p>]</span><span class=kt>bool</span><span class=p>)</span>
-	<span class=k>for</span> <span class=nx>root</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=o>||</span> <span class=nx>stack</span><span class=p>.</span><span class=nf>Len</span><span class=p>(</span><span class=p>)</span> <span class=o>!=</span> <span class=mi>0</span> <span class=p>{</span>
-		<span class=k>for</span> <span class=nx>root</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
-			<span class=nx>stack</span><span class=p>.</span><span class=nf>PushBack</span><span class=p>(</span><span class=nx>root</span><span class=p>)</span>
-			<span class=nx>root</span> <span class=p>=</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Left</span>
-		<span class=p>}</span>
-		<span class=k>if</span> <span class=nx>stack</span><span class=p>.</span><span class=nf>Len</span><span class=p>(</span><span class=p>)</span> <span class=o>!=</span> <span class=mi>0</span> <span class=p>{</span>
-			<span class=nx>root</span> <span class=p>=</span> <span class=nx>stack</span><span class=p>.</span><span class=nf>Back</span><span class=p>(</span><span class=p>)</span><span class=p>.</span><span class=nx>Value</span><span class=p>.</span><span class=p>(</span><span class=o>*</span><span class=nx>TreeNode</span><span class=p>)</span>
-			<span class=k>if</span> <span class=p>!</span><span class=nx>tag</span><span class=p>[</span><span class=nx>root</span><span class=p>]</span> <span class=p>{</span>
-				<span class=nx>tag</span><span class=p>[</span><span class=nx>root</span><span class=p>]</span> <span class=p>=</span> <span class=kc>true</span>
-				<span class=nx>root</span> <span class=p>=</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Right</span>
-			<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
-				<span class=nx>root</span> <span class=p>=</span> <span class=nx>stack</span><span class=p>.</span><span class=nf>Remove</span><span class=p>(</span><span class=nx>stack</span><span class=p>.</span><span class=nf>Back</span><span class=p>(</span><span class=p>)</span><span class=p>)</span><span class=p>.</span><span class=p>(</span><span class=o>*</span><span class=nx>TreeNode</span><span class=p>)</span>
+    <span class=k>for</span> <span class=nx>root</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=o>||</span> <span class=nx>stack</span><span class=p>.</span><span class=nf>Len</span><span class=p>(</span><span class=p>)</span> <span class=o>!=</span> <span class=mi>0</span> <span class=p>{</span>
+        <span class=k>for</span> <span class=nx>root</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+            <span class=nx>stack</span><span class=p>.</span><span class=nf>PushBack</span><span class=p>(</span><span class=nx>root</span><span class=p>)</span>
+            <span class=nx>root</span> <span class=p>=</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Left</span>
+        <span class=p>}</span>
+        <span class=k>if</span> <span class=nx>stack</span><span class=p>.</span><span class=nf>Len</span><span class=p>(</span><span class=p>)</span> <span class=o>!=</span> <span class=mi>0</span> <span class=p>{</span>
+            <span class=nx>root</span> <span class=p>=</span> <span class=nx>stack</span><span class=p>.</span><span class=nf>Back</span><span class=p>(</span><span class=p>)</span><span class=p>.</span><span class=nx>Value</span><span class=p>.</span><span class=p>(</span><span class=o>*</span><span class=nx>TreeNode</span><span class=p>)</span>
+            <span class=k>if</span> <span class=p>!</span><span class=nx>tag</span><span class=p>[</span><span class=nx>root</span><span class=p>]</span> <span class=p>{</span>
+                <span class=nx>tag</span><span class=p>[</span><span class=nx>root</span><span class=p>]</span> <span class=p>=</span> <span class=kc>true</span>
+                <span class=nx>root</span> <span class=p>=</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Right</span>
+            <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+                <span class=nx>root</span> <span class=p>=</span> <span class=nx>stack</span><span class=p>.</span><span class=nf>Remove</span><span class=p>(</span><span class=nx>stack</span><span class=p>.</span><span class=nf>Back</span><span class=p>(</span><span class=p>)</span><span class=p>)</span><span class=p>.</span><span class=p>(</span><span class=o>*</span><span class=nx>TreeNode</span><span class=p>)</span>
                 <span class=nf>visit</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Data</span><span class=p>)</span>
-				<span class=nx>root</span> <span class=p>=</span> <span class=kc>nil</span>
-			<span class=p>}</span>
-		<span class=p>}</span>
-	<span class=p>}</span>
+                <span class=nx>root</span> <span class=p>=</span> <span class=kc>nil</span>
+            <span class=p>}</span>
+        <span class=p>}</span>
+    <span class=p>}</span>
 <span class=p>}</span>
 </code></pre></td></tr></table></div></div><h4 id=层次遍历>层次遍历</h4><p>二叉树遍历的核心问题是二维结构的线性化，层次遍历的思想是利用队列，首先将根结点入队，然后开始执行循环：</p><ol><li>从队列中取出一个元素</li><li>访问该元素所指结点</li><li>若该元素所指结点的左右孩子结点非空，则将其左右孩子的指针顺序入队</li></ol><p>程序实现如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
