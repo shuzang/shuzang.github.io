@@ -4,6 +4,7 @@ date: 2019-11-26
 tags: [Golang]
 categories: [爱编程爱技术的孩子]
 typora-root-url: ..\..\..\static
+slug: Golang syntax 8 - struct and method
 ---
 
 Go中结构体的概念和C相同，甚至声明用的关键字也是`struct`，因为Go中没有类的概念，因此结构体的地位比较重要。

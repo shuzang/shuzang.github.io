@@ -5,7 +5,7 @@ lastmod: 2020-06-16
 tags: [Golang]
 categories: [爱编程爱技术的孩子]
 typora-root-url: ..\..\..\static
-slug: Golang basic grmmar 6-array slice and map
+slug: Golang syntax 6-array slice and map
 ---
 
 只有基本的数据类型无法适应所有的情况，当需要存储和处理大量数据时，通常会使用数组、映射、链表等数据结构，称之为容器(container)。在Go语言中，由于数组不够灵活，增加了切片(slice)类型，切片也是一种容器。

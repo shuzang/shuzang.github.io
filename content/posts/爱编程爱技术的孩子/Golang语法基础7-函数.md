@@ -4,7 +4,7 @@ date: 2019-11-25
 lastmod: 2020-06-16
 tags: [Golang]
 categories: [爱编程爱技术的孩子]
-slug: Golang basic grmmar7-function
+slug: Golang syntax 7-function
 typora-root-url: ..\..\..\static
 ---
 

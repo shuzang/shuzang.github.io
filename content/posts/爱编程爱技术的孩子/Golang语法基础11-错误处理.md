@@ -3,6 +3,7 @@ title: Golang语法基础11-错误处理
 date: 2019-12-20
 tags: [Golang]
 categories: [爱编程爱技术的孩子]
+slug: Golang syntax 11-error and panic
 ---
 
 Go中有两套错误处理的方式

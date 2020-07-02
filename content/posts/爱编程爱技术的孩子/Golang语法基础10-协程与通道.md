@@ -4,6 +4,7 @@ date: 2019-12-16
 tags: [Golang]
 categories: [爱编程爱技术的孩子]
 typora-root-url: ..\..\..\static
+slug: Golang syntax 10-goroutine and channel
 ---
 
 首先来回顾在操作系统中学过的一些概念。进程(processes)是程序执行的基本单位，运行在一个独立的内存地址空间中；一个进程由多个线程(threads)组成，线程的存在是为了能够同时执行多个任务，最大化利用时间，防止产生等待，线程间是共享内存地址空间的。从windows资源管理器看这一点能看的很明白，如下，每个应用程序是一个进程，Typora程序下有两个线程在同时运行。

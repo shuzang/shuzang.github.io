@@ -3,6 +3,7 @@ title: Golang语法基础12-测试
 date: 2019-12-22
 tags: [Golang]
 categories: [爱编程爱技术的孩子]
+slug: Golang syntax 12-test
 ---
 
 实际开发中对代码进行测试是不可缺少的工作，在go中可以通过`testing`包来进行代码的测试。`testing`包和`go test`命令相互配合，能够完成代码的自动化测试。

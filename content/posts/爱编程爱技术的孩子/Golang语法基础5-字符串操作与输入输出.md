@@ -3,6 +3,7 @@ title: Golang语法基础5-字符串操作与输入输出
 date: 2019-11-11
 tags: [Golang]
 categories: [爱编程爱技术的孩子]
+slug: Golang syntax 5-string input and output
 ---
 
 本篇介绍字符串的相关操作，涉及`string`和`strconv`两个标准库，以及介绍输入输出的基本方法，涉及`fmt`和`bufio`两个标准库。

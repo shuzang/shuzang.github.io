@@ -4,7 +4,7 @@ date: 2019-11-26
 lastmod: 2020-06-15
 tags: [Golang]
 categories: [爱编程爱技术的孩子]
-slug: Golang basic grammer 9-interface and reflect
+slug: Golang syntax 9-interface and reflect
 typora-root-url: ..\..\..\static
 ---
 
@@ -114,7 +114,7 @@ func main() {
 
 ![](/images/Golang语法基础9-接口与反射/20150126190937373.png)
 
-虚表描绘了实际的类型信息及接口的方法集，具体有哪些部分我们以及从 itab 结构体中看到了。在这里注意在这里是 Stringer 接口的函数指针列表，而不是实际类型 Binary 的函数指针列表，只有在运行时遇到 s := Stringer(b) 这样的语句，才会生成接口对应的 Binary 类型的虚表。这样，当判定一种类型是否满足某个接口时，只需要判断类型的方法集是否完全包含接口的方法集即可。
+虚表描绘了实际的类型信息及接口的方法集，具体有哪些部分我们以及从 itab 结构体中看到了。注意在这里是 Stringer 接口的函数指针列表，而不是实际类型 Binary 的函数指针列表，只有在运行时遇到 s := Stringer(b) 这样的语句，才会生成接口对应的 Binary 类型的虚表。这样，当判定一种类型是否满足某个接口时，只需要判断类型的方法集是否完全包含接口的方法集即可。
 
 ### 1.2 接口值
 
