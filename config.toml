@@ -58,7 +58,7 @@ dateFormatToUse = "2006-01-02"
 # Author Info
 [author]
   name = "shuzang"
-  link = "https://shuzang.top/about/"
+  link = "https://shuzang.github.io/about/"
 
 # Sitemap Info
 [sitemap]
@@ -68,7 +68,7 @@ dateFormatToUse = "2006-01-02"
 
 # Permalinks Info (https://gohugo.io/content-management/urls/#permalinks)
 [Permalinks]
-  posts = ":year/:month/:slug"
+  posts = ":slug"
 
 # Menu Info
 [menu]
