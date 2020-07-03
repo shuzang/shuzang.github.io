@@ -1,0 +1,343 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>Docker搭建以太坊私链 | Shuzang's Blog</title><meta name=Description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><meta property="og:title" content="Docker搭建以太坊私链"><meta property="og:description" content="在以太坊github的官方项目地址
+发现其支持Docker启动，同时因为Docker相对于虚拟机的易用性，决定尝试使用Docker搭建以太坊联盟链
+Docker安装部分查看自官方说明，搭建过程主要参考简书-使用Docker搭建以太坊私有链并部署合约
+
+一、Docker安装
+OS环境：Ubuntu 18.04 LTS(bionic)
+内核版本：4.18.0-16-generic
+处理器架构：amd64
+官方的安装说明位于：Get Docker CE for Ubuntu"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.github.io/docker%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%A7%81%E9%93%BE/"><meta property="article:published_time" content="2019-03-12T11:24:00+08:00"><meta property="article:modified_time" content="2019-03-12T11:24:00+08:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Docker搭建以太坊私链"><meta name=twitter:description content="在以太坊github的官方项目地址
+发现其支持Docker启动，同时因为Docker相对于虚拟机的易用性，决定尝试使用Docker搭建以太坊联盟链
+Docker安装部分查看自官方说明，搭建过程主要参考简书-使用Docker搭建以太坊私有链并部署合约
+
+一、Docker安装
+OS环境：Ubuntu 18.04 LTS(bionic)
+内核版本：4.18.0-16-generic
+处理器架构：amd64
+官方的安装说明位于：Get Docker CE for Ubuntu"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel=canonical href=https://shuzang.github.io/docker%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%A7%81%E9%93%BE/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=prev href=https://shuzang.github.io/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E8%8A%82%E7%82%B9%E8%BF%9E%E6%8E%A5%E5%88%B0%E7%BD%91%E7%BB%9C%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/><link rel=next href=https://shuzang.github.io/using-virtual-machine-as-raspberry-pi-server-to-build-dynamic-blog/><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/css/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Docker搭建以太坊私链","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/docker%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%A7%81%E9%93%BE\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"区块链","wordcount":3935,"url":"https:\/\/shuzang.github.io\/docker%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%A7%81%E9%93%BE\/","datePublished":"2019-03-12T11:24:00\x2b08:00","dateModified":"2019-03-12T11:24:00\x2b08:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"shuzang","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/logo.png","width":127,"height":40}},"description":""}</script></head><body><script>if(!window.localStorage||!window.localStorage.getItem('theme')){window.isDark=window.matchMedia('(prefers-color-scheme: dark)').matches;}else{window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';}
+window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class="header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch title="Switch Theme">
+<i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a></div></div></header><header class=mobile id=header-mobile><div class=header-wrapper><div class=header-container><div class="header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch title="Switch Theme">
+<i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a></div></div></header><script>window.desktopHeaderMode="fixed";window.mobileHeaderMode="auto";</script><main class=main><div class=container><article class="page single"><h1 class="single-title animated flipInX">Docker搭建以太坊私链</h1><div class=meta><div class=meta-line><a class=author href=https://shuzang.github.io/about/ rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>shuzang
+</a>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i><a href=https://shuzang.github.io/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/>研究生的区块链学习之路</a>&nbsp;</span></div><div class=meta-line><i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-03-12>2019-03-12</time>&nbsp;
+<i class="fas fa-pencil-alt fa-fw"></i>about 3935 words&nbsp;
+<i class="far fa-clock fa-fw"></i>8 min&nbsp;</div></div><aside class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#一docker安装>一、Docker安装</a></li><li><a href=#二获取geth镜像>二、获取geth镜像</a></li><li><a href=#三创建docker网络>三、创建Docker网络</a></li><li><a href=#四配置以太坊网络>四、配置以太坊网络</a><ul><li><a href=#1-创建账户>1. 创建账户</a></li><li><a href=#2-创建创世区块>2. 创建创世区块</a></li><li><a href=#3-完成以太坊网络配置>3. 完成以太坊网络配置</a></li></ul></li><li><a href=#五创建以太坊网络>五、创建以太坊网络</a><ul><li><a href=#1-创建矿工节点>1. 创建矿工节点</a></li><li><a href=#2-创建普通节点>2. 创建普通节点</a></li><li><a href=#3-节点连接>3. 节点连接</a></li><li><a href=#4-退出>4. 退出</a></li></ul></li></ul></nav></div></aside><aside class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
+<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><a href=#一docker安装>一、Docker安装</a></li><li><a href=#二获取geth镜像>二、获取geth镜像</a></li><li><a href=#三创建docker网络>三、创建Docker网络</a></li><li><a href=#四配置以太坊网络>四、配置以太坊网络</a><ul><li><a href=#1-创建账户>1. 创建账户</a></li><li><a href=#2-创建创世区块>2. 创建创世区块</a></li><li><a href=#3-完成以太坊网络配置>3. 完成以太坊网络配置</a></li></ul></li><li><a href=#五创建以太坊网络>五、创建以太坊网络</a><ul><li><a href=#1-创建矿工节点>1. 创建矿工节点</a></li><li><a href=#2-创建普通节点>2. 创建普通节点</a></li><li><a href=#3-节点连接>3. 节点连接</a></li><li><a href=#4-退出>4. 退出</a></li></ul></li></ul></nav></div></details></aside><div class=content><p>在以太坊github的<a href=https://github.com/ethereum/go-ethereum target=_blank>官方项目地址</a>
+发现其支持Docker启动，同时因为Docker相对于虚拟机的易用性，决定尝试使用Docker搭建以太坊联盟链</p><p>Docker安装部分查看自官方说明，搭建过程主要参考<a href="https://www.jianshu.com/p/7994db7a2b89?from=singlemessage" target=_blank>简书-使用Docker搭建以太坊私有链并部署合约</a></p><h2 id=一docker安装>一、Docker安装</h2><p>OS环境：Ubuntu 18.04 LTS(bionic)</p><p>内核版本：4.18.0-16-generic</p><p>处理器架构：amd64</p><p>官方的安装说明位于：<a href=https://docs.docker.com/install/linux/docker-ce/ubuntu/ target=_blank>Get Docker CE for Ubuntu</a></p><p>官方一共提供了三种安装方式，为了简便，我们选择直接下载<code>.deb</code>包安装</p><ol><li><p>前往地址<a href=https://download.docker.com/linux/ubuntu/dists/bionic/pool/stable/amd64 target=_blank><code>https://download.docker.com/linux/ubuntu/dists/bionic/pool/stable/amd64/</code></a>
+下载安装所需文件，包括以下三个</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>├── containerd.io_1.2.4-1_amd64.deb
+├── docker-ce_18.09.3_3-0_ubuntu-bionic_amd64.deb
+└── docker-ce-cli_18.09.3_3-0_ubuntu-bionic_amd64.deb
+</code></pre></td></tr></table></div></div></li><li><p>进入下载文件所在目录，执行下列安装命令</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo dpkg -i docker-ce-cli_18.09.3_3-0_ubuntu-bionic_amd64.deb
+$ sudo dpkg -i containerd.io_1.2.4-1_amd64.deb
+$ sudo dpkg -i docker-ce_18.09.3_3-0_ubuntu-bionic_amd64.deb
+</code></pre></td></tr></table></div></div></li><li><p>通过运行<code>hello-world</code>镜像验证安装完成</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo docker run hello-world
+</code></pre></td></tr></table></div></div><p>该命令会下载一个测试镜像并在容器中运行它，运行时可以从终端看到如下信息说明安装成功，运行结束自动退出。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>Hello from Docker!
+</code></pre></td></tr></table></div></div></li><li><p>更新Docker</p><p>通过<code>.deb</code>包安装Docker只能再次下载最新的安装包并重复执行安装步骤来更新</p></li></ol><h2 id=二获取geth镜像>二、获取geth镜像</h2><p><a href=https://hub.docker.com/r/ethereum/client-go target=_blank>docker hub</a>
+上有现成的geth镜像，使用<code>pull</code>命令直接获取。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo docker pull ethereum/client-go
+</code></pre></td></tr></table></div></div><p>默认安装latest版，试运行</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo docker run -it --rm -v /workspace:/workspace --entrypoint /bin/sh ethereum/client-go
+</code></pre></td></tr></table></div></div><p><code>-i</code>：打开STDIN，用于控制台交互，常与-t一起使用</p><p><code>-t</code>：分配tty设备，支持终端登陆，默认为false，常与-i一起使用</p><p><code>--rm</code>：指定容器停止后自动删除容器（不支持以docker run -d启动的容器 ）</p><p><code>-v</code>：给容器挂载存储卷，挂载到容器的某个目录，这里讲本地的/workspace挂载到了容器的/workspace目录，用来在容器和宿主机之间共享文件</p><p><code>--entrypoint</code>：覆盖image的入口点，ubuntu环境下docker默认入口点其实是/bin/bash，修改默认入口点是为了不让节点自动运行，稍后会对节点进行自定义配置使其成为私有链节点</p><p>查看本地镜像列表</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo docker image ls
+REPOSITORY           TAG                 IMAGE ID            CREATED             SIZE
+ethereum/client-go   latest              f376688623dc        <span class=m>3</span> hours ago         42.7MB
+hello-world          latest              fce289e99eb9        <span class=m>2</span> months ago        1.84kB
+</code></pre></td></tr></table></div></div><p>证实geth镜像获取完成，同时也能看到之前测试docker安装是否完成时获取的hello-world镜像</p><h2 id=三创建docker网络>三、创建Docker网络</h2><p>推荐是创建一个自有网络，然后将需要互联的容器配置到相同的网络中，此处我们创建名为“ethnet"的网络，该网络配置如下：</p><p>子网172.18.0.0/16</p><ul><li>IP段172.18.0.0</li><li>掩码255.255.0.0</li><li>IP范围172.18.0.1~172.18.255.254</li><li>IP广播172.18.255.255</li></ul><p>使用如下命令创建该网络</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo docker network create -d bridge --subnet<span class=o>=</span>172.18.0.0/16 ethnet
+</code></pre></td></tr></table></div></div><p><code>-d</code>：指定网络类型</p><p><code>--subnet</code>：指定网段</p><p>使用如下命令查看创建的网络</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo docker network ls
+b88630402852        bridge              bridge              <span class=nb>local</span>
+3fb4ed66c9e1        ethnet              bridge              <span class=nb>local</span>
+0414b4eff7ae        host                host                <span class=nb>local</span>
+5668e7baf5ee        none                null                <span class=nb>local</span>
+</code></pre></td></tr></table></div></div><p>其中第二个网络名为"ethnet&rdquo;，正是我们创建的，其它三个是默认的网络。关于docker的几种网络的说明见<a href=https://blog.csdn.net/qxxhjy/article/details/82314128 target=_blank>docker中的网络</a></p><h2 id=四配置以太坊网络>四、配置以太坊网络</h2><p>运行如下命令进入一个容器</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo docker run -it --rm --network ethnet --ip 172.18.0.50 -v /workspace:/workspace --entrypoint /bin/sh ethereum/client-go
+</code></pre></td></tr></table></div></div><p><code>--network ethnet</code>指定了该容器加入刚才创建的ethnet网络</p><p><code>--ip 172.18.0.50</code>指定了一个固定IP给该容器</p><h3 id=1-创建账户>1. 创建账户</h3><p>首先，在容器内的/workspace目录下创建如下目录结构和文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>dapp<span class=se>\
+</span><span class=se></span>dapp<span class=se>\m</span>iner<span class=se>\
+</span><span class=se></span>dapp<span class=se>\d</span>ata<span class=se>\
+</span><span class=se></span>dapp<span class=se>\g</span>enesis.json
+</code></pre></td></tr></table></div></div><p>运行如下命令创建账户</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=nb>cd</span> /workspace/dapp/miner
+geth -datadir ./data account new
+</code></pre></td></tr></table></div></div><p>输入两次password，获得地址，将地址记录备用。重复以上命令可创建多个账户。</p><h3 id=2-创建创世区块>2. 创建创世区块</h3><p>编辑刚才创建的文件dapp\genesis.json内容如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=p>{</span>
+  <span class=s2>&#34;config&#34;</span><span class=o>:</span> <span class=p>{</span>
+    <span class=s2>&#34;chainId&#34;</span><span class=o>:</span> <span class=mi>88</span><span class=p>,</span>
+    <span class=s2>&#34;homesteadBlock&#34;</span><span class=o>:</span> <span class=mi>0</span><span class=p>,</span>
+    <span class=s2>&#34;eip155Block&#34;</span><span class=o>:</span> <span class=mi>0</span><span class=p>,</span>
+    <span class=s2>&#34;eip158Block&#34;</span><span class=o>:</span> <span class=mi>0</span>
+  <span class=p>}</span><span class=p>,</span>
+  <span class=s2>&#34;alloc&#34;</span>      <span class=o>:</span> <span class=p>{</span>
+    <span class=s2>&#34;0x79b43b2196723fff1485999aba45fda3e8b4df58&#34;</span><span class=o>:</span> <span class=p>{</span><span class=s2>&#34;balance&#34;</span><span class=o>:</span> <span class=s2>&#34;100000000000000000000&#34;</span><span class=p>}</span><span class=p>,</span>
+    <span class=s2>&#34;0x1ae06a8afd157b97f072a97f5c62fa836f5ef597&#34;</span><span class=o>:</span> <span class=p>{</span><span class=s2>&#34;balance&#34;</span><span class=o>:</span> <span class=s2>&#34;1000000000000000000&#34;</span><span class=p>}</span><span class=p>,</span>
+    <span class=s2>&#34;0xa75b4db0c6bfa416d544e3316d47af0fb01eb828&#34;</span><span class=o>:</span> <span class=p>{</span><span class=s2>&#34;balance&#34;</span><span class=o>:</span> <span class=s2>&#34;1000000000000000000&#34;</span><span class=p>}</span><span class=p>,</span>
+    <span class=s2>&#34;0x1a037d8e8e16a4c88e17c3d5f29ee26a9f5b2c85&#34;</span><span class=o>:</span> <span class=p>{</span><span class=s2>&#34;balance&#34;</span><span class=o>:</span> <span class=s2>&#34;1000000000000000000&#34;</span><span class=p>}</span>
+  <span class=p>}</span><span class=p>,</span>
+  <span class=s2>&#34;coinbase&#34;</span>   <span class=o>:</span> <span class=s2>&#34;0x0000000000000000000000000000000000000000&#34;</span><span class=p>,</span>
+  <span class=s2>&#34;difficulty&#34;</span> <span class=o>:</span> <span class=s2>&#34;0x400&#34;</span><span class=p>,</span>
+  <span class=s2>&#34;extraData&#34;</span>  <span class=o>:</span> <span class=s2>&#34;&#34;</span><span class=p>,</span>
+  <span class=s2>&#34;gasLimit&#34;</span>   <span class=o>:</span> <span class=s2>&#34;0x2fefd8&#34;</span><span class=p>,</span>
+  <span class=s2>&#34;nonce&#34;</span>      <span class=o>:</span> <span class=s2>&#34;0x0000000000000000&#34;</span><span class=p>,</span>
+  <span class=s2>&#34;mixhash&#34;</span>    <span class=o>:</span>
+  <span class=s2>&#34;0x0000000000000000000000000000000000000000000000000000000000000000&#34;</span><span class=p>,</span>
+  <span class=s2>&#34;parentHash&#34;</span> <span class=o>:</span>
+  <span class=s2>&#34;0x0000000000000000000000000000000000000000000000000000000000000000&#34;</span><span class=p>,</span>
+  <span class=s2>&#34;timestamp&#34;</span>  <span class=o>:</span> <span class=s2>&#34;0x00&#34;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><ul><li>alloc下面列举了4个账户地址，正是是上一步骤创建并记录下来的地址。</li><li>balance是创世区块为每个账户分配的初始以太币，单位是wei。1eth=10^18wei。也就是除了第一个账户给了100eth外，其它几个账户分别只拥有1eth。</li></ul><h3 id=3-完成以太坊网络配置>3. 完成以太坊网络配置</h3><p>此时完成配置可使用<code>exit</code>命令退出容器，由于启动容器时加入了<code>--rm</code>参数，退出后刚才的容器会被删除，但宿主机的/workspace下的文件会被保存下来</p><h2 id=五创建以太坊网络>五、创建以太坊网络</h2><p>以上已经配置好了一个以太坊私有网络，下面开始正式创建。我们需要一个矿工节点和多个普通节点。</p><h3 id=1-创建矿工节点>1. 创建矿工节点</h3><p>矿工节点应具有如下特性：</p><ul><li>它是一个容器，并且是持久的容器</li><li>它会自动读取genesis.json文件，并初始化以太坊网络</li><li>它能够连接其它节点（容器）</li><li>它能够接受各种rpc调用，并能够部署合约</li><li>它已经配置好挖矿账户，可以一键挖矿</li></ul><p>按照以上要求我们来创建矿工节点</p><p><strong>创建entrypoint脚本</strong></p><p>创建文件：/workspace/dapp/init.sh</p><p>文件内容如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=cp>#!/bin/sh
+</span><span class=cp></span>geth -datadir ~/data/ init /workspace/dapp/genesis.json
+
+<span class=k>if</span> <span class=o>[</span>  <span class=nv>$#</span> -lt <span class=m>1</span> <span class=o>]</span><span class=p>;</span> <span class=k>then</span> 
+  <span class=nb>exec</span> <span class=s2>&#34;/bin/sh&#34;</span>
+<span class=k>else</span>
+  <span class=nb>exec</span> /bin/sh -c <span class=s2>&#34;</span><span class=nv>$@</span><span class=s2>&#34;</span>
+<span class=k>fi</span>
+</code></pre></td></tr></table></div></div><p>该脚本的功能是让以太坊节点（容器）自动初始化以太坊网络，并且接受一个自动运行脚本作为输入</p><p><strong>创建自动运行脚本</strong></p><p>创建文件：/workspace/dapp/mine.sh，文件内容如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=cp>#!/bin/sh
+</span><span class=cp></span>cp -r /workspace/dapp/miner/data/keystore/* ~/data/keystore/
+geth -datadir ~/data/ --networkid <span class=m>88</span> --rpc --rpcaddr <span class=s2>&#34;172.18.0.50&#34;</span> --rpcapi admin,eth,miner,web3,personal,net,txpool --unlock <span class=s2>&#34;0x79b43b2196723fff1485999aba45fda3e8b4df58&#34;</span> --etherbase <span class=s2>&#34;0x79b43b2196723fff1485999aba45fda3e8b4df58&#34;</span> console
+</code></pre></td></tr></table></div></div><p>第一行命令是将刚才生成的账户私钥文件拷贝到容器的<code>~/data</code>目录下。因为/workspace是宿主目录挂载的，并不是linux文件系统，直接将datadir指定到该目录会导致geth报错。</p><p>第二行命令是启动以太坊节点的命令。</p><ul><li>&ndash;networkid 88指定了networkid，这个必须与genesis.json内设置保持一致</li><li>&ndash;rpc &ndash;rpcaddr &ldquo;172.18.0.50&rdquo; &ndash;rpcapi &mldr;. 这些参数表示该节点接受rpc，并且指定了rpc的协议</li><li>&ndash;unlock &ldquo;0x&mldr;&rdquo; 加入该参数会需要用户输入账户密码。密码校验后会解锁该账户。账户解锁后，该节点就能使用此账户的私钥进行签名加密等动作，用以进行交易、发布合约等。</li><li>&ndash;etherbase 参数指定了挖矿收益账户</li></ul><p><strong>创建容器</strong></p><p>因为我们没有授予普通用户直接执行docker的权力，所以这里要先给与执行两个脚本的权力</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo chmod +x init.sh mine.sh
+</code></pre></td></tr></table></div></div><p>创建容器</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo docker run -it --name<span class=o>=</span>miner --network ethnet --ip 172.18.0.50 --hostname node -v /workspace:/workspace --entrypoint /workspace/dapp/init.sh ethereum/client-go /workspace/dapp/mine.sh
+</code></pre></td></tr></table></div></div><p><code>--name=miner</code>指定容器名为miner</p><p>该命令会创建一个持久化的容器，容器的entrypoint和自动运行脚本指定为刚刚我们创建的两个脚本</p><p>使用<code>ps</code>命令查看容器创建情况</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo docker ps -a
+CONTAINER ID        IMAGE                COMMAND                  CREATED             STATUS                    PORTS               NAMES
+e42f48b1435a        ethereum/client-go   <span class=s2>&#34;/workspace/dapp/ini…&#34;</span>   <span class=m>14</span> hours ago        Exited <span class=o>(</span>0<span class=o>)</span> <span class=m>13</span> hours ago                       miner
+0384dace397f        hello-world          <span class=s2>&#34;/hello&#34;</span>                 <span class=m>23</span> hours ago        Exited <span class=o>(</span>0<span class=o>)</span> <span class=m>23</span> hours ago                       clever_cur
+</code></pre></td></tr></table></div></div><h3 id=2-创建普通节点>2. 创建普通节点</h3><p>我们需要创建更多的节点来形成一个分布式的网络。</p><p><strong>创建自动运行脚本</strong></p><p>要使容器位于同一个网络，应当使他们利用同一个genesis.json初始化，即共享entrypoint脚本，只需要单独创建自动运行脚本即可</p><p>创建普通节点的自动运行脚本：/workspace/dapp/node.sh</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=cp>#!/bin/sh
+</span><span class=cp></span>cp -r /workspace/dapp/miner/data/keystore/* ~/data/keystore/
+geth -datadir ~/data/ --networkid <span class=m>88</span> console
+</code></pre></td></tr></table></div></div><p>授予执行权限</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo chmod +x node.sh
+</code></pre></td></tr></table></div></div><p>创建容器</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo docker run -it --name<span class=o>=</span>node1 --network ethnet --ip 172.18.0.51 --hostname node1 -v /workspace:/workspace --entrypoint /workspace/dapp/init.sh ethereum/client-go:v1.8.12 /workspace/dapp/node.sh
+</code></pre></td></tr></table></div></div><p>这里的容器名指定为node1，查看当前容器创建情况</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo docker ps -a
+CONTAINER ID        IMAGE                COMMAND                  CREATED             STATUS                    PORTS               NAMES
+23273d430443        ethereum/client-go   <span class=s2>&#34;/workspace/dapp/ini…&#34;</span>   <span class=m>14</span> hours ago        Exited <span class=o>(</span>0<span class=o>)</span> <span class=m>13</span> hours ago                       node1
+e42f48b1435a        ethereum/client-go   <span class=s2>&#34;/workspace/dapp/ini…&#34;</span>   <span class=m>14</span> hours ago        Exited <span class=o>(</span>0<span class=o>)</span> <span class=m>13</span> hours ago                       miner
+0384dace397f        hello-world          <span class=s2>&#34;/hello&#34;</span>                 <span class=m>23</span> hours ago        Exited <span class=o>(</span>0<span class=o>)</span> <span class=m>23</span> hours ago                       clever_cur
+</code></pre></td></tr></table></div></div><h3 id=3-节点连接>3. 节点连接</h3><p>以上两个容器使用<code>run</code>命令运行后都会自动进入geth的js交互式环境下，等待输入命令</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=o>&gt;</span> 
+</code></pre></td></tr></table></div></div><p>查看节点已连接情况</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=o>&gt;</span> <span class=nx>admin</span><span class=p>.</span><span class=nx>peers</span>
+<span class=p>[</span><span class=p>]</span>
+</code></pre></td></tr></table></div></div><p>在miner容器交互界面执行下列命令查看miner节点信息</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=o>&gt;</span> <span class=nx>admin</span><span class=p>.</span><span class=nx>nodeInfo</span><span class=p>.</span><span class=nx>enode</span>
+<span class=s2>&#34;enode://334268de4cb42842bc1957af05bd1df7d6a1ce806279bb6637298e595c4e36794e92e6c59b7090a538120307576eb1791df61c234daa89e7acb541307a3b24da@127.0.0.1:30303&#34;</span>
+</code></pre></td></tr></table></div></div><p>在node1容器交互界面执行下列命令动态添加miner节点</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=o>&gt;</span> <span class=nx>admin</span><span class=p>.</span><span class=nx>addPeer</span><span class=p>(</span><span class=s2>&#34;enode://334268de4cb42842bc1957af05bd1df7d6a1ce806279bb6637298e595c4e36794e92e6c59b7090a538120307576eb1791df61c234daa89e7acb541307a3b24da@172.18.0.50:30303&#34;</span><span class=p>)</span>
+<span class=kc>true</span>
+</code></pre></td></tr></table></div></div><p>查看已连接节点数</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>&gt; net.peerCount
+<span class=m>2</span>
+</code></pre></td></tr></table></div></div><p>查看已连接节点情况</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=o>&gt;</span> <span class=nx>admin</span><span class=p>.</span><span class=nx>peers</span>
+<span class=p>[</span><span class=p>{</span>
+    <span class=nx>caps</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;eth/62&#34;</span><span class=p>,</span> <span class=s2>&#34;eth/63&#34;</span><span class=p>]</span><span class=p>,</span>
+    <span class=nx>enode</span><span class=o>:</span> <span class=s2>&#34;enode://334268de4cb42842bc1957af05bd1df7d6a1ce806279bb6637298e595c4e36794e92e6c59b7090a538120307576eb1791df61c234daa89e7acb541307a3b24da@172.18.0.50:30303&#34;</span><span class=p>,</span>
+    <span class=nx>id</span><span class=o>:</span> <span class=s2>&#34;831e42a7dfb08c648b77aa7396f17033dd103259b30791b87318b08b7ef1e67d&#34;</span><span class=p>,</span>
+    <span class=nx>name</span><span class=o>:</span> <span class=s2>&#34;Geth/v1.9.0-unstable-7504dbd6/linux-amd64/go1.12&#34;</span><span class=p>,</span>
+    <span class=nx>network</span><span class=o>:</span> <span class=p>{</span>
+      <span class=nx>inbound</span><span class=o>:</span> <span class=kc>false</span><span class=p>,</span>
+      <span class=nx>localAddress</span><span class=o>:</span> <span class=s2>&#34;172.18.0.51:34858&#34;</span><span class=p>,</span>
+      <span class=nx>remoteAddress</span><span class=o>:</span> <span class=s2>&#34;172.18.0.50:30303&#34;</span><span class=p>,</span>
+      <span class=kr>static</span><span class=o>:</span> <span class=kc>true</span><span class=p>,</span>
+      <span class=nx>trusted</span><span class=o>:</span> <span class=kc>false</span>
+    <span class=p>}</span><span class=p>,</span>
+    <span class=nx>protocols</span><span class=o>:</span> <span class=p>{</span>
+      <span class=nx>eth</span><span class=o>:</span> <span class=p>{</span>
+        <span class=nx>difficulty</span><span class=o>:</span> <span class=mi>263168</span><span class=p>,</span>
+        <span class=nx>head</span><span class=o>:</span> <span class=s2>&#34;0x7e03472bcad02f6e85a3cdb21cfba856da58a4955dd2b6d21e3b8561446ae390&#34;</span><span class=p>,</span>
+        <span class=nx>version</span><span class=o>:</span> <span class=mi>63</span>
+      <span class=p>}</span>
+    <span class=p>}</span>
+<span class=p>}</span><span class=p>,</span> <span class=p>{</span>
+    <span class=nx>caps</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;eth/62&#34;</span><span class=p>,</span> <span class=s2>&#34;eth/63&#34;</span><span class=p>]</span><span class=p>,</span>
+    <span class=nx>enode</span><span class=o>:</span> <span class=s2>&#34;enode://213e6b175eb2378b42d2564897d32855eae37f7960fe0a378c44f315ca178267bcff076835483274a2385952bf607b1fc1e39eda5be0b03dd1a0ec375ea5b3dc@59.66.19.211:30303&#34;</span><span class=p>,</span>
+    <span class=nx>id</span><span class=o>:</span> <span class=s2>&#34;86701d83afc9c055c682a3fbe033acf9c5a378c18e0a76c1e13d9e72aa957278&#34;</span><span class=p>,</span>
+    <span class=nx>name</span><span class=o>:</span> <span class=s2>&#34;Geth/v1.8.22-unstable-dc43ea8d/linux-amd64/go1.11&#34;</span><span class=p>,</span>
+    <span class=nx>network</span><span class=o>:</span> <span class=p>{</span>
+      <span class=nx>inbound</span><span class=o>:</span> <span class=kc>false</span><span class=p>,</span>
+      <span class=nx>localAddress</span><span class=o>:</span> <span class=s2>&#34;172.18.0.51:45836&#34;</span><span class=p>,</span>
+      <span class=nx>remoteAddress</span><span class=o>:</span> <span class=s2>&#34;59.66.19.211:30303&#34;</span><span class=p>,</span>
+      <span class=kr>static</span><span class=o>:</span> <span class=kc>false</span><span class=p>,</span>
+      <span class=nx>trusted</span><span class=o>:</span> <span class=kc>false</span>
+    <span class=p>}</span><span class=p>,</span>
+    <span class=nx>protocols</span><span class=o>:</span> <span class=p>{</span>
+      <span class=nx>eth</span><span class=o>:</span> <span class=s2>&#34;handshake&#34;</span>
+    <span class=p>}</span>
+<span class=p>}</span><span class=p>,</span> <span class=p>{</span>
+    <span class=nx>caps</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;eth/62&#34;</span><span class=p>,</span> <span class=s2>&#34;eth/63&#34;</span><span class=p>,</span> <span class=s2>&#34;par/1&#34;</span><span class=p>,</span> <span class=s2>&#34;par/2&#34;</span><span class=p>,</span> <span class=s2>&#34;par/3&#34;</span><span class=p>,</span> <span class=s2>&#34;pip/1&#34;</span><span class=p>]</span><span class=p>,</span>
+    <span class=nx>enode</span><span class=o>:</span> <span class=s2>&#34;enode://09f36adecd8110413be39b5bd9dfb9b06f9575d60db1ba9e4ef0796fadee0346fed412f0147136b6a557f725b0a0944dba92a885e0afdd84345fb80d469650f8@35.175.179.140:30303&#34;</span><span class=p>,</span>
+    <span class=nx>id</span><span class=o>:</span> <span class=s2>&#34;f2b63e1d6dee827ad5bbbc27341223b7463713a67d1a92c1778a5365d6353e67&#34;</span><span class=p>,</span>
+    <span class=nx>name</span><span class=o>:</span> <span class=s2>&#34;Parity-Ethereum/v2.1.4-beta-bee2cb8-20181028/x86_64-linux-gnu/rustc1.30.0&#34;</span><span class=p>,</span>
+    <span class=nx>network</span><span class=o>:</span> <span class=p>{</span>
+      <span class=nx>inbound</span><span class=o>:</span> <span class=kc>false</span><span class=p>,</span>
+      <span class=nx>localAddress</span><span class=o>:</span> <span class=s2>&#34;172.18.0.51:46864&#34;</span><span class=p>,</span>
+      <span class=nx>remoteAddress</span><span class=o>:</span> <span class=s2>&#34;35.175.179.140:30303&#34;</span><span class=p>,</span>
+      <span class=kr>static</span><span class=o>:</span> <span class=kc>false</span><span class=p>,</span>
+      <span class=nx>trusted</span><span class=o>:</span> <span class=kc>false</span>
+    <span class=p>}</span><span class=p>,</span>
+    <span class=nx>protocols</span><span class=o>:</span> <span class=p>{</span>
+      <span class=nx>eth</span><span class=o>:</span> <span class=s2>&#34;handshake&#34;</span>
+    <span class=p>}</span>
+<span class=p>}</span><span class=p>]</span>
+</code></pre></td></tr></table></div></div><p>然后就可以完成挖矿、转账、部署合约等其它操作了。</p><h3 id=4-退出>4. 退出</h3><p>使用<code>exit</code>命令会直接退出geth，同时退出容器</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=o>&gt;</span> <span class=nx>exit</span>
+<span class=nx>INFO</span> <span class=p>[</span><span class=mi>03</span><span class=o>-</span><span class=mi>13</span><span class=o>|</span><span class=mi>03</span><span class=o>:</span><span class=mi>18</span><span class=o>:</span><span class=mf>52.778</span><span class=p>]</span> <span class=nx>HTTP</span> <span class=nx>endpoint</span> <span class=nx>closed</span>                     <span class=nx>url</span><span class=o>=</span><span class=nx>http</span><span class=o>:</span><span class=c1>//172.18.0.50:8545
+</span><span class=c1></span><span class=nx>INFO</span> <span class=p>[</span><span class=mi>03</span><span class=o>-</span><span class=mi>13</span><span class=o>|</span><span class=mi>03</span><span class=o>:</span><span class=mi>18</span><span class=o>:</span><span class=mf>52.778</span><span class=p>]</span> <span class=nx>IPC</span> <span class=nx>endpoint</span> <span class=nx>closed</span>                      <span class=nx>url</span><span class=o>=</span><span class=err>/</span><span class=err>r</span><span class=err>o</span><span class=err>o</span><span class=err>t</span><span class=err>/</span><span class=err>d</span><span class=err>a</span><span class=err>t</span><span class=err>a</span><span class=err>/</span><span class=err>g</span><span class=err>e</span><span class=err>t</span><span class=err>h</span><span class=err>.</span><span class=err>i</span><span class=err>p</span><span class=err>c</span>
+<span class=nx>INFO</span> <span class=p>[</span><span class=mi>03</span><span class=o>-</span><span class=mi>13</span><span class=o>|</span><span class=mi>03</span><span class=o>:</span><span class=mi>18</span><span class=o>:</span><span class=mf>52.778</span><span class=p>]</span> <span class=nx>Writing</span> <span class=nx>cached</span> <span class=nx>state</span> <span class=nx>to</span> <span class=nx>disk</span>             <span class=nx>block</span><span class=o>=</span><span class=mi>2</span> <span class=nx>hash</span><span class=o>=</span><span class=mi>7</span><span class=nx>e0347</span><span class=err>…</span><span class=mi>6</span><span class=nx>ae390</span> <span class=nx>root</span><span class=o>=</span><span class=mi>741</span><span class=nx>c08</span><span class=err>…</span><span class=mi>123</span><span class=nx>b78</span>
+<span class=nx>INFO</span> <span class=p>[</span><span class=mi>03</span><span class=o>-</span><span class=mi>13</span><span class=o>|</span><span class=mi>03</span><span class=o>:</span><span class=mi>18</span><span class=o>:</span><span class=mf>52.778</span><span class=p>]</span> <span class=nx>Persisted</span> <span class=nx>trie</span> <span class=nx>from</span> <span class=nx>memory</span> <span class=nx>database</span>      <span class=nx>nodes</span><span class=o>=</span><span class=mi>0</span> <span class=nx>size</span><span class=o>=</span><span class=mf>0.00</span><span class=nx>B</span> <span class=nx>time</span><span class=o>=</span><span class=mf>7.039</span><span class=nx>µs</span> <span class=nx>gcnodes</span><span class=o>=</span><span class=mi>0</span> <span class=nx>gcsize</span><span class=o>=</span><span class=mf>0.00</span><span class=nx>B</span> <span class=nx>gctime</span><span class=o>=</span><span class=mi>0</span><span class=nx>s</span> <span class=nx>livenodes</span><span class=o>=</span><span class=mi>1</span> <span class=nx>livesize</span><span class=o>=</span><span class=mf>0.00</span><span class=nx>B</span>
+<span class=nx>INFO</span> <span class=p>[</span><span class=mi>03</span><span class=o>-</span><span class=mi>13</span><span class=o>|</span><span class=mi>03</span><span class=o>:</span><span class=mi>18</span><span class=o>:</span><span class=mf>52.778</span><span class=p>]</span> <span class=nx>Writing</span> <span class=nx>cached</span> <span class=nx>state</span> <span class=nx>to</span> <span class=nx>disk</span>             <span class=nx>block</span><span class=o>=</span><span class=mi>1</span> <span class=nx>hash</span><span class=o>=</span><span class=nx>ed8c7f</span><span class=err>…</span><span class=mi>98</span><span class=nx>bd7c</span> <span class=nx>root</span><span class=o>=</span><span class=nx>b2e71c</span><span class=err>…</span><span class=mi>818333</span>
+<span class=nx>INFO</span> <span class=p>[</span><span class=mi>03</span><span class=o>-</span><span class=mi>13</span><span class=o>|</span><span class=mi>03</span><span class=o>:</span><span class=mi>18</span><span class=o>:</span><span class=mf>52.778</span><span class=p>]</span> <span class=nx>Persisted</span> <span class=nx>trie</span> <span class=nx>from</span> <span class=nx>memory</span> <span class=nx>database</span>      <span class=nx>nodes</span><span class=o>=</span><span class=mi>0</span> <span class=nx>size</span><span class=o>=</span><span class=mf>0.00</span><span class=nx>B</span> <span class=nx>time</span><span class=o>=</span><span class=mf>1.037</span><span class=nx>µs</span> <span class=nx>gcnodes</span><span class=o>=</span><span class=mi>0</span> <span class=nx>gcsize</span><span class=o>=</span><span class=mf>0.00</span><span class=nx>B</span> <span class=nx>gctime</span><span class=o>=</span><span class=mi>0</span><span class=nx>s</span> <span class=nx>livenodes</span><span class=o>=</span><span class=mi>1</span> <span class=nx>livesize</span><span class=o>=</span><span class=mf>0.00</span><span class=nx>B</span>
+<span class=nx>INFO</span> <span class=p>[</span><span class=mi>03</span><span class=o>-</span><span class=mi>13</span><span class=o>|</span><span class=mi>03</span><span class=o>:</span><span class=mi>18</span><span class=o>:</span><span class=mf>52.778</span><span class=p>]</span> <span class=nx>Blockchain</span> <span class=nx>manager</span> <span class=nx>stopped</span> 
+<span class=nx>INFO</span> <span class=p>[</span><span class=mi>03</span><span class=o>-</span><span class=mi>13</span><span class=o>|</span><span class=mi>03</span><span class=o>:</span><span class=mi>18</span><span class=o>:</span><span class=mf>52.778</span><span class=p>]</span> <span class=nx>Stopping</span> <span class=nx>Ethereum</span> <span class=nx>protocol</span> 
+<span class=nx>INFO</span> <span class=p>[</span><span class=mi>03</span><span class=o>-</span><span class=mi>13</span><span class=o>|</span><span class=mi>03</span><span class=o>:</span><span class=mi>18</span><span class=o>:</span><span class=mf>52.778</span><span class=p>]</span> <span class=nx>Ethereum</span> <span class=nx>protocol</span> <span class=nx>stopped</span> 
+<span class=nx>INFO</span> <span class=p>[</span><span class=mi>03</span><span class=o>-</span><span class=mi>13</span><span class=o>|</span><span class=mi>03</span><span class=o>:</span><span class=mi>18</span><span class=o>:</span><span class=mf>52.778</span><span class=p>]</span> <span class=nx>Transaction</span> <span class=nx>pool</span> <span class=nx>stopped</span> 
+<span class=nx>shuzang</span><span class=err>@</span><span class=nx>ubuntu</span><span class=o>:</span><span class=o>~</span><span class=nx>$</span>
+</code></pre></td></tr></table></div></div><p>此时使用<code>docker ps</code>命令会发现正在运行的容器列表为空，此时使用<code>start</code>命令可启动关闭的容器</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo docker start -i miner
+</code></pre></td></tr></table></div></div><p>继续进入miner容器的geth环境，然后使用<code>Ctrl+P+Q</code>快捷键可以退出但不关闭当前容器，此时使用<code>docker ps</code>查看则发现miner容器还在运行列表</p><p>然后使用如下命令可进入容器bash环境而不进入geth环境，这种情况下便于我们进行一些需要在容器环境下执行的操作，比如编辑静态节点文件<code>static-nodes.json</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo docker <span class=nb>exec</span> -it miner /bin/sh
+</code></pre></td></tr></table></div></div><p>我们之前创建的脚本都是把/keystore拷贝到容器中<code>~/data</code>目录下执行的，现在来查看该目录的路径和有哪些文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>/ <span class=c1># cd ~/data</span>
+~/data <span class=c1># pwd</span>
+/root/data
+~/data <span class=c1># ls</span>
+geth      geth.ipc  <span class=nb>history</span>   keystore
+</code></pre></td></tr></table></div></div><p>此时可使用<code>exit</code>命令退出容器，注意，因为我们这次是用<code>exec</code>命令登入的，所以退出时不关闭容器，使用<code>ps</code>命令仍能在运行容器列表中看到miner</p><p>当然，也可以使用<code>attach</code>命令而不是<code>exec</code>命令进入，但这样退出会直接退出容器，不会出现在运行列表中</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2019-03-12</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=https://shuzang.github.io/docker%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%A7%81%E9%93%BE/index.md target=_blank>Read Markdown</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://shuzang.github.io/docker%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%A7%81%E9%93%BE/ data-title=Docker搭建以太坊私链 data-hashtags=区块链><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://shuzang.github.io/docker%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%A7%81%E9%93%BE/ data-hashtag=区块链><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Reddit" data-sharer=reddit data-url=https://shuzang.github.io/docker%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%A4%AA%E5%9D%8A%E7%A7%81%E9%93%BE/><i class="fab fa-reddit fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span class=tag><a href=https://shuzang.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/><i class="fas fa-tag fa-fw"></i>&nbsp;区块链</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://shuzang.github.io>Home</a></span></section></div><div class=post-nav><a href=https://shuzang.github.io/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E8%8A%82%E7%82%B9%E8%BF%9E%E6%8E%A5%E5%88%B0%E7%BD%91%E7%BB%9C%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/ class=prev rel=prev title=以太坊节点连接到网络的几种方式><i class="fas fa-angle-left fa-fw"></i>以太坊节点连接到网络的几种方式</a>
+<a href=https://shuzang.github.io/using-virtual-machine-as-raspberry-pi-server-to-build-dynamic-blog/ class=next rel=next title=利用树莓派作为服务器建立动态博客>利用树莓派作为服务器建立动态博客<i class="fas fa-angle-right fa-fw"></i></a></div></div><div class=comment><div id=disqus_thread></div><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><div id=valine></div><script>document.addEventListener("DOMContentLoaded",function(event){new Valine({el:'#valine',appId:'GteMvevTjOBmhvFh2QGsopGO-gzGzoHsz',appKey:'fL4SYl06GIe012PswFdY17VC',placeholder:'Your comment ...',verify:true,avatar:'hide',pageSize:10,lang:'en',visitor:true,recordIP:true,});});</script><noscript>Please enable JavaScript to view the <a href=https://valine.js.org/>comments powered by Valine.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a></div><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://shuzang.github.io/about/ target=_blank>shuzang</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><a href=# class="dynamic-to-top animated faster" id=dynamic-to-top><span>&nbsp;</span>
+</a><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true},{left:"$",right:"$",display:false},]});});</script><link href=https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css rel=stylesheet><link href=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.css rel=stylesheet><link rel=stylesheet href=/css/lib/valine/dark.css><script src=https://dillonzq.disqus.com/embed.js></script><script src=https://cdn.bootcss.com/smooth-scroll/16.1.0/smooth-scroll.js></script><script src=https://cdn.bootcss.com/lazysizes/5.1.2/lazysizes.min.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/auto-render.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/mhchem.js></script><script src=/js/lib/valine/Valine.min.js></script><script src=/js/lib/sharer/sharer.min.js></script><script src=/js/theme.min.js></script></body></html>

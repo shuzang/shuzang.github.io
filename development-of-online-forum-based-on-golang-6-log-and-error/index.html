@@ -1,0 +1,274 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>基于Go语言开发在线论坛6-日志与错误处理 | Shuzang's Blog</title><meta name=Description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><meta property="og:title" content="基于Go语言开发在线论坛6-日志与错误处理"><meta property="og:description" content="到现在为止，我们已经完成了在线论坛项目基本功能的开发，对 Go 语言 Web 编程中如何实现 MVC 架构模式以及 CRUD（数据库增删改查）基本操作有了初步的认识。不过现在所有的日志和错误处理都是杂糅在业务代码中，本篇介绍如何对它们统一进行处理，使得业务代码和日志及错误处理逻辑分离。"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.github.io/development-of-online-forum-based-on-golang-6-log-and-error/"><meta property="article:published_time" content="2020-06-07T11:03:00+08:00"><meta property="article:modified_time" content="2020-06-07T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="基于Go语言开发在线论坛6-日志与错误处理"><meta name=twitter:description content="到现在为止，我们已经完成了在线论坛项目基本功能的开发，对 Go 语言 Web 编程中如何实现 MVC 架构模式以及 CRUD（数据库增删改查）基本操作有了初步的认识。不过现在所有的日志和错误处理都是杂糅在业务代码中，本篇介绍如何对它们统一进行处理，使得业务代码和日志及错误处理逻辑分离。"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel=canonical href=https://shuzang.github.io/development-of-online-forum-based-on-golang-6-log-and-error/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=prev href=https://shuzang.github.io/golang-log-system/><link rel=next href=https://shuzang.github.io/development-of-online-forum-based-on-golang-7-get-global-configuration-through-singleton-mode/><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/css/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"基于Go语言开发在线论坛6-日志与错误处理","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/development-of-online-forum-based-on-golang-6-log-and-error\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"Go Web","wordcount":1970,"url":"https:\/\/shuzang.github.io\/development-of-online-forum-based-on-golang-6-log-and-error\/","datePublished":"2020-06-07T11:03:00\x2b08:00","dateModified":"2020-06-07T00:00:00\x2b00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"shuzang","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/logo.png","width":127,"height":40}},"description":""}</script></head><body><script>if(!window.localStorage||!window.localStorage.getItem('theme')){window.isDark=window.matchMedia('(prefers-color-scheme: dark)').matches;}else{window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';}
+window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class="header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch title="Switch Theme">
+<i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a></div></div></header><header class=mobile id=header-mobile><div class=header-wrapper><div class=header-container><div class="header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch title="Switch Theme">
+<i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a></div></div></header><script>window.desktopHeaderMode="fixed";window.mobileHeaderMode="auto";</script><main class=main><div class=container><article class="page single"><h1 class="single-title animated flipInX">基于Go语言开发在线论坛6-日志与错误处理</h1><div class=meta><div class=meta-line><a class=author href=https://shuzang.github.io/about/ rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>xueyuanjun
+</a>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i><a href=https://shuzang.github.io/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/>爱编程爱技术的孩子</a>&nbsp;</span></div><div class=meta-line><i class="far fa-calendar-alt fa-fw"></i><time datetime=2020-06-07>2020-06-07</time>&nbsp;
+<i class="fas fa-pencil-alt fa-fw"></i>about 1970 words&nbsp;
+<i class="far fa-clock fa-fw"></i>4 min&nbsp;</div></div><aside class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#1-日志处理>1. 日志处理</a><ul><li><a href=#11-初始化日志处理器>1.1 初始化日志处理器</a></li><li><a href=#12-定义日志函数>1.2 定义日志函数</a></li><li><a href=#13-重构业务代码>1.3 重构业务代码</a></li></ul></li><li><a href=#2-错误处理>2. 错误处理</a><ul><li><a href=#21-重定向到错误页面>2.1 重定向到错误页面</a></li><li><a href=#22-编写错误页面相关代码>2.2 编写错误页面相关代码</a></li><li><a href=#23-重构业务代码>2.3 重构业务代码</a></li></ul></li><li><a href=#3-整体测试>3. 整体测试</a></li></ul></nav></div></aside><aside class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
+<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><a href=#1-日志处理>1. 日志处理</a><ul><li><a href=#11-初始化日志处理器>1.1 初始化日志处理器</a></li><li><a href=#12-定义日志函数>1.2 定义日志函数</a></li><li><a href=#13-重构业务代码>1.3 重构业务代码</a></li></ul></li><li><a href=#2-错误处理>2. 错误处理</a><ul><li><a href=#21-重定向到错误页面>2.1 重定向到错误页面</a></li><li><a href=#22-编写错误页面相关代码>2.2 编写错误页面相关代码</a></li><li><a href=#23-重构业务代码>2.3 重构业务代码</a></li></ul></li><li><a href=#3-整体测试>3. 整体测试</a></li></ul></nav></div></details></aside><div class=content><p>到现在为止，我们已经完成了在线论坛项目基本功能的开发，对 Go 语言 Web 编程中如何实现 MVC 架构模式以及 CRUD（数据库增删改查）基本操作有了初步的认识。不过现在所有的日志和错误处理都是杂糅在业务代码中，本篇介绍如何对它们统一进行处理，使得业务代码和日志及错误处理逻辑分离。</p><h2 id=1-日志处理>1. 日志处理</h2><h3 id=11-初始化日志处理器>1.1 初始化日志处理器</h3><p>首先来看日志处理，在 <code>handlers/helper.go</code> 中，新增如下日志处理器初始化代码：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>import</span> <span class=p>(</span>
+    <span class=s>&#34;log&#34;</span>
+    <span class=s>&#34;os&#34;</span>
+<span class=p>)</span>
+
+<span class=kd>var</span> <span class=nx>logger</span> <span class=o>*</span><span class=nx>log</span><span class=p>.</span><span class=nx>Logger</span>
+
+<span class=kd>func</span> <span class=nf>init</span><span class=p>(</span><span class=p>)</span>  <span class=p>{</span>
+    <span class=nx>file</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>os</span><span class=p>.</span><span class=nf>OpenFile</span><span class=p>(</span><span class=s>&#34;logs/chitchat.log&#34;</span><span class=p>,</span> <span class=nx>os</span><span class=p>.</span><span class=nx>O_CREATE</span><span class=p>|</span><span class=nx>os</span><span class=p>.</span><span class=nx>O_WRONLY</span><span class=p>|</span><span class=nx>os</span><span class=p>.</span><span class=nx>O_APPEND</span><span class=p>,</span> <span class=mo>0666</span><span class=p>)</span>
+    <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=nx>log</span><span class=p>.</span><span class=nf>Fatalln</span><span class=p>(</span><span class=s>&#34;Failed to open log file&#34;</span><span class=p>,</span> <span class=nx>err</span><span class=p>)</span>
+    <span class=p>}</span>
+    <span class=nx>logger</span> <span class=p>=</span> <span class=nx>log</span><span class=p>.</span><span class=nf>New</span><span class=p>(</span><span class=nx>file</span><span class=p>,</span> <span class=s>&#34;INFO &#34;</span><span class=p>,</span> <span class=nx>log</span><span class=p>.</span><span class=nx>Ldate</span><span class=p>|</span><span class=nx>log</span><span class=p>.</span><span class=nx>Ltime</span><span class=p>|</span><span class=nx>log</span><span class=p>.</span><span class=nx>Lshortfile</span><span class=p>)</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>这里我们借助 Go 官方提供的 <code>log</code> 包进行日志处理，首先声明一个 <code>*log.Logger</code> 类型的 <code>logger</code> 变量作为日志处理器，以便可以全局使用。默认的日志文件位于 <code>logs/chitchat.log</code>，我们通过 <code>os.OpenFile</code> 打开这个日志文件句柄，如果文件不存在，则自动创建。然后我们通过 <code>log.New</code> 初始化日志处理器并赋值给 <code>logger</code>，该方法需要传入日志文件、默认日志级别、以及日志格式，关于该方法的细节，我们后面在日志章节会详细介绍。</p><h3 id=12-定义日志函数>1.2 定义日志函数</h3><p>然后我们就可以通过 <code>logger</code> 这个日志处理器来记录日志了，在 <code>helper.go</code> 中新增如下几个日志函数：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>info</span><span class=p>(</span><span class=nx>args</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>logger</span><span class=p>.</span><span class=nf>SetPrefix</span><span class=p>(</span><span class=s>&#34;INFO &#34;</span><span class=p>)</span>
+    <span class=nx>logger</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>args</span><span class=o>...</span><span class=p>)</span>
+<span class=p>}</span>
+    
+<span class=c1>// 为什么不命名为 error？避免和 error 类型重名
+</span><span class=c1></span><span class=kd>func</span> <span class=nf>danger</span><span class=p>(</span><span class=nx>args</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>logger</span><span class=p>.</span><span class=nf>SetPrefix</span><span class=p>(</span><span class=s>&#34;ERROR &#34;</span><span class=p>)</span>
+    <span class=nx>logger</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>args</span><span class=o>...</span><span class=p>)</span>
+<span class=p>}</span>
+    
+<span class=kd>func</span> <span class=nf>warning</span><span class=p>(</span><span class=nx>args</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>logger</span><span class=p>.</span><span class=nf>SetPrefix</span><span class=p>(</span><span class=s>&#34;WARNING &#34;</span><span class=p>)</span>
+    <span class=nx>logger</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>args</span><span class=o>...</span><span class=p>)</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>非常简单，我们定义了三个日志函数来记录三个日志级别，分别是 INFO（普通）、ERROR（错误）、WARNING（警告），然后通过调用 <code>logger.Println</code> 传入参数记录日志信息到日志文件即可，这里的参数类型是 <code>...interface{}</code>，表示可以传入参数支持任意类型、任意个数。</p><h3 id=13-重构业务代码>1.3 重构业务代码</h3><p>接下来，我们到业务处理器中，将原来的日志打印代码都重构为调用对应的日志函数，以 <code>handlers/auth.go</code> 为例，修改日志处理代码如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=c1>// src/github.com/xueyuanjun/chitchat/handlers/auth.go
+</span><span class=c1></span><span class=c1>// 注册新用户
+</span><span class=c1></span><span class=kd>func</span> <span class=nf>SignupAccount</span><span class=p>(</span><span class=nx>writer</span> <span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span> <span class=nx>request</span> <span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>err</span> <span class=o>:=</span> <span class=nx>request</span><span class=p>.</span><span class=nf>ParseForm</span><span class=p>(</span><span class=p>)</span>
+    <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=nf>danger</span><span class=p>(</span><span class=nx>err</span><span class=p>,</span> <span class=s>&#34;Cannot parse form&#34;</span><span class=p>)</span>
+    <span class=p>}</span>
+    <span class=nx>user</span> <span class=o>:=</span> <span class=nx>models</span><span class=p>.</span><span class=nx>User</span><span class=p>{</span>
+        <span class=nx>Name</span><span class=p>:</span>     <span class=nx>request</span><span class=p>.</span><span class=nf>PostFormValue</span><span class=p>(</span><span class=s>&#34;name&#34;</span><span class=p>)</span><span class=p>,</span>
+        <span class=nx>Email</span><span class=p>:</span>    <span class=nx>request</span><span class=p>.</span><span class=nf>PostFormValue</span><span class=p>(</span><span class=s>&#34;email&#34;</span><span class=p>)</span><span class=p>,</span>
+        <span class=nx>Password</span><span class=p>:</span> <span class=nx>request</span><span class=p>.</span><span class=nf>PostFormValue</span><span class=p>(</span><span class=s>&#34;password&#34;</span><span class=p>)</span><span class=p>,</span>
+    <span class=p>}</span>
+    <span class=k>if</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>user</span><span class=p>.</span><span class=nf>Create</span><span class=p>(</span><span class=p>)</span><span class=p>;</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=nf>danger</span><span class=p>(</span><span class=nx>err</span><span class=p>,</span> <span class=s>&#34;Cannot create user&#34;</span><span class=p>)</span>
+    <span class=p>}</span>
+    <span class=nx>http</span><span class=p>.</span><span class=nf>Redirect</span><span class=p>(</span><span class=nx>writer</span><span class=p>,</span> <span class=nx>request</span><span class=p>,</span> <span class=s>&#34;/login&#34;</span><span class=p>,</span> <span class=mi>302</span><span class=p>)</span>
+<span class=p>}</span>
+
+<span class=c1>// 用户认证
+</span><span class=c1></span><span class=kd>func</span> <span class=nf>Authenticate</span><span class=p>(</span><span class=nx>writer</span> <span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span> <span class=nx>request</span> <span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>err</span> <span class=o>:=</span> <span class=nx>request</span><span class=p>.</span><span class=nf>ParseForm</span><span class=p>(</span><span class=p>)</span>
+    <span class=nx>user</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>models</span><span class=p>.</span><span class=nf>UserByEmail</span><span class=p>(</span><span class=nx>request</span><span class=p>.</span><span class=nf>PostFormValue</span><span class=p>(</span><span class=s>&#34;email&#34;</span><span class=p>)</span><span class=p>)</span>
+    <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=nf>danger</span><span class=p>(</span><span class=nx>err</span><span class=p>,</span> <span class=s>&#34;Cannot find user&#34;</span><span class=p>)</span>
+    <span class=p>}</span>
+    <span class=k>if</span> <span class=nx>user</span><span class=p>.</span><span class=nx>Password</span> <span class=o>==</span> <span class=nx>models</span><span class=p>.</span><span class=nf>Encrypt</span><span class=p>(</span><span class=nx>request</span><span class=p>.</span><span class=nf>PostFormValue</span><span class=p>(</span><span class=s>&#34;password&#34;</span><span class=p>)</span><span class=p>)</span> <span class=p>{</span>
+        <span class=nx>session</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>user</span><span class=p>.</span><span class=nf>CreateSession</span><span class=p>(</span><span class=p>)</span>
+        <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+            <span class=nf>danger</span><span class=p>(</span><span class=nx>err</span><span class=p>,</span> <span class=s>&#34;Cannot create session&#34;</span><span class=p>)</span>
+        <span class=p>}</span>
+        <span class=nx>cookie</span> <span class=o>:=</span> <span class=nx>http</span><span class=p>.</span><span class=nx>Cookie</span><span class=p>{</span>
+            <span class=nx>Name</span><span class=p>:</span>     <span class=s>&#34;_cookie&#34;</span><span class=p>,</span>
+            <span class=nx>Value</span><span class=p>:</span>    <span class=nx>session</span><span class=p>.</span><span class=nx>Uuid</span><span class=p>,</span>
+            <span class=nx>HttpOnly</span><span class=p>:</span> <span class=kc>true</span><span class=p>,</span>
+        <span class=p>}</span>
+        <span class=nx>http</span><span class=p>.</span><span class=nf>SetCookie</span><span class=p>(</span><span class=nx>writer</span><span class=p>,</span> <span class=o>&amp;</span><span class=nx>cookie</span><span class=p>)</span>
+        <span class=nx>http</span><span class=p>.</span><span class=nf>Redirect</span><span class=p>(</span><span class=nx>writer</span><span class=p>,</span> <span class=nx>request</span><span class=p>,</span> <span class=s>&#34;/&#34;</span><span class=p>,</span> <span class=mi>302</span><span class=p>)</span>
+    <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+        <span class=nx>http</span><span class=p>.</span><span class=nf>Redirect</span><span class=p>(</span><span class=nx>writer</span><span class=p>,</span> <span class=nx>request</span><span class=p>,</span> <span class=s>&#34;/login&#34;</span><span class=p>,</span> <span class=mi>302</span><span class=p>)</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+
+<span class=c1>// 用户退出
+</span><span class=c1></span><span class=kd>func</span> <span class=nf>Logout</span><span class=p>(</span><span class=nx>writer</span> <span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span> <span class=nx>request</span> <span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>cookie</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>request</span><span class=p>.</span><span class=nf>Cookie</span><span class=p>(</span><span class=s>&#34;_cookie&#34;</span><span class=p>)</span>
+    <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=nx>http</span><span class=p>.</span><span class=nx>ErrNoCookie</span> <span class=p>{</span>
+        <span class=nf>warning</span><span class=p>(</span><span class=nx>err</span><span class=p>,</span> <span class=s>&#34;Failed to get cookie&#34;</span><span class=p>)</span>
+        <span class=nx>session</span> <span class=o>:=</span> <span class=nx>models</span><span class=p>.</span><span class=nx>Session</span><span class=p>{</span><span class=nx>Uuid</span><span class=p>:</span> <span class=nx>cookie</span><span class=p>.</span><span class=nx>Value</span><span class=p>}</span>
+        <span class=nx>session</span><span class=p>.</span><span class=nf>DeleteByUUID</span><span class=p>(</span><span class=p>)</span>
+    <span class=p>}</span>
+    <span class=nx>http</span><span class=p>.</span><span class=nf>Redirect</span><span class=p>(</span><span class=nx>writer</span><span class=p>,</span> <span class=nx>request</span><span class=p>,</span> <span class=s>&#34;/&#34;</span><span class=p>,</span> <span class=mi>302</span><span class=p>)</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>其他处理器方法参照这个示例进行调整即可</p><h2 id=2-错误处理>2. 错误处理</h2><p>Go 语言并没有像 PHP、Java 那样提供异常这种类型，只有 <code>error</code> 和 <code>panic</code>，对于 Go Web 应用中的错误处理，不影响程序继续往后执行的，可以通过日志方式记录下来，如果某些错误导致程序无法往后执行，比如浏览群组详情页，对应群组不存在，这个时候，我们就应该直接返回 404 响应或者将用户重定向到 404 页面，而不能继续往后执行，对于这种错误，只能通过单独的处理逻辑进行处理，这种错误类似于 Laravel 中的中断异常处理。</p><h3 id=21-重定向到错误页面>2.1 重定向到错误页面</h3><p>在这个项目中，我们通过重定向到错误页面的方式处理这种类型的错误，在 <code>handlers/helper.go</code> 中新增 <code>error_message</code> 函数：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=c1>// 异常处理统一重定向到错误页面
+</span><span class=c1></span><span class=kd>func</span> <span class=nf>error_message</span><span class=p>(</span><span class=nx>writer</span> <span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span> <span class=nx>request</span> <span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>,</span> <span class=nx>msg</span> <span class=kt>string</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>url</span> <span class=o>:=</span> <span class=p>[</span><span class=p>]</span><span class=kt>string</span><span class=p>{</span><span class=s>&#34;/err?msg=&#34;</span><span class=p>,</span> <span class=nx>msg</span><span class=p>}</span>
+    <span class=nx>http</span><span class=p>.</span><span class=nf>Redirect</span><span class=p>(</span><span class=nx>writer</span><span class=p>,</span> <span class=nx>request</span><span class=p>,</span> <span class=nx>strings</span><span class=p>.</span><span class=nf>Join</span><span class=p>(</span><span class=nx>url</span><span class=p>,</span> <span class=s>&#34;&#34;</span><span class=p>)</span><span class=p>,</span> <span class=mi>302</span><span class=p>)</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>调用该方法会将用户重定向到错误处理页面（由 <code>err</code> 路由对应处理器方法渲染），响应状态码为 302，并且带上错误消息 <code>msg</code>，以便客户端感知错误原因。</p><h3 id=22-编写错误页面相关代码>2.2 编写错误页面相关代码</h3><p>为此，我们还要编写用于处理应用出错的路由、处理器和视图实现。</p><p><strong>处理器方法</strong></p><p>首先在 <code>handlers/index.go</code> 中编写全局的、渲染错误页面的处理器方法：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>Err</span><span class=p>(</span><span class=nx>writer</span> <span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span> <span class=nx>request</span> <span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span>  <span class=p>{</span>
+    <span class=nx>vals</span> <span class=o>:=</span> <span class=nx>request</span><span class=p>.</span><span class=nx>URL</span><span class=p>.</span><span class=nf>Query</span><span class=p>(</span><span class=p>)</span>
+    <span class=nx>_</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nf>session</span><span class=p>(</span><span class=nx>writer</span><span class=p>,</span> <span class=nx>request</span><span class=p>)</span>
+    <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=nf>generateHTML</span><span class=p>(</span><span class=nx>writer</span><span class=p>,</span> <span class=nx>vals</span><span class=p>.</span><span class=nf>Get</span><span class=p>(</span><span class=s>&#34;msg&#34;</span><span class=p>)</span><span class=p>,</span> <span class=s>&#34;layout&#34;</span><span class=p>,</span> <span class=s>&#34;navbar&#34;</span><span class=p>,</span> <span class=s>&#34;error&#34;</span><span class=p>)</span>
+    <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+        <span class=nf>generateHTML</span><span class=p>(</span><span class=nx>writer</span><span class=p>,</span> <span class=nx>vals</span><span class=p>.</span><span class=nf>Get</span><span class=p>(</span><span class=s>&#34;msg&#34;</span><span class=p>)</span><span class=p>,</span> <span class=s>&#34;layout&#34;</span><span class=p>,</span> <span class=s>&#34;auth.navbar&#34;</span><span class=p>,</span> <span class=s>&#34;error&#34;</span><span class=p>)</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>我们可以通过 <code>vals.Get</code> 方法从查询字符串获取 <code>msg</code> 参数，并将其渲染到错误视图 <code>error.html</code> 中。</p><p><strong>错误视图</strong></p><p>然后在 <code>views</code> 目录下新增 <code>error.html</code> 用来定义错误视图：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=p>{</span><span class=p>{</span> <span class=nx>define</span> <span class=s>&#34;content&#34;</span> <span class=p>}</span><span class=p>}</span>
+    
+<span class=p>&lt;</span><span class=nx>p</span> <span class=nx>class</span><span class=p>=</span><span class=s>&#34;lead&#34;</span><span class=p>&gt;</span><span class=p>{</span><span class=p>{</span> <span class=p>.</span> <span class=p>}</span><span class=p>}</span><span class=p>&lt;</span><span class=o>/</span><span class=nx>p</span><span class=p>&gt;</span>
+    
+<span class=p>{</span><span class=p>{</span> <span class=nx>end</span> <span class=p>}</span><span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>非常简单，只是通过 <code>{{ . }}</code> 获取 <code>msg</code> 变量的值并渲染出来。</p><p><strong>注册路由</strong></p><p>最后在 <code>routes/routes.go</code> 中注册错误路由：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=p>{</span>
+    <span class=s>&#34;error&#34;</span><span class=p>,</span>
+    <span class=s>&#34;GET&#34;</span><span class=p>,</span>
+    <span class=s>&#34;/err&#34;</span><span class=p>,</span>
+    <span class=nx>handlers</span><span class=p>.</span><span class=nx>Err</span><span class=p>,</span>
+<span class=p>}</span><span class=p>,</span>
+</code></pre></td></tr></table></div></div><h3 id=23-重构业务代码>2.3 重构业务代码</h3><p>在必要的地方调用错误处理函数 <code>error_message</code> 将用户重定向到错误页面，比如在 <code>handlers/thread.go</code> 中，在浏览群组详情页时，如果指定 ID 对应群组不存在，则将用户重定向到错误页面：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=c1>// 通过 ID 渲染指定群组页面
+</span><span class=c1></span><span class=kd>func</span> <span class=nf>ReadThread</span><span class=p>(</span><span class=nx>writer</span> <span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span> <span class=nx>request</span> <span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>vals</span> <span class=o>:=</span> <span class=nx>request</span><span class=p>.</span><span class=nx>URL</span><span class=p>.</span><span class=nf>Query</span><span class=p>(</span><span class=p>)</span>
+    <span class=nx>uuid</span> <span class=o>:=</span> <span class=nx>vals</span><span class=p>.</span><span class=nf>Get</span><span class=p>(</span><span class=s>&#34;id&#34;</span><span class=p>)</span>
+    <span class=nx>thread</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>models</span><span class=p>.</span><span class=nf>ThreadByUUID</span><span class=p>(</span><span class=nx>uuid</span><span class=p>)</span>
+    <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=nf>error_message</span><span class=p>(</span><span class=nx>writer</span><span class=p>,</span> <span class=nx>request</span><span class=p>,</span> <span class=s>&#34;Cannot read thread&#34;</span><span class=p>)</span>
+    <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+        <span class=o>...</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>又比如 <code>handlers/post.go</code> 中，在创建新主题时，如果获取不到主题归属的群组，则将用户重定向到错误页面：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=c1>// 在指定群组下创建新主题
+</span><span class=c1></span><span class=kd>func</span> <span class=nf>PostThread</span><span class=p>(</span><span class=nx>writer</span> <span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span> <span class=nx>request</span> <span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>sess</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nf>session</span><span class=p>(</span><span class=nx>writer</span><span class=p>,</span> <span class=nx>request</span><span class=p>)</span>
+    <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=nx>http</span><span class=p>.</span><span class=nf>Redirect</span><span class=p>(</span><span class=nx>writer</span><span class=p>,</span> <span class=nx>request</span><span class=p>,</span> <span class=s>&#34;/login&#34;</span><span class=p>,</span> <span class=mi>302</span><span class=p>)</span>
+    <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+        <span class=o>...</span> 
+        <span class=nx>thread</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>models</span><span class=p>.</span><span class=nf>ThreadByUUID</span><span class=p>(</span><span class=nx>uuid</span><span class=p>)</span>
+        <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+            <span class=nf>error_message</span><span class=p>(</span><span class=nx>writer</span><span class=p>,</span> <span class=nx>request</span><span class=p>,</span> <span class=s>&#34;Cannot read thread&#34;</span><span class=p>)</span>
+        <span class=p>}</span>
+        <span class=o>...</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h2 id=3-整体测试>3. 整体测试</h2><p>至此，我们已经完成了日志和错误统一处理的代码重构，接下来，可以进行简单的测试，重启 HTTP 服务器，访问应用首页，此时会引入 <code>helper.go</code>，执行 <code>init</code> 方法，创建日志文件，我们试图使用错误的用户名密码登录：</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://qcdn.xueyuanjun.com/storage/uploads/images/gallery/2020-04/image-15862426490215.jpg alt class=lazyload></figure></p><p>测试就可以在 <code>logs/chitchat.log</code> 中看到错误日志了：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=nx>ERROR</span> <span class=mi>2020</span><span class=o>/</span><span class=mo>04</span><span class=o>/</span><span class=mo>07</span> <span class=mi>14</span><span class=p>:</span><span class=mi>55</span><span class=p>:</span><span class=mi>39</span> <span class=nx>helper</span><span class=p>.</span><span class=k>go</span><span class=p>:</span><span class=mi>71</span><span class=p>:</span> <span class=nx>sql</span><span class=p>:</span> <span class=nx>no</span> <span class=nx>rows</span> <span class=nx>in</span> <span class=nx>result</span> <span class=nx>set</span> <span class=nx>Cannot</span> <span class=nx>find</span> <span class=nx>user</span>
+</code></pre></td></tr></table></div></div><p>接下来，我们访问一个不存在的群组 <code>http://localhost:8080/thread/read?id=100</code>，页面就会重定向到错误页面：</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://qcdn.xueyuanjun.com/storage/uploads/images/gallery/2020-04/image-15862427655179.jpg alt class=lazyload></figure></p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2020-06-07</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=https://shuzang.github.io/development-of-online-forum-based-on-golang-6-log-and-error/index.md target=_blank>Read Markdown</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://shuzang.github.io/development-of-online-forum-based-on-golang-6-log-and-error/ data-title=基于Go语言开发在线论坛6-日志与错误处理 data-hashtags="Go Web"><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://shuzang.github.io/development-of-online-forum-based-on-golang-6-log-and-error/ data-hashtag="Go Web"><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Reddit" data-sharer=reddit data-url=https://shuzang.github.io/development-of-online-forum-based-on-golang-6-log-and-error/><i class="fab fa-reddit fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span class=tag><a href=https://shuzang.github.io/tags/go-web/><i class="fas fa-tag fa-fw"></i>&nbsp;Go Web</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://shuzang.github.io>Home</a></span></section></div><div class=post-nav><a href=https://shuzang.github.io/golang-log-system/ class=prev rel=prev title=Golang日志系统><i class="fas fa-angle-left fa-fw"></i>Golang日志系统</a>
+<a href=https://shuzang.github.io/development-of-online-forum-based-on-golang-7-get-global-configuration-through-singleton-mode/ class=next rel=next title=基于Go语言开发在线论坛7-通过单例模式获取全局配置>基于Go语言开发在线论坛7-通过单例模式获取全局配置<i class="fas fa-angle-right fa-fw"></i></a></div></div><div class=comment><div id=disqus_thread></div><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><div id=valine></div><script>document.addEventListener("DOMContentLoaded",function(event){new Valine({el:'#valine',appId:'GteMvevTjOBmhvFh2QGsopGO-gzGzoHsz',appKey:'fL4SYl06GIe012PswFdY17VC',placeholder:'Your comment ...',verify:true,avatar:'hide',pageSize:10,lang:'en',visitor:true,recordIP:true,});});</script><noscript>Please enable JavaScript to view the <a href=https://valine.js.org/>comments powered by Valine.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a></div><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://shuzang.github.io/about/ target=_blank>shuzang</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><a href=# class="dynamic-to-top animated faster" id=dynamic-to-top><span>&nbsp;</span>
+</a><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true},{left:"$",right:"$",display:false},]});});</script><link href=https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css rel=stylesheet><link href=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.css rel=stylesheet><link rel=stylesheet href=/css/lib/valine/dark.css><script src=https://dillonzq.disqus.com/embed.js></script><script src=https://cdn.bootcss.com/smooth-scroll/16.1.0/smooth-scroll.js></script><script src=https://cdn.bootcss.com/lazysizes/5.1.2/lazysizes.min.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/auto-render.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/mhchem.js></script><script src=/js/lib/valine/Valine.min.js></script><script src=/js/lib/sharer/sharer.min.js></script><script src=/js/theme.min.js></script></body></html>

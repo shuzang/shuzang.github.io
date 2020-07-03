@@ -1,0 +1,179 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>算法-递归与分治 | Shuzang's Blog</title><meta name=Description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><meta property="og:title" content="算法-递归与分治"><meta property="og:description" content="首先简单阐述一下递归、分治、动态规划和贪心这几个东西的区别和练习。 递归是一种编程技巧，一种解决问题的思维方式； 分治和动态规划是建立在递归基础"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.github.io/algorithm-divide-and-conquer/"><meta property="article:published_time" content="2020-04-12T00:00:00+00:00"><meta property="article:modified_time" content="2020-04-12T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="算法-递归与分治"><meta name=twitter:description content="首先简单阐述一下递归、分治、动态规划和贪心这几个东西的区别和练习。 递归是一种编程技巧，一种解决问题的思维方式； 分治和动态规划是建立在递归基础"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel=canonical href=https://shuzang.github.io/algorithm-divide-and-conquer/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=prev href=https://shuzang.github.io/about-personalized-advertising/><link rel=next href=https://shuzang.github.io/blockchain-and-deep-reinforcement-learning-empowered-intelligent-5g-beyond/><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/css/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"算法-递归与分治","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/algorithm-divide-and-conquer\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"数据结构与算法","wordcount":3539,"url":"https:\/\/shuzang.github.io\/algorithm-divide-and-conquer\/","datePublished":"2020-04-12T00:00:00\x2b00:00","dateModified":"2020-04-12T00:00:00\x2b00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"shuzang","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/logo.png","width":127,"height":40}},"description":""}</script></head><body><script>if(!window.localStorage||!window.localStorage.getItem('theme')){window.isDark=window.matchMedia('(prefers-color-scheme: dark)').matches;}else{window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';}
+window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class="header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch title="Switch Theme">
+<i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a></div></div></header><header class=mobile id=header-mobile><div class=header-wrapper><div class=header-container><div class="header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch title="Switch Theme">
+<i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a></div></div></header><script>window.desktopHeaderMode="fixed";window.mobileHeaderMode="auto";</script><main class=main><div class=container><article class="page single"><h1 class="single-title animated flipInX">算法-递归与分治</h1><div class=meta><div class=meta-line><a class=author href=https://shuzang.github.io/about/ rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>fudonglai, AngelKitty
+</a>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i><a href=https://shuzang.github.io/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/>爱编程爱技术的孩子</a>&nbsp;</span></div><div class=meta-line><i class="far fa-calendar-alt fa-fw"></i><time datetime=2020-04-12>2020-04-12</time>&nbsp;
+<i class="fas fa-pencil-alt fa-fw"></i>about 3539 words&nbsp;
+<i class="far fa-clock fa-fw"></i>8 min&nbsp;</div></div><aside class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#递归详解>递归详解</a><ul><li><a href=#为什么要写递归>为什么要写递归</a></li><li><a href=#写递归的技巧>写递归的技巧</a></li><li><a href=#递归优化>递归优化</a></li></ul></li><li><a href=#分治算法>分治算法</a></li></ul></nav></div></aside><aside class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
+<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><a href=#递归详解>递归详解</a><ul><li><a href=#为什么要写递归>为什么要写递归</a></li><li><a href=#写递归的技巧>写递归的技巧</a></li><li><a href=#递归优化>递归优化</a></li></ul></li><li><a href=#分治算法>分治算法</a></li></ul></nav></div></details></aside><div class=content><p>首先简单阐述一下递归、分治、动态规划和贪心这几个东西的区别和练习。</p><ol><li>递归是一种编程技巧，一种解决问题的思维方式；</li><li>分治和动态规划是建立在递归基础上的，解决更具体问题的两类算法思想（实现动态规划大都不是递归的，但是过程和思想是）；</li><li>贪心是动态规划的一个子集，可以更高效解决一部分更特殊的问题。</li></ol><p>由于分治和递归关系密切，放在一起进行讲解，以最经典的归并排序为例，它把待排序数组不断二分为规模更小的子问题处理，这就是「分而治之」这个词的由来。显然，排序问题分解出的子问题是不重复的，因此使用分治算法，如果有的问题分解后的子问题有重复的（重叠子问题性质），那么这就交给动态规划算法去解决！</p><h2 id=递归详解>递归详解</h2><p>介绍分治之前，首先要弄清楚递归这个概念。</p><p>递归的基本思想是<strong>某个函数直接或者间接地调用自身</strong>，这样就把原问题的求解转换为许多性质相同但是规模更小的子问题。我们只需要关注如何把原问题划分成符合条件的子问题，而不需要去研究这个子问题是如何被解决的。递归和枚举的区别在于：枚举是横向地把问题划分，然后依次求解子问题，而递归是把问题逐级分解，是纵向的拆分。</p><p>下面的例子是几种典型的递归情况：</p><ol><li>如何给一堆数字排序？答：分成两半，先排左半边再排右半边，最后合并就行了，至于怎么排左边和右边，请重新阅读这句话。</li><li>孙悟空身上有多少根毛？答：一根毛加剩下的毛。</li><li>你今年几岁？答：去年的岁数加一岁，1999 年我出生。</li></ol><p>著名的丘奇-图灵论点：凡是可计算函数都是一般递归函数。</p><p>递归代码最重要的两个特征：结束条件和自我调用。自我调用是在解决子问题，而结束条件定义了最简子问题的答案。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-cpp data-lang=cpp><span class=kt>int</span> <span class=nf>func</span><span class=p>(</span><span class=err>传</span><span class=err>入</span><span class=err>数</span><span class=err>值</span><span class=p>)</span> <span class=p>{</span>
+  <span class=k>if</span> <span class=p>(</span><span class=err>终</span><span class=err>止</span><span class=err>条</span><span class=err>件</span><span class=p>)</span> <span class=k>return</span> <span class=err>最</span><span class=err>小</span><span class=err>子</span><span class=err>问</span><span class=err>题</span><span class=err>解</span><span class=p>;</span>
+  <span class=k>return</span> <span class=n>func</span><span class=p>(</span><span class=err>缩</span><span class=err>小</span><span class=err>规</span><span class=err>模</span><span class=p>)</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>其实仔细想想， <strong>递归运用最成功的是什么？我认为是数学归纳法。</strong> 我们高中都学过数学归纳法，使用场景大概是：我们推不出来某个求和公式，但是我们试了几个比较小的数，似乎发现了一点规律，然后猜想了一个公式，看起来应该是正确答案。但是数学是很严谨的，你哪怕穷举了一万个数都是正确的，但是第一万零一个数正确吗？这就要数学归纳法发挥神威了，可以假设我们猜想的这个公式在第 k 个数时成立，如果证明在第 k + 1 时也成立，那么我们猜想的这个公式就是正确的。</p><p>那么数学归纳法和递归有什么联系？我们刚才说了，递归代码必须要有结束条件，如果没有的话就会进入无穷无尽的自我调用，直到内存耗尽。而数学证明的难度在于，你可以尝试有穷种情况，但是难以将你的结论延伸到无穷大。这里就可以看出联系了——无穷。</p><p>递归代码的精髓在于调用自身去解决规模更小的子问题，直到到达结束条件；而数学归纳法之所以有用，就在于不断把我们的猜测向上加一，扩大结论的规模，没有结束条件，从而把结论延伸到无穷无尽，也就完成了猜测正确性的证明。</p><h3 id=为什么要写递归>为什么要写递归</h3><p>首先为了训练逆向思考的能力。递推的思维是正常人的思维，总是看着眼前的问题思考对策，解决问题是将来时；递归的思维，逼迫我们倒着思考，看到问题的尽头，把解决问题的过程看做过去时。</p><p>第二，练习分析问题的结构，当问题可以被分解成相同结构的小问题时，你能敏锐发现这个特点，进而高效解决问题。</p><p>第三，跳出细节，从整体上看问题。再说说归并排序，其实可以不用递归来划分左右区域的，但是代价就是代码极其难以理解，大概看一下代码（归并排序在后面讲，这里大致看懂意思就行，体会递归的妙处）：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=kt>void</span> <span class=nf>sort</span><span class=o>(</span><span class=n>Comparable</span><span class=o>[</span><span class=o>]</span> <span class=n>a</span><span class=o>)</span><span class=o>{</span>
+    <span class=kt>int</span> <span class=n>N</span> <span class=o>=</span> <span class=n>a</span><span class=o>.</span><span class=na>length</span><span class=o>;</span>
+    <span class=c1>// 这么复杂，是对排序的不尊重。我拒绝研究这样的代码。
+</span><span class=c1></span>    <span class=k>for</span> <span class=o>(</span><span class=kt>int</span> <span class=n>sz</span> <span class=o>=</span> <span class=n>1</span><span class=o>;</span> <span class=n>sz</span> <span class=o>&lt;</span> <span class=n>N</span><span class=o>;</span> <span class=n>sz</span> <span class=o>=</span> <span class=n>sz</span> <span class=o>+</span> <span class=n>sz</span><span class=o>)</span>
+        <span class=k>for</span> <span class=o>(</span><span class=kt>int</span> <span class=n>lo</span> <span class=o>=</span> <span class=n>0</span><span class=o>;</span> <span class=n>lo</span> <span class=o>&lt;</span> <span class=n>N</span> <span class=o>-</span> <span class=n>sz</span><span class=o>;</span> <span class=n>lo</span> <span class=o>+</span><span class=o>=</span> <span class=n>sz</span> <span class=o>+</span> <span class=n>sz</span><span class=o>)</span>
+            <span class=n>merge</span><span class=o>(</span><span class=n>a</span><span class=o>,</span> <span class=n>lo</span><span class=o>,</span> <span class=n>lo</span> <span class=o>+</span> <span class=n>sz</span> <span class=o>-</span> <span class=n>1</span><span class=o>,</span> <span class=n>Math</span><span class=o>.</span><span class=na>min</span><span class=o>(</span><span class=n>lo</span> <span class=o>+</span> <span class=n>sz</span> <span class=o>+</span> <span class=n>sz</span> <span class=o>-</span> <span class=n>1</span><span class=o>,</span> <span class=n>N</span> <span class=o>-</span> <span class=n>1</span><span class=o>)</span><span class=o>)</span><span class=o>;</span>
+<span class=o>}</span>
+
+<span class=cm>/* 我还是选择递归，简单，漂亮 */</span>
+<span class=kt>void</span> <span class=nf>sort</span><span class=o>(</span><span class=n>Comparable</span><span class=o>[</span><span class=o>]</span> <span class=n>a</span><span class=o>,</span> <span class=kt>int</span> <span class=n>lo</span><span class=o>,</span> <span class=kt>int</span> <span class=n>hi</span><span class=o>)</span> <span class=o>{</span>
+    <span class=k>if</span> <span class=o>(</span><span class=n>lo</span> <span class=o>&gt;</span><span class=o>=</span> <span class=n>hi</span><span class=o>)</span> <span class=k>return</span><span class=o>;</span>
+    <span class=kt>int</span> <span class=n>mid</span> <span class=o>=</span> <span class=n>lo</span> <span class=o>+</span> <span class=o>(</span><span class=n>hi</span> <span class=o>-</span> <span class=n>lo</span><span class=o>)</span> <span class=o>/</span> <span class=n>2</span><span class=o>;</span>
+    <span class=n>sort</span><span class=o>(</span><span class=n>a</span><span class=o>,</span> <span class=n>lo</span><span class=o>,</span> <span class=n>mid</span><span class=o>)</span><span class=o>;</span>
+    <span class=n>sort</span><span class=o>(</span><span class=n>a</span><span class=o>,</span> <span class=n>mid</span> <span class=o>+</span> <span class=n>1</span><span class=o>,</span> <span class=n>hi</span><span class=o>)</span><span class=o>;</span>
+    <span class=n>merge</span><span class=o>(</span><span class=n>a</span><span class=o>,</span> <span class=n>lo</span><span class=o>,</span> <span class=n>mid</span><span class=o>,</span> <span class=n>hi</span><span class=o>)</span><span class=o>;</span>
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><p>看起来简洁漂亮是一方面，关键是 <strong>可解释性很强</strong> ：把左半边排序，把右半边排序，最后合并两边。而非递归版本看起来不知所云，充斥着各种难以理解的边界计算细节，特别容易出 bug 且难以调试，人生苦短，我更倾向于递归版本。</p><p>显然有时候递归处理是高效的，比如归并排序， <strong>有时候是低效的</strong> ，比如数孙悟空身上的毛，因为堆栈会消耗额外空间，而简单的递推不会消耗空间。比如这个例子，给一个链表头，计算它的长度：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-java data-lang=java><span class=cm>/* 典型的递推遍历框架 */</span>
+<span class=kd>public</span> <span class=kt>int</span> <span class=nf>size</span><span class=o>(</span><span class=n>Node</span> <span class=n>head</span><span class=o>)</span> <span class=o>{</span>
+    <span class=kt>int</span> <span class=n>size</span> <span class=o>=</span> <span class=n>0</span><span class=o>;</span>
+    <span class=k>for</span> <span class=o>(</span><span class=n>Node</span> <span class=n>p</span> <span class=o>=</span> <span class=n>head</span><span class=o>;</span> <span class=n>p</span> <span class=o>!</span><span class=o>=</span> <span class=kc>null</span><span class=o>;</span> <span class=n>p</span> <span class=o>=</span> <span class=n>p</span><span class=o>.</span><span class=na>next</span><span class=o>)</span> <span class=n>size</span><span class=o>+</span><span class=o>+</span><span class=o>;</span>
+    <span class=k>return</span> <span class=n>size</span><span class=o>;</span>
+<span class=o>}</span>
+<span class=cm>/* 我偏要递归，万物皆递归 */</span>
+<span class=kd>public</span> <span class=kt>int</span> <span class=nf>size</span><span class=o>(</span><span class=n>Node</span> <span class=n>head</span><span class=o>)</span> <span class=o>{</span>
+    <span class=k>if</span> <span class=o>(</span><span class=n>head</span> <span class=o>=</span><span class=o>=</span> <span class=kc>null</span><span class=o>)</span> <span class=k>return</span> <span class=n>0</span><span class=o>;</span>
+    <span class=k>return</span> <span class=n>size</span><span class=o>(</span><span class=n>head</span><span class=o>.</span><span class=na>next</span><span class=o>)</span> <span class=o>+</span> <span class=n>1</span><span class=o>;</span>
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><h3 id=写递归的技巧>写递归的技巧</h3><p>我的一点心得是： <strong>明白一个函数的作用并相信它能完成这个任务，千万不要试图跳进细节。</strong> 千万不要跳进这个函数里面企图探究更多细节，否则就会陷入无穷的细节无法自拔，人脑能压几个栈啊。</p><p>先举个最简单的例子：遍历二叉树。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-cpp data-lang=cpp><span class=kt>void</span> <span class=nf>traverse</span><span class=p>(</span><span class=n>TreeNode</span><span class=o>*</span> <span class=n>root</span><span class=p>)</span> <span class=p>{</span>
+  <span class=k>if</span> <span class=p>(</span><span class=n>root</span> <span class=o>=</span><span class=o>=</span> <span class=k>nullptr</span><span class=p>)</span> <span class=k>return</span><span class=p>;</span>
+  <span class=n>traverse</span><span class=p>(</span><span class=n>root</span><span class=o>-</span><span class=o>&gt;</span><span class=n>left</span><span class=p>)</span><span class=p>;</span>
+  <span class=n>traverse</span><span class=p>(</span><span class=n>root</span><span class=o>-</span><span class=o>&gt;</span><span class=n>right</span><span class=p>)</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>这几行代码就足以扫荡任何一棵二叉树了。我想说的是，对于递归函数 <code>traverse(root)</code> ，我们只要相信：给它一个根节点 <code>root</code> ，它就能遍历这棵树，因为写这个函数不就是为了这个目的吗？所以我们只需要把这个节点的左右节点再甩给这个函数就行了，因为我相信它能完成任务的。那么遍历一棵 N 叉数呢？太简单了好吧，和二叉树一模一样啊。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-cpp data-lang=cpp><span class=kt>void</span> <span class=nf>traverse</span><span class=p>(</span><span class=n>TreeNode</span><span class=o>*</span> <span class=n>root</span><span class=p>)</span> <span class=p>{</span>
+  <span class=k>if</span> <span class=p>(</span><span class=n>root</span> <span class=o>=</span><span class=o>=</span> <span class=k>nullptr</span><span class=p>)</span> <span class=k>return</span><span class=p>;</span>
+  <span class=k>for</span> <span class=p>(</span><span class=nl>child</span> <span class=p>:</span> <span class=n>root</span><span class=o>-</span><span class=o>&gt;</span><span class=n>children</span><span class=p>)</span> <span class=n>traverse</span><span class=p>(</span><span class=n>child</span><span class=p>)</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>至于遍历的什么前、中、后序，那都是显而易见的，对于 N 叉树，显然没有中序遍历。</p><p>以下 <strong>详解 LeetCode 的一道题来说明</strong> ：给一棵二叉树，和一个目标值，节点上的值有正有负，返回树中和等于目标值的路径条数，让你编写 pathSum 函数：</p><pre><code>/* 来源于 LeetCode PathSum III： https://leetcode.com/problems/path-sum-iii/ */
+root = [10,5,-3,3,2,null,11,3,-2,null,1], sum = 8
+
+      10
+     /  \
+    5   -3
+   / \    \
+  3   2   11
+ / \   \
+3  -2   1
+
+Return 3. The paths that sum to 8 are:
+
+1.  5 -&gt; 3
+2.  5 -&gt; 2 -&gt; 1
+3. -3 -&gt; 11
+</code></pre><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-cpp data-lang=cpp><span class=cm>/* 看不懂没关系，底下有更详细的分析版本，这里突出体现递归的简洁优美 */</span>
+<span class=kt>int</span> <span class=nf>pathSum</span><span class=p>(</span><span class=n>TreeNode</span> <span class=n>root</span><span class=p>,</span> <span class=kt>int</span> <span class=n>sum</span><span class=p>)</span> <span class=p>{</span>
+  <span class=k>if</span> <span class=p>(</span><span class=n>root</span> <span class=o>=</span><span class=o>=</span> <span class=n>null</span><span class=p>)</span> <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+  <span class=k>return</span> <span class=n>count</span><span class=p>(</span><span class=n>root</span><span class=p>,</span> <span class=n>sum</span><span class=p>)</span> <span class=o>+</span> <span class=n>pathSum</span><span class=p>(</span><span class=n>root</span><span class=p>.</span><span class=n>left</span><span class=p>,</span> <span class=n>sum</span><span class=p>)</span> <span class=o>+</span> <span class=n>pathSum</span><span class=p>(</span><span class=n>root</span><span class=p>.</span><span class=n>right</span><span class=p>,</span> <span class=n>sum</span><span class=p>)</span><span class=p>;</span>
+<span class=p>}</span>
+<span class=kt>int</span> <span class=nf>count</span><span class=p>(</span><span class=n>TreeNode</span> <span class=n>node</span><span class=p>,</span> <span class=kt>int</span> <span class=n>sum</span><span class=p>)</span> <span class=p>{</span>
+  <span class=k>if</span> <span class=p>(</span><span class=n>node</span> <span class=o>=</span><span class=o>=</span> <span class=n>null</span><span class=p>)</span> <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+  <span class=k>return</span> <span class=p>(</span><span class=n>node</span><span class=p>.</span><span class=n>val</span> <span class=o>=</span><span class=o>=</span> <span class=n>sum</span><span class=p>)</span> <span class=o>+</span> <span class=n>count</span><span class=p>(</span><span class=n>node</span><span class=p>.</span><span class=n>left</span><span class=p>,</span> <span class=n>sum</span> <span class=o>-</span> <span class=n>node</span><span class=p>.</span><span class=n>val</span><span class=p>)</span> <span class=o>+</span>
+         <span class=n>count</span><span class=p>(</span><span class=n>node</span><span class=p>.</span><span class=n>right</span><span class=p>,</span> <span class=n>sum</span> <span class=o>-</span> <span class=n>node</span><span class=p>.</span><span class=n>val</span><span class=p>)</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>题目看起来很复杂吧，不过代码却极其简洁，这就是递归的魅力。我来简单总结这个问题的 <strong>解决过程</strong> ：</p><p>首先明确，递归求解树的问题必然是要遍历整棵树的，所以 <strong>二叉树的遍历框架</strong> （分别对左右孩子递归调用函数本身）必然要出现在主函数 pathSum 中。那么对于每个节点，它们应该干什么呢？它们应该看看，自己和脚底下的小弟们包含多少条符合条件的路径。好了，这道题就结束了。</p><p>按照前面说的技巧，根据刚才的分析来定义清楚每个递归函数应该做的事：</p><p>PathSum 函数：给它一个节点和一个目标值，它返回以这个节点为根的树中，和为目标值的路径总数。</p><p>count 函数：给它一个节点和一个目标值，它返回以这个节点为根的树中，能凑出几个以该节点为路径开头，和为目标值的路径总数。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-cpp data-lang=cpp><span class=cm>/* 有了以上铺垫，详细注释一下代码 */</span>
+<span class=kt>int</span> <span class=nf>pathSum</span><span class=p>(</span><span class=n>TreeNode</span> <span class=n>root</span><span class=p>,</span> <span class=kt>int</span> <span class=n>sum</span><span class=p>)</span> <span class=p>{</span>
+  <span class=k>if</span> <span class=p>(</span><span class=n>root</span> <span class=o>=</span><span class=o>=</span> <span class=n>null</span><span class=p>)</span> <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+  <span class=kt>int</span> <span class=n>pathImLeading</span> <span class=o>=</span> <span class=n>count</span><span class=p>(</span><span class=n>root</span><span class=p>,</span> <span class=n>sum</span><span class=p>)</span><span class=p>;</span>  <span class=c1>// 自己为开头的路径数
+</span><span class=c1></span>  <span class=kt>int</span> <span class=n>leftPathSum</span> <span class=o>=</span> <span class=n>pathSum</span><span class=p>(</span><span class=n>root</span><span class=p>.</span><span class=n>left</span><span class=p>,</span> <span class=n>sum</span><span class=p>)</span><span class=p>;</span>  <span class=c1>// 左边路径总数（相信他能算出来）
+</span><span class=c1></span>  <span class=kt>int</span> <span class=n>rightPathSum</span> <span class=o>=</span>
+      <span class=n>pathSum</span><span class=p>(</span><span class=n>root</span><span class=p>.</span><span class=n>right</span><span class=p>,</span> <span class=n>sum</span><span class=p>)</span><span class=p>;</span>  <span class=c1>// 右边路径总数（相信他能算出来）
+</span><span class=c1></span>  <span class=k>return</span> <span class=n>leftPathSum</span> <span class=o>+</span> <span class=n>rightPathSum</span> <span class=o>+</span> <span class=n>pathImLeading</span><span class=p>;</span>
+<span class=p>}</span>
+<span class=kt>int</span> <span class=nf>count</span><span class=p>(</span><span class=n>TreeNode</span> <span class=n>node</span><span class=p>,</span> <span class=kt>int</span> <span class=n>sum</span><span class=p>)</span> <span class=p>{</span>
+  <span class=k>if</span> <span class=p>(</span><span class=n>node</span> <span class=o>=</span><span class=o>=</span> <span class=n>null</span><span class=p>)</span> <span class=k>return</span> <span class=mi>0</span><span class=p>;</span>
+  <span class=c1>// 我自己能不能独当一面，作为一条单独的路径呢？
+</span><span class=c1></span>  <span class=kt>int</span> <span class=n>isMe</span> <span class=o>=</span> <span class=p>(</span><span class=n>node</span><span class=p>.</span><span class=n>val</span> <span class=o>=</span><span class=o>=</span> <span class=n>sum</span><span class=p>)</span> <span class=o>?</span> <span class=mi>1</span> <span class=o>:</span> <span class=mi>0</span><span class=p>;</span>
+  <span class=c1>// 左边的小老弟，你那边能凑几个 sum - node.val 呀？
+</span><span class=c1></span>  <span class=kt>int</span> <span class=n>leftBrother</span> <span class=o>=</span> <span class=n>count</span><span class=p>(</span><span class=n>node</span><span class=p>.</span><span class=n>left</span><span class=p>,</span> <span class=n>sum</span> <span class=o>-</span> <span class=n>node</span><span class=p>.</span><span class=n>val</span><span class=p>)</span><span class=p>;</span>
+  <span class=c1>// 右边的小老弟，你那边能凑几个 sum - node.val 呀？
+</span><span class=c1></span>  <span class=kt>int</span> <span class=n>rightBrother</span> <span class=o>=</span> <span class=n>count</span><span class=p>(</span><span class=n>node</span><span class=p>.</span><span class=n>right</span><span class=p>,</span> <span class=n>sum</span> <span class=o>-</span> <span class=n>node</span><span class=p>.</span><span class=n>val</span><span class=p>)</span><span class=p>;</span>
+  <span class=k>return</span> <span class=n>isMe</span> <span class=o>+</span> <span class=n>leftBrother</span> <span class=o>+</span> <span class=n>rightBrother</span><span class=p>;</span>  <span class=c1>// 我这能凑这么多个
+</span><span class=c1></span><span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>还是那句话， <strong>明白每个函数能做的事，并相信它们能够完成。</strong></p><p>总结下，PathSum 函数提供的二叉树遍历框架，在遍历中对每个节点调用 count 函数，看出先序遍历了吗（这道题什么序都是一样的）；count 函数也是一个二叉树遍历，用于寻找以该节点开头的目标值路径。好好体会吧！</p><p>LeetCode 有递归专题练习， <a href=https://leetcode.com/explore/learn/card/recursion-i/ target=_blank>点这里去做题</a></p><h3 id=递归优化>递归优化</h3><p>比较 naive 的递归实现可能递归次数太多，容易超时。</p><p>怎么优化呢？详见 <a href=../search/opt.md>搜索优化</a>
+和 <a href=../dp/memo.md>记忆化搜索</a>
+。</p><h2 id=分治算法>分治算法</h2><p><strong>归并排序</strong> ，典型的分治算法；分治，典型的递归结构。</p><p>分治算法可以分三步走：分解 -> 解决 -> 合并</p><ol><li>分解原问题为结构相同的子问题。</li><li>分解到某个容易求解的边界之后，进行递归求解。</li><li>将子问题的解合并成原问题的解。</li></ol><p>归并排序，我们就叫这个函数 <code>merge_sort</code> 吧，按照我们上面说的，要明确该函数的职责，即 <strong>对传入的一个数组排序</strong> 。OK，那么这个问题能不能分解呢？当然可以！给一个数组排序，不就等于给该数组的两半分别排序，然后合并就完事了。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-cpp data-lang=cpp><span class=kt>void</span> <span class=nf>merge_sort</span><span class=p>(</span><span class=err>一</span><span class=err>个</span><span class=err>数</span><span class=err>组</span><span class=p>)</span> <span class=p>{</span>
+  <span class=k>if</span> <span class=p>(</span><span class=err>可</span><span class=err>以</span><span class=err>很</span><span class=err>容</span><span class=err>易</span><span class=err>处</span><span class=err>理</span><span class=p>)</span> <span class=k>return</span><span class=p>;</span>
+  <span class=n>merge_sort</span><span class=p>(</span><span class=err>左</span><span class=err>半</span><span class=err>个</span><span class=err>数</span><span class=err>组</span><span class=p>)</span><span class=p>;</span>
+  <span class=n>merge_sort</span><span class=p>(</span><span class=err>右</span><span class=err>半</span><span class=err>个</span><span class=err>数</span><span class=err>组</span><span class=p>)</span><span class=p>;</span>
+  <span class=n>merge</span><span class=p>(</span><span class=err>左</span><span class=err>半</span><span class=err>个</span><span class=err>数</span><span class=err>组</span><span class=p>,</span> <span class=err>右</span><span class=err>半</span><span class=err>个</span><span class=err>数</span><span class=err>组</span><span class=p>)</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>好了，这个算法也就这样了，完全没有任何难度。记住之前说的，相信函数的能力，传给它半个数组，那么这半个数组就已经被排好了。而且你会发现这不就是个二叉树遍历模板吗？为什么是后序遍历？因为我们分治算法的套路是 <strong>分解 -> 解决（触底）-> 合并（回溯）</strong> 啊，先左右分解，再处理合并，回溯就是在退栈，就相当于后序遍历了。至于 <code>merge</code> 函数，参考两个有序链表的合并，简直一模一样。</p><p>LeetCode 上有分治算法的专项练习， <a href=https://leetcode.com/tag/divide-and-conquer/ target=_blank>点这里去做题</a></p><p>本文转自 <a href=https://oi-wiki.org/basic/simulate/ target=_blank>OI Wiki</a>
+，经过一定修改</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2020-04-12</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=https://shuzang.github.io/algorithm-divide-and-conquer/index.md target=_blank>Read Markdown</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://shuzang.github.io/algorithm-divide-and-conquer/ data-title=算法-递归与分治 data-hashtags=数据结构与算法><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://shuzang.github.io/algorithm-divide-and-conquer/ data-hashtag=数据结构与算法><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Reddit" data-sharer=reddit data-url=https://shuzang.github.io/algorithm-divide-and-conquer/><i class="fab fa-reddit fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span class=tag><a href=https://shuzang.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/><i class="fas fa-tag fa-fw"></i>&nbsp;数据结构与算法</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://shuzang.github.io>Home</a></span></section></div><div class=post-nav><a href=https://shuzang.github.io/about-personalized-advertising/ class=prev rel=prev title=关于个性化广告><i class="fas fa-angle-left fa-fw"></i>关于个性化广告</a>
+<a href=https://shuzang.github.io/blockchain-and-deep-reinforcement-learning-empowered-intelligent-5g-beyond/ class=next rel=next title="Blockchain and Deep Reinforcement Learning Empowered Intelligent 5G Beyond">Blockchain and Deep Reinforcement Learning Empowered Intelligent 5G Beyond<i class="fas fa-angle-right fa-fw"></i></a></div></div><div class=comment><div id=disqus_thread></div><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><div id=valine></div><script>document.addEventListener("DOMContentLoaded",function(event){new Valine({el:'#valine',appId:'GteMvevTjOBmhvFh2QGsopGO-gzGzoHsz',appKey:'fL4SYl06GIe012PswFdY17VC',placeholder:'Your comment ...',verify:true,avatar:'hide',pageSize:10,lang:'en',visitor:true,recordIP:true,});});</script><noscript>Please enable JavaScript to view the <a href=https://valine.js.org/>comments powered by Valine.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a></div><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://shuzang.github.io/about/ target=_blank>shuzang</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><a href=# class="dynamic-to-top animated faster" id=dynamic-to-top><span>&nbsp;</span>
+</a><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true},{left:"$",right:"$",display:false},]});});</script><link href=https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css rel=stylesheet><link href=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.css rel=stylesheet><link rel=stylesheet href=/css/lib/valine/dark.css><script src=https://dillonzq.disqus.com/embed.js></script><script src=https://cdn.bootcss.com/smooth-scroll/16.1.0/smooth-scroll.js></script><script src=https://cdn.bootcss.com/lazysizes/5.1.2/lazysizes.min.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/auto-render.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/mhchem.js></script><script src=/js/lib/valine/Valine.min.js></script><script src=/js/lib/sharer/sharer.min.js></script><script src=/js/theme.min.js></script></body></html>
