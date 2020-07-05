@@ -1,0 +1,356 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>数据结构-二叉搜索树 | Shuzang's Blog</title><meta name=Description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><meta property="og:title" content="数据结构-二叉搜索树"><meta property="og:description" content="1. 二叉搜索树 1.1 定义 二叉搜索树（BST，Binary Search Tree），也称二叉排序树或二叉查找树。其定义如下 二叉搜索树：是一颗二叉树，可以为空，如"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.github.io/data-structure-binary-search-tree/"><meta property="article:published_time" content="2020-03-03T00:00:00+00:00"><meta property="article:modified_time" content="2020-07-04T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="数据结构-二叉搜索树"><meta name=twitter:description content="1. 二叉搜索树 1.1 定义 二叉搜索树（BST，Binary Search Tree），也称二叉排序树或二叉查找树。其定义如下 二叉搜索树：是一颗二叉树，可以为空，如"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel=canonical href=https://shuzang.github.io/data-structure-binary-search-tree/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=prev href=https://shuzang.github.io/data-structure-tree-and-binary-tree/><link rel=next href=https://shuzang.github.io/%E9%9B%95%E5%88%80/><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/css/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"数据结构-二叉搜索树","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/data-structure-binary-search-tree\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"数据结构与算法","wordcount":3200,"url":"https:\/\/shuzang.github.io\/data-structure-binary-search-tree\/","datePublished":"2020-03-03T00:00:00\x2b00:00","dateModified":"2020-07-04T00:00:00\x2b00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"shuzang","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/logo.png","width":127,"height":40}},"description":""}</script></head><body><script>if(!window.localStorage||!window.localStorage.getItem('theme')){window.isDark=window.matchMedia('(prefers-color-scheme: dark)').matches;}else{window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';}
+window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class="header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch title="Switch Theme">
+<i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a></div></div></header><header class=mobile id=header-mobile><div class=header-wrapper><div class=header-container><div class="header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch title="Switch Theme">
+<i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a></div></div></header><script>window.desktopHeaderMode="fixed";window.mobileHeaderMode="auto";</script><main class=main><div class=container><article class="page single"><h1 class="single-title animated flipInX">数据结构-二叉搜索树</h1><div class=meta><div class=meta-line><a class=author href=https://shuzang.github.io/about/ rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>shuzang
+</a>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i><a href=https://shuzang.github.io/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/>爱编程爱技术的孩子</a>&nbsp;</span></div><div class=meta-line><i class="far fa-calendar-alt fa-fw"></i><time datetime=2020-03-03>2020-03-03</time>&nbsp;
+<i class="fas fa-pencil-alt fa-fw"></i>about 3200 words&nbsp;
+<i class="far fa-clock fa-fw"></i>7 min&nbsp;</div></div><aside class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#1-二叉搜索树>1. 二叉搜索树</a><ul><li><a href=#11-定义>1.1 定义</a></li><li><a href=#12-基本操作>1.2 基本操作</a><ul><li><a href=#查找>查找</a></li><li><a href=#插入>插入</a></li><li><a href=#删除>删除</a></li></ul></li></ul></li><li><a href=#2-平衡二叉树>2. 平衡二叉树</a><ul><li><a href=#21-定义>2.1 定义</a></li><li><a href=#22-平衡性调整>2.2 平衡性调整</a><ul><li><a href=#rr>RR</a></li><li><a href=#rl>RL</a></li><li><a href=#ll>LL</a></li><li><a href=#lr>LR</a></li></ul></li></ul></li><li><a href=#3-哈夫曼树>3. 哈夫曼树</a><ul><li><a href=#31-定义>3.1 定义</a></li><li><a href=#32-构造>3.2 构造</a></li><li><a href=#33-哈夫曼编码>3.3 哈夫曼编码</a></li></ul></li><li><a href=#4-常见题型>4. 常见题型</a><ul><li><a href=#41-验证二叉搜索树>4.1 验证二叉搜索树</a></li></ul></li><li><a href=#参考资料>参考资料</a></li></ul></nav></div></aside><aside class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
+<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><a href=#1-二叉搜索树>1. 二叉搜索树</a><ul><li><a href=#11-定义>1.1 定义</a></li><li><a href=#12-基本操作>1.2 基本操作</a><ul><li><a href=#查找>查找</a></li><li><a href=#插入>插入</a></li><li><a href=#删除>删除</a></li></ul></li></ul></li><li><a href=#2-平衡二叉树>2. 平衡二叉树</a><ul><li><a href=#21-定义>2.1 定义</a></li><li><a href=#22-平衡性调整>2.2 平衡性调整</a><ul><li><a href=#rr>RR</a></li><li><a href=#rl>RL</a></li><li><a href=#ll>LL</a></li><li><a href=#lr>LR</a></li></ul></li></ul></li><li><a href=#3-哈夫曼树>3. 哈夫曼树</a><ul><li><a href=#31-定义>3.1 定义</a></li><li><a href=#32-构造>3.2 构造</a></li><li><a href=#33-哈夫曼编码>3.3 哈夫曼编码</a></li></ul></li><li><a href=#4-常见题型>4. 常见题型</a><ul><li><a href=#41-验证二叉搜索树>4.1 验证二叉搜索树</a></li></ul></li><li><a href=#参考资料>参考资料</a></li></ul></nav></div></details></aside><div class=content><h2 id=1-二叉搜索树>1. 二叉搜索树</h2><h3 id=11-定义>1.1 定义</h3><p>二叉搜索树（BST，Binary Search Tree），也称二叉排序树或二叉查找树。其定义如下</p><p>二叉搜索树：是一颗二叉树，可以为空，如果不为空，满足下列性质</p><ol><li>非空左子树的所有结点值小于其根结点的结点值</li><li>非空右子树的所有结点值小于其根结点的结点值</li><li>左右子树都是二叉搜索树</li></ol><h3 id=12-基本操作>1.2 基本操作</h3><p>二叉搜索树的基本操作包括：</p><ul><li>Position Find(ElementType X, BinTree BST)：从二叉搜索树BST中查找元素X，返回其所在结点的地址；</li><li>Position FindMin(BinTree BST)：从二叉搜索树BST中查找并返回最小元素所在结点的地址；</li><li>Position FindMax(BinTree BST)：从二叉搜索树BST中查找并返回最大元素所作结点的地址</li><li>BinTree Insert(ElementType X, BinTree BST)</li><li>BinTree Delete(ElementType X, BinTree BST)</li></ul><h4 id=查找>查找</h4><p>查找的基本思路是从根结点开始，如果树为空，返回NULL，如果树非空，则将根结点的值和X进行比较，分情况处理：</p><ol><li>如果X小于根结点的值，在左子树中继续搜索</li><li>如果X大于根结点的值，在右子树中继续搜索</li><li>若两者值相等，搜索完成，返回指向该结点的指针</li></ol><p>递归的实现思路如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>searchBST</span><span class=p>(</span><span class=nx>root</span> <span class=o>*</span><span class=nx>TreeNode</span><span class=p>,</span> <span class=nx>val</span> <span class=kt>int</span><span class=p>)</span> <span class=o>*</span><span class=nx>TreeNode</span> <span class=p>{</span>
+    <span class=k>if</span> <span class=nx>root</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=kc>nil</span>
+    <span class=p>}</span>
+    <span class=k>if</span> <span class=nx>val</span> <span class=p>&lt;</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Val</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=nf>searchBST</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Left</span><span class=p>,</span> <span class=nx>val</span><span class=p>)</span>
+    <span class=p>}</span><span class=k>else</span> <span class=k>if</span> <span class=nx>val</span> <span class=p>&gt;</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Val</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=nf>searchBST</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>,</span> <span class=nx>val</span><span class=p>)</span>
+    <span class=p>}</span><span class=k>else</span><span class=p>{</span>
+        <span class=k>return</span> <span class=nx>root</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>迭代的实现思路如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>IterFind</span><span class=p>(</span><span class=nx>ElementType</span> <span class=nx>X</span><span class=p>,</span> <span class=nx>BinTree</span> <span class=nx>BST</span><span class=p>)</span><span class=p>{</span>
+    <span class=k>for</span> <span class=nx>BST</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=k>if</span> <span class=nx>X</span> <span class=p>&gt;</span> <span class=nx>BST</span><span class=o>-</span><span class=p>&gt;</span><span class=nx>Data</span> 
+            <span class=nx>BST</span> <span class=p>=</span> <span class=nx>BST</span><span class=o>-</span><span class=p>&gt;</span><span class=nx>Right</span>
+        <span class=k>else</span> <span class=k>if</span> <span class=nx>X</span> <span class=p>&lt;</span> <span class=nx>BST</span><span class=o>-</span><span class=p>&gt;</span><span class=nx>Data</span>
+            <span class=nx>BST</span> <span class=p>=</span> <span class=nx>BST</span><span class=o>-</span><span class=p>&gt;</span><span class=nx>Left</span>
+        <span class=k>else</span>
+            <span class=k>return</span> <span class=nx>BST</span><span class=p>;</span>
+    <span class=p>}</span>
+    <span class=k>return</span> <span class=kc>nil</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>查找最大和最小元素只需要记住两点</p><ul><li>最大元素一定在树的最右分支的端结点上</li><li>最小元素一定在树的最左分支的端结点上</li></ul><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=/images/%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%844-%e4%ba%8c%e5%8f%89%e6%90%9c%e7%b4%a2%e6%a0%91/3SfTds.png alt=查找最大最小元素 title=查找最大最小元素 class=lazyload><figcaption class=image-caption>查找最大最小元素</figcaption></figure></p><p>查找最小元素的递归方法参考实现如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>FindMin</span><span class=p>(</span><span class=nx>root</span> <span class=o>*</span><span class=nx>TreeNode</span><span class=p>)</span> <span class=o>*</span><span class=nx>TreeNode</span> <span class=p>{</span>
+    <span class=k>if</span> <span class=nx>root</span> <span class=o>==</span> <span class=kc>nil</span> 
+        <span class=k>return</span> <span class=kc>nil</span>
+    <span class=k>else</span> <span class=k>if</span> <span class=nx>root</span><span class=o>-</span><span class=p>&gt;</span><span class=nx>Left</span> <span class=o>==</span> <span class=kc>nil</span>
+        <span class=k>return</span> <span class=nx>root</span>
+    <span class=k>else</span>
+        <span class=k>return</span> <span class=nf>FindMin</span><span class=p>(</span><span class=nx>root</span><span class=o>-</span><span class=p>&gt;</span><span class=nx>Left</span><span class=p>)</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>查找最大元素的迭代方法参考实现如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>findMax</span><span class=p>(</span><span class=nx>root</span> <span class=o>*</span><span class=nx>TreeNode</span><span class=p>)</span> <span class=o>*</span><span class=nx>TreeNode</span> <span class=p>{</span>
+	<span class=k>if</span> <span class=nx>root</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+		<span class=k>for</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Right</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+			<span class=nx>root</span> <span class=p>=</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Right</span>
+		<span class=p>}</span>
+	<span class=p>}</span>
+	<span class=k>return</span> <span class=nx>root</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h4 id=插入>插入</h4><p>二叉搜索树插入的关键是找到要插入的位置，可以采用和查找类似的方法，一个参考实现如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>insertIntoBST</span><span class=p>(</span><span class=nx>root</span> <span class=o>*</span><span class=nx>TreeNode</span><span class=p>,</span> <span class=nx>val</span> <span class=kt>int</span><span class=p>)</span> <span class=o>*</span><span class=nx>TreeNode</span> <span class=p>{</span>
+	<span class=k>if</span> <span class=nx>root</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+		<span class=nx>root</span> <span class=p>=</span> <span class=o>&amp;</span><span class=nx>TreeNode</span><span class=p>{</span><span class=nx>val</span><span class=p>,</span> <span class=kc>nil</span><span class=p>,</span> <span class=kc>nil</span><span class=p>}</span>
+	<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+		<span class=k>if</span> <span class=nx>val</span> <span class=p>&gt;</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Val</span> <span class=p>{</span>
+			<span class=nx>root</span><span class=p>.</span><span class=nx>Right</span> <span class=p>=</span> <span class=nf>insertIntoBST</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>,</span> <span class=nx>val</span><span class=p>)</span>
+		<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=nx>val</span> <span class=p>&lt;</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Val</span> <span class=p>{</span>
+			<span class=nx>root</span><span class=p>.</span><span class=nx>Left</span> <span class=p>=</span> <span class=nf>insertIntoBST</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Left</span><span class=p>,</span> <span class=nx>val</span><span class=p>)</span>
+		<span class=p>}</span>
+	<span class=p>}</span>
+	<span class=k>return</span> <span class=nx>root</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h4 id=删除>删除</h4><p>二叉树的删除比较复杂，要考虑三种情况</p><ol><li><p>要删除的是叶节点，则直接删除，并修改其父结点指针为NULL</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=/images/%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%844-%e4%ba%8c%e5%8f%89%e6%90%9c%e7%b4%a2%e6%a0%91/3S7N0U.png alt=二叉搜索树删除叶结点 title=二叉搜索树删除叶结点 class=lazyload><figcaption class=image-caption>二叉搜索树删除叶结点</figcaption></figure></p></li><li><p>要删除的结点只有一个孩子，则将其父结点的指针指向要删除结点的孩子结点</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=/images/%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%844-%e4%ba%8c%e5%8f%89%e6%90%9c%e7%b4%a2%e6%a0%91/3SHE4J.png alt=二叉搜索树要删除的结点只有一个孩子 title=二叉搜索树要删除的结点只有一个孩子 class=lazyload><figcaption class=image-caption>二叉搜索树要删除的结点只有一个孩子</figcaption></figure></p></li><li><p>要删除的结点有左右两颗子树，则用另一个结点替代被删除的结点，可以是右子树的最小结点，也可以是左子树的最大结点</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=/images/%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%844-%e4%ba%8c%e5%8f%89%e6%90%9c%e7%b4%a2%e6%a0%91/3SqOAO.png alt=二叉搜索树要删除的结点有两颗子树 title=二叉搜索树要删除的结点有两颗子树 class=lazyload><figcaption class=image-caption>二叉搜索树要删除的结点有两颗子树</figcaption></figure></p></li></ol><p>参考实现如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>deleteNode</span><span class=p>(</span><span class=nx>root</span> <span class=o>*</span><span class=nx>TreeNode</span><span class=p>,</span> <span class=nx>key</span> <span class=kt>int</span><span class=p>)</span> <span class=o>*</span><span class=nx>TreeNode</span> <span class=p>{</span>
+	<span class=k>if</span> <span class=nx>root</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+		<span class=k>return</span> <span class=kc>nil</span>
+	<span class=p>}</span>
+	<span class=k>if</span> <span class=nx>key</span> <span class=p>&lt;</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Val</span> <span class=p>{</span>
+		<span class=nx>root</span><span class=p>.</span><span class=nx>Left</span> <span class=p>=</span> <span class=nf>deleteNode</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Left</span><span class=p>,</span> <span class=nx>key</span><span class=p>)</span>
+	<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=nx>key</span> <span class=p>&gt;</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Val</span> <span class=p>{</span>
+		<span class=nx>root</span><span class=p>.</span><span class=nx>Right</span> <span class=p>=</span> <span class=nf>deleteNode</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>,</span> <span class=nx>key</span><span class=p>)</span>
+	<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+		<span class=k>if</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Left</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=o>&amp;&amp;</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Right</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+			<span class=nx>root</span><span class=p>.</span><span class=nx>Val</span> <span class=p>=</span> <span class=nf>findMin</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>)</span><span class=p>.</span><span class=nx>Val</span>
+			<span class=nx>root</span><span class=p>.</span><span class=nx>Right</span> <span class=p>=</span> <span class=nf>deleteNode</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>,</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Val</span><span class=p>)</span>
+		<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+			<span class=k>if</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Left</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+				<span class=nx>root</span> <span class=p>=</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Right</span>
+			<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Right</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+				<span class=nx>root</span> <span class=p>=</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Left</span>
+			<span class=p>}</span>
+		<span class=p>}</span>
+	<span class=p>}</span>
+	<span class=k>return</span> <span class=nx>root</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h2 id=2-平衡二叉树>2. 平衡二叉树</h2><h3 id=21-定义>2.1 定义</h3><p>平衡二叉树（Balanced Binary Tree），一般称为AVL树，它要么是一颗空树，要么满足任一结点左右子树高度差的绝对值不超过1。一般使用「平衡因子（Balance Factor, BF）」来描述这一高度差，设H<sub>L</sub>和H<sub>R</sub>分别为树T左右子树的高度，则BF满足：
+$$
+BF(T) = \left|H_L - H_R\right| \le 1
+$$
+此外，平衡二叉树的高度为$O(\log_2n)$,证明如下</p><blockquote><p>设$f_n$为高度为n的AVL树所包含的最少结点数，则有
+$$
+f_n= \begin{cases} 1&(n=1)\ \\ 2&(n=2)\ \\ f_{n-1}+f_{n-2}+1& (n>2) \end{cases}
+$$
+显然$\{ f_n + 1 \}$是一个斐波那契数列，由于斐波那契数列以指数的速度增长，因此AVL树的高度为$O(\log_2n)$</p></blockquote><h3 id=22-平衡性调整>2.2 平衡性调整</h3><p>平衡二叉树同样是一颗二叉搜索树，插入和删除的算法和二叉搜索树相同，但是插入和删除结点后，会造成树高和平衡因子的变化，从而不满足平衡二叉树的条件，因此需要对其进行调整。</p><p>以插入为例，将所有情况和对应的处理措施分为四种</p><h4 id=rr>RR</h4><p>意为插入的结点在失衡点右子树的右子树中（左右孩子处理办法都一样），其解决办法是进行一次<strong>左旋转</strong>，如下图所示，14为新插入的结点。需要注意的是失衡点不一定是根结点。</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=/images/%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%844-%e4%ba%8c%e5%8f%89%e6%90%9c%e7%b4%a2%e6%a0%91/3kH9Fx.png alt=AVL树左旋转 title=AVL树左旋转 class=lazyload><figcaption class=image-caption>AVL树左旋转</figcaption></figure></p><p>简单的代码实现如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>leftRotate</span><span class=p>(</span><span class=nx>root</span> <span class=o>*</span><span class=nx>TreeNode</span><span class=p>)</span> <span class=o>*</span><span class=nx>TreeNode</span> <span class=p>{</span>
+	<span class=nx>tmp</span> <span class=o>:=</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Right</span>
+	<span class=nx>root</span><span class=p>.</span><span class=nx>Right</span> <span class=p>=</span> <span class=nx>tmp</span><span class=p>.</span><span class=nx>Left</span>
+	<span class=nx>tmp</span><span class=p>.</span><span class=nx>Left</span> <span class=p>=</span> <span class=nx>root</span>
+
+	<span class=nx>root</span><span class=p>.</span><span class=nx>Height</span> <span class=p>=</span> <span class=nf>max</span><span class=p>(</span><span class=nf>getHeight</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Left</span><span class=p>)</span><span class=p>,</span> <span class=nf>getHeight</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>)</span><span class=p>)</span> <span class=o>+</span> <span class=mi>1</span>
+	<span class=nx>tmp</span><span class=p>.</span><span class=nx>Height</span> <span class=p>=</span> <span class=nf>max</span><span class=p>(</span><span class=nf>getHeight</span><span class=p>(</span><span class=nx>tmp</span><span class=p>.</span><span class=nx>Left</span><span class=p>)</span><span class=p>,</span> <span class=nf>getHeight</span><span class=p>(</span><span class=nx>tmp</span><span class=p>.</span><span class=nx>Right</span><span class=p>)</span><span class=p>)</span> <span class=o>+</span> <span class=mi>1</span>
+	<span class=k>return</span> <span class=nx>tmp</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h4 id=rl>RL</h4><p>意为插入的结点在失衡点右子树的左子树中（左右孩子都一样），其解决办法是<strong>先进行一次右旋转，再进行一次左旋转</strong>，如下图所示，插入结点分别为10.5和11.5</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=/images/%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%844-%e4%ba%8c%e5%8f%89%e6%90%9c%e7%b4%a2%e6%a0%91/3kOXZQ.png alt=AVL树先右后左旋转 title=AVL树先右后左旋转 class=lazyload><figcaption class=image-caption>AVL树先右后左旋转</figcaption></figure></p><p>简单的代码实现如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>rightThenLeftRotate</span><span class=p>(</span><span class=nx>root</span> <span class=o>*</span><span class=nx>TreeNode</span><span class=p>)</span> <span class=o>*</span><span class=nx>TreeNode</span> <span class=p>{</span>
+	<span class=nx>tmp</span> <span class=o>:=</span> <span class=nf>rightRotate</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>)</span>
+	<span class=nx>root</span><span class=p>.</span><span class=nx>Right</span> <span class=p>=</span> <span class=nx>tmp</span>
+	<span class=k>return</span> <span class=nf>leftRotate</span><span class=p>(</span><span class=nx>root</span><span class=p>)</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h4 id=ll>LL</h4><p>意为插入的结点在失衡点左子树的左子树中（左右孩子都一样），其解决办法是进行一次<strong>右旋转</strong>，如下图所示，6为插入的新结点</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=/images/%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%844-%e4%ba%8c%e5%8f%89%e6%90%9c%e7%b4%a2%e6%a0%91/3kvTR1.png alt=AVL树右旋转 title=AVL树右旋转 class=lazyload><figcaption class=image-caption>AVL树右旋转</figcaption></figure></p><p>简单的代码实现如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>rightRotate</span><span class=p>(</span><span class=nx>root</span> <span class=o>*</span><span class=nx>TreeNode</span><span class=p>)</span> <span class=o>*</span><span class=nx>TreeNode</span> <span class=p>{</span>
+	<span class=nx>tmp</span> <span class=o>:=</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Left</span>
+	<span class=nx>root</span><span class=p>.</span><span class=nx>Left</span> <span class=p>=</span> <span class=nx>tmp</span><span class=p>.</span><span class=nx>Right</span>
+	<span class=nx>tmp</span><span class=p>.</span><span class=nx>Right</span> <span class=p>=</span> <span class=nx>root</span>
+
+	<span class=nx>root</span><span class=p>.</span><span class=nx>Height</span> <span class=p>=</span> <span class=nf>max</span><span class=p>(</span><span class=nf>getHeight</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Left</span><span class=p>)</span><span class=p>,</span> <span class=nf>getHeight</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>)</span><span class=p>)</span> <span class=o>+</span> <span class=mi>1</span>
+	<span class=nx>tmp</span><span class=p>.</span><span class=nx>Height</span> <span class=p>=</span> <span class=nf>max</span><span class=p>(</span><span class=nf>getHeight</span><span class=p>(</span><span class=nx>tmp</span><span class=p>.</span><span class=nx>Left</span><span class=p>)</span><span class=p>,</span> <span class=nf>getHeight</span><span class=p>(</span><span class=nx>tmp</span><span class=p>.</span><span class=nx>Right</span><span class=p>)</span><span class=p>)</span> <span class=o>+</span> <span class=mi>1</span>
+	<span class=k>return</span> <span class=nx>tmp</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h4 id=lr>LR</h4><p>意为插入的结点在失衡点左子树的右子树中（左右孩子都一样），其解决办法是<strong>先进行一次左旋转，再进行一次右旋转</strong>，如下图所示，插入结点为8.5和9.5</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=/images/%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%844-%e4%ba%8c%e5%8f%89%e6%90%9c%e7%b4%a2%e6%a0%91/3Ahc9g.png alt=AVL树先左后右旋转 title=AVL树先左后右旋转 class=lazyload><figcaption class=image-caption>AVL树先左后右旋转</figcaption></figure></p><p>简单的代码实现</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>leftThenRightRotate</span><span class=p>(</span><span class=nx>root</span> <span class=o>*</span><span class=nx>TreeNode</span><span class=p>)</span> <span class=o>*</span><span class=nx>TreeNode</span> <span class=p>{</span>
+	<span class=nx>tmp</span> <span class=o>:=</span> <span class=nf>leftRotate</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Left</span><span class=p>)</span>
+	<span class=nx>root</span><span class=p>.</span><span class=nx>Left</span> <span class=p>=</span> <span class=nx>tmp</span>
+	<span class=k>return</span> <span class=nf>rightRotate</span><span class=p>(</span><span class=nx>root</span><span class=p>)</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>对于AVL树的所有操作都建立在这四个基本操作之上，在插入和删除操作完成后，调用调整函数，然后在调整函数中分情况调用这四个函数。调整函数的实现如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>ajust</span><span class=p>(</span><span class=nx>root</span> <span class=o>*</span><span class=nx>TreeNode</span><span class=p>)</span> <span class=o>*</span><span class=nx>TreeNode</span> <span class=p>{</span>
+	<span class=k>if</span> <span class=nx>root</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+		<span class=k>return</span> <span class=kc>nil</span>
+	<span class=p>}</span>
+	<span class=nx>compare</span> <span class=o>:=</span> <span class=nf>getHeight</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>)</span> <span class=o>-</span> <span class=nf>getHeight</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Left</span><span class=p>)</span>
+	<span class=k>if</span> <span class=nx>compare</span> <span class=o>==</span> <span class=mi>2</span> <span class=p>{</span>
+		<span class=k>if</span> <span class=nf>getHeight</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>.</span><span class=nx>Right</span><span class=p>)</span> <span class=p>&gt;</span> <span class=nf>getHeight</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>.</span><span class=nx>Left</span><span class=p>)</span> <span class=p>{</span>
+			<span class=nx>root</span> <span class=p>=</span> <span class=nf>leftRotate</span><span class=p>(</span><span class=nx>root</span><span class=p>)</span>
+		<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+			<span class=nx>root</span> <span class=p>=</span> <span class=nf>rightThenLeftRotate</span><span class=p>(</span><span class=nx>root</span><span class=p>)</span>
+		<span class=p>}</span>
+	<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=nx>compare</span> <span class=o>==</span> <span class=o>-</span><span class=mi>2</span> <span class=p>{</span>
+		<span class=k>if</span> <span class=nf>getHeight</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Left</span><span class=p>.</span><span class=nx>Left</span><span class=p>)</span> <span class=p>&gt;</span> <span class=nf>getHeight</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Left</span><span class=p>.</span><span class=nx>Right</span><span class=p>)</span> <span class=p>{</span>
+			<span class=nx>root</span> <span class=p>=</span> <span class=nf>rightRotate</span><span class=p>(</span><span class=nx>root</span><span class=p>)</span>
+		<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+			<span class=nx>root</span> <span class=p>=</span> <span class=nf>leftThenRightRotate</span><span class=p>(</span><span class=nx>root</span><span class=p>)</span>
+		<span class=p>}</span>
+	<span class=p>}</span>
+	<span class=k>return</span> <span class=nx>root</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>其中用到寻找最大值和获取高度两个工具函数，实现如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>getHeight</span><span class=p>(</span><span class=nx>root</span> <span class=o>*</span><span class=nx>TreeNode</span><span class=p>)</span> <span class=kt>int</span> <span class=p>{</span>
+	<span class=k>if</span> <span class=nx>root</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+		<span class=k>return</span> <span class=mi>0</span>
+	<span class=p>}</span>
+	<span class=k>return</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Height</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=nf>max</span><span class=p>(</span><span class=nx>a</span> <span class=kt>int</span><span class=p>,</span> <span class=nx>b</span> <span class=kt>int</span><span class=p>)</span> <span class=kt>int</span> <span class=p>{</span>
+	<span class=k>if</span> <span class=nx>a</span> <span class=p>&gt;</span> <span class=nx>b</span> <span class=p>{</span>
+		<span class=k>return</span> <span class=nx>a</span>
+	<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+		<span class=k>return</span> <span class=nx>b</span>
+	<span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>由于查找不涉及结点的增删，所以算法和实现同二叉搜索树相同。</p><h2 id=3-哈夫曼树>3. 哈夫曼树</h2><h3 id=31-定义>3.1 定义</h3><p>设二叉树有 n 个叶子结点，每个叶子结点带有权值 w<sub>k</sub>，从根结点到每个叶子结点的长度位 l<sub>k</sub>，则每个叶子结点的<strong>带权路径长度</strong>（WPL）之和为：
+$$
+WPL = \sum_{k=1}^{n} w_k l_k
+$$
+WPL 最小的二叉树就叫做哈夫曼树（或者最优二叉树）。其特点有</p><ul><li><p>没有度为1的结点</p></li><li><p>n个叶子结点的哈夫曼树共有2n-1个结点，因为对二叉树而言有$n_0=n_2+1$</p></li><li><p>哈夫曼树的任意非叶节点的左右子树交换后仍然是哈夫曼树</p></li><li><p>对同一组权值存在不同构的两棵哈夫曼树，例子如下</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=/images/%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%844-%e4%ba%8c%e5%8f%89%e6%90%9c%e7%b4%a2%e6%a0%91/3GlEwT.png alt=权值相同但不同构的哈夫曼树 title=权值相同但不同构的哈夫曼树 class=lazyload><figcaption class=image-caption>权值相同但不同构的哈夫曼树</figcaption></figure></p></li></ul><h3 id=32-构造>3.2 构造</h3><p>构造哈夫曼树的思路极为简单，即每次把权值最小的两棵二叉树合并，以{1，2，3，4，5}这组数为例，构造过程如下</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=/images/%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%844-%e4%ba%8c%e5%8f%89%e6%90%9c%e7%b4%a2%e6%a0%91/3G12VK.png alt=哈夫曼树构造过程 title=哈夫曼树构造过程 class=lazyload><figcaption class=image-caption>哈夫曼树构造过程</figcaption></figure></p><p>其构造的关键在于每次寻找剩余结点中的最小值，最简单的实现是使用堆</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>type</span> <span class=nx>TreeNode</span> <span class=kd>struct</span> <span class=p>{</span>
+    <span class=nx>Weight</span> <span class=kt>int</span>
+    <span class=nx>Left</span> <span class=o>*</span><span class=nx>TreeNode</span>
+    <span class=nx>Right</span> <span class=o>*</span><span class=nx>TreeNode</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=nf>Huffman</span><span class=p>(</span><span class=nx>H</span> <span class=nx>MinHeap</span><span class=p>)</span> <span class=p>{</span>
+    <span class=c1>//假设MinHeap类型已实现标准库中堆的相关接口，H已存好所有权值
+</span><span class=c1></span>    <span class=kd>var</span> <span class=nx>T</span> <span class=nx>TreeNode</span>
+    <span class=nx>heap</span><span class=p>.</span><span class=nf>Init</span><span class=p>(</span><span class=nx>H</span><span class=p>)</span>
+    <span class=k>for</span> <span class=nx>i</span> <span class=o>:=</span> <span class=mi>1</span><span class=p>;</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=nx>H</span><span class=p>.</span><span class=nf>Len</span><span class=p>(</span><span class=p>)</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span> <span class=p>{</span>
+        <span class=nx>T</span> <span class=p>=</span> <span class=nx>TreeNode</span><span class=p>{</span><span class=p>}</span>
+        <span class=nx>T</span><span class=p>.</span><span class=nx>Left</span> <span class=p>=</span> <span class=nx>H</span><span class=p>.</span><span class=nf>Pop</span><span class=p>(</span><span class=nx>H</span><span class=p>)</span>
+        <span class=nx>T</span><span class=p>.</span><span class=nx>Right</span> <span class=p>=</span> <span class=nx>H</span><span class=p>.</span><span class=nf>Pop</span><span class=p>(</span><span class=nx>H</span><span class=p>)</span>
+        <span class=nx>T</span><span class=p>.</span><span class=nx>Weight</span> <span class=p>=</span> <span class=nx>T</span><span class=p>.</span><span class=nx>Left</span><span class=p>.</span><span class=nx>Weight</span> <span class=o>+</span> <span class=nx>T</span><span class=p>.</span><span class=nx>Right</span><span class=p>.</span><span class=nx>Weight</span>
+        <span class=nx>H</span><span class=p>.</span><span class=nf>Push</span><span class=p>(</span><span class=nx>H</span><span class=p>,</span> <span class=nx>T</span><span class=p>)</span>
+    <span class=p>}</span>
+    <span class=nx>T</span> <span class=p>=</span> <span class=nx>H</span><span class=p>.</span><span class=nf>Pop</span><span class=p>(</span><span class=nx>H</span><span class=p>)</span>
+    <span class=k>return</span> <span class=nx>T</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h3 id=33-哈夫曼编码>3.3 哈夫曼编码</h3><p>该问题的描述为：给定一段字符串，如何堆字符进行编码，可以使得该字符串的编码存储空间最少</p><blockquote><p>例：假设有一段文本，包含58个字符，并由以下7个字符构成：a，e，i，s，t，空格(sp)，换行(nl)；这7个字符出现的次数不同，如何对这7个字符进行编码，可以使得总编码空间最少</p></blockquote><p>如果用等长ASCII编码，则一共 58×8=464 位；如果用等长3位编码，则一共 58×3=174位；最后一种方法是不等长编码，即出现频率高的字符编码短，出现频率低的字符编码长。</p><p>使用不等长编码时，为了避免二义性，可以使用前缀码（prefix code），即任何字符的编码都不是另一字符编码的前缀。将二叉树用于编码，遵循下面的规则</p><ul><li>左右分支：0，1</li><li>字符只在叶节点上</li></ul><p>假设四个字符的频率分别为：a-4, u-1, x-2, z-1，两个可用的编码树如下</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=/images/%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%844-%e4%ba%8c%e5%8f%89%e6%90%9c%e7%b4%a2%e6%a0%91/3GaWI1.png alt=编码树举例 title=编码树举例 class=lazyload><figcaption class=image-caption>编码树举例</figcaption></figure></p><table><thead><tr><th>字符</th><th>a</th><th>e</th><th>i</th><th>s</th><th>t</th><th>sp</th><th>nl</th></tr></thead><tbody><tr><td>权值</td><td>10</td><td>15</td><td>12</td><td>3</td><td>4</td><td>13</td><td>1</td></tr></tbody></table><p>按照构造哈夫曼树的方法，可以构造棵编码代价最小的二叉树，假设之前例子中的7个字符权值如上表，则可构造得到如下的哈夫曼编码树</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=/images/%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%844-%e4%ba%8c%e5%8f%89%e6%90%9c%e7%b4%a2%e6%a0%91/3GB4TH.png alt=哈夫曼编码树 title=哈夫曼编码树 class=lazyload><figcaption class=image-caption>哈夫曼编码树</figcaption></figure></p><h2 id=4-常见题型>4. 常见题型</h2><h3 id=41-验证二叉搜索树>4.1 验证二叉搜索树</h3><p>给定一个二叉树，判断其是否是一个有效的二叉搜索树。</p><p>假设一个二叉搜索树具有如下特征：</p><ul><li>节点的左子树只包含小于当前节点的数。</li><li>节点的右子树只包含大于当前节点的数。</li><li>所有左子树和右子树自身必须也是二叉搜索树。</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>isValidBST</span><span class=p>(</span><span class=nx>root</span> <span class=o>*</span><span class=nx>TreeNode</span><span class=p>)</span> <span class=kt>bool</span> <span class=p>{</span>
+    <span class=k>return</span> <span class=nf>isBST</span><span class=p>(</span><span class=nx>root</span><span class=p>,</span> <span class=nx>math</span><span class=p>.</span><span class=nx>MinInt64</span><span class=p>,</span> <span class=nx>math</span><span class=p>.</span><span class=nx>MaxInt64</span><span class=p>)</span>
+<span class=p>}</span>
+<span class=kd>func</span> <span class=nf>isBST</span><span class=p>(</span><span class=nx>root</span> <span class=o>*</span><span class=nx>TreeNode</span><span class=p>,</span> <span class=nx>left</span><span class=p>,</span> <span class=nx>right</span> <span class=kt>int</span><span class=p>)</span> <span class=kt>bool</span> <span class=p>{</span>
+    <span class=k>if</span> <span class=nx>root</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=kc>true</span>
+    <span class=p>}</span>
+    <span class=k>if</span> <span class=nx>left</span> <span class=o>&gt;=</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Val</span> <span class=o>||</span> <span class=nx>right</span> <span class=o>&lt;=</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Val</span> <span class=p>{</span>
+    	<span class=k>return</span> <span class=kc>false</span>
+    <span class=p>}</span>
+    <span class=k>return</span> <span class=nf>isBST</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Left</span><span class=p>,</span> <span class=nx>left</span><span class=p>,</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Val</span><span class=p>)</span> <span class=o>&amp;&amp;</span> <span class=nf>isBST</span><span class=p>(</span><span class=nx>root</span><span class=p>.</span><span class=nx>Right</span><span class=p>,</span> <span class=nx>root</span><span class=p>.</span><span class=nx>Val</span><span class=p>,</span> <span class=nx>right</span><span class=p>)</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h2 id=参考资料>参考资料</h2><p>[1] <a href=https://blog.csdn.net/qq_36183935/article/details/80315808 target=_blank>CSDN-Golang实现平衡二叉树</a></p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2020-07-04</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=https://shuzang.github.io/data-structure-binary-search-tree/index.md target=_blank>Read Markdown</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://shuzang.github.io/data-structure-binary-search-tree/ data-title=数据结构-二叉搜索树 data-hashtags=数据结构与算法><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://shuzang.github.io/data-structure-binary-search-tree/ data-hashtag=数据结构与算法><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Reddit" data-sharer=reddit data-url=https://shuzang.github.io/data-structure-binary-search-tree/><i class="fab fa-reddit fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span class=tag><a href=https://shuzang.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/><i class="fas fa-tag fa-fw"></i>&nbsp;数据结构与算法</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://shuzang.github.io>Home</a></span></section></div><div class=post-nav><a href=https://shuzang.github.io/data-structure-tree-and-binary-tree/ class=prev rel=prev title=数据结构-二叉树><i class="fas fa-angle-left fa-fw"></i>数据结构-二叉树</a>
+<a href=https://shuzang.github.io/%E9%9B%95%E5%88%80/ class=next rel=next title=雕刀>雕刀<i class="fas fa-angle-right fa-fw"></i></a></div></div><div class=comment><div id=disqus_thread></div><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><div id=valine></div><script>document.addEventListener("DOMContentLoaded",function(event){new Valine({el:'#valine',appId:'GteMvevTjOBmhvFh2QGsopGO-gzGzoHsz',appKey:'fL4SYl06GIe012PswFdY17VC',placeholder:'Your comment ...',verify:true,avatar:'hide',pageSize:10,lang:'en',visitor:true,recordIP:true,});});</script><noscript>Please enable JavaScript to view the <a href=https://valine.js.org/>comments powered by Valine.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a></div><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://shuzang.github.io/about/ target=_blank>shuzang</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><a href=# class="dynamic-to-top animated faster" id=dynamic-to-top><span>&nbsp;</span>
+</a><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true},{left:"$",right:"$",display:false},]});});</script><link href=https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css rel=stylesheet><link href=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.css rel=stylesheet><link rel=stylesheet href=/css/lib/valine/dark.css><script src=https://dillonzq.disqus.com/embed.js></script><script src=https://cdn.bootcss.com/smooth-scroll/16.1.0/smooth-scroll.js></script><script src=https://cdn.bootcss.com/lazysizes/5.1.2/lazysizes.min.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/auto-render.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/mhchem.js></script><script src=/js/lib/valine/Valine.min.js></script><script src=/js/lib/sharer/sharer.min.js></script><script src=/js/theme.min.js></script></body></html>
