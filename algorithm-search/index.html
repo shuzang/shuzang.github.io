@@ -1,11 +1,11 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>算法-搜索 | Shuzang's Blog</title><meta name=Description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><meta property="og:title" content="算法-搜索"><meta property="og:description" content="搜索是最常用的算法之一，但线性的搜索进行介绍没有太大的意义，本文介绍搜索中一种广为使用的方法：二分查找。"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.github.io/algorithm-search/"><meta property="article:published_time" content="2020-03-29T00:00:00+00:00"><meta property="article:modified_time" content="2020-07-05T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="算法-搜索"><meta name=twitter:description content="搜索是最常用的算法之一，但线性的搜索进行介绍没有太大的意义，本文介绍搜索中一种广为使用的方法：二分查找。"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel=canonical href=https://shuzang.github.io/algorithm-search/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=prev href=https://shuzang.github.io/algorithm-stings/><link rel=next href=https://shuzang.github.io/algorithm-sort/><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/css/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"算法-搜索","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/algorithm-search\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"数据结构与算法","wordcount":1225,"url":"https:\/\/shuzang.github.io\/algorithm-search\/","datePublished":"2020-03-29T00:00:00\x2b00:00","dateModified":"2020-07-05T00:00:00\x2b00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"shuzang","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/logo.png","width":127,"height":40}},"description":""}</script></head><body><script>if(!window.localStorage||!window.localStorage.getItem('theme')){window.isDark=window.matchMedia('(prefers-color-scheme: dark)').matches;}else{window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';}
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>算法-搜索 | Shuzang's Blog</title><meta name=Description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><meta property="og:title" content="算法-搜索"><meta property="og:description" content="搜索是最常用的算法之一，但线性的搜索进行介绍没有太大的意义，本文介绍搜索中一种广为使用的方法：二分查找。"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.github.io/algorithm-search/"><meta property="article:published_time" content="2020-03-29T00:00:00+00:00"><meta property="article:modified_time" content="2020-07-05T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="算法-搜索"><meta name=twitter:description content="搜索是最常用的算法之一，但线性的搜索进行介绍没有太大的意义，本文介绍搜索中一种广为使用的方法：二分查找。"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel=canonical href=https://shuzang.github.io/algorithm-search/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=prev href=https://shuzang.github.io/algorithm-stings/><link rel=next href=https://shuzang.github.io/algorithm-sort/><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/css/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"算法-搜索","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/algorithm-search\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"数据结构与算法","wordcount":1633,"url":"https:\/\/shuzang.github.io\/algorithm-search\/","datePublished":"2020-03-29T00:00:00\x2b00:00","dateModified":"2020-07-05T00:00:00\x2b00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"shuzang","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/logo.png","width":127,"height":40}},"description":""}</script></head><body><script>if(!window.localStorage||!window.localStorage.getItem('theme')){window.isDark=window.matchMedia('(prefers-color-scheme: dark)').matches;}else{window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';}
 window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class="header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch title="Switch Theme">
 <i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a></div></div></header><header class=mobile id=header-mobile><div class=header-wrapper><div class=header-container><div class="header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch title="Switch Theme">
 <i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a></div></div></header><script>window.desktopHeaderMode="fixed";window.mobileHeaderMode="auto";</script><main class=main><div class=container><article class="page single"><h1 class="single-title animated flipInX">算法-搜索</h1><div class=meta><div class=meta-line><a class=author href=https://shuzang.github.io/about/ rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>shuzang
 </a>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i><a href=https://shuzang.github.io/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/>爱编程爱技术的孩子</a>&nbsp;</span></div><div class=meta-line><i class="far fa-calendar-alt fa-fw"></i><time datetime=2020-03-29>2020-03-29</time>&nbsp;
-<i class="fas fa-pencil-alt fa-fw"></i>about 1225 words&nbsp;
-<i class="far fa-clock fa-fw"></i>3 min&nbsp;</div></div><aside class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#1-典型示例>1. 典型示例</a></li><li><a href=#2-模板>2. 模板</a><ul><li><a href=#21-模板1>2.1 模板1</a></li><li><a href=#22-模板2>2.2 模板2</a></li><li><a href=#23-模板3>2.3 模板3</a></li></ul></li><li><a href=#3-总结>3. 总结</a></li></ul></nav></div></aside><aside class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
-<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><a href=#1-典型示例>1. 典型示例</a></li><li><a href=#2-模板>2. 模板</a><ul><li><a href=#21-模板1>2.1 模板1</a></li><li><a href=#22-模板2>2.2 模板2</a></li><li><a href=#23-模板3>2.3 模板3</a></li></ul></li><li><a href=#3-总结>3. 总结</a></li></ul></nav></div></details></aside><div class=content><p>搜索是最常用的算法之一，但线性的搜索进行介绍没有太大的意义，本文介绍搜索中一种广为使用的方法：二分查找。</p><h2 id=1-典型示例>1. 典型示例</h2><p>标准的二分查找问题描述为：给定一个 <code>n</code> 个元素有序的（升序）整型数组 <code>nums</code> 和一个目标值 <code>target</code> ，写一个函数搜索 <code>nums</code> 中的 <code>target</code>，如果目标值存在返回下标，否则返回 <code>-1</code>。二分查找程序如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+<i class="fas fa-pencil-alt fa-fw"></i>about 1633 words&nbsp;
+<i class="far fa-clock fa-fw"></i>4 min&nbsp;</div></div><aside class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#1-原始问题>1. 原始问题</a></li><li><a href=#2-进阶>2. 进阶</a></li><li><a href=#3-总结>3. 总结</a></li></ul></nav></div></aside><aside class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
+<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><a href=#1-原始问题>1. 原始问题</a></li><li><a href=#2-进阶>2. 进阶</a></li><li><a href=#3-总结>3. 总结</a></li></ul></nav></div></details></aside><div class=content><p>搜索是最常用的算法之一，但线性的搜索进行介绍没有太大的意义，本文介绍搜索中一种广为使用的方法：二分查找。</p><h2 id=1-原始问题>1. 原始问题</h2><p>标准的二分查找问题描述为：给定一个 <code>n</code> 个元素有序的（升序）整型数组 <code>nums</code> 和一个目标值 <code>target</code> ，写一个函数搜索 <code>nums</code> 中的 <code>target</code>，如果目标值存在返回下标，否则返回 <code>-1</code>。二分查找程序如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -41,7 +41,61 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
     <span class=p>}</span>
     <span class=k>return</span> <span class=o>-</span><span class=mi>1</span>
 <span class=p>}</span>
-</code></pre></td></tr></table></div></div><p>可以看出，二分查找是一种在每次比较后将查找空间一分为二的算法，每次需要查找集合中的索引或元素时，都应考虑二分查找。二分查找的前提条件是集合有序，因此在无序情况下需要先对集合进行排序。一个二分查找过程总结如下</p><ol><li>预处理：如果集合无序，进行排序</li><li>二分查找：使用循环或递归在每次比较后将查找空间划分为两半</li><li>后处理：在剩余空间中确定可行的候选者</li></ol><h2 id=2-模板>2. 模板</h2><p>尽管二分查找的思路基本一致，但在细节处理上还是存在一些不同，用以适应不同的情况， Leetcode 探索专题给出了三个模板，这里介绍如下。</p><h3 id=21-模板1>2.1 模板1</h3><p>模板1是二分查找的标准形式，用来查找可以通过访问数组中单个索引来确定的元素。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table></div></div><p>可以看出，二分查找是一种在每次比较后将查找空间一分为二的算法，每次需要查找集合中的索引或元素时，都应考虑二分查找。二分查找的前提条件是集合有序，因此在无序情况下需要先对集合进行排序。一个二分查找过程总结如下</p><ol><li>预处理：如果集合无序，进行排序</li><li>二分查找：使用循环或递归在每次比较后将查找空间划分为两半</li><li>后处理：在剩余空间中确定可行的候选者</li></ol><h2 id=2-进阶>2. 进阶</h2><p>进阶的二分查找问题一般与当前元素的左右邻居有关。</p><p>我们以「第一个错误的版本」题目为例，解释这种情况，题目描述如下</p><blockquote><p>你是产品经理，目前正在带领一个团队开发新的产品。不幸的是，你的产品的最新版本没有通过质量检测。由于每个版本都是基于之前的版本开发的，所以错误的版本之后的所有版本都是错的。</p><p>假设你有 <code>n</code> 个版本 <code>[1, 2, ..., n]</code>，你想找出导致之后所有版本出错的第一个错误的版本。</p><p>你可以通过调用 <code>bool isBadVersion(version)</code> 接口来判断版本号 <code>version</code> 是否在单元测试中出错。实现一个函数来查找第一个错误的版本。你应该尽量减少对调用 API 的次数。</p></blockquote><p><strong>示例:</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>给定 n = 5，并且 version = 4 是第一个错误的版本。
+
+调用 isBadVersion(3) -&gt; false
+调用 isBadVersion(5) -&gt; true
+调用 isBadVersion(4) -&gt; true
+
+所以，4 是第一个错误的版本。 
+</code></pre></td></tr></table></div></div><p>线性扫描的思路很简单，但时间复杂度是 $O(n)$，二分查找是一种自然而然想到的办法，但实际的编程过程可能有一些问题。</p><p>我们将二分过程分为两个场景。场景一中，isBadVersion(mid) 返回 false，说明 mid 左侧（包括自身）所有版本都是正确的，因此令 left = mid + 1</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>场景一：isBadVersion(mid) =&gt; false
+
+ 1 2 3 4 5 6 7 8 9
+ G G G G G G B B B       G = 正确版本，B = 错误版本
+ |       |       |
+left    mid    right
+</code></pre></td></tr></table></div></div><p>场景二中，<code>isBadVersion(mid)</code> 返回 true，说明 mid 右侧版本都不是第一个错误的版本，但不确定 mid 自身是不是第一个错误的版本，因此令 right = mid</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>场景二：isBadVersion(mid) =&gt; true
+
+ 1 2 3 4 5 6 7 8 9
+ G G G B B B B B B       G = 正确版本，B = 错误版本
+ |       |       |
+left    mid    right
+</code></pre></td></tr></table></div></div><p>初始的条件设定是 left = 1, right = n，然后我们来讨论 for 循环结束条件的设定。</p><p>首先我们知道，由于 left 和 right 不断接近，最后一定能到达 left + 1 = right 的情况，由于 right 指向的一定是 false，所以可能有两种情况</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>情况一：
+ G      B            G      B
+ |      |      —&gt;           |
+left  right             left,right
+情况二：
+ B      B            B      B
+ |      |      —&gt;    |
+left  right      left,right
+</code></pre></td></tr></table></div></div><p>此时 mid = (left + right)/2，由数学知识我们知道 mid == left，如果是情况一，left = mid + 1，也就是会等于 right，如果是情况二，right = mid，也就是会等于left。其实此时我们已经可以确定第一个错误版本，两种情况下，错误版本都是 left 或 right 指向的值，所以在 left == right 的时候就可以跳出循环了。最终的程序如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -54,167 +108,25 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 </span><span class=lnt>11
 </span><span class=lnt>12
 </span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>binarySearch</span><span class=p>(</span><span class=nx>nums</span> <span class=p>[</span><span class=p>]</span><span class=kt>int</span><span class=p>,</span> <span class=nx>target</span> <span class=kt>int</span><span class=p>)</span> <span class=kt>int</span> <span class=p>{</span>
-    <span class=k>if</span> <span class=nb>len</span><span class=p>(</span><span class=nx>nums</span><span class=p>)</span> <span class=o>==</span> <span class=mi>0</span> <span class=p>{</span>
-        <span class=k>return</span> <span class=o>-</span><span class=mi>1</span>
-    <span class=p>}</span>
-    <span class=nx>left</span><span class=p>,</span><span class=nx>right</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>,</span><span class=nb>len</span><span class=p>(</span><span class=nx>nums</span><span class=p>)</span><span class=o>-</span><span class=mi>1</span>
-    <span class=k>for</span> <span class=nx>left</span> <span class=o>&lt;=</span> <span class=nx>right</span> <span class=p>{</span>
-        <span class=nx>mid</span> <span class=o>:=</span> <span class=p>(</span><span class=nx>left</span> <span class=o>+</span> <span class=nx>right</span><span class=p>)</span><span class=o>/</span><span class=mi>2</span>
-        <span class=k>if</span> <span class=nx>nums</span><span class=p>[</span><span class=nx>mid</span><span class=p>]</span> <span class=o>==</span> <span class=nx>target</span> <span class=p>{</span>
-            <span class=k>return</span> <span class=nx>mid</span>
-        <span class=p>}</span><span class=k>else</span> <span class=k>if</span> <span class=nx>nums</span><span class=p>[</span><span class=nx>mid</span><span class=p>]</span> <span class=p>&lt;</span> <span class=nx>target</span> <span class=p>{</span>
-            <span class=nx>left</span> <span class=p>=</span> <span class=nx>mid</span> <span class=o>+</span> <span class=mi>1</span>
-        <span class=p>}</span><span class=k>else</span> <span class=p>{</span>
-            <span class=nx>right</span> <span class=p>=</span> <span class=nx>mid</span> <span class=o>-</span> <span class=mi>1</span>
-        <span class=p>}</span>
-    <span class=p>}</span>
-    <span class=k>return</span> <span class=o>-</span><span class=mi>1</span>
-<span class=p>}</span>
-</code></pre></td></tr></table></div></div><p>求 x 的平方根可以使用该思路编写程序</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>mySqrt</span><span class=p>(</span><span class=nx>x</span> <span class=kt>int</span><span class=p>)</span> <span class=kt>int</span> <span class=p>{</span>
-    <span class=nx>l</span><span class=p>,</span><span class=nx>r</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>,</span><span class=nx>x</span>
-    <span class=nx>res</span> <span class=o>:=</span> <span class=o>-</span><span class=mi>1</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>firstBadVersion</span><span class=p>(</span><span class=nx>n</span> <span class=kt>int</span><span class=p>)</span> <span class=kt>int</span> <span class=p>{</span>
+    <span class=nx>left</span><span class=p>,</span><span class=nx>right</span> <span class=o>:=</span> <span class=mi>1</span><span class=p>,</span><span class=nx>n</span>
     
-    <span class=k>for</span> <span class=nx>l</span> <span class=o>&lt;=</span> <span class=nx>r</span> <span class=p>{</span>
-        <span class=nx>mid</span> <span class=o>:=</span> <span class=p>(</span><span class=nx>l</span> <span class=o>+</span> <span class=nx>r</span><span class=p>)</span> <span class=o>/</span> <span class=mi>2</span>
-        <span class=k>if</span> <span class=nx>mid</span> <span class=o>*</span> <span class=nx>mid</span> <span class=o>&lt;=</span> <span class=nx>x</span> <span class=p>{</span>
-            <span class=nx>res</span> <span class=p>=</span> <span class=nx>mid</span>
-            <span class=nx>l</span> <span class=p>=</span> <span class=nx>mid</span> <span class=o>+</span> <span class=mi>1</span>
-        <span class=p>}</span><span class=k>else</span><span class=p>{</span>
-            <span class=nx>r</span> <span class=p>=</span> <span class=nx>mid</span> <span class=o>-</span> <span class=mi>1</span>
-        <span class=p>}</span>
-    <span class=p>}</span>
-    <span class=k>return</span> <span class=nx>res</span>
-<span class=p>}</span>
-</code></pre></td></tr></table></div></div><h3 id=22-模板2>2.2 模板2</h3><p>模板2是一种改进的写法，用于查找过程与当前元素的左邻居或右邻居有关的情况</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>binarySearch</span><span class=p>(</span><span class=nx>nums</span> <span class=p>[</span><span class=p>]</span><span class=kt>int</span><span class=p>,</span> <span class=nx>target</span> <span class=kt>int</span><span class=p>)</span> <span class=kt>int</span> <span class=p>{</span>
-    <span class=k>if</span> <span class=nb>len</span><span class=p>(</span><span class=nx>nums</span><span class=p>)</span> <span class=o>==</span> <span class=mi>0</span> <span class=p>{</span>
-        <span class=k>return</span> <span class=o>-</span><span class=mi>1</span>
-    <span class=p>}</span>
-    <span class=nx>left</span><span class=p>,</span><span class=nx>right</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>,</span><span class=nb>len</span><span class=p>(</span><span class=nx>nums</span><span class=p>)</span>
     <span class=k>for</span> <span class=nx>left</span> <span class=p>&lt;</span> <span class=nx>right</span> <span class=p>{</span>
-        <span class=nx>mid</span> <span class=o>:=</span> <span class=p>(</span><span class=nx>left</span> <span class=o>+</span> <span class=nx>right</span><span class=p>)</span><span class=o>/</span><span class=mi>2</span>
-        <span class=k>if</span> <span class=nx>nums</span><span class=p>[</span><span class=nx>mid</span><span class=p>]</span> <span class=o>==</span> <span class=nx>target</span> <span class=p>{</span>
-            <span class=k>return</span> <span class=nx>mid</span>
-        <span class=p>}</span><span class=k>else</span> <span class=k>if</span> <span class=nx>nums</span><span class=p>[</span><span class=nx>mid</span><span class=p>]</span> <span class=p>&lt;</span> <span class=nx>target</span> <span class=p>{</span>
-            <span class=nx>left</span> <span class=p>=</span> <span class=nx>mid</span> <span class=o>+</span> <span class=mi>1</span>
-        <span class=p>}</span><span class=k>else</span> <span class=p>{</span>
-            <span class=nx>right</span> <span class=p>=</span> <span class=nx>mid</span> <span class=o>-</span> <span class=mi>1</span>
-        <span class=p>}</span>
-    <span class=p>}</span>
-    <span class=k>if</span> <span class=nx>left</span> <span class=o>!=</span> <span class=nb>len</span><span class=p>(</span><span class=nx>nums</span><span class=p>)</span> <span class=o>&amp;&amp;</span> <span class=nx>nums</span><span class=p>[</span><span class=nx>left</span><span class=p>]</span> <span class=o>==</span> <span class=nx>target</span> <span class=p>{</span>
-        <span class=k>return</span> <span class=nx>left</span>
-    <span class=p>}</span>
-    <span class=k>return</span> <span class=o>-</span><span class=mi>1</span>
-<span class=p>}</span>
-</code></pre></td></tr></table></div></div><p>峰值元素是指其值大于左右相邻值的元素，给定一个输入数组 <code>nums</code>，其中 <code>nums[i] ≠ nums[i+1]</code>，找到峰值元素并返回其索引。数组可能包含多个峰值，在这种情况下，返回任何一个峰值所在位置即可。你可以假设 <code>nums[-1] = nums[n] = -∞</code>。该题可以使用模板2解决</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>findPeakElement</span><span class=p>(</span><span class=nx>nums</span> <span class=p>[</span><span class=p>]</span><span class=kt>int</span><span class=p>)</span> <span class=kt>int</span> <span class=p>{</span>
-    <span class=nx>left</span><span class=p>,</span><span class=nx>right</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>,</span><span class=nb>len</span><span class=p>(</span><span class=nx>nums</span><span class=p>)</span>
-    <span class=k>for</span> <span class=nx>left</span> <span class=p>&lt;</span> <span class=nx>right</span> <span class=p>{</span>
-        <span class=nx>mid</span> <span class=o>:=</span> <span class=p>(</span><span class=nx>l</span><span class=o>+</span><span class=nx>r</span><span class=p>)</span><span class=o>/</span><span class=mi>2</span>
-        <span class=k>if</span> <span class=nx>nums</span><span class=p>[</span><span class=nx>mid</span><span class=p>]</span> <span class=p>&lt;</span> <span class=nx>nums</span><span class=p>[</span><span class=nx>mid</span><span class=o>+</span><span class=mi>1</span><span class=p>]</span> <span class=p>{</span>
-            <span class=nx>left</span> <span class=p>=</span> <span class=nx>mid</span> <span class=o>+</span> <span class=mi>1</span>
-        <span class=p>}</span><span class=k>else</span> <span class=p>{</span>
-            <span class=nx>right</span> <span class=p>=</span> <span class=nx>mid</span> <span class=o>-</span> <span class=mi>1</span>
-        <span class=p>}</span>
-    <span class=p>}</span>
-    <span class=k>return</span> <span class=o>-</span><span class=mi>1</span>
-<span class=p>}</span>
-</code></pre></td></tr></table></div></div><h3 id=23-模板3>2.3 模板3</h3><p>模板3是另一种高级写法，用于查找过程和当前元素的左右邻居都有关的情况。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span><span class=lnt>23
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>binarySearch</span><span class=p>(</span><span class=nx>nums</span> <span class=p>[</span><span class=p>]</span><span class=kt>int</span><span class=p>,</span> <span class=nx>target</span> <span class=kt>int</span><span class=p>)</span> <span class=kt>int</span> <span class=p>{</span>
-    <span class=k>if</span> <span class=nb>len</span><span class=p>(</span><span class=nx>nums</span><span class=p>)</span> <span class=o>==</span> <span class=mi>0</span> <span class=p>{</span>
-        <span class=k>return</span> <span class=o>-</span><span class=mi>1</span>
-    <span class=p>}</span>
-    <span class=nx>left</span><span class=p>,</span><span class=nx>right</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>,</span><span class=nb>len</span><span class=p>(</span><span class=nx>nums</span><span class=p>)</span><span class=o>-</span><span class=mi>1</span>
-    <span class=k>for</span> <span class=nx>left</span><span class=o>+</span><span class=mi>1</span> <span class=p>&lt;</span> <span class=nx>right</span> <span class=p>{</span>
-        <span class=nx>mid</span> <span class=o>:=</span> <span class=p>(</span><span class=nx>left</span> <span class=o>+</span> <span class=nx>right</span><span class=p>)</span><span class=o>/</span><span class=mi>2</span>
-        <span class=k>if</span> <span class=nx>nums</span><span class=p>[</span><span class=nx>mid</span><span class=p>]</span> <span class=o>==</span> <span class=nx>target</span> <span class=p>{</span>
-            <span class=k>return</span> <span class=nx>mid</span>
-        <span class=p>}</span><span class=k>else</span> <span class=k>if</span> <span class=nx>nums</span><span class=p>[</span><span class=nx>mid</span><span class=p>]</span> <span class=p>&lt;</span> <span class=nx>target</span> <span class=p>{</span>
-            <span class=nx>left</span> <span class=p>=</span> <span class=nx>mid</span>
-        <span class=p>}</span><span class=k>else</span> <span class=p>{</span>
+        <span class=nx>mid</span> <span class=o>:=</span> <span class=p>(</span><span class=nx>left</span> <span class=o>+</span> <span class=nx>right</span><span class=p>)</span> <span class=o>/</span> <span class=mi>2</span>
+        <span class=k>if</span> <span class=nf>isBadVersion</span><span class=p>(</span><span class=nx>mid</span><span class=p>)</span> <span class=p>{</span>
             <span class=nx>right</span> <span class=p>=</span> <span class=nx>mid</span>
+        <span class=p>}</span><span class=k>else</span><span class=p>{</span>
+            <span class=nx>left</span> <span class=p>=</span> <span class=nx>mid</span> <span class=o>+</span> <span class=mi>1</span>
         <span class=p>}</span>
     <span class=p>}</span>
-    <span class=k>if</span> <span class=nx>nums</span><span class=p>[</span><span class=nx>left</span><span class=p>]</span> <span class=o>==</span> <span class=nx>target</span> <span class=p>{</span>
-        <span class=k>return</span> <span class=nx>left</span>
-    <span class=p>}</span>
-    <span class=k>if</span> <span class=nx>nums</span><span class=p>[</span><span class=nx>right</span><span class=p>]</span> <span class=o>==</span> <span class=nx>target</span> <span class=p>{</span>
-        <span class=k>return</span> <span class=nx>right</span>
-    <span class=p>}</span>
-    <span class=k>return</span> <span class=o>-</span><span class=mi>1</span>
+    <span class=k>return</span> <span class=nx>left</span>
 <span class=p>}</span>
-</code></pre></td></tr></table></div></div><h2 id=3-总结>3. 总结</h2><p>三个模板的核心区别之处在于 mid 究竟是 +1 还是 -1，for 循环究竟是 &lt; 还是 &lt;=，正所谓二分查找<strong>思路很简单，细节是魔鬼</strong>。要仔细地区分，还是要在练习中不断体会。</p><p>因为二分查找是不断折半的，其实就相当于对一棵二叉树的查找，其时间复杂度为 $O(logn)$</p><p>同时，二分查找除了维持前后索引和中间索引三个值，不需要其它空间，因此空间复杂度为 $O(1)$</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2020-07-05</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=https://shuzang.github.io/algorithm-search/index.md target=_blank>Read Markdown</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://shuzang.github.io/algorithm-search/ data-title=算法-搜索 data-hashtags=数据结构与算法><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://shuzang.github.io/algorithm-search/ data-hashtag=数据结构与算法><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Reddit" data-sharer=reddit data-url=https://shuzang.github.io/algorithm-search/><i class="fab fa-reddit fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span class=tag><a href=https://shuzang.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/><i class="fas fa-tag fa-fw"></i>&nbsp;数据结构与算法</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://shuzang.github.io>Home</a></span></section></div><div class=post-nav><a href=https://shuzang.github.io/algorithm-stings/ class=prev rel=prev title=算法-字符串类问题><i class="fas fa-angle-left fa-fw"></i>算法-字符串类问题</a>
+</code></pre></td></tr></table></div></div><p>那么，如果循环条件是 left &lt;= right 会发生什么呢，此时恒定为以下情况，循环体内 right = mid，并没有变，所以就陷入了无限循环。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>       B
+       |
+ left,mid,right
+</code></pre></td></tr></table></div></div><p>所以遇到 mid 和 左右邻居相关的情况时，采用上面这种思路来进行分析。</p><p>还有一些其它的情况，我们通常需要在查找完成后进行一些后处理。</p><h2 id=3-总结>3. 总结</h2><p>正所谓二分查找<strong>思路很简单，细节是魔鬼</strong>，大多数区别之处在于 mid 究竟是 +1 还是 -1，for 循环究竟是 &lt; 还是 &lt;=，要仔细地区分，还是要在练习中不断体会。</p><p>因为二分查找是不断折半的，其实就相当于对一棵二叉树的查找，其时间复杂度为 $O(logn)$</p><p>同时，二分查找除了维持前后索引和中间索引三个值，不需要其它空间，因此空间复杂度为 $O(1)$</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2020-07-05</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=https://shuzang.github.io/algorithm-search/index.md target=_blank>Read Markdown</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://shuzang.github.io/algorithm-search/ data-title=算法-搜索 data-hashtags=数据结构与算法><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://shuzang.github.io/algorithm-search/ data-hashtag=数据结构与算法><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Reddit" data-sharer=reddit data-url=https://shuzang.github.io/algorithm-search/><i class="fab fa-reddit fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span class=tag><a href=https://shuzang.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/><i class="fas fa-tag fa-fw"></i>&nbsp;数据结构与算法</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://shuzang.github.io>Home</a></span></section></div><div class=post-nav><a href=https://shuzang.github.io/algorithm-stings/ class=prev rel=prev title=算法-字符串类问题><i class="fas fa-angle-left fa-fw"></i>算法-字符串类问题</a>
 <a href=https://shuzang.github.io/algorithm-sort/ class=next rel=next title=算法-排序>算法-排序<i class="fas fa-angle-right fa-fw"></i></a></div></div><div class=comment><div id=disqus_thread></div><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><div id=valine></div><script>document.addEventListener("DOMContentLoaded",function(event){new Valine({el:'#valine',appId:'GteMvevTjOBmhvFh2QGsopGO-gzGzoHsz',appKey:'fL4SYl06GIe012PswFdY17VC',placeholder:'Your comment ...',verify:true,avatar:'hide',pageSize:10,lang:'en',visitor:true,recordIP:true,});});</script><noscript>Please enable JavaScript to view the <a href=https://valine.js.org/>comments powered by Valine.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a></div><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://shuzang.github.io/about/ target=_blank>shuzang</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><a href=# class="dynamic-to-top animated faster" id=dynamic-to-top><span>&nbsp;</span>
 </a><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true},{left:"$",right:"$",display:false},]});});</script><link href=https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css rel=stylesheet><link href=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.css rel=stylesheet><link rel=stylesheet href=/css/lib/valine/dark.css><script src=https://dillonzq.disqus.com/embed.js></script><script src=https://cdn.bootcss.com/smooth-scroll/16.1.0/smooth-scroll.js></script><script src=https://cdn.bootcss.com/lazysizes/5.1.2/lazysizes.min.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/auto-render.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/mhchem.js></script><script src=/js/lib/valine/Valine.min.js></script><script src=/js/lib/sharer/sharer.min.js></script><script src=/js/theme.min.js></script></body></html>
