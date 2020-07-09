@@ -9,7 +9,7 @@
 
 ## 1. 什么是堆
 
-堆是一棵树，其每个节点都有一个键值，且每个节点的键值都大于等于/小于等于其父亲的键值。每个节点的键值都大于等于其父亲键值的堆叫做小顶堆，否则叫做大顶堆。
+堆是一棵树，其中每个节点的值都大于等于/小于等于其父亲节点的值。每个节点的值都大于等于其父亲节点值的堆叫做小顶堆，否则叫做大顶堆。
 
 习惯上，不加限定提到「堆」时往往指二叉堆。二叉堆是一棵用数组表示的完全二叉树，它满足堆的性质：
 
@@ -25,6 +25,7 @@
 1. 结点顺序。在二叉搜索树中，左子节点必须比父节点小，右子节点必须比父节点大，但最大堆中两个子节点都必须比父节点小，最小堆中则都必须比父节点大。
 2. 平衡：二叉搜索树必须在平衡状态下，大部分操作复杂度才能达到O(log n)，而堆一定是平衡的，它的组织方式保证了它的复杂度。
 3. 搜索：二叉树搜索很快，堆则不一定，因为堆的主要任务不是搜索，而是及时获取最大或最小结点。
+4. 二叉搜索树必须是严格的大小关系，堆可以有等于。
 
 ## 2. 堆的基本操作
 
@@ -34,14 +35,14 @@
 var heap = make([]int, 1)
 ```
 
-下面的例子均以最大堆为例
+**下面的例子均以最大堆为例**
 
 ### 2.1 堆的插入
 
 插入操作是指向二插堆中插入一个元素，其基本流程如下
 
 1. 将插入的元素放在数组的最后一个元素
-2. 如果新插入的结点的权值大于它父亲的权值，就与之交换，重复此过程直到不满足或者到根。这一过程叫做**向上调整**
+2. 如果新插入的结点的值大于它父亲节点的值，就与之交换，重复此过程直到不满足或者到根。这一过程叫做**向上调整**
 
 一个例子如下
 
@@ -52,10 +53,14 @@ var heap = make([]int, 1)
 ```go
 func Insert(heap []int], key int) {
     heap = append(heap, key)
-    i = len(heap)-1
-    for i > 1 && heap[i] > heap[i/2] {
-        heap[i], heap[i/2] = heap[i/2], heap[i]
-        i /= 2
+    j = len(heap)-1
+    for {
+        i := (j-1)/2
+        if i < 0 || heap[i] >= heap[j] {
+            break
+        }
+        heap[i],heap[j] = heap[j],heap[i]
+        j = i
     }
 }
 ```
@@ -77,11 +82,11 @@ func Insert(heap []int], key int) {
 ```go
 func Delete(heap []int) int {
     var parent, child int
-    Max,t := heap[1],len(heap)-1
-    heap[1], heap[t] = heap[t], heap[1]
+    Max,t := heap[0],len(heap)-1
+    heap[0], heap[t] = heap[t], heap[0]
     heap = heap[:t]
-    for parent = 1; parent * 2 < len(heap); parent = child {
-        child = parent * 2
+    for parent = 0; parent*2 +1 < len(heap); parent = child {
+        child = parent * 2 + 1
         if child + 1 < len(heap) && heap[child+1] > heap[child] {
             child++
         }
@@ -110,9 +115,9 @@ func Delete(heap []int) int {
 ```go
 //假设传入的数组已经按顺序填好元素
 func build(heap []int) {
-    for i := (len(heap)-1)/2; i >= 1; i-- {
-        for parent = i; parent * 2 < len(heap); parent = child {
-           child = parent * 2
+    for i := (len(heap)-2)/2; i >= 1; i-- {
+        for parent = i; parent * 2 + 1< len(heap); parent = child {
+           child = parent * 2 + 1
            if child + 1 < len(heap) && heap[child+1] > heap[child] {
                child++
            }
@@ -122,6 +127,213 @@ func build(heap []int) {
            heap[child], heap[parent] = heap[parent], heap[child]        
        }        
     } 
+}
+```
+
+## 3. 实现优化
+
+实际上我们注意到，关于堆的操作，最重要的有两个，一个是向上调整，用于插入，一个是向下调整，用于删除和建立堆。我们将这两个操作提取出来
+
+```go
+// 向上调整
+func up(heap []int, j int) {
+    for {
+        i := (j-1) / 2
+        if i < 0 || heap[i] >= heap[j] {
+            break
+        }
+        heap[i],heap[j] = heap[j],heap[i]
+        j = i
+    }
+}
+
+// 向下调整
+func down(heap []int, i0, n int) {
+    i := i0
+    for parent := i; parent * 2 + 1 < n; parent = child {
+        child = parent * 2 + 1
+        if child + 1 < n && heap[child+1] > heap[child] {
+            child++
+        }
+        if heap[child] <= heap[parent] {
+            break
+        }
+        heap[child],heap[parent] = heap[parent],heap[child]
+    }
+}
+```
+
+这样，插入、删除和建堆函数可以简化为
+
+```go
+// 插入
+func Insert(heap []int], key int) {
+    heap = append(heap, key)
+    up(heap,len(heap)-1)
+}
+
+// 删除
+func Delete(heap []int) int {
+    Max,:= heap[0]
+    heap[0]= heap[len(heap)-1]
+    heap = heap[:len(heap)-1]
+    down(heap, 0, len(heap)) 
+    return Max
+}
+
+// 建堆
+func build(heap []int) {
+    for i := (len(heap)-2)/2; i >= 1; i-- {
+        down(heap,i,len(heap))       
+    } 
+}
+```
+
+Go 的标准库也提供了堆的相关实现，位于 container/heap 包中，该包提供了对任意类型（实现了heap.Interface接口）的堆操作。
+
+heap 包默认使用最小堆，但在正式应用前需实现如下接口
+
+```go
+type Interface interface {
+    sort.Interface
+    Push(x interface{}) // 向末尾添加元素
+    Pop() interface{}   // 从末尾删除元素
+}
+```
+
+该接口的示例实现如下
+
+```go
+// An IntHeap is a min-heap of ints.
+type IntHeap []int
+func (h IntHeap) Len() int           { return len(h) }
+func (h IntHeap) Less(i, j int) bool { return h[i] < h[j] }
+func (h IntHeap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
+func (h *IntHeap) Push(x interface{}) {
+    // Push and Pop use pointer receivers because they modify the slice's length,
+    // not just its contents.
+    *h = append(*h, x.(int))
+}
+func (h *IntHeap) Pop() interface{} {
+    old := *h
+    n := len(old)
+    x := old[n-1]
+    *h = old[0 : n-1]
+    return x
+}
+```
+
+实现了该接口后，就可以利用 Init 函数初始化一个堆，利用 Push 插入和利用 Pop 删除。相关的函数原型如下
+
+```go
+func Init(h Interface)
+func Push(h Interface, x interface{})
+func Pop(h Interface) interface{}
+```
+
+使用这些方法的一个示例如下
+
+```go
+// This example inserts several ints into an IntHeap, checks the minimum,
+// and removes them in order of priority.
+func Example_intHeap() {
+    h := &IntHeap{2, 1, 5}
+    heap.Init(h)
+    heap.Push(h, 3)
+    fmt.Printf("minimum: %d\n", (*h)[0])
+    for h.Len() > 0 {
+        fmt.Printf("%d ", heap.Pop(h))
+    }
+    // Output:
+    // minimum: 1
+    // 1 2 3 5
+}
+```
+
+## 4. 优先队列
+
+如我们开头所说，堆用来实现优先队列，下面给出一个利用标准库实现优先队列的例子
+
+```go
+// This example demonstrates a priority queue built using the heap interface.
+package heap_test
+import (
+    "container/heap"
+    "fmt"
+)
+// An Item is something we manage in a priority queue.
+type Item struct {
+    value    string // The value of the item; arbitrary.
+    priority int    // The priority of the item in the queue.
+    // The index is needed by update and is maintained by the heap.Interface methods.
+    index int // The index of the item in the heap.
+}
+// A PriorityQueue implements heap.Interface and holds Items.
+type PriorityQueue []*Item
+func (pq PriorityQueue) Len() int { return len(pq) }
+func (pq PriorityQueue) Less(i, j int) bool {
+    // We want Pop to give us the highest, not lowest, priority so we use greater than here.
+    return pq[i].priority > pq[j].priority
+}
+func (pq PriorityQueue) Swap(i, j int) {
+    pq[i], pq[j] = pq[j], pq[i]
+    pq[i].index = i
+    pq[j].index = j
+}
+func (pq *PriorityQueue) Push(x interface{}) {
+    n := len(*pq)
+    item := x.(*Item)
+    item.index = n
+    *pq = append(*pq, item)
+}
+func (pq *PriorityQueue) Pop() interface{} {
+    old := *pq
+    n := len(old)
+    item := old[n-1]
+    item.index = -1 // for safety
+    *pq = old[0 : n-1]
+    return item
+}
+// update modifies the priority and value of an Item in the queue.
+func (pq *PriorityQueue) update(item *Item, value string, priority int) {
+    item.value = value
+    item.priority = priority
+    heap.Fix(pq, item.index)
+}
+// This example creates a PriorityQueue with some items, adds and manipulates an item,
+// and then removes the items in priority order.
+func Example_priorityQueue() {
+    // Some items and their priorities.
+    items := map[string]int{
+        "banana": 3, "apple": 2, "pear": 4,
+    }
+    // Create a priority queue, put the items in it, and
+    // establish the priority queue (heap) invariants.
+    pq := make(PriorityQueue, len(items))
+    i := 0
+    for value, priority := range items {
+        pq[i] = &Item{
+            value:    value,
+            priority: priority,
+            index:    i,
+        }
+        i++
+    }
+    heap.Init(&pq)
+    // Insert a new item and then modify its priority.
+    item := &Item{
+        value:    "orange",
+        priority: 1,
+    }
+    heap.Push(&pq, item)
+    pq.update(item, item.value, 5)
+    // Take the items out; they arrive in decreasing priority order.
+    for pq.Len() > 0 {
+        item := heap.Pop(&pq).(*Item)
+        fmt.Printf("%.2d:%s ", item.priority, item.value)
+    }
+    // Output:
+    // 05:orange 04:pear 03:banana 02:apple
 }
 ```
 
