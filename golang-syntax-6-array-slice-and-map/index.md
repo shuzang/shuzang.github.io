@@ -328,7 +328,7 @@ type hmap struct {
 	extra *mapextra // 保存溢出桶的链表和未使用的溢出桶数组的首地址
 }
 
-// 桶的实现结构
+// 桶的实现结构, hmap的buckets指针指向该结构
 type bmap struct {
 	// tophash存储桶内每个key的hash值的高字节
 	// tophash[0] < minTopHash表示桶的疏散状态
@@ -344,6 +344,8 @@ type bmap struct {
 hmap 是基础结构，hmap.buckets 就指向桶组成的数组，每个桶的头部就是 bmap，之后是 8 个 key，然后 8 个 value，最后一个溢出指针，溢出指针指向额外的桶链表，用于存储溢出的数据。用图描述如下
 
 ![](/images/Golang语法基础6-数组切片映射/1480383-20191104215659319-1712154558.jpg)
+
+map 扩容时每次增大一倍，方法是分配一个新的 Bucket 数组，然后将就数组复制过去。
 
 ### 3.1  声明与初始化
 

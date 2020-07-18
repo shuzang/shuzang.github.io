@@ -624,4 +624,343 @@ in 2019 WiMob, Barcelona, Spain, Oct. 2019, pp. 1–6, doi: 10.1109/WiMOB.2019.8
 
 鉴于作者没有提供源码，我们按照论文的描述进行了复现，然后在我们当前的实验平台下测试其访问控制时间，同样的，对合法的访问控制和非法的访问控制，我们各测试30次。
 
+合法测试的结果如下，因为该论文方案没有对访问频率设置限制，我们设定每1分钟访问一次
+
+```bash
+Note: Every 1 minutes, send an access request
+
+The 1-th request
+Return Message: Access authorized
+Begin-End: 1594716575623-1594716582086
+Time Cost: 6463ms
+
+The 2-th request
+Return Message: Access authorized
+Begin-End: 1594716642600-1594716647100
+Time Cost: 4500ms
+
+The 3-th request
+Return Message: Access authorized
+Begin-End: 1594716707585-1594716712084
+Time Cost: 4499ms
+
+The 4-th request
+Return Message: Access authorized
+Begin-End: 1594716772560-1594716777089
+Time Cost: 4529ms
+
+The 5-th request
+Return Message: Access authorized
+Begin-End: 1594716837571-1594716842063
+Time Cost: 4492ms
+
+The 6-th request
+Return Message: Access authorized
+Begin-End: 1594716902545-1594716907067
+Time Cost: 4522ms
+
+The 7-th request
+Return Message: Access authorized
+Begin-End: 1594716967574-1594716972072
+Time Cost: 4498ms
+
+The 8-th request
+Return Message: Access authorized
+Begin-End: 1594717032582-1594717037052
+Time Cost: 4470ms
+
+The 9-th request
+Return Message: Access authorized
+Begin-End: 1594717097549-1594717102065
+Time Cost: 4516ms
+
+The 10-th request
+Return Message: Access authorized
+Begin-End: 1594717162665-1594717167071
+Time Cost: 4406ms
+
+The 11-th request
+Return Message: Access authorized
+Begin-End: 1594717227588-1594717232131
+Time Cost: 4543ms
+
+The 12-th request
+Return Message: Access authorized
+Begin-End: 1594717292722-1594717297067
+Time Cost: 4345ms
+
+The 13-th request
+Return Message: Access authorized
+Begin-End: 1594717357564-1594717362045
+Time Cost: 4481ms
+
+The 14-th request
+Return Message: Access authorized
+Begin-End: 1594717422507-1594717427065
+Time Cost: 4558ms
+
+The 15-th request
+Return Message: Access authorized
+Begin-End: 1594717487600-1594717492074
+Time Cost: 4474ms
+
+The 16-th request
+Return Message: Access authorized
+Begin-End: 1594717552525-1594717557075
+Time Cost: 4550ms
+
+The 17-th request
+Return Message: Access authorized
+Begin-End: 1594717617557-1594717622075
+Time Cost: 4518ms
+
+The 18-th request
+Return Message: Access authorized
+Begin-End: 1594717684275-1594717687298
+Time Cost: 3023ms
+
+The 19-th request
+Return Message: Access authorized
+Begin-End: 1594717747840-1594717752065
+Time Cost: 4225ms
+
+The 20-th request
+Return Message: Access authorized
+Begin-End: 1594717812608-1594717817061
+Time Cost: 4453ms
+
+The 21-th request
+Return Message: Access authorized
+Begin-End: 1594717877563-1594717882081
+Time Cost: 4518ms
+
+The 22-th request
+Return Message: Access authorized
+Begin-End: 1594717942633-1594717947067
+Time Cost: 4434ms
+
+The 23-th request
+Return Message: Access authorized
+Begin-End: 1594718007622-1594718012046
+Time Cost: 4424ms
+
+The 24-th request
+Return Message: Access authorized
+Begin-End: 1594718072500-1594718077066
+Time Cost: 4566ms
+
+The 25-th request
+Return Message: Access authorized
+Begin-End: 1594718137554-1594718142051
+Time Cost: 4497ms
+
+The 26-th request
+Return Message: Access authorized
+Begin-End: 1594718202595-1594718207072
+Time Cost: 4477ms
+
+The 27-th request
+Return Message: Access authorized
+Begin-End: 1594718267661-1594718272040
+Time Cost: 4379ms
+
+The 28-th request
+Return Message: Access authorized
+Begin-End: 1594718332574-1594718337064
+Time Cost: 4490ms
+
+The 29-th request
+Return Message: Access authorized
+Begin-End: 1594718398361-1594718402040
+Time Cost: 3679ms
+
+The 30-th request
+Return Message: Access authorized
+Begin-End: 1594718462562-1594718467086
+Time Cost: 4524ms
+```
+
+非法测试30次结果如下
+
+```bash
+Note: Every 1 minutes, send an access request
+
+The 1-th request
+Return Message: Access deny!
+Begin-End: 1594718987178-1594718992078
+Time Cost: 4900ms
+
+The 2-th request
+Return Message: Access deny!
+Begin-End: 1594719053732-1594719057168
+Time Cost: 3436ms
+
+The 3-th request
+Return Message: Access deny!
+Begin-End: 1594719117743-1594719122063
+Time Cost: 4320ms
+
+The 4-th request
+Return Message: Access deny!
+Begin-End: 1594719182555-1594719187044
+Time Cost: 4489ms
+
+The 5-th request
+Return Message: Access deny!
+Begin-End: 1594719247545-1594719252058
+Time Cost: 4513ms
+
+The 6-th request
+Return Message: Access deny!
+Begin-End: 1594719312816-1594719317056
+Time Cost: 4240ms
+
+The 7-th request
+Return Message: Access deny!
+Begin-End: 1594719377534-1594719382068
+Time Cost: 4534ms
+
+The 8-th request
+Return Message: Access deny!
+Begin-End: 1594719442514-1594719447061
+Time Cost: 4547ms
+
+The 9-th request
+Return Message: Access deny!
+Begin-End: 1594719507513-1594719512069
+Time Cost: 4556ms
+
+The 10-th request
+Return Message: Access deny!
+Begin-End: 1594719572513-1594719577058
+Time Cost: 4545ms
+
+The 11-th request
+Return Message: Access deny!
+Begin-End: 1594719637535-1594719642070
+Time Cost: 4535ms
+
+The 12-th request
+Return Message: Access deny!
+Begin-End: 1594719702555-1594719707075
+Time Cost: 4520ms
+
+The 13-th request
+Return Message: Access deny!
+Begin-End: 1594719767777-1594719772065
+Time Cost: 4288ms
+
+The 14-th request
+Return Message: Access deny!
+Begin-End: 1594719832613-1594719837047
+Time Cost: 4434ms
+
+The 15-th request
+Return Message: Access deny!
+Begin-End: 1594719897658-1594719902065
+Time Cost: 4407ms
+
+The 16-th request
+Return Message: Access deny!
+Begin-End: 1594719962626-1594719967068
+Time Cost: 4442ms
+
+The 17-th request
+Return Message: Access deny!
+Begin-End: 1594720027507-1594720032084
+Time Cost: 4577ms
+
+The 18-th request
+Return Message: Access deny!
+Begin-End: 1594720092916-1594720097066
+Time Cost: 4150ms
+
+The 19-th request
+Return Message: Access deny!
+Begin-End: 1594720157511-1594720162072
+Time Cost: 4561ms
+
+The 20-th request
+Return Message: Access deny!
+Begin-End: 1594720222599-1594720227065
+Time Cost: 4466ms
+
+The 21-th request
+Return Message: Access deny!
+Begin-End: 1594720287548-1594720292070
+Time Cost: 4522ms
+
+The 22-th request
+Return Message: Access deny!
+Begin-End: 1594720352675-1594720357073
+Time Cost: 4398ms
+
+The 23-th request
+Return Message: Access deny!
+Begin-End: 1594720418221-1594720422066
+Time Cost: 3845ms
+
+The 24-th request
+Return Message: Access deny!
+Begin-End: 1594720482849-1594720487065
+Time Cost: 4216ms
+
+The 25-th request
+Return Message: Access deny!
+Begin-End: 1594720547652-1594720552076
+Time Cost: 4424ms
+
+The 26-th request
+Return Message: Access deny!
+Begin-End: 1594720612529-1594720617063
+Time Cost: 4534ms
+
+The 27-th request
+Return Message: Access deny!
+Begin-End: 1594720677610-1594720682037
+Time Cost: 4427ms
+
+The 28-th request
+Return Message: Access deny!
+Begin-End: 1594720742498-1594720747065
+Time Cost: 4567ms
+
+The 29-th request
+Return Message: Access deny!
+Begin-End: 1594720807970-1594720812049
+Time Cost: 4079ms
+
+The 30-th request
+Return Message: Access deny!
+Begin-End: 1594720872702-1594720877070
+Time Cost: 4368ms
+```
+
+得到的统计结果可以总结如下表
+
+| 单位/ms | 合法访问时间 | 非法访问时间 |
+| ------- | ------------ | ------------ |
+| 平均值  | 4468         | 4394         |
+| 最坏    | 6463         | 4900         |
+| 最好    | 3023         | 3436         |
+| 中位数  | 4494         | 4454         |
+
+可以看到，与我们的方案不同的是，zhang 的方案合法与非法得到的结果是相似的，但是从平均值来看，我们的原始方案、添加了信誉系统的方案、zhang 的方案的访问时间都很相似，没有太大的区别。
+
+这里进行一个猜测，访问时间的主要影响因素是合约间的相互调用，因为 zhang 的方案没有访问频率限制，可以进行大量数据的测试，因此我们对其进行500次访问控制，每5s执行一次，然后查看结果。
+
+500次访问的平均结果是 4529.372ms，这里发现一件有意思的事情，访问时间会受发起访问的时刻的影响，假设 t 为两次访问的间隔，那么区别如下
+
+|          | t % 5 == 0 | t % 5 == 1 | t % 5 == 2 | t % 5 == 3 | t % 5 == 4 |
+| -------- | ---------- | ---------- | ---------- | ---------- | ---------- |
+| 结果趋向 | 4500ms     | 3500ms     | 2500ms     | 6500ms     | 5500ms     |
+
+然后我们重新对去除了信誉系统的原方案进行了测试，发现非法访问的结果为 2500ms 左右也是因为这一原因的影响，每次合法访问后延迟了 2s，导致 t % 5 == 2
+
+为了使平均值趋向实际的极限，我们重新测试去除了信誉系统的原方案的合法访问 ，结果398次的平均访问时间为  4490.51758794ms，所以我们基本可以认为访问控制的时间趋向 4500ms，三种方案都是。
+
+所以得到的结果是，三种方案的访问时间基本没有区别。
+
+另外，我们对一个合约中没有发生调用操作的函数时间测试，从而验证合约的相互调用是不是影响时间的主要因素。
+
 未完待续...

@@ -1,9 +1,19 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>Golang语法基础11-错误处理 | Shuzang's Blog</title><meta name=Description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><meta property="og:title" content="Golang语法基础11-错误处理"><meta property="og:description" content="Go中有两套错误处理的方式 普通错误： 在函数和方法中返回错误对象作为它们的唯一或最后一个返回值 ，如果返回nil，表示没有错误 异常：使用pani"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.github.io/golang-syntax-11-error-and-panic/"><meta property="article:published_time" content="2019-12-20T00:00:00+00:00"><meta property="article:modified_time" content="2019-12-20T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Golang语法基础11-错误处理"><meta name=twitter:description content="Go中有两套错误处理的方式 普通错误： 在函数和方法中返回错误对象作为它们的唯一或最后一个返回值 ，如果返回nil，表示没有错误 异常：使用pani"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel=canonical href=https://shuzang.github.io/golang-syntax-11-error-and-panic/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=prev href=https://shuzang.github.io/linux%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/><link rel=next href=https://shuzang.github.io/golang-syntax-12-test/><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/css/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Golang语法基础11-错误处理","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/golang-syntax-11-error-and-panic\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"Golang","wordcount":2834,"url":"https:\/\/shuzang.github.io\/golang-syntax-11-error-and-panic\/","datePublished":"2019-12-20T00:00:00\x2b00:00","dateModified":"2019-12-20T00:00:00\x2b00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"shuzang","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/logo.png","width":127,"height":40}},"description":""}</script></head><body><script>if(!window.localStorage||!window.localStorage.getItem('theme')){window.isDark=window.matchMedia('(prefers-color-scheme: dark)').matches;}else{window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';}
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>Golang语法基础11-错误处理 | Shuzang's Blog</title><meta name=Description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><meta property="og:title" content="Golang语法基础11-错误处理"><meta property="og:description" content="Go中有两套错误处理的方式
+
+普通错误： 在函数和方法中返回错误对象作为它们的唯一或最后一个返回值 ，如果返回nil，表示没有错误
+异常：使用panic和recover
+
+主调函数总是应该检查收到的错误，不要忽略，否则可能导致严重的后果。"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.github.io/golang-syntax-11-error-and-panic/"><meta property="article:published_time" content="2019-12-20T00:00:00+00:00"><meta property="article:modified_time" content="2020-07-16T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Golang语法基础11-错误处理"><meta name=twitter:description content="Go中有两套错误处理的方式
+
+普通错误： 在函数和方法中返回错误对象作为它们的唯一或最后一个返回值 ，如果返回nil，表示没有错误
+异常：使用panic和recover
+
+主调函数总是应该检查收到的错误，不要忽略，否则可能导致严重的后果。"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel=canonical href=https://shuzang.github.io/golang-syntax-11-error-and-panic/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=prev href=https://shuzang.github.io/linux%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/><link rel=next href=https://shuzang.github.io/golang-syntax-12-test/><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/css/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Golang语法基础11-错误处理","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/golang-syntax-11-error-and-panic\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"Golang","wordcount":2993,"url":"https:\/\/shuzang.github.io\/golang-syntax-11-error-and-panic\/","datePublished":"2019-12-20T00:00:00\x2b00:00","dateModified":"2020-07-16T00:00:00\x2b00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"shuzang","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/logo.png","width":127,"height":40}},"description":""}</script></head><body><script>if(!window.localStorage||!window.localStorage.getItem('theme')){window.isDark=window.matchMedia('(prefers-color-scheme: dark)').matches;}else{window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';}
 window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class="header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch title="Switch Theme">
 <i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a></div></div></header><header class=mobile id=header-mobile><div class=header-wrapper><div class=header-container><div class="header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch title="Switch Theme">
 <i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a></div></div></header><script>window.desktopHeaderMode="fixed";window.mobileHeaderMode="auto";</script><main class=main><div class=container><article class="page single"><h1 class="single-title animated flipInX">Golang语法基础11-错误处理</h1><div class=meta><div class=meta-line><a class=author href=https://shuzang.github.io/about/ rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>shuzang
-</a>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i><a href=https://shuzang.github.io/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/>爱编程爱技术的孩子</a>&nbsp;</span></div><div class=meta-line><i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-12-20>2019-12-20</time>&nbsp;
-<i class="fas fa-pencil-alt fa-fw"></i>about 2834 words&nbsp;
+</a>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i><a href=https://shuzang.github.io/categories/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/>Golang学习之路</a>&nbsp;</span></div><div class=meta-line><i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-12-20>2019-12-20</time>&nbsp;
+<i class="fas fa-pencil-alt fa-fw"></i>about 2993 words&nbsp;
 <i class="far fa-clock fa-fw"></i>6 min&nbsp;</div></div><aside class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#1-普通错误>1. 普通错误</a><ul><li><a href=#11-定义错误>1.1 定义错误</a></li><li><a href=#12-输出更多的错误信息>1.2 输出更多的错误信息</a></li></ul></li><li><a href=#2-异常>2. 异常</a><ul><li><a href=#21-panic>2.1 panic</a></li><li><a href=#22-panicking>2.2 panicking</a></li><li><a href=#23-recover>2.3 recover</a></li></ul></li><li><a href=#3-错误处理的一些原则>3. 错误处理的一些原则</a></li><li><a href=#4-闭包处理错误>4. 闭包处理错误</a></li></ul></nav></div></aside><aside class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
 <span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><a href=#1-普通错误>1. 普通错误</a><ul><li><a href=#11-定义错误>1.1 定义错误</a></li><li><a href=#12-输出更多的错误信息>1.2 输出更多的错误信息</a></li></ul></li><li><a href=#2-异常>2. 异常</a><ul><li><a href=#21-panic>2.1 panic</a></li><li><a href=#22-panicking>2.2 panicking</a></li><li><a href=#23-recover>2.3 recover</a></li></ul></li><li><a href=#3-错误处理的一些原则>3. 错误处理的一些原则</a></li><li><a href=#4-闭包处理错误>4. 闭包处理错误</a></li></ul></nav></div></details></aside><div class=content><p>Go中有两套错误处理的方式</p><ul><li>普通错误： 在函数和方法中返回错误对象作为它们的唯一或最后一个返回值 ，如果返回nil，表示没有错误</li><li>异常：使用panic和recover</li></ul><p>主调函数总是应该检查收到的错误，不要忽略，否则可能导致严重的后果。</p><h2 id=1-普通错误>1. 普通错误</h2><p>Go有一个预定义的error接口类型</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
@@ -11,9 +21,41 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>type</span> <span class=kt>error</span> <span class=kd>interface</span> <span class=p>{</span>
     <span class=nf>Error</span><span class=p>(</span><span class=p>)</span> <span class=kt>string</span>
 <span class=p>}</span>
-</code></pre></td></tr></table></div></div><p>errors包中有一个errorString结构体实现了该接口，</p><h3 id=11-定义错误>1.1 定义错误</h3><p>当我们需要一个新的错误类型，可以使用<code>errors</code>包的<code>errors.New</code>函数接收合适的信息来创建，如下例</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><p>errors包中有一个errorString结构体实现了该接口，其实 errors 包实现很简单，如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>errors</span>
+
+<span class=c1>// New returns an error that formats as the given text.
+</span><span class=c1></span><span class=c1>// Each call to New returns a distinct error value even if the text is identical.
+</span><span class=c1></span><span class=kd>func</span> <span class=nf>New</span><span class=p>(</span><span class=nx>text</span> <span class=kt>string</span><span class=p>)</span> <span class=kt>error</span> <span class=p>{</span>
+	<span class=k>return</span> <span class=o>&amp;</span><span class=nx>errorString</span><span class=p>{</span><span class=nx>text</span><span class=p>}</span>
+<span class=p>}</span>
+
+<span class=c1>// errorString is a trivial implementation of error.
+</span><span class=c1></span><span class=kd>type</span> <span class=nx>errorString</span> <span class=kd>struct</span> <span class=p>{</span>
+	<span class=nx>s</span> <span class=kt>string</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>e</span> <span class=o>*</span><span class=nx>errorString</span><span class=p>)</span> <span class=nf>Error</span><span class=p>(</span><span class=p>)</span> <span class=kt>string</span> <span class=p>{</span>
+	<span class=k>return</span> <span class=nx>e</span><span class=p>.</span><span class=nx>s</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h3 id=11-定义错误>1.1 定义错误</h3><p>当我们需要一个新的错误类型，可以使用<code>errors</code>包的<code>errors.New</code>函数接收合适的信息来创建，如下例</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=nx>err</span> <span class=o>:=</span> <span class=nx>errors</span><span class=p>.</span><span class=nf>New</span><span class=p>(</span><span class=s>&#34;math - square root of negative number&#34;</span><span class=p>)</span>
-</code></pre></td></tr></table></div></div><p>可以将其用于计算平方根函数的参数测试</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><p>从上面的实现中可以看到调用 errors.New 其实就是将传入的字符串给了结构体 errorString，由于该结构体实现了 error 接口，因此 New 函数返回的时候将结构体赋给了一个 error 接口变量，所以以后我们在主调函数输出该返回值时，会输出结构体的值。</p><p>拿一个计算平方根的函数举例，可以这样使用</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -65,7 +107,7 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=k>if</span> <span class=nx>f</span> <span class=p>&lt;</span> <span class=mi>0</span> <span class=p>{</span>
     <span class=k>return</span> <span class=mi>0</span><span class=p>,</span> <span class=nx>fmt</span><span class=p>.</span><span class=nf>Errorf</span><span class=p>(</span><span class=s>&#34;math: squre root of negative number %g&#34;</span><span class=p>,</span> <span class=nx>f</span><span class=p>)</span>
 <span class=p>}</span>
-</code></pre></td></tr></table></div></div><p>所以可以得知，<code>fmt.Errorf</code>和<code>errors.New</code>都返回<code>error</code>类型的变量</p><h2 id=2-异常>2. 异常</h2><p>或者称为运行时异常，指的是那些无法预测的错误。比如数组下标越界或类型断言失败，就会触发异常，并且伴随着程序终止返回一个<code>runtime.Error</code>接口类型的值，这个值和普通错误的区别在于有一个<code>RuntimeError()</code>方法</p><h3 id=21-panic>2.1 panic</h3><p><code>panic</code>就是Go中用于生成异常的方法。当错误不可修复、程序无法继续运行时，使用<code>panic</code>函数来产生一个中止程序的运行时错误，<code>panic</code>接收任意类型的参数，通常是字符串，这个参数会在程序终止时被打印出来。中止程序和打印参数的过程由Go runtime负责。一个例子如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><p>实际上，<code>fmt.Errorf</code>和<code>errors.New</code>一样都返回<code>error</code>类型的变量</p><h2 id=2-异常>2. 异常</h2><p>或者称为运行时异常，指的是那些无法预测的错误。比如数组下标越界或类型断言失败，就会触发异常，并且伴随着程序终止返回一个<code>runtime.Error</code>接口类型的值，这个值和普通错误的区别在于有一个<code>RuntimeError()</code>方法</p><h3 id=21-panic>2.1 panic</h3><p><code>panic</code>就是Go中用于生成异常的方法。当错误不可修复、程序无法继续运行时，使用<code>panic</code>函数来产生一个中止程序的运行时错误，<code>panic</code>接收任意类型的参数，通常是字符串，这个参数会在程序终止时被打印出来。中止程序和打印参数的过程由Go runtime负责。一个例子如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -83,32 +125,20 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 	<span class=nb>panic</span><span class=p>(</span><span class=s>&#34;A severe error occurred: stopping the program!&#34;</span><span class=p>)</span>
 	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;Ending the program&#34;</span><span class=p>)</span>
 <span class=p>}</span>
-</code></pre></td></tr></table></div></div><p>输出如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
+</code></pre></td></tr></table></div></div><p>输出如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=nx>Starting</span> <span class=nx>the</span> <span class=nx>program</span>
 <span class=nx>panic</span><span class=p>:</span> <span class=nx>A</span> <span class=nx>severe</span> <span class=kt>error</span> <span class=nx>occurred</span><span class=p>:</span> <span class=nx>stopping</span> <span class=nx>the</span> <span class=nx>program</span><span class=p>!</span>
-<span class=nx>panic</span> <span class=nx>PC</span><span class=p>=</span><span class=mh>0x4f3038</span>
-<span class=nx>runtime</span><span class=p>.</span><span class=nx>panic</span><span class=o>+</span><span class=mh>0x99</span> <span class=o>/</span><span class=k>go</span><span class=o>/</span><span class=nx>src</span><span class=o>/</span><span class=nx>pkg</span><span class=o>/</span><span class=nx>runtime</span><span class=o>/</span><span class=nx>proc</span><span class=p>.</span><span class=nx>c</span><span class=p>:</span><span class=mi>1032</span>
-       <span class=nx>runtime</span><span class=p>.</span><span class=nb>panic</span><span class=p>(</span><span class=mh>0x442938</span><span class=p>,</span> <span class=mh>0x4f08e8</span><span class=p>)</span>
-<span class=nx>main</span><span class=p>.</span><span class=nx>main</span><span class=o>+</span><span class=mh>0xa5</span> <span class=nx>E</span><span class=p>:</span><span class=o>/</span><span class=nx>Go</span><span class=o>/</span><span class=nx>GoBoek</span><span class=o>/</span><span class=nx>code</span> <span class=nx>examples</span><span class=o>/</span><span class=nx>chapter</span> <span class=mi>13</span><span class=o>/</span><span class=nx>panic</span><span class=p>.</span><span class=k>go</span><span class=p>:</span><span class=mi>8</span>
-       <span class=nx>main</span><span class=p>.</span><span class=nf>main</span><span class=p>(</span><span class=p>)</span>
-<span class=nx>runtime</span><span class=p>.</span><span class=nx>mainstart</span><span class=o>+</span><span class=mh>0xf</span> <span class=mi>386</span><span class=o>/</span><span class=nx>asm</span><span class=p>.</span><span class=nx>s</span><span class=p>:</span><span class=mi>84</span>
-       <span class=nx>runtime</span><span class=p>.</span><span class=nf>mainstart</span><span class=p>(</span><span class=p>)</span>
-<span class=nx>runtime</span><span class=p>.</span><span class=nx>goexit</span> <span class=o>/</span><span class=k>go</span><span class=o>/</span><span class=nx>src</span><span class=o>/</span><span class=nx>pkg</span><span class=o>/</span><span class=nx>runtime</span><span class=o>/</span><span class=nx>proc</span><span class=p>.</span><span class=nx>c</span><span class=p>:</span><span class=mi>148</span>
-       <span class=nx>runtime</span><span class=p>.</span><span class=nf>goexit</span><span class=p>(</span><span class=p>)</span>
-<span class=o>--</span><span class=o>--</span> <span class=nx>Error</span> <span class=nx>run</span> <span class=nx>E</span><span class=p>:</span><span class=o>/</span><span class=nx>Go</span><span class=o>/</span><span class=nx>GoBoek</span><span class=o>/</span><span class=nx>code</span> <span class=nx>examples</span><span class=o>/</span><span class=nx>chapter</span> <span class=mi>13</span><span class=o>/</span><span class=nx>panic</span><span class=p>.</span><span class=nx>exe</span> <span class=nx>with</span> <span class=nx>code</span> <span class=nx>Crashed</span>
-<span class=o>--</span><span class=o>--</span> <span class=nx>Program</span> <span class=nx>exited</span> <span class=nx>with</span> <span class=nx>code</span> <span class=o>-</span><span class=mi>1073741783</span>
+
+<span class=nx>goroutine</span> <span class=mi>1</span> <span class=p>[</span><span class=nx>running</span><span class=p>]</span><span class=p>:</span>
+<span class=nx>main</span><span class=p>.</span><span class=nf>main</span><span class=p>(</span><span class=p>)</span>
+        <span class=nx>F</span><span class=p>:</span><span class=o>/</span><span class=nx>Gotest</span><span class=o>/</span><span class=nx>main</span><span class=p>.</span><span class=k>go</span><span class=p>:</span><span class=mi>7</span> <span class=o>+</span><span class=mh>0x9c</span>
+<span class=nx>exit</span> <span class=nx>status</span> <span class=mi>2</span>
 </code></pre></td></tr></table></div></div><p>一个检测到错误然后使用panic抛出异常的完整例子如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
@@ -380,34 +410,24 @@ log.Printf(&ldquo;run time panic: %v&rdquo;, err)
 }()
 fn(a, b)
 }
-}</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
+}</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>
 当错误发生时会 recover 并打印在日志中，check() 函数会在所有的被调函数中调用，像这样： 
 
-```go
-func f1(a type1, b type2) {
- ...
- f, _, err := // call function/method
- check(err)
- t, err := // call function/method
- check(err)
- _, err2 := // call function/method
- check(err2)
- ...
-}
-</code></pre></td></tr></table></div></div><p>通过这种机制，所有的错误都会被 recover，并且调用函数后的错误检查代码也被简化为调用 check(err) 即可。在这种模式下，不同的错误处理必须对应不同的函数类型；它们（错误处理）可能被隐藏在错误处理包内部。可选的更加通用的方式是用一个空接口类型的切片作为参数和返回值。</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2019-12-20</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=https://shuzang.github.io/golang-syntax-11-error-and-panic/index.md target=_blank>Read Markdown</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://shuzang.github.io/golang-syntax-11-error-and-panic/ data-title=Golang语法基础11-错误处理 data-hashtags=Golang><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://shuzang.github.io/golang-syntax-11-error-and-panic/ data-hashtag=Golang><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Reddit" data-sharer=reddit data-url=https://shuzang.github.io/golang-syntax-11-error-and-panic/><i class="fab fa-reddit fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span class=tag><a href=https://shuzang.github.io/tags/golang/><i class="fas fa-tag fa-fw"></i>&nbsp;Golang</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://shuzang.github.io>Home</a></span></section></div><div class=post-nav><a href=https://shuzang.github.io/linux%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/ class=prev rel=prev title=linux系统时间同步><i class="fas fa-angle-left fa-fw"></i>linux系统时间同步</a>
+</code></pre></td></tr></table></div></div><p>func f1(a type1, b type2) {
+&mldr;
+f, _, err := // call function/method
+check(err)
+t, err := // call function/method
+check(err)
+_, err2 := // call function/method
+check(err2)
+&mldr;
+}</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>
+通过这种机制，所有的错误都会被 recover，并且调用函数后的错误检查代码也被简化为调用 check(err) 即可。在这种模式下，不同的错误处理必须对应不同的函数类型；它们（错误处理）可能被隐藏在错误处理包内部。可选的更加通用的方式是用一个空接口类型的切片作为参数和返回值。 </code></pre></td></tr></table></div></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2020-07-16</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=https://shuzang.github.io/golang-syntax-11-error-and-panic/index.md target=_blank>Read Markdown</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://shuzang.github.io/golang-syntax-11-error-and-panic/ data-title=Golang语法基础11-错误处理 data-hashtags=Golang><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://shuzang.github.io/golang-syntax-11-error-and-panic/ data-hashtag=Golang><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Reddit" data-sharer=reddit data-url=https://shuzang.github.io/golang-syntax-11-error-and-panic/><i class="fab fa-reddit fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span class=tag><a href=https://shuzang.github.io/tags/golang/><i class="fas fa-tag fa-fw"></i>&nbsp;Golang</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://shuzang.github.io>Home</a></span></section></div><div class=post-nav><a href=https://shuzang.github.io/linux%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/ class=prev rel=prev title=linux系统时间同步><i class="fas fa-angle-left fa-fw"></i>linux系统时间同步</a>
 <a href=https://shuzang.github.io/golang-syntax-12-test/ class=next rel=next title=Golang语法基础12-测试>Golang语法基础12-测试<i class="fas fa-angle-right fa-fw"></i></a></div></div><div class=comment><div id=disqus_thread></div><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><div id=valine></div><script>document.addEventListener("DOMContentLoaded",function(event){new Valine({el:'#valine',appId:'GteMvevTjOBmhvFh2QGsopGO-gzGzoHsz',appKey:'fL4SYl06GIe012PswFdY17VC',placeholder:'Your comment ...',verify:true,avatar:'hide',pageSize:10,lang:'en',visitor:true,recordIP:true,});});</script><noscript>Please enable JavaScript to view the <a href=https://valine.js.org/>comments powered by Valine.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a></div><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://shuzang.github.io/about/ target=_blank>shuzang</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><a href=# class="dynamic-to-top animated faster" id=dynamic-to-top><span>&nbsp;</span>
 </a><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true},{left:"$",right:"$",display:false},]});});</script><link href=https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css rel=stylesheet><link href=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.css rel=stylesheet><link rel=stylesheet href=/css/lib/valine/dark.css><script src=https://dillonzq.disqus.com/embed.js></script><script src=https://cdn.bootcss.com/smooth-scroll/16.1.0/smooth-scroll.js></script><script src=https://cdn.bootcss.com/lazysizes/5.1.2/lazysizes.min.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/auto-render.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/mhchem.js></script><script src=/js/lib/valine/Valine.min.js></script><script src=/js/lib/sharer/sharer.min.js></script><script src=/js/theme.min.js></script></body></html>

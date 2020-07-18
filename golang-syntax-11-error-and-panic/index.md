@@ -8,6 +8,8 @@ Go中有两套错误处理的方式
 
 主调函数总是应该检查收到的错误，不要忽略，否则可能导致严重的后果。
 
+<!--more-->
+
 ## 1. 普通错误
 
 Go有一个预定义的error接口类型
@@ -18,7 +20,26 @@ type error interface {
 }
 ```
 
-errors包中有一个errorString结构体实现了该接口，
+errors包中有一个errorString结构体实现了该接口，其实 errors 包实现很简单，如下
+
+```go
+package errors
+
+// New returns an error that formats as the given text.
+// Each call to New returns a distinct error value even if the text is identical.
+func New(text string) error {
+	return &errorString{text}
+}
+
+// errorString is a trivial implementation of error.
+type errorString struct {
+	s string
+}
+
+func (e *errorString) Error() string {
+	return e.s
+}
+```
 
 ### 1.1 定义错误
 
@@ -28,7 +49,9 @@ errors包中有一个errorString结构体实现了该接口，
 err := errors.New("math - square root of negative number")
 ```
 
-可以将其用于计算平方根函数的参数测试
+从上面的实现中可以看到调用 errors.New 其实就是将传入的字符串给了结构体 errorString，由于该结构体实现了 error 接口，因此 New 函数返回的时候将结构体赋给了一个 error 接口变量，所以以后我们在主调函数输出该返回值时，会输出结构体的值。
+
+拿一个计算平方根的函数举例，可以这样使用
 
 ```go
 func Sqrt(f float64) (float64, error) {
@@ -85,7 +108,7 @@ if f < 0 {
 }
 ```
 
-所以可以得知，`fmt.Errorf`和`errors.New`都返回`error`类型的变量
+实际上，`fmt.Errorf`和`errors.New`一样都返回`error`类型的变量
 
 ## 2. 异常
 
@@ -112,17 +135,11 @@ func main() {
 ```go
 Starting the program
 panic: A severe error occurred: stopping the program!
-panic PC=0x4f3038
-runtime.panic+0x99 /go/src/pkg/runtime/proc.c:1032
-       runtime.panic(0x442938, 0x4f08e8)
-main.main+0xa5 E:/Go/GoBoek/code examples/chapter 13/panic.go:8
-       main.main()
-runtime.mainstart+0xf 386/asm.s:84
-       runtime.mainstart()
-runtime.goexit /go/src/pkg/runtime/proc.c:148
-       runtime.goexit()
----- Error run E:/Go/GoBoek/code examples/chapter 13/panic.exe with code Crashed
----- Program exited with code -1073741783
+
+goroutine 1 [running]:
+main.main()
+        F:/Gotest/main.go:7 +0x9c
+exit status 2
 ```
 
 一个检测到错误然后使用panic抛出异常的完整例子如下
@@ -346,20 +363,20 @@ fType1 = func f(a type1, b type2)
    	}
    }
    ```
-
-当错误发生时会 recover 并打印在日志中，check() 函数会在所有的被调函数中调用，像这样： 
-
-```go
-func f1(a type1, b type2) {
-	...
-	f, _, err := // call function/method
-	check(err)
-	t, err := // call function/method
-	check(err)
-	_, err2 := // call function/method
-	check(err2)
-	...
-}
-```
+   
+   当错误发生时会 recover 并打印在日志中，check() 函数会在所有的被调函数中调用，像这样： 
+   
+   ```
+   func f1(a type1, b type2) {
+   	...
+   	f, _, err := // call function/method
+   	check(err)
+   	t, err := // call function/method
+   	check(err)
+   	_, err2 := // call function/method
+   	check(err2)
+   	...
+   }
+   ```
 
 通过这种机制，所有的错误都会被 recover，并且调用函数后的错误检查代码也被简化为调用 check(err) 即可。在这种模式下，不同的错误处理必须对应不同的函数类型；它们（错误处理）可能被隐藏在错误处理包内部。可选的更加通用的方式是用一个空接口类型的切片作为参数和返回值。 

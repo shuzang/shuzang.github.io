@@ -1,0 +1,310 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>Go并发学习2-channel | Shuzang's Blog</title><meta name=Description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><meta property="og:title" content="Go并发学习2-channel"><meta property="og:description" content="本篇介绍 Go 中的通道"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.github.io/goroutine-learning-1-channel/"><meta property="article:published_time" content="2020-07-16T19:20:00+08:00"><meta property="article:modified_time" content="2020-07-16T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Go并发学习2-channel"><meta name=twitter:description content="本篇介绍 Go 中的通道"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel=canonical href=https://shuzang.github.io/goroutine-learning-1-channel/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=prev href=https://shuzang.github.io/goroutine-learning-1-process-thread-and-coroutine/><link rel=next href=https://shuzang.github.io/nginx-learning/><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/css/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Go并发学习2-channel","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/goroutine-learning-1-channel\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"Go并发","wordcount":1905,"url":"https:\/\/shuzang.github.io\/goroutine-learning-1-channel\/","datePublished":"2020-07-16T19:20:00\x2b08:00","dateModified":"2020-07-16T00:00:00\x2b00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"shuzang","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/logo.png","width":127,"height":40}},"description":""}</script></head><body><script>if(!window.localStorage||!window.localStorage.getItem('theme')){window.isDark=window.matchMedia('(prefers-color-scheme: dark)').matches;}else{window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';}
+window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class="header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch title="Switch Theme">
+<i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a></div></div></header><header class=mobile id=header-mobile><div class=header-wrapper><div class=header-container><div class="header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch title="Switch Theme">
+<i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a></div></div></header><script>window.desktopHeaderMode="fixed";window.mobileHeaderMode="auto";</script><main class=main><div class=container><article class="page single"><h1 class="single-title animated flipInX">Go并发学习2-channel</h1><div class=meta><div class=meta-line><a class=author href=https://shuzang.github.io/about/ rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>shuzang
+</a>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i><a href=https://shuzang.github.io/categories/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/>Golang学习之路</a>&nbsp;</span></div><div class=meta-line><i class="far fa-calendar-alt fa-fw"></i><time datetime=2020-07-16>2020-07-16</time>&nbsp;
+<i class="fas fa-pencil-alt fa-fw"></i>about 1905 words&nbsp;
+<i class="far fa-clock fa-fw"></i>4 min&nbsp;</div></div><aside class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#1-channel-基础>1. channel 基础</a><ul><li><a href=#11-声明与初始化>1.1 声明与初始化</a></li><li><a href=#12-通信操作符->1.2 通信操作符<-</a></li></ul></li><li><a href=#2-一些理解>2. 一些理解</a></li><li><a href=#3-资源争抢>3. 资源争抢</a></li><li><a href=#4-channel阻塞>4. channel阻塞</a></li></ul></nav></div></aside><aside class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
+<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><a href=#1-channel-基础>1. channel 基础</a><ul><li><a href=#11-声明与初始化>1.1 声明与初始化</a></li><li><a href=#12-通信操作符->1.2 通信操作符<-</a></li></ul></li><li><a href=#2-一些理解>2. 一些理解</a></li><li><a href=#3-资源争抢>3. 资源争抢</a></li><li><a href=#4-channel阻塞>4. channel阻塞</a></li></ul></nav></div></details></aside><div class=content><p>本篇介绍 Go 中的通道</p><h2 id=1-channel-基础>1. channel 基础</h2><p>直观的翻译就是通道，是 Goroutine 间通信的工具，类似于缓冲区。在 Go 中一般有两个方面的作用</p><ol><li>传递方面：消息传递、任务发送和事件广播</li><li>控制方面：资源争抢、并发控制和流程开关</li></ol><h3 id=11-声明与初始化>1.1 声明与初始化</h3><p>声明通道的基本形式如下，未初始化的通道值为nil</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>var</span> <span class=nx>identifier</span> <span class=kd>chan</span> <span class=nx>datatype</span>
+</code></pre></td></tr></table></div></div><p>通道只能传输一种类型的数据，比如<code>chan int</code>或<code>chan string</code>，可以是任意类型，包括空接口<code>interface{}</code>和通道自己</p><p>和map相同，通道也是引用类型，因此使用<code>make</code>进行初始化，可以指定第二个参数用来指定缓冲区的大小，即通道可容纳的数据个数，这一个值默认是0，意思是无缓冲，无缓冲的通道将通信、值的交换、同步三者结合，保证两个协程的计算处于已知状态。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>var</span> <span class=nx>ci</span> <span class=kd>chan</span> <span class=kt>string</span>
+<span class=nx>ci</span> <span class=p>=</span> <span class=nb>make</span><span class=p>(</span><span class=kd>chan</span> <span class=kt>string</span><span class=p>)</span>			<span class=c1>// unbuffered channel of integers
+</span><span class=c1></span>
+<span class=nx>cj</span> <span class=o>:=</span> <span class=nb>make</span><span class=p>(</span><span class=kd>chan</span> <span class=kt>int</span><span class=p>,</span> <span class=mi>0</span><span class=p>)</span>         <span class=c1>// unbuffered channel of integers
+</span><span class=c1></span><span class=nx>cs</span> <span class=o>:=</span> <span class=nb>make</span><span class=p>(</span><span class=kd>chan</span> <span class=o>*</span><span class=nx>os</span><span class=p>.</span><span class=nx>File</span><span class=p>,</span> <span class=mi>100</span><span class=p>)</span>  <span class=c1>// buffered channel of pointers to Files
+</span></code></pre></td></tr></table></div></div><h3 id=12-通信操作符->1.2 通信操作符&lt;-</h3><p>这一操作符直观的表示数据的传输：信息按照箭头方向流动。</p><p>流向通道(发送)用<code>ch &lt;- int1</code>表示，意为利用通道ch发送变量int1</p><p>从通道流出(接收)用<code>int2 = &lt;- ch</code>表示，意为变量int2从通道ch接收数据，如果int2没有声明过，可以使用<code>int2 := &lt;- ch</code></p><p><code>&lt;- ch</code>则用于表示丢弃当前值，获取通道的下一个值，可以用来验证，如</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=k>if</span> <span class=o>&lt;-</span> <span class=nx>ch</span> <span class=o>!=</span> <span class=mi>1000</span> <span class=p>{</span>
+    <span class=o>...</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>为了可读性通道的命名通常以 <code>ch</code> 开头或者包含 <code>chan</code>。通道的发送和接收都是原子操作，总是互不干扰的完成。下面的示例展示了通信操作符的使用。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=p>(</span>
+	<span class=s>&#34;fmt&#34;</span>
+	<span class=s>&#34;time&#34;</span>
+<span class=p>)</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>ch</span> <span class=o>:=</span> <span class=nb>make</span><span class=p>(</span><span class=kd>chan</span> <span class=kt>string</span><span class=p>)</span>
+
+	<span class=k>go</span> <span class=nf>sendData</span><span class=p>(</span><span class=nx>ch</span><span class=p>)</span>
+	<span class=k>go</span> <span class=nf>getData</span><span class=p>(</span><span class=nx>ch</span><span class=p>)</span>
+
+	<span class=nx>time</span><span class=p>.</span><span class=nf>Sleep</span><span class=p>(</span><span class=mf>1e9</span><span class=p>)</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=nf>sendData</span><span class=p>(</span><span class=nx>ch</span> <span class=kd>chan</span> <span class=kt>string</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>ch</span> <span class=o>&lt;-</span> <span class=s>&#34;Washington&#34;</span>
+	<span class=nx>ch</span> <span class=o>&lt;-</span> <span class=s>&#34;Tripoli&#34;</span>
+	<span class=nx>ch</span> <span class=o>&lt;-</span> <span class=s>&#34;London&#34;</span>
+	<span class=nx>ch</span> <span class=o>&lt;-</span> <span class=s>&#34;Beijing&#34;</span>
+	<span class=nx>ch</span> <span class=o>&lt;-</span> <span class=s>&#34;Tokyo&#34;</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=nf>getData</span><span class=p>(</span><span class=nx>ch</span> <span class=kd>chan</span> <span class=kt>string</span><span class=p>)</span> <span class=p>{</span>
+	<span class=kd>var</span> <span class=nx>input</span> <span class=kt>string</span>
+	<span class=c1>// time.Sleep(2e9)
+</span><span class=c1></span>	<span class=k>for</span> <span class=p>{</span>
+		<span class=nx>input</span> <span class=p>=</span> <span class=o>&lt;-</span><span class=nx>ch</span>
+		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;%s &#34;</span><span class=p>,</span> <span class=nx>input</span><span class=p>)</span>
+	<span class=p>}</span>
+<span class=p>}</span>
+<span class=c1>//Output:
+</span><span class=c1></span><span class=nx>Washington</span> <span class=nx>Tripoli</span> <span class=nx>London</span> <span class=nx>Beijing</span> <span class=nx>tokyo</span>
+</code></pre></td></tr></table></div></div><p>如果2个协程需要通信，必须给它们同一个通道作为参数。上例中 <code>main()</code> 函数中启动了两个协程：<code>sendData()</code> 通过通道 ch 发送了 5 个字符串，<code>getData()</code> 按顺序接收它们并打印出来。 一些同步的细节如下：</p><ul><li>main() 等待了 1 秒让两个协程完成，如果不这样(注释掉<code>time.Sleep(1e9)</code>)，sendData() 就没有机会输出。</li><li>getData() 使用了无限循环：它随着 sendData() 的发送完成和 ch 变空也结束了。</li><li>如果我们移除一个或所有 <code>go</code> 关键字，程序无法运行，Go 运行时会抛出 panic。这是因为运行时(runtime)会检查所有的协程是否在等待什么东西(从通道读取或写入某个通道)，这意味着陷入死锁，程序无法继续执行。</li></ul><p>通道的发送和接收顺序是无法预知的，如果使用打印状态来输出，由于两者间的时间延迟，打印的顺序和真实发生的顺序是不同的。</p><h2 id=2-一些理解>2. 一些理解</h2><p>以下面的简单例子为例</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=s>&#34;fmt&#34;</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>ch</span> <span class=o>:=</span> <span class=nb>make</span><span class=p>(</span><span class=kd>chan</span> <span class=kt>int</span><span class=p>)</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>ch</span><span class=p>)</span>
+
+	<span class=k>go</span> <span class=kd>func</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+		<span class=nx>ch</span> <span class=o>&lt;-</span> <span class=mi>1</span>
+	<span class=p>}</span><span class=p>(</span><span class=p>)</span>
+
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=o>&lt;-</span><span class=nx>ch</span><span class=p>)</span>
+	<span class=nb>close</span><span class=p>(</span><span class=nx>ch</span><span class=p>)</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>ch</span><span class=p>)</span>
+<span class=p>}</span>
+<span class=c1>// Output:
+</span><span class=c1></span><span class=mh>0xc000016180</span>
+<span class=mi>1</span>
+<span class=mh>0xc000016180</span>
+</code></pre></td></tr></table></div></div><p>最后输出通道接收到的值为 1 是正常的，通道使用完毕后进行关闭。但是，我们将初始化后的通道值和通道关闭后的值进行输出，发现得到了两个相同的地址，这是因为 make 得到的是 channel 类型变量的地址。那么如果在关闭后继续使用通道传入和接收会怎么样呢，如下，会抛出 panic</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=s>&#34;fmt&#34;</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>ch</span> <span class=o>:=</span> <span class=nb>make</span><span class=p>(</span><span class=kd>chan</span> <span class=kt>int</span><span class=p>)</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>ch</span><span class=p>)</span>
+
+	<span class=k>go</span> <span class=kd>func</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+		<span class=nx>ch</span> <span class=o>&lt;-</span> <span class=mi>1</span>
+	<span class=p>}</span><span class=p>(</span><span class=p>)</span>
+
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=o>&lt;-</span><span class=nx>ch</span><span class=p>)</span>
+	<span class=nb>close</span><span class=p>(</span><span class=nx>ch</span><span class=p>)</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>ch</span><span class=p>)</span>
+	<span class=nx>ch</span> <span class=o>&lt;-</span> <span class=mi>2</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=o>&lt;-</span><span class=nx>ch</span><span class=p>)</span>
+<span class=p>}</span>
+<span class=c1>// Output:
+</span><span class=c1></span><span class=mh>0xc0001020c0</span>
+<span class=mi>1</span>
+<span class=mh>0xc0001020c0</span>
+<span class=nx>panic</span><span class=p>:</span> <span class=nx>send</span> <span class=nx>on</span> <span class=nx>closed</span> <span class=nx>channel</span>
+
+<span class=nx>goroutine</span> <span class=mi>1</span> <span class=p>[</span><span class=nx>running</span><span class=p>]</span><span class=p>:</span>
+<span class=nx>main</span><span class=p>.</span><span class=nf>main</span><span class=p>(</span><span class=p>)</span>
+	<span class=nx>f</span><span class=p>:</span><span class=o>/</span><span class=nx>Gotest</span><span class=o>/</span><span class=nx>main</span><span class=p>.</span><span class=k>go</span><span class=p>:</span><span class=mi>16</span> <span class=o>+</span><span class=mh>0x22f</span>
+<span class=nx>Process</span> <span class=nx>exiting</span> <span class=nx>with</span> <span class=nx>code</span><span class=p>:</span> <span class=mi>0</span>
+</code></pre></td></tr></table></div></div><p>抛出的异常告诉我们，已关闭的 channel 不允许再传入数据，另外，我们还应该注意到这里得到的 channel 的地址不一样了，这是很正常的，因为每次运行为 channel 分配的内存都不太可能是同一块</p><p>最后，如果我们关闭后不传入数据，仅查看呢，其值为0，事实上，这里会是 chan 所修饰的类型的零值，比如，如果定义的是 ch := make(chan bool)，关闭 channel 后输出内容会是 false</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=s>&#34;fmt&#34;</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>ch</span> <span class=o>:=</span> <span class=nb>make</span><span class=p>(</span><span class=kd>chan</span> <span class=kt>int</span><span class=p>)</span>
+
+	<span class=k>go</span> <span class=kd>func</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+		<span class=nx>ch</span> <span class=o>&lt;-</span> <span class=mi>1</span>
+	<span class=p>}</span><span class=p>(</span><span class=p>)</span>
+
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=o>&lt;-</span><span class=nx>ch</span><span class=p>)</span>
+	<span class=nb>close</span><span class=p>(</span><span class=nx>ch</span><span class=p>)</span>
+
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=o>&lt;-</span><span class=nx>ch</span><span class=p>)</span>
+<span class=p>}</span>
+<span class=c1>// Output:
+</span><span class=c1></span><span class=mi>1</span>
+<span class=mi>0</span>
+</code></pre></td></tr></table></div></div><h2 id=3-资源争抢>3. 资源争抢</h2><p>channel 有时候也用于资源争抢，举例如下，100个人抢10个鸡蛋，每次的结果是随机的</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=p>(</span>
+	<span class=s>&#34;fmt&#34;</span>
+	<span class=s>&#34;sync&#34;</span>
+<span class=p>)</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>eggs</span> <span class=o>:=</span> <span class=nb>make</span><span class=p>(</span><span class=kd>chan</span> <span class=kt>int</span><span class=p>,</span> <span class=mi>10</span><span class=p>)</span>
+
+	<span class=k>for</span> <span class=nx>i</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=mi>10</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span> <span class=p>{</span>
+		<span class=nx>eggs</span> <span class=o>&lt;-</span> <span class=nx>i</span>
+	<span class=p>}</span>
+
+	<span class=kd>var</span> <span class=nx>wg</span> <span class=nx>sync</span><span class=p>.</span><span class=nx>WaitGroup</span>
+
+	<span class=k>for</span> <span class=nx>i</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=mi>100</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span> <span class=p>{</span>
+		<span class=nx>wg</span><span class=p>.</span><span class=nf>Add</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+		<span class=k>go</span> <span class=kd>func</span><span class=p>(</span><span class=nx>nums</span> <span class=kt>int</span><span class=p>)</span> <span class=p>{</span>
+			<span class=k>select</span> <span class=p>{</span>
+			<span class=k>case</span> <span class=nx>egg</span> <span class=o>:=</span> <span class=o>&lt;-</span><span class=nx>eggs</span><span class=p>:</span>
+				<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;People %d get egg %d\n&#34;</span><span class=p>,</span> <span class=nx>nums</span><span class=p>,</span> <span class=nx>egg</span><span class=p>)</span>
+			<span class=k>default</span><span class=p>:</span>
+			<span class=p>}</span>
+			<span class=nx>wg</span><span class=p>.</span><span class=nf>Done</span><span class=p>(</span><span class=p>)</span>
+		<span class=p>}</span><span class=p>(</span><span class=nx>i</span><span class=p>)</span>
+	<span class=p>}</span>
+	<span class=nx>wg</span><span class=p>.</span><span class=nf>Wait</span><span class=p>(</span><span class=p>)</span>
+<span class=p>}</span>
+<span class=c1>// Output:
+</span><span class=c1></span><span class=nx>People</span> <span class=mi>0</span> <span class=nx>get</span> <span class=nx>egg</span> <span class=mi>0</span>
+<span class=nx>People</span> <span class=mi>6</span> <span class=nx>get</span> <span class=nx>egg</span> <span class=mi>5</span>
+<span class=nx>People</span> <span class=mi>5</span> <span class=nx>get</span> <span class=nx>egg</span> <span class=mi>7</span>
+<span class=nx>People</span> <span class=mi>8</span> <span class=nx>get</span> <span class=nx>egg</span> <span class=mi>8</span>
+<span class=nx>People</span> <span class=mi>7</span> <span class=nx>get</span> <span class=nx>egg</span> <span class=mi>9</span>
+<span class=nx>People</span> <span class=mi>10</span> <span class=nx>get</span> <span class=nx>egg</span> <span class=mi>6</span>
+<span class=nx>People</span> <span class=mi>1</span> <span class=nx>get</span> <span class=nx>egg</span> <span class=mi>1</span>
+<span class=nx>People</span> <span class=mi>3</span> <span class=nx>get</span> <span class=nx>egg</span> <span class=mi>2</span>
+<span class=nx>People</span> <span class=mi>2</span> <span class=nx>get</span> <span class=nx>egg</span> <span class=mi>3</span>
+<span class=nx>People</span> <span class=mi>4</span> <span class=nx>get</span> <span class=nx>egg</span> <span class=mi>4</span>
+</code></pre></td></tr></table></div></div><p>资源争抢的运用领域非常广泛，比如电商的秒杀活动，出行的司机抢单，股票抢购，系统的计算资源争抢等</p><h2 id=4-channel阻塞>4. channel阻塞</h2><p>channel 阻塞就是资源的等待，比如使用 &lt;-ch 时还没有数值被送入通道，就需要等待。</p><p>阻塞产生的条件有两种</p><ol><li>输入时缓冲区满，此时需要等待 channel 中的值被取出；</li><li>取出时缓冲区空，此时需要等待有值放入 channel；</li></ol><p>阻塞可能造成下游接收数据的一方收不到数据，从而导致数据丢失，如果阻塞位置位于主流程，那么可能导致整个程序休眠，这时候影响就比较大。</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2020-07-16</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=https://shuzang.github.io/goroutine-learning-1-channel/index.md target=_blank>Read Markdown</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://shuzang.github.io/goroutine-learning-1-channel/ data-title=Go并发学习2-channel data-hashtags=Go并发><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://shuzang.github.io/goroutine-learning-1-channel/ data-hashtag=Go并发><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Reddit" data-sharer=reddit data-url=https://shuzang.github.io/goroutine-learning-1-channel/><i class="fab fa-reddit fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span class=tag><a href=https://shuzang.github.io/tags/go%E5%B9%B6%E5%8F%91/><i class="fas fa-tag fa-fw"></i>&nbsp;Go并发</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://shuzang.github.io>Home</a></span></section></div><div class=post-nav><a href=https://shuzang.github.io/goroutine-learning-1-process-thread-and-coroutine/ class=prev rel=prev title=Go并发学习1-进程、线程与协程><i class="fas fa-angle-left fa-fw"></i>Go并发学习1-进程、线程与协程</a>
+<a href=https://shuzang.github.io/nginx-learning/ class=next rel=next title=Nginx说明>Nginx说明<i class="fas fa-angle-right fa-fw"></i></a></div></div><div class=comment><div id=disqus_thread></div><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><div id=valine></div><script>document.addEventListener("DOMContentLoaded",function(event){new Valine({el:'#valine',appId:'GteMvevTjOBmhvFh2QGsopGO-gzGzoHsz',appKey:'fL4SYl06GIe012PswFdY17VC',placeholder:'Your comment ...',verify:true,avatar:'hide',pageSize:10,lang:'en',visitor:true,recordIP:true,});});</script><noscript>Please enable JavaScript to view the <a href=https://valine.js.org/>comments powered by Valine.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a></div><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://shuzang.github.io/about/ target=_blank>shuzang</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><a href=# class="dynamic-to-top animated faster" id=dynamic-to-top><span>&nbsp;</span>
+</a><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true},{left:"$",right:"$",display:false},]});});</script><link href=https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css rel=stylesheet><link href=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.css rel=stylesheet><link rel=stylesheet href=/css/lib/valine/dark.css><script src=https://dillonzq.disqus.com/embed.js></script><script src=https://cdn.bootcss.com/smooth-scroll/16.1.0/smooth-scroll.js></script><script src=https://cdn.bootcss.com/lazysizes/5.1.2/lazysizes.min.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/auto-render.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/mhchem.js></script><script src=/js/lib/valine/Valine.min.js></script><script src=/js/lib/sharer/sharer.min.js></script><script src=/js/theme.min.js></script></body></html>
