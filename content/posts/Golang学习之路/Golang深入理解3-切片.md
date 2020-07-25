@@ -1,5 +1,5 @@
 ---
-title: Golang深入理解2-切片
+title: Golang深入理解3-切片
 date: 2020-07-24T16:13:00+08:00
 lastmod: 2020-07-24
 tags: [Golang]
