@@ -1,10 +1,10 @@
 ---
-title: Golang深入理解4-map
+title: Golang深入学习4-map
 date: 2020-07-25T09:45:00+08:00
 lastmod: 2020-07-25
 tags: [Golang]
 categories: [Golang学习之路]
-slug: Golang deeply understands 4-map
+slug: Golang deep learning 4-map
 typora-root-url: ..\..\..\static
 ---
 
@@ -68,13 +68,13 @@ hmap 是哈希表的基础结构，hmap.buckets 实际指向 buckets 数组，hm
 
 bmap 是单个桶的结构，是一个长度为 8 的数组，数组每个元素的值是 key 的哈希值的高 8 位，数组之后是 8 个 key，然后 8 个 value，最后一个溢出指针，溢出指针指向额外的桶链表，用于存储溢出的数据。用图描述如下
 
-![](/images/Golang深入理解4-map/1480383-20191104215659319-1712154558.jpg)
+![](/images/Golang深入学习4-map/1480383-20191104215659319-1712154558.jpg)
 
 ## 2. 访问
 
 主要是 map.go 文件中的几个 mapaccess 函数，基本逻辑为
 
-![](/images/Golang深入理解4-map/7515493-599f9d40d5c56e61.webp)
+![](/images/Golang深入学习4-map/7515493-599f9d40d5c56e61.webp)
 
 找不到 key，就返回该类型的零值。
 
@@ -82,13 +82,13 @@ bmap 是单个桶的结构，是一个长度为 8 的数组，数组每个元素
 
 分配的意思是向 map 中添加新值，主要是 mapassign 函数，基本逻辑与查找相似，但多了写保护和扩容的内容
 
-![](/images/Golang深入理解4-map/7515493-54c06b9844da39bd.webp)
+![](/images/Golang深入学习4-map/7515493-54c06b9844da39bd.webp)
 
 ## 4. 删除
 
 删除主要是 mapdelete 函数，逻辑如下，删除操作的实质是将值置空，并没有减少内存
 
-![](/images/Golang深入理解4-map/7515493-a3221dbfcd6249ab.webp)
+![](/images/Golang深入学习4-map/7515493-a3221dbfcd6249ab.webp)
 
 
 

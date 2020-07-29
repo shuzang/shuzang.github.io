@@ -1,10 +1,10 @@
 ---
-title: Golang深入理解2-string
+title: Golang深入学习2-string
 date: 2020-07-24T11:19:00+08:00
 lastmod: 2020-07-24
 tags: [Golang]
 categories: [Golang学习之路]
-slug: Golang deeply understands 2-string
+slug: Golang deep learning 2-string
 ---
 
 C 中字符串以字符数组的形式出现，Go 中却作为基本数据类型，我们本次理解 Go 底层 string 类型是如何实现的，以及探讨它与 []byte 之间的关系。

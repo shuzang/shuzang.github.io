@@ -1,10 +1,10 @@
 ---
-title: Golang运行时
-date: 2020-06-13
-lastmod: 2020-06-13
+title: Golang深入学习7-调度器与垃圾回收
+date: 2020-07-30
+lastmod: 2020-07-30
 tags: [Golang]
 categories: [Golang学习之路]
-slug: Golang runtime
+slug: Golang deep learning 7-Scheduler and garbage collection
 typora-root-url: ..\..\..\static
 ---
 

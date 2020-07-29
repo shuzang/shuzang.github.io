@@ -1,10 +1,10 @@
 ---
-title: Golang使用dlv调试程序
-date: 2020-07-13T09:43:00+08:00
-lastmod: 2020-07-13
+title: Golang深入学习5-使用dlv调试程序
+date: 2020-07-26T09:43:00+08:00
+lastmod: 2020-07-26
 tags: [Golang]
 categories: [Golang学习之路]
-slug: Golang debug with dlv
+slug: Golang deep learning 5- debug with dlv
 typora-root-url: ..\..\..\static
 ---
 

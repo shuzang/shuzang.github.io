@@ -1,10 +1,10 @@
 ---
-title: Golang深入理解1-uintptr 和 Unsafe.Pointer
+title: Golang深入学习1-uintptr 和 Unsafe.Pointer
 date: 2020-07-23T12:15:00+08:00
 lastmod: 2020-07-23
 tags: [Golang]
 categories: [Golang学习之路]
-slug: Golang deeply understands 1-uintptr and Unsafe.Pointer
+slug: Golang deep learning 1-uintptr and Unsafe.Pointer
 ---
 
 本篇介绍 Go 中的指针、uintptr 和 unsafe.Pointer 三个东西。
