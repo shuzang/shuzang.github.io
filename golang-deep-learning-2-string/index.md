@@ -1,4 +1,4 @@
-# Golang深入理解2-string
+# Golang深入学习2-string
 
 
 C 中字符串以字符数组的形式出现，Go 中却作为基本数据类型，我们本次理解 Go 底层 string 类型是如何实现的，以及探讨它与 []byte 之间的关系。
