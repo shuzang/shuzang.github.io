@@ -274,4 +274,6 @@ func getIntersectionNode(headA, headB *LinkedList) *Node {
 }
 ```
 
+## 其它资料
 
+[Leetcode刷题总结之链表](https://xiaoneng.blog.csdn.net/article/details/104007259)
