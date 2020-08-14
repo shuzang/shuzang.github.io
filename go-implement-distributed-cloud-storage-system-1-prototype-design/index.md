@@ -33,6 +33,106 @@
 
 虚拟机安装 Ubuntu20.04，所有的代码在 Ubuntu20.04 中编辑运行。
 
+```bash
+# 安装golang
+$ sudo snap install --classic go
+$ go version
+go version go1.14.6 linux/amd64
+# 安装 VScode
+$ sudo snap install --classic code
+```
+
+打开 VScode，安装 Go 扩展，然后利用 `go env` 查到的环境变量设置 VScode 用户设置中的 Gopath 和 Goroot
+
+```bash
+$ go env
+...
+GOPATH="/home/shuzang/go"
+GOROOT="/snap/go/6123"
+...
+```
+
+设置代理，用于之后下载需要的工具
+
+```bash
+$ go env -w GOPROXY="https://goproxy.cn"
+```
+
+建立项目文件并初始化
+
+```bash
+$ mkdir filestore-server && cd filestore-server
+$ go mod init github.com/shuzang/filestore-server
+```
+
+在 VScode 中打开 filestore-server 文件夹，建立 main.go 文件，输入如下内容
+
+```go
+package main
+
+func main() {
+    // context
+}
+```
+
+Ctrl + S 保持，右下角会提示安装一堆工具，全部安装即可。
+
+## 3. 文件上传
+
+首先来实现文件上传接口
+
+在项目根目录建立 handler 文件夹，在文件夹中新建 handler.go 文件，输入如下内容
+
+```go
+package handler
+
+import (
+	"io"
+	"io/ioutil"
+	"net/http"
+)
+
+// Upload files
+func UploadHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "GET" {
+		// return upload html page
+		data, err := ioutil.ReadFile("./static/view/index.html")
+		if err != nil {
+			io.WriteString(w, "internel server error")
+			return
+		}
+		io.WriteString(w, string(data))
+	} else if r.Method == "POST" {
+		// receive files and store them to local
+	}
+}
+```
+
+将 https://git.imooc.com/coding-323/filestore-server/src/charter2 仓库的 static 文件夹复制到项目根目录
+
+编辑 `main.go` 文件如下
+
+```go
+package main
+
+import (
+	"fmt"
+	"net/http"
+
+	"github.com/shuzang/filestore-server/handler"
+)
+
+func main() {
+	http.HandleFunc("/file/upload", handler.UploadHandler)
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		fmt.Printf("Failed to start server, err:%s", err.Error())
+	}
+}
+```
+
+
+
 
 
 
