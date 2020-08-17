@@ -1,4 +1,4 @@
-# Golang查漏补缺 bufio读取的字符串无法直接进行类型转换
+# Golang查漏补缺-bufio读取的字符串无法直接进行类型转换
 
 
 如下列代码，在使用bufio包中的ReadString读取字符串之后，这个字符串无法进行类型转换，每次使用strconv.Atoi()函数返回值均为0。

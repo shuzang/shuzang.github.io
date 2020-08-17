@@ -1,7 +1,7 @@
 # Golang深入学习1-uintptr 和 Unsafe.Pointer
 
 
-本篇介绍 Go 中的指针、uintptr 和 unsafe.Pointer 三个东西。
+本篇介绍 Go 中的指针、uintptr 和 unsafe.Pointer 三个概念。
 
 <!--more-->
 

@@ -277,7 +277,7 @@ func printA(a int) {
 设置断点并启动运行
 
 ```bash
-b main.go:12
+> b main.go:12
 Breakpoint 1 set at 0x4bd5be for main.main() F:/Gotest/main.go:12
 (dlv) c
 > main.main() F:/Gotest/main.go:12 (hits goroutine(1):1 total:1) (PC: 0x4bd5be)
