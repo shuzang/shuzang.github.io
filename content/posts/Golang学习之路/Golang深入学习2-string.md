@@ -7,7 +7,7 @@ categories: [Golang学习之路]
 slug: Golang deep learning 2-string
 ---
 
-C 中字符串以字符数组的形式出现，Go 中却作为基本数据类型，我们本次理解 Go 底层 string 类型是如何实现的，以及探讨它与 []byte 之间的关系。
+Go 中字符串虽然作为基本数据类型，但本质依然是字符数组，本篇文章理解 Go 底层 string 类型是如何实现的，以及探讨它与 []byte 之间的关系。
 
 <!--more-->
 
@@ -17,7 +17,7 @@ C 中字符串以字符数组的形式出现，Go 中却作为基本数据类型
 
 > string is the set of all strings of 8-bit bytes, conventionally but not necessarily representing UTF-8-encoded text. A string may be empty, but not nil. Values of string type are immutable.
 
-意思是字符串是8位字节的一个序列，约定但不必须是 UTF-8 编码的文本。字符串可以为空但不能是nil，其值不可变。Go 中字符串的源码定义在 `src/runtime/string.go` 中，如下
+意思是字符串是字节的一个序列，约定但不必须是 UTF-8 编码的文本。字符串可以为空但不能是nil，其值不可变。Go 中字符串的源码定义在 `src/runtime/string.go` 中，如下
 
 ```go
 type stringStruct struct {

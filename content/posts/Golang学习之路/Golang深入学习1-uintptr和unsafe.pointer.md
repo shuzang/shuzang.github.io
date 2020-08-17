@@ -7,7 +7,7 @@ categories: [Golang学习之路]
 slug: Golang deep learning 1-uintptr and Unsafe.Pointer
 ---
 
-本篇介绍 Go 中的指针、uintptr 和 unsafe.Pointer 三个东西。
+本篇介绍 Go 中的指针、uintptr 和 unsafe.Pointer 三个概念。
 
 <!--more-->
 
