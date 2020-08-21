@@ -1,6 +1,7 @@
 ---
 title: ICMP协议
 date: 2018-10-01
+lastmod: 2020-08-20
 tags: [网络]
 categories: [爱编程爱技术的孩子]
 slug: Internet Control Message Protocol
@@ -76,7 +77,7 @@ Traceroute从源主机向目的主机发送一连串的 IP 数据报，数据报
 
 ## 3. Ping
 
-ICMP 的另一个重要应用是分组网间探测PING (Packet InterNetGroper)，用来测试两个主机之间的连通性。Ping 主要使用 ICMP 回送请求和回送回答报文，这是应用层直接使用网络层 ICMP 的一个例子，没有通过运输层的 TCP 或 UDP。
+ICMP 的另一个重要应用是分组网间探测 PING (Packet InterNetGroper)，用来测试两个主机之间的连通性。Ping 主要使用 ICMP 回送请求和回送回答报文，这是应用层直接使用网络层 ICMP 的一个例子，没有通过运输层的 TCP 或 UDP。
 
 ### 3.1 原理
 
