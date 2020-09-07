@@ -138,23 +138,24 @@ func build(heap []int) {
 
 ```go
 // 向上调整
-func up(heap []int, j int) {
+func up(heap []int) {
+    child := len(stones)-1
     for {
-        i := (j-1) / 2
-        if i < 0 || heap[i] >= heap[j] {
+        parent := (child-1) / 2
+        if parent < 0 || heap[parent] >= heap[child] {
             break
         }
-        heap[i],heap[j] = heap[j],heap[i]
-        j = i
+        heap[parent],heap[child] = heap[child],heap[parent]
+        child = parent
     }
 }
 
 // 向下调整
-func down(heap []int, i0, n int) {
-    i := i0
-    for parent := i; parent * 2 + 1 < n; parent = child {
+func down(heap []int, i int) {
+    var parent,child int
+    for parent := i; parent * 2 + 1 < len(heap); parent = child {
         child = parent * 2 + 1
-        if child + 1 < n && heap[child+1] > heap[child] {
+        if child + 1 < len(heap) && heap[child+1] > heap[child] {
             child++
         }
         if heap[child] <= heap[parent] {
@@ -171,22 +172,22 @@ func down(heap []int, i0, n int) {
 // 插入
 func Insert(heap []int], key int) {
     heap = append(heap, key)
-    up(heap,len(heap)-1)
+    up(heap)
 }
 
 // 删除
 func Delete(heap []int) int {
-    Max,:= heap[0]
+    Max := heap[0]
     heap[0]= heap[len(heap)-1]
     heap = heap[:len(heap)-1]
-    down(heap, 0, len(heap)) 
+    down(heap, 0) 
     return Max
 }
 
 // 建堆
 func build(heap []int) {
     for i := (len(heap)-2)/2; i >= 0; i-- {
-        down(heap,i,len(heap))       
+        down(heap,i)       
     } 
 }
 ```

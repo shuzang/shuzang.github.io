@@ -353,7 +353,7 @@ fType1 = func f(a type1, b type2)
 
     ```go
    func errorHandler(fn fType1) fType1 {
-   	return func(a type1, b type2) {
+   		return func(a type1, b type2) {
    		defer func() {
    			if err, ok := recover().(error); ok {
    				log.Printf("run time panic: %v", err)
@@ -366,16 +366,14 @@ fType1 = func f(a type1, b type2)
    
    当错误发生时会 recover 并打印在日志中，check() 函数会在所有的被调函数中调用，像这样： 
    
-   ```
+   ```go
    func f1(a type1, b type2) {
-   	...
    	f, _, err := // call function/method
    	check(err)
    	t, err := // call function/method
    	check(err)
    	_, err2 := // call function/method
    	check(err2)
-   	...
    }
    ```
 
