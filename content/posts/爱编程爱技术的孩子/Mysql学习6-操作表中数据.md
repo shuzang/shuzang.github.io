@@ -1,59 +1,77 @@
 ---
 title: Mysql学习6-操作表中数据
 date: 2020-05-24T17:03:00+08:00
+lastmod: 2020-09-13
 tags: [mysql]
 categories: [爱编程爱技术的孩子]
 slug: mysql learning 6 data query language
 typora-root-url: ..\..\..\static
 ---
 
-本文详细介绍表中数据地增删查改操作。
+本文详细介绍 **对表中数据** 的增删查改操作。
 
 <!--more-->
 
-## 1. 查询数据表
+## 1. 查询数据
 
-使用 SELECT 语句查询数据，语法格式如下
+查询表中数据所涉及的命令是最多的，一个基本的语法格式如下
 
 ```mysql
-SELECT
-{* | <字段列名>}
-[
+SELECT {* | <字段列名>}
 FROM <表 1>, <表 2>…
-[WHERE <表达式>
-[GROUP BY <group by definition>
-[HAVING <expression> [{<operator> <expression>}…]]
-[ORDER BY <order by definition>]
-[LIMIT[<offset>,] <row count>]
-]
+<join_type> join <join_table> on <join_condition>
+WHERE <表达式>
+GROUP BY <group by definition>
+HAVING <expression> [{<operator> <expression>}…]
+ORDER BY <order by definition>
+LIMIT [<offset>,] <row count>
 ```
 
-其中，各条子句的含义如下：
+这里简单解释各条子句的含义，
 
-- `{*|<字段列名>}`包含星号通配符的字段列表，表示所要查询字段的名称。
-- `<表 1>，<表 2>…`，表 1 和表 2 表示查询数据的来源，可以是单个或多个。
-- `WHERE <表达式>`是可选项，如果选择该项，将限定查询数据必须满足该查询条件。
-- `GROUP BY< 字段 >`，该子句告诉 MySQL 如何显示查询出来的数据，并按照指定的字段分组。
-- `[ORDER BY< 字段 >]`，该子句告诉 MySQL 按什么样的顺序显示查询出来的数据，可以进行的排序有升序（ASC）和降序（DESC），默认情况下是升序。
-- `[LIMIT[，]]`，该子句告诉 MySQL 每次显示查询出来的数据条数。
+- `SELECT {*|<字段列名>}` 表示所要查询字段的名称。
+- `FROM <表 1>，<表 2>…`，表示查询数据的来源，可以是单个或多个表。
+- `WHERE <表达式>` 限定查询数据必须满足的查询条件。
+- `GROUP BY< 字段 >` 告诉 MySQL 如何显示查询出来的数据，并按照指定的字段分组。
+- `ORDER BY< 字段 >` 告诉 MySQL 按什么样的顺序显示查询出来的数据。
+- `LIMIT[，]`，该子句告诉 MySQL 每次显示多少条查询出来的数据。
 
-### 1.1 查询所有字段
+### 1.1 基本查询
 
-使用 `*` 通配符，语法格式如下
+使用 `*` 通配符可以查询整个表的数据
 
 ```mysql
 SELECT * FROM 表名;
 ```
 
-### 1.2 查询指定字段
+下面的表将是后面所有语句执行的基表
 
-语法格式为
+```mysql
+mysql> SELECT * FROM tb_students_info;
++----+--------+---------+------+------+--------+------------+
+| id | name   | dept_id | age  | sex  | height | login_date |
++----+--------+---------+------+------+--------+------------+
+|  1 | Dany   |       1 |   25 | F    |    160 | 2015-09-10 |
+|  2 | Green  |       3 |   23 | F    |    158 | 2016-10-22 |
+|  3 | Henry  |       2 |   23 | M    |    185 | 2015-05-31 |
+|  4 | Jane   |       1 |   22 | F    |    162 | 2016-12-20 |
+|  5 | Jim    |       1 |   24 | M    |    175 | 2016-01-15 |
+|  6 | John   |       2 |   21 | M    |    172 | 2015-11-11 |
+|  7 | Lily   |       6 |   22 | F    |    165 | 2016-02-26 |
+|  8 | Susan  |       4 |   23 | F    |    170 | 2015-10-01 |
+|  9 | Thomas |       3 |   22 | M    |    178 | 2016-06-07 |
+| 10 | Tom    |       4 |   23 | M    |    165 | 2016-08-05 |
++----+--------+---------+------+------+--------+------------+
+10 rows in set (0.26 sec)
+```
+
+如果在 SELECT 命令后指定字段名，则结果只显示这些字段，相当于投影操作
 
 ```mysql
 SELECT <字段名1>,<字段名2>,…,<字段名n> FROM < 表名 >;
 ```
 
-可以是一列也可以是多列，多列示例如下
+查询多个字段的示例如下
 
 ```mysql
 mysql> SELECT id,name,height
@@ -75,9 +93,378 @@ mysql> SELECT id,name,height
 10 rows in set (0.00 sec)
 ```
 
-### 1.3 去重
+### 1.2 条件查询
 
-使用 DISTINCT 关键字去重
+使用 WHERE 关键字来指定查询条件，相当于选择操作。查询条件可以是：
+
+- 带比较运算符和逻辑运算符的查询条件
+- 带 IS NULL 或 IS NOT NULL 关键字的查询条件
+- 带 BETWEEN AND 关键字的查询条件
+- 带 IN 或 NOT IN 关键字的查询条件
+- 带 LIKE 关键字的查询条件
+
+查询条件可以是一条，也可以是多条，如下例
+
+```mysql
+# 单一条件
+mysql> SELECT name,height FROM tb_students_info
+    -> WHERE height=170;
++-------+--------+
+| name  | height |
++-------+--------+
+| Susan |    170 |
++-------+--------+
+1 row in set (0.17 sec)
+# 多条件
+mysql> SELECT name,age,height FROM tb_students_info 
+    -> WHERE age>21 AND height>=175;
++--------+------+--------+
+| name   | age  | height |
++--------+------+--------+
+| Henry  |   23 |    185 |
+| Jim    |   24 |    175 |
+| Thomas |   22 |    178 |
++--------+------+--------+
+3 rows in set (0.00 sec)
+```
+
+比较运算符和逻辑运算符的时候大家都很熟悉，下面介绍其它几种运算
+
+#### 空值查询
+
+IS NULL 和 IS NOT NULL 关键字用来进行判空查询，判断某个元组的分量是不是等于 NULL。
+
+这里要注意的是 MySQL 中空值不等于 0，也不等于空字符串。一个使用示例如下
+
+```msyql
+mysql> SELECT `name`,`login_date` FROM tb_students_info 
+    -> WHERE login_date IS NULL;
++--------+------------+
+| NAME   | login_date |
++--------+------------+
+| Dany   | NULL       |
+| Green  | NULL       |
+| Henry  | NULL       |
+| Jane   | NULL       |
+| Thomas | NULL       |
+| Tom    | NULL       |
++--------+------------+
+6 rows in set (0.01 sec)
+```
+
+#### 范围查询
+
+BETWEEN AND 关键字用来进行范围查询，判断某个属性是否在指定的范围内，语法格式如下
+
+```mysql
+[NOT] BETWEEN 取值1 AND 取值2
+```
+
+使用示例如下
+
+```mysql
+mysql> SELECT name,age FROM tb_students_info 
+    -> WHERE age BETWEEN 20 AND 23;
++--------+------+
+| name   | age  |
++--------+------+
+| Green  |   23 |
+| Henry  |   23 |
+| Jane   |   22 |
+| John   |   21 |
+| Lily   |   22 |
+| Susan  |   23 |
+| Thomas |   22 |
+| Tom    |   23 |
++--------+------+
+8 rows in set (0.00 sec)
+```
+
+#### IN/NOT IN
+
+MySQL 中的 IN 用来判断表达式的值是否位于给出的列表中；如果是，返回值为 1，否则返回值为 0。语法格式如下
+
+```mysql
+expr IN ( value1, value2, value3 ... valueN )
+expr NOT IN ( value1, value2, value3 ... valueN )
+```
+
+示例如下
+
+```mysql
+ SELECT 2 IN (1,3,5,'this'), 'this' NOT IN (1,3,5,'this');
++---------------------+------------------------------+
+| 2 IN (1,3,5,'this') | 'this' NOT IN (1,3,5,'this') |
++---------------------+------------------------------+
+|                   0 |                            0 |
++---------------------+------------------------------+
+1 row in set, 2 warnings (0.00 sec)
+```
+
+当 IN 运算符的两侧有一个为空值 NULL 时，如果找不到匹配项，则返回值为 NULL；如果找到了匹配项，则返回值为 1。
+
+NOT IN 的作用和 IN 恰好相反。
+
+#### 模糊查询
+
+使用 LIKE 关键字可以搜索匹配字段中的指定内容，语法格式如下
+
+```mysql
+[NOT] LIKE  '字符串'
+```
+
+- NOT ：可选参数，字段中的内容与指定的字符串不匹配时满足条件。
+- 字符串：指定用来匹配的字符串。“字符串”可以是一个很完整的字符串，也可以包含通配符。
+
+LIKE 关键字支持百分号 `%` 和下划线 `_` 通配符。
+
+```mysql
+# %通配符,代表任何长度的字符串，字符串的长度可以为 0
+mysql> SELECT name FROM tb_students_info
+    -> WHERE name LIKE 'T%';
++--------+
+| name   |
++--------+
+| Thomas |
+| Tom    |
++--------+
+2 rows in set (0.12 sec)
+# _通配符,只能代表单个字符，字符的长度不能为 0
+mysql> SELECT name FROM tb_students_info
+    -> WHERE name LIKE '____y'; # 4个下划线
++-------+
+| name  |
++-------+
+| Henry |
++-------+
+1 row in set (0.00 sec)
+```
+
+默认情况下，LIKE 关键字匹配字符的时候是不区分大小写的。如果需要区分大小写，可以加入 BINARY 关键字。
+
+```mysql
+mysql> SELECT name FROM tb_students_info WHERE name LIKE BINARY 't%';
+Empty set (0.01 sec)
+```
+
+如果查询内容中包含通配符，可以使用“\”转义符
+
+```mysql
+mysql> SELECT NAME FROM test.`tb_students_info` WHERE NAME LIKE '%\%';
++-------+
+| NAME  |
++-------+
+| Dany% |
++-------+
+1 row in set (0.00 sec)
+```
+
+### 1.3 分组查询
+
+通过 WHERE 子句筛选后，可能会使用 GROUP BY 关键字根据一个或多个字段对查询结果进行分组。语法格式如下
+
+```mysql
+GROUP BY  <字段名>
+```
+
+其中，<字段名> 表示需要分组的字段名称，多个字段时用逗号隔开。
+
+#### 单个字段分组
+
+单独使用时，查询结果只显示每个分组的第一条记录，但要记得，每个分组一般不会只有这一条记录
+
+```mysql
+mysql> SELECT `name`,`sex` FROM tb_students_info 
+    -> GROUP BY sex;
++-------+------+
+| name  | sex  |
++-------+------+
+| Henry | 女   |
+| Dany  | 男   |
++-------+------+
+2 rows in set (0.01 sec)
+```
+
+使用 GROUP_CONCAT() 函数可以在一条记录中把该分组所有的结果显示出来
+
+```mysql
+mysql> SELECT `sex`, GROUP_CONCAT(name) FROM tb_students_info 
+    -> GROUP BY sex;
++------+----------------------------+
+| sex  | GROUP_CONCAT(name)         |
++------+----------------------------+
+| 女   | Henry,Jim,John,Thomas,Tom  |
+| 男   | Dany,Green,Jane,Lily,Susan |
++------+----------------------------+
+2 rows in set (0.00 sec)
+```
+
+#### 多个字段分组
+
+多个字段分组查询时，会先按照第一个字段进行分组。如果第一个字段中有相同的值，MySQL 才会按照第二个字段进行分组。如果第一个字段中的数据都是唯一的，那么 MySQL 将不再对第二个字段进行分组。
+
+```mysql
+mysql> SELECT age,sex,GROUP_CONCAT(name) FROM tb_students_info 
+    -> GROUP BY age,sex;
++------+------+--------------------+
+| age  | sex  | GROUP_CONCAT(name) |
++------+------+--------------------+
+|   21 | 女   | John               |
+|   22 | 女   | Thomas             |
+|   22 | 男   | Jane,Lily          |
+|   23 | 女   | Henry,Tom          |
+|   23 | 男   | Green,Susan        |
+|   24 | 女   | Jim                |
+|   25 | 男   | Dany               |
++------+------+--------------------+
+7 rows in set (0.00 sec)
+```
+
+#### 聚合函数
+
+聚合函数包括 COUNT()，SUM()，AVG()，MAX() 和 MIN()。其中，COUNT() 用来统计记录的条数；SUM() 用来计算字段值的总和；AVG() 用来计算字段值的平均值；MAX() 用来查询字段的最大值；MIN() 用来查询字段的最小值。这些都是分组查询时常用的函数。
+
+```mysql
+mysql> SELECT sex,COUNT(sex) FROM tb_students_info 
+    -> GROUP BY sex;
++------+------------+
+| sex  | COUNT(sex) |
++------+------------+
+| 女   |          5 |
+| 男   |          5 |
++------+------------+
+2 rows in set (0.00 sec)
+```
+
+#### WITH ROLLUP
+
+WITH POLLUP 关键字用来在所有记录的最后加上一条记录，这条记录是上面所有记录的总和，即统计记录数量。
+
+```mysql
+mysql> SELECT sex,GROUP_CONCAT(name) FROM tb_students_info 
+    ->GROUP BY sex WITH ROLLUP;
++------+------------------------------------------------------+
+| sex  | GROUP_CONCAT(name)                                   |
++------+------------------------------------------------------+
+| 女   | Henry,Jim,John,Thomas,Tom                            |
+| 男   | Dany,Green,Jane,Lily,Susan                           |
+| NULL | Henry,Jim,John,Thomas,Tom,Dany,Green,Jane,Lily,Susan |
++------+------------------------------------------------------+
+3 rows in set (0.00 sec)
+```
+
+### 1.4 过滤分组
+
+在 MySQL 中，可以使用 HAVING 子句对分组后的数据进行过滤。语法格式如下
+
+```mysql
+HAVING <查询条件>
+```
+
+HAVING 关键字和 WHERE 关键字都可以用来过滤数据，且 HAVING 支持 WHERE 关键字中所有的操作符和语法。但是 WHERE 和 HAVING 关键字也存在以下几点差异：
+
+- 一般情况下，WHERE 用于过滤数据行，而 HAVING 用于过滤分组。
+- WHERE 查询条件中不可以使用聚合函数，而 HAVING 查询条件中可以使用聚合函数。
+- WHERE 在数据分组前进行过滤，而 HAVING 在数据分组后进行过滤 。
+- WHERE 针对数据库文件进行过滤，而 HAVING 针对查询结果进行过滤。也就是说，WHERE 根据数据表中的字段直接进行过滤，而 HAVING 是根据前面已经查询出的字段进行过滤。
+- WHERE 查询条件中不可以使用字段别名，而 HAVING 查询条件中可以使用字段别名。
+
+```mysql
+# 使用 WHERE
+mysql> SELECT name,sex FROM tb_students_info 
+    -> WHERE height>150;
++--------+------+
+| name   | sex  |
++--------+------+
+| Dany   | 男   |
+| Green  | 男   |
+| Henry  | 女   |
+| Jane   | 男   |
+| Jim    | 女   |
+| John   | 女   |
+| Lily   | 男   |
+| Susan  | 男   |
+| Thomas | 女   |
+| Tom    | 女   |
++--------+------+
+10 rows in set (0.00 sec)
+
+# 使用 HAVING
+mysql> SELECT GROUP_CONCAT(name),sex,height FROM tb_students_info 
+    -> GROUP BY height 
+    -> HAVING AVG(height)>170;
++--------------------+------+--------+
+| GROUP_CONCAT(name) | sex  | height |
++--------------------+------+--------+
+| John               | 女   |    172 |
+| Jim                | 女   |    175 |
+| Thomas             | 女   |    178 |
+| Henry              | 女   |    185 |
++--------------------+------+--------+
+4 rows in set (0.00 sec)
+```
+
+### 1.5 排序
+
+ORDER BY 关键字用来将查询结果中的数据按照一定的顺序进行排序。其语法格式如下：
+
+```mysql
+ORDER BY <字段名> [ASC|DESC]
+```
+
+语法说明如下。
+
+- 字段名：表示需要排序的字段名称，多个字段时用逗号隔开。
+- ASC|DESC：`ASC`表示字段按升序排序；`DESC`表示字段按降序排序。其中`ASC`为默认值。
+
+使用 ORDER BY 关键字应该注意以下几个方面：
+
+- ORDER BY 关键字后可以跟子查询。
+- 当排序的字段中存在空值时，ORDER BY 会将该空值作为最小值来对待。
+- 在对多个字段进行排序时，排序的第一个字段必须有相同的值，才会对第二个字段进行排序。如果第一个字段数据中所有的值都是唯一的，MySQL 将不再对第二个字段进行排序。
+
+```mysql
+# 单字段排序
+mysql> SELECT * FROM tb_students_info ORDER BY height;
++----+--------+---------+------+------+--------+------------+
+| id | name   | dept_id | age  | sex  | height | login_date |
++----+--------+---------+------+------+--------+------------+
+|  2 | Green  |       3 |   23 | F    |    158 | 2016-10-22 |
+|  1 | Dany   |       1 |   25 | F    |    160 | 2015-09-10 |
+|  4 | Jane   |       1 |   22 | F    |    162 | 2016-12-20 |
+|  7 | Lily   |       6 |   22 | F    |    165 | 2016-02-26 |
+| 10 | Tom    |       4 |   23 | M    |    165 | 2016-08-05 |
+|  8 | Susan  |       4 |   23 | F    |    170 | 2015-10-01 |
+|  6 | John   |       2 |   21 | M    |    172 | 2015-11-11 |
+|  5 | Jim    |       1 |   24 | M    |    175 | 2016-01-15 |
+|  9 | Thomas |       3 |   22 | M    |    178 | 2016-06-07 |
+|  3 | Henry  |       2 |   23 | M    |    185 | 2015-05-31 |
++----+--------+---------+------+------+--------+------------+
+10 rows in set (0.08 sec)
+# 多字段排序
+mysql> SELECT name,height FROM tb_students_info ORDER BY height,name;
++--------+--------+
+| name   | height |
++--------+--------+
+| Green  |    158 |
+| Dany   |    160 |
+| Jane   |    162 |
+| Lily   |    165 |
+| Tom    |    165 |
+| Susan  |    170 |
+| John   |    172 |
+| Jim    |    175 |
+| Thomas |    178 |
+| Henry  |    185 |
++--------+--------+
+10 rows in set (0.09 sec)
+```
+
+默认情况下，查询数据按字母升序进行排序（A～Z），但数据的排序并不仅限于此，还可以使用 ORDER BY 中的 DESC 对查询结果进行降序排序（Z～A）。
+
+### 1.6 去重
+
+SELECT 选择属性列后，新表可能出现重复的元组，可以使用 DISTINCT 关键字去重
 
 ```mysql
 SELECT DISTINCT <字段名> FROM <表名>;
@@ -133,7 +520,7 @@ mysql> SELECT COUNT(DISTINCT name,age) FROM student;
 1 row in set (0.01 sec)
 ```
 
-### 1.4 设置别名
+### 1.7 设置别名
 
 当表名或字段名很长或者执行一些特殊查询的时候，为了查询方便，可以使用 AS 关键字来为表和字段指定别名。
 
@@ -186,7 +573,7 @@ mysql> SELECT name AS student_name, age AS student_age FROM tb_students_info;
 10 rows in set (0.00 sec)
 ```
 
-### 1.5 限制查询结果的条数
+### 1.8 限制查询结果的条数
 
 使用 LIMIT 关键字限制查询结果返回的条数。LIMIT 关键字有 3 种使用方式，即指定初始位置、不指定初始位置以及与 OFFSET 组合使用。
 
@@ -233,357 +620,7 @@ LIMIT 可以和 OFFSET 组合使用，不过仅仅是换了一种写法，没有
 LIMIT 记录数 OFFSET 初始位置
 ```
 
-### 1.6 对查询结果排序
-
-ORDER BY 关键字用来将查询结果中的数据按照一定的顺序进行排序。其语法格式如下：
-
-```mysql
-ORDER BY <字段名> [ASC|DESC]
-```
-
-语法说明如下。
-
-- 字段名：表示需要排序的字段名称，多个字段时用逗号隔开。
-- ASC|DESC：`ASC`表示字段按升序排序；`DESC`表示字段按降序排序。其中`ASC`为默认值。
-
-使用 ORDER BY 关键字应该注意以下几个方面：
-
-- ORDER BY 关键字后可以跟子查询。
-- 当排序的字段中存在空值时，ORDER BY 会将该空值作为最小值来对待。
-- ORDER BY 指定多个字段进行排序时，MySQL 会按照字段的顺序从左到右依次进行排序。
-
-```mysql
-# 单字段排序
-mysql> SELECT * FROM tb_students_info ORDER BY height;
-+----+--------+---------+------+------+--------+------------+
-| id | name   | dept_id | age  | sex  | height | login_date |
-+----+--------+---------+------+------+--------+------------+
-|  2 | Green  |       3 |   23 | F    |    158 | 2016-10-22 |
-|  1 | Dany   |       1 |   25 | F    |    160 | 2015-09-10 |
-|  4 | Jane   |       1 |   22 | F    |    162 | 2016-12-20 |
-|  7 | Lily   |       6 |   22 | F    |    165 | 2016-02-26 |
-| 10 | Tom    |       4 |   23 | M    |    165 | 2016-08-05 |
-|  8 | Susan  |       4 |   23 | F    |    170 | 2015-10-01 |
-|  6 | John   |       2 |   21 | M    |    172 | 2015-11-11 |
-|  5 | Jim    |       1 |   24 | M    |    175 | 2016-01-15 |
-|  9 | Thomas |       3 |   22 | M    |    178 | 2016-06-07 |
-|  3 | Henry  |       2 |   23 | M    |    185 | 2015-05-31 |
-+----+--------+---------+------+------+--------+------------+
-10 rows in set (0.08 sec)
-# 多字段排序
-mysql> SELECT name,height FROM tb_students_info ORDER BY height,name;
-+--------+--------+
-| name   | height |
-+--------+--------+
-| Green  |    158 |
-| Dany   |    160 |
-| Jane   |    162 |
-| Lily   |    165 |
-| Tom    |    165 |
-| Susan  |    170 |
-| John   |    172 |
-| Jim    |    175 |
-| Thomas |    178 |
-| Henry  |    185 |
-+--------+--------+
-10 rows in set (0.09 sec)
-```
-
-在对多个字段进行排序时，排序的第一个字段必须有相同的值，才会对第二个字段进行排序。如果第一个字段数据中所有的值都是唯一的，MySQL 将不再对第二个字段进行排序。
-
-默认情况下，查询数据按字母升序进行排序（A～Z），但数据的排序并不仅限于此，还可以使用 ORDER BY 中的 DESC 对查询结果进行降序排序（Z～A）。
-
-### 1.7 条件查询
-
-可以使用 WHERE 关键字来指定查询条件，查询条件可以是：
-
-- 带比较运算符和逻辑运算符的查询条件
-- 带 BETWEEN AND 关键字的查询条件
-- 带 IS NULL 关键字的查询条件
-- 带 IN 关键字的查询条件
-- 带 LIKE 关键字的查询条件
-
-```mysql
-# 单一条件
-mysql> SELECT name,height FROM tb_students_info
-    -> WHERE height=170;
-+-------+--------+
-| name  | height |
-+-------+--------+
-| Susan |    170 |
-+-------+--------+
-1 row in set (0.17 sec)
-# 多条件
-mysql> SELECT name,age,height FROM tb_students_info 
-    -> WHERE age>21 AND height>=175;
-+--------+------+--------+
-| name   | age  | height |
-+--------+------+--------+
-| Henry  |   23 |    185 |
-| Jim    |   24 |    175 |
-| Thomas |   22 |    178 |
-+--------+------+--------+
-3 rows in set (0.00 sec)
-```
-
-### 1.8 模糊查询
-
-使用 LIKE 关键字搜索匹配字段中的指定内容，语法格式如下
-
-```mysql
-[NOT] LIKE  '字符串'
-```
-
-其中：
-
-- NOT ：可选参数，字段中的内容与指定的字符串不匹配时满足条件。
-- 字符串：指定用来匹配的字符串。“字符串”可以是一个很完整的字符串，也可以包含通配符。
-
-LIKE 关键字支持百分号“%”和下划线“_”通配符。
-
-```mysql
-# %通配符,代表任何长度的字符串，字符串的长度可以为 0
-mysql> SELECT name FROM tb_students_info
-    -> WHERE name LIKE 'T%';
-+--------+
-| name   |
-+--------+
-| Thomas |
-| Tom    |
-+--------+
-2 rows in set (0.12 sec)
-# _通配符,只能代表单个字符，字符的长度不能为 0
-mysql> SELECT name FROM tb_students_info
-    -> WHERE name LIKE '____y'; # 4个下划线
-+-------+
-| name  |
-+-------+
-| Henry |
-+-------+
-1 row in set (0.00 sec)
-```
-
-默认情况下，LIKE 关键字匹配字符的时候是不区分大小写的。如果需要区分大小写，可以加入 BINARY 关键字。
-
-```mysql
-mysql> SELECT name FROM tb_students_info WHERE name LIKE BINARY 't%';
-Empty set (0.01 sec)
-```
-
-如果查询内容中包含通配符，可以使用“\”转义符
-
-```mysql
-mysql> SELECT NAME FROM test.`tb_students_info` WHERE NAME LIKE '%\%';
-+-------+
-| NAME  |
-+-------+
-| Dany% |
-+-------+
-1 row in set (0.00 sec)
-```
-
-### 1.9 范围查询
-
-使用比较运算符中提到的 BETWEEN AND 关键字，语法格式如下
-
-```mysql
-[NOT] BETWEEN 取值1 AND 取值2
-```
-
-示例
-
-```mysql
-mysql> SELECT name,age FROM tb_students_info 
-    -> WHERE age BETWEEN 20 AND 23;
-+--------+------+
-| name   | age  |
-+--------+------+
-| Green  |   23 |
-| Henry  |   23 |
-| Jane   |   22 |
-| John   |   21 |
-| Lily   |   22 |
-| Susan  |   23 |
-| Thomas |   22 |
-| Tom    |   23 |
-+--------+------+
-8 rows in set (0.00 sec)
-```
-
-### 1.10 空值查询
-
-使用 IS NULL 关键字，空值不同于 0，也不同于空字符串。语法格式为
-
-```mysql
-IS [NOT] NULL
-```
-
-示例
-
-```msyql
-mysql> SELECT `name`,`login_date` FROM tb_students_info 
-    -> WHERE login_date IS NULL;
-+--------+------------+
-| NAME   | login_date |
-+--------+------------+
-| Dany   | NULL       |
-| Green  | NULL       |
-| Henry  | NULL       |
-| Jane   | NULL       |
-| Thomas | NULL       |
-| Tom    | NULL       |
-+--------+------------+
-6 rows in set (0.01 sec)
-```
-
-### 1.11 分组查询
-
-GROUP BY 关键字可以根据一个或多个字段对查询结果进行分组。语法格式如下
-
-```mysql
-GROUP BY  <字段名>
-```
-
-其中，“字段名”表示需要分组的字段名称，多个字段时用逗号隔开。
-
-#### 单独使用
-
-单独使用时，查询结果只显示每个分组的第一条记录
-
-```mysql
-mysql> SELECT `name`,`sex` FROM tb_students_info 
-    -> GROUP BY sex;
-+-------+------+
-| name  | sex  |
-+-------+------+
-| Henry | 女   |
-| Dany  | 男   |
-+-------+------+
-2 rows in set (0.01 sec)
-```
-
-#### 与 GROUP_CONCAT() 一起使用
-
-和 GROUP_CONCAT() 函数一起使用，GROUP_CONCAT() 函数会把每个分组的字段值都显示出来。
-
-```mysql
-mysql> SELECT `sex`, GROUP_CONCAT(name) FROM tb_students_info 
-    -> GROUP BY sex;
-+------+----------------------------+
-| sex  | GROUP_CONCAT(name)         |
-+------+----------------------------+
-| 女   | Henry,Jim,John,Thomas,Tom  |
-| 男   | Dany,Green,Jane,Lily,Susan |
-+------+----------------------------+
-2 rows in set (0.00 sec)
-```
-
-多个字段分组查询时，会先按照第一个字段进行分组。如果第一个字段中有相同的值，MySQL 才会按照第二个字段进行分组。如果第一个字段中的数据都是唯一的，那么 MySQL 将不再对第二个字段进行分组。
-
-```mysql
-mysql> SELECT age,sex,GROUP_CONCAT(name) FROM tb_students_info 
-    -> GROUP BY age,sex;
-+------+------+--------------------+
-| age  | sex  | GROUP_CONCAT(name) |
-+------+------+--------------------+
-|   21 | 女   | John               |
-|   22 | 女   | Thomas             |
-|   22 | 男   | Jane,Lily          |
-|   23 | 女   | Henry,Tom          |
-|   23 | 男   | Green,Susan        |
-|   24 | 女   | Jim                |
-|   25 | 男   | Dany               |
-+------+------+--------------------+
-7 rows in set (0.00 sec)
-```
-
-#### 与聚合函数一起使用
-
-聚合函数包括 COUNT()，SUM()，AVG()，MAX() 和 MIN()。其中，COUNT() 用来统计记录的条数；SUM() 用来计算字段值的总和；AVG() 用来计算字段值的平均值；MAX() 用来查询字段的最大值；MIN() 用来查询字段的最小值。
-
-```mysql
-mysql> SELECT sex,COUNT(sex) FROM tb_students_info 
-    -> GROUP BY sex;
-+------+------------+
-| sex  | COUNT(sex) |
-+------+------------+
-| 女   |          5 |
-| 男   |          5 |
-+------+------------+
-2 rows in set (0.00 sec)
-```
-
-#### 与 WITH ROLLUP 一起使用
-
-WITH POLLUP 关键字用来在所有记录的最后加上一条记录，这条记录是上面所有记录的总和，即统计记录数量。
-
-```mysql
-mysql> SELECT sex,GROUP_CONCAT(name) FROM tb_students_info 
-    ->GROUP BY sex WITH ROLLUP;
-+------+------------------------------------------------------+
-| sex  | GROUP_CONCAT(name)                                   |
-+------+------------------------------------------------------+
-| 女   | Henry,Jim,John,Thomas,Tom                            |
-| 男   | Dany,Green,Jane,Lily,Susan                           |
-| NULL | Henry,Jim,John,Thomas,Tom,Dany,Green,Jane,Lily,Susan |
-+------+------------------------------------------------------+
-3 rows in set (0.00 sec)
-```
-
-### 1.12 过滤分组
-
-在 MySQL 中，可以使用 HAVING 关键字对分组后的数据进行过滤。语法格式如下
-
-```mysql
-HAVING <查询条件>
-```
-
-HAVING 关键字和 WHERE 关键字都可以用来过滤数据，且 HAVING 支持 WHERE 关键字中所有的操作符和语法。
-
-但是 WHERE 和 HAVING 关键字也存在以下几点差异：
-
-- 一般情况下，WHERE 用于过滤数据行，而 HAVING 用于过滤分组。
-- WHERE 查询条件中不可以使用聚合函数，而 HAVING 查询条件中可以使用聚合函数。
-- WHERE 在数据分组前进行过滤，而 HAVING 在数据分组后进行过滤 。
-- WHERE 针对数据库文件进行过滤，而 HAVING 针对查询结果进行过滤。也就是说，WHERE 根据数据表中的字段直接进行过滤，而 HAVING 是根据前面已经查询出的字段进行过滤。
-- WHERE 查询条件中不可以使用字段别名，而 HAVING 查询条件中可以使用字段别名。
-
-```mysql
-# 使用 WHERE
-mysql> SELECT name,sex FROM tb_students_info 
-    -> WHERE height>150;
-+--------+------+
-| name   | sex  |
-+--------+------+
-| Dany   | 男   |
-| Green  | 男   |
-| Henry  | 女   |
-| Jane   | 男   |
-| Jim    | 女   |
-| John   | 女   |
-| Lily   | 男   |
-| Susan  | 男   |
-| Thomas | 女   |
-| Tom    | 女   |
-+--------+------+
-10 rows in set (0.00 sec)
-
-# 使用 HAVING
-mysql> SELECT GROUP_CONCAT(name),sex,height FROM tb_students_info 
-    -> GROUP BY height 
-    -> HAVING AVG(height)>170;
-+--------------------+------+--------+
-| GROUP_CONCAT(name) | sex  | height |
-+--------------------+------+--------+
-| John               | 女   |    172 |
-| Jim                | 女   |    175 |
-| Thomas             | 女   |    178 |
-| Henry              | 女   |    185 |
-+--------------------+------+--------+
-4 rows in set (0.00 sec)
-```
-
-### 1.13 多表查询
+### 1.9 多表查询
 
 前面所讲的查询语句都是针对一个表的，但是在关系型数据库中，表与表之间是有联系的，所以在实际应用中，经常使用多表查询。多表查询就是同时查询两个或两个以上的表，主要有交叉连接、内连接和外连接。
 
@@ -593,23 +630,18 @@ mysql> SELECT GROUP_CONCAT(name),sex,height FROM tb_students_info
 
 ```mysql
 SELECT <字段名> FROM <表1> CROSS JOIN <表2> [WHERE子句]
-```
-
-或
-
-```mysql
 SELECT <字段名> FROM <表1>, <表2> [WHERE子句] 
 ```
 
-多个表交叉连接时，在 FROM 后连续使用 CROSS JOIN 或`,`即可。以上两种语法的返回结果是相同的，但是第一种语法才是官方建议的标准写法。
+以上两种语法的返回结果是相同的，但是第一种语法是官方建议的标准写法。
 
-当连接的表之间没有关系时，我们会省略掉 WHERE 子句，这时返回结果就是两个表的笛卡尔积，返回结果数量就是两个表的数据行相乘。需要注意的是，如果每个表有 1000 行，那么返回结果的数量就有 1000×1000 = 1000000 行，数据量是非常巨大的。因此一般不建议使用交叉连接
+当连接的表之间没有关系时，我们会省略掉 WHERE 子句，这时返回结果就是两个表的笛卡尔积，因为笛卡尔积的计算结果包含的元组数目非常大，一般不建议使用交叉连接。
 
 #### 内连接
 
-内连接（INNER JOIN）主要通过设置连接条件的方式，来移除查询结果中某些数据行的交叉连接。简单来说，就是利用条件表达式来消除交叉连接的某些数据行。
+内连接（INNER JOIN）就是利用条件表达式来消除交叉连接的某些数据行。
 
-内连接使用 INNER JOIN 关键字连接两张表，并使用 ON 子句来设置连接条件。如果没有连接条件，INNER JOIN 和 CROSS JOIN 在语法上是等同的，两者可以互换。内连接的语法格式如下
+内连接使用 INNER JOIN 关键字连接两张表，并使用 ON 子句来设置连接条件。如果没有连接条件，INNER JOIN 和 CROSS JOIN 在语法上是等同的，两者可以互换，因此 ON 子句的作用比较重要。内连接的语法格式如下
 
 ```mysql
 SELECT <字段名> FROM <表1> INNER JOIN <表2> [ON子句]
@@ -707,9 +739,9 @@ mysql> SELECT s.name,c.course_name FROM tb_students_info s LEFT OUTER JOIN tb_co
 
 **右外连接** 是左外连接的反向连接，使用 RIGHT OUTER JOIN 关键字，大致内容相同，不再赘述。
 
-### 1.14 子查询
+### 1.10 子查询
 
-子查询是 MySQL 中比较常用的查询方法，通过子查询可以实现多表查询。子查询指将一个查询语句嵌套在另一个查询语句中。子查询可以在 SELECT、UPDATE 和 DELETE 语句中使用，而且可以进行多层嵌套。在实际开发时，子查询经常出现在 WHERE 子句中。语法格式如下
+子查询指将一个查询语句嵌套在另一个查询语句中，通过这种方式可以实现多表查询。子查询可以在 SELECT、UPDATE 和 DELETE 语句中使用，而且可以进行多层嵌套。在实际开发时，子查询经常出现在 WHERE 子句中。语法格式如下
 
 ```mysql
 WHERE <表达式> <操作符> (子查询)
@@ -758,7 +790,7 @@ WHERE <表达式> <操作符> (子查询)
 
 子查询的功能也可以通过表连接完成，但是子查询会使 SQL 语句更容易阅读和编写。一般来说，表连接（内连接和外连接等）都可以用子查询替换，但反过来却不一定，有的子查询不能用表连接来替换。子查询比较灵活、方便、形式多样，适合作为查询的筛选条件，而表连接更适合于查看连接表的数据。
 
-### 1.15 正则表达式查询
+### 1.11 正则表达式查询
 
 MySQL 中，使用 **REGEXP** 关键字指定正则表达式的字符匹配模式，其基本语法格式如下：
 
@@ -766,22 +798,7 @@ MySQL 中，使用 **REGEXP** 关键字指定正则表达式的字符匹配模�
 属性名 REGEXP '匹配方式'
 ```
 
-其中，“属性名”表示需要查询的字段名称；“匹配方式”表示以哪种方式来匹配查询。“匹配方式”中有很多的模式匹配字符，它们分别表示不同的意思。下表列出了 REGEXP 操作符中常用的匹配方式。
-
-| 选项         | 说明                                  | 例子                                       | 匹配值示例                 |
-| ------------ | ------------------------------------- | ------------------------------------------ | -------------------------- |
-| ^            | 匹配文本的开始字符                    | '^b' 匹配以字母 b 开头的字符串             | book、big、banana、bike    |
-| $            | 匹配文本的结束字符                    | 'st$' 匹配以 st 结尾的字符串               | test、resist、persist      |
-| .            | 匹配任何单个字符                      | 'b.t' 匹配任何 b 和 t 之间有一个字符       | bit、bat、but、bite        |
-| *            | 匹配零个或多个在它前面的字符          | 'f*n' 匹配字符 n 前面有任意个字符 f        | fn、fan、faan、abcn        |
-| +            | 匹配前面的字符 1 次或多次             | 'ba+' 匹配以 b 开头，后面至少紧跟一个 a    | ba、bay、bare、battle      |
-| <字符串>     | 匹配包含指定字符的文本                | 'fa' 匹配包含‘fa’的文本                    | fan、afa、faad             |
-| [字符集合]   | 匹配字符集合中的任何一个字符          | '[xz]' 匹配 x 或者 z                       | dizzy、zebra、x-ray、extra |
-| [^]          | 匹配不在括号中的任何字符              | '[^abc]' 匹配任何不包含 a、b 或 c 的字符串 | desk、fox、f8ke            |
-| 字符串{n,}   | 匹配前面的字符串至少 n 次             | 'b{2}' 匹配 2 个或更多的 b                 | bbb、bbbb、bbbbbbb         |
-| 字符串 {n,m} | 匹配前面的字符串至少 n 次， 至多 m 次 | 'b{2,4}' 匹配最少 2 个，最多 4 个 b        | bbb、bbbb                  |
-
-示例
+其中，“属性名”表示需要查询的字段名称；“匹配方式”表示以哪种方式来匹配查询，符合正则表达式的写法。一个示例如下
 
 ```mysql
 mysql> SELECT * FROM tb_students_info 
