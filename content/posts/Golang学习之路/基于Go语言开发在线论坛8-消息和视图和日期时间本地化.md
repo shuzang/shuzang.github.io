@@ -3,7 +3,7 @@ title: 基于Go语言开发在线论坛8-消息、视图和日期时间本地化
 author: xueyuanjun
 date: 2020-06-07T20:30:00+08:00 
 lastmod: 2020-06-07
-tags: [Go Web,在线论坛项目]
+tags: [Go Web,Go项目]
 categories: [Golang学习之路]
 slug: Development of online forum based on golang 8-Message, view and date time localizationsingleton mode
 typora-root-url: ..\..\..\static

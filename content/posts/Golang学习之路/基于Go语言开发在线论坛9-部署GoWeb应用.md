@@ -3,7 +3,7 @@ title: 基于Go语言开发在线论坛9-部署Go Web应用
 author: xueyuanjun
 date: 2020-06-07T20:50:00+08:00 
 lastmod: 2020-06-07
-tags: [Go Web,在线论坛项目]
+tags: [Go Web,Go项目]
 categories: [Golang学习之路]
 slug: Development of online forum based on golang 9-deploy go web application
 typora-root-url: ..\..\..\static

@@ -3,7 +3,7 @@ title: 基于Go语言开发在线论坛3-访问论坛首页
 author: xueyuanjun
 date: 2020-05-29T09:08:00+08:00 
 lastmod: 2020-06-14
-tags: [Go Web, 在线论坛项目]
+tags: [Go Web,Go项目]
 categories: [Golang学习之路]
 slug: Development of online forum based on golang 3-Visit Forum Homepage
 typora-root-url: ..\..\..\static

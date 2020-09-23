@@ -3,7 +3,7 @@ title: 基于Go语言开发在线论坛2-通过模型类与MySQL数据库交互
 author: xueyuanjun
 date: 2020-05-27T18:25:20+08:00 
 lastmod: 2020-06-14
-tags: [Go Web, 在线论坛项目]
+tags: [Go Web,Go项目]
 categories: [Golang学习之路]
 slug: Development of online forum based on golang 2-Interact with MySQL
 typora-root-url: ..\..\..\static
