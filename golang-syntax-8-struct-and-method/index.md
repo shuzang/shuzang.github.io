@@ -1,13 +1,15 @@
 # Golang语法基础8-结构体与方法
 
 
-Go中结构体的概念和C相同，甚至声明用的关键字也是`struct`，因为Go中没有类的概念，因此结构体的地位比较重要。
+结构体是一种非常重要的结构，用到的地方非常多，在 Go 中，结构体还是实现面向对象编程的基础。
 
-## 1. 定义与初始化
+<!--more-->
 
-简单的结构体定义可以使用 `type T struct {a, b int}` 这样的短代码格式
+## 1. 结构体
 
-完整的结构体定义方式如下：
+### 1.1 定义与初始化
+
+结构体定义方式如下：
 
 ```go
 type identifier struct {
@@ -17,9 +19,17 @@ type identifier struct {
 }
 ```
 
-大括号中的每一行称为一个字段，每个字段都有一个类型和一个名字，在一个结构体中，字段名必须是唯一的。结构体名和字段名的命名遵循可见性规则，一个可导出的结构体类型中可以存在不可导出的字段。结构体的字段可以是任意类型，甚至可以是结构体本身、函数或者接口。
+大括号中的每一行称为一个字段，每个字段都有一个类型和一个名字，在一个结构体中，字段名必须是唯一的。结构体名和字段名的命名遵循可见性规则，即使用首字母的大小写来表示可导出和不可导出。但是需要注意，一个可导出的结构体类型中可以存在不可导出的字段。
 
-结构体是自定义数据类型，可以像普通变量一样声明：`var s T`，声明时即会分配内存并默认使用零值初始化。手动初始化的常规方式如下
+结构体的字段可以是任意类型，甚至可以是结构体本身、函数或者接口。一个简单的结构体定义示例如下
+
+```go
+type T struct {
+    a,b int
+}
+```
+
+结构体是自定义数据类型，因此我们可以向基本数据类型一样声明/定义一个结构体类型的变量，声明时会分配内存并默认使用每个字段类型的零值来初始化。我们也可以手动初始化一个结构体，使用点号符给字段赋值，示例如下。另外，访问结构体内字段的值时同样使用点号符，这种使用点号符赋值和获取字段值的方式叫做**选择器(selector)**，
 
 ```go
 var s T
@@ -27,14 +37,46 @@ s.a = 5
 s.b = 8
 ```
 
-由于结构体也是值类型，使用new函数创建，有如下两种写法
+由于结构体也是值类型，使用new函数创建。注意，使用 new 得到的 t 是指向结构体的指针。
 
 ```go
 var t *T = new(T)
-t := new(T)
+t := new(T) // 简单方便地写法，最常用
 ```
 
-上例第二行是惯用写法，简单方便，t是指向结构体的指针。注意，结构体同普通变量相同。一个完整的例子如下
+至此我们注意到，使用结构体时我们可能遇到两种类型：结构体类型和结构体指针类型，这两种类型都可以通过选择器的方式来使用，如下，v.i 和 p.i 都可以得到正确的值，在理解的时候可以想象底层对结构体指针 p 自动做了解引用，如 (*p).i。
+
+```go
+type myStruct struct { i int }
+var v myStruct    // v是结构体类型变量
+var p *myStruct   // p是指向一个结构体类型变量的指针
+v.i
+p.i
+(*p).i
+```
+
+除使用选择器初始化结构体字段外，一种更简短更常用的结构体初始化方法如下
+
+```go
+ms := struct1{10, 15.5, "Chris"}  //结构体类型
+ms := &struct1{10, 15.5, "Chris"}  //结构体指针类型
+ms := &struct1{f1:15.5，i1:10}  //括号内声明字段名，这样可以不按定义的字段顺序，甚至省略部分字段
+```
+
+其中第二行称为混合字面量语法，但底层仍然会调用`new()`，因此与使用 `new()` 初始化是等同的。以`type Point struct {x,y int}`为例，这几种初始化方式的内存布局如下
+
+<img src="/images/Golang语法基础8-结构体与方法/3EkqRU.jpg" alt="结构体内存布局" style="zoom: 80%;" />
+
+从上图可以看出，结构体和它包含的数据在内存中是以连续块的形式存在的，即使结构体中嵌套其它的结构体，同样如此。
+
+```go
+type Rect1 struct {Min, Max Point }
+type Rect2 struct {Min, Max *Point }
+```
+
+![嵌套结构体内存布局](https://github.com/unknwon/the-way-to-go_ZH_CN/raw/master/eBook/images/10.1_fig10.2.jpg?raw=true)
+
+一个使用结构体的完整例子如下
 
 ```go
 package main
@@ -64,41 +106,110 @@ The string is: Chris
 &{10 15.5 Chris}
 ```
 
-使用点号符给字段赋值：`structname.fieldname = value` ，同样使用点号符获取结构体字段的值：`structname.fieldname`
+### 1.2 结构体标签
 
-这种使用点号符赋值和获取字段值的方式叫做**选择器(selector)**，无论变量是结构体类型还是结构体指针类型，使用的方法都是相同的，不过指针类型也可以使用解引用的方式赋值和调用
-
-```go
-type myStruct struct { i int }
-var v myStruct    // v是结构体类型变量
-var p *myStruct   // p是指向一个结构体类型变量的指针
-v.i
-p.i
-(*p).i
-```
-
-除使用选择器初始化结构体字段外，一个更简短和惯用的结构体初始化方法如下
+实际上，一个完整的结构体定义，在字段名和类型外，还有一个标签(tag)部分。标签是一个字符串，用来对字段进行一定的说明，对程序功能没有太大的作用，因此前面才没有介绍。正如我们说的，它的主要作用就是对字段进行说明，标签只有包 `reflect` 能获取。
 
 ```go
-ms := struct1{10, 15.5, "Chris"}  //结构体类型
-ms := &struct1{10, 15.5, "Chris"}  //结构体指针类型
-ms := &struct1{f1:15.5，i1:10}  //括号内声明字段名，这样可以不按定义的字段顺序，甚至省略部分字段
+package main
+
+import (
+	"fmt"
+	"reflect"
+)
+
+type TagType struct { // tags
+	field1 bool   "An important answer"
+	field2 string "The name of the thing"
+	field3 int    "How much there are"
+}
+
+func main() {
+	tt := TagType{true, "Barak Obama", 1}
+	for i := 0; i < 3; i++ {
+		refTag(tt, i)
+	}
+}
+
+func refTag(tt TagType, ix int) {
+	ttType := reflect.TypeOf(tt)
+	ixField := ttType.Field(ix)
+	fmt.Printf("%v\n", ixField.Tag)
+}
+//Output:
+An important answer
+The name of the thing
+How much there are
 ```
 
-上例第二行称为混合字面量语法，但底层仍然会调用`new()`，因此与使用new()初始化是等同的。以``type Point struct {x,y int}`为例，这几种初始化方式的内存布局如下
+### 1.3 匿名字段与内嵌结构体
 
-![结构体内存布局](/images/Golang语法基础8-结构体与方法/3EkqRU.jpg)
-
-从上图还可以看出，结构体和它包含的数据在内存中是以连续块的形式存在的，即使结构体中嵌套其它的结构体，同样如此。
+结构体的字段名其实和变量很相似，不需要时也可以用空白符 `_` 代替，但实际上，也可以直接省略，即整个字段只有类型，此时类型就是字段名，这种字段叫做**匿名字段**。如下例，通过类型 `t.float32` 来获取存储在匿名字段中的数据，也因为这种调用方式，一个结构体中对每一种数据类型只能有一个匿名字段。
 
 ```go
-type Rect1 struct {Min, Max Point }
-type Rect2 struct {Min, Max *Point }
+package main
+
+import "fmt"
+
+type T struct {
+	a       int
+	float32 // anonymous field
+}
+
+func main() {
+	t := T{6, 7.5}
+	fmt.Println(t.float32)
+}
+
+//Output:
+{6 7.5}
 ```
 
-![嵌套结构体内存布局](https://github.com/unknwon/the-way-to-go_ZH_CN/raw/master/eBook/images/10.1_fig10.2.jpg?raw=true)
+由于结构体本身也是一种数据类型，因此也可以作为匿名字段使用，称为**内嵌结构体**。通过内嵌结构体可以实现 OO 编程种的继承。
 
-## 2. 结构体工厂
+```go
+package main
+
+import "fmt"
+
+type A struct {
+	ax, ay int
+}
+
+type B struct {
+	A
+	bx, by float32
+}
+
+func main() {
+	b := B{A{1, 2}, 3.0, 4.0}
+	fmt.Println(b.ax, b.ay, b.bx, b.by)
+	fmt.Println(b.A)
+}
+//Output:
+1 2 3 4
+{1 2}
+```
+
+使用内嵌结构体的时候，很可能会出现命名冲突（继承来的字段名和当前结构体的某个字段名相同），这种情况下外层的名字会覆盖内层的名字，但两者的内存空间都会保留，下例中`d.b`的调用不会出错，指的是float32，而不是`B.b`，进行内层调用可以使用`d.B.b`
+
+```go
+type B struct {a, b int}
+type D struct {B; b float32}
+var d D
+```
+
+但下面这种情况，`c.a`的调用会导致编译器错误,只能由程序员手动修改
+
+```go
+type A struct {a int}
+type B struct {a, b int}
+
+type C struct {A; B}
+var c C
+```
+
+### 1.4 结构体工厂
 
 可以为结构体定义一个工厂来创建结构体实例，工厂的名字通常以new或New开头，这是一种很常用的方法。假设定义了如下File结构体类型
 
@@ -150,110 +261,7 @@ wrong := new(matrix.matrix)     // 编译失败（matrix 是私有的）
 right := matrix.NewMatrix(...)  // 实例化 matrix 的唯一方式
 ```
 
-## 3. 结构体标签
-
-实际上，上述的结构体定义方式并不完整，在字段名和类型外，还可以为字段添加标签(tag)。标签是一个字符串，用来对字段进行一定的说明，并不能在编程时使用，只有包`reflect`能获取它，
-
-```go
-package main
-
-import (
-	"fmt"
-	"reflect"
-)
-
-type TagType struct { // tags
-	field1 bool   "An important answer"
-	field2 string "The name of the thing"
-	field3 int    "How much there are"
-}
-
-func main() {
-	tt := TagType{true, "Barak Obama", 1}
-	for i := 0; i < 3; i++ {
-		refTag(tt, i)
-	}
-}
-
-func refTag(tt TagType, ix int) {
-	ttType := reflect.TypeOf(tt)
-	ixField := ttType.Field(ix)
-	fmt.Printf("%v\n", ixField.Tag)
-}
-//Output:
-An important answer
-The name of the thing
-How much there are
-```
-
-## 4. 匿名字段与内嵌结构体
-
-前面已经提到过，字段名不需要时可以用空白符`_`代替，但实际上，也可以直接省略，即整个字段只有类型，此时类型就是字段名，这种字段叫做**匿名字段**。如下例，通过类型`outer.int`来获取存储在匿名字段中的数据，因此也能看出，一个结构体中对每一种数据类型只能有一个匿名字段。
-
-```go
-package main
-
-import "fmt"
-
-type T struct {
-	a       int
-	float32 // anonymous field
-}
-
-func main() {
-	t := T{6, 7.5}
-	fmt.Println(t)
-}
-
-//Output:
-{6 7.5}
-```
-
-结构体也是一种数据类型，因此也可以作为匿名字段使用，称为**内嵌结构体**。内嵌结构体提供了一种简单的继承机制，可以从其它类型中继承一部分内容。
-
-```go
-package main
-
-import "fmt"
-
-type A struct {
-	ax, ay int
-}
-
-type B struct {
-	A
-	bx, by float32
-}
-
-func main() {
-	b := B{A{1, 2}, 3.0, 4.0}
-	fmt.Println(b.ax, b.ay, b.bx, b.by)
-	fmt.Println(b.A)
-}
-//Output:
-1 2 3 4
-{1 2}
-```
-
-使用内嵌结构体的时候，很可能会出现命名冲突（继承来的字段名和当前结构体的某个字段名相同），这种情况下外层的名字会覆盖内层的名字，但两者的内存空间都会保留，下例中`d.b`的调用不会出错，指的是float32，而不是`B.b`，进行内层调用可以使用`d.B.b`
-
-```go
-type B struct {a, b int}
-type D struct {B; b float32}
-var d D
-```
-
-但下面这种情况，`c.a`的调用会导致编译器错误,只能由程序员手动修改
-
-```go
-type A struct {a int}
-type B struct {a, b int}
-
-type C struct {A; B}
-var c C
-```
-
-## 5. 方法
+## 2. 方法
 
 Go中的方法是作用在接收者上的一个函数，接收者是某种类型的变量。定义方法的一般格式如下
 
@@ -360,7 +368,7 @@ func main() {
 }
 ```
 
-### 5.1 函数和方法的区别
+### 2.1 函数和方法的区别
 
 函数将变量作为参数：**Function1(recv)**
 
@@ -378,7 +386,7 @@ func main() {
 
 **方法没有和数据定义（结构体）混在一起：它们是正交的类型；表示（数据）和行为（方法）是独立的。**
 
-### 5.2 指针或值作为接收者
+### 2.2 指针或值作为接收者
 
  如果想要方法改变接收者的数据，就在接收者的指针类型上定义该方法。否则，就在普通的值类型上定义方法。一个例子如下
 
@@ -415,7 +423,7 @@ func main() {
 
 指针方法和值方法都可以在指针或非指针上被调用，如上例，b1是值类型，而change()方法作用在指针类型上，b1.change()会被自动转换为(&b1).change()；b2是指针类型，但write()方法是值类型，b2.write()会被自动转换成(*b2).write()
 
- ### 5.3 利用方法读取结构体中的未导出字段
+ ### 2.3 利用方法读取结构体中的未导出字段
 
 本文开始对结构体的介绍中，提到结构体对外部可见，而结构体中的字段对外部不可见是可能发生的，对于这种情况，读取或修改结构体中的字段值可以通过作用在结构体上的方法完成，一个例子如下
 
@@ -456,7 +464,7 @@ func main() {
 }
 ```
 
-### 5.4 内嵌类型的方法与继承
+### 2.4 内嵌类型的方法与继承
 
  当一个匿名类型被内嵌在结构体中时，匿名类型的可见方法也同样被内嵌，这在效果上等同于外层类型 **继承** 了这些方法 ， 这个机制提供了一种简单的方式来模拟面向对象语言中的子类和继承相关的效果。一个示例如下
 
@@ -533,7 +541,7 @@ It exhibits behavior of a Camera: Click
 It works like a Phone too: Ring Ring
 ```
 
-### 5.5 在类型中嵌入功能
+### 2.5 在类型中嵌入功能
 
 主要有两种方法来实现在类型中嵌入功能：
 
