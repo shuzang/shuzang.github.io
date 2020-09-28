@@ -24,7 +24,9 @@ Go 的运行时是每个 Go 程序的一部分，负责实施垃圾回收、并�
 - runtime/race：实现了数据静态检测逻辑
 - runtime/trace：执行跟踪器，捕获各种执行时的事件，比如 goroutine 的创建/阻塞/解除阻塞、系统调用的进入/退出/阻塞、垃圾回收相关的事件、堆大小的改变、处理器的启动和停止等，并将它们写入 io.writer 中
 
-需要知道的是，调度器、垃圾回收、各种数据类型的定义和操作(比如切片、接口等)都位于 runtime 库，而不是这几个子库，在电脑中的位置为 `GOROOT/src/runtime`
+需要知道的是，调度器、垃圾回收、各种数据类型的定义和操作(比如切片、接口等)都位于 runtime 库，而不是这几个子库，在电脑中的位置为 `$GOROOT/src/runtime`
+
+Go 的可执行文件一般比相应的源码文件大很多，这是因为 runtime 潜入了每一个可执行文件中，因此，Go 运行不依赖于其它任何文件。
 
 ## 2. 调度器
 
@@ -185,6 +187,18 @@ runtime.ReadMemStats：读取内存相关的统计信息，其中包含部分 GC
 
 1. 超过内存大小阈值
 2. 达到定时时间（默认2min触发一次）
+
+如果想知道当前的内存状态，可以使用
+
+```go
+// fmt.Printf("%d\n", runtime.MemStats.Alloc/1024)
+// 此处代码在 Go 1.5.1下不再有效，更正为
+var m runtime.MemStats
+runtime.ReadMemStats(&m)
+fmt.Printf("%d Kb\n", m.Alloc / 1024)
+```
+
+ 上面的程序会给出已分配内存的总量，单位是 Kb。进一步的测量参考 [package runtime](https://golang.google.cn/pkg/runtime/)
 
 垃圾回收参考：
 
