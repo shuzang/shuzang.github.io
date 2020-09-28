@@ -1,7 +1,7 @@
 ---
 title: Golang语法基础2-命令、包与模块
 date: 2019-09-19
-lastmod: 2020-06-13
+lastmod: 2020-09-28
 tags: [Golang]
 categories: [Golang学习之路]
 slug: Golang basic grammer 2-command package module
@@ -354,9 +354,9 @@ include $(GOROOT)/src/Make.pkg
 
 ## 3. 模块
 
-自Go 1.11起，开始支持使用 Go Module 进行包管理，这里参考Go Blog中的[Using Go Modules](https://blog.golang.org/using-go-modules)一文对其进行说明。
+自 Go 1.11 起，开始支持使用 Go Module 进行包管理，这里参考 Go Blog 中的 [Using Go Modules](https://blog.golang.org/using-go-modules) 一文对其进行介绍。
 
-模块(module)通过存在项目根目录下`go.mod`文件起作用，项目中使用的所有包的集合定义在该文件中。`go.mod`文件定义了模块路径，用于项目中包的导入路径。以delve的`go.mod`文件为例
+模块(module)通过项目根目录下`go.mod`文件起作用，项目中使用的所有包的集合都在该文件中定义。`go.mod`文件定义了模块路径，用于项目中包的导入路径。以 delve 的`go.mod`文件为例
 
 ```go
 module github.com/go-delve/delve
@@ -391,7 +391,7 @@ require (
 )
 ```
 
-由此可以注意到的是，使用模块进行包管理已经独立于原来使用`$GOPATH`进行包管理的方式，所有的代码不必全部放在一个工作区中。在任意位置建立项目目录，`go.mod`文件会存放在项目根目录中，所有项目源代码根据该文件进行包管理。如果`go.mod`文件放在`$GOPATH/src`，即原来的统一工作区，是不起作用的，会被旧的GOPATH模式屏蔽。自Go 1.13开始，module模式已经成为了Go开发的默认模式。
+注意，使用模块进行包管理独立于原来的使用 gopath 进行包管理，可以在任意位置建立项目。如果`go.mod`文件放在`$GOPATH/src`，即原来的统一工作区，是不起作用的，会被旧的GOPATH模式屏蔽。自 Go 1.13 开始，module 模式已经成为了 Go 开发的默认模式。
 
 ### 3.1 创建新模块
 
@@ -428,7 +428,7 @@ PASS
 ok      _/F_/hello 0.240s
 ```
 
-因为我们在$GOPATH外进行的测试，而且现在还没有`go.mod`文件，所以Go命令不知道导入路径，只能根据目录名生成一个导入路径。现在我们来创建`go.mod`文件并再次执行`go test`命令
+因为我们在 `$GOPATH` 外进行的测试，而且现在还没有`go.mod`文件，所以Go命令不知道导入路径，只能根据目录名生成一个导入路径。现在我们来创建`go.mod`文件并再次执行`go test`命令
 
 ```bash
 $ go mod init example.com/hello
@@ -771,22 +771,7 @@ $
 - [Publishing Go Modules](https://blog.golang.org/publishing-go-modules)
 - [Go Modules: v2 and Beyond](https://blog.golang.org/v2-go-modules)
 
-## 4. 垃圾回收
 
-Go代码运行在Go的runtime（这部分代码可以在runtime包中找到）上，类似于java虚拟机，它负责管理包括内存分配、垃圾回收、栈处理、goroutine、channel、slice、map和reflection等。可以在`$GOROOT/src/runtime`找到关于runtime的说明。
 
-Go的可执行文件一般比相应的源码文件大很多，这是因为runtime潜入了每一个可执行文件中，因此，Go运行不依赖于其它任何文件。
 
-垃圾回收器(GC)正是runtime上独立运行的一个进程，它会自动搜索不再使用的变量和结构，然后释放它们的内存。通过调用`runtime.GC()`可以手动触发垃圾回收，但很少需要这样做。
 
-如果想知道当前的内存状态，可以使用
-
-```go
-// fmt.Printf("%d\n", runtime.MemStats.Alloc/1024)
-// 此处代码在 Go 1.5.1下不再有效，更正为
-var m runtime.MemStats
-runtime.ReadMemStats(&m)
-fmt.Printf("%d Kb\n", m.Alloc / 1024)
-```
-
- 上面的程序会给出已分配内存的总量，单位是 Kb。进一步的测量参考 [package runtime](https://golang.google.cn/pkg/runtime/)

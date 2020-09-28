@@ -8,7 +8,7 @@ slug: Getting started with Git
 typora-root-url: ..\..\..\static
 ---
 
-版本控制系统的使用在代码开发中必不可少，本系列记录学习Git和Github的历史。
+版本控制系统的使用在代码开发中必不可少，本系列记录学习Git和Github的历史，转自 [廖雪峰的官方网站-git教程](<https://www.liaoxuefeng.com/wiki/896043488029600>)。
 
 ## 1. 版本控制系统
 
