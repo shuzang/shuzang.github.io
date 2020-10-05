@@ -1,7 +1,7 @@
 # 符合泊松分布的事件模拟到达时间生成
 
 
-为了完成事件到达仿真，要模拟符合泊松分布的事件到达时间，首先我们明白，如果事件的到达符合泊松分布，那么事件到达时间的间隔符合指数分布。这里翻译了文章 [How to Generate Random Timings for a Poisson Process](https://preshing.com/20111007/how-to-generate-random-timings-for-a-poisson-process/)，但实现时使用了 Go。
+我们要进行的仿真是在随机的时间执行随机的事件，这个时间就叫做事件到达时间。根据已有知识，随机的事件到达时间应该符合泊松分布，事件到达时间的间隔符合指数分布，实现时通常采用生成到达时间间隔的方式。这里的实现翻译了文章 [How to Generate Random Timings for a Poisson Process](https://preshing.com/20111007/how-to-generate-random-timings-for-a-poisson-process/)，使用的语言是 Go。
 
 <!--more-->
 
@@ -38,7 +38,7 @@ $$
 
 另一种方法是回避整个采样策略，只需编写一个函数即可确定下一次地震的确切时间。此函数应返回随机数，但不是大多数生成器生成的统一类型的随机数，而是以遵循指数分布的方式生成随机数。
 
-Donald Knuth 在 「The Art of Computer Programming」一书的 3.4.1(D) 一节描述了一种生成这种值的方法，只需在 y 轴上选择介于 0 和 1 之间的均匀分布的随机点，然后在 x 轴上找到相应的时间值即可。例如，如果我们从下图 y 轴选择 0.2 点，那么到下一次地震的时间将是64.38分钟。
+Donald Knuth 在 「The Art of Computer Programming」一书的 3.4.1(D) 一节描述了一种生成这种值的方法，只需在 y 轴上选择介于 0 和 1 之间的均匀分布的随机点，然后在 x 轴上找到相应的时间值即可。例如，如果我们从下图 y 轴选择 0.2 点，那么到下一次地震的时间将是 64.38 分钟。
 
 ![](/images/区块链实验补充-符合泊松分布的事件模拟到达时间生成/inverse-lookup.png)
 
@@ -113,3 +113,7 @@ ok  	github.com/shuzang/test	0.652s
 ```
 
 实际上，Go 在 math/rand 库中本身就提供了一个生成符合指数分布的随机数的函数，叫做 `rand.ExpFloat64()`。实现的算法使用的是 Marsaglia 和 Tsang 在 2000 年发布的论文 [The Ziggurat Method for Generating Random Variables](https://www.jstatsoft.org/v05/i08/paper)
+
+## 4. 其它仿真器
+
+[The One](http://akeranen.github.io/the-one/) 是一个 opportunistic Network Environment simulator，可以设置一个仿真的 IoT 网络，参数包括网络中设备数目、带宽、通信到达时间等，使用不同的模型生成随机的运动和通信，并将过程可视化。
