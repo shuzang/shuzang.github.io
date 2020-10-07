@@ -62,36 +62,36 @@ Windows terminal 的安装配置和 winget 的基本使用，主要原因是 Pow
 
 ![我的终端最终形态](/images/win10效率优化7-终端和winget/Snipaste_2020-10-07_19-07-45.png)
 
-我从 [主题网站](https://windowsterminalthemes.dev/) 选择了 AtomOneLight 主题，配置代码如下，需要将这段代码复制到配置文件的 `schemes` 字段中。
+我从 [主题网站](https://windowsterminalthemes.dev/) 选择了 Builtin Tango Light 主题，配置代码如下，需要将这段代码复制到配置文件的 `schemes` 字段中。
 
 ```json
 {
-  "name": "AtomOneLight",
-  "black": "#000000",
-  "red": "#de3e35",
-  "green": "#3f953a",
-  "yellow": "#d2b67c",
-  "blue": "#2f5af3",
-  "purple": "#950095",
-  "cyan": "#3f953a",
-  "white": "#bbbbbb",
-  "brightBlack": "#000000",
-  "brightRed": "#de3e35",
-  "brightGreen": "#3f953a",
-  "brightYellow": "#d2b67c",
-  "brightBlue": "#2f5af3",
-  "brightPurple": "#a00095",
-  "brightCyan": "#3f953a",
-  "brightWhite": "#ffffff",
-  "background": "#f9f9f9",
-  "foreground": "#2a2c33"
+    "name": "Builtin Tango Light",
+    "black": "#000000",
+    "red": "#cc0000",
+    "green": "#4e9a06",
+    "yellow": "#c4a000",
+    "blue": "#3465a4",
+    "purple": "#75507b",
+    "cyan": "#06989a",
+    "white": "#d3d7cf",
+    "brightBlack": "#555753",
+    "brightRed": "#ef2929",
+    "brightGreen": "#8ae234",
+    "brightYellow": "#fce94f",
+    "brightBlue": "#729fcf",
+    "brightPurple": "#ad7fa8",
+    "brightCyan": "#34e2e2",
+    "brightWhite": "#eeeeec",
+    "background": "#ffffff",
+    "foreground": "#000000"
 }
 ```
 
 然后在 `defaults` 字段中添加
 
 ```json
-"colorScheme": "AtomOneLight"
+"colorScheme": "Builtin Tango Light"
 ```
 
 为了不打扰正式内容的显示，我决定将背景图放在右下角，同时，由于终端主体颜色是白色，背景图除了主体的人或物，其它颜色也应该是白色，正好我有一张谏山黄泉的图是这样的。
