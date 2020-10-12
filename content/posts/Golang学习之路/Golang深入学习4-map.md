@@ -2,7 +2,7 @@
 title: Golang深入学习4-map
 date: 2020-07-25T09:45:00+08:00
 lastmod: 2020-07-25
-tags: [Golang]
+tags: [Go语法]
 categories: [Golang学习之路]
 slug: Golang deep learning 4-map
 typora-root-url: ..\..\..\static

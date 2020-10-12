@@ -1,7 +1,7 @@
 ---
 title: Golang语法基础12-测试
 date: 2019-12-22
-tags: [Golang]
+tags: [Go语法]
 categories: [Golang学习之路]
 slug: Golang syntax 12-test
 ---

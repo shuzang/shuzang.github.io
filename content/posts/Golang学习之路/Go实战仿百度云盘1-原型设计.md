@@ -2,9 +2,10 @@
 title: Go实战仿百度云盘1-原型设计
 date: 2020-08-10T19:28:00+08:00 
 lastmod: 2020-08-10
-tags: [Go项目]
+tags: [Go实战]
 draft: true
 categories: [Golang学习之路]
+draft: true
 slug: Go implement distributed cloud storage system 1-Prototype design
 typora-root-url: ..\..\..\static
 ---

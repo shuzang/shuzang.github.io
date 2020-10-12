@@ -1,7 +1,7 @@
 ---
 title: Golang查漏补缺-定义与声明的区别
 date: 2020-08-15
-tags: [Golang]
+tags: [Go语法]
 categories: [Golang学习之路]
 typora-root-url: ..\..\..\static
 slug: Golang supplement-the difference between definition and declaration

@@ -1,7 +1,7 @@
 ---
 title: Golang查漏补缺-bufio读取的字符串无法直接进行类型转换
 date: 2019-08-27
-tags: [Golang]
+tags: [Go语法]
 categories: [Golang学习之路]
 ---
 

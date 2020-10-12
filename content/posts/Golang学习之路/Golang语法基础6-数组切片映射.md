@@ -2,7 +2,7 @@
 title: Golang语法基础6-数组、切片与映射
 date: 2019-11-18
 lastmod: 2020-06-16
-tags: [Golang]
+tags: [Go语法]
 categories: [Golang学习之路]
 typora-root-url: ..\..\..\static
 slug: Golang syntax 6-array slice and map

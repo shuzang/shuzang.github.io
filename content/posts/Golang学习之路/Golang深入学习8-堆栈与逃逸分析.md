@@ -2,7 +2,7 @@
 title: Golang深入学习8-堆栈与逃逸分析
 date: 2020-08-15T08:47:00+08:00
 lastmod: 2020-08-15
-tags: [Golang]
+tags: [Go语法]
 categories: [Golang学习之路]
 slug: Golang deep learning 8-stack heap and escape analysis
 typora-root-url: ..\..\..\static

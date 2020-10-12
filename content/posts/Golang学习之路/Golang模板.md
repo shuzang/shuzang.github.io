@@ -2,7 +2,7 @@
 title: Golang模板
 date: 2020-05-29T17:08:00+08:00
 lastmod: 2020-05-29
-tags: [Golang, Go Web]
+tags: [Go项目基础]
 categories: [Golang学习之路]
 slug: Golang template
 typora-root-url: ..\..\..\static

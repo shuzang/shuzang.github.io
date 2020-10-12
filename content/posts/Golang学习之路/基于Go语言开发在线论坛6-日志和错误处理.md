@@ -3,7 +3,7 @@ title: 基于Go语言开发在线论坛6-日志与错误处理
 author: xueyuanjun
 date: 2020-06-07T11:03:00+08:00 
 lastmod: 2020-06-07
-tags: [Go Web,Go项目]
+tags: [Go实战]
 categories: [Golang学习之路]
 slug: Development of online forum based on golang 6-log and error
 typora-root-url: ..\..\..\static

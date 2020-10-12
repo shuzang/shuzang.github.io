@@ -2,7 +2,7 @@
 title: TCP和UDP协议
 date: 2020-07-07T21:16:00+08:00
 lastmod: 2020-08-20
-tags: [网络]
+tags: [计算机网络]
 categories: [爱编程爱技术的孩子]
 slug: Transmission Control Protocol and User Datagram protocol
 typora-root-url: ..\..\..\static

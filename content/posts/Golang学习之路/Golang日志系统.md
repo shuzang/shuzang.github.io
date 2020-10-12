@@ -2,7 +2,7 @@
 title: Golang日志系统
 date: 2020-06-07T09:48:00+08:00
 lastmod: 2020-06-07
-tags: [Golang, Go Web]
+tags: [Go项目基础]
 categories: [Golang学习之路]
 slug: Golang log system
 typora-root-url: ..\..\..\static

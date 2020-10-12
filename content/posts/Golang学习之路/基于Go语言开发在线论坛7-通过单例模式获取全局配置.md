@@ -3,7 +3,7 @@ title: 基于Go语言开发在线论坛7-通过单例模式获取全局配置
 author: xueyuanjun
 date: 2020-06-07T16:25:00+08:00 
 lastmod: 2020-06-07
-tags: [Go Web,Go项目]
+tags: [Go实战]
 categories: [Golang学习之路]
 slug: Development of online forum based on golang 7-Get global configuration through singleton mode
 typora-root-url: ..\..\..\static

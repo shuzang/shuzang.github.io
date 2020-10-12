@@ -2,7 +2,7 @@
 title: Golang深入学习1-uintptr 和 Unsafe.Pointer
 date: 2020-07-23T12:15:00+08:00
 lastmod: 2020-07-23
-tags: [Golang]
+tags: [Go语法]
 categories: [Golang学习之路]
 slug: Golang deep learning 1-uintptr and Unsafe.Pointer
 ---

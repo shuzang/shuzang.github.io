@@ -2,7 +2,7 @@
 title: Golang密码学算法
 date: 2020-05-28
 lastmod: 2020-05-28
-tags: [Golang, Go Web]
+tags: [Go项目基础]
 categories: [Golang学习之路]
 slug: Golang Cryptographic algorithm
 typora-root-url: ..\..\..\static

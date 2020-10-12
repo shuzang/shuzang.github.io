@@ -1,7 +1,7 @@
 ---
 title: Golang语法基础4-运算符与流程控制
 date: 2019-10-29
-tags: [Golang]
+tags: [Go语法]
 categories: [Golang学习之路]
 slug: Golang syntax 4-Operators and flow control
 ---

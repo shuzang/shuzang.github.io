@@ -3,6 +3,7 @@ title: Nginx说明
 date: 2020-07-17T18:50:00+08:00
 tags: [Nginx]
 categories: [爱编程爱技术的孩子]
+draft: true
 slug: Nginx learning
 typora-root-url: ..\..\..\static
 ---

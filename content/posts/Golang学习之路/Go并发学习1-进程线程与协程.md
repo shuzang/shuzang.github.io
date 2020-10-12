@@ -4,6 +4,7 @@ date: 2020-07-16T18:25:20+08:00
 lastmod: 2020-07-16
 tags: [Go并发]
 categories: [Golang学习之路]
+draft: true
 slug: Goroutine learning 1-process thread and coroutine
 typora-root-url: ..\..\..\static
 ---

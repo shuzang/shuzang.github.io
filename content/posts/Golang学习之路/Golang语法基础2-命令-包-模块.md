@@ -2,7 +2,7 @@
 title: Golang语法基础2-命令、包与模块
 date: 2019-09-19
 lastmod: 2020-09-28
-tags: [Golang]
+tags: [Go语法]
 categories: [Golang学习之路]
 slug: Golang basic grammer 2-command package module
 ---

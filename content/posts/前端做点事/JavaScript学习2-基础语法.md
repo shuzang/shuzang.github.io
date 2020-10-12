@@ -1,7 +1,7 @@
 ---
 title: JavaScript学习2-基础语法
 date: 2020-05-22T17:07:00+08:00
-tags: [JavaScript]
+tags: [前端]
 categories: [前端做点事]
 slug: JavaScript learning 2 basic syntax
 typora-root-url: ..\..\..\static
