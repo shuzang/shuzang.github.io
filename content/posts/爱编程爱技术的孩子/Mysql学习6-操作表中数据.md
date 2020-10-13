@@ -366,7 +366,6 @@ HAVING 关键字和 WHERE 关键字都可以用来过滤数据，且 HAVING 支�
 - 一般情况下，WHERE 用于过滤数据行，而 HAVING 用于过滤分组。
 - WHERE 查询条件中不可以使用聚合函数，而 HAVING 查询条件中可以使用聚合函数。
 - WHERE 在数据分组前进行过滤，而 HAVING 在数据分组后进行过滤 。
-- WHERE 针对数据库文件进行过滤，而 HAVING 针对查询结果进行过滤。也就是说，WHERE 根据数据表中的字段直接进行过滤，而 HAVING 是根据前面已经查询出的字段进行过滤。
 - WHERE 查询条件中不可以使用字段别名，而 HAVING 查询条件中可以使用字段别名。
 
 ```mysql
@@ -520,6 +519,25 @@ mysql> SELECT COUNT(DISTINCT name,age) FROM student;
 1 row in set (0.01 sec)
 ```
 
+值得一提的是，聚合函数中也有 DISTINCT 的选项，如下
+
+```mysql
+AVG([distinct] expr)
+COUNT({*|[distinct] } expr)
+MAX([distinct] expr)
+MIN([distinct] expr)
+SUM([distinct] expr)
+```
+
+这意味着 HAVING 子句也可以出现该关键字，比如
+
+```mysql
+SELECT class
+FROM courses
+GROUP BY class
+HAVING COUNT(DISTINCT student) >= 5
+```
+
 ### 1.7 设置别名
 
 当表名或字段名很长或者执行一些特殊查询的时候，为了查询方便，可以使用 AS 关键字来为表和字段指定别名。
@@ -635,7 +653,9 @@ SELECT <字段名> FROM <表1>, <表2> [WHERE子句]
 
 以上两种语法的返回结果是相同的，但是第一种语法是官方建议的标准写法。
 
-当连接的表之间没有关系时，我们会省略掉 WHERE 子句，这时返回结果就是两个表的笛卡尔积，因为笛卡尔积的计算结果包含的元组数目非常大，一般不建议使用交叉连接。
+当存在 WHERE 语句时，执行完交叉连接会执行筛选，当没有 WHERE 语句，返回的就是完整的笛卡尔积，但是，不管哪种情况，都会先生成完整的笛卡尔积结果，这个结果中包含的元组数目非常大，所以一般不建议使用交叉连接。
+
+为了减少结果结果中数据行的数目，应尽量使用内连接，内连接使用 ON 关键字设置连接条件。我们从 WHERE 语句 和 ON 语句的执行顺序可以理解这一点，WHERE 在 连接之后执行，而 ON 语句在连接之前进行。
 
 #### 内连接
 
@@ -741,7 +761,9 @@ mysql> SELECT s.name,c.course_name FROM tb_students_info s LEFT OUTER JOIN tb_co
 
 ### 1.10 子查询
 
-子查询指将一个查询语句嵌套在另一个查询语句中，通过这种方式可以实现多表查询。子查询可以在 SELECT、UPDATE 和 DELETE 语句中使用，而且可以进行多层嵌套。在实际开发时，子查询经常出现在 WHERE 子句中。语法格式如下
+子查询指将一个查询语句嵌套在另一个查询语句中，通过这种方式可以实现多表查询。子查询可以在 SELECT、INSERT、UPDATE 和 DELETE 语句中使用，而且可以进行多层嵌套。
+
+子查询可以在使用表达式的任何地方使用，不过在实际开发时出现在 WHERE 子句和 FROM 子句中比较多。语法格式如下
 
 ```mysql
 WHERE <表达式> <操作符> (子查询)
