@@ -4,7 +4,7 @@ author: 深入浅出区块链
 date: 2020-05-04
 tags: [Solidity]
 categories: [研究生的区块链学习之路]
-slug: pure and view
+slug: pure and view keyword
 ---
 
 转自[深入理解Solidity-函数](https://learnblockchain.cn/docs/solidity/contracts.html#view)
