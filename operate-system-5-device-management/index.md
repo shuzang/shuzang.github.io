@@ -9,7 +9,7 @@
 
 一个典型的系统架构如下。其中，CPU 通过某种内存总线或互联电缆连到系统内存，图像（比如显卡）或其它高性能 I/O 设备通过常规的 I/O 总线连到系统，可能是 PCI 或其衍生形式。最下面是外围总线，比如 SCSI、SATA 或者 USB，它们将最慢的设备连接到系统，包括磁盘、鼠标和其它类似设备。
 
-<img src="/images/操作系统5-设备管理/epub_30179184_196.jfif" style="zoom: 67%;" />
+<img src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_30179184_196.jfif" style="zoom: 67%;" />
 
 采用这种分层架构的原因是物理布局和造价成本。
 
@@ -19,7 +19,7 @@
 
 如下图，一个标准设备主要包括两部分。一部分是对计算机其它部分展现的硬件接口，另一部分是这些设备的内部结构，一些简单的设备可能只有一个或几个芯片，但复杂一些的设备还会包括自己的 CPU 和内存。
 
-<img src="/images/操作系统5-设备管理/epub_30179184_197.jfif" style="zoom:67%;" />
+<img src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_30179184_197.jfif" style="zoom:67%;" />
 
 ## 3. 设备交互
 

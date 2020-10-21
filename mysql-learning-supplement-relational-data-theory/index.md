@@ -121,7 +121,7 @@ S 关系如下
 
 连接运算可以理解为笛卡尔积和选择两个运算的结合，下面是一个等值连接的例子
 
-![等值连接](/images/Mysql学习补充-关系数据理论/等值连接.png)
+![等值连接](https://picped-1301226557.cos.ap-beijing.myqcloud.com/%E7%AD%89%E5%80%BC%E8%BF%9E%E6%8E%A5.png)
 
 当等值连接中等于号的两端是相同的属性组时，称为自然连接，上图同时也是一个**自然连接**，可以直接表示为 $R \bowtie S$
 
@@ -133,7 +133,7 @@ S 关系如下
 
 除：给定关系 R(X,Y) 和 S(Y,X)，其中 X,Y,Z 为属性组。R中的Y和S中的Y可以有不同的名字，但必须取自同一个域，R与S除得到一个新关系P(X)，P是R中满足下列条件的元组在X属性列上的投影：元组在X分量值x的象集$Y_x$包含S在Y上投影的集合，记作：$R \div S = \{t_r[X]|t_r \in R \land \pi_y(S) \subseteq Y_x \}$
 
-![除运算](/images/Mysql学习补充-关系数据理论/除运算.png)
+![除运算](https://picped-1301226557.cos.ap-beijing.myqcloud.com/%E9%99%A4%E8%BF%90%E7%AE%97.png)
 
 ## 3. 约束
 

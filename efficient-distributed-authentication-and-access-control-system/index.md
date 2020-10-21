@@ -45,7 +45,7 @@ IoT现在的身份认证体系主要是基于PKI(公钥基础设施)的，以Cer
 
 在该方案中，不是将来自不同权威的证书收集到一个单独的地方进行决策，而是将所有证书推送到区块链网络，然后由验证者以完全分布式的方式进行决策。IoT设备加入/离开网络的时候，相关的准入/撤销消息以交易形式发送到区块链中，由验证者进行验证并做出最终决策。以IoT设备退出网络为例，检测到恶意行为的某个IoT设备会发送交易到区块链，然后验证者们根据预定义的规则做出从网络中删除可疑IoT设备的决策。
 
-![General architecture of the system](/images/Paper-Efficient-Distributed-Authentication-and-Access-Control-System-Management-for-IoT-Using-Blockchain/74099591-72038b80-4b60-11ea-9381-925057affab9.png)
+![General architecture of the system](https://picped-1301226557.cos.ap-beijing.myqcloud.com/74099591-72038b80-4b60-11ea-9381-925057affab9.png)
 
 一个IoT设备不再需要将证书附加到每条消息中，接收者只需要做一个简单的查找来检查发送者在区块链中的有效状态。通过这种方式，IoT设备间可以以最小的通信和计算开销进行相互认证。
 

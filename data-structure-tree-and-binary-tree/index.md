@@ -14,7 +14,7 @@
 - 树中有一个称为「根（Root)」的特殊结点，用 r 表示
 - 其余结点可分为 m(m>0) 个互不相交的有限集 T<sub>1</sub>, T<sub>2</sub>, ... , T<sub>m</sub>，其中每个集合本身又是一棵树，称为原来树的「子树（SubTree）」
 
-![树的定义](/images/数据结构3-二叉树/1vLDeO.png)
+![树的定义](https://picped-1301226557.cos.ap-beijing.myqcloud.com/1vLDeO.png)
 
 在判断是否是一颗树的时候，有以下注意点：
 
@@ -22,7 +22,7 @@
 - 除根节点外，每个节点有且仅有一个父节点；
 - 一颗 N 个结点的树有 N-1 条边
 
-![一些非树的例子](/images/数据结构3-二叉树/1vLRSI.png)
+![一些非树的例子](https://picped-1301226557.cos.ap-beijing.myqcloud.com/1vLRSI.png)
 
 ### 1.2 术语
 
@@ -46,17 +46,17 @@
 
 以定义中的树T解释如下图
 
-![术语解释](/images/数据结构3-二叉树/1vLhOf.png)
+![术语解释](https://picped-1301226557.cos.ap-beijing.myqcloud.com/1vLhOf.png)
 
 ### 1.3 表示方法
 
 树的表示使用儿子兄弟表示法，如下图所示，可以在合理表示的同时最大限度节省存储空间
 
-![儿子兄弟表示法](/images/数据结构3-二叉树/1vLHYj.png)
+![儿子兄弟表示法](https://picped-1301226557.cos.ap-beijing.myqcloud.com/1vLHYj.png)
 
 上图经过旋转，就可以形成一颗二叉树，因此，对数的处理就变成对二叉树的处理过程
 
-![旋转成为二叉树](/images/数据结构3-二叉树/1vLOlq.png)
+![旋转成为二叉树](https://picped-1301226557.cos.ap-beijing.myqcloud.com/1vLOlq.png)
 
 ## 2. 二叉树
 
@@ -66,17 +66,17 @@
 
 二叉树有如下五种基本形态
 
-![二叉树的五种基本形态](/images/数据结构3-二叉树/1vLxmT.png)
+![二叉树的五种基本形态](https://picped-1301226557.cos.ap-beijing.myqcloud.com/1vLxmT.png)
 
 同时，这里还有几种特殊的二叉树
 
 1. 斜二叉树（Skewed Binary Tree)
 
-   ![斜二叉树](/images/数据结构3-二叉树/1vOFpR.png)
+   ![斜二叉树](https://picped-1301226557.cos.ap-beijing.myqcloud.com/1vOFpR.png)
 
 2. 完美二叉树（Perfect Binary Tree），也称作满二叉树（Full Binary Tree）
 
-   ![满二叉树](/images/数据结构3-二叉树/1vOZnK.png)
+   ![满二叉树](https://picped-1301226557.cos.ap-beijing.myqcloud.com/1vOZnK.png)
 
 3. 完全二叉树（Complete Binary Tree）：有n个结点的二叉树，对树中结点按从上到下、从左到右顺序进行编号，编号为i（1≤ i ≤ n）结点与满二叉树中编号为i结点在二叉树中位置相同
 
@@ -124,7 +124,7 @@
 2. 结点（序号为i）的左孩子结点的序号是$2i$，需要满足$2i \le n$，否则没有左孩子；
 3. 结点（序号为i）的右孩子结点的序号是$2i+1$，需要满足$2i+1 \le n$，否则没有右孩子。
 
-![数组结构存储](/images/数据结构3-二叉树/1vO3ct.png)
+![数组结构存储](https://picped-1301226557.cos.ap-beijing.myqcloud.com/1vO3ct.png)
 
 一般的二叉树也可以采用这种结构，只要按照完全二叉树的形式将空结点在数组中对应的值置空即可，但会造成空间的浪费...
 
@@ -142,7 +142,7 @@ type TreeNode struct{
 
 以一个简单的二叉树为例，基本的结点结构和完整的二叉树链表如下所示
 
-![链表结构存储](/images/数据结构3-二叉树/1vOyuV.png)
+![链表结构存储](https://picped-1301226557.cos.ap-beijing.myqcloud.com/1vOyuV.png)
 
 ### 2.3 遍历
 
@@ -168,7 +168,7 @@ func PreOrderTraverse(root *TreeNode) {
 
 上述程序使用了递归的方法，也可以使用非递归的方法，基本的思路是使用堆栈。
 
-![先序遍历](/images/数据结构3-二叉树/1vXQVU.png)
+![先序遍历](https://picped-1301226557.cos.ap-beijing.myqcloud.com/1vXQVU.png)
 
 如上图所示，在树的遍历过程中，每个结点被遇到三次，在第一次遇到时，我们将结点入栈，在最后一次离开时，我们将结点出栈。先序遍历就是在第一次遇到结点(入栈)时访问结点，因此程序如下：
 
@@ -209,7 +209,7 @@ func InOrderTraverse(root *Treenode) {
 }
 ```
 
-![中序遍历](/images/数据结构3-二叉树/1vX0aD.png)
+![中序遍历](https://picped-1301226557.cos.ap-beijing.myqcloud.com/1vX0aD.png)
 
 中序遍历也可以使用非递归的方法实现。实际上，前序、中序和后序走的路线是相同的，唯一的区别是访问结点的时机不同，在中序遍历中，是在第二次遇到结点时访问结点，如上图所示，因此中序非递归遍历的程序如下
 
@@ -252,7 +252,7 @@ func PostOrderTraverse(root *TreeNode) {
 }
 ```
 
-![后序遍历](/images/数据结构3-二叉树/1vXrPH.png)
+![后序遍历](https://picped-1301226557.cos.ap-beijing.myqcloud.com/1vXrPH.png)
 
 后序遍历是在第三次遇到结点时访问结点，它的非递归实现要复杂一点，需要增加一个栈标记到达结点的次序
 

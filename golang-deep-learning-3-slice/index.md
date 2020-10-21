@@ -19,7 +19,7 @@ type slice struct {
 
 所以可见切片和字符串很相似，实质都是一个指针，只不过除了长度 len 还有一个容量字段 cap。一个简单的图解如下
 
-![3Ek0rd](/images/Golang深入学习3-切片/3Ek0rd.png)
+![3Ek0rd](https://picped-1301226557.cos.ap-beijing.myqcloud.com/3Ek0rd.png)
 
 图中的 x 和 y 都是从数组 [5]int{2,3,5,7,11} 上获取的切片，也就是指向该数组的不同位置。
 

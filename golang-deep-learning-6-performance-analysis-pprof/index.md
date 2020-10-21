@@ -160,13 +160,13 @@ Showing top 5 nodes out of 89
 
 执行该命令后图片会自动打开
 
-![pprof002](/images/Golang深入学习6-使用pprof进行性能分析/pprof002.png)
+![pprof002](https://picped-1301226557.cos.ap-beijing.myqcloud.com/pprof002.png)
 
 图片中每个方框都代表一个函数，方框的大小根据 CPU 占用比例确定，箭头表示调用关系，从上到下调用层次逐渐加深，表示调用的线条上出现的数字表示调用次数，递归调用自身会有一个自己指向自己的箭头。
 
 从图中看到 mapaccess 占用比例较大，我们可以只显示与它相关的调用，从而使图片逻辑更清晰。可以看到 mapaccess1 主要由 main.FindLoops 和 main.DFS 调用。
 
-![pprof003](/images/Golang深入学习6-使用pprof进行性能分析/pprof003.png)
+![pprof003](https://picped-1301226557.cos.ap-beijing.myqcloud.com/pprof003.png)
 
 我们还可以通过指定函数进入某个函数的细节，DFS逻辑比较简单，以它为例
 
@@ -174,7 +174,7 @@ Showing top 5 nodes out of 89
 (pprof) web DFS
 ```
 
-![pprof004](/images/Golang深入学习6-使用pprof进行性能分析/pprof004.png)
+![pprof004](https://picped-1301226557.cos.ap-beijing.myqcloud.com/pprof004.png)
 
 也可以使用命令
 
@@ -415,7 +415,7 @@ Showing top 10 nodes out of 84
 
 现在，垃圾回收（runtime.mallocgc）占用 53.18%，我们来查看对它的调用
 
-![pprof005](/images/Golang深入学习6-使用pprof进行性能分析/pprof005.png)
+![pprof005](https://picped-1301226557.cos.ap-beijing.myqcloud.com/pprof005.png)
 
 因为时间占比比较小的调用很多，看不出什么，我们可以在 `go tool pprof` 中添加 `--nodefraction=0.1` 参数过滤占用低于 10% 的调用。
 
@@ -429,7 +429,7 @@ Entering interactive mode (type "help" for commands, "o" for options)
 (pprof) web mallocgc
 ```
 
-![pprof006](/images/Golang深入学习6-使用pprof进行性能分析/pprof006.png)
+![pprof006](https://picped-1301226557.cos.ap-beijing.myqcloud.com/pprof006.png)
 
 这就非常清楚了，FindLoops 是最主要的占用，然后我们查看它
 
@@ -543,7 +543,7 @@ import _ "net/http/pprof"
 
 以我们之前写的一个文件上传下载应用为例，端口使用 8090，添加导入语句后，打开浏览器 http://localhost:8090/debug/pprof/，显示如下
 
-![](/images/Golang深入学习6-使用pprof进行性能分析/Snipaste_2020-07-25_22-01-39.png)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/Snipaste_2020-07-25_22-01-39.png)
 
 或者在命令行使用 `go tool pprof` 命令
 

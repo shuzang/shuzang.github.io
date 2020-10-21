@@ -694,7 +694,7 @@ func main() {
 
 完整的项目代码可以查看我的 [github 仓库](https://github.com/shuzang/2048)，与原项目有一些实现上的区别，并完善了一些功能。
 
-![2048](/images/Go实现2048小游戏1-基础界面/2048.gif)
+![2048](https://picped-1301226557.cos.ap-beijing.myqcloud.com/2048.gif)
 
 编写该项目的收获有
 

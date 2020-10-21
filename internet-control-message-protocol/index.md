@@ -11,11 +11,11 @@
 
 ICMP 虽然是网络层协议，但其报文是作为 IP 数据报的数据部分传输的。ICMP 的报文格式如下
 
-![](/images/计算机网络-ICMP协议/epub_655484_191.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_655484_191.jpg)
 
 ICMP 报文有两种：差错报告报文和询问报文，报文的前四字节是统一的格式，有三个字段：类型、代码和检验和，后面四个字节与类型有关，随后就是数据部分。下表给出几种常用的报文类型
 
-![](/images/计算机网络-ICMP协议/epub_655484_192.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_655484_192.jpg)
 
 代码字段是为了进一步区分某种类型的几种不同情况，比如类型12，又可以分为下面两种
 
@@ -28,7 +28,7 @@ ICMP 报文有两种：差错报告报文和询问报文，报文的前四字节
 
 所有的 ICMP 差错报告报文中的数据字段都具有相同的格式，把收到的需要进行差错报告的 IP 数据报的首部和数据字段的前 8 个字节提取出来作为 ICMP 报文的数据字段，然后添加 ICMP 首部，就构成了 ICMP 差错报告报文。如下图
 
-![](/images/计算机网络-ICMP协议/epub_655484_193.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_655484_193.jpg)
 
 提取收到的数据报的数据字段前 8 个字节是为了得到运输层的端口号以及运输层报文的发送序号，这些信息对源点通知高层协议是有用的。
 
@@ -152,7 +152,7 @@ typedef struct iphdr
 
 程序流程如下
 
-![ping程序实现](/images/Ping程序实现/3EEkt0.png)
+![ping程序实现](https://picped-1301226557.cos.ap-beijing.myqcloud.com/3EEkt0.png)
 
 代码放在了 [Github Gist](https://gist.github.com/shuzang/26b2052e5283fa0ff596c43fa3c52265.js)，测试结果如下参数
 

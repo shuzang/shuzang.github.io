@@ -1,4 +1,4 @@
-# Golang使用gorilla/mux包
+# Golang使用gorilla、mux包
 
 
 本文介绍 [gorilla/mux](https://github.com/gorilla/mux) 包的使用。

@@ -19,7 +19,7 @@ F(x) = 1 - e^{-\lambda x}
 $$
 
 
-![](/images/区块链实验补充-符合泊松分布的事件模拟到达时间生成/exponential-curve.png)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/exponential-curve.png)
 
 其含义是，随之时间的流逝，在世界上某个地方发生地震的可能性不断增大，这里「指数」的含义是指数衰减，随着时间流逝，不发生地震的可能性逐渐趋近于0，相应的，发生至少一场地震的可能性也趋向于1。
 
@@ -40,7 +40,7 @@ $$
 
 Donald Knuth 在 「The Art of Computer Programming」一书的 3.4.1(D) 一节描述了一种生成这种值的方法，只需在 y 轴上选择介于 0 和 1 之间的均匀分布的随机点，然后在 x 轴上找到相应的时间值即可。例如，如果我们从下图 y 轴选择 0.2 点，那么到下一次地震的时间将是 64.38 分钟。
 
-![](/images/区块链实验补充-符合泊松分布的事件模拟到达时间生成/inverse-lookup.png)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/inverse-lookup.png)
 
 由于指数函数的反函数是 ln，写这个程序很简单，其中 U 是 0 到 1 之间的随机值：
 

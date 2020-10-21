@@ -40,7 +40,7 @@ arXiv预印（非正式发表）
 
 图1.
 
-![Ali的方案架构](/images/Paper-Blockchain-in-Internet-of-Things_-challenges-and-solutions/54513845-8c0a0d80-4993-11e9-92f6-ea1029425358.png)
+![Ali的方案架构](https://picped-1301226557.cos.ap-beijing.myqcloud.com/54513845-8c0a0d80-4993-11e9-92f6-ea1029425358.png)
 
 考虑两个情况：
 
@@ -85,7 +85,7 @@ overlay BC由所有CH维护，包含访问交易和云存储发送的多签名�
 
 图2.
 
-![恒温器数据送到云存储](/images/Paper-Blockchain-in-Internet-of-Things_-challenges-and-solutions/54513881-a5ab5500-4993-11e9-8334-824cc0d00051.png)
+![恒温器数据送到云存储](https://picped-1301226557.cos.ap-beijing.myqcloud.com/54513881-a5ab5500-4993-11e9-8334-824cc0d00051.png)
 
 共享存储和本地存储的过程要简单很多
 
@@ -97,7 +97,7 @@ SP可能访问确定时间段内的数据或确定设备的数据。为例访问
 
 图3.
 
-![访问恒温器数据](/images/Paper-Blockchain-in-Internet-of-Things_-challenges-and-solutions/54513947-c378ba00-4993-11e9-9a1e-2e75a790d575.png)
+![访问恒温器数据](https://picped-1301226557.cos.ap-beijing.myqcloud.com/54513947-c378ba00-4993-11e9-9a1e-2e75a790d575.png)
 
 #### C. Monitoring
 
@@ -142,7 +142,7 @@ SP可能访问确定时间段内的数据或确定设备的数据。为例访问
 
 表3.
 
-![Ali方案性能评估](/images/Paper-Blockchain-in-Internet-of-Things_-challenges-and-solutions/54513972-d5f2f380-4993-11e9-801f-38badb5dd376.png)
+![Ali方案性能评估](https://picped-1301226557.cos.ap-beijing.myqcloud.com/54513972-d5f2f380-4993-11e9-801f-38badb5dd376.png)
 
 实际上，即使最坏情况，交易数量也只和簇的数量成正比，而不是和节点数量。
 

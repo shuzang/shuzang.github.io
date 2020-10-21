@@ -28,21 +28,21 @@ Zotero 支持多种导入方式，包括：
 
 单击 Zotero 窗格中间列顶部的「通过标识符添加条目」按钮，输入标识符后按 Enter。如果要一次输入多个标识符，在输入第一个标识符后按 Shift + Enter 可以进入多行模式，随后输入其余标识符（每行一个），并通过 Enter 换行。输入完成后，再按 Shift + Enter 即可一次导入所有文献，示例如下图，是否带有「DOI:」或「arXiv:」前缀不影响导入效果，下图中第一条和第三条是 DOI，中间一条是arXiv ID。
 
-![通过标识符导入文献](/images/Zotero学习指南/8Mv34O.png)
+![通过标识符导入文献](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8Mv34O.png)
 
 ### 1.2 通过 feed 进行订阅
 
 文献需要及时跟踪，通常是通过邮件订阅或者RSS，Zotero 本身提供了一种简单的订阅方法，相比于前两种，这种方式更受我喜爱，也是现在主要使用的方式。以 IEEE Internet of Things Journal 期刊为例，在 [期刊主页](https://ieeexplore.ieee.org/xpl/mostRecentIssue.jsp?punumber=6488907) 获取订阅链接（和RSS订阅的链接是一样的），然后在 Zotero 中点击左上角的「新建文献库」按钮，选择「新建订阅」，然后选择「来自URL」
 
-![新建订阅](/images/Zotero学习指南/8Mvmv9.png)
+![新建订阅](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8Mvmv9.png)
 
 在弹出的「订阅设置」对话框中填入刚刚复制的链接（URL），稍等一会儿就会自动获取到标题，最后在「高级选项」中设置更新频率等信息。
 
-![订阅设置](/images/Zotero学习指南/8MvBUf.png)
+![订阅设置](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8MvBUf.png)
 
 保存之后稍等一会儿就可以看到订阅的情况，之后会按照我们设置的时间每24小时更新一次，也可以在右键菜单中主动更新。订阅的论文并不在我们的文献库中，需要手动添加。
 
-![订阅成功](/images/Zotero学习指南/8MvD58.png)
+![订阅成功](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8MvD58.png)
 
 ## 2. 文献和笔记管理
 
@@ -52,27 +52,27 @@ Zotero 支持多种导入方式，包括：
 
 分类指的是多个层级的文件夹，这里我的命名规则是不同时期的研究方向，虽然总的划分是区块链，但在不同时期，可能关心不同的领域，比如 access control 或 anomaly detection。有些论文可能从属于不同的分类，可以在一个分类中添加后拖动到另一个分类中，这里的拖动产生的是复制操作，不是剪切，而且，两者指向同一个 论文条目和 PDF 文件，不会产生存储冗余。因此，在删除一篇论文时，可以选择「从分类中移除条目」或「删除条目」，前者只会从当前分类移除论文的链接，如果其它分类中也有该文献，不会受到影响，如果其它分类中没有该文献，文献被移动到「未分类条目」。
 
-![多个层级的文件夹](/images/Zotero学习指南/8Mv0VP.png)
+![多个层级的文件夹](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8Mv0VP.png)
 
 除了分类外，还可以为每个文献添加若干标签。为了避免使用维度的重合，标签体系中无必要情况不应再按照研究的领域进行命名，若有必要，先考虑使用「子分类」的方式。我对标签的使用是在应用维度，首先，新加入的文献放入它所属分类中，然后添加「未读」标签，这是因为很多时候添加文献都是批量添加的，然后才慢慢看，等到看完后，删除「未读」标签，添加重要性标签。使用「P1、P2 和 P3」对文献的重要性进行分级，P1 最重要，P3 最不重要，重要性的划分依据这篇论文的热度、引用数和自己感觉，有些论文是领域内公认权威的，引用数爆表，比如每个领域的起始文献，有些论文是自己看完感觉有很多想法可以实践，或者感觉思路很好有借鉴意义，可以添加「P1」标签。最后一个是写作时的分类，将文献划分为「中期」「毕业」「小论文」等几个使用场景，然后添加这些标签。
 
 每个标签可以设置对应的颜色，这个色块会自动的显示在每个条目的开头，方便查看，Zotero 中只提供了9中颜色待选，不过已经足够了，通常我们使用的不超过3个。
 
-![](/images/Zotero学习指南/8MvlE6.png)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8MvlE6.png)
 
 ### 2.2 内容寻找
 
 基本的查找思路依然是分类和标签，对于最后得到的结果，可以按照文献相关信息进行排序，比如标题、创建者或者文献类型等。最后，在此基础上，Zotero 还支持对结果进行二次排序。
 
-![指定二次排序](/images/Zotero学习指南/8MvuuR.png)
+![指定二次排序](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8MvuuR.png)
 
 另外一种查找方法是快速搜索，搜索内容包括标题、创建者等文献信息和标签，在 PDF 文档已建立的情况下，选择「所有内容」甚至可以搜索到文档的文本。
 
-![快速搜索](/images/Zotero学习指南/8Mvtvd.png)
+![快速搜索](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8Mvtvd.png)
 
 另外，Zotero 的高级搜索还提供和 Web of Science 等文献数据库类似的功能，可以通过文献信息和各种逻辑运算符来控制筛选条件。单击主界面上方的放大镜图标或者在工具栏的「编辑」菜单中可以打开高级搜索窗口。
 
-![高级搜索](/images/Zotero学习指南/8MvaDI.png)
+![高级搜索](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8MvaDI.png)
 
 最后，不同的文献之前、文献和笔记之间都可以进行关联，我们可以将一些相关的文献关联到一起。
 
@@ -82,7 +82,7 @@ Zotero 支持多种导入方式，包括：
 
 [^1]:[Zotero导入Markdown here插件](https://www.cnblogs.com/Jay-CFD/p/10968876.html)
 
-![markdown 转换](/images/Zotero学习指南/8MvWbq.png)
+![markdown 转换](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8MvWbq.png)
 
 ## 3. 文献导出
 
@@ -92,45 +92,45 @@ Zotero 支持多种导入方式，包括：
 
 指的是在自己的博客或者笔记中插入引用，因为不需要遵守严格的引用需求，可以使用直接拖拽的方式，单篇或多篇文献都可以，非常方便。
 
-![多篇拖拽引用效果](/images/Zotero学习指南/8Mvdbt-1585143274529.gif)
+![多篇拖拽引用效果](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8Mvdbt-1585143274529.gif)
 
 ### 3.2 在 Microsoft Word 中编辑论文
 
 Zotero 提供相关的加载项供使用，通常在软件安装时就会提示自动安装，也可以自己到「首选项—>引用—>文字处理软件」中进行安装。
 
-![安装 Word 加载项](/images/Zotero学习指南/8Mv62Q.png)
+![安装 Word 加载项](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8Mv62Q.png)
 
 安装好后打开 Word 可以看到该插件
 
-![Word 加载项](/images/Zotero学习指南/8MvRrn.png)
+![Word 加载项](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8MvRrn.png)
 
 各按钮功能介绍如下
 
-![](/images/Zotero学习指南/8Mv2Ks.png)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8Mv2Ks.png)
 
 在正式插入引文之间，需要设置引文的格式，通过管理样式可以轻松找到海量的引文格式。
 
-![引文格式设置](/images/Zotero学习指南/8MvKD1.png)
+![引文格式设置](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8MvKD1.png)
 
 在需要添加引文的位置点击「Add/Edit Citation」按钮，调出引文搜索
 
-![调出引文搜索](/images/Zotero学习指南/8MvGCD.png)
+![调出引文搜索](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8MvGCD.png)
 
 在出现的搜索框中输入一个标题或作者等搜索特定的参考文献
 
-![选择文献](/images/Zotero学习指南/8MvegJ.png)
+![选择文献](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8MvegJ.png)
 
 一旦选中，点击气泡或按下「Ctrl + ↓」添加页码、前缀或后缀
 
-![添加页码、前缀或后缀](/images/Zotero学习指南/8MvJ8e.png)
+![添加页码、前缀或后缀](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8MvJ8e.png)
 
 可以一次选择多篇文献，最后按「Enter」即可将文献引用添加到文档中，不过如下图所示，此时添加的只是下标
 
-![加入引用](/images/Zotero学习指南/8MvUKA.png)
+![加入引用](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8MvUKA.png)
 
 添加新行并移动光标到新行末尾，点击「Add/Edit Bibliography」将参考书目加入文档。
 
-![最终添加结果](/images/Zotero学习指南/8MvMHx.png)
+![最终添加结果](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8MvMHx.png)
 
 添加新的引文或文献编辑完成后可以点击刷新更新所有引文和参考书目
 
@@ -148,7 +148,7 @@ Zotero 提供相关的加载项供使用，通常在软件安装时就会提示�
 
 Zotero 本身只提供 300M 免费的存储空间，这些空间存储 PDF 文档完全不够，很多文章包括官方都推荐使用 WebDAV 服务，但国内支持的好像只有「坚果云」。因为我的主力软件是 OneDrive，所以这里介绍 Zotero 如何与 OneDrive 配合来存储PDF文件。
 
-![Zotero的数据备份](/images/Zotero学习指南/8Mvcvj.png)
+![Zotero的数据备份](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8Mvcvj.png)
 
 
 
@@ -158,7 +158,7 @@ Zotero 的数据和文件的同步是分离的，数据指的是文献的分类�
 
 然后切换到「高级—>文件和文件夹」选项卡，点击打开数据文件夹，获取数据文件的存储路径。
 
-![打开数据文件夹](/images/Zotero学习指南/8MvsPS.png)
+![打开数据文件夹](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8MvsPS.png)
 
 所有的附件（包括PDF和笔记）都存储在数据文件夹的`storage`目录下。我们可以采用软链接[^3]的方式来管理这些文件，建立软链接后，原数据文件夹下的`storage`文件夹成为一个快捷方式，指向OneDrive存储空间的实际文件，因此不会占用大量存储空间。在命令行中使用如下命令建立原始路径和新路径的软链接，
 
@@ -189,7 +189,7 @@ mklink /j C:\Users\lylw1\Zotero\storage F:\OneDrive\课题\论文库
 
 Zotero 有个时间轴功能，可以将所有文献反映在一条时间轴上，时间可以是文献的发表日期、添加日期和修改日期，时间轴的跨度单位可以是日、月、年、十年、百年等，不过这个功能不常用，目前没有想到这个功能的意义。
 
-![时间轴功能](/images/Zotero学习指南/8MvYgH.png)
+![时间轴功能](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8MvYgH.png)
 
 ### 4.4 小技巧
 

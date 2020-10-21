@@ -20,7 +20,7 @@
 
 下面是大顶堆和小顶堆的一个例子
 
-![大顶堆与小顶堆示例](/images/数据结构-堆/8EHOyj.png)
+![大顶堆与小顶堆示例](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8EHOyj.png)
 
 二叉堆和二叉搜索树虽然乍一看有相似之处，但它们的区别很大：
 
@@ -48,7 +48,7 @@ var heap = make([]int, 1)
 
 一个例子如下
 
-![堆的插入](/images/数据结构-堆/8EbZ01.png)
+![堆的插入](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8EbZ01.png)
 
 程序实现如下
 
@@ -77,7 +77,7 @@ func Insert(heap []int], key int) {
 
 一个例子如下
 
-![堆的删除](/images/数据结构-堆/8EbGnA.png)
+![堆的删除](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8EbGnA.png)
 
 程序实现如下
 
@@ -110,7 +110,7 @@ func Delete(heap []int) int {
 
 一个例子如下
 
-![堆的建立](/images/数据结构-堆/8Ebah8.png)
+![堆的建立](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8Ebah8.png)
 
 程序实现如下
 
