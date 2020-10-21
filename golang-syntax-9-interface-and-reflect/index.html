@@ -1,11 +1,12 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>Golang语法基础9-接口与反射 | Shuzang's Blog</title><meta name=Description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><meta property="og:title" content="Golang语法基础9-接口与反射"><meta property="og:description" content="本篇介绍 Golang 中的接口与反射。"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.github.io/golang-syntax-9-interface-and-reflect/"><meta property="article:published_time" content="2019-11-26T00:00:00+00:00"><meta property="article:modified_time" content="2020-06-15T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Golang语法基础9-接口与反射"><meta name=twitter:description content="本篇介绍 Golang 中的接口与反射。"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel=canonical href=https://shuzang.github.io/golang-syntax-9-interface-and-reflect/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=prev href=https://shuzang.github.io/articles-about-blockchain/><link rel=next href=https://shuzang.github.io/golang-syntax-8-struct-and-method/><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/css/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Golang语法基础9-接口与反射","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/golang-syntax-9-interface-and-reflect\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"Go语法","wordcount":5219,"url":"https:\/\/shuzang.github.io\/golang-syntax-9-interface-and-reflect\/","datePublished":"2019-11-26T00:00:00\u002b00:00","dateModified":"2020-06-15T00:00:00\u002b00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"shuzang","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/logo.png","width":127,"height":40}},"description":""}</script></head><body><script>if(!window.localStorage||!window.localStorage.getItem('theme')){window.isDark=window.matchMedia('(prefers-color-scheme: dark)').matches;}else{window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';}
-window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class="header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch title="Switch Theme">
-<i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a></div></div></header><header class=mobile id=header-mobile><div class=header-wrapper><div class=header-container><div class="header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch title="Switch Theme">
-<i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a></div></div></header><script>window.desktopHeaderMode="fixed";window.mobileHeaderMode="auto";</script><main class=main><div class=container><article class="page single"><h1 class="single-title animated flipInX">Golang语法基础9-接口与反射</h1><div class=meta><div class=meta-line><a class=author href=https://shuzang.github.io/about/ rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>shuzang
-</a>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i><a href=https://shuzang.github.io/categories/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/>Golang学习之路</a>&nbsp;</span></div><div class=meta-line><i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-11-26>2019-11-26</time>&nbsp;
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>Golang语法基础9-接口与反射 | Shuzang's Blog</title><meta name=Description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><meta property="og:title" content="Golang语法基础9-接口与反射"><meta property="og:description" content="本篇介绍 Golang 中的接口与反射。"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.github.io/golang-syntax-9-interface-and-reflect/"><meta property="article:published_time" content="2019-11-26T00:00:00+00:00"><meta property="article:modified_time" content="2020-06-15T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Golang语法基础9-接口与反射"><meta name=twitter:description content="本篇介绍 Golang 中的接口与反射。"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel=canonical href=https://shuzang.github.io/golang-syntax-9-interface-and-reflect/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=prev href=https://shuzang.github.io/articles-about-blockchain/><link rel=next href=https://shuzang.github.io/golang-syntax-8-struct-and-method/><link rel=stylesheet href=/lib/fontawesome-free/all.min.9a680b90260b5106d79f4075491ab31daafa7429eff686453c40b58357309649.css integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="><link rel=stylesheet href=/lib/animate/animate.min.3c770e90f98eb21b0c042fafb49755af93306fbaf42e449524f94fae9fc83295.css integrity="sha256-PHcOkPmOshsMBC+vtJdVr5Mwb7r0LkSVJPlPrp/IMpU="><link rel=stylesheet href=/css/style.min.8596c27951d415c1b2ad9aee1d642e8057049327eca5ce9e397bdd27d84ca62a.css integrity="sha256-hZbCeVHUFcGyrZruHWQugFcEkyfspc6eOXvdJ9hMpio="><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Golang语法基础9-接口与反射","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/golang-syntax-9-interface-and-reflect\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"Go语法","wordcount":5219,"url":"https:\/\/shuzang.github.io\/golang-syntax-9-interface-and-reflect\/","datePublished":"2019-11-26T00:00:00\x2b00:00","dateModified":"2020-06-15T00:00:00\x2b00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"shuzang","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/logo.png","width":127,"height":40}},"description":""}</script></head><body><script>if(!window.localStorage||!window.localStorage.getItem('theme')){window.isDark=window.matchMedia('(prefers-color-scheme: dark)').matches;}else{window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';}
+window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class="header-title animated bounceIn"><a href=/>Shuzang's Blog</a></div><div class=menu><a class=menu-item href=/posts>Posts</a><a class=menu-item href=/tags>Tags</a><a class=menu-item href=/categories>Categories</a><a class=menu-item href=/about>About</a><a href=javascript:void(0); class=theme-switch title="Switch Theme">
+<i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a></div></div></header><header class=mobile id=header-mobile><div class=header-wrapper><div class=header-container><div class="header-title animated bounceIn"><a href=/>Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=/posts>Posts</a><a class=menu-item href=/tags>Tags</a><a class=menu-item href=/categories>Categories</a><a class=menu-item href=/about>About</a><a href=javascript:void(0); class=theme-switch title="Switch Theme">
+<i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a></div></div></header><script>window.desktopHeaderMode="fixed";window.mobileHeaderMode="auto";</script><main class=main><div class=container><article class="page single"><h1 class="single-title animated flipInX">Golang语法基础9-接口与反射</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a class=author href=https://shuzang.github.io/about/ rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>shuzang</a>
+</span>&nbsp;<span class=post-category>included in&nbsp;
+<span><a href=/categories/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF><i class="far fa-folder fa-fw"></i>Golang学习之路</a></span></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-11-26>2019-11-26</time>&nbsp;
 <i class="fas fa-pencil-alt fa-fw"></i>about 5219 words&nbsp;
-<i class="far fa-clock fa-fw"></i>11 min&nbsp;</div></div><aside class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#1-接口>1. 接口</a><ul><li><a href=#11-接口理解>1.1 接口理解</a></li><li><a href=#12-接口值>1.2 接口值</a></li><li><a href=#13-接口的实现>1.3 接口的实现</a></li><li><a href=#14-接口嵌套>1.4 接口嵌套</a></li><li><a href=#15-类型断言>1.5 类型断言</a></li><li><a href=#16-使用指针接收者和值接收者实现接口>1.6 使用指针接收者和值接收者实现接口</a></li></ul></li><li><a href=#2-反射>2. 反射</a><ul><li><a href=#21-方法和类型的反射>2.1 方法和类型的反射</a></li><li><a href=#22-通过反射修改值>2.2 通过反射修改值</a></li><li><a href=#23-结构体的反射>2.3 结构体的反射</a></li></ul></li><li><a href=#3-总结面向对象>3. 总结：面向对象</a><ul><li><a href=#31-组合实现继承>3.1 组合实现继承</a></li><li><a href=#32-内嵌实现继承>3.2 内嵌实现继承</a></li><li><a href=#33-多重继承>3.3 多重继承</a></li></ul></li></ul></nav></div></aside><aside class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
-<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><a href=#1-接口>1. 接口</a><ul><li><a href=#11-接口理解>1.1 接口理解</a></li><li><a href=#12-接口值>1.2 接口值</a></li><li><a href=#13-接口的实现>1.3 接口的实现</a></li><li><a href=#14-接口嵌套>1.4 接口嵌套</a></li><li><a href=#15-类型断言>1.5 类型断言</a></li><li><a href=#16-使用指针接收者和值接收者实现接口>1.6 使用指针接收者和值接收者实现接口</a></li></ul></li><li><a href=#2-反射>2. 反射</a><ul><li><a href=#21-方法和类型的反射>2.1 方法和类型的反射</a></li><li><a href=#22-通过反射修改值>2.2 通过反射修改值</a></li><li><a href=#23-结构体的反射>2.3 结构体的反射</a></li></ul></li><li><a href=#3-总结面向对象>3. 总结：面向对象</a><ul><li><a href=#31-组合实现继承>3.1 组合实现继承</a></li><li><a href=#32-内嵌实现继承>3.2 内嵌实现继承</a></li><li><a href=#33-多重继承>3.3 多重继承</a></li></ul></li></ul></nav></div></details></aside><div class=content><p>本篇介绍 Golang 中的接口与反射。</p><h2 id=1-接口>1. 接口</h2><p>类型 T（或 *T）上的所有方法的集合叫做类型 T（或 *T）的方法集，我们可以使用接口来定义方法集，但是这种定义是抽象的，不包含方法的代码实现，接口中也不能包含变量。</p><p>接口定义的基本格式如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+<i class="far fa-clock fa-fw"></i>11 min&nbsp;</div></div><div class=toc id=toc-auto><h2 class=toc-title>Contents</h2><div class=toc-content id=toc-content-auto></div></div><div class=toc id=toc-static><details><summary><div class=toc-title><span>Contents</span>
+<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=toc-content id=toc-content-static><nav id=TableOfContents><ul><li><a href=#1-接口>1. 接口</a><ul><li><a href=#11-接口理解>1.1 接口理解</a></li><li><a href=#12-接口值>1.2 接口值</a></li><li><a href=#13-接口的实现>1.3 接口的实现</a></li><li><a href=#14-接口嵌套>1.4 接口嵌套</a></li><li><a href=#15-类型断言>1.5 类型断言</a></li><li><a href=#16-使用指针接收者和值接收者实现接口>1.6 使用指针接收者和值接收者实现接口</a></li></ul></li><li><a href=#2-反射>2. 反射</a><ul><li><a href=#21-方法和类型的反射>2.1 方法和类型的反射</a></li><li><a href=#22-通过反射修改值>2.2 通过反射修改值</a></li><li><a href=#23-结构体的反射>2.3 结构体的反射</a></li></ul></li><li><a href=#3-总结面向对象>3. 总结：面向对象</a><ul><li><a href=#31-组合实现继承>3.1 组合实现继承</a></li><li><a href=#32-内嵌实现继承>3.2 内嵌实现继承</a></li><li><a href=#33-多重继承>3.3 多重继承</a></li></ul></li></ul></nav></div></details></div><div class=content id=content><p>本篇介绍 Golang 中的接口与反射。</p><h2 id=1-接口>1. 接口</h2><p>类型 T（或 *T）上的所有方法的集合叫做类型 T（或 *T）的方法集，我们可以使用接口来定义方法集，但是这种定义是抽象的，不包含方法的代码实现，接口中也不能包含变量。</p><p>接口定义的基本格式如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -85,9 +86,9 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 <span class=p>}</span>
 
 <span class=c1>// layout of Itab known to compilers
-</span><span class=c1>// allocated in non-garbage-collected memory
-</span><span class=c1>// Needs to be in sync with
-</span><span class=c1>// ../cmd/compile/internal/gc/reflect.go:/^func.dumptypestructs.
+</span><span class=c1></span><span class=c1>// allocated in non-garbage-collected memory
+</span><span class=c1></span><span class=c1>// Needs to be in sync with
+</span><span class=c1></span><span class=c1>// ../cmd/compile/internal/gc/reflect.go:/^func.dumptypestructs.
 </span><span class=c1></span><span class=kd>type</span> <span class=nx>itab</span> <span class=kd>struct</span> <span class=p>{</span>
     <span class=nx>inter</span>  <span class=o>*</span><span class=nx>interfacetype</span>
     <span class=nx>_type</span>  <span class=o>*</span><span class=nx>_type</span>
@@ -100,7 +101,7 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 <span class=kd>type</span> <span class=nx>interfacetype</span> <span class=kd>struct</span> <span class=p>{</span>
     <span class=nx>typ</span>     <span class=nx>_type</span>
     <span class=nx>pkgpath</span> <span class=nx>name</span>
-    <span class=nx>mhdr</span>    <span class=p>[]</span><span class=nx>imethod</span>
+    <span class=nx>mhdr</span>    <span class=p>[</span><span class=p>]</span><span class=nx>imethod</span>
 <span class=p>}</span>
 
 <span class=kd>type</span> <span class=nx>imethod</span> <span class=kd>struct</span> <span class=p>{</span>   <span class=c1>//这里的 method 只是一种函数声明的抽象，比如  func Print() error
@@ -127,25 +128,25 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 </span><span class=lnt>18
 </span><span class=lnt>19
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>type</span> <span class=nx>Stringer</span> <span class=kd>interface</span> <span class=p>{</span>
-    <span class=nf>String</span><span class=p>()</span> <span class=kt>string</span>
+    <span class=nf>String</span><span class=p>(</span><span class=p>)</span> <span class=kt>string</span>
 <span class=p>}</span>
 
 <span class=kd>type</span> <span class=nx>Binary</span> <span class=kt>uint64</span>
 
-<span class=kd>func</span> <span class=p>(</span><span class=nx>i</span> <span class=nx>Binary</span><span class=p>)</span> <span class=nf>String</span><span class=p>()</span> <span class=kt>string</span> <span class=p>{</span>
-    <span class=k>return</span> <span class=nx>strconv</span><span class=p>.</span><span class=nf>Uitob64</span><span class=p>(</span><span class=nx>i</span><span class=p>.</span><span class=nf>Get</span><span class=p>(),</span> <span class=mi>2</span><span class=p>)</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>i</span> <span class=nx>Binary</span><span class=p>)</span> <span class=nf>String</span><span class=p>(</span><span class=p>)</span> <span class=kt>string</span> <span class=p>{</span>
+    <span class=k>return</span> <span class=nx>strconv</span><span class=p>.</span><span class=nf>Uitob64</span><span class=p>(</span><span class=nx>i</span><span class=p>.</span><span class=nf>Get</span><span class=p>(</span><span class=p>)</span><span class=p>,</span> <span class=mi>2</span><span class=p>)</span>
 <span class=p>}</span>
 
-<span class=kd>func</span> <span class=p>(</span><span class=nx>i</span> <span class=nx>Binary</span><span class=p>)</span> <span class=nf>Get</span><span class=p>()</span> <span class=kt>uint64</span> <span class=p>{</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>i</span> <span class=nx>Binary</span><span class=p>)</span> <span class=nf>Get</span><span class=p>(</span><span class=p>)</span> <span class=kt>uint64</span> <span class=p>{</span>
     <span class=k>return</span> <span class=nb>uint64</span><span class=p>(</span><span class=nx>i</span><span class=p>)</span>
 <span class=p>}</span>
 
-<span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
-    <span class=nx>b</span> <span class=o>:=</span> <span class=nx>Binary</span><span class=p>{}</span>
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>b</span> <span class=o>:=</span> <span class=nx>Binary</span><span class=p>{</span><span class=p>}</span>
     <span class=nx>s</span> <span class=o>:=</span> <span class=nf>Stringer</span><span class=p>(</span><span class=nx>b</span><span class=p>)</span>
-    <span class=nx>fmt</span><span class=p>.</span><span class=nf>Print</span><span class=p>(</span><span class=nx>s</span><span class=p>.</span><span class=nf>String</span><span class=p>())</span>
+    <span class=nx>fmt</span><span class=p>.</span><span class=nf>Print</span><span class=p>(</span><span class=nx>s</span><span class=p>.</span><span class=nf>String</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
 <span class=p>}</span>
-</code></pre></td></tr></table></div></div><p>对比非空接口的底层实现，发现接口在内存中实际上由两个成员组成，如下图，tab 指向虚表，data 指向实际引用的数据</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/20150126190937373.png alt class=lazyload></figure></p><p>虚表描绘了实际的类型信息及接口的方法集，具体有哪些部分我们以及从 itab 结构体中看到了。注意在这里是 Stringer 接口的函数指针列表，而不是实际类型 Binary 的函数指针列表，只有在运行时遇到 s := Stringer(b) 这样的语句，才会生成接口对应的 Binary 类型的虚表。这样，当判定一种类型是否满足某个接口时，只需要判断类型的方法集是否完全包含接口的方法集即可。</p><h3 id=12-接口值>1.2 接口值</h3><p>我们可以将一个变量声明为接口类型，<code>var ai Namer</code>，未初始化时，接口值为 nil。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</code></pre></td></tr></table></div></div><p>对比非空接口的底层实现，发现接口在内存中实际上由两个成员组成，如下图，tab 指向虚表，data 指向实际引用的数据</p><p><img class=lazyload src=/svg/loading.min.svg data-sizes=auto data-srcset="https://picped-1301226557.cos.ap-beijing.myqcloud.com/20150126190937373.png, https://picped-1301226557.cos.ap-beijing.myqcloud.com/20150126190937373.png 1.5x, https://picped-1301226557.cos.ap-beijing.myqcloud.com/20150126190937373.png 2x" data-src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/20150126190937373.png alt></p><p>虚表描绘了实际的类型信息及接口的方法集，具体有哪些部分我们以及从 itab 结构体中看到了。注意在这里是 Stringer 接口的函数指针列表，而不是实际类型 Binary 的函数指针列表，只有在运行时遇到 s := Stringer(b) 这样的语句，才会生成接口对应的 Binary 类型的虚表。这样，当判定一种类型是否满足某个接口时，只需要判断类型的方法集是否完全包含接口的方法集即可。</p><h3 id=12-接口值>1.2 接口值</h3><p>我们可以将一个变量声明为接口类型，<code>var ai Namer</code>，未初始化时，接口值为 nil。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -158,10 +159,10 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 </span><span class=lnt>11
 </span><span class=lnt>12
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>type</span> <span class=nx>Shape</span> <span class=kd>interface</span> <span class=p>{</span>
-	<span class=nf>Area</span><span class=p>()</span> <span class=kt>float32</span>
+	<span class=nf>Area</span><span class=p>(</span><span class=p>)</span> <span class=kt>float32</span>
 <span class=p>}</span>
 
-<span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
 	<span class=kd>var</span> <span class=nx>s</span> <span class=nx>Shape</span>
 	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;value of s is&#34;</span><span class=p>,</span> <span class=nx>s</span><span class=p>)</span>
 	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;type of s is %T\n&#34;</span><span class=p>,</span> <span class=nx>s</span><span class=p>)</span>
@@ -199,26 +200,26 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 </span><span class=lnt>28
 </span><span class=lnt>29
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>type</span> <span class=nx>Namer</span> <span class=kd>interface</span> <span class=p>{</span>
-	<span class=nf>Name</span><span class=p>()</span>
+	<span class=nf>Name</span><span class=p>(</span><span class=p>)</span>
 <span class=p>}</span>
 
 <span class=kd>type</span> <span class=nx>St1</span> <span class=kd>struct</span> <span class=p>{</span>
 	<span class=nx>a</span> <span class=kt>int</span>
 <span class=p>}</span>
 
-<span class=kd>func</span> <span class=p>(</span><span class=nx>st1</span> <span class=nx>St1</span><span class=p>)</span> <span class=nf>Name</span><span class=p>()</span> <span class=p>{</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>st1</span> <span class=nx>St1</span><span class=p>)</span> <span class=nf>Name</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
 	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>st1</span><span class=p>.</span><span class=nx>a</span><span class=p>)</span>
 <span class=p>}</span>
 
-<span class=kd>type</span> <span class=nx>St2</span> <span class=kd>struct</span><span class=p>{}</span>
+<span class=kd>type</span> <span class=nx>St2</span> <span class=kd>struct</span><span class=p>{</span><span class=p>}</span>
 
-<span class=kd>func</span> <span class=p>(</span><span class=nx>St2</span><span class=p>)</span> <span class=nf>Name</span><span class=p>()</span> <span class=p>{}</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>St2</span><span class=p>)</span> <span class=nf>Name</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span><span class=p>}</span>
 
-<span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
 	<span class=kd>var</span> <span class=nx>i</span> <span class=nx>Namer</span> <span class=p>=</span> <span class=nx>St1</span><span class=p>{</span><span class=mi>2</span><span class=p>}</span>
 	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;type is %T\n&#34;</span><span class=p>,</span> <span class=nx>i</span><span class=p>)</span>
 	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;value is %v\n&#34;</span><span class=p>,</span> <span class=nx>i</span><span class=p>)</span>
-	<span class=nx>i</span> <span class=p>=</span> <span class=nx>St2</span><span class=p>{}</span>
+	<span class=nx>i</span> <span class=p>=</span> <span class=nx>St2</span><span class=p>{</span><span class=p>}</span>
 	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;type is %T\n&#34;</span><span class=p>,</span> <span class=nx>i</span><span class=p>)</span>
 	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;value is %v\n&#34;</span><span class=p>,</span> <span class=nx>i</span><span class=p>)</span>
 <span class=p>}</span>
@@ -226,7 +227,7 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 </span><span class=c1></span><span class=kd>type</span> <span class=nx>is</span> <span class=nx>main</span><span class=p>.</span><span class=nx>St1</span>
 <span class=nx>value</span> <span class=nx>is</span> <span class=p>{</span><span class=mi>2</span><span class=p>}</span>
 <span class=kd>type</span> <span class=nx>is</span> <span class=nx>main</span><span class=p>.</span><span class=nx>St2</span>
-<span class=nx>value</span> <span class=nx>is</span> <span class=p>{}</span>
+<span class=nx>value</span> <span class=nx>is</span> <span class=p>{</span><span class=p>}</span>
 </code></pre></td></tr></table></div></div><h3 id=13-接口的实现>1.3 接口的实现</h3><p>接口的实现是一种隐式的实现，只要某个类型的方法集完全包含接口的方法集，就属于实现了该接口，实现了接口的变量可以赋值给接口值。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
@@ -262,18 +263,18 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 <span class=kn>import</span> <span class=s>&#34;fmt&#34;</span>
 
 <span class=kd>type</span> <span class=nx>Shaper</span> <span class=kd>interface</span> <span class=p>{</span>
-	<span class=nf>Area</span><span class=p>()</span> <span class=kt>float32</span>
+	<span class=nf>Area</span><span class=p>(</span><span class=p>)</span> <span class=kt>float32</span>
 <span class=p>}</span>
 
 <span class=kd>type</span> <span class=nx>Square</span> <span class=kd>struct</span> <span class=p>{</span>
 	<span class=nx>side</span> <span class=kt>float32</span>
 <span class=p>}</span>
 
-<span class=kd>func</span> <span class=p>(</span><span class=nx>sq</span> <span class=o>*</span><span class=nx>Square</span><span class=p>)</span> <span class=nf>Area</span><span class=p>()</span> <span class=kt>float32</span> <span class=p>{</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>sq</span> <span class=o>*</span><span class=nx>Square</span><span class=p>)</span> <span class=nf>Area</span><span class=p>(</span><span class=p>)</span> <span class=kt>float32</span> <span class=p>{</span>
 	<span class=k>return</span> <span class=nx>sq</span><span class=p>.</span><span class=nx>side</span> <span class=o>*</span> <span class=nx>sq</span><span class=p>.</span><span class=nx>side</span>
 <span class=p>}</span>
 
-<span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
 	<span class=nx>sq1</span> <span class=o>:=</span> <span class=nb>new</span><span class=p>(</span><span class=nx>Square</span><span class=p>)</span>
 	<span class=nx>sq1</span><span class=p>.</span><span class=nx>side</span> <span class=p>=</span> <span class=mi>5</span>
 
@@ -283,12 +284,12 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 </span><span class=c1></span>	<span class=c1>// areaIntf := Shaper(sq1)
 </span><span class=c1></span>	<span class=c1>// or even:
 </span><span class=c1></span>	<span class=c1>// areaIntf := sq1
-</span><span class=c1></span>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;The square has area: %f\n&#34;</span><span class=p>,</span> <span class=nx>areaIntf</span><span class=p>.</span><span class=nf>Area</span><span class=p>())</span>
+</span><span class=c1></span>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;The square has area: %f\n&#34;</span><span class=p>,</span> <span class=nx>areaIntf</span><span class=p>.</span><span class=nf>Area</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
 <span class=p>}</span>
 <span class=c1>//Output:
 </span><span class=c1></span><span class=nx>The</span> <span class=nx>square</span> <span class=nx>has</span> <span class=nx>area</span><span class=p>:</span> <span class=mf>25.000000</span>
 </code></pre></td></tr></table></div></div><p>空接口可以声明为 interface{}，同时因为空接口不包含任何方法，所以任何类型都默认实现了空接口。举个例子，fmt 包中的 Println() 函数，可以接收多种类型的值，比如：int、string、array等。这是因为它的形参就是接口类型，可以接收任意类型的值。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>Println</span><span class=p>(</span><span class=nx>a</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{})</span> <span class=p>(</span><span class=nx>n</span> <span class=kt>int</span><span class=p>,</span> <span class=nx>err</span> <span class=kt>error</span><span class=p>)</span> <span class=p>{}</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>Println</span><span class=p>(</span><span class=nx>a</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span> <span class=p>(</span><span class=nx>n</span> <span class=kt>int</span><span class=p>,</span> <span class=nx>err</span> <span class=kt>error</span><span class=p>)</span> <span class=p>{</span><span class=p>}</span>
 </code></pre></td></tr></table></div></div><p>多个类型可以实现同一个接口，如下例，一个类型也可以实现多个接口。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
@@ -337,14 +338,14 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 <span class=kn>import</span> <span class=s>&#34;fmt&#34;</span>
 
 <span class=kd>type</span> <span class=nx>Shaper</span> <span class=kd>interface</span> <span class=p>{</span>
-	<span class=nf>Area</span><span class=p>()</span> <span class=kt>float32</span>
+	<span class=nf>Area</span><span class=p>(</span><span class=p>)</span> <span class=kt>float32</span>
 <span class=p>}</span>
 
 <span class=kd>type</span> <span class=nx>Square</span> <span class=kd>struct</span> <span class=p>{</span>
 	<span class=nx>side</span> <span class=kt>float32</span>
 <span class=p>}</span>
 
-<span class=kd>func</span> <span class=p>(</span><span class=nx>sq</span> <span class=o>*</span><span class=nx>Square</span><span class=p>)</span> <span class=nf>Area</span><span class=p>()</span> <span class=kt>float32</span> <span class=p>{</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>sq</span> <span class=o>*</span><span class=nx>Square</span><span class=p>)</span> <span class=nf>Area</span><span class=p>(</span><span class=p>)</span> <span class=kt>float32</span> <span class=p>{</span>
 	<span class=k>return</span> <span class=nx>sq</span><span class=p>.</span><span class=nx>side</span> <span class=o>*</span> <span class=nx>sq</span><span class=p>.</span><span class=nx>side</span>
 <span class=p>}</span>
 
@@ -352,21 +353,21 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 	<span class=nx>length</span><span class=p>,</span> <span class=nx>width</span> <span class=kt>float32</span>
 <span class=p>}</span>
 
-<span class=kd>func</span> <span class=p>(</span><span class=nx>r</span> <span class=nx>Rectangle</span><span class=p>)</span> <span class=nf>Area</span><span class=p>()</span> <span class=kt>float32</span> <span class=p>{</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>r</span> <span class=nx>Rectangle</span><span class=p>)</span> <span class=nf>Area</span><span class=p>(</span><span class=p>)</span> <span class=kt>float32</span> <span class=p>{</span>
 	<span class=k>return</span> <span class=nx>r</span><span class=p>.</span><span class=nx>length</span> <span class=o>*</span> <span class=nx>r</span><span class=p>.</span><span class=nx>width</span>
 <span class=p>}</span>
 
-<span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
 
 	<span class=nx>r</span> <span class=o>:=</span> <span class=nx>Rectangle</span><span class=p>{</span><span class=mi>5</span><span class=p>,</span> <span class=mi>3</span><span class=p>}</span> <span class=c1>// Area() of Rectangle needs a value
 </span><span class=c1></span>	<span class=nx>q</span> <span class=o>:=</span> <span class=o>&amp;</span><span class=nx>Square</span><span class=p>{</span><span class=mi>5</span><span class=p>}</span>      <span class=c1>// Area() of Square needs a pointer
 </span><span class=c1></span>	<span class=c1>// shapes := []Shaper{Shaper(r), Shaper(q)}
 </span><span class=c1></span>	<span class=c1>// or shorter
-</span><span class=c1></span>	<span class=nx>shapes</span> <span class=o>:=</span> <span class=p>[]</span><span class=nx>Shaper</span><span class=p>{</span><span class=nx>r</span><span class=p>,</span> <span class=nx>q</span><span class=p>}</span>
+</span><span class=c1></span>	<span class=nx>shapes</span> <span class=o>:=</span> <span class=p>[</span><span class=p>]</span><span class=nx>Shaper</span><span class=p>{</span><span class=nx>r</span><span class=p>,</span> <span class=nx>q</span><span class=p>}</span>
 	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;Looping through shapes for area ...&#34;</span><span class=p>)</span>
 	<span class=k>for</span> <span class=nx>n</span><span class=p>,</span> <span class=nx>_</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>shapes</span> <span class=p>{</span>
-		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;Shape details: &#34;</span><span class=p>,</span> <span class=nx>shapes</span><span class=p>[</span><span class=nx>n</span><span class=p>])</span>
-		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;Area of this shape is: &#34;</span><span class=p>,</span> <span class=nx>shapes</span><span class=p>[</span><span class=nx>n</span><span class=p>].</span><span class=nf>Area</span><span class=p>())</span>
+		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;Shape details: &#34;</span><span class=p>,</span> <span class=nx>shapes</span><span class=p>[</span><span class=nx>n</span><span class=p>]</span><span class=p>)</span>
+		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;Area of this shape is: &#34;</span><span class=p>,</span> <span class=nx>shapes</span><span class=p>[</span><span class=nx>n</span><span class=p>]</span><span class=p>.</span><span class=nf>Area</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
 	<span class=p>}</span>
 <span class=p>}</span>
 <span class=c1>//Output:
@@ -396,17 +397,17 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 <span class=p>}</span>
 
 <span class=kd>type</span> <span class=nx>Lock</span> <span class=kd>interface</span> <span class=p>{</span>
-    <span class=nf>Lock</span><span class=p>()</span>
-    <span class=nf>Unlock</span><span class=p>()</span>
+    <span class=nf>Lock</span><span class=p>(</span><span class=p>)</span>
+    <span class=nf>Unlock</span><span class=p>(</span><span class=p>)</span>
 <span class=p>}</span>
 
 <span class=kd>type</span> <span class=nx>File</span> <span class=kd>interface</span> <span class=p>{</span>
     <span class=nx>ReadWrite</span>
     <span class=nx>Lock</span>
-    <span class=nf>Close</span><span class=p>()</span>
+    <span class=nf>Close</span><span class=p>(</span><span class=p>)</span>
 <span class=p>}</span>
 </code></pre></td></tr></table></div></div><h3 id=15-类型断言>1.5 类型断言</h3><p>如果一个变量是接口变量，实际上其值的类型是不确定的，我们使用类型断言来检测值的具体类型</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=nx>v</span> <span class=o>:=</span> <span class=nx>varI</span><span class=p>.(</span><span class=nx>T</span><span class=p>)</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=nx>v</span> <span class=o>:=</span> <span class=nx>varI</span><span class=p>.</span><span class=p>(</span><span class=nx>T</span><span class=p>)</span>
 </code></pre></td></tr></table></div></div><p>varI是一个接口变量，T是待检测类型，这一语句的作用是检测 varI 的动态类型是否和 T 一致，实质是将 varI 转换为 T 类型的值</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
@@ -469,31 +470,31 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 <span class=p>}</span>
 
 <span class=kd>type</span> <span class=nx>Shaper</span> <span class=kd>interface</span> <span class=p>{</span>
-	<span class=nf>Area</span><span class=p>()</span> <span class=kt>float32</span>
+	<span class=nf>Area</span><span class=p>(</span><span class=p>)</span> <span class=kt>float32</span>
 <span class=p>}</span>
 
-<span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
 	<span class=kd>var</span> <span class=nx>areaIntf</span> <span class=nx>Shaper</span>
 	<span class=nx>sq1</span> <span class=o>:=</span> <span class=nb>new</span><span class=p>(</span><span class=nx>Square</span><span class=p>)</span>
 	<span class=nx>sq1</span><span class=p>.</span><span class=nx>side</span> <span class=p>=</span> <span class=mi>5</span>
 
 	<span class=nx>areaIntf</span> <span class=p>=</span> <span class=nx>sq1</span>
 	<span class=c1>// Is Square the type of areaIntf?
-</span><span class=c1></span>	<span class=k>if</span> <span class=nx>t</span><span class=p>,</span> <span class=nx>ok</span> <span class=o>:=</span> <span class=nx>areaIntf</span><span class=p>.(</span><span class=o>*</span><span class=nx>Square</span><span class=p>);</span> <span class=nx>ok</span> <span class=p>{</span>
+</span><span class=c1></span>	<span class=k>if</span> <span class=nx>t</span><span class=p>,</span> <span class=nx>ok</span> <span class=o>:=</span> <span class=nx>areaIntf</span><span class=p>.</span><span class=p>(</span><span class=o>*</span><span class=nx>Square</span><span class=p>)</span><span class=p>;</span> <span class=nx>ok</span> <span class=p>{</span>
 		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;The type of areaIntf is: %T\n&#34;</span><span class=p>,</span> <span class=nx>t</span><span class=p>)</span>
 	<span class=p>}</span>
-	<span class=k>if</span> <span class=nx>u</span><span class=p>,</span> <span class=nx>ok</span> <span class=o>:=</span> <span class=nx>areaIntf</span><span class=p>.(</span><span class=o>*</span><span class=nx>Circle</span><span class=p>);</span> <span class=nx>ok</span> <span class=p>{</span>
+	<span class=k>if</span> <span class=nx>u</span><span class=p>,</span> <span class=nx>ok</span> <span class=o>:=</span> <span class=nx>areaIntf</span><span class=p>.</span><span class=p>(</span><span class=o>*</span><span class=nx>Circle</span><span class=p>)</span><span class=p>;</span> <span class=nx>ok</span> <span class=p>{</span>
 		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;The type of areaIntf is: %T\n&#34;</span><span class=p>,</span> <span class=nx>u</span><span class=p>)</span>
 	<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
 		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;areaIntf does not contain a variable of type Circle&#34;</span><span class=p>)</span>
 	<span class=p>}</span>
 <span class=p>}</span>
 
-<span class=kd>func</span> <span class=p>(</span><span class=nx>sq</span> <span class=o>*</span><span class=nx>Square</span><span class=p>)</span> <span class=nf>Area</span><span class=p>()</span> <span class=kt>float32</span> <span class=p>{</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>sq</span> <span class=o>*</span><span class=nx>Square</span><span class=p>)</span> <span class=nf>Area</span><span class=p>(</span><span class=p>)</span> <span class=kt>float32</span> <span class=p>{</span>
 	<span class=k>return</span> <span class=nx>sq</span><span class=p>.</span><span class=nx>side</span> <span class=o>*</span> <span class=nx>sq</span><span class=p>.</span><span class=nx>side</span>
 <span class=p>}</span>
 
-<span class=kd>func</span> <span class=p>(</span><span class=nx>ci</span> <span class=o>*</span><span class=nx>Circle</span><span class=p>)</span> <span class=nf>Area</span><span class=p>()</span> <span class=kt>float32</span> <span class=p>{</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>ci</span> <span class=o>*</span><span class=nx>Circle</span><span class=p>)</span> <span class=nf>Area</span><span class=p>(</span><span class=p>)</span> <span class=kt>float32</span> <span class=p>{</span>
 	<span class=k>return</span> <span class=nx>ci</span><span class=p>.</span><span class=nx>radius</span> <span class=o>*</span> <span class=nx>ci</span><span class=p>.</span><span class=nx>radius</span> <span class=o>*</span> <span class=nx>math</span><span class=p>.</span><span class=nx>Pi</span>
 <span class=p>}</span>
 <span class=c1>//Output:
@@ -504,7 +505,7 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=k>if</span> <span class=nx>v</span><span class=p>,</span> <span class=nx>ok</span> <span class=o>:=</span> <span class=nx>varI</span><span class=p>.(</span><span class=nx>T</span><span class=p>);</span> <span class=nx>ok</span> <span class=p>{</span>  <span class=c1>// checked type assertion
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=k>if</span> <span class=nx>v</span><span class=p>,</span> <span class=nx>ok</span> <span class=o>:=</span> <span class=nx>varI</span><span class=p>.</span><span class=p>(</span><span class=nx>T</span><span class=p>)</span><span class=p>;</span> <span class=nx>ok</span> <span class=p>{</span>  <span class=c1>// checked type assertion
 </span><span class=c1></span>    <span class=nf>Process</span><span class=p>(</span><span class=nx>v</span><span class=p>)</span>
     <span class=k>return</span>
 <span class=p>}</span>
@@ -521,7 +522,7 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 </span><span class=lnt>10
 </span><span class=lnt>11
 </span><span class=lnt>12
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=k>switch</span> <span class=nx>t</span> <span class=o>:=</span> <span class=nx>areaIntf</span><span class=p>.(</span><span class=kd>type</span><span class=p>)</span> <span class=p>{</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=k>switch</span> <span class=nx>t</span> <span class=o>:=</span> <span class=nx>areaIntf</span><span class=p>.</span><span class=p>(</span><span class=kd>type</span><span class=p>)</span> <span class=p>{</span>
 <span class=k>case</span> <span class=o>*</span><span class=nx>Square</span><span class=p>:</span>
 	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Type Square %T with value %v\n&#34;</span><span class=p>,</span> <span class=nx>t</span><span class=p>,</span> <span class=nx>t</span><span class=p>)</span>
 <span class=k>case</span> <span class=o>*</span><span class=nx>Circle</span><span class=p>:</span>
@@ -541,11 +542,11 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 </span><span class=lnt>6
 </span><span class=lnt>7
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>type</span> <span class=nx>Stringer</span> <span class=kd>interface</span> <span class=p>{</span>
-    <span class=nf>String</span><span class=p>()</span> <span class=kt>string</span>
+    <span class=nf>String</span><span class=p>(</span><span class=p>)</span> <span class=kt>string</span>
 <span class=p>}</span>
 
-<span class=k>if</span> <span class=nx>sv</span><span class=p>,</span> <span class=nx>ok</span> <span class=o>:=</span> <span class=nx>v</span><span class=p>.(</span><span class=nx>Stringer</span><span class=p>);</span> <span class=nx>ok</span> <span class=p>{</span>
-    <span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;v implements String(): %s\n&#34;</span><span class=p>,</span> <span class=nx>sv</span><span class=p>.</span><span class=nf>String</span><span class=p>())</span> <span class=c1>// note: sv, not v
+<span class=k>if</span> <span class=nx>sv</span><span class=p>,</span> <span class=nx>ok</span> <span class=o>:=</span> <span class=nx>v</span><span class=p>.</span><span class=p>(</span><span class=nx>Stringer</span><span class=p>)</span><span class=p>;</span> <span class=nx>ok</span> <span class=p>{</span>
+    <span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;v implements String(): %s\n&#34;</span><span class=p>,</span> <span class=nx>sv</span><span class=p>.</span><span class=nf>String</span><span class=p>(</span><span class=p>)</span><span class=p>)</span> <span class=c1>// note: sv, not v
 </span><span class=c1></span><span class=p>}</span>
 </code></pre></td></tr></table></div></div><p>所以我们可以意识到，断言格式 <code>varI.(T)</code> 中的 <code>varI</code> 可以是任意变量，<code>T</code> 是任意类型，断言的实质就是将变量转换为 <code>T</code> 类型的值，然后进行比较。</p><h3 id=16-使用指针接收者和值接收者实现接口>1.6 使用指针接收者和值接收者实现接口</h3><p>虽然作用于变量的方法不区分变量是指针还是值，但是遇到接口时，会变得稍微复杂一点。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
@@ -606,9 +607,9 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 	<span class=s>&#34;fmt&#34;</span>
 <span class=p>)</span>
 
-<span class=kd>type</span> <span class=nx>List</span> <span class=p>[]</span><span class=kt>int</span>
+<span class=kd>type</span> <span class=nx>List</span> <span class=p>[</span><span class=p>]</span><span class=kt>int</span>
 
-<span class=kd>func</span> <span class=p>(</span><span class=nx>l</span> <span class=nx>List</span><span class=p>)</span> <span class=nf>Len</span><span class=p>()</span> <span class=kt>int</span> <span class=p>{</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>l</span> <span class=nx>List</span><span class=p>)</span> <span class=nf>Len</span><span class=p>(</span><span class=p>)</span> <span class=kt>int</span> <span class=p>{</span>
 	<span class=k>return</span> <span class=nb>len</span><span class=p>(</span><span class=nx>l</span><span class=p>)</span>
 <span class=p>}</span>
 
@@ -627,14 +628,14 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 <span class=p>}</span>
 
 <span class=kd>type</span> <span class=nx>Lener</span> <span class=kd>interface</span> <span class=p>{</span>
-	<span class=nf>Len</span><span class=p>()</span> <span class=kt>int</span>
+	<span class=nf>Len</span><span class=p>(</span><span class=p>)</span> <span class=kt>int</span>
 <span class=p>}</span>
 
 <span class=kd>func</span> <span class=nf>LongEnough</span><span class=p>(</span><span class=nx>l</span> <span class=nx>Lener</span><span class=p>)</span> <span class=kt>bool</span> <span class=p>{</span>
-	<span class=k>return</span> <span class=nx>l</span><span class=p>.</span><span class=nf>Len</span><span class=p>()</span><span class=o>*</span><span class=mi>10</span> <span class=p>&gt;</span> <span class=mi>42</span>
+	<span class=k>return</span> <span class=nx>l</span><span class=p>.</span><span class=nf>Len</span><span class=p>(</span><span class=p>)</span><span class=o>*</span><span class=mi>10</span> <span class=p>&gt;</span> <span class=mi>42</span>
 <span class=p>}</span>
 
-<span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
 	<span class=c1>// A bare value
 </span><span class=c1></span>	<span class=kd>var</span> <span class=nx>lst</span> <span class=nx>List</span>
 	<span class=c1>// compiler error:
@@ -655,8 +656,8 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 <span class=p>}</span>
 </code></pre></td></tr></table></div></div><p>在 <code>lst</code> 上调用 <code>CountInto</code> 时会导致一个编译器错误，因为 <code>CountInto</code> 需要一个 <code>Appender</code>，而它的方法 <code>Append</code> 只定义在指针上。 在 <code>lst</code> 上调用 <code>LongEnough</code> 是可以的，因为 <code>Len</code> 定义在值上。</p><p>在 <code>plst</code> 上调用 <code>CountInto</code> 是可以的，因为 <code>CountInto</code> 需要一个 <code>Appender</code>，并且它的方法 <code>Append</code> 定义在指针上。 在 <code>plst</code> 上调用 <code>LongEnough</code> 也是可以的，因为指针会被自动解引用。</p><p>Go语言规范中接口方法集的调用规则为：</p><ul><li>类型 *T 的可调用方法集包含接受者为 *T 或 T 的所有方法集</li><li>类型 T 的可调用方法集包含接受者为 T 的所有方法</li><li>类型 T 的可调用方法集不包含接受者为 *T 的方法</li></ul><h2 id=2-反射>2. 反射</h2><p>反射是指在程序运行期间对程序本身进行访问和修改的能力。程序在编译时，变量被转换为内存地址，变量名不会被编译器写入到可执行部分，在运行程序时，程序无法获取自身的信息。</p><p>支持反射的语言可以在程序编译期将变量的反射信息，如字段名称、类型信息、结构体信息等整合到可执行文件中，并给程序提供接口访问反射信息，这样就可以在程序运行期获取类型的反射信息，并且有能力修改它们。</p><p>Go 语言的反射系统无法获取到一个可执行文件空间或者一个包中的所有类型信息，仅仅是在运行时通过 reflect 包来访问指定的类型信息。</p><p><a href=https://mp.weixin.qq.com/s/qJVfEWngSDg3It3UytPuxA>https://mp.weixin.qq.com/s/qJVfEWngSDg3It3UytPuxA</a></p><h3 id=21-方法和类型的反射>2.1 方法和类型的反射</h3><p>Go 的反射包中比较重要和常用的有三个类型：<code>Kind</code>，<code>Type</code>，<code>Value</code>，其中 <code>Type</code>用来表示一个Go类型，<code>Value</code>为Go值提供了反射接口。</p><p><code>reflect.TypeOf</code> 和 <code>reflect.ValueOf</code> 分别是定义在这两者之上的方法，函数原型如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>TypeOf</span><span class=p>(</span><span class=nx>i</span> <span class=kd>interface</span><span class=p>{})</span> <span class=nx>Type</span>
-<span class=kd>func</span> <span class=nf>ValueOf</span><span class=p>(</span><span class=nx>i</span> <span class=kd>interface</span><span class=p>{})</span> <span class=nx>Value</span>
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>TypeOf</span><span class=p>(</span><span class=nx>i</span> <span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span> <span class=nx>Type</span>
+<span class=kd>func</span> <span class=nf>ValueOf</span><span class=p>(</span><span class=nx>i</span> <span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span> <span class=nx>Value</span>
 </code></pre></td></tr></table></div></div><p>其本质是检查接口的动态类型和动态值，一般用来返回被检查对象的类型和值。例如，x被定义为<code>var x float64 = 3.4</code>，那么<code>reflect.TypeOf(x)</code>返回<code>type: float64</code>，<code>reflect.ValueOf(x)</code>返回<code>value: 3.4</code></p><p>因此，使用ValueOf转换获得的值，依然拥有自己的类型和值，反射包的Value有不少方法都可以作用于它，比如<code>kind</code>方法返回一个常量来表示类型，<code>Type</code>方法也返回值的类型，<code>Int</code>和<code>Float</code>等方法可以获取存储在内部的值，<code>Interface</code>方法可以还原接口值。示例如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
@@ -693,17 +694,17 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 	<span class=s>&#34;reflect&#34;</span>
 <span class=p>)</span>
 
-<span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
 	<span class=kd>var</span> <span class=nx>x</span> <span class=kt>float64</span> <span class=p>=</span> <span class=mf>3.4</span>
-	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;type:&#34;</span><span class=p>,</span> <span class=nx>reflect</span><span class=p>.</span><span class=nf>TypeOf</span><span class=p>(</span><span class=nx>x</span><span class=p>))</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;type:&#34;</span><span class=p>,</span> <span class=nx>reflect</span><span class=p>.</span><span class=nf>TypeOf</span><span class=p>(</span><span class=nx>x</span><span class=p>)</span><span class=p>)</span>
 	<span class=nx>v</span> <span class=o>:=</span> <span class=nx>reflect</span><span class=p>.</span><span class=nf>ValueOf</span><span class=p>(</span><span class=nx>x</span><span class=p>)</span>
 	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;value:&#34;</span><span class=p>,</span> <span class=nx>v</span><span class=p>)</span>
-	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;type:&#34;</span><span class=p>,</span> <span class=nx>v</span><span class=p>.</span><span class=nf>Type</span><span class=p>())</span>
-	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;kind:&#34;</span><span class=p>,</span> <span class=nx>v</span><span class=p>.</span><span class=nf>Kind</span><span class=p>())</span>
-	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;value:&#34;</span><span class=p>,</span> <span class=nx>v</span><span class=p>.</span><span class=nf>Float</span><span class=p>())</span>
-	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>v</span><span class=p>.</span><span class=nf>Interface</span><span class=p>())</span>
-	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;value is %5.2e\n&#34;</span><span class=p>,</span> <span class=nx>v</span><span class=p>.</span><span class=nf>Interface</span><span class=p>())</span>
-	<span class=nx>y</span> <span class=o>:=</span> <span class=nx>v</span><span class=p>.</span><span class=nf>Interface</span><span class=p>().(</span><span class=kt>float64</span><span class=p>)</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;type:&#34;</span><span class=p>,</span> <span class=nx>v</span><span class=p>.</span><span class=nf>Type</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;kind:&#34;</span><span class=p>,</span> <span class=nx>v</span><span class=p>.</span><span class=nf>Kind</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;value:&#34;</span><span class=p>,</span> <span class=nx>v</span><span class=p>.</span><span class=nf>Float</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>v</span><span class=p>.</span><span class=nf>Interface</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;value is %5.2e\n&#34;</span><span class=p>,</span> <span class=nx>v</span><span class=p>.</span><span class=nf>Interface</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
+	<span class=nx>y</span> <span class=o>:=</span> <span class=nx>v</span><span class=p>.</span><span class=nf>Interface</span><span class=p>(</span><span class=p>)</span><span class=p>.</span><span class=p>(</span><span class=kt>float64</span><span class=p>)</span>
 	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>y</span><span class=p>)</span>
 <span class=p>}</span>
 <span class=c1>//Output:
@@ -759,20 +760,20 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 	<span class=s>&#34;reflect&#34;</span>
 <span class=p>)</span>
 
-<span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
 	<span class=kd>var</span> <span class=nx>x</span> <span class=kt>float64</span> <span class=p>=</span> <span class=mf>3.4</span>
 	<span class=nx>v</span> <span class=o>:=</span> <span class=nx>reflect</span><span class=p>.</span><span class=nf>ValueOf</span><span class=p>(</span><span class=nx>x</span><span class=p>)</span>
 	<span class=c1>// setting a value:
 </span><span class=c1></span>	<span class=c1>// v.SetFloat(3.1415) // Error: will panic: reflect.Value.SetFloat using unaddressable value
-</span><span class=c1></span>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;settability of v:&#34;</span><span class=p>,</span> <span class=nx>v</span><span class=p>.</span><span class=nf>CanSet</span><span class=p>())</span>
+</span><span class=c1></span>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;settability of v:&#34;</span><span class=p>,</span> <span class=nx>v</span><span class=p>.</span><span class=nf>CanSet</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
 	<span class=nx>v</span> <span class=p>=</span> <span class=nx>reflect</span><span class=p>.</span><span class=nf>ValueOf</span><span class=p>(</span><span class=o>&amp;</span><span class=nx>x</span><span class=p>)</span> <span class=c1>// Note: take the address of x.
-</span><span class=c1></span>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;type of v:&#34;</span><span class=p>,</span> <span class=nx>v</span><span class=p>.</span><span class=nf>Type</span><span class=p>())</span>
-	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;settability of v:&#34;</span><span class=p>,</span> <span class=nx>v</span><span class=p>.</span><span class=nf>CanSet</span><span class=p>())</span>
-	<span class=nx>v</span> <span class=p>=</span> <span class=nx>v</span><span class=p>.</span><span class=nf>Elem</span><span class=p>()</span>
+</span><span class=c1></span>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;type of v:&#34;</span><span class=p>,</span> <span class=nx>v</span><span class=p>.</span><span class=nf>Type</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;settability of v:&#34;</span><span class=p>,</span> <span class=nx>v</span><span class=p>.</span><span class=nf>CanSet</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
+	<span class=nx>v</span> <span class=p>=</span> <span class=nx>v</span><span class=p>.</span><span class=nf>Elem</span><span class=p>(</span><span class=p>)</span>
 	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;The Elem of v is: &#34;</span><span class=p>,</span> <span class=nx>v</span><span class=p>)</span>
-	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;settability of v:&#34;</span><span class=p>,</span> <span class=nx>v</span><span class=p>.</span><span class=nf>CanSet</span><span class=p>())</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;settability of v:&#34;</span><span class=p>,</span> <span class=nx>v</span><span class=p>.</span><span class=nf>CanSet</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
 	<span class=nx>v</span><span class=p>.</span><span class=nf>SetFloat</span><span class=p>(</span><span class=mf>3.1415</span><span class=p>)</span> <span class=c1>// this works!
-</span><span class=c1></span>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>v</span><span class=p>.</span><span class=nf>Interface</span><span class=p>())</span>
+</span><span class=c1></span>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>v</span><span class=p>.</span><span class=nf>Interface</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
 	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>v</span><span class=p>)</span>
 <span class=p>}</span>
 <span class=c1>//Output:
@@ -839,31 +840,31 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 	<span class=nx>s1</span><span class=p>,</span> <span class=nx>s2</span><span class=p>,</span> <span class=nx>s3</span> <span class=kt>string</span>
 <span class=p>}</span>
 
-<span class=kd>func</span> <span class=p>(</span><span class=nx>n</span> <span class=nx>NotknownType</span><span class=p>)</span> <span class=nf>String</span><span class=p>()</span> <span class=kt>string</span> <span class=p>{</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>n</span> <span class=nx>NotknownType</span><span class=p>)</span> <span class=nf>String</span><span class=p>(</span><span class=p>)</span> <span class=kt>string</span> <span class=p>{</span>
 	<span class=k>return</span> <span class=nx>n</span><span class=p>.</span><span class=nx>s1</span> <span class=o>+</span> <span class=s>&#34; - &#34;</span> <span class=o>+</span> <span class=nx>n</span><span class=p>.</span><span class=nx>s2</span> <span class=o>+</span> <span class=s>&#34; - &#34;</span> <span class=o>+</span> <span class=nx>n</span><span class=p>.</span><span class=nx>s3</span>
 <span class=p>}</span>
 
 <span class=c1>// variable to investigate:
-</span><span class=c1></span><span class=kd>var</span> <span class=nx>secret</span> <span class=kd>interface</span><span class=p>{}</span> <span class=p>=</span> <span class=nx>NotknownType</span><span class=p>{</span><span class=s>&#34;Ada&#34;</span><span class=p>,</span> <span class=s>&#34;Go&#34;</span><span class=p>,</span> <span class=s>&#34;Oberon&#34;</span><span class=p>}</span>
+</span><span class=c1></span><span class=kd>var</span> <span class=nx>secret</span> <span class=kd>interface</span><span class=p>{</span><span class=p>}</span> <span class=p>=</span> <span class=nx>NotknownType</span><span class=p>{</span><span class=s>&#34;Ada&#34;</span><span class=p>,</span> <span class=s>&#34;Go&#34;</span><span class=p>,</span> <span class=s>&#34;Oberon&#34;</span><span class=p>}</span>
 
-<span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
 	<span class=nx>value</span> <span class=o>:=</span> <span class=nx>reflect</span><span class=p>.</span><span class=nf>ValueOf</span><span class=p>(</span><span class=nx>secret</span><span class=p>)</span> <span class=c1>// &lt;main.NotknownType Value&gt;
 </span><span class=c1></span>	<span class=nx>typ</span> <span class=o>:=</span> <span class=nx>reflect</span><span class=p>.</span><span class=nf>TypeOf</span><span class=p>(</span><span class=nx>secret</span><span class=p>)</span>    <span class=c1>// main.NotknownType
 </span><span class=c1></span>	<span class=c1>// alternative:
 </span><span class=c1></span>	<span class=c1>//typ := value.Type()  // main.NotknownType
 </span><span class=c1></span>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>typ</span><span class=p>)</span>
-	<span class=nx>knd</span> <span class=o>:=</span> <span class=nx>value</span><span class=p>.</span><span class=nf>Kind</span><span class=p>()</span> <span class=c1>// struct
+	<span class=nx>knd</span> <span class=o>:=</span> <span class=nx>value</span><span class=p>.</span><span class=nf>Kind</span><span class=p>(</span><span class=p>)</span> <span class=c1>// struct
 </span><span class=c1></span>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>knd</span><span class=p>)</span>
 
 	<span class=c1>// iterate through the fields of the struct:
-</span><span class=c1></span>	<span class=k>for</span> <span class=nx>i</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=nx>value</span><span class=p>.</span><span class=nf>NumField</span><span class=p>();</span> <span class=nx>i</span><span class=o>++</span> <span class=p>{</span>
-		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Field %d: %v\n&#34;</span><span class=p>,</span> <span class=nx>i</span><span class=p>,</span> <span class=nx>value</span><span class=p>.</span><span class=nf>Field</span><span class=p>(</span><span class=nx>i</span><span class=p>))</span>
+</span><span class=c1></span>	<span class=k>for</span> <span class=nx>i</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=nx>value</span><span class=p>.</span><span class=nf>NumField</span><span class=p>(</span><span class=p>)</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span> <span class=p>{</span>
+		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Field %d: %v\n&#34;</span><span class=p>,</span> <span class=nx>i</span><span class=p>,</span> <span class=nx>value</span><span class=p>.</span><span class=nf>Field</span><span class=p>(</span><span class=nx>i</span><span class=p>)</span><span class=p>)</span>
 		<span class=c1>// error: panic: reflect.Value.SetString using value obtained using unexported field
 </span><span class=c1></span>		<span class=c1>//value.Field(i).SetString(&#34;C#&#34;)
 </span><span class=c1></span>	<span class=p>}</span>
 
 	<span class=c1>// call the first method, which is String():
-</span><span class=c1></span>	<span class=nx>results</span> <span class=o>:=</span> <span class=nx>value</span><span class=p>.</span><span class=nf>Method</span><span class=p>(</span><span class=mi>0</span><span class=p>).</span><span class=nf>Call</span><span class=p>(</span><span class=kc>nil</span><span class=p>)</span>
+</span><span class=c1></span>	<span class=nx>results</span> <span class=o>:=</span> <span class=nx>value</span><span class=p>.</span><span class=nf>Method</span><span class=p>(</span><span class=mi>0</span><span class=p>)</span><span class=p>.</span><span class=nf>Call</span><span class=p>(</span><span class=kc>nil</span><span class=p>)</span>
 	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>results</span><span class=p>)</span> <span class=c1>// [Ada - Go - Oberon]
 </span><span class=c1></span><span class=p>}</span>
 <span class=c1>//Output:
@@ -931,17 +932,17 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 	<span class=nx>log</span>  <span class=o>*</span><span class=nx>Log</span>
 <span class=p>}</span>
 
-<span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
 	<span class=nx>c</span> <span class=o>:=</span> <span class=nb>new</span><span class=p>(</span><span class=nx>Customer</span><span class=p>)</span>
 	<span class=nx>c</span><span class=p>.</span><span class=nx>Name</span> <span class=p>=</span> <span class=s>&#34;Barak Obama&#34;</span>
 	<span class=nx>c</span><span class=p>.</span><span class=nx>log</span> <span class=p>=</span> <span class=nb>new</span><span class=p>(</span><span class=nx>Log</span><span class=p>)</span>
 	<span class=nx>c</span><span class=p>.</span><span class=nx>log</span><span class=p>.</span><span class=nx>msg</span> <span class=p>=</span> <span class=s>&#34;1 - Yes we can!&#34;</span>
 	<span class=c1>// shorter
-</span><span class=c1></span>	<span class=nx>c</span> <span class=p>=</span> <span class=o>&amp;</span><span class=nx>Customer</span><span class=p>{</span><span class=s>&#34;Barak Obama&#34;</span><span class=p>,</span> <span class=o>&amp;</span><span class=nx>Log</span><span class=p>{</span><span class=s>&#34;1 - Yes we can!&#34;</span><span class=p>}}</span>
+</span><span class=c1></span>	<span class=nx>c</span> <span class=p>=</span> <span class=o>&amp;</span><span class=nx>Customer</span><span class=p>{</span><span class=s>&#34;Barak Obama&#34;</span><span class=p>,</span> <span class=o>&amp;</span><span class=nx>Log</span><span class=p>{</span><span class=s>&#34;1 - Yes we can!&#34;</span><span class=p>}</span><span class=p>}</span>
 	<span class=c1>// fmt.Println(c) &amp;{Barak Obama 1 - Yes we can!}
-</span><span class=c1></span>	<span class=nx>c</span><span class=p>.</span><span class=nf>Log</span><span class=p>().</span><span class=nf>Add</span><span class=p>(</span><span class=s>&#34;2 - After me the world will be a better place!&#34;</span><span class=p>)</span>
+</span><span class=c1></span>	<span class=nx>c</span><span class=p>.</span><span class=nf>Log</span><span class=p>(</span><span class=p>)</span><span class=p>.</span><span class=nf>Add</span><span class=p>(</span><span class=s>&#34;2 - After me the world will be a better place!&#34;</span><span class=p>)</span>
 	<span class=c1>//fmt.Println(c.log)
-</span><span class=c1></span>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>c</span><span class=p>.</span><span class=nf>Log</span><span class=p>())</span>
+</span><span class=c1></span>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>c</span><span class=p>.</span><span class=nf>Log</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
 
 <span class=p>}</span>
 
@@ -949,11 +950,11 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 	<span class=nx>l</span><span class=p>.</span><span class=nx>msg</span> <span class=o>+=</span> <span class=s>&#34;\n&#34;</span> <span class=o>+</span> <span class=nx>s</span>
 <span class=p>}</span>
 
-<span class=kd>func</span> <span class=p>(</span><span class=nx>l</span> <span class=o>*</span><span class=nx>Log</span><span class=p>)</span> <span class=nf>String</span><span class=p>()</span> <span class=kt>string</span> <span class=p>{</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>l</span> <span class=o>*</span><span class=nx>Log</span><span class=p>)</span> <span class=nf>String</span><span class=p>(</span><span class=p>)</span> <span class=kt>string</span> <span class=p>{</span>
 	<span class=k>return</span> <span class=nx>l</span><span class=p>.</span><span class=nx>msg</span>
 <span class=p>}</span>
 
-<span class=kd>func</span> <span class=p>(</span><span class=nx>c</span> <span class=o>*</span><span class=nx>Customer</span><span class=p>)</span> <span class=nf>Log</span><span class=p>()</span> <span class=o>*</span><span class=nx>Log</span> <span class=p>{</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>c</span> <span class=o>*</span><span class=nx>Customer</span><span class=p>)</span> <span class=nf>Log</span><span class=p>(</span><span class=p>)</span> <span class=o>*</span><span class=nx>Log</span> <span class=p>{</span>
 	<span class=k>return</span> <span class=nx>c</span><span class=p>.</span><span class=nx>log</span>
 <span class=p>}</span>
 <span class=c1>//Output:
@@ -1011,8 +1012,8 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 	<span class=nx>Log</span>
 <span class=p>}</span>
 
-<span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
-	<span class=nx>c</span> <span class=o>:=</span> <span class=o>&amp;</span><span class=nx>Customer</span><span class=p>{</span><span class=s>&#34;Barak Obama&#34;</span><span class=p>,</span> <span class=nx>Log</span><span class=p>{</span><span class=s>&#34;1 - Yes we can!&#34;</span><span class=p>}}</span>
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>c</span> <span class=o>:=</span> <span class=o>&amp;</span><span class=nx>Customer</span><span class=p>{</span><span class=s>&#34;Barak Obama&#34;</span><span class=p>,</span> <span class=nx>Log</span><span class=p>{</span><span class=s>&#34;1 - Yes we can!&#34;</span><span class=p>}</span><span class=p>}</span>
 	<span class=nx>c</span><span class=p>.</span><span class=nf>Add</span><span class=p>(</span><span class=s>&#34;2 - After me the world will be a better place!&#34;</span><span class=p>)</span>
 	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>c</span><span class=p>)</span>
 
@@ -1022,17 +1023,17 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 	<span class=nx>l</span><span class=p>.</span><span class=nx>msg</span> <span class=o>+=</span> <span class=s>&#34;\n&#34;</span> <span class=o>+</span> <span class=nx>s</span>
 <span class=p>}</span>
 
-<span class=kd>func</span> <span class=p>(</span><span class=nx>l</span> <span class=o>*</span><span class=nx>Log</span><span class=p>)</span> <span class=nf>String</span><span class=p>()</span> <span class=kt>string</span> <span class=p>{</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>l</span> <span class=o>*</span><span class=nx>Log</span><span class=p>)</span> <span class=nf>String</span><span class=p>(</span><span class=p>)</span> <span class=kt>string</span> <span class=p>{</span>
 	<span class=k>return</span> <span class=nx>l</span><span class=p>.</span><span class=nx>msg</span>
 <span class=p>}</span>
 
-<span class=kd>func</span> <span class=p>(</span><span class=nx>c</span> <span class=o>*</span><span class=nx>Customer</span><span class=p>)</span> <span class=nf>String</span><span class=p>()</span> <span class=kt>string</span> <span class=p>{</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>c</span> <span class=o>*</span><span class=nx>Customer</span><span class=p>)</span> <span class=nf>String</span><span class=p>(</span><span class=p>)</span> <span class=kt>string</span> <span class=p>{</span>
 	<span class=k>return</span> <span class=nx>c</span><span class=p>.</span><span class=nx>Name</span> <span class=o>+</span> <span class=s>&#34;\nLog:&#34;</span> <span class=o>+</span> <span class=nx>fmt</span><span class=p>.</span><span class=nf>Sprintln</span><span class=p>(</span><span class=nx>c</span><span class=p>.</span><span class=nx>Log</span><span class=p>)</span>
 <span class=p>}</span>
 <span class=c1>//Output:
 </span><span class=c1></span><span class=nx>Barak</span> <span class=nx>Obama</span>
-<span class=nx>Log</span><span class=p>:{</span><span class=mi>1</span> <span class=o>-</span> <span class=nx>Yes</span> <span class=nx>we</span> <span class=nx>can</span><span class=p>!</span>
-<span class=mi>2</span> <span class=o>-</span> <span class=nx>After</span> <span class=nx>me</span> <span class=nx>the</span> <span class=nx>world</span> <span class=nx>will</span> <span class=nx>be</span> <span class=nx>a</span> <span class=nx>better</span> <span class=nx>place</span><span class=p>!}</span>
+<span class=nx>Log</span><span class=p>:</span><span class=p>{</span><span class=mi>1</span> <span class=o>-</span> <span class=nx>Yes</span> <span class=nx>we</span> <span class=nx>can</span><span class=p>!</span>
+<span class=mi>2</span> <span class=o>-</span> <span class=nx>After</span> <span class=nx>me</span> <span class=nx>the</span> <span class=nx>world</span> <span class=nx>will</span> <span class=nx>be</span> <span class=nx>a</span> <span class=nx>better</span> <span class=nx>place</span><span class=p>!</span><span class=p>}</span>
 </code></pre></td></tr></table></div></div><p>内嵌看起来更简单一点，因此最合适的办法就是利用内嵌创建一些小的、可复用的类型作为工具箱，来被其它类型调用。</p><h3 id=33-多重继承>3.3 多重继承</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
@@ -1072,15 +1073,15 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 	<span class=s>&#34;fmt&#34;</span>
 <span class=p>)</span>
 
-<span class=kd>type</span> <span class=nx>Camera</span> <span class=kd>struct</span><span class=p>{}</span>
+<span class=kd>type</span> <span class=nx>Camera</span> <span class=kd>struct</span><span class=p>{</span><span class=p>}</span>
 
-<span class=kd>func</span> <span class=p>(</span><span class=nx>c</span> <span class=o>*</span><span class=nx>Camera</span><span class=p>)</span> <span class=nf>TakeAPicture</span><span class=p>()</span> <span class=kt>string</span> <span class=p>{</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>c</span> <span class=o>*</span><span class=nx>Camera</span><span class=p>)</span> <span class=nf>TakeAPicture</span><span class=p>(</span><span class=p>)</span> <span class=kt>string</span> <span class=p>{</span>
 	<span class=k>return</span> <span class=s>&#34;Click&#34;</span>
 <span class=p>}</span>
 
-<span class=kd>type</span> <span class=nx>Phone</span> <span class=kd>struct</span><span class=p>{}</span>
+<span class=kd>type</span> <span class=nx>Phone</span> <span class=kd>struct</span><span class=p>{</span><span class=p>}</span>
 
-<span class=kd>func</span> <span class=p>(</span><span class=nx>p</span> <span class=o>*</span><span class=nx>Phone</span><span class=p>)</span> <span class=nf>Call</span><span class=p>()</span> <span class=kt>string</span> <span class=p>{</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>p</span> <span class=o>*</span><span class=nx>Phone</span><span class=p>)</span> <span class=nf>Call</span><span class=p>(</span><span class=p>)</span> <span class=kt>string</span> <span class=p>{</span>
 	<span class=k>return</span> <span class=s>&#34;Ring Ring&#34;</span>
 <span class=p>}</span>
 
@@ -1089,16 +1090,17 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 	<span class=nx>Phone</span>
 <span class=p>}</span>
 
-<span class=kd>func</span> <span class=nf>main</span><span class=p>()</span> <span class=p>{</span>
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
 	<span class=nx>cp</span> <span class=o>:=</span> <span class=nb>new</span><span class=p>(</span><span class=nx>CameraPhone</span><span class=p>)</span>
 	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;Our new CameraPhone exhibits multiple behaviors...&#34;</span><span class=p>)</span>
-	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;It exhibits behavior of a Camera: &#34;</span><span class=p>,</span> <span class=nx>cp</span><span class=p>.</span><span class=nf>TakeAPicture</span><span class=p>())</span>
-	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;It works like a Phone too: &#34;</span><span class=p>,</span> <span class=nx>cp</span><span class=p>.</span><span class=nf>Call</span><span class=p>())</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;It exhibits behavior of a Camera: &#34;</span><span class=p>,</span> <span class=nx>cp</span><span class=p>.</span><span class=nf>TakeAPicture</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;It works like a Phone too: &#34;</span><span class=p>,</span> <span class=nx>cp</span><span class=p>.</span><span class=nf>Call</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
 <span class=p>}</span>
 <span class=c1>//Output:
 </span><span class=c1></span><span class=nx>Our</span> <span class=nx>new</span> <span class=nx>CameraPhone</span> <span class=nx>exhibits</span> <span class=nx>multiple</span> <span class=nx>behaviors</span><span class=o>...</span>
 <span class=nx>It</span> <span class=nx>exhibits</span> <span class=nx>behavior</span> <span class=nx>of</span> <span class=nx>a</span> <span class=nx>Camera</span><span class=p>:</span> <span class=nx>Click</span>
 <span class=nx>It</span> <span class=nx>works</span> <span class=nx>like</span> <span class=nx>a</span> <span class=nx>Phone</span> <span class=nx>too</span><span class=p>:</span> <span class=nx>Ring</span> <span class=nx>Ring</span>
-</code></pre></td></tr></table></div></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2020-06-15</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=https://shuzang.github.io/golang-syntax-9-interface-and-reflect/index.md target=_blank>Read Markdown</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://shuzang.github.io/golang-syntax-9-interface-and-reflect/ data-title=Golang语法基础9-接口与反射 data-hashtags=Go语法><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://shuzang.github.io/golang-syntax-9-interface-and-reflect/ data-hashtag=Go语法><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Reddit" data-sharer=reddit data-url=https://shuzang.github.io/golang-syntax-9-interface-and-reflect/><i class="fab fa-reddit fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span class=tag><a href=https://shuzang.github.io/tags/go%E8%AF%AD%E6%B3%95/><i class="fas fa-tag fa-fw"></i>&nbsp;Go语法</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://shuzang.github.io>Home</a></span></section></div><div class=post-nav><a href=https://shuzang.github.io/articles-about-blockchain/ class=prev rel=prev title=区块链方向有参考价值的文章收集><i class="fas fa-angle-left fa-fw"></i>区块链方向有参考价值的文章收集</a>
+</code></pre></td></tr></table></div></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2020-06-15</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=https://shuzang.github.io/golang-syntax-9-interface-and-reflect/index.md target=_blank>Read Markdown</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://shuzang.github.io/golang-syntax-9-interface-and-reflect/ data-title=Golang语法基础9-接口与反射 data-hashtags=Go语法><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://shuzang.github.io/golang-syntax-9-interface-and-reflect/ data-hashtag=Go语法><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Reddit" data-sharer=reddit data-url=https://shuzang.github.io/golang-syntax-9-interface-and-reflect/><i class="fab fa-reddit fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span><a href=/tags/go%E8%AF%AD%E6%B3%95><i class="fas fa-tag fa-fw"></i>Go语法</a>
+</span>&nbsp;</section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=https://shuzang.github.io/articles-about-blockchain/ class=prev rel=prev title=区块链方向有参考价值的文章收集><i class="fas fa-angle-left fa-fw"></i>区块链方向有参考价值的文章收集</a>
 <a href=https://shuzang.github.io/golang-syntax-8-struct-and-method/ class=next rel=next title=Golang语法基础8-结构体与方法>Golang语法基础8-结构体与方法<i class="fas fa-angle-right fa-fw"></i></a></div></div><div class=comment><div id=disqus_thread></div><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><div id=valine></div><script>document.addEventListener("DOMContentLoaded",function(event){new Valine({el:'#valine',appId:'GteMvevTjOBmhvFh2QGsopGO-gzGzoHsz',appKey:'fL4SYl06GIe012PswFdY17VC',placeholder:'Your comment ...',verify:true,avatar:'hide',pageSize:10,lang:'en',visitor:true,recordIP:true,});});</script><noscript>Please enable JavaScript to view the <a href=https://valine.js.org/>comments powered by Valine.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a></div><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://shuzang.github.io/about/ target=_blank>shuzang</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><a href=# class="dynamic-to-top animated faster" id=dynamic-to-top><span>&nbsp;</span>
-</a><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true},{left:"$",right:"$",display:false},]});});</script><link href=https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css rel=stylesheet><link href=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.css rel=stylesheet><link rel=stylesheet href=/css/lib/valine/dark.css><script src=https://dillonzq.disqus.com/embed.js></script><script src=https://cdn.bootcss.com/smooth-scroll/16.1.0/smooth-scroll.js></script><script src=https://cdn.bootcss.com/lazysizes/5.1.2/lazysizes.min.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/auto-render.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/mhchem.js></script><script src=/js/lib/valine/Valine.min.js></script><script src=/js/lib/sharer/sharer.min.js></script><script src=/js/theme.min.js></script></body></html>
+</a><script>document.addEventListener('DOMContentLoaded',function(){lightGallery(document.getElementById('content'),{selector:'.lightgallery',speed:400,hideBarsDelay:2000,thumbnail:true,exThumbImage:'data-thumbnail',thumbWidth:80,thumbContHeight:80,});});</script><link rel=stylesheet href=/lib/valine/dark.210f14917270f9f7ab9803acf878a152fb54ecb3003722bbee3adcd1d6e70fc1.css integrity="sha256-IQ8UkXJw+fermAOs+HihUvtU7LMANyK77jrc0dbnD8E="><link rel=stylesheet href=/lib/lightgallery/lightgallery.min.a0f67639490aba5d9a250783c0aa0ed69f83a6f151fb0d7b9fb617c9dbc54565.css integrity="sha256-oPZ2OUkKul2aJQeDwKoO1p+DpvFR+w17n7YXydvFRWU="><script src=https://dillonzq.disqus.com/embed.js></script><script src=https://cdn.bootcss.com/smooth-scroll/16.1.0/smooth-scroll.js></script><script src=https://cdn.bootcss.com/lazysizes/5.1.2/lazysizes.min.js></script><script src=/lib/valine/Valine.min.cecee02afc36ef02fd550a02f12abfdd057905e78aa4439749675fce96148861.js integrity="sha256-zs7gKvw27wL9VQoC8Sq/3QV5BeeKpEOXSWdfzpYUiGE="></script><script src=/lib/sharer/sharer.min.9c88f86c7f0820287113f6236200459832693656e80d7556cc80a93dfbd45813.js integrity="sha256-nIj4bH8IIChxE/YjYgBFmDJpNlboDXVWzICpPfvUWBM="></script><script src=/lib/lightgallery/lightgallery.min.7a84c63ab156d68e4a7269487c9c65a4eb34b0c7864f2d3fd2b87f7c664480d3.js integrity="sha256-eoTGOrFW1o5KcmlIfJxlpOs0sMeGTy0/0rh/fGZEgNM="></script><script src=/lib/lightgallery/lg-thumbnail.min.eab31af8f90835b7ab674b2dd2474841039bc01022aa312f80dde6e22fde58d7.js integrity="sha256-6rMa+PkINberZ0st0kdIQQObwBAiqjEvgN3m4i/eWNc="></script><script src=/lib/lightgallery/lg-zoom.min.e3a7e6bb4a69f8627654ba9e0ab1252971bcfb400538dbb0605db9a3342ce5b9.js integrity="sha256-46fmu0pp+GJ2VLqeCrElKXG8+0AFONuwYF25ozQs5bk="></script><script src=/js/theme.min.1482fc67bfa2c3b8cebe476d0037b9321b5b7a8a1525b547b94143948be90e9e.js integrity="sha256-FIL8Z7+iw7jOvkdtADe5MhtbeooVJbVHuUFDlIvpDp4="></script></body></html>
