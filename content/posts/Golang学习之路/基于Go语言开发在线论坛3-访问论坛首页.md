@@ -5,7 +5,7 @@ date: 2020-05-29T09:08:00+08:00
 lastmod: 2020-06-14
 tags: [Go实战]
 categories: [Golang学习之路]
-slug: Development of online forum based on golang 3-Visit Forum Homepage: 
+slug: Development of online forum based on golang 3-Visit Forum Homepage 
 ---
 
 前两篇分别介绍了整体设计及数据表的创建、模型类的编写，本篇了解如何在服务端处理用户请求，并启动论坛首页。文章转自学院君的教程，略有改动。

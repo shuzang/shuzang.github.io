@@ -4,7 +4,7 @@ date: 2020-05-29T17:08:00+08:00
 lastmod: 2020-05-29
 tags: [Go项目基础]
 categories: [Golang学习之路]
-slug: Golang template: 
+slug: Golang template 
 ---
 
 模板就是在写动态页面时不变的部分，服务端程序渲染可变部分生成动态网页，Go 语言提供了 html/template 包来支持模板渲染。

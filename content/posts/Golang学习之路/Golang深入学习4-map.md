@@ -4,7 +4,7 @@ date: 2020-07-25T09:45:00+08:00
 lastmod: 2020-07-25
 tags: [Go语法]
 categories: [Golang学习之路]
-slug: Golang deep learning 4-map: 
+slug: Golang deep learning 4-map 
 ---
 
 本文关心 map 的底层实现、map 的扩容机制和 map 遍历的随机性。

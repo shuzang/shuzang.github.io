@@ -6,7 +6,7 @@ tags: [Go实战]
 draft: true
 categories: [Golang学习之路]
 draft: true
-slug: Go implement distributed cloud storage system 1-Prototype design: 
+slug: Go implement distributed cloud storage system 1-Prototype design
 ---
 
 慕课网买了一个 Golang 的课程，实现一个分布式云存储系统，涉及到了大部分的知识点，开一个系列做一下学习记录。本文是第一篇，原型设计。

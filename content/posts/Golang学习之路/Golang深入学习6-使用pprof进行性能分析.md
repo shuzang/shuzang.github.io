@@ -4,7 +4,7 @@ date: 2020-07-27T18:46:00+08:00
 lastmod: 2020-07-27
 tags: [Go语法]
 categories: [Golang学习之路]
-slug: Golang deep learning 6-performance analysis pprof: 
+slug: Golang deep learning 6-performance analysis pprof 
 ---
 
 pprof 用来做 Go 程序的性能监控，让我们知道在什么地方耗费了多少 CPU、memory。

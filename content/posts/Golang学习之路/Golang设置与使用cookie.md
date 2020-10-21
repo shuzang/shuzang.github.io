@@ -4,7 +4,7 @@ date: 2020-06-01T20:11:00+08:00
 lastmod: 2020-06-03
 tags: [Go项目基础]
 categories: [Golang学习之路]
-slug: Golang set and use cookie: 
+slug: Golang set and use cookie
 ---
 
 关于 Cookie 的使用是 Web 编程中的重要一部分，本篇介绍 Cookie 的基本知识和 Golang 中使用的方法。

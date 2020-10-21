@@ -4,7 +4,7 @@ date: 2020-05-29T09:32:00+08:00
 lastmod: 2020-05-29
 tags: [Go项目基础]
 categories: [Golang学习之路]
-slug: Golang Start HTTP server: 
+slug: Golang Start HTTP server 
 ---
 
 本文介绍 Golang 如何实现 HTTP 服务端及客户端。

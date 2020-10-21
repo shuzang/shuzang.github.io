@@ -2,7 +2,7 @@
 title: Golang语法基础10-协程与通道
 date: 2019-12-16
 tags: [Go语法]
-categories: [Golang学习之路]: 
+categories: [Golang学习之路] 
 slug: Golang syntax 10-goroutine and channel
 ---
 

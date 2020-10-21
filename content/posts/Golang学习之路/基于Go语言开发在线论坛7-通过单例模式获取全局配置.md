@@ -5,7 +5,7 @@ date: 2020-06-07T16:25:00+08:00
 lastmod: 2020-06-07
 tags: [Go实战]
 categories: [Golang学习之路]
-slug: Development of online forum based on golang 7-Get global configuration through singleton mode: 
+slug: Development of online forum based on golang 7-Get global configuration through singleton mode
 ---
 
 本文介绍如何将敏感信息或可变信息通过配置文件进行配置，然后在应用中读取这些配置文件来获取配置信息。

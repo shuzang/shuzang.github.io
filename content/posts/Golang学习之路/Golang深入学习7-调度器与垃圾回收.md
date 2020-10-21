@@ -4,7 +4,7 @@ date: 2020-07-30
 lastmod: 2020-07-30
 tags: [Go语法]
 categories: [Golang学习之路]
-slug: Golang deep learning 7-Scheduler and garbage collection: 
+slug: Golang deep learning 7-Scheduler and garbage collection
 ---
 
 调度器和垃圾回收都属于 runtime 的一部分，本文我们介绍 Go 中 runtime 的含义，然后再来分析 Go 的调度器和垃圾回收策略。

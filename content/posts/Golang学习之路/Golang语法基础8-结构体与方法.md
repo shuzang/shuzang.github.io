@@ -3,7 +3,7 @@ title: Golang语法基础8-结构体与方法
 date: 2019-11-26
 lastmod: 2020-09-13
 tags: [Go语法]
-categories: [Golang学习之路]: 
+categories: [Golang学习之路] 
 slug: Golang syntax 8-struct and method
 ---
 

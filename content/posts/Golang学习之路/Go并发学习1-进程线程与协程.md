@@ -5,7 +5,7 @@ lastmod: 2020-07-16
 tags: [Go并发]
 categories: [Golang学习之路]
 draft: true
-slug: Goroutine learning 1-process thread and coroutine: 
+slug: Goroutine learning 1-process thread and coroutine
 ---
 
 本篇介绍进程、线程、协程和Goroutine

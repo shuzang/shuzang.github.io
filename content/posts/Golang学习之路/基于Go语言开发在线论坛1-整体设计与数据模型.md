@@ -5,7 +5,7 @@ date: 2020-05-27T18:12:20+08:00
 lastmod: 2020-06-08
 tags: [Go实战]
 categories: [Golang学习之路]
-slug: Development of online forum based on golang 1-overall design and data model: 
+slug: Development of online forum based on golang 1-overall design and data model
 ---
 
 转自学院君的教程[^1] ，这里进行复现并深入理解，文章内容可能略有调整。

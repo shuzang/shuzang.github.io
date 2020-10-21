@@ -5,7 +5,7 @@ date: 2020-05-27T18:25:20+08:00
 lastmod: 2020-06-14
 tags: [Go实战]
 categories: [Golang学习之路]
-slug: Development of online forum based on golang 2-Interact with MySQL: 
+slug: Development of online forum based on golang 2-Interact with MySQL 
 ---
 
 在本篇教程中，我们将在 MySQL 中创建一个 `chitchat` 数据库作为论坛项目的数据库。我选择了在本地安装 MySQL Server，但也可以基于 Docker 容器运行。转自学院君的教程，略有改动。

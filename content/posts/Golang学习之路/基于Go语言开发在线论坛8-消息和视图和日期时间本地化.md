@@ -5,7 +5,7 @@ date: 2020-06-07T20:30:00+08:00
 lastmod: 2020-06-07
 tags: [Go实战]
 categories: [Golang学习之路]
-slug: Development of online forum based on golang 8-Message, view and date time localizationsingleton mode: 
+slug: Development of online forum based on golang 8-Message, view and date time localizationsingleton mode
 ---
 
 由于之前所有页面和消息文本都是英文的，而我们开发的应用基本都是面向中文用户的，所以需要对项目进行本地化，因此本篇介绍如何在 Go Web 应用中进行国际化和本地化编程，由于项目比较简单，只介绍消息提示、视图模板和日期格式的本地化。

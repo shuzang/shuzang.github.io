@@ -4,7 +4,7 @@ date: 2020-05-26
 lastmod: 2020-05-28
 tags: [Go项目基础]
 categories: [Golang学习之路]
-slug: Golang interact with MySQL: 
+slug: Golang interact with MySQL 
 ---
 
 Go 官方提供了database 包，database 包下有 sql/driver。该包用来定义操作数据库的接口，这保证了无论使用哪种数据库，操作方式都是相同的。但 Go 官方并没有提供连接数据库的 driver，如果要操作数据库，还需要第三方的 driver 包。这里介绍 [go-mysql-driver](https://github.com/go-sql-driver/mysql) 的使用。

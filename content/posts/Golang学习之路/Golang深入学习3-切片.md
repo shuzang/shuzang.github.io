@@ -4,7 +4,7 @@ date: 2020-07-24T16:13:00+08:00
 lastmod: 2020-07-24
 tags: [Go语法]
 categories: [Golang学习之路]
-slug: Golang deep learning 3-slice: 
+slug: Golang deep learning 3-slice 
 ---
 
 本篇理解切片的底层实现和扩容方式。

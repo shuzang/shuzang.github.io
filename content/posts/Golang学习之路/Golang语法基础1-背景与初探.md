@@ -4,7 +4,7 @@ date: 2019-09-13
 lastmod: 2020-06-13
 tags: [Go语法]
 categories: [Golang学习之路]
-slug: Golang Basic Grammar 1-Background and Preliminary Exploration: 
+slug: Golang Basic Grammar 1-Background and Preliminary Exploration 
 ---
 
 ## 1. 起源与发展

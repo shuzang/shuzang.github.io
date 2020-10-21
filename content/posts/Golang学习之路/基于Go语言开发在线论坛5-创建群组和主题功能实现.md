@@ -5,7 +5,7 @@ date: 2020-06-05T11:41:00+08:00
 lastmod: 2020-06-05
 tags: [Go实战]
 categories: [Golang学习之路]
-slug: Development of online forum based on golang 5-Create thread and post: 
+slug: Development of online forum based on golang 5-Create thread and post 
 ---
 
 上篇文章基于 Cookie + Session 实现了简单的用户认证功能，用户认证之后，就可以创建群组和主题了，本篇介绍如何创建群组和主题，并将其渲染到前端页面。

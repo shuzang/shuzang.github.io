@@ -4,7 +4,7 @@ date: 2019-11-26
 lastmod: 2020-06-15
 tags: [Go语法]
 categories: [Golang学习之路]
-slug: Golang syntax 9-interface and reflect: 
+slug: Golang syntax 9-interface and reflect 
 ---
 
 本篇介绍 Golang 中的接口与反射。
