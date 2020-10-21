@@ -2,8 +2,7 @@
 title: Dorri和Novo两人的论文对比
 date: 2019-01-08T09:37:00+08:00
 tags: [科研记录, 论文笔记]
-categories: [研究生的区块链学习之路]
-typora-root-url: ..\..\..\static
+categories: [研究生的区块链学习之路] 
 ---
 
 ## 前言
@@ -33,7 +32,7 @@ Oscar Novo. Blockchain Meets IoT:An Architecture for Scalable Access Management 
 
 Ali Dorri设计的架构由smart home, overlay network, cloud storage三部分组成
 
-![Ali的方案架构](/images/总结-Dorri和Novo两人的论文对比/54513845-8c0a0d80-4993-11e9-92f6-ea1029425358.png)
+![Ali的方案架构](https://picped-1301226557.cos.ap-beijing.myqcloud.com/54513845-8c0a0d80-4993-11e9-92f6-ea1029425358.png)
 
 Oscar Novo设计的架构由区块链网络，Management Hub，无线传感器网络三部分组成
 

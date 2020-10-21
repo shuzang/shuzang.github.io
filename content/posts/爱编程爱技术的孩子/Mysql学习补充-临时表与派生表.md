@@ -4,8 +4,7 @@ date: 2020-10-13T19:15:00+08:00
 lastmod: 2020-10-13
 tags: [mysql]
 categories: [爱编程爱技术的孩子]
-slug: mysql learning supplement-temporary table and derived table
-typora-root-url: ..\..\..\static
+slug: mysql learning supplement-temporary table and derived table 
 ---
 
 区分 MySQL 中临时表与派生表的概念，明确它们的用途。

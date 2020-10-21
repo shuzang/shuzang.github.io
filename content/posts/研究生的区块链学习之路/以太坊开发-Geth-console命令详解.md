@@ -2,8 +2,7 @@
 title: Geth console命令详解
 date: 2019-03-08T10:27:00+08:00
 tags: [区块链]
-categories: [研究生的区块链学习之路]
-typora-root-url: ..\..\..\static
+categories: [研究生的区块链学习之路] 
 ---
 
 Geth Console是一个交互式的JavaScript执行环境，其中`>`是命令提示符。在这个环境里也内置了一些用来操作以太坊的JavaScript对象，可以直接使用这些对象。这些对象主要包括：

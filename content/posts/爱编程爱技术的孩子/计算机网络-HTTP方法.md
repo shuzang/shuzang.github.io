@@ -4,8 +4,7 @@ date: 2020-08-20T19:38:00+08:00
 lastmod: 2020-08-20
 tags: [计算机网络]
 categories: [爱编程爱技术的孩子]
-slug: HTTP method
-typora-root-url: ..\..\..\static
+slug: HTTP method 
 ---
 
 理解不同的 HTTP 方法的区别，主要参考 [RFC 7231](https://tools.ietf.org/html/rfc7231#section-4.3)

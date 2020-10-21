@@ -3,8 +3,7 @@ title: Mysql学习7-视图与索引
 date: 2020-07-15T15:52:00+08:00
 tags: [mysql]
 categories: [爱编程爱技术的孩子]
-slug: mysql learning 7 view and index
-typora-root-url: ..\..\..\static
+slug: mysql learning 7 view and index 
 ---
 
 视图在数据库中的作用类似于窗户，用户可以通过这个窗口看到只对自己有用的数据。既保障了数据的安全性，又大大提高了查询效率。

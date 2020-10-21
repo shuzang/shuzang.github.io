@@ -3,8 +3,7 @@ title: 镜像、容器与仓库
 date: 2020-05-18T09:00:00+08:00
 tags: [docker]
 categories: [爱编程爱技术的孩子]
-slug: Image Container and Repository
-typora-root-url: ..\..\..\static
+slug: Image Container and Repository 
 ---
 
 Docker 的三个基本概念是镜像（Image）、容器（Container）和仓库（Repository），理解了这三个概念基本就理解了 Docker。

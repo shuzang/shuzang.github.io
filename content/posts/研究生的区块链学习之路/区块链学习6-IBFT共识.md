@@ -2,8 +2,7 @@
 title: Istanbul Byzantine Fault Tolerance
 date: 2019-10-29
 tags: [区块链]
-categories: [研究生的区块链学习之路]
-typora-root-url: ..\..\..\static
+categories: [研究生的区块链学习之路] 
 ---
 
 AMIS公司提出的Istanbul Byzantine Fault Tolerance Consensus（简称IBFT或Istanbul BFT），是一个基于PBFT的交易一致性的共识。因为要考虑可能发生的异常，对共识的原始文档作一次通读，仔细理解一下。原始文档位于github [ethereum/EIPs#650](https://github.com/ethereum/EIPs/issues/650)，以下一边翻译一边阅读。
@@ -49,7 +48,7 @@ Istanbul BFT是一个状态机复制算法，每个验证者为了达成区块�
 
 ### 2. 状态转换
 
-![](/images/区块链学习6-IBFT共识/41951806-4824998c-79ff-11e8-99f0-153fca7708a4.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/41951806-4824998c-79ff-11e8-99f0-153fca7708a4.jpg)
 
 - New round —> Pre-prepared
   - proposer从交易池收集交易

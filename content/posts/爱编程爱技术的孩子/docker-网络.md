@@ -3,8 +3,7 @@ title: 网络
 date: 2020-05-18T17:13:00+08:00
 tags: [docker]
 categories: [爱编程爱技术的孩子]
-slug: network
-typora-root-url: ..\..\..\static
+slug: network 
 ---
 
 Docker 允许通过外部访问容器或容器互联的方式来提供网络服务。

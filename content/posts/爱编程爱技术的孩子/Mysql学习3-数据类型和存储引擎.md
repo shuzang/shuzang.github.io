@@ -3,8 +3,7 @@ title: Mysql学习3-数据类型和存储引擎
 date: 2020-05-24T10:32:00+08:00
 tags: [mysql]
 categories: [爱编程爱技术的孩子]
-slug: mysql learning 3 data type and storage engine
-typora-root-url: ..\..\..\static
+slug: mysql learning 3 data type and storage engine 
 ---
 
 存储引擎决定数据表的类型，数据表的字段则有自己的数据类型。

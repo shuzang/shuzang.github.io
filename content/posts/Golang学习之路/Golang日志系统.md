@@ -4,8 +4,7 @@ date: 2020-06-07T09:48:00+08:00
 lastmod: 2020-06-07
 tags: [Go项目基础]
 categories: [Golang学习之路]
-slug: Golang log system
-typora-root-url: ..\..\..\static
+slug: Golang log system: 
 ---
 
 日志是一个系统必不可少的部分，本篇介绍Golang中的日志系统。

@@ -6,8 +6,7 @@ tags: [Go实战]
 draft: true
 categories: [Golang学习之路]
 draft: true
-slug: Go implement distributed cloud storage system 1-Prototype design
-typora-root-url: ..\..\..\static
+slug: Go implement distributed cloud storage system 1-Prototype design: 
 ---
 
 慕课网买了一个 Golang 的课程，实现一个分布式云存储系统，涉及到了大部分的知识点，开一个系列做一下学习记录。本文是第一篇，原型设计。
@@ -18,7 +17,7 @@ typora-root-url: ..\..\..\static
 
 整个项目是一个递进式的实现过程，一开始，先实现一个简单的原型系统，架构如下
 
-![服务架构说明](/images/Go实战仿百度云盘1-原型设计/服务架构说明.png)
+![服务架构说明](https://picped-1301226557.cos.ap-beijing.myqcloud.com/%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E8%AF%B4%E6%98%8E.png)
 
 根据该架构图，先设计接口，列表如下
 

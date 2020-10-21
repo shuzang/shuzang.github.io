@@ -3,8 +3,7 @@ title: Mysql学习1-入门
 date: 2020-05-24T08:02:00+08:00
 tags: [mysql]
 categories: [爱编程爱技术的孩子]
-slug: mysql learning 1 introduction
-typora-root-url: ..\..\..\static
+slug: mysql learning 1 introduction 
 ---
 
 本文介绍数据库和 MySQL的基础知识。得庆幸当初数据库课学的还可以，大部分内容看一眼都能想起来，不需要去理解，就是单纯的忘了一些语句写法。

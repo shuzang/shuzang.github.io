@@ -4,7 +4,6 @@ date: 2020-05-22T11:50:00+08:00
 tags: [前端]
 categories: [前端做点事]
 slug: JavaScript learning 1 overview
-typora-root-url: ..\..\..\static
 ---
 
 JavaScript 是标准 Web 技术的第三层，负责实现动态的行为，比如实现交互式的地图、2D/3D动画、滚动播放的视频等。

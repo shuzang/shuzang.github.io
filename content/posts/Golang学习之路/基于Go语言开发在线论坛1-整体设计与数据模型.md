@@ -5,8 +5,7 @@ date: 2020-05-27T18:12:20+08:00
 lastmod: 2020-06-08
 tags: [Go实战]
 categories: [Golang学习之路]
-slug: Development of online forum based on golang 1-overall design and data model
-typora-root-url: ..\..\..\static
+slug: Development of online forum based on golang 1-overall design and data model: 
 ---
 
 转自学院君的教程[^1] ，这里进行复现并深入理解，文章内容可能略有调整。
@@ -23,7 +22,7 @@ typora-root-url: ..\..\..\static
 2. 认证后的用户可以创建新的群组（帖子）、以及在群组中发表主题（跟帖）
 3. 访客用户访问论坛首页可以查看群组列表，进入指定群组页面可以查看对应的主题信息
 
-![Google 论坛](/images/基于Go语言开发在线论坛1-整体设计与数据模型/image-15850625575141.jpg)
+![Google 论坛](https://picped-1301226557.cos.ap-beijing.myqcloud.com/image-15850625575141.jpg)
 
 ## 2. 技术方案
 
@@ -31,7 +30,7 @@ typora-root-url: ..\..\..\static
 
 [^2]:知乎，[MVC架构模式详细说明以及与三层架构的区别](https://zhuanlan.zhihu.com/p/73791797)
 
-![](/images/基于Go语言开发在线论坛1-整体设计与数据模型/image-15850624895084.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/image-15850624895084.jpg)
 
 上图中 Client 代表发起请求的用户，虚框内是部署在服务器已启动的在线论坛应用，Multiplexer 代表路由器（比如 `gorilla/mux` ），Handler 代表处理器/处理器方法，数据库操作位于处理器方法中，Templates 代表最终展示给用户的经过模板引擎编译过的视图模板。
 
@@ -47,4 +46,4 @@ typora-root-url: ..\..\..\static
 
 另外，我们在本项目开发时，会把用户会话（Session）也存储到数据库（用于认证），所以需要一个额外的会话模型，此外，为了简化应用，我们不会真的像 Google 网上论坛那样对用户做权限管理，整个应用只包含一种用户类型，并且具备所有操作权限：
 
-![](/images/基于Go语言开发在线论坛1-整体设计与数据模型/image-DraggedImage-1.png)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/image-DraggedImage-1.png)

@@ -4,8 +4,7 @@ date: 2020-05-28
 lastmod: 2020-05-28
 tags: [Go项目基础]
 categories: [Golang学习之路]
-slug: Golang Cryptographic algorithm
-typora-root-url: ..\..\..\static
+slug: Golang Cryptographic algorithm: 
 ---
 
 在 Go 中，加密是很重要的一部分，本文对此进行介绍。

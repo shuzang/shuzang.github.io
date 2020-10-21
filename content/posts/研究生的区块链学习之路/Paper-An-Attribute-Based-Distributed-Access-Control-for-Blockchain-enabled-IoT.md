@@ -2,8 +2,7 @@
 title: An Attribute-Based Distributed Access Control for Blockchain-enabled IoT
 date: 2020-04-22
 tags: [论文笔记]
-categories: [研究生的区块链学习之路]
-typora-root-url: ..\..\..\static
+categories: [研究生的区块链学习之路] 
 ---
 
 P. Wang, Y. Yue, W. Sun, and J. Liu, “An Attribute-Based Distributed Access Control for Blockchain-enabled IoT,” in *2019 International Conference on Wireless and Mobile Computing, Networking and Communications (WiMob)*, Barcelona, Spain, Oct. 2019, pp. 1–6, doi: [10.1109/WiMOB.2019.8923232](https://doi.org/10.1109/WiMOB.2019.8923232).

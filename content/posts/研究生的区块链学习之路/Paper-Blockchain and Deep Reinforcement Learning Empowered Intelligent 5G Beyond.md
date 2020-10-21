@@ -2,8 +2,7 @@
 title: Blockchain and Deep Reinforcement Learning Empowered Intelligent 5G Beyond
 date: 2020-04-13
 tags: [论文笔记]
-categories: [研究生的区块链学习之路]
-typora-root-url: ..\..\..\static
+categories: [研究生的区块链学习之路] 
 ---
 
 Day Y, Xu D, Maharjan S, 等. Blockchain and Deep Reinforcement Learning Empowered Intelligent 5G Beyond[J]. IEEE Network, 2019, 33(3): 10–17. DOI:[10.1109/MNET.2019.1800376](https://doi.org/10.1109/MNET.2019.1800376).

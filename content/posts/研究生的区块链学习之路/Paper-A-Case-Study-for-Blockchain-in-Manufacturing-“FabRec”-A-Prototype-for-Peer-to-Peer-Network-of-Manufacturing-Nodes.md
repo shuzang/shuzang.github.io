@@ -2,8 +2,7 @@
 title: A Case Study for Blockchain in Manufacturing “FabRec”
 date: 2019-03-25T10:13:00+08:00
 tags: [论文笔记]
-categories: [研究生的区块链学习之路]
-typora-root-url: ..\..\..\static
+categories: [研究生的区块链学习之路] 
 ---
 
 Author：Atin Angrisha, Benjamin Cravera, Mahmud Hasana, Binil Starly
@@ -38,7 +37,7 @@ keywords：blockchain; cyber-physical systems; smart contracts; ethereum; decent
 
 ### 2.1 FabRec系统总览
 
-![FabRec overview](/images/Paper-A-Case-Study-for-Blockchain-in-Manufacturing-“FabRec”-A-Prototype-for-Peer-to-Peer-Network-of-Manufacturing-Nodes/54916118-b6c80900-4f33-11e9-93eb-42416e577c54.png)
+![FabRec overview](https://picped-1301226557.cos.ap-beijing.myqcloud.com/54916118-b6c80900-4f33-11e9-93eb-42416e577c54.png)
 
 <center>图2.1 FavRec Overview</center>
 图2.1中的虚线代表信任域的边界，整个系统能实现跨信任域的受控信息共享，即允许跨信任域边界的数据集成。系统中参与者可能是人类、制造机器、计算节点以及制造商的代理，
@@ -66,7 +65,7 @@ keywords：blockchain; cyber-physical systems; smart contracts; ethereum; decent
 
 一个示例区块结构如图2.2所示，包含了有关机器信息的交易。
 
-![example of block structure](/images/Paper-A-Case-Study-for-Blockchain-in-Manufacturing-“FabRec”-A-Prototype-for-Peer-to-Peer-Network-of-Manufacturing-Nodes/54916169-e119c680-4f33-11e9-91e1-4c642f4c0367.png)
+![example of block structure](https://picped-1301226557.cos.ap-beijing.myqcloud.com/54916169-e119c680-4f33-11e9-91e1-4c642f4c0367.png)
 
 <center>图2.2 example of block structure</center>
 随着车间中机器的不断使用，事件也被不断的记录到链中。因此，当客户打算与制造商进行交易时，可以被授予访问历史制造记录的权限，验证数据的真实性和来源。这种信息共享可以提高制造商的信誉并增加赢得新业务的几率。

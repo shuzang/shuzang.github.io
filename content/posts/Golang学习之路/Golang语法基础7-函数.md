@@ -4,8 +4,7 @@ date: 2019-11-25
 lastmod: 2020-06-16
 tags: [Go语法]
 categories: [Golang学习之路]
-slug: Golang syntax 7-function
-typora-root-url: ..\..\..\static
+slug: Golang syntax 7-function: 
 ---
 
 ## 1. 函数声明与定义

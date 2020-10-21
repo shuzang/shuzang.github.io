@@ -4,8 +4,7 @@ date: 2020-05-24T17:03:00+08:00
 lastmod: 2020-09-13
 tags: [mysql]
 categories: [爱编程爱技术的孩子]
-slug: mysql learning 6 data query language
-typora-root-url: ..\..\..\static
+slug: mysql learning 6 data query language 
 ---
 
 本文详细介绍 **对表中数据** 的增删查改操作。

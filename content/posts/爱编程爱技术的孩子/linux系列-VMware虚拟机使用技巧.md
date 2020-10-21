@@ -3,8 +3,7 @@ title: VMware虚拟机使用技巧
 date: 2019-09-06
 lastmod: 2019-11-17
 tags: [linux]
-categories: [爱编程爱技术的孩子]
-typora-root-url: ..\..\..\static
+categories: [爱编程爱技术的孩子] 
 slug: VMware usage
 ---
 
@@ -20,7 +19,7 @@ VMware有三种网络模式，分别是桥接模式、NAT模式和主机模式
 
 如果你想利用VMware在局域网内新建一个虚拟服务器，为局域网用户提供网络服务，就应该选择桥接模式。
 
-![桥接模式](/images/linux系列-VMware虚拟机使用技巧/64345429-f0448a80-d022-11e9-9c6c-5a9154f2d7cd.png)
+![桥接模式](https://picped-1301226557.cos.ap-beijing.myqcloud.com/64345429-f0448a80-d022-11e9-9c6c-5a9154f2d7cd.png)
 
 ### 2. NAT(网络地址转换模式)
 
@@ -29,7 +28,7 @@ VMware有三种网络模式，分别是桥接模式、NAT模式和主机模式
 
 如果你想利用VMware安装一个新的虚拟系统，在虚拟系统中不用进行任何手工配置就能直接访问互联网，建议你采用NAT模式。（也可以配置静态IP，后面会介绍）
 
-![NAT模式](/images/linux系列-VMware虚拟机使用技巧/64345428-efabf400-d022-11e9-87e1-228e7f09f247.png)
+![NAT模式](https://picped-1301226557.cos.ap-beijing.myqcloud.com/64345428-efabf400-d022-11e9-87e1-228e7f09f247.png)
 
 ### 3. Host-only(主机模式)
 
@@ -38,7 +37,7 @@ VMware有三种网络模式，分别是桥接模式、NAT模式和主机模式
 
 在Host-only模式中，所有的虚拟系统是可以相互通信的，但虚拟系统和真实的网络是被隔离开的。可以利用Windows XP里面自带的Internet连接共享(实际上是一个简单的路由NAT)来让虚拟机 通过主机真实的网卡进行外网的访问。虚拟系统的TCP/IP配置信息(如IP地址、网关地址、DNS服务器等)，都是由VMnet1(Host-only)虚拟网络的DHCP服务器来动态分配的。如果你想利用VMware创建一个与网内其他机器相隔离的虚拟系统，进行某些特殊的网络调试工作，可以选择Host-only模式。
 
-![主机模式](/images/linux系列-VMware虚拟机使用技巧/64345431-f0448a80-d022-11e9-8278-920d6587ca2c.png)
+![主机模式](https://picped-1301226557.cos.ap-beijing.myqcloud.com/64345431-f0448a80-d022-11e9-8278-920d6587ca2c.png)
 
 ## 静态ip设置
 
@@ -48,11 +47,11 @@ VMware有三种网络模式，分别是桥接模式、NAT模式和主机模式
 
 首先查看虚拟机网络配置信息，选择菜单栏`编辑—>虚拟网络编辑器`，在三个网络中选择`VMnet0`，桥接模式中选择网卡，我选择了有线网卡，可以根据需要选择无线网卡。
 
-![虚拟网络编辑器](/images/linux系列-VMware虚拟机使用技巧/64427296-7f18dc00-d0e3-11e9-8dad-39778fe38ba4.png)
+![虚拟网络编辑器](https://picped-1301226557.cos.ap-beijing.myqcloud.com/64427296-7f18dc00-d0e3-11e9-8dad-39778fe38ba4.png)
 
 其次编辑虚拟机网络模式，点击`编辑虚拟机设置`，选择`网络适配器`，在`网络连接`部分选择`桥接模式`。
 
-![虚拟机网络设置](/images/linux系列-VMware虚拟机使用技巧/64427318-8c35cb00-d0e3-11e9-9d13-4aaf367e5b7b.png)
+![虚拟机网络设置](https://picped-1301226557.cos.ap-beijing.myqcloud.com/64427318-8c35cb00-d0e3-11e9-9d13-4aaf367e5b7b.png)
 
 ###　2. NAT模式
 
@@ -60,13 +59,13 @@ VMware有三种网络模式，分别是桥接模式、NAT模式和主机模式
 
 *注：这一步是查看，没有需要更改的内容。*
 
-![虚拟网络编辑器](/images/linux系列-VMware虚拟机使用技巧/64344984-13bb0580-d022-11e9-9a8c-37744441d088.png)
+![虚拟网络编辑器](https://picped-1301226557.cos.ap-beijing.myqcloud.com/64344984-13bb0580-d022-11e9-9a8c-37744441d088.png)
 
 然后编辑虚拟机网络模式。查看完配置信息后，在要设置静态ip的虚拟机界面下，点击`编辑虚拟机设置`，进入后选择`网络适配器`，在`网络连接`部分从`NAT模式`切换到`自定义特点虚拟网络`，并选择`VMnet8(NAT模式)`。点击确定后退出。
 
 *注：这一步需要在关闭虚拟机的状态下进行，挂起状态无法设置*
 
-![虚拟机网络适配器设置](/images/linux系列-VMware虚拟机使用技巧/64344983-13bb0580-d022-11e9-896c-4b2149636e34.png)
+![虚拟机网络适配器设置](https://picped-1301226557.cos.ap-beijing.myqcloud.com/64344983-13bb0580-d022-11e9-896c-4b2149636e34.png)
 
 ### 3. 静态ip设置
 
@@ -98,7 +97,7 @@ Ubuntu18.04的静态ip设置是通用的，不因使用虚拟机不同。官方�
 
    `ens33`是网卡名，即之前使用`ifconfig`命令查到的ip最前面的字段。addresses下的ip是自定义的静态ip，根据子网ip自己选择设置即可，掩码是24位的。`gateway4`就是之前在`NAT设置`中看到的网关地址。`nameservers`下的`addresses`是域名服务器地址，这里写的两个是常用的。
 
-   ![静态ip设置](/images/linux系列-VMware虚拟机使用技巧/64344981-13226f00-d022-11e9-93d2-d257b56a3ac9.png)
+   ![静态ip设置](https://picped-1301226557.cos.ap-beijing.myqcloud.com/64344981-13226f00-d022-11e9-93d2-d257b56a3ac9.png)
 
 4. 保存退出，使用`netplan`启用配置
 

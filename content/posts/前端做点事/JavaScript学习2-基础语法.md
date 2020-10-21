@@ -4,7 +4,6 @@ date: 2020-05-22T17:07:00+08:00
 tags: [前端]
 categories: [前端做点事]
 slug: JavaScript learning 2 basic syntax
-typora-root-url: ..\..\..\static
 ---
 
 各种语言的基础语法部分都很相似，因此这里简单总结一下

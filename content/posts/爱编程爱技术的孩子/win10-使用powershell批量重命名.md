@@ -3,8 +3,7 @@ title: win10使用powershell批量重命名
 date: 2020-08-08
 tags: [Win10]
 categories: [爱编程爱技术的孩子]
-slug: use powershell rename multiple files
-typora-root-url: ..\..\..\static
+slug: use powershell rename multiple files 
 ---
 
 win10 需要批量重命名的时候很多，每次打开专门的软件比较麻烦，于是查了下使用 powershell 如何达成这一目的。

@@ -2,14 +2,13 @@
 title: Golang语法基础10-协程与通道
 date: 2019-12-16
 tags: [Go语法]
-categories: [Golang学习之路]
-typora-root-url: ..\..\..\static
+categories: [Golang学习之路]: 
 slug: Golang syntax 10-goroutine and channel
 ---
 
 首先来回顾在操作系统中学过的一些概念。进程(processes)是程序执行的基本单位，运行在一个独立的内存地址空间中；一个进程由多个线程(threads)组成，线程的存在是为了能够同时执行多个任务，最大化利用时间，防止产生等待，线程间是共享内存地址空间的。从windows资源管理器看这一点能看的很明白，如下，每个应用程序是一个进程，Typora程序下有两个线程在同时运行。
 
-![进程与线程](/images/Golang语法基础10-协程与通道/3EkjsJ.png)
+![进程与线程](https://picped-1301226557.cos.ap-beijing.myqcloud.com/3EkjsJ.png)
 
 并发是建立在多线程之上的概念，将CPU的执行时间划分为许多很小的间隔，多个线程不断地切换执行，从上层看起来就像在同时执行一样，但本质上依然是线性的。并行则是程序在某个特定的事件同时运行在多个CPU上，多核处理器为并行提供了可能。因此，并发也可能是并行的。
 

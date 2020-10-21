@@ -2,8 +2,7 @@
 title: Acceleration of Anomaly Detection in Blockchain Using In-GPU Cache
 date: 2019-10-16
 tags: [论文笔记]
-categories: [研究生的区块链学习之路]
-typora-root-url: ..\..\..\static
+categories: [研究生的区块链学习之路] 
 ---
 
 Morishima S, Matsutani H. Acceleration of anomaly detection in blockchain using in-GPU Cache[C]. international conference on big data and cloud computing, 2019: 244-251.

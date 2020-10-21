@@ -4,8 +4,7 @@ date: 2020-08-15T08:47:00+08:00
 lastmod: 2020-08-15
 tags: [Go语法]
 categories: [Golang学习之路]
-slug: Golang deep learning 8-stack heap and escape analysis
-typora-root-url: ..\..\..\static
+slug: Golang deep learning 8-stack heap and escape analysis: 
 ---
 
 本篇介绍 Go 的堆栈和逃逸分析。

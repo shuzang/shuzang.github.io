@@ -5,6 +5,5 @@ tags: [前端]
 categories: [前端做点事]
 draft: true
 slug: HTML5 learning tags 2
-typora-root-url: ..\..\..\static
 ---
 

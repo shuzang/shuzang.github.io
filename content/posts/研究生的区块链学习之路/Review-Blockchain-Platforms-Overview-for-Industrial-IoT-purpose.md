@@ -2,8 +2,7 @@
 title: Blockchain Platforms Overview for Industrial IoT Purpose
 date: 2019-02-27T11:11:00+08:00
 tags: [论文笔记]
-categories: [研究生的区块链学习之路]
-typora-root-url: ..\..\..\static
+categories: [研究生的区块链学习之路] 
 ---
 
 Author：Nikolay Teslya; Igor Ryabchikov

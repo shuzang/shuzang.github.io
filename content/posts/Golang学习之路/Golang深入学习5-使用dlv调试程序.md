@@ -4,8 +4,7 @@ date: 2020-07-26T09:43:00+08:00
 lastmod: 2020-07-26
 tags: [Go语法]
 categories: [Golang学习之路]
-slug: Golang deep learning 5- debug with dlv
-typora-root-url: ..\..\..\static
+slug: Golang deep learning 5- debug with dlv: 
 ---
 
 在C/C++中，使用 GDB 调试程序，但在Go中，看过网上的一些文章后，发现 dlv 是个更好的选择，本文进行介绍。

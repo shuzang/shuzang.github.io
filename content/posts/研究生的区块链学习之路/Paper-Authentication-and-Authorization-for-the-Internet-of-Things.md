@@ -2,8 +2,7 @@
 title: Authentication and Authorization for the Internet of Things
 date: 2019-05-14T15:14:00+08:00
 tags: [论文笔记]
-categories: [研究生的区块链学习之路]
-typora-root-url: ..\..\..\static
+categories: [研究生的区块链学习之路] 
 ---
 
 Kim H, Lee E A. Authentication and Authorization for the Internet of Things[J]. IT Professional, 2017, 19(5): 27-33.

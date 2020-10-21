@@ -3,8 +3,7 @@ title: A Novel Attribute-Based Access Control Scheme Using Blockchain for IoT
 date: 2019-06-03T15:51:00+08:00
 lastmod: 2020-03-27
 tags: [论文笔记]
-categories: [研究生的区块链学习之路]
-typora-root-url: ..\..\..\static
+categories: [研究生的区块链学习之路] 
 ---
 
 Ding, Sheng, et al. "A Novel Attribute-Based Access Control Scheme Using Blockchain for IoT." *IEEE Access* 7 (2019): 38431-38441.
@@ -105,7 +104,7 @@ Ouaddah等人[14]对物联网的不同访问控制方案进行了广泛的审查
 
 Alice和Bob之间的访问控制协议如图4所示执行：
 
-![两个通信实体的访问控制](/images/Paper-A-Novel-Attribute-Based-Access-Control-Scheme-Using-Blockchain-for-IoT/59078893-c12f5780-8913-11e9-92f9-6692ec0d89bc.png)
+![两个通信实体的访问控制](https://picped-1301226557.cos.ap-beijing.myqcloud.com/59078893-c12f5780-8913-11e9-92f9-6692ec0d89bc.png)
 
 - Alice首先使用她的身份ID<sub>A</sub>向Bob发起一个通信请求，并使用基于身份的验证和密钥协议（AKA）与Bob生成会话密钥k。使用任意对称密钥算法，k可以保证Alice和Bob之间后续通信的安全性。为了简单起见，我们只描述下面消息交换的过程并忽略每个通信的对称加密。
 - 然后Bob返回一个随机数n和一个访问策略p，表示谁可以与他通信。

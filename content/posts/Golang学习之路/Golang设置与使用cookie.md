@@ -4,8 +4,7 @@ date: 2020-06-01T20:11:00+08:00
 lastmod: 2020-06-03
 tags: [Go项目基础]
 categories: [Golang学习之路]
-slug: Golang set and use cookie
-typora-root-url: ..\..\..\static
+slug: Golang set and use cookie: 
 ---
 
 关于 Cookie 的使用是 Web 编程中的重要一部分，本篇介绍 Cookie 的基本知识和 Golang 中使用的方法。
@@ -20,11 +19,11 @@ HTTP 是无状态协议，不记录之前发生过的请求和响应，也因此
 
 Cookie 技术通过在 HTTP 请求和响应报文中写入 Cookie 信息来控制客户端的状态。首先，服务端在发送的响应报文内添加一个叫做 Set-Cookie 的首部字段信息，客户端接收到后会保存 Cookie。当下次客户端向服务器发送请求时，就会自动在请求报文中加入保存的 Cookie 值。服务器发现客户端发送过来的 Cookie 后，会检查究竟是哪个客户端发来的连接请求，然后对比服务器上的数据，得到之前的状态信息。过程如下图所示（图源为《图解HTTP》）
 
-![第一次请求时服务端在响应报文中添加Cookie](/images/Golang设置与使用cookie/epub_907764_48.jpg)
+![第一次请求时服务端在响应报文中添加Cookie](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_907764_48.jpg)
 
 
 
-![之后自动在请求报文中添加Cookie](/images/Golang设置与使用cookie/epub_907764_50.jpg)
+![之后自动在请求报文中添加Cookie](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_907764_50.jpg)
 
 所以 Cookie 的实质是 HTTP 请求与响应报文中的一个首部字段信息，下面给出一些报文示例：
 
@@ -105,7 +104,7 @@ Cookie: status=enable
 
 鉴于 HTTP 是无状态协议，之前已认证成功额用户状态无法保留，因此一般使用 Cookie 来管理 Session(会话)。
 
-![](/images/Golang设置与使用cookie/epub_907764_193.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_907764_193.jpg)
 
 如上图所示，基本的步骤为
 

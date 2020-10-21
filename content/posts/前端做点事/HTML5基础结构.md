@@ -4,7 +4,6 @@ date: 2020-07-23T16:54:00+08:00
 tags: [前端]
 categories: [前端做点事]
 slug: HTML5 learning basic structure
-typora-root-url: ..\..\..\static
 ---
 
 HTML（HyperText Markup Language，超文本标记语言） 是前端三组件（HTML/CSS/JavaScript）的第一个，负责组织一个网页的结构。HTML5 是 HTML 的最新版本，这篇文章学习其基本结构。

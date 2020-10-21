@@ -3,8 +3,7 @@ title: A Blockchain based access control for IoT
 date: 2020-02-06
 tags: [论文笔记]
 categories: [研究生的区块链学习之路]
-toc: true
-typora-root-url: ..\..\..\static
+toc: true 
 ---
 
 Imen Riabi, Yosr Dhif, Hella Kaffel Ben Ayed, Khaled Zaatouri. A Blockchain based access control for IoT[C]. International Wireless Communications & Mobile Computing Conference (IWCMC), 2019.

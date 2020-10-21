@@ -4,8 +4,7 @@ date: 2020-09-13T16:08:00+08:00
 lastmod: 2020-09-13
 tags: [mysql]
 categories: [爱编程爱技术的孩子]
-slug: mysql learning supplement-statement execution order
-typora-root-url: ..\..\..\static
+slug: mysql learning supplement-statement execution order 
 ---
 
 这篇文章用来仔细思考 MySQL 查询语句的执行顺序。

@@ -2,8 +2,7 @@
 title: Golang查漏补缺-程序执行时间优化
 date: 2019-08-16
 tags: [Go语法]
-categories: [Golang学习之路]
-typora-root-url: ..\..\..\static
+categories: [Golang学习之路]: 
 ---
 
 最近在刷PAT乙级的题，因为PAT考点一般只提供C/C++或Java环境的缘故，网上找到的90%都是C++代码，剩下的又绝大部分是Java，还有一小部分Python，其他语言还真没看到。我用go来刷题，遇到很多问题还真的只能自己慢慢琢磨，倒也很是能锻炼人。
@@ -93,13 +92,13 @@ func main() {
 
 检查了半天实在找不到什么地方可以优化的，时间复杂度的大头是for循环，但能迁移出来的代码都已经迁移出来了，结果始终如下图
 
-![1018原始代码提交结果](/images/Golang查漏补缺-程序执行时间优化/3EEecF.png)
+![1018原始代码提交结果](https://picped-1301226557.cos.ap-beijing.myqcloud.com/3EEecF.png)
 
 ## I/O性能
 
 在google上搜go程序的执行时间怎么优化，最终在[golang-nuts讨论组](https://groups.google.com/forum/#!topic/golang-nuts/W08rFBcHKbc)发现一个靠谱的问题以及有用的回答。
 
-![go代码io优化](/images/Golang查漏补缺-程序执行时间优化/3EEKB9.png)
+![go代码io优化](https://picped-1301226557.cos.ap-beijing.myqcloud.com/3EEKB9.png)
 
 原来是I/O读写的问题，fmt包的读写这么不省心吗，怪不得，1015和1015如果测试点是边界值的话，循环要执行10000次，I/O读写出了问题，不超时才怪。看作者在之后的讨论中说他的程序“On my system: C runs in ~50ms, python in ~125ms and go in ~450ms.”也难怪Python都能通过，go通过不了了。
 
@@ -163,7 +162,7 @@ func main() {
 
 果然通过了，如下图，最后一个测试点28ms,一想想题目时间限制是200ms，从超时到28，这提升，看起来1015的德才论一题也有救了。
 
-![1018改进代码提交结果](/images/Golang查漏补缺-程序执行时间优化/3EEJ1O.png)
+![1018改进代码提交结果](https://picped-1301226557.cos.ap-beijing.myqcloud.com/3EEJ1O.png)
 
 ## 排序优化
 
@@ -281,7 +280,7 @@ func main() {
 
 其实这已经是优化过了，之前写的时候用的正规的结构体的思路，为了优化，改成这种用权重的剑走偏锋的思路。但提交结果没有丝毫改变，超时就是超时。
 
-![1015原始代码提交结果](/images/Golang查漏补缺-程序执行时间优化/3EEtje.png)
+![1015原始代码提交结果](https://picped-1301226557.cos.ap-beijing.myqcloud.com/3EEtje.png)
 
 改呗，第一个for循环里的输入改成用缓冲区的bufio，按1018的提升幅度，估计可以。改进部分的代码如下。
 
@@ -315,7 +314,7 @@ func main() {
 
 第2个测试点过了，但第3，第4个还是没过。
 
-![1015改进代码提交结果1](/images/Golang查漏补缺-程序执行时间优化/3EEaBd.png)
+![1015改进代码提交结果1](https://picped-1301226557.cos.ap-beijing.myqcloud.com/3EEaBd.png)
 
 回去一看代码，得，最后一个for循环有输出，用fmt又费不少时间，继续改缓冲区，正巧这时候查到了[GO语言基础进阶教程：bufio包](https://zhuanlan.zhihu.com/p/73690883)，分析了bufio提升文件读写效率的原因，于是参考说明改了输出，如下：
 
@@ -407,7 +406,7 @@ func main() {
 
 这次终于通过了,第2个测试点竟然提升到了81ms，第3和第4个测试点也在200ms左右，没有卡在400ms的临界线，看起来还可以。
 
-![1015改进代码提交结果2](/images/Golang查漏补缺-程序执行时间优化/3EEBNt.png)
+![1015改进代码提交结果2](https://picped-1301226557.cos.ap-beijing.myqcloud.com/3EEBNt.png)
 
 ## 总结
 

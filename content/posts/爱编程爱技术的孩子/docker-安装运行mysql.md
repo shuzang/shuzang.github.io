@@ -3,8 +3,7 @@ title: 使用 Docker 安装运行 mysql
 date: 2020-04-23
 tags: [docker]
 categories: [爱编程爱技术的孩子]
-slug: Using docker installation to run MySQL
-typora-root-url: ..\..\..\static
+slug: Using docker installation to run MySQL 
 ---
 
 Docker Hub 中的 mysql 镜像 地址为 https://hub.docker.com/_/mysql，安装运行过程如下。
@@ -91,7 +90,7 @@ mysql>
 
 第一种是使用 Navicat for MySQL 测试，Navicat 安装在宿主机的 win10系统中
 
-![测试连接](/images/docker-安装运行mysql/测试连接.png)
+![测试连接](https://picped-1301226557.cos.ap-beijing.myqcloud.com/%E6%B5%8B%E8%AF%95%E8%BF%9E%E6%8E%A5.png)
 
 点击「测试连接」查看连接是否成功，成功后点确定可以进入以图形化方式查看数据库
 

@@ -4,8 +4,7 @@ date: 2020-05-29T13:38:00+08:00
 lastmod: 2020-05-29
 tags: [Go项目基础]
 categories: [Golang学习之路]
-slug: Golang use gorilla/mux package
-typora-root-url: ..\..\..\static
+slug: Golang use gorilla/mux package: 
 ---
 
 本文介绍 [gorilla/mux](https://github.com/gorilla/mux) 包的使用。

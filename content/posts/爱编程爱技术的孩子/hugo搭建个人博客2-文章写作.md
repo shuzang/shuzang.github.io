@@ -8,8 +8,7 @@ categories: [爱编程爱技术的孩子]
 math: true
 autoCollapseToc: true
 slug: Hugo blog article write 
-featuredImage: /images/hugo搭建个人博客2-文章写作/北欧瑞典自然风光.jpg
-typora-root-url: ..\..\..\static
+featuredImage: /images/hugo搭建个人博客2-文章写作/北欧瑞典自然风光.jpg 
 ---
 
 本文是 Hugo 使用记录的第二篇，介绍关于文章写作的一些问题，包括分类管理、排版技巧、特殊语法等，所有语法基于 LoveIt 主题。

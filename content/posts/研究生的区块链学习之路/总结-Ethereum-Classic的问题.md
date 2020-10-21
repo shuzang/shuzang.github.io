@@ -2,8 +2,7 @@
 title: Ethereum Classic
 date: 2019-01-16T10:48:00+08:00
 tags: [区块链, 杂谈]
-categories: [研究生的区块链学习之路]
-typora-root-url: ..\..\..\static
+categories: [研究生的区块链学习之路] 
 ---
 
 最近ETC遭受疑似51%攻击的影响很大，虽然最后的结果还没出来，仍不确定是真的遭受了51%攻击，还是之前官方所称的ASIC矿机测试带来的问题。但我们现在默认以前一种情况分析。
@@ -95,7 +94,7 @@ Ethereum Classic目前兑换比例为1 ETC=$4.22 USD，算力大小为8.832 Thas
 
 两者的历史算力变化如下图
 
-![历史算力变化](/images/总结-Ethereum-Classic的问题/71581872-67f27400-2b42-11ea-9a48-faefd8ce6787.png)
+![历史算力变化](https://picped-1301226557.cos.ap-beijing.myqcloud.com/71581872-67f27400-2b42-11ea-9a48-faefd8ce6787.png)
 
 PoW需要挖矿，挖矿的本质是哈希运算，而每秒能做多少次哈希运算，即hash/s，就是算力的单位。算力每隔千位划为一个单位，最小单位 H=1次    
 

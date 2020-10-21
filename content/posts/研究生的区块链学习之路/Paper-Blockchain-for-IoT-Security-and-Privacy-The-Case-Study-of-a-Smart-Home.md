@@ -3,8 +3,7 @@ title: Blockchain for IoT Security and Privacy:The Case Study of a Smart Home
 date: 2019-01-07T14:55:00+08:00
 lastmod: 2019-11-14
 tags: [论文笔记]
-categories: [研究生的区块链学习之路]
-typora-root-url: ..\..\..\static
+categories: [研究生的区块链学习之路] 
 ---
 
 Dorri, Ali & Kanhere, Salil & Jurdak, Raja & Gauravaram, Praveen. (2017). Blockchain for IoT Security and Privacy: The Case Study of a Smart Home. 10.1109/PERCOMW.2017.7917634. 
@@ -26,7 +25,7 @@ Dorri, Ali & Kanhere, Salil & Jurdak, Raja & Gauravaram, Praveen. (2017). Blockc
 
 智能家居设备使用云存储来存储和共享数据。我们在之前的工作中讨论了overlay和云存储的细节。
 
-![图1 overlay](/images/Paper-Blockchain-for-IoT-Security-and-Privacy-The-Case-Study-of-a-Smart-Home/54513752-477e7200-4993-11e9-87cd-8d460ae9661b.png)
+![图1 overlay](https://picped-1301226557.cos.ap-beijing.myqcloud.com/54513752-477e7200-4993-11e9-87cd-8d460ae9661b.png)
 
 本文的贡献是全面描述了我们的设计中智能家居层的细节。首先概述如何初始化IoT设备，然后解释如何处理交易。使用部署在本地的私有BC用来为IoT设备及其数据提供安全的访问控制。此外，BC生成一个不可变的按时间排序的交易历史记录，该历史记录可链接到其他层以提供特定服务。设计安全性来自多种特性，包括
 
@@ -51,7 +50,7 @@ Section VI：结论
 
 介绍图2中智能家居层的主要组成部分。
 
-![图2 overlay of smart home](/images/Paper-Blockchain-for-IoT-Security-and-Privacy-The-Case-Study-of-a-Smart-Home/54513763-4e0ce980-4993-11e9-9433-6c0ad7714b7b.png)
+![图2 overlay of smart home](https://picped-1301226557.cos.ap-beijing.myqcloud.com/54513763-4e0ce980-4993-11e9-9433-6c0ad7714b7b.png)
 
 #### A. Transactions
 

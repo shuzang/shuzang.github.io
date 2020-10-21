@@ -4,8 +4,7 @@ date: 2018-04-22T10:21:16+08:00
 lastmod: 2020-10-07
 tags: [git]
 categories: [爱编程爱技术的孩子]
-slug: Git learning improvement
-typora-root-url: ..\..\..\static
+slug: Git learning improvement 
 ---
 
 上一篇我们学习了Git的基本知识，包括仓库创建，提交、修改、推送、回退等等操作，本篇学习一些高级的功能。转自 [廖雪峰的官方网站-git教程](<https://www.liaoxuefeng.com/wiki/896043488029600>)。
@@ -213,7 +212,7 @@ git pull
 
 下面的图片展示了 git 如何随着时间存储数据，其中每个「Version」都是一个 commit：
 
-![checking over time](/images/git学习2-提高/3AIT4f.png)
+![checking over time](https://picped-1301226557.cos.ap-beijing.myqcloud.com/3AIT4f.png)
 
 ### 5.1 Commit message
 

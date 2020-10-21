@@ -5,8 +5,7 @@ lastmod: 2020-07-16
 tags: [Go并发]
 categories: [Golang学习之路]
 draft: true
-slug: Goroutine learning 1-process thread and coroutine
-typora-root-url: ..\..\..\static
+slug: Goroutine learning 1-process thread and coroutine: 
 ---
 
 本篇介绍进程、线程、协程和Goroutine
@@ -17,7 +16,7 @@ typora-root-url: ..\..\..\static
 
 进程(processes)是一个程序动态执行的过程，也是操作系统调度的一个基本单位执行的基本单位，运行在一个独立的内存地址空间中。从windows资源管理器可以看到系统正在运行的进程，如下，每个应用程序是一个进程。
 
-![进程与线程](/images/Go并发学习1-进程线程与协程/3EkjsJ.png)
+![进程与线程](https://picped-1301226557.cos.ap-beijing.myqcloud.com/3EkjsJ.png)
 
 一个进程由多个线程(threads)组成，线程的存在是为了能够同时执行多个任务，最大化利用时间，防止产生等待，线程间是共享内存地址空间的。线程也是操作系统调度的单位，而且是调度的最小单位。
 

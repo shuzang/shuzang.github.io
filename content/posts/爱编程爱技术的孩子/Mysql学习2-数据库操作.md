@@ -3,8 +3,7 @@ title: Mysql学习2-数据库操作
 date: 2020-05-24T09:17:00+08:00
 tags: [mysql]
 categories: [爱编程爱技术的孩子]
-slug: mysql learning 2 data definition language
-typora-root-url: ..\..\..\static
+slug: mysql learning 2 data definition language 
 ---
 
 本文介绍对数据库的操作，包括创建、删除、修改等。

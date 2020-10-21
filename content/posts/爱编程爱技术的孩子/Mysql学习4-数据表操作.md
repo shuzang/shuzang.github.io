@@ -3,8 +3,7 @@ title: Mysql学习4-数据表操作
 date: 2020-05-24T11:25:00+08:00
 tags: [mysql]
 categories: [爱编程爱技术的孩子]
-slug: mysql learning 4 data manipulation language
-typora-root-url: ..\..\..\static
+slug: mysql learning 4 data manipulation language 
 ---
 
 介绍数据表的基本操作，主要包括创建数据表、查看数据表结构、修改数据表和删除数据表等。

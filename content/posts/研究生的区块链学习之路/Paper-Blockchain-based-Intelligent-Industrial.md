@@ -2,8 +2,7 @@
 title: Block Chain based Intelligent Industrial Network (DSDIN)
 date: 2018-12-14T08:37:00+08:00
 tags: [论文笔记]
-categories: [研究生的区块链学习之路]
-typora-root-url: ..\..\..\static
+categories: [研究生的区块链学习之路] 
 ---
 
 Author：Barco You, Matthias Hub, Mengzhe You, Bo Xu, Mingzhi Yu and Ican Uemlianin
@@ -78,7 +77,7 @@ DSDIN类似于以太网，它基于脚本，竞争硬币和链式元协议以及
 
 下图是DSDIN中的区块链和虫洞。虫洞通过消息传递相互通信，只有与虫洞中发生的事务有关的信息才会存储到块上。
 
-![DSDIN blockchain](/images/Paper-Block-Chain-based-Intelligent-Industrial/54514151-544f9580-4994-11e9-97e9-f9d8a1ef6d9d.png)
+![DSDIN blockchain](https://picped-1301226557.cos.ap-beijing.myqcloud.com/54514151-544f9580-4994-11e9-97e9-f9d8a1ef6d9d.png)
 
 #### B. Block
 
@@ -118,7 +117,7 @@ DSDIN中的wormholes是启用状态通道的载体，用于确保只有交易中
 
 每个虫洞对应一个过程树。如下图所示，虫洞由Supervisors和Workers组成。每个工作执行独立的分布式计算，例如使状态通道能够管理现实数据（例如通过数据库读取数据或与CNC机器通信等）并与其他虫洞交换信息。Supervisors生成Workers，当Workers失败时，Supervisors可以根据某些策略重新启动Workers
 
-![DSDIN process tree](/images/Paper-Block-Chain-based-Intelligent-Industrial/54514171-64677500-4994-11e9-8af4-f08ffdbef1df.png)
+![DSDIN process tree](https://picped-1301226557.cos.ap-beijing.myqcloud.com/54514171-64677500-4994-11e9-8af4-f08ffdbef1df.png)
 
 #### E. 智能合约
 

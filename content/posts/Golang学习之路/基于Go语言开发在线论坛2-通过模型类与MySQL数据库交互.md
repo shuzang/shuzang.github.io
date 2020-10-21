@@ -5,8 +5,7 @@ date: 2020-05-27T18:25:20+08:00
 lastmod: 2020-06-14
 tags: [Go实战]
 categories: [Golang学习之路]
-slug: Development of online forum based on golang 2-Interact with MySQL
-typora-root-url: ..\..\..\static
+slug: Development of online forum based on golang 2-Interact with MySQL: 
 ---
 
 在本篇教程中，我们将在 MySQL 中创建一个 `chitchat` 数据库作为论坛项目的数据库。我选择了在本地安装 MySQL Server，但也可以基于 Docker 容器运行。转自学院君的教程，略有改动。
@@ -17,7 +16,7 @@ typora-root-url: ..\..\..\static
 
 首先创建项目目录，命名为 `chitchat`，然后初始化目录结构如下
 
-![初始化的目录结构](/images/基于Go语言开发在线论坛2-通过模型类与MySQL数据库交互/目录结构.png)
+![初始化的目录结构](https://picped-1301226557.cos.ap-beijing.myqcloud.com/%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84.png)
 
 各个子目录/文件的作用介绍如下：
 
@@ -89,7 +88,7 @@ create table posts (
 
 使用 Navicat for MySQL 进行连接测试
 
-![](/images/基于Go语言开发在线论坛2-通过模型类与MySQL数据库交互/数据库连接测试.png)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%BF%9E%E6%8E%A5%E6%B5%8B%E8%AF%95.png)
 
 大量的语句逐条执行很容易出错，可以通过脚本形式批量执行[^sql脚本]。
 

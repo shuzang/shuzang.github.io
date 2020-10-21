@@ -5,15 +5,14 @@ date: 2020-05-29T09:08:00+08:00
 lastmod: 2020-06-14
 tags: [Go实战]
 categories: [Golang学习之路]
-slug: Development of online forum based on golang 3-Visit Forum Homepage
-typora-root-url: ..\..\..\static
+slug: Development of online forum based on golang 3-Visit Forum Homepage: 
 ---
 
 前两篇分别介绍了整体设计及数据表的创建、模型类的编写，本篇了解如何在服务端处理用户请求，并启动论坛首页。文章转自学院君的教程，略有改动。
 
 <!--more-->
 
-![首页视图](/images/基于Go语言开发在线论坛3-访问论坛首页/Jietu20200330-021118.jpg)
+![首页视图](https://picped-1301226557.cos.ap-beijing.myqcloud.com/Jietu20200330-021118.jpg)
 
 用户请求的处理流程如下：
 
@@ -315,7 +314,7 @@ var webRoutes = WebRoutes{
 
 访问论坛首页之前，我们将相应的前端资源文件拷贝到 `public` 目录下，此时项目整体目录结构如下：
 
-![](/images/基于Go语言开发在线论坛3-访问论坛首页/目录格式.png)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/%E7%9B%AE%E5%BD%95%E6%A0%BC%E5%BC%8F.png)
 
 然后我们在项目根目录下运行如下代码启动 HTTP 服务器
 
@@ -325,4 +324,4 @@ $ go run main.go
 
 然后我们在浏览器访问论坛首页 `http://localhost:8080`：
 
-![首页](/images/基于Go语言开发在线论坛3-访问论坛首页/首页.png)
+![首页](https://picped-1301226557.cos.ap-beijing.myqcloud.com/%E9%A6%96%E9%A1%B5.png)

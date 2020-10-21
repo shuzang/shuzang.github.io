@@ -2,8 +2,7 @@
 title: LightChain:A Lightweight Blockchain System for Industrial Internet of Things
 date: 2019-03-19T11:00:00+08:00
 tags: [论文笔记]
-categories: [研究生的区块链学习之路]
-typora-root-url: ..\..\..\static
+categories: [研究生的区块链学习之路] 
 ---
 
 Author： Yinqiu Liu, Kun Wang, Yun Lin, and Wenyao Xu

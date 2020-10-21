@@ -5,8 +5,7 @@ date: 2020-06-04T11:01:00+08:00
 lastmod: 2020-06-04
 tags: [Go实战]
 categories: [Golang学习之路]
-slug: Development of online forum based on golang 4-User authentication
-typora-root-url: ..\..\..\static
+slug: Development of online forum based on golang 4-User authentication: 
 ---
 
 上篇演示了首页路由、处理器、视图模板的实现，接着就要实现群组、主题的增删查改，不过，需要在认证后才能执行这些操作，所以本篇介绍如何实现用户认证相关功能。

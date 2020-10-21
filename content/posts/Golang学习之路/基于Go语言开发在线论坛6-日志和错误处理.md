@@ -5,8 +5,7 @@ date: 2020-06-07T11:03:00+08:00
 lastmod: 2020-06-07
 tags: [Go实战]
 categories: [Golang学习之路]
-slug: Development of online forum based on golang 6-log and error
-typora-root-url: ..\..\..\static
+slug: Development of online forum based on golang 6-log and error: 
 ---
 
 到现在为止，我们已经完成了在线论坛项目基本功能的开发，对 Go 语言 Web 编程中如何实现 MVC 架构模式以及 CRUD（数据库增删改查）基本操作有了初步的认识。不过现在所有的日志和错误处理都是杂糅在业务代码中，本篇介绍如何对它们统一进行处理，使得业务代码和日志及错误处理逻辑分离。

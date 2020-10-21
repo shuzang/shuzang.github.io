@@ -5,8 +5,7 @@ lastmod: 2020-07-16
 tags: [Go并发]
 categories: [Golang学习之路]
 draft: true
-slug: Goroutine learning 1-channel
-typora-root-url: ..\..\..\static
+slug: Goroutine learning 1-channel: 
 ---
 
 本篇介绍 Go 中的通道

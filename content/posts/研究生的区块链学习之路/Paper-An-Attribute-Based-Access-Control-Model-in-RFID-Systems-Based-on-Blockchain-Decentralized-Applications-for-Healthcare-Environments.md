@@ -3,8 +3,7 @@ title: An ABAC  Model in RFID Systems Based on DApp for Healthcare Environments
 date: 2019-11-11
 lastmod: 2020-04-17
 tags: [论文笔记]
-categories: [研究生的区块链学习之路]
-typora-root-url: ..\..\..\static
+categories: [研究生的区块链学习之路] 
 ---
 
 Figueroa, Añorga, and Arrizabalaga, “An Attribute-Based Access Control  Model in RFID Systems Based on Blockchain Decentralized Applications for Healthcare Environments,” *Computers*, vol. 8, no. 3, p. 57, Jul. 2019, doi: [10.3390/computers8030057](https://doi.org/10.3390/computers8030057).
@@ -20,7 +19,7 @@ Keywords: blockchain, smart contract, RFID, ABAC, access control, IoT, healthcar
 3. RFID 中间件：管理设备，管理数据（过滤、收集、整合、构建）
 4. 信息管理层（业务层）：包含一些应用，如后端数据库，企业资源规划系统（ERP，enterprise resource planning），客户关系管理（CRM，customer relationship management），仓库管理解决方案（WMS，warehouse management solutions），电子产品代码追踪应用（tracking and tracing and electronic product code applications）。
 
-![图1 RFID系统通用架构](/images/Paper-An-Attribute-Based-Access-Control-Model-in-RFID-Systems-Based-on-Blockchain-Decentralized-Applications-for-Healthcare-Environments/RFID系统通用架构.png)
+![图1 RFID系统通用架构](https://picped-1301226557.cos.ap-beijing.myqcloud.com/RFID%E7%B3%BB%E7%BB%9F%E9%80%9A%E7%94%A8%E6%9E%B6%E6%9E%84.png)
 
 GS1（一个全球标准组织）的标准分三类：[识别]^(identify)， [捕获]^(capture)和 [共享]^(share)。RFID 标签启用电子产品代码（EPC，electronic product code）后，标签和阅读器可以执行捕获过程；识别号被编码为 GTIN（Global Trade Item Number）或被解码为 RFID 标签的 EPC 时，中间件执行识别过程；共享过程则由信息管理层完成。
 
@@ -44,7 +43,7 @@ $$
 $$
 图2用于详细说明医疗系统的工作流程。源房间（如灭菌室）将一些资产（如SMI）运送到目的房间（如0号手术室、1号手术室）。由于 $Asset_1$ 已被分配到目的房间1（例如，1号手术室），假如由于人为错误试图访问目的房间0（例如，0号手术室），其访问将被拒绝。简而言之，论文所提出的系统的目的是建立医疗资产（如SMI）访问控制系统，防止由于人为错误或外部安全威胁导致不需要的资产进入错误区域（如房间）。
 
-![图2 Healthcare system](/images/Paper-An-Attribute-Based-Access-Control-Model-in-RFID-Systems-Based-on-Blockchain-Decentralized-Applications-for-Healthcare-Environments/医疗系统.png)
+![图2 Healthcare system](https://picped-1301226557.cos.ap-beijing.myqcloud.com/%E5%8C%BB%E7%96%97%E7%B3%BB%E7%BB%9F.png)
 
 
 
@@ -65,7 +64,7 @@ $$
 
 基于以太坊实施的 ABAC 模型如下图所示，物理节点由 RFID Reader Control（RFID-RC），DApp和智能合约组成。当一个带有 RFID 标签的医疗器械尝试访问一个房间时，RFID-RC 发送访问请求到 DApp，DApp 查询智能合约返回与资产相关的属性（例如公司前缀，产品类型，序列号等），同时，DApp 还会从 RFID-RC 获取其它的属性如时间戳。然后，DApp 基于获取的这些属性来执行安全策略，从而决定来自标签的访问是允许还是拒绝。同时，物理节点可以通过与区块链建立新连接的方式进行复制，不影响现有节点，这体现了该系统可扩展性的优点。
 
-![图3 基于Ethereum的分布式系统架构](/images/Paper-An-Attribute-Based-Access-Control-Model-in-RFID-Systems-Based-on-Blockchain-Decentralized-Applications-for-Healthcare-Environments/基于Ethereum的分布式系统架构.png)
+![图3 基于Ethereum的分布式系统架构](https://picped-1301226557.cos.ap-beijing.myqcloud.com/%E5%9F%BA%E4%BA%8EEthereum%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84.png)
 
 ### 2.2 访问控制机制
 
@@ -75,7 +74,7 @@ $$
 $$
 01.000389.000162.000169740 \\\ Header|compPrefix|Product type|Srial Number
 $$
-![图4 系统架构细节](/images/Paper-An-Attribute-Based-Access-Control-Model-in-RFID-Systems-Based-on-Blockchain-Decentralized-Applications-for-Healthcare-Environments/系统架构细节.png)
+![图4 系统架构细节](https://picped-1301226557.cos.ap-beijing.myqcloud.com/%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84%E7%BB%86%E8%8A%82.png)
 
 DApp 收到访问请求后执行的过程如下所述
 
@@ -98,13 +97,13 @@ $$
 
 图4表明整个系统分为三个子系统：ABAC configuration，ABAC execution 和 ETH blockchain monitoring。下表总结了每个子系统中使用的相关技术
 
-![表4 使用的技术](/images/Paper-An-Attribute-Based-Access-Control-Model-in-RFID-Systems-Based-on-Blockchain-Decentralized-Applications-for-Healthcare-Environments/使用的技术.png)
+![表4 使用的技术](https://picped-1301226557.cos.ap-beijing.myqcloud.com/%E4%BD%BF%E7%94%A8%E7%9A%84%E6%8A%80%E6%9C%AF.png)
 
 #### ABAC配置子系统
 
 ABAC 配置子系统包括一个基于 React 构建的图形界面（GUI），通过浏览器交互。GUI 有两个视图，第一个视图允许授权员工向系统中添加新资产，员工将公司前缀、产品类型、资产ID（序列号）等参数输入系统，并随之生成交易存储在 ETH 区块链中。第二个视图用于转移资产，授权用户首先需要通过查询智能合约验证资产ID（序列号），这一操作通过点击 「Verify iD」按钮完成，然后就可以在两个房间转移资产，之前的资产属性如资产状态、时间戳都会更新，资产转移操作通过点击「Transfer asset」按钮完成。
 
-![图5 ABAC配置子系统的两个视图](/images/Paper-An-Attribute-Based-Access-Control-Model-in-RFID-Systems-Based-on-Blockchain-Decentralized-Applications-for-Healthcare-Environments/ABAC配置子系统的两个视图.png)
+![图5 ABAC配置子系统的两个视图](https://picped-1301226557.cos.ap-beijing.myqcloud.com/ABAC%E9%85%8D%E7%BD%AE%E5%AD%90%E7%B3%BB%E7%BB%9F%E7%9A%84%E4%B8%A4%E4%B8%AA%E8%A7%86%E5%9B%BE.png)
 
 #### ABAC执行子系统
 
@@ -125,7 +124,7 @@ $$
 
 使用了 ETH Network Stats 项目监控区块链系统的运行，如下图所示。这里有一个这篇论文实验的[视频演示](https://zenodo.org/record/3339217)
 
-![图7 ETH监控工具](/images/Paper-An-Attribute-Based-Access-Control-Model-in-RFID-Systems-Based-on-Blockchain-Decentralized-Applications-for-Healthcare-Environments/ETH监控工具.png)
+![图7 ETH监控工具](https://picped-1301226557.cos.ap-beijing.myqcloud.com/ETH%E7%9B%91%E6%8E%A7%E5%B7%A5%E5%85%B7.png)
 
 ## 3. 实验
 
@@ -173,7 +172,7 @@ Truffle 是一个自动化测试框架，可以利用 JS 或 Solidity 编写简�
 
 论文对实现的每个部分都进行测试，从网络监控，节点数量和网络哈希速率等功能，到智能合约应用的延迟和每个web3.js方法的带宽消耗。下面分别介绍通过上一小节列出的工具可以监视的主要参数。考虑到与每个工具相关的主要特性，下图是这些工具使用的逻辑顺序
 
-![图8 工具使用顺序](/images/Paper-An-Attribute-Based-Access-Control-Model-in-RFID-Systems-Based-on-Blockchain-Decentralized-Applications-for-Healthcare-Environments/工具使用顺序.png)
+![图8 工具使用顺序](https://picped-1301226557.cos.ap-beijing.myqcloud.com/%E5%B7%A5%E5%85%B7%E4%BD%BF%E7%94%A8%E9%A1%BA%E5%BA%8F.png)
 
 ETH Network Stats 允许监控一些与 ETH 网络状态相关的参数：成功挖掘的区块数、叔块的出现、最后一个区块的挖掘时间、平均挖掘时间、平均网络哈希速率、难度、活动节点、gas price、gas limit、页面延迟、正常运行时间、节点名称、节点类型、节点延迟等。图7是一个使用示例，利用浏览器从一个本地 IP 的3000端口访问。
 
@@ -191,17 +190,17 @@ Etherscan 允许我们查看从我们的区块链测试地址发出的所有交�
 
 下图来自 Infura Dashboard，详细说明了为了通过智能合约与区块链交互， wpingeb3.js库 调用的主要方法以及它们所花费的带宽。该仪表盘还包括一些其它信息，如每小时带宽使用量的峰值（183.33 MB）和平均值（9.11 MB）。
 
-![图9 Infura仪表盘检测到前五个方法的带宽使用](/images/Paper-An-Attribute-Based-Access-Control-Model-in-RFID-Systems-Based-on-Blockchain-Decentralized-Applications-for-Healthcare-Environments/Infura仪表盘检测到的数据.png)
+![图9 Infura仪表盘检测到前五个方法的带宽使用](https://picped-1301226557.cos.ap-beijing.myqcloud.com/Infura%E4%BB%AA%E8%A1%A8%E7%9B%98%E6%A3%80%E6%B5%8B%E5%88%B0%E7%9A%84%E6%95%B0%E6%8D%AE.png)
 
 使用 Truffle Test 进行的测试流程如下图所示
 
-![图10 Truffle测试](/images/Paper-An-Attribute-Based-Access-Control-Model-in-RFID-Systems-Based-on-Blockchain-Decentralized-Applications-for-Healthcare-Environments/Truffle测试.png)
+![图10 Truffle测试](https://picped-1301226557.cos.ap-beijing.myqcloud.com/Truffle%E6%B5%8B%E8%AF%95.png)
 
 得到的数据如下表，比较了数据插入、数据查询和完整测试的时间和 gas 消耗。百分比的计算公式如下，因为时间的不确定性，分别记录的最好和最坏时间。
 $$
 (Local\_network\_time/Ropsten\_network\_time) × 100
 $$
-![Truffle测试结果](/images/Paper-An-Attribute-Based-Access-Control-Model-in-RFID-Systems-Based-on-Blockchain-Decentralized-Applications-for-Healthcare-Environments/Truffle测试结果.png)
+![Truffle测试结果](https://picped-1301226557.cos.ap-beijing.myqcloud.com/Truffle%E6%B5%8B%E8%AF%95%E7%BB%93%E6%9E%9C.png)
 
 合约迁移的延迟在本地网络中和测试网中具有很大的不同，但该参数对系统的评价不起决定性作用，因为该过程在系统部署前执行。资产属性的插入是一个主要的方法，尽管延迟是显而易见的，但不会导致访问控制策略的执行延迟。合约部署和数据插入的 gas 消耗不会因网络不同而改变。决定性的指标是数据的查询时间，由于本地网络的节点更少，数据查询的延迟也相对更小。
 

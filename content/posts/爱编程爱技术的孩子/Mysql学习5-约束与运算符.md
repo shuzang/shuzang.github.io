@@ -3,8 +3,7 @@ title: Mysql学习5-约束与运算符
 date: 2020-05-24T12:10:00+08:00
 tags: [mysql]
 categories: [爱编程爱技术的孩子]
-slug: mysql learning 5 Constraints and operators
-typora-root-url: ..\..\..\static
+slug: mysql learning 5 Constraints and operators 
 ---
 
 约束是一种限制，它通过限制表中的数据，来确保数据的完整性和唯一性。本文介绍 MySQL 的约束和运算符。

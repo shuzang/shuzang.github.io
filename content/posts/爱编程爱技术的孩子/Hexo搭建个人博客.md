@@ -4,8 +4,7 @@ date: 2018-04-17T20:30:00+08:00
 lastmod: 2020-02-12
 tags: [Hugo]
 categories: [爱编程爱技术的孩子]
-slug: using Hexo build persoanl blog
-typora-root-url: ..\..\..\static
+slug: using Hexo build persoanl blog 
 ---
 
 [Hexo](https://hexo.io/zh-cn/index.html)是一款快速、简洁且高效的静态博客框架，使用Markdown渲染引擎解析文章，拥有着丰富的[主题社区](https://hexo.io/themes/)，可以帮助我们快速建立自己的博客，正在成为越来越多的技术人员制作自己博客的首选。

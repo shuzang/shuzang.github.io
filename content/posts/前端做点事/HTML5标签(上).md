@@ -5,7 +5,6 @@ tags: [前端]
 categories: [前端做点事]
 draft: true
 slug: HTML5 learning tags 1
-typora-root-url: ..\..\..\static
 ---
 
 HTML的主要内容就是各种标签和属性的含义，这篇文章记录一部分的标签。
