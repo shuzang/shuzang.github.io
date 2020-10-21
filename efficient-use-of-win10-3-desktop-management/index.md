@@ -39,7 +39,7 @@
 
 实际上关于桌面美化，Rainmeter恐怕不得不提，原本只是一个系统状态监视软件的它，由于强大的可定制性和扩展性，发展出了一个极为庞大的[社区](https://bbs.rainmeter.cn/forum.php)，并产生了数量难以估计的插件程序和皮肤样式，从而为我们进行系统桌面的美化提供了极大便利，一个官网提供的示例如下
 
-![Rainmeter示例桌面](https://picped-1301226557.cos.ap-beijing.myqcloud.com/momento.png)
+![Rainmeter示例桌面](https://www.rainmeter.net/img/showcase/momento.png)
 
 Rainmeter可以显示CPU、内存、硬盘容量、网络等系统信息，可以从网络获取如天气、RSS源等信息，而且占用资源极小。但它不能修改如任务栏外观、开始按钮外观等系统视觉样式，也不能替代与之关联的程序，如果一个皮肤关联了网易云，使用的条件必须是网易云在后台运行。
 
