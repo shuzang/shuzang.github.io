@@ -1,1 +1,1004 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>操作系统 on Shuzang's Blog</title><link>https://shuzang.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link><description>Recent content in 操作系统 on Shuzang's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 02 Sep 2020 21:15:00 +0800</lastBuildDate><atom:link href="https://shuzang.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml"/><item><title>Windows、Linux、Unix和 macOS</title><link>https://shuzang.github.io/windows-linux-unix-and-macos/</link><pubDate>Wed, 02 Sep 2020 21:15:00 +0800</pubDate><guid>https://shuzang.github.io/windows-linux-unix-and-macos/</guid><description>&lt;p>目前主流的操作系统就是 Windows、Linux 和 macOS，有时候我们也常听到 Unix。今天查一下资料看一看它们的区别。&lt;/p></description></item><item><title>操作系统6-文件管理</title><link>https://shuzang.github.io/operate-system-6-file-management/</link><pubDate>Tue, 18 Aug 2020 08:18:00 +0800</pubDate><guid>https://shuzang.github.io/operate-system-6-file-management/</guid><description>&lt;p>本篇介绍文件管理相关的内容。包括硬盘结构、文件和目录的概念，以及一个文件系统涉及的其它知识。&lt;/p></description></item><item><title>操作系统5-设备管理</title><link>https://shuzang.github.io/operate-system-5-device-management/</link><pubDate>Mon, 17 Aug 2020 19:25:00 +0800</pubDate><guid>https://shuzang.github.io/operate-system-5-device-management/</guid><description>&lt;p>本篇介绍设备管理的相关内容。最近发现本科用的教材内容非常陈旧，而且不是那么浅显易懂，于是找了一本国外的教材《操作系统导论》，主要根据这个来学习。&lt;/p></description></item><item><title>操作系统4-存储管理</title><link>https://shuzang.github.io/operate-system-4-memory-management/</link><pubDate>Thu, 13 Aug 2020 11:04:00 +0800</pubDate><guid>https://shuzang.github.io/operate-system-4-memory-management/</guid><description>&lt;p>本文介绍操作系统另一个重要功能：存储管理。包括存储管理的基本功能，以及分区、页式、段式与段页式三种存储管理方法的具体细节。&lt;/p></description></item><item><title>操作系统3-进程管理</title><link>https://shuzang.github.io/operate-system-3-process-management/</link><pubDate>Mon, 10 Aug 2020 08:06:00 +0800</pubDate><guid>https://shuzang.github.io/operate-system-3-process-management/</guid><description>&lt;p>本文介绍操作系统最重要的一部分功能之一：进程管理，从进程的概念到进程的通信，再到死锁问题，最后结束进程的调度。&lt;/p></description></item><item><title>操作系统2-用户接口</title><link>https://shuzang.github.io/operate-system-2-user-interface/</link><pubDate>Sun, 09 Aug 2020 17:16:00 +0800</pubDate><guid>https://shuzang.github.io/operate-system-2-user-interface/</guid><description>&lt;p>本文介绍操作系统的一个重要功能：提供用户接口。&lt;/p></description></item><item><title>操作系统1-概述</title><link>https://shuzang.github.io/operate-system-1-overview/</link><pubDate>Sun, 09 Aug 2020 10:27:00 +0800</pubDate><guid>https://shuzang.github.io/operate-system-1-overview/</guid><description>&lt;p>本文介绍操作系统的概念、历史、分类、功能及理解这些功能的必备基础知识。&lt;/p></description></item></channel></rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>操作系统 - 标签 - Shuzang's Blog</title><link>https://shuzang.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link><description>操作系统 - 标签 - Shuzang's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>lylw1996@qq.com (shuzang)</managingEditor><webMaster>lylw1996@qq.com (shuzang)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 02 Sep 2020 21:15:00 +0800</lastBuildDate><atom:link href="https://shuzang.github.io/tags/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" rel="self" type="application/rss+xml"/><item><title>Windows、Linux、Unix和 macOS</title><link>https://shuzang.github.io/windows-linux-unix-and-macos/</link><pubDate>Wed, 02 Sep 2020 21:15:00 +0800</pubDate><author>作者</author><guid>https://shuzang.github.io/windows-linux-unix-and-macos/</guid><description><![CDATA[<p>目前主流的操作系统就是 Windows、Linux 和 macOS，有时候我们也常听到 Unix。今天查一下资料看一看它们的区别。</p>
+<p>详细的历史演进可以阅读脚本之家的 <a href="https://www.jb51.net/os/other/159236.html" target="_blank" rel="noopener noreffer">操作系统Unix、Windows、Mac OS、Linux的故事</a> 这篇文章。</p>
+<p>基本的关系可以看下图</p>
+<p></p>
+<p>Unix 可以算作操作系统的鼻祖，macOS 是 FreeBSD 的衍生，Linux 是 AT&amp;T System V 的衍生，Windows 和 Unix 没有什么关系，是另外一个派系，只是借鉴了一些特性。</p>
+<p>类 Unix 系统是指继承 UNIX 的设计风格演变出来的系统，都相当程度地继承了原始 UNIX 的特性，并且都在一定程度上遵守POSIX规范，但是它们却并不含有UNIX的源代码，因为 UNIX 的源代码为 SCO公司所有，属于商业软件。</p>
+<p>由于 UNIX 标准认定价格昂贵，目前只有苹果的 MacOS 获得了认定，可以称作 Unix 系统，Linux 只能称作类 Unix 操作系统。</p>]]></description></item><item><title>操作系统6-文件管理</title><link>https://shuzang.github.io/operate-system-6-file-management/</link><pubDate>Tue, 18 Aug 2020 08:18:00 +0800</pubDate><author>作者</author><guid>https://shuzang.github.io/operate-system-6-file-management/</guid><description><![CDATA[<p>本篇介绍文件管理相关的内容。包括硬盘结构、文件和目录的概念，以及一个文件系统涉及的其它知识。</p>
+<h2 id="1-硬盘结构">1. 硬盘结构</h2>
+<p>硬盘是计算机最主要的外部存储设备，尽管常见的存储设备还有光盘、U盘等，但最常用的还是硬盘。目前，我们所见的硬盘主要有机械硬盘和固态硬盘两类，前者使用磁性盘片来存储数据，后者使用闪存颗粒存储数据。</p>
+<p>机械硬盘主要的组成包括磁盘片、主轴、磁盘臂、磁头等。如下图所示，硬盘中有大量的磁盘片，所有的盘片通过主轴连接在一起，主轴连接到一个电机，以恒定的速率旋转。每个磁盘片有两面，数据在这两面上持久存储，通过磁头可以读取表面的数据。磁盘转动时，磁头所走过的路径会形成一个圆形，叫做磁道，每个磁盘片都有数百上千的磁道，另外，人们把所有磁盘片的相同磁道称作一个柱面。最后，为了便于读写，人们还将每个磁盘片划分为一些相等大小的扇区，一个扇区 512 字节。不过，操作系统读取硬盘的时候，不会一个个扇区地读取，这样效率太低，而是一次性连续读取多个扇区，即一次性读取一个&quot;块&quot;（block）。这种由多个扇区组成的&quot;块&quot;，是文件存取的最小单位。&ldquo;块&quot;的大小，最常见的是4KB，即连续八个 sector组成一个 block。</p>
+<p></p>
+<p>固态硬盘不再使用盘片，而是使用某种存储芯片作为存储介质，基本原理是对电荷的存储。固态硬盘在大部分方面都比机械硬盘表现好。固态硬盘已经没有了磁道、柱面等概念，物理单位是一个个的闪存颗粒，每个闪存颗粒由成千上万大小相同的块（Block）组成，块的大小一般为数百 KB 到数 MB，每一个块的内部又分为若干个大小相同的页（Page），页的大小一般为 4KB 或者 8KB。页是基本的读写单位，块是数据擦除的基本单位。</p>
+<p>更大关于固态硬盘的知识可以参考 <a href="https://zhuanlan.zhihu.com/p/114237145" target="_blank" rel="noopener noreffer">知乎，详解固态硬盘的有趣知识及其底层原理</a></p>
+<h2 id="2-文件与inode">2. 文件与inode</h2>
+<p>可参考：<a href="http://www.ruanyifeng.com/blog/2011/12/inode.html" target="_blank" rel="noopener noreffer">阮一峰，理解inode</a></p>
+<p>文件（file）是一个抽象的概念，最底层就是一串二进制0和1，高一点可以看作一个字节序列，其中每个字节都可以读取或写入。在更高一点的层次，我们用一个叫做 inode 的结构记录关于文件的一些元信息，这个结构的定义可以举个例子</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">struct</span> <span class="n">stat</span> <span class="p">{</span>
+    <span class="n">dev_t</span> <span class="n">st_dev</span><span class="p">;</span>         <span class="c1">// ID of device containing file
+</span><span class="c1"></span>    <span class="n">ino_t</span> <span class="n">st_ino</span><span class="p">;</span>         <span class="c1">// inode number
+</span><span class="c1"></span>    <span class="n">mode_t</span> <span class="n">st_mode</span><span class="p">;</span>       <span class="c1">// protection
+</span><span class="c1"></span>    <span class="n">nlink_t</span> <span class="n">st_nlink</span><span class="p">;</span>     <span class="c1">// number of hard links
+</span><span class="c1"></span>    <span class="n">uid_t</span> <span class="n">st_uid</span><span class="p">;</span>         <span class="c1">// user ID of owner
+</span><span class="c1"></span>    <span class="n">gid_t</span> <span class="n">st_gid</span><span class="p">;</span>         <span class="c1">// group ID of owner
+</span><span class="c1"></span>    <span class="n">dev_t</span> <span class="n">st_rdev</span><span class="p">;</span>        <span class="c1">// device ID(if special file)
+</span><span class="c1"></span>    <span class="n">off_t</span> <span class="n">st_size</span><span class="p">;</span>        <span class="c1">// total size, in bytes
+</span><span class="c1"></span>    <span class="n">blksize_t</span> <span class="n">st_blksize</span><span class="p">;</span> <span class="c1">// blocksize for filesystem I/O
+</span><span class="c1"></span>    <span class="n">blkcnt_t</span> <span class="n">st_blocks</span><span class="p">;</span>   <span class="c1">// number of blocks allocated
+</span><span class="c1"></span>    <span class="n">time_t</span> <span class="n">st_atime</span><span class="p">;</span>      <span class="c1">// time of last access
+</span><span class="c1"></span>    <span class="n">time_t</span> <span class="n">st_mtime</span><span class="p">;</span>      <span class="c1">// time of last modification
+</span><span class="c1"></span>    <span class="n">time_t</span> <span class="n">st_ctime</span><span class="p">;</span>      <span class="c1">// time of last status change
+</span><span class="c1"></span><span class="p">};</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>我们可以看到主要包含的内容有：inode 号、保护信息（即文件权限）、链接数、文件拥有者的用户 ID 和所在的组 ID、文件总字节数、I/O 读取的单个 Block 大小、底层数据块的位置、实际信息等。</p>
+<p>使用 <code>stat</code> 命令可以读取到这些信息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ stat foo
+  文件：foo
+  大小：6         	块：8          IO 块：4096   普通文件
+设备：805h/2053d	Inode：5767595     硬链接：1
+权限：<span class="o">(</span>0664/-rw-rw-r--<span class="o">)</span>  Uid：<span class="o">(</span> 1000/ shuzang<span class="o">)</span>   Gid：<span class="o">(</span> 1000/ shuzang<span class="o">)</span>
+最近访问：2020-08-22 19:00:39.660722364 -0700
+最近更改：2020-08-22 19:00:29.121819131 -0700
+最近改动：2020-08-22 19:00:29.121819131 -0700
+创建时间：-
+</code></pre></td></tr></table>
+</div>
+</div><p>注意，inode 对底层数据块的引用一般是通过指针完成的，每个指针指向一个磁盘块，为了包含更多的数据，指针可以指向另一个完全由指针组成的块，使用间接指针的方式扩大包含的数据量。通常来讲，inode 中会设置一定数量的直接指针和一个间接指针。</p>
+<h3 id="21-inode大小">2.1 inode大小</h3>
+<p>inode 本身的存储也占据硬盘空间，所以硬盘至少会有两个区：数据区存放文件数据，inode 区存放所有 inode。不过我们习惯将存放 inode 的区域称作 inode 表。</p>
+<p>由于 inode 的内容不多且比较固定，所以其大小也是固定的， 一般是128字节或256字节。</p>
+<p>使用 <code>df</code> 命令可以查看每个硬盘分区的 inode 总数和使用情况</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ df -i
+文件系统         Inode 已用<span class="o">(</span>I<span class="o">)</span> 可用<span class="o">(</span>I<span class="o">)</span> 已用<span class="o">(</span>I<span class="o">)</span>% 挂载点
+udev            <span class="m">493235</span>     <span class="m">477</span>  <span class="m">492758</span>       1% /dev
+tmpfs           <span class="m">500276</span>     <span class="m">938</span>  <span class="m">499338</span>       1% /run
+/dev/sda5      <span class="m">6520832</span>  <span class="m">233720</span> <span class="m">6287112</span>       4% /
+tmpfs           <span class="m">500276</span>       <span class="m">1</span>  <span class="m">500275</span>       1% /dev/shm
+tmpfs           <span class="m">500276</span>       <span class="m">5</span>  <span class="m">500271</span>       1% /run/lock
+tmpfs           <span class="m">500276</span>      <span class="m">18</span>  <span class="m">500258</span>       1% /sys/fs/cgroup
+/dev/loop0        <span class="m">4338</span>    <span class="m">4338</span>       <span class="m">0</span>     100% /snap/code/39
+/dev/loop2       <span class="m">12796</span>   <span class="m">12796</span>       <span class="m">0</span>     100% /snap/core/9804
+/dev/loop3       <span class="m">10775</span>   <span class="m">10775</span>       <span class="m">0</span>     100% /snap/core18/1885
+/dev/loop5       <span class="m">10756</span>   <span class="m">10756</span>       <span class="m">0</span>     100% /snap/core18/1880
+/dev/loop1       <span class="m">12862</span>   <span class="m">12862</span>       <span class="m">0</span>     100% /snap/core/9665
+/dev/loop4       <span class="m">24339</span>   <span class="m">24339</span>       <span class="m">0</span>     100% /snap/gnome-3-34-1804/33
+/dev/loop6       <span class="m">24339</span>   <span class="m">24339</span>       <span class="m">0</span>     100% /snap/gnome-3-34-1804/36
+/dev/loop8       <span class="m">10206</span>   <span class="m">10206</span>       <span class="m">0</span>     100% /snap/go/6123
+/dev/loop12        <span class="m">463</span>     <span class="m">463</span>       <span class="m">0</span>     100% /snap/snapd/8542
+/dev/loop9       <span class="m">62342</span>   <span class="m">62342</span>       <span class="m">0</span>     100% /snap/gtk-common-themes/1506
+/dev/loop11      <span class="m">15827</span>   <span class="m">15827</span>       <span class="m">0</span>     100% /snap/snap-store/467
+/dev/loop13        <span class="m">465</span>     <span class="m">465</span>       <span class="m">0</span>     100% /snap/snapd/8790
+/dev/loop10      <span class="m">15827</span>   <span class="m">15827</span>       <span class="m">0</span>     100% /snap/snap-store/433
+/dev/sda1            <span class="m">0</span>       <span class="m">0</span>       <span class="m">0</span>        - /boot/efi
+tmpfs           <span class="m">500276</span>      <span class="m">89</span>  <span class="m">500187</span>       1% /run/user/1000
+/dev/loop14       <span class="m">4303</span>    <span class="m">4303</span>       <span class="m">0</span>     100% /snap/code/40
+/dev/loop15      <span class="m">10206</span>   <span class="m">10206</span>       <span class="m">0</span>     100% /snap/go/6274
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="22-inode号">2.2 inode号</h3>
+<p>每个 inode 都有一个 inode 号，它被操作系统用来识别文件。</p>
+<p>我们应该清除的是，文件名只是为了方便用户使用，操作系统对文件的操作本质是通过 inode。举个例子，当我们打开文件的时候，系统首先通过文件名找到 inode 号，然后通过 inode 号获取 inode 信息，最后根据 inode 信息找到文件数据所在的 block，读取数据。</p>
+<p>通过 inode 号找 inode 的例子如下图，假设 inode 表大小为 20KB，由 80 个 inode 组成，inode 区域从 12KB 开始（即超级块从 0KB 开始，inode 位示图在 4KB 位置，数据位示图在 8KB位置）。要读取 inode 号 32，文件系统首先计算 inode 区域偏移量（32×inode大小，即 8192），将它加上磁盘 inode 表的起始地址（12KB），从而得到希望的 inode 块的正确字节地址：20KB。</p>
+<p></p>
+<p>使用 <code>ls -i</code> 命令可以查看文件名对应的 inode 号</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ ls -i foo
+<span class="m">5767595</span> foo
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="3-目录">3. 目录</h2>
+<p>目录也是一种文件，但它的内容比较具体，存储的是它所包含的文件的文件名和对应的 inode 号。该内容用抽象数据结构来表达如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">struct</span> <span class="n">dirent</span> <span class="p">{</span>
+    <span class="kt">char</span> <span class="n">d_name</span><span class="p">[</span><span class="mi">256</span><span class="p">];</span>     <span class="c1">// filename
+</span><span class="c1"></span>    <span class="n">ino_t</span> <span class="n">d_ino</span><span class="p">;</span>          <span class="c1">// inode number
+</span><span class="c1"></span>    <span class="n">off_t</span> <span class="n">d_off</span><span class="p">;</span>          <span class="c1">// offset to the next dirent
+</span><span class="c1"></span>    <span class="kt">unsigned</span> <span class="kt">short</span> <span class="n">d_reclen</span><span class="p">;</span>    <span class="c1">// length of this record
+</span><span class="c1"></span>    <span class="kt">unsigned</span> <span class="kt">char</span> <span class="n">d_type</span><span class="p">;</span>       <span class="c1">// type of file
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>举个例子，foo 文件的 inode 号为 10，则目录的内容中会有一条 （foo, 10） 的记录。但我们要记得，目录也是一个文件，因此目录也有自己的 inode。</p>
+<p>注1：目录的层次结构从根目录（/）开始，由根文件系统产生。</p>
+<p>注2：移动文件或重命名文件，只是改变文件名，不改变 inode 号。</p>
+<p>注3：通常来说，系统无法从inode号码得知文件名</p>
+<h2 id="4-软链接和硬链接">4. 软链接和硬链接</h2>
+<h3 id="41-硬链接">4.1 硬链接</h3>
+<p>一般情况下，文件名和 inode 号之间是一一对应的关系，但我们可以令多个文件名指向同一个 inode 号。这种情况就叫<strong>硬链接</strong>。硬链接的本质是增加了一个对应关系，没有改变 inode 和底层数据，这意味着我们使用不同的文件名访问到的是同一个文件，修改和删除数据也会影响到所有文件名。</p>
+<p>Linux 中使用 <code>ln</code> 命令建立硬链接。</p>
+<p>inode 结构中有一项叫做链接数，每建立一个硬链接，该值就会加一，反过来，删除一个文件名，该值就会减一，只有减到零的情况下，系统才会回收该 inode 号和对应的数据。</p>
+<p>系统创建目录时，默认会生成两个目录项：&rdquo;.&ldquo;和&rdquo;..&quot;。前者的inode号码就是当前目录的inode号码，等同于当前目录的&quot;硬链接&quot;；后者的inode号码就是当前目录的父目录的inode号码，等同于父目录的&quot;硬链接&quot;。所以，任何一个目录的&quot;硬链接&quot;总数，总是等于2加上它的子目录总数（含隐藏目录）。</p>
+<p>硬链接的缺点是不能创建目录的硬链接，也不能链接到其它文件系统。</p>
+<h3 id="42-软链接">4.2 软链接</h3>
+<p>软链接，也叫符号链接，软链接可以为目录创建，也可以链接到其它文件系统。因为软链接的实质类似于指针，加上存在文件 B，为 B 建立软链接 A，实际上是建立了一个新的文件，A 有自己的 inode，只不过 A 的内容是 B 的路径。当我们访问 A 时，会自动导向文件 B。</p>
+<p>因此，软链接 A 是依赖于 B 存在的，如果删除了文件 B，打开文件 A 就会提示指向的文件或目录不存在。</p>
+<p>使用 <code>ln -s</code> 命令创建软链接。</p>
+<h2 id="5-文件系统实例">5. 文件系统实例</h2>
+<p>文件系统是操作系统中与管理文件有关的软件和数据，负责文件的建立、删除、读写、修改、复制以及按名存取和存取控制。</p>
+<p>我们假设磁盘的基本读写单位是 4KB，每 4KB 为一块，一个磁盘可以分为若干块（假设为 N），这些块的地址从 0 到 N-1，下面的介绍以一个只有 64 块的磁盘为例。</p>
+<h3 id="51-基本结构">5.1 基本结构</h3>
+<p>首先，磁盘中主要存放的一定是 <strong>用户数据</strong>，我们将存放用户数据的磁盘区域称为数据区域，假设将 64 个块的最后 56 个专门留给它们。</p>
+<p>此外，文件系统还必须记录每个文件的基本信息，就是 inode，所有的 inode 存放在一个统一的区域，叫做 <strong>inode 表</strong>。由于 inode 大概 128 或 256 字节，所以不需要预留很大的空间，一个 4KB 的块就可以存放 16 个 inode，这里我们在 64 个块中留了 5 个块来存放 inode。</p>
+<p>然后，我们还需要一个结构来记录 inode 和数据块空闲还是已分配。可选的方法很多，比如空闲块链表，将所有的空闲块链接在一起，当需要空闲块时从链头开始摘取并修改头指针，回收空闲块时插入链表尾。但通常使用的是一种简单有效的结构：<strong>位示图</strong>（inode）。位示图的原理是划分一部分空间，将每个比特位对应一个块，如果该位为0，说明对应的块空闲，如果该位为 1，说明对应的块已分配。数据区域和 inode 表通常使用不同的位示图。</p>
+<p>最后还有一个结构叫做 <strong>超级块</strong>，包含文件系统的基本信息，比如有多少个 inode 和数据块、inode 表的起始位置、文件系统的类型等。</p>
+<p>所以基本的结构有五部分，如下图：超级块、inode 位示图、数据区域位示图、inode表、数据区域。</p>
+<p></p>
+<p>可以通过 <code>df</code> 命令查看文件系统，然后使用 <code>sudo dumpe2fs /dev/dsa*</code> 查看超级块的信息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">shuzang@ubuntu:~$ df
+文件系统           1K-块     已用     可用 已用% 挂载点
+udev             <span class="m">1972940</span>        <span class="m">0</span>  <span class="m">1972940</span>    0% /dev
+tmpfs             <span class="m">400224</span>     <span class="m">1892</span>   <span class="m">398332</span>    1% /run
+/dev/sda5      <span class="m">102168536</span> <span class="m">10744048</span> <span class="m">86191592</span>   12% /
+...
+
+$ sudo dumpe2fs /dev/sda5
+dumpe2fs 1.45.5 <span class="o">(</span>07-Jan-2020<span class="o">)</span>
+Filesystem volume name:   &lt;none&gt;
+Last mounted on:          /
+Filesystem UUID:          45e4318b-0433-4e09-a0ea-48e29ac60801
+Filesystem magic number:  0xEF53
+Filesystem revision <span class="c1">#:    1 (dynamic)</span>
+Filesystem features:      has_journal ext_attr resize_inode dir_index filetype needs_recovery extent 64bit flex_bg sparse_super large_file huge_file dir_nlink extra_isize metadata_csum
+Filesystem flags:         signed_directory_hash 
+Default mount options:    user_xattr acl
+Filesystem state:         clean
+Errors behavior:          Continue
+Filesystem OS type:       Linux
+Inode count:              <span class="m">6520832</span>
+Block count:              <span class="m">26082560</span>
+Reserved block count:     <span class="m">1304128</span>
+Free blocks:              <span class="m">22924783</span>
+Free inodes:              <span class="m">6286837</span>
+First block:              <span class="m">0</span>
+Block size:               <span class="m">4096</span>
+Fragment size:            <span class="m">4096</span>
+Group descriptor size:    <span class="m">64</span>
+Reserved GDT blocks:      <span class="m">1024</span>
+Blocks per group:         <span class="m">32768</span>
+Fragments per group:      <span class="m">32768</span>
+Inodes per group:         <span class="m">8192</span>
+Inode blocks per group:   <span class="m">512</span>
+Flex block group size:    <span class="m">16</span>
+Filesystem created:       Tue May <span class="m">19</span> 03:52:48 <span class="m">2020</span>
+Last mount time:          Fri Aug <span class="m">21</span> 01:35:42 <span class="m">2020</span>
+Last write time:          Fri Aug <span class="m">21</span> 01:35:35 <span class="m">2020</span>
+Mount count:              <span class="m">7</span>
+Maximum mount count:      -1
+Last checked:             Tue May <span class="m">19</span> 03:52:48 <span class="m">2020</span>
+Check interval:           <span class="m">0</span> <span class="o">(</span>&lt;none&gt;<span class="o">)</span>
+Lifetime writes:          <span class="m">26</span> GB
+Reserved blocks uid:      <span class="m">0</span> <span class="o">(</span>user root<span class="o">)</span>
+Reserved blocks gid:      <span class="m">0</span> <span class="o">(</span>group root<span class="o">)</span>
+First inode:              <span class="m">11</span>
+Inode size:	          <span class="m">256</span>
+...
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="52-挂载">5.2 挂载</h3>
+<p>磁盘通常会划分为不同的分区，每个分区可能使用不同的文件系统，挂载就是将该文件系统粘贴到整个操作系统的文件目录树上，挂载的位置是一个路径，进入该路径就相当于进入了该文件系统。</p>
+<h3 id="53-文件读取">5.3 文件读取</h3>
+<p>已知文件名，读取文件的过程我们大致已经熟悉，即通过文件名获得 inode 号，通过 inode 号获得 inode 信息，通过 inode 信息读取数据。</p>
+<p>但这里还不清楚的一点是如何通过文件名找到 inode。文件系统采取的方式是遍历路径名，所有的遍历都从文件系统的根开始，即 <code>/</code> 。文件系统第一次读取根目录的 inode，根目录的 inode 号是众所周知的，一般是 2，因此文件系统就会读入 inode 号为2的块。一旦读入 inode，文件系统就可以查找指向数据块的指针，数据块中包含了根目录的内容。根目录的内容中存放了所有子文件的文件名和 inode 号的对应，所以根据路径可以找到下一级目录或文件的 inode 号，如果是目录，就继续遵循上面的过程进行递归的读取，最后读取得到文件的数据。</p>
+<p>最后要注意的是，简单的读取并不会对位示图进行改变，只有创建或删除文件数据时才会改变位示图的内容。</p>]]></description></item><item><title>操作系统5-设备管理</title><link>https://shuzang.github.io/operate-system-5-device-management/</link><pubDate>Mon, 17 Aug 2020 19:25:00 +0800</pubDate><author>作者</author><guid>https://shuzang.github.io/operate-system-5-device-management/</guid><description><![CDATA[<p>本篇介绍设备管理的相关内容。最近发现本科用的教材内容非常陈旧，而且不是那么浅显易懂，于是找了一本国外的教材《操作系统导论》，主要根据这个来学习。</p>
+<h2 id="1-系统架构">1. 系统架构</h2>
+<p>一个典型的系统架构如下。其中，CPU 通过某种内存总线或互联电缆连到系统内存，图像（比如显卡）或其它高性能 I/O 设备通过常规的 I/O 总线连到系统，可能是 PCI 或其衍生形式。最下面是外围总线，比如 SCSI、SATA 或者 USB，它们将最慢的设备连接到系统，包括磁盘、鼠标和其它类似设备。</p>
+<p></p>
+<p>采用这种分层架构的原因是物理布局和造价成本。</p>
+<h2 id="2-标准设备">2. 标准设备</h2>
+<p>尽管设备可能分很多种，比如存储设备、输入输出设备、各种终端和脱机设备，但这里使用一种标准设备来介绍，这里提到的标准设备不是真实存在的，但它的组成和互操作可以代表大部分的设备。</p>
+<p>如下图，一个标准设备主要包括两部分。一部分是对计算机其它部分展现的硬件接口，另一部分是这些设备的内部结构，一些简单的设备可能只有一个或几个芯片，但复杂一些的设备还会包括自己的 CPU 和内存。</p>
+<p></p>
+<h2 id="3-设备交互">3. 设备交互</h2>
+<p>一个简化的设备接口包括三个寄存器：状态寄存器读取并查看设备当前状态，命令寄存器通知设备执行某个任务，数据寄存器将数据传给设备或从设备接收数据。通过读写这些寄存器，操作系统可以控制设备行为。</p>
+<p>最简单的交互逻辑如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">while</span> <span class="n">Status</span> <span class="o">==</span> <span class="n">Busy</span> 
+    <span class="c1">// wait until device is not busy
+</span><span class="c1"></span><span class="n">Write</span> <span class="n">data</span> <span class="n">to</span> <span class="n">DATA</span> <span class="k">register</span><span class="p">;</span>
+<span class="n">Write</span> <span class="n">command</span> <span class="n">to</span> <span class="n">COMMAND</span> <span class="k">register</span><span class="p">;</span>
+<span class="n">While</span> <span class="n">Status</span> <span class="o">==</span> <span class="n">Busy</span>
+    <span class="c1">// wait until device is done with your request
+</span></code></pre></td></tr></table>
+</div>
+</div><p>简单来说，就是操作系统不断读取状态寄存器（轮询），如果设备已经准备好了，就开始传输数据到数据寄存器，传输完成后将命令写入命令寄存器，这样设备就知道数据准备好了，开始执行命令。最后继续轮询，判断设备是否执行完命令。</p>
+<p>这个协议简单有效，只是轮询过程比较低效，而且 CPU 需要等待设备执行，浪费大量的时间。</p>
+<h3 id="31-中断">3.1 中断</h3>
+<p>中断是指计算机执行期间，由于发生了某些非预期的紧急事件，计算机暂停当前进程而执行相应的事件处理程序，执行完毕后又返回执行暂停的进程的过程。中断可能来自 I/O 设备发出的信号、外部信号（比如键盘 Esc 输入）、定时器引起的时钟中断、调试程序的断点、程序运算产生的溢出、非法指令等等。</p>
+<p>所有需要由硬件产生的中断叫硬中断，比如上面提到的这些。还有一种叫软中断，是进程模拟用来通信的，软中断不一定需要立即执行，可以由 CPU 选择合适的时机执行。</p>
+<p>当我们用中断来替换设备交互中的轮询过程时，可以极大提升效率。过程如下：</p>
+<ol>
+<li>CPU 向设备发出一个请求，然后就可以让相关进程休眠，然后去执行其它任务；</li>
+<li>设备完成自身操作后，产生一个硬中断，CPU 就会去执行对应的中断处理程序，也就是唤醒睡眠的 I/O 进程来继续执行；</li>
+</ol>
+<p>但是，中断的高效建立在外围设备和 CPU 处理速度差异较大的情况下，如果外设处理速度比较快，那么轮询反而比中断更好。另外一个原因是，外设的数量比较多，而且是并行工作的，可能会造成中断数量急剧增加，极端的情况，网卡每收到一个数据包产生一个中断，就会导致系统无法响应。一种解决办法是合并多个中断为一个，统一处理。</p>
+<h3 id="32-dma">3.2 DMA</h3>
+<p>设备交互的简单协议还有一个问题，外设与内存的数据传输总是需要 CPU 调度，有时候对 CPU 是一个负担。解决方法是 DMA（Direct Memory Access），它的基本思想是在外设和内存之间开辟一个直接的数据通路。</p>
+<p>DMA 工作过程如下。为了能够将数据传送给设备，操作系统会通过编程告诉 DMA控制器 数据在内存的位置，要拷贝的大小以及要拷贝到哪个设备。在此之后，操作系统就可以处理其他请求了。当 DMA 的任务完成后，DMA 控制器会抛出一个中断来告诉操作系统自己已经完成数据传输。</p>
+<h3 id="33-通道">3.3 通道</h3>
+<p>DMA 方式中，数据的传送方向、存放数据的内存地址、传送的数据块长度等还是需要 CPU 来控制。通道是一种专门的硬件，可以看作是一个专管输入输出的处理机，它会替代 CPU 完整所有这些工作，并且可以控制多台外设与内存交互，因此进一步减轻了 CPU 的负担。</p>
+<h3 id="34-交互">3.4 交互</h3>
+<p>系统与设备的交互主要由两种方式</p>
+<ol>
+<li>明确的 I/O 指令，这些指令规定了操作系统将数据发送到特定设备寄存器的方法。比如，x86 中，in 和 out 指令可以用来与设备进行交互。当需要发送数据给设备时，调用者指定一个存入数据的特定寄存器及一个代表设备的特定端口。执行这个指令就可以实现期望的行为。这些指令通常是特权指令（privileged）。操作系统是唯一可以直接与设备交互的实体。</li>
+<li>内存映射 I/O，即硬件将设备寄存器作为内存地址提供。当需要访问设备寄存器时，操作系统装载（读取）或者存入（写入）到该内存地址；然后硬件会将装载/存入转移到设备上，而不是物理内存。</li>
+</ol>
+<h2 id="4-设备驱动">4. 设备驱动</h2>
+<p>设备驱动程序是驱动物理设备与 DMA 控制器或 I/O 控制器等直接进行 I/O 操作的子程序的集合，负责设置相应设备有关寄存器的值，启动设备进行 I/O 操作，指定操作的类型和数据流向等。</p>
+<p>由于所有需要插入系统的设备都需要安装相应的驱动，所有一个系统的大部分代码其实都是各种驱动程序。当然，这些驱动一般都不是激活的，只有一小部分需要在系统刚开始就连接。另外一件事，驱动程序的开发者大部分不是全职的内核开发者，所以容易出现缺陷，也是内核崩溃的主要贡献者。</p>]]></description></item><item><title>操作系统4-存储管理</title><link>https://shuzang.github.io/operate-system-4-memory-management/</link><pubDate>Thu, 13 Aug 2020 11:04:00 +0800</pubDate><author>作者</author><guid>https://shuzang.github.io/operate-system-4-memory-management/</guid><description><![CDATA[<p>本文介绍操作系统另一个重要功能：存储管理。包括存储管理的基本功能，以及分区、页式、段式与段页式三种存储管理方法的具体细节。</p>
+<p>首先记住，用户程序生成的每个地址都是虚拟地址，只有进程执行时，才会把这些虚拟地址转换为真实的物理地址。</p>
+<h2 id="1-存储管理的功能">1. 存储管理的功能</h2>
+<p>指的是进行存储管理时涉及的一些技术和必须完成的工作，包括虚存、地址变换技术、内外存数据传输的控制、内存的分配与回收、内存信息的共享与保护五部分。</p>
+<h3 id="11-虚存">1.1 虚存</h3>
+<p>计算机中的存储器可以分为几个层次：外存—&gt;内存—&gt;高速缓存—&gt;寄存器。这个顺序是容量由大到小，但访问速度由快到慢的。划分为多个层次的原因是计算机的各部分，从 CPU 到外设，处理的速度是不同的，使用这种分层结构可以使各部分处于均衡的繁忙状态。</p>
+<p>进程在执行时访问的是内存中的指令与数据，但由于内存的容量较小，一些进程的内存需求甚至可能超过内存的实际容量，即使是可容纳的进程，计算机也难以支撑多个并发进程的同时执行。解决办法是将一些不常访问的数据和程序段存放在外存中，需要时再调入内存。这种情况下，需要统一管理内外存进程所需的程序和数据，使用内存实际物理地址的方法变得不再可行，因此操作系统使用了一种名为<strong>虚拟内存</strong>的技术。</p>
+<p>虚拟内存，也叫做虚拟存储器，可以简称为虚存。其原理是使用一个一维或多维的<strong>虚拟地址空间</strong>存放进程所需的所有资源的方法，不论指令和数据是位于内存还是外存，它们在虚拟地址空间中都有一个确定的地址，称为虚拟地址。虚拟地址与实际物理地址有一个确定的变换关系，进程运行时，可以主动将虚拟地址变换为实际物理地址，然后对指令和数据进行操作。</p>
+<p>每个进程都拥有这样一个虚拟地址空间，这个虚拟地址空间就叫做虚存（进程管理中我们也将其称作进程空间）。虚存不考虑内存大小，因为使用虚存技术时进程所需容量理论上只受内外存容量之和限制；虚存也不考虑信息的实际存储位置，只关注每个进程相关的指令和数据的相对位置。</p>
+<p>虚存的实际大小仅与处理器的位数有关，以 x86 体系 32位 Linux 为例，其虚存为 $2^{32} = 4G$。</p>
+<p>实际上，虚存在使用时会划分为不同的区域，分布存放程序、数据、堆栈、控制信息等，以上面提到的 32位 Linux 的 4G 虚存为例，空间划分的方式如下：</p>
+<p></p>
+<p>首先，整体将虚存划分位了<strong>内核空间</strong>和<strong>用户空间</strong>两部分，这是由于某些指令比较危险，错用会导致系统崩溃，某些数据也需要限制访问权限，因此不同的进程限制在不同的空间进行，而且，当进程运行在内核空间时就称其处于内核态，当进程运行在用户空间时则处于用户态。上图中，内核空间是高地址的 1G 字节（从虚拟地址 0xC0000000 到 0xFFFFFFFF），用户空间是较低的 3G 字节。</p>
+<p>注意，低地址的 3G 字节用户空间每个进程是独立的，而高地址的 1G 字节内核空间是所有进程共享的。</p>
+<p>用户空间的不同部分说明如下</p>
+<ol>
+<li>.text段（代码段）存放程序运行时产生的指令和只读数据（read only data）</li>
+<li>.data存放了初始化了的且初始化的值不为0的数据</li>
+<li>.bss存放未初始化及初始化为0的数据</li>
+<li>堆由编程语言分配，由低地址向高地址增长</li>
+<li>栈由操作系统分配，由高地址向低地址增长</li>
+</ol>
+<h3 id="12-地址变换技术">1.2 地址变换技术</h3>
+<p>采用虚存后面临的一个重要问题就是进行虚拟地址和物理地址的变换。</p>
+<p>我们把内存的每一个存储单元用一个编号标识，这一编号就是物理地址，也叫做<strong>内存地址</strong>。内存地址的集合就叫做<strong>内存空间</strong>，或者叫做物理地址空间。</p>
+<p>虚拟地址向物理地址的变换就叫做<strong>地址重定位</strong>，主要分为静态地址重定位和动态地址重定位两种。</p>
+<p><strong>静态地址重定位</strong>指的是在程序执行前由装配程序完成地址映射，不需要硬件支持，但程序一旦装入内存就不能再移动，并且必须在程序执行前全部装入，这种方法无法实现虚存。</p>
+<p><strong>动态地址重定位</strong>指的是在程序执行过程中，在 CPU 访问时完成地址映射。该工作需要硬件的支持，主要是基地址寄存器 BR 和程序虚拟地址寄存器 VR，BR 存放程序或数据在内存的首地址，VR  由虚存得到的相对地址，因此，实际的物理地址与它们的关系为 $MA = BR + VR$。只需要使用多个 BR 存储不同区域的首地址，就可以实现对内存进行非连续的分配。动态地址重定位可以实现虚存。</p>
+<h3 id="13-内外存数据传输">1.3 内外存数据传输</h3>
+<p>实现虚存时，需要经常进行内外存之间的数据交换，比如将即将执行的程序和数据段调入内存，将处于等待状态的程序和数据段调出内存。</p>
+<p>控制这种数据交换的方法有两种，用户程序自己控制和操作系统控制。</p>
+<p>用户程序自己控制使用的技术叫覆盖。<strong>覆盖技术</strong>将程序划分为若干个功能相对独立的程序段，然后让那些不会同时执行的程序段共享同一块内存区域，假如程序段 A 正在运行，和它共享内存的程序段 B 开始调度时， A 一定已经执行完毕，那么 B 就可以调度到 A 原本占用的内存区域。这一，用户看起来，就好像内存扩大了。</p>
+<p>操作系统控制又可以进一步分为两种方式：交换、请求调入和预调入。</p>
+<ul>
+<li><strong>交换技术</strong>考虑到内存中的进程可能处于执行、就绪或等待状态，处于等待状态的进程驻留内存会造成存储空间的浪费，因此由操作系统将处于等待状态的进程换出内存，而将那些等待事件已经发生、处于就绪态的进程换入内存。</li>
+<li><strong>请求调入</strong>是在程序执行时，如果所要求访问的程序段或数据段不在内存中，由操作系统自动从外存调入的方式；<strong>预调入</strong>是由操作系统预测在不远的将来会访问到的程序段和数据段，并在它们被访问前寻找合适的时机调入内存的方式。</li>
+</ul>
+<p>请求调入和预调入是唯一可以实现虚存的控制方法。</p>
+<h3 id="14-内存分配与回收">1.4 内存分配与回收</h3>
+<p>内存分配与回收是内存管理的主要功能之一，为了将外存中的程序和数据调入内存，需要事先为它们分配内存空间，进程执行结束时，还要及时地回收进程所占用的内存空间。</p>
+<p>内存分配与回收算法的涉及要考虑如下的事情：</p>
+<ol>
+<li>分配结构：登记内存使用情况，提供分配程序使用的数据结构</li>
+<li>放置策略：确定调入内存的程序和数据在内存中的位置</li>
+<li>交换策略：在需要将某个程序段和数据调入内存时，若内存无足够空间，使用交换策略</li>
+<li>调入策略：决定外存中程序段和数据段调入的时间和控制方式</li>
+<li>回收策略：回收的时机和空闲区的调整</li>
+</ol>
+<h3 id="15-内存信息保护">1.5 内存信息保护</h3>
+<p>进程执行时要保护系统程序区不被用户侵犯（有意或无意的），也不应该允许用户程序读写不属于自己地址空间的数据（系统区地址空间，其他用户程序的地址空间），这就是内存信息的保护。</p>
+<p>常用的内存信息保护方法有三种：硬件法、软件法和软硬结合法。</p>
+<ul>
+<li>硬件法指的是使用寄存器保持程序段或数据段的起始和终止地址，进程访问前进行合法性检查</li>
+<li>软件法指的是为每个存储区域设置一个标志位，不同的标志代表不同的读写权限的方法</li>
+<li>软硬结合指用户态进程只能访问寄存器限制的内存，而核心态进程可以访问整个内存空间</li>
+</ul>
+<h3 id="16-存储管理方法">1.6 存储管理方法</h3>
+<p>介绍分区、页式、段式与段页式三种存储管理方法，每种包括虚存的划分方式、页面置换算法、内存分配与回收算法等内容。不过，由于分区管理存在很多缺点，而且不被当前系统普遍使用，下面不进行介绍，仅在最后总结时放入表中。</p>
+<h2 id="2-页式管理">2. 页式管理</h2>
+<h3 id="21-基本原理">2.1 基本原理</h3>
+<p>页式管理的基本原理是将虚存划分为若干长度相等的页（page），页长与内外存数据传输的速度和内存大小有关，一般约 1K~4K。经过页划分后，进程的虚拟地址就变成了页号 P 和页内地址 W 的组合，地址的高位部分是页号，低位部分是页内地址。</p>
+<p></p>
+<p>此外，页式管理还把内存空间也按页的大小划分为片或页面（page frame），操作系统为进程分配内存时，是以页面为单位的，页面内的地址连续，但不同的页面间不一定连续。</p>
+<h3 id="22-地址变换">2.2 地址变换</h3>
+<p>地址的转换和内存页面的分配使用页表、请求表和存储页面表三种表完成。</p>
+<p>页表存放页号和与之对应的页面号，<strong>每个进程都有一个页表</strong>，对于一个大小为 20K，页长为 1K 的进程而言，只需要存放二十个页表项即可。页表在内存中有一块固定的存储区。</p>
+<p>请求表描述系统内各进程的页表起始地址和长度，用来进行内存分配和地址转换。<strong>整个系统只需要一张请求表</strong>。页表和请求表的一个示例如下</p>
+<p></p>
+<p>存储页面表也是整个系统一张，它指出内存各页面是否已被分配出去，以及未分配页面的总数。它有两种表示方法</p>
+<ol>
+<li>位示图法：在内存划分一块固定的区域，每个单元的比特代表一个页面，页面已分配则对应比特位置1，否则置0；</li>
+<li>空闲页面链：队首页面第一个单元和第二个单元分别放入空闲页面总数和指向下一个空闲页面的指针，其它页面的第一个单元放入指向下一个页面的指针。</li>
+</ol>
+<p>根据页号和页内相对地址变换得到内存物理地址的方法如下。</p>
+<p>以一个例子来说明，设一个3页长的进程具有页号0、1、2，但其对应的页面号为2、3、8。设每个页面长度为1K，指令 <code>LOAD 1，2500</code> 的虚地址为100，地址转换过程为：</p>
+<ol>
+<li>系统将所调度进程的页表始址和页表长度从请求表取出放入控制寄存器；</li>
+<li>根据控制寄存器中的页表始址找到页表所在的位置，并由虚地址 100 得知指令在第 0 页的第 100 单元；</li>
+<li>查页表得知第 0 页与 第 2 个页面对应，因此该指令在内存中的地址为 2048 + 100 = 2148；</li>
+<li>当执行到第 2148 单元的指令，也就是 <code>LOAD 1，2500</code>，需要从有效地址 2500 中取数据放入 1 号寄存器。地址变换机构可以将 2500 转换为页号 2 和页内相对地址 452；</li>
+<li>查页表得知第 2 页和第 8 个页面对应，因此数据在内存中的地址为 1024*8+452 = 8644.</li>
+</ol>
+<p>整个变换的过程可以总结如下图</p>
+<p></p>
+<p>上述地址变换过程全部由硬件地址变换机构自动完成。另外，由于页表位于内存的某个固定区域，而取数据或指令又必须经过查询页表才能得到物理地址，因此取一个数据或指令至少要访问内存两次以上。</p>
+<h3 id="23-页面置换算法">2.3 页面置换算法</h3>
+<p>动态的页面管理使用前面提到的请求调入和预调入的办法，当硬件变换机构发现所要求的页不在内存时，产生缺页中断信号，有中断处理程序做出相应的处理。而如果内存没有空闲的页面还需要选择一定的置换算法淘汰已占据内存的页面。页面置换算法的选择直接影响内存利用率和系统效率。</p>
+<p>页面置换算法的实质是将访问概率低的页面移出内存，常用算法有</p>
+<ul>
+<li><strong>随机淘汰算法</strong>：无法确定哪些页面访问概率较低，则随机选择一个页面淘汰；</li>
+<li><strong>轮转法</strong>：循环换出内存可用区内一个可以被换出的页，无论该页是刚被换进或已换进内存很长时间；</li>
+<li><strong>先入先出</strong>：总是选择在内存驻留时间最长的一页将其淘汰；</li>
+<li><strong>最近最久未使用</strong>：当需要淘汰某一页时，选择离当前时间最近的一段时间内最久没有使用过的页先淘汰。该算法的出发点是：如果某页被访问了，那么它可能马上还要被访问；</li>
+<li><strong>最不经常使用</strong>：最近最久未使用算法实现比较困难，因为要维护每个页面的访问记录，最不经常使用是一种简化，思路是淘汰到当前为止被访问次数最少的那一个，只需要在页表为每一页增加一个访问计数器即可；</li>
+<li><strong>最近没有使用</strong>：也是最近最久未使用的简化，思路是从最近一个时期内未被访问的页中随机选择一页淘汰，只需要在页表中增加一个访问标志即可。</li>
+<li><strong>理想算法</strong>：最理想的算法是淘汰再也不会出现或在离当前最远位置上的页，但这种无法实现。</li>
+</ul>
+<h3 id="24-存储保护">2.4 存储保护</h3>
+<p>页式管理可以为内存提供两种方式的保护。</p>
+<p>地址越界保护可由地址变换机构中的控制寄存器的值—页表长度和所要访问的虚地址进行比较完成；</p>
+<p>存取控制保护通过在页表中增加相应的保护位完成。</p>
+<h2 id="3-段式管理">3. 段式管理</h2>
+<p>分区式和页式的虚存结构都是一维线性的，对程序或数据段的共享不友好，程序链接时 CPU 和 存储空间的开销也比较大，因此提出了<strong>段式管理</strong>。</p>
+<h3 id="31-基本原理">3.1 基本原理</h3>
+<p>段式管理的基本思路是：将程序的地址空间按内容或函数关系划分为若干个段(segment) ，每段有自己的名字。段与段之间没有顺序关系，也不要求连续，每一段的长度都是不固定的。</p>
+<p>常见的逻辑段有四种，如下表</p>
+<table>
+<thead>
+<tr>
+<th>段名称</th>
+<th>段的作用</th>
+<th>段基地址</th>
+<th>偏移地址</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>代码段</td>
+<td>存放程序的指令序列</td>
+<td>CS</td>
+<td>IP</td>
+</tr>
+<tr>
+<td>堆栈段</td>
+<td>确定堆栈所在的主存区域</td>
+<td>SS</td>
+<td>SP</td>
+</tr>
+<tr>
+<td>数据段</td>
+<td>存放当前运行程序所用的数据</td>
+<td>DS</td>
+<td>EA</td>
+</tr>
+<tr>
+<td>附加段</td>
+<td>附加的数据段，也用于保存数据</td>
+<td>ES</td>
+<td>EA</td>
+</tr>
+</tbody>
+</table>
+<p>程序的指令代码必须存放在代码段，否则将无法正常执行。程序利用代码段寄存器 CS获得当前代码段的段基地址，指令指针寄存器IP保存代码段中指令的偏移地址。处理器利用CS:IP取得下一条要执行的指令。</p>
+<p>程序使用的堆栈（临时存放数据的区域）一定在堆栈段。程序利用SS获得当前堆栈段的段基地址，堆栈指针寄存器SP保存堆栈栈顶的偏移地址。处理器利用SS:SP操作堆栈数据。</p>
+<p>一个程序可以使用多个数据段，便于安全有效地访问不同类型的数据。例如，程序的主要数据存放在一个数据段，只读的数据存放在另一个数据段，动态分配的数据安排在第3个数据段。</p>
+<p>下面是一个简单的图示</p>
+<p></p>
+<p>每个段是一个首地址为零的，连续的一维线性空间，根据需要，段长可动态增长。对段式虚地址空间访问包括两个部分：段名（段号）和段内地址。</p>
+<h3 id="32-地址变换">3.2 地址变换</h3>
+<p>段式管理进行地址变换时，需要将段号和段内地址变换为实际物理地址，一般使用一种名为<strong>段表</strong>的数据结构。</p>
+<p>一个考虑了缺段处理和段式访问控制的段表包括：段号、始址（段基址）、长度、存取方式、内外和访问位。其中段号与用户指定的段名对应，段基址是该段在内存的起始地址，长度是该段在外存的实际长度，存取方式用来进行存取保护，内外指该段出现在内存还是外存，访问位用于最近没有使用置换算法。</p>
+<p></p>
+<p>根据上图，过程可以描述如下</p>
+<ol>
+<li>在内存分配一段固定的区域存放段表；</li>
+<li>进程开始执行时，管理程序首先将该进程的段表始址放入段表地址寄存器，通过访问该寄存器开始访问段表；</li>
+<li>由虚地址中的段号 1 查段表，得知该段在内存，然后判断存取控制方式是否匹配；</li>
+<li>从段表中查到段基址位 3400，然后和段内地址 120 相加，得到实际内存地址 3520；</li>
+</ol>
+<p>如果该段不在内存，就会产生缺段中断，将 CPU 交给内存分配程序。内存分配程序检查空闲区链，确定是否有足够长的空闲区来装入所需的段，如果不够，检查段表中的访问位，利用最近没有使用置换算法淘汰访问概率低的段，然后将需要的段调入。</p>
+<p>和页式管理一样，由于段表的存在，也需要两次以上内存访问。</p>
+<h3 id="33-段的共享与保护">3.3 段的共享与保护</h3>
+<p>段式管理可以方便的实现内存信息的共享与保护，因为段是按逻辑意义划分的，可以根据段名访问。</p>
+<p>很多程序段和数据是被多个进程共享的，如果每个进程都保留它们的一个副本，就会造成极大的浪费，最好的办法就是只保留一个副本，供多个进程使用。这种共享在段式管理中可以很容易的使用相同的段名实现，在段表中填入已存在内存中的段的起始地址，并赋给适当的读写控制权，就可以共享该段的内容，而不是创建一个新的副本。注意，段式管理中有一部分段是共享的。</p>
+<p>但是，共享段会面临进程同时执行该段的情况和置换到外存的需求，这两种情况通过设置相应的共享位实现。</p>
+<p>段式管理对内存的保护和页式相同，也是使用地址越界保护法和存取方式控制保护法。</p>
+<h2 id="4-段页式">4. 段页式</h2>
+<p>段页式是将页式和段式管理相结合，充分利用它们的优点，不过，系统开销也更大。</p>
+<h3 id="41-基本原理">4.1 基本原理</h3>
+<p>段页式使用和段式相同的分段方式，但是，对每个段内的程序和数据按一定的大小划分成页。因此，段页式管理进程的虚地址由三部分组成：段号 s、页号 p 和页内相对地址 d。</p>
+<p>段页式中，程序员可见的只有段号 s 和段内相对地址 w，p 和 d 是地址变换结构把 w 的高几位解释成页号 p，把剩下的低位解释成页内地址 d 而得到的。</p>
+<p>由于虚存的最小单位是页而不是段，因此，内存的划分是以页为单位的。</p>
+<h3 id="42-地址变换">4.2 地址变换</h3>
+<p>段页式同时使用段表和页表，不过，页表不再归属某个进程，而是属于某个段。地址变换时，首先根据段表地址寄存器得到段表始址去访问段表，取出相应段的页表地址；然后访问页表得到所要访问的物理地址，最后才能访问真正的物理单元。因此，段页式存取内存中的指令和数据需要访问3次以上内存。</p>
+<p></p>
+<h2 id="5-局部性原理和抖动">5. 局部性原理和抖动</h2>
+<p>程序的局部性原理：在一定时间内，进程集中在一组子程序或循环中执行，导致所有的存储器访问局限于进程地址空间的一个固定子集</p>
+<ul>
+<li>时间局部性：一条指令的一次执行和下次执行以及一个数据的一次访问和下次访问都集中在一个较短的时间内</li>
+<li>空间局部性：在一段时间内，程序和数据的访问都集中在一个较小区域内</li>
+</ul>
+<p>抖动：置换算法选择不当，刚被调出内存的段或页马上又被调入内存，调入内存不久又被调出，如此反复。这使得整个系统的调度非常频繁，以致大部分时间都花费在内外存之间的来回调入调出上，这种现象被称为抖动。</p>
+<h2 id="6-总结">6. 总结</h2>
+<p></p>]]></description></item><item><title>操作系统3-进程管理</title><link>https://shuzang.github.io/operate-system-3-process-management/</link><pubDate>Mon, 10 Aug 2020 08:06:00 +0800</pubDate><author>作者</author><guid>https://shuzang.github.io/operate-system-3-process-management/</guid><description><![CDATA[<p>本文介绍操作系统最重要的一部分功能之一：进程管理，从进程的概念到进程的通信，再到死锁问题，最后结束进程的调度。</p>
+<h2 id="1-进程与线程">1. 进程与线程</h2>
+<h3 id="11-进程">1.1 进程</h3>
+<p>进程一个最简单的理解就是正在运行的程序，但与静态的程序只是简单的一段代码不同，进程在运行过程中会访问和影响系统的许多不同部分，这些部分包括</p>
+<ol>
+<li>内存：进程对应的代码，它要读取和写入的数据都在内存中</li>
+<li>寄存器：进程在执行指令时需要读取和更新寄存器</li>
+<li>CPU：指令的执行需要 CPU 完成</li>
+<li>其它：I/O 设备、文件句柄等</li>
+</ol>
+<p>所有的这些统一构成了进程这个概念。我们可以很容易的理解，进程作为一个动态的概念，就需要完成创建、销毁、调度等许多工作，这些工作都由操作系统完成。操作系统完成这些工作依靠的是一个名为进程控制块（PCB）的结构，它是进程静态描述的一部分。</p>
+<p><strong>进程的静态描述</strong>分为三部分：程序、数据集、进程控制块（PCB）。</p>
+<p><strong>PCB</strong> 是进程动态特征的集中反映，也是系统感知进程的唯一途径，主要包括四部分：</p>
+<ul>
+<li>进程描述信息：进程名、进程标识符、用户名、用户标识符，进程间的关系等</li>
+<li>进程控制信息：进程当前状态，进程优先级，程序开始地址，各种计时信息，进程通信信息等</li>
+<li>资源管理信息：内存管理、输入输出设备和文件系统的相关信息</li>
+<li>CPU 现场保护结构</li>
+</ul>
+<p>由于 PCB 包含的信息较多，其本身也不是常驻内存的，常驻内存的只有进程描述信息、控制信息和 CPU 现场保护等。</p>
+<p>一开始的时候代码和数据位于外存，但进程创建时，操作系统就会把它们读入内存（尽管以前是一次性读入，但现在都是需要的时候才读入），然后为程序的运行时栈分配一些内存，用于存放局部变量、函数参数和返回地址，再为程序的堆分配一些内存，用于显式的内存申请。最后执行一些其它的初始化任务，比如与输入输出相关的，这些工作都完成后，操作系统开始启动程序并从入口处运行，将 CPU 的控制权移交新创建的进程，然后一条一条的执行对应的指令。</p>
+<p>进程是资源分配的一个基本单位，但不是处理器调度的基本单位，调度的基本单位是线程。</p>
+<h3 id="12-线程">1.2 线程</h3>
+<p>每个进程的创建都要涉及大量的内存分配和初始化任务，进程之间的切换需要保持寄存器、堆栈、PCB等相关信息，当进程数量较多时，这部分开销会明显增大。为了减少进程创建和切换的开销，提高执行效率和节省资源，人们在操作系统中引入了「线程」的概念。</p>
+<p>线程是进程的一部分，这一句话理解如下：</p>
+<ol>
+<li>
+<p>一个进程可以拥有一个或多个线程</p>
+<p></p>
+</li>
+<li>
+<p>线程自己不拥有资源，而是共享进程的地址空间和资源，它仅拥有一些控制信息、栈和寄存器状态信息，如下图</p>
+<p></p>
+</li>
+</ol>
+<p>线程是计算机调度的基本单位。与进程相似的是，操作系统通过线程控制块（TCB）来管理线程。</p>
+<h3 id="13-比较">1.3 比较</h3>
+<ul>
+<li><strong>拥有资源</strong>：进程是资源分配的基本单位，线程不拥有资源，但可以访问其所隶属的进程的资源（比如进程的代码段、数据段、打开的文件、I/O设备等）</li>
+<li><strong>调度</strong>：线程是处理器调度的基本单位。同一进程中，线程的切换不会引起进程切换，但从一个进程中的线程切换到另一个进程中的线程时，会引起进程切换</li>
+<li><strong>系统开销</strong>：进程创建、撤销、切换的开销显著大于线程。</li>
+<li><strong>通信</strong>：由于同进程内线程间共享进程的代码、数据、内存和文件资源，因此可以通过共享内存通信；而进程间的通信需要内核提供保护和通信所需机制</li>
+<li><strong>并发性</strong>：进程间可并发执行，同一进程的线程间也可以并发执行</li>
+</ul>
+<h2 id="2-进程状态及其转换">2. 进程状态及其转换</h2>
+<p>在进程的生命周期内，至少有5种基本状态：初始状态、执行状态、等待状态、就绪状态和终止状态。如下图</p>
+<p></p>
+<p>进程创建方式有两种：由系统根据任务统一创建和由父进程创建，创建的进程随后进入就绪态。</p>
+<p>处于就绪状态的进程已经得到除 CPU 之外的所有其它资源，只要得到调度，就可以开始执行。</p>
+<p>处于执行状态的进程由于时间片到期会转为就绪状态，继续等待调度，但如果产生了事件等待（比如键盘输入数据、其它进程产生的结果等），就会进入等待状态（也叫做阻塞状态）。</p>
+<p>处于等待状态的进程等到自己需要的资源后，由系统或事件发生进程唤醒，进入就绪状态。</p>
+<p>处于执行状态的进程可能由于如下几种原因终止：已完成所有的要求而正常终止、由于某种错误非正常终止、祖先进程要求终止。</p>
+<p>终止状态完成如资源回收等后续处理工作。</p>
+<p>注意：只有就绪态和运行态可以相互转换，其它都是单向的。</p>
+<p>进程的状态信息记录在 PCB 中，另外，可以很清楚的看到，进程间的切换是一个必要的过程，进程从执行态离开意味着另一个进程开始了执行，而它本身可能并没有完成的所有的任务，这时候就需要保持进程离开前的执行状态。这就涉及到了进程上下文的概念。</p>
+<p>进程的上下文是一个抽象的概念，指的是每个进程执行过的、执行时的以及待执行的指令和数据，在寄存器和堆栈中的内容。我们将已执行过的进程指令和数据在相关寄存器与堆栈中的内容称为上文，正在执行的指令和数据在寄存器与堆栈中的内容称为正文，待执行的指令和数据在寄存器与堆栈中的内容称为下文。</p>
+<p>当进程不发生调度时，上下文的切换是由线程产生的，仅包括指令寄存器、程序计数器、栈指针等，当发生进程间调度时，上下文的切换就会包括代码段、数据、PCB等。所以进程上下文主要分为三种</p>
+<ol>
+<li>用户级上下文：代码、数据、栈</li>
+<li>寄存器级上下文：PC、PSW的值、栈指针、通用寄存器的值</li>
+<li>系统级上下文：PCB 结构</li>
+</ol>
+<p>当进程从执行态换出时，其上下文被保持到内存中，当进程重新被调度时，就可以从内存读取这些值进行恢复。</p>
+<h2 id="3-进程调度">3. 进程调度</h2>
+<p>进程调度的主要任务是按照某种策略和方法选取一个处于就绪状态的进程占用处理机。</p>
+<h3 id="31-先来先服务">3.1 先来先服务</h3>
+<p>先来先服务（First Come First Serve, FCFS）的含义很容易理解，就像它的名字，先转换成就绪状态的进程在就绪队列中占据更靠前的位置，也先被调度。</p>
+<p>但是，执行时间短的进程如果排在执行时间长的进程之后，可能会等待很长时间，这是不公平的。</p>
+<p>FCFS 是一种非抢占式的调度。</p>
+<h3 id="32-最短任务优先">3.2 最短任务优先</h3>
+<p>可以用一种很简单的方式解决 FCFS 中的不公平现象，那就是让运行时间短的任务排在就绪队列的前面，先被调度。这叫做最短任务优先（Short Job First，SJF）。</p>
+<p>这种方法的缺点是，执行时间长的进程可能永远得不到调度。</p>
+<h3 id="33-最高响应比优先">3.3 最高响应比优先</h3>
+<p>最高响应比优先（Highest Response-ratio Next, HRN）是对 FCFS 和 SJF 的平衡，它同时考虑每个进程的等待时间长短和执行时间长短，从中选出响应比最高的进程投入执行。</p>
+<p>响应比 R 定义为 $R = (W+T)/T = 1 + W/T$，其中 $T$ 是执行时间，$W$ 是等待时间。</p>
+<p>这样，即使是长作业，随着等待时间的增加，优先级也会增加，从而得到调度机会。</p>
+<h3 id="34-轮转法">3.4 轮转法</h3>
+<p>前面三种算法的基本思路都是进程被调度后一直执行到任务完成，但我们通常还要考虑响应时间的问题，即要让所有执行的进程的响应时间都尽可能的良好。</p>
+<p>轮转法（Round robin）用来解决响应时间问题，其基本思路是将 CPU 的处理时间划分为固定大小的时间片，如果一个进程在被调度选中后用完了自己的时间片还没有完成任务，就转为就绪状态并添加到就绪队列的末尾，同时，调度程序调度就绪队列的第一个进程。</p>
+<p>轮转法的效率和时间片的长短有很大关系，时间片太短，频繁的上下文切换会影响系统性能，时间片过长，响应时间问题就不会得到改善。</p>
+<p>轮转法可以看作一种基于CPU时间进行抢占的算法。</p>
+<h3 id="35-优先级法">3.5 优先级法</h3>
+<p>优先级算法是指系统或用户按某种原则为进程定义优先级，然后根据优先级决定进程的调度优先权。优先级的选取有两种类型</p>
+<ol>
+<li>静态法：即根据进程的静态特征，在进程开始前就确定优先级，在进程执行时优先级不改变。有以下几种方法
+<ul>
+<li>由用户根据紧急情况给与优先级</li>
+<li>由系统或管理员根据进程类型给与优先级，比如，可以分为 I/O 繁忙的、CPU繁忙的、两种均衡的等</li>
+<li>系统根据资源需求的情况确定优先级，比如，根据预估的处理时间、内存大小等确定</li>
+</ul>
+</li>
+<li>动态法：将进程的静态和动态特征结合起来确定优先级，在进程执行过程中优先级会不断变化，由以下几种办法
+<ul>
+<li>根据进程占有 CPU 时间的长短来确定</li>
+<li>根据就绪进程等待 CPU 时间的长短来确定</li>
+</ul>
+</li>
+</ol>
+<p>注意，动态法需要不断计算进程的优先级，所以具有一定的开销。</p>
+<h3 id="36-多级反馈队列">3.6 多级反馈队列</h3>
+<p>前后的一些算法，如 FCFS、SJF 都需要知道进程将会运行多久，但实际上操作系统无法知道这一点。多级反馈队列（Multi-level Feedback Queue, MLFQ）采用的是一种根据历史数据缺点优先级的办法。</p>
+<p>MLFQ 有多个独立的队列，每个队列有不同的优先级。任何时刻，一个进程只能存在于一个队列中，MLFQ 总是执行较高优先级队列中的进程。而且，同一队列的不同进程优先级是相同的。</p>
+<p>进程可以简单的分两种：运行时间很短、频繁放弃 CPU 的交互型工作和需要很多 CPU 时间、响应时间不重要的长时间计算密集型工作。我们需要根据一些规则来调整它们的优先级</p>
+<ol>
+<li>新加入的进程放在最上层的队列（具有最高的优先级）</li>
+<li>进程用完一个时间片后，优先级降低一级（移入下一个队列）</li>
+<li>如果进程在时间片未用完之前主动释放 CPU，优先级保持不变</li>
+</ol>
+<p>这种设计对 长作业比较公平，又能给短作业和交互型工作很好的响应时间，但是一些进程可能被动或主动的经常提前释放 CPU 从而一直占据较高的优先级，解决办法是</p>
+<ol start="4">
+<li>经过一段时间，就将系统中的所有工作重新假如最高优先级</li>
+<li>一旦进程用完了其在某一层的时间配额，就降低其优先级</li>
+</ol>
+<p></p>
+<p>多级反馈队列是一种较好的调度算法，对各种情况都有比较好的性能，也是大多数系统目前使用的调度算法。</p>
+<h2 id="4-进程的同步与互斥">4. 进程的同步与互斥</h2>
+<p>由于计算机资源的有限，进程之间存在资源竞争和共享的情况。</p>
+<p>如果多个不同进程访问同一段数据，那么把访问公共数据的这段程序叫做<strong>临界区</strong>。</p>
+<p><strong>互斥</strong>就是多个进程在同一时刻只有一个能进入临界区，<strong>同步</strong>就是并发执行的进程的执行条件与对方的执行结果有关，从而产生的执行的先后顺序。</p>
+<h3 id="41-互斥">4.1 互斥</h3>
+<p>互斥的实现办法一般是对临界区加锁，从而保证同一时间只有一个进程处于临界区。</p>
+<p>然而，加锁法需要进程自己判断是否存在锁，这样可能出现不公平。举个例子说明，加入某个学生想使用某个人人都可以借用，且不规定使用时间的教室，他必须首先申请获得使用该教室的权利，然后再到教室看看教室是不是被锁上了，如果被锁上，他只好下次再来观察，这种观察持续到它进门为止。然而，两次观察期间，可能被其它获得申请的学生抢占，可能永远得不到使用权。</p>
+<p>一种方法是设置一个管理员，记录所有获得申请在等待的学生名字，一旦教室空闲，就通知学生，这样就减少了学生多次检查的时间，也避免了可能出现饥饿情况。操作系统中，这个管理员就是<strong>信号量（Semaphore）</strong>。</p>
+<p>在操作系统中，信号量 sem 是一个整数，在 sem 大于等于零的时候代表可供并发进程使用的资源实体数，在 sem 小于零的时候代表正在等待使用临界区的进程数。当信号量用于互斥时，应声明其所代表的含义，并设置一个大于零的初值。</p>
+<p>信号量的数值仅能通过 P、V 原语改变，这两个原语操作的过程如下</p>
+<ul>
+<li>P 原语
+<ol>
+<li>sem 减 1</li>
+<li>若 sem 减 1 后仍大于或等于零，则 P 原语返回，该进程继续执行</li>
+<li>若 sem 减 1 后小于零，则该进程被阻塞后进入与该信号相对应的队列中，然后转进程调度</li>
+</ol>
+</li>
+<li>V 原语
+<ol>
+<li>sem 加 1</li>
+<li>若相加结果大于零，V 原语停止执行，该进程返回调用除，继续执行</li>
+<li>若相加结果小于或等于零，则从该信号的等待队列中唤醒一个等待进程，然后再返回原进程继续执行或转进程调度</li>
+</ol>
+</li>
+</ul>
+<p>可以看到，P、V 原语使用队列避免了加锁法不断的尝试操作，但要注意的是，P 原语的操作持续到进程从等待队列中被取出执行后才完成。最后，P、V 使用原语实现，是因为 P 和 V 的操作都是一系列步骤，如果中间被打断，比如减 1 后为调入队列，就会导致不一致性。</p>
+<p>原语特性的实现可以使用加锁法。以 P 原语为例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="n">begin</span>
+    <span class="err">封锁中断</span>
+    <span class="n">lock</span><span class="p">(</span><span class="n">lockbit</span><span class="p">)</span>
+    <span class="n">val</span><span class="p">[</span><span class="n">sem</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span><span class="p">[</span><span class="n">sem</span><span class="p">]</span><span class="o">-</span><span class="mi">1</span>
+    <span class="k">if</span> <span class="n">val</span><span class="p">[</span><span class="n">sem</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">0</span>
+        <span class="err">保护当前进程</span> <span class="n">CPU</span> <span class="err">现场</span>
+        <span class="err">当前进程状态置为“等待”</span>
+        <span class="err">将当前进程插入信号</span> <span class="n">sem</span> <span class="err">等待队列</span>
+        <span class="err">转进程调度</span>
+    <span class="n">fi</span>
+    <span class="n">unlock</span><span class="p">(</span><span class="n">lockbit</span><span class="p">)</span>
+    <span class="err">开放中断</span>
+<span class="n">end</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>假设信号量的取值范围为 -1, 0, 1，实现两个并发进程 $P_A$ 和 $P_B$ 互斥的描述如下：信号量初值设为 1 表示没有并发进程使用该临界区，当一个进程想要进入临界区时，执行 P 原语操作将信号量减 1，此时信号量为 0，所以进程进入临界区开始执行。在该进程未执行 V 原语操作释放资源前，如果另一个进程想进入临界区，同样限制性 P 原语操作，将信号量减1，此时等于 -1，因此被阻塞进入等待队列。当第一个进程执行完毕，调用 V 原语操作将信号量加1，信号量的值变为0，第二个进程就被唤醒进入就绪队列，然后经由调度开始执行。第二个进程执行完 V 原语操作后，如果没有其它进程申请进入临界区，则信号量恢复到初始值。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="k">typedef</span> <span class="kt">int</span> <span class="n">semaphore</span><span class="p">;</span>
+<span class="n">semaphore</span> <span class="n">sem</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">PA</span><span class="p">()</span> <span class="p">{</span>
+   <span class="n">P</span><span class="p">(</span><span class="n">sem</span><span class="p">);</span>
+   <span class="c1">// 临界区
+</span><span class="c1"></span>   <span class="n">V</span><span class="p">(</span><span class="n">sem</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">PB</span><span class="p">()</span> <span class="p">{</span>
+   <span class="n">P</span><span class="p">(</span><span class="n">sem</span><span class="p">);</span>
+   <span class="c1">// 临界区
+</span><span class="c1"></span>   <span class="n">V</span><span class="p">(</span><span class="n">sem</span><span class="p">);</span>   
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="42-同步">4.2 同步</h3>
+<p>互斥是进程间对公共资源的竞争，同步则是进程间的另一种制约关系，比如一个进程的输出结果是另一个进程的执行条件，而且这种情况在操作系统中是普遍存在的。</p>
+<p>一种解决办法是相互制约的进程互相给对方进程发送执行条件已具备的信号，这个信号被称为消息或事件，也可以当作信号量看待。但这里的信号量与互斥使用的信号量不同的是，它仅与相互制约的两个进程有关，而不是和所有并发执行的进程有关。</p>
+<p>假设计算进程 $P_c$ 和 打印进程 $P_p$ 合作完成计算和打印任务，它们使用一个缓冲区队列来传递数据，数据的发送和接收满足如下条件</p>
+<ol>
+<li>$P_c$ 至少送一块数据进入缓冲区前，$P_p$ 不可能从缓冲区取出数据</li>
+<li>$P_c$ 往缓冲队列送数据时，至少有一个缓冲区是空的</li>
+<li>由 $P_c$ 发送的数据块在缓冲区队列中按 FIFO 方式排列</li>
+</ol>
+<p>我们设信号量 Buffull 表示缓冲队列满，初始值为 n（缓冲队列的缓冲区长度）；设信号量 Bufempty 表示缓冲队列空，初始值为 0。那么进程同步的过程可以描述如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#define N 100
+</span><span class="cp"></span><span class="k">typedef</span> <span class="kt">int</span> <span class="n">semaphore</span><span class="p">;</span>
+<span class="n">semaphore</span> <span class="n">Buffull</span> <span class="o">=</span> <span class="n">N</span><span class="p">;</span>
+<span class="n">semaphore</span> <span class="n">Bufempty</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">PC</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">P</span><span class="p">(</span><span class="n">Bufempty</span><span class="p">);</span>
+    <span class="err">按</span> <span class="n">FIFO</span> <span class="err">方式选择一个空缓冲区</span>
+    <span class="err">数据送入缓冲区</span>
+    <span class="n">V</span><span class="p">(</span><span class="n">Buffull</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">PP</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">P</span><span class="p">(</span><span class="n">Buffull</span><span class="p">);</span>
+    <span class="err">按</span> <span class="n">FIFO</span> <span class="err">方式选择一个装满数据的缓冲区</span>
+    <span class="err">数据取出缓冲区</span>
+    <span class="n">V</span><span class="p">(</span><span class="n">Bufempty</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="43-生产者-消费者问题">4.3 生产者-消费者问题</h3>
+<p>将并发进程的互斥与同步问题一般化，就可以得到一个抽象的一般模型，即生产者-消费者问题（producer-consumer problems）。</p>
+<p>计算机系统中，每个进程都申请使用和释放各种不同类型的资源，这些资源可以是外设、内存及缓冲区等硬件资源，也可以是临界区、数据和例程等软件资源。我们把系统中使用资源的进程称为该资源的消费者，而把释放资源的进程称为资源的生产者。</p>
+<p>在计算进程 $P_c$ 和打印进程 $P_p$ 共用缓冲区的例子中，计算进程把数据送入缓冲区，是生产者，打印进程从缓冲区取数据打印输出，是消费者。4.2 节已经给出了同步的例子，在此基础上，我们假设有界缓冲区是临界资源，那么生产者进程和消费者进程就必须互斥执行，因此我们添加一个互斥信号量 mutex。将整个过程描述如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#define N 100
+</span><span class="cp"></span><span class="k">typedef</span> <span class="kt">int</span> <span class="n">semaphore</span><span class="p">;</span>
+<span class="n">semaphore</span> <span class="n">Buffull</span> <span class="o">=</span> <span class="n">N</span><span class="p">;</span>
+<span class="n">semaphore</span> <span class="n">Bufempty</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">semaphore</span> <span class="n">mutex</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">PC</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">P</span><span class="p">(</span><span class="n">Bufempty</span><span class="p">);</span>
+    <span class="n">P</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span>
+    <span class="err">按</span> <span class="n">FIFO</span> <span class="err">方式选择一个空缓冲区</span>
+    <span class="err">数据送入缓冲区</span>
+    <span class="n">V</span><span class="p">(</span><span class="n">Buffull</span><span class="p">);</span>
+    <span class="n">V</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">PP</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">P</span><span class="p">(</span><span class="n">Buffull</span><span class="p">);</span>
+    <span class="n">P</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span>
+    <span class="err">按</span> <span class="n">FIFO</span> <span class="err">方式选择一个装满数据的缓冲区</span>
+    <span class="err">数据取出缓冲区</span>
+    <span class="n">V</span><span class="p">(</span><span class="n">Bufempty</span><span class="p">);</span>
+    <span class="n">V</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>注：多个信号量的 P、V 原语操作次序很重要，次序混乱可能造成死锁。</p>
+<h2 id="5-进程通信">5. 进程通信</h2>
+<p>进程间通信指的是进程间控制信息或大批量数据的传送，控制信息一般只传送一个或几个字节，因此也叫做低级通信，数据传送则需要进行大量数据交换，叫做高级通信。</p>
+<h3 id="51-信号量">5.1 信号量</h3>
+<p>进程间互斥与同步使用的信号量是通信方式的一种，而且是低级通信。</p>
+<h3 id="52-共享存储区">5.2 共享存储区</h3>
+<p>系统在存储中划出一块共享存储区，各进程间可通过对共享存储区中的数据进行读或写来实现通信</p>
+<p>进程在通信之前应向系统申请共享存储区中的一个分区，并指定该分区的关键字，若系统已经给其他进程分配了这样的分区，则将该分区的描述符返回给申请者。接着，申请者把获得的共享存储区连接到本进程上，此后就像读写普通存储器一样。</p>
+<p>共享存储区不要求数据移动，因此通信比较快。</p>
+<p>共享存储区是一种高级通信。</p>
+<h3 id="53-消息缓冲">5.3 消息缓冲</h3>
+<p>系统设置一组缓冲区，其中每个缓冲区可以存放一个消息。</p>
+<p>当发送进程需要发送消息时，执行 send 系统调用，操作系统为发送进程分配一个空缓冲区，并将所发送的消息从发送进程 copy 到缓冲区中，然后将该载有消息的缓冲区连接到接收进程的消息链链尾，如此就完成了发送过程。</p>
+<p>在以后某个时刻，当接收进程执行到receive接收原语时，由操作系统将载有消息的缓冲区从消息链中取出，并把消息内容copy到接收进程空间，之后收回缓冲区，如此就完成了消息的接收。</p>
+<p>缓冲区应当是一个公共资源，因此，应当设立信号量来实现进程间的互斥操作。</p>
+<h3 id="54-管道">5.4 管道</h3>
+<p>管道（pipe）是一条在进程间以字节流方式传送消息的通信通道。</p>
+<p>逻辑上，我们可以将管道看作一个文件；物理上，管道利用文件系统的高速缓冲区来实现。</p>
+<p>使用管道前必须建立管道，然后由发送进程调用文件系统的系统调用 write(fd[1], buf, size) 将 buf 种长度为 size 的消息送入管道入口 fd[1]，由接收进程使用系统调用 read(fd[0], buf, size) 从管道入口 fd[0] 读出 size 个字符到 buf 中。</p>
+<p>我们可以举一个父进程和子进程利用管道通信的例子</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-c" data-lang="c"><span class="cp">#include</span><span class="cpf">&lt;stdio.h&gt;</span><span class="cp">
+</span><span class="cp"></span><span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">,</span><span class="n">fd</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+    <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">30</span><span class="p">],</span><span class="n">s</span><span class="p">[</span><span class="mi">30</span><span class="p">];</span>
+    <span class="n">pipe</span><span class="p">(</span><span class="n">fd</span><span class="p">);</span> <span class="c1">// 创建管道
+</span><span class="c1"></span>    <span class="k">while</span><span class="p">((</span><span class="n">x</span><span class="o">=</span><span class="n">fork</span><span class="p">())</span><span class="o">==-</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// 创建子进程失败则循环
+</span><span class="c1"></span>    <span class="k">if</span><span class="p">(</span><span class="n">x</span><span class="o">==</span><span class="mi">0</span><span class="p">){</span>
+        <span class="n">sprintf</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span><span class="s">&#34;this is an example</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">);</span>
+        <span class="n">write</span><span class="p">(</span><span class="n">fd</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">buf</span><span class="p">,</span><span class="mi">30</span><span class="p">);</span> <span class="c1">// 把 buf 中的字符写入管道
+</span><span class="c1"></span>        <span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="p">}</span><span class="k">else</span><span class="p">{</span> <span class="c1">// 父进程返回
+</span><span class="c1"></span>        <span class="n">wait</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+        <span class="n">read</span><span class="p">(</span><span class="n">fd</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">s</span><span class="p">,</span><span class="mi">30</span><span class="p">);</span> <span class="c1">// 父进程读管道中的字符
+</span><span class="c1"></span>        <span class="n">printf</span><span class="p">(</span><span class="s">&#34;%s&#34;</span><span class="p">,</span><span class="n">s</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>管道按 FIFO 方式传送消息，而且只能是单向的。</p>
+<p>上面描述的管道叫做<strong>无名管道</strong>，只能用于父子进程之间或父进程安排的各个子进程之间，还有一种叫做<strong>命名管道</strong>，用于 Server-Client 模式的通信。</p>
+<h2 id="6-死锁">6. 死锁</h2>
+<p>死锁是指各并发进程互相等待对方所拥有的资源，且这些并发进程在得到对方的资源之前不会释放自己所拥有的资源，从而造成大家都想得到但都得不到资源的情况。</p>
+<p>死锁的起因是并发进程的资源竞争，产生死锁的根本原因是系统提供的资源个数少于并发进程所要求的该类资源数。</p>
+<p>解除死锁的方法一般分为预防、避免、检测和恢复三种</p>
+<ol>
+<li>预防：预防是采用某种策略，限制并发进程对资源的请求，从而使得死锁产生的条件在任何时刻都不满足；</li>
+<li>避免：避免是指系统在分配资源时，根据资源的使用情况提前做出预测，从而避免死锁的发生；</li>
+<li>检测和恢复：设置专门的机制，在死锁发生时检测发生的位置和原因，然后通过外力破坏死锁条件，解除死锁的方式。</li>
+</ol>
+<p>一般来说，通过预防和避免的手段解除死锁比较困难，而且需要较大的系统开销，实际通常使用检测与恢复的方法。</p>]]></description></item><item><title>操作系统2-用户接口</title><link>https://shuzang.github.io/operate-system-2-user-interface/</link><pubDate>Sun, 09 Aug 2020 17:16:00 +0800</pubDate><author>作者</author><guid>https://shuzang.github.io/operate-system-2-user-interface/</guid><description><![CDATA[<p>本文介绍操作系统的一个重要功能：提供用户接口。</p>
+<p><strong>作业</strong>是批处理系统的一个概念，指的是从输入开始到输出结束计算机所做的关于该任务的所有工作，作业由作业步组成，作业步是一个作业的处理过程中计算机所做的相对独立的工作。目前的系统中，可以使用批处理文件或 shell 程序的方式控制产生并控制作业的执行。</p>
+<p>计算机系统有<strong>三种用户</strong>：普通用户使用系统，管理员用户管理计算机，程序开发人员使用系统提供的功能开发新的应用。</p>
+<p>操作系统为用户提供<strong>两种接口</strong>。一个是命令接口，用户使用它们控制和组织作业的执行或管理计算机系统；另一个是系统调用，编程人员使用它们请求操作系统提供服务。</p>
+<p>用户与系统主要有<strong>两种交互方式</strong>。脱机方式指实现利用批处理文件等对作业执行顺序和出错处理方式等进行说明，然后一次性执行，执行过程用户无法干涉，对 windows 就是 bat 文件或 powershell 脚本，对 Linux 就是 shell 文件；联机方式是指用户通过键盘等输入命令，交互式地控制操作系统，windows 使用 cmd 或 powershell，linux 使用 bash。</p>
+<p><strong>图形界面</strong>并不是一种新的交互方式，其实质是将一系列鼠标和键盘操作转换为各种操作系统命令，和直接执行各种命令并无区别，只是对用户更友好。</p>
+<p><strong>系统调用</strong>是操作系统提供给编程人员的唯一接口，编程人员通过系统调用使用操作系统内核所提供的各种功能。一般来说，系统调用在核心态下执行，用户程序在用户态下执行，可以通过下图简单理解</p>
+<p></p>
+<p>以前，操作系统的功能全部位于内核中，是一个整体，称为<strong>大内核</strong>。但由于操作系统不断复杂，逐渐将一部分操作系统功能移出内核，从而降低内核的复杂性。移出的部分根据分层的原则划分成若干服务，相互独立，这就是微内核结构。在微内核结构下，操作系统被划分成小的、定义良好的模块，只有微内核这一个模块运行在内核态，其余模块运行在用户态。</p>]]></description></item><item><title>操作系统1-概述</title><link>https://shuzang.github.io/operate-system-1-overview/</link><pubDate>Sun, 09 Aug 2020 10:27:00 +0800</pubDate><author>作者</author><guid>https://shuzang.github.io/operate-system-1-overview/</guid><description><![CDATA[<p>本文介绍操作系统的概念、历史、分类、功能及理解这些功能的必备基础知识。</p>
+<h2 id="1-概念">1. 概念</h2>
+<p>计算机是硬件与软件的统一，没有任何软件的计算机称为裸机，在裸机上运行的是操作系统，在操作系统上运行的是各种应用软件。理解操作系统只需要理解两件事</p>
+<ol>
+<li>操作系统用于向用户提供服务，构建一个用户和计算机之间的交互环境；</li>
+<li>操作系统可以合理的组织计算机工作流程，管理和分配计算机系统软硬件资源；</li>
+</ol>
+<p>这两点一个从用户的角度看，一个从管理员的角度看，但操作系统的所有功能都与此息息相关，后面会意识到。</p>
+<h2 id="2-历史与分类">2. 历史与分类</h2>
+<p>随着计算机的发展，操作系统也经历了一个发展过程：手工操作（无操作系统）、批处理、执行系统、多道程序系统、分时系统、实时系统、通用操作系统、网络操作系统和分布式操作系统。</p>
+<p>从手工操作到多道程序系统的演进都是由于对 CPU 使用效率提高的追求，从分时系统开始，操作系统开始步入了应对不同使用场景而发展的时代，比如，分时系统是为了在保证 CPU 利用率的同时方便用户的使用，实时系统是为了保证计算机的快速处理和响应，通用操作系统则是为了减少开发成本，适用于大多数情况。</p>
+<p>网络操作系统和分布式操作系统都是随着大规模集成电路的发展而出现的。前者的目的是将物理上分散的多个计算机系统联合起来，实现信息交互、资源共享、互操作等功能，但在互联网普及后，以及不再具有单独的网络操作系统分类，理论上，我们使用的可以上网的计算机都可以称作网络操作系统。后者指的是对网络中计算机进行统一管理的网络管理系统。</p>
+<h2 id="3-功能">3. 功能</h2>
+<p>根据我们的理解，操作系统的职能就是管理和控制计算机的软硬件资源，合理组织计算机工作流程，并向用户提供交互接口。而计算机的硬件资源注意包括处理机、存储器、输入输出设备，软件和信息往往以文件形式存储在存储器中，所以操作系统的功能主要包括</p>
+<ol>
+<li>处理机管理</li>
+<li>存储管理</li>
+<li>设备管理</li>
+<li>文件管理</li>
+<li>用户接口</li>
+</ol>
+<p>注意，处理机是计算机存储程序和数据，并按步骤执行程序所涉及的各部分硬件的总和，包括CPU、主存储器、输入输出接口等，不是单纯的CPU，不过，在介绍处理机管理时，通常介绍的都是进程、线程及他们的调度。所以我们之后直接将处理机管理称为进程管理和调度，不再用处理机管理这个名词。</p>
+<h2 id="4-基础知识">4. 基础知识</h2>
+<p>这些基础知识是之后理解操作系统五大功能的前提。</p>
+<h3 id="41-计算机基本硬件">4.1 计算机基本硬件</h3>
+<p>构建计算机的基本元素包括：处理器、存储器、输入输出设备与总线、外部设备，如下图</p>
+<p></p>
+<p>处理器控制和执行计算机的指令操作，存储器存储数据和程序，输入输出控制器与缓冲器用于控制和暂时存储外部设备和计算机内存之间交换的数据和程序，总线连接各种设备。</p>
+<h3 id="42-寄存器">4.2 寄存器</h3>
+<p>寄存器在操作系统的运行过程中非常重要，它们可分为用户可编程寄存器和控制与状态寄存器两类。</p>
+<p><strong>用户可编程寄存器</strong>又可分为：</p>
+<ol>
+<li>数据寄存器：一般用于临时存储计算过程中涉及的数据；</li>
+<li>地址寄存器：存放内存中某个数据或指令的地址，或者存放某段数据或指令的入口地址，以及用于地址计算，下面几种都属于地址寄存器
+<ul>
+<li>地址标识位寄存器</li>
+<li>内存管理用各种始地址寄存器</li>
+<li>堆栈指针</li>
+<li>设备地址寄存器</li>
+</ul>
+</li>
+<li>标志寄存器：存放计算产生的正、负、零、溢出等标志信息</li>
+</ol>
+<p><strong>控制与状态寄存器</strong>又可分为</p>
+<ol>
+<li>程序计数器（PC）：存放下一周期被执行的指令地址</li>
+<li>指令寄存器（IR）：存放当前待执行的指令</li>
+<li>程序状态字寄存器（PSW）：各比特位代表不同状态，比如是否允许中断</li>
+<li>中断现场保护寄存器：如名，允许中断时保持被中断的程序现场</li>
+<li>过程调用堆栈：存放过程调用时产生的调用名、调用参数和返回地址等</li>
+</ol>
+<h3 id="43-存储器">4.3 存储器</h3>
+<p>计算机的存储器并不是单一的，从寄存器到高速缓存，再到内存、硬盘缓存、硬盘、可移动存储介质，虽然不断离开计算机系统的核心，访问速度逐渐变慢，但是单位存储的成本也越来越低。</p>
+<h3 id="44-指令执行与中断">4.4 指令执行与中断</h3>
+<p>若论计算机最基本的执行单位，那就是指令，所有的程序最终都会转换为一条条的指令来执行。指令的执行过程分两步：读指令和执行指令。读指令是根据程序计数器存储的地址从内存读入，执行指令是执行指令寄存器中的内容。指令的读入与执行称为一个指令周期。</p>
+<p></p>
+<p>另外，在指令的执行过程中或一条指令执行结束时，尽管指令地址计数器中已指明下一条被访问指令的地址，但是，计算机外部或内部可能会发来亟待处理的数据或其它紧急事件处理信号。这就需要处理机暂停正在执行的程序，转去处理相应的紧急事件，待处理事件完毕后再返回原处继续执行，这一过程叫<strong>中断</strong>。</p>
+<h3 id="45-并发与并行">4.5 并发与并行</h3>
+<p><strong>并发</strong>是指宏观上在一段时间同时运行多个程序，但在微观上仍然是串行的，各道程序轮流使用 CPU，交替执行。</p>
+<p><strong>并行</strong>是指同一时刻能运行多个程序，并行需要多核等硬件支持</p>
+<h3 id="46-操作系统启动">4.6 操作系统启动</h3>
+<p>计算机电源启动时，硬件自动触发一个中断信号，这个中断信号使得 CPU 中一段指令开始执行，这段指令的作用是找到外部存储设备中操作系统的引导区，然后引导区的代码被自动导入内存并开始执行。引导区代码的作用是将操作系统加载到内存的指定区域，并初始化计算机的相关硬件如寄存器、终端设备等。当操作系统全部加载到内存后，操作系统就开始启动，为用户提供相应的操作界面和功能。</p>]]></description></item></channel></rss>

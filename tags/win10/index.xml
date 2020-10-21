@@ -1,1 +1,788 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Win10 on Shuzang's Blog</title><link>https://shuzang.github.io/tags/win10/</link><description>Recent content in Win10 on Shuzang's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 07 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://shuzang.github.io/tags/win10/index.xml" rel="self" type="application/rss+xml"/><item><title>win10效率优化7-终端和winget</title><link>https://shuzang.github.io/efficient-use-of-win10-7-windows-terminal-and-winget/</link><pubDate>Wed, 07 Oct 2020 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/efficient-use-of-win10-7-windows-terminal-and-winget/</guid><description>Windows terminal 的安装配置和 winget 的基本使用，主要原因是 Powershell 不好看。 1. Windows terminal 界面友好的终端应用，凡是命令行程序都可以用它启动，可以将 win10 下的 cmd、Powersh</description></item><item><title>win10使用powershell批量重命名</title><link>https://shuzang.github.io/use-powershell-rename-multiple-files/</link><pubDate>Sat, 08 Aug 2020 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/use-powershell-rename-multiple-files/</guid><description>&lt;p>win10 需要批量重命名的时候很多，每次打开专门的软件比较麻烦，于是查了下使用 powershell 如何达成这一目的。&lt;/p></description></item><item><title>win10效率优化5-系统功能的充分利用</title><link>https://shuzang.github.io/efficient-use-of-win10-5-system-function-use/</link><pubDate>Sun, 19 Jan 2020 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/efficient-use-of-win10-5-system-function-use/</guid><description>作为一款成熟的商业系统，windows提供了大量实用的功能，尤其是到了win10后，很多功能的体验变得越来越好，本篇对这些功能做总结。 值得注</description></item><item><title>win10效率优化6-软件体系整理</title><link>https://shuzang.github.io/efficient-use-of-win10-6-software-collection/</link><pubDate>Sun, 19 Jan 2020 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/efficient-use-of-win10-6-software-collection/</guid><description>对win10中使用的软件体系进行整理，在满足需要的同时，选择每一类软件中最适合的一种，同时尽量减少安装的软件数量。 1. 系统管理 1.1 火绒 抛弃腾讯和</description></item><item><title>win10效率优化4-文件管理</title><link>https://shuzang.github.io/efficient-use-of-win10-4-file-management/</link><pubDate>Fri, 17 Jan 2020 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/efficient-use-of-win10-4-file-management/</guid><description>文件管理是效率提升、电子资料极简化的重要部分，本文探索如何有效的对win10中的文件进行管理，核心包括三部分：分类、命名和备份。 1. 分类 win</description></item><item><title>Win10效率优化3-桌面整理</title><link>https://shuzang.github.io/efficient-use-of-win10-3-desktop-management/</link><pubDate>Wed, 23 Oct 2019 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/efficient-use-of-win10-3-desktop-management/</guid><description>对任何系统来讲，桌面的整理都是重中之重。有些人喜欢文件触手可及，所有东西都放在桌面。有些人喜欢极简美观，桌面一尘不染，全部通过快速搜索完成。</description></item><item><title>Win10效率优化1-综述</title><link>https://shuzang.github.io/efficient-use-of-win10-1-overview/</link><pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/efficient-use-of-win10-1-overview/</guid><description>得益于苹果的生态，MacOS上的优秀软件不少，因此网上存在大量介绍如何利用Mac有效率的学习、工作和生活的文章。但对于Win10来说，这方面</description></item><item><title>Win10效率优化2-锁屏与登录</title><link>https://shuzang.github.io/efficient-use-of-win10-2-lockscreen-and-login/</link><pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/efficient-use-of-win10-2-lockscreen-and-login/</guid><description>Win10 系统中，锁屏是我们登录系统前看到的一个界面。它的作用是当我们暂时离开电脑时阻止别人操作，但早晨当我们打开电脑时，第一眼看到也是锁屏界面，因</description></item></channel></rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>Win10 - 标签 - Shuzang's Blog</title><link>https://shuzang.github.io/tags/win10/</link><description>Win10 - 标签 - Shuzang's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>lylw1996@qq.com (shuzang)</managingEditor><webMaster>lylw1996@qq.com (shuzang)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 07 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://shuzang.github.io/tags/win10/" rel="self" type="application/rss+xml"/><item><title>win10效率优化7-终端和winget</title><link>https://shuzang.github.io/efficient-use-of-win10-7-windows-terminal-and-winget/</link><pubDate>Wed, 07 Oct 2020 00:00:00 +0000</pubDate><author>作者</author><guid>https://shuzang.github.io/efficient-use-of-win10-7-windows-terminal-and-winget/</guid><description><![CDATA[<p>Windows terminal 的安装配置和 winget 的基本使用，主要原因是 Powershell 不好看。</p>
+<h2 id="1-windows-terminal">1. Windows terminal</h2>
+<p>界面友好的终端应用，凡是命令行程序都可以用它启动，可以将 win10 下的 cmd、Powershell 和 git bash 都集中在一起，当然，最重要的是好看。</p>
+<p>基本上有什么问题都可以从 <a href="https://docs.microsoft.com/zh-cn/windows/terminal/" target="_blank" rel="noopener noreffer">官方教程</a> 里查到，这里只是介绍我的配置过程。</p>
+<h3 id="11-安装">1.1 安装</h3>
+<p>我选择从 <a href="https://aka.ms/terminal" target="_blank" rel="noopener noreffer">Microsoft Store</a> 安装 Windows terminal。初始界面如下</p>
+<p></p>
+<h3 id="12-快捷键启动">1.2 快捷键启动</h3>
+<p>右键菜单已经有 git bash 了，不需要把它添加进去。</p>
+<p>快捷键启动我没有采用网上流传的教程，而是把 Windows terminal 固定在了任务栏第一个，然后使用  <code>Win+1</code> 键打开。</p>
+<h3 id="13-添加-git-bash">1.3 添加 git bash</h3>
+<p>默认添加的应用包括 Powershell、cmd、Azure Cloud Shell 和我之前安装的 WSL（Ubuntu 20.04）。</p>
+<p></p>
+<p>这里将 git bash 添加进去，并设置为启动时默认使用的应用（之前启动 Windows termianl 默认打开 Powershell），并设置起始目录。最终效果如上图</p>
+<ol>
+<li>
+<p>点击标题栏的下箭头，点击「设置」，可以在上图中看到；</p>
+</li>
+<li>
+<p>在打开的配置文件中 <code>list</code> 部分添加如下内容。其中，<code>guid</code> 是唯一标识符，注意不要和已有的四个应用相同即可；<code>name</code> 是应用名；<code>commandline</code> 设置 git bash 路径，根据自己的安装位置设置；<code>icon</code> 设置上图中显示的缩略图，自己从 <a href="https://gitforwindows.org/img/gwindows_logo.png" target="_blank" rel="noopener noreffer">网上</a> 下载放到合适的位置并设置；<code>startingDirectory</code> 设置起始目录，我这里设置了我最常打开的目录。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;guid&#34;</span><span class="p">:</span> <span class="s2">&#34;{b453ae62-4e3d-5e58-b989-0a998ec441b9}&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Git-bash&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;commandline&#34;</span><span class="p">:</span> <span class="s2">&#34;C:\\Program Files\\Git\\bin\\bash.exe&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;icon&#34;</span><span class="p">:</span> <span class="s2">&#34;C:\\Program Files\\Git\\gwindows_logo.png&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;startingDirectory&#34;</span><span class="p">:</span> <span class="s2">&#34;F:\\OneDrive\\博客&#34;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+<li>
+<p>修改全局字段（在配置文件的最前面几行中找）中的 <code>defaultProfile</code> 为 <code>Git-bash</code>，这里可以使用上面的 <code>name</code> 或 <code>guid</code> 字段</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;defaultProfile&#34;</span><span class="err">:</span> <span class="s2">&#34;Git-bash&#34;</span><span class="err">,</span>
+</code></pre></td></tr></table>
+</div>
+</div></li>
+</ol>
+<h3 id="14-配色及背景图">1.4 配色及背景图</h3>
+<p>大部分人用 Windows terminal 就是因为它可定制，所以出现了各种各样好看的配色和主题。</p>
+<p></p>
+<p>我从 <a href="https://windowsterminalthemes.dev/" target="_blank" rel="noopener noreffer">主题网站</a> 选择了 Builtin Tango Light 主题，配置代码如下，需要将这段代码复制到配置文件的 <code>schemes</code> 字段中。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+    <span class="nt">&#34;name&#34;</span><span class="p">:</span> <span class="s2">&#34;Builtin Tango Light&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;black&#34;</span><span class="p">:</span> <span class="s2">&#34;#000000&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;red&#34;</span><span class="p">:</span> <span class="s2">&#34;#cc0000&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;green&#34;</span><span class="p">:</span> <span class="s2">&#34;#4e9a06&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;yellow&#34;</span><span class="p">:</span> <span class="s2">&#34;#c4a000&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;blue&#34;</span><span class="p">:</span> <span class="s2">&#34;#3465a4&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;purple&#34;</span><span class="p">:</span> <span class="s2">&#34;#75507b&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;cyan&#34;</span><span class="p">:</span> <span class="s2">&#34;#06989a&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;white&#34;</span><span class="p">:</span> <span class="s2">&#34;#d3d7cf&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;brightBlack&#34;</span><span class="p">:</span> <span class="s2">&#34;#555753&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;brightRed&#34;</span><span class="p">:</span> <span class="s2">&#34;#ef2929&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;brightGreen&#34;</span><span class="p">:</span> <span class="s2">&#34;#8ae234&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;brightYellow&#34;</span><span class="p">:</span> <span class="s2">&#34;#fce94f&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;brightBlue&#34;</span><span class="p">:</span> <span class="s2">&#34;#729fcf&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;brightPurple&#34;</span><span class="p">:</span> <span class="s2">&#34;#ad7fa8&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;brightCyan&#34;</span><span class="p">:</span> <span class="s2">&#34;#34e2e2&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;brightWhite&#34;</span><span class="p">:</span> <span class="s2">&#34;#eeeeec&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;background&#34;</span><span class="p">:</span> <span class="s2">&#34;#ffffff&#34;</span><span class="p">,</span>
+    <span class="nt">&#34;foreground&#34;</span><span class="p">:</span> <span class="s2">&#34;#000000&#34;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>然后在 <code>defaults</code> 字段中添加</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;colorScheme&#34;</span><span class="err">:</span> <span class="s2">&#34;Builtin Tango Light&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>为了不打扰正式内容的显示，我决定将背景图放在右下角，同时，由于终端主体颜色是白色，背景图除了主体的人或物，其它颜色也应该是白色，正好我有一张谏山黄泉的图是这样的。</p>
+<p>由于要放在右下角，还要在图片左边和上边扩展大量的白色区域。我选择的方法是打开 Microsoft Whiteboard 应用，将背景颜色设置为白色，然后将图片放在右下角，导出此时的白板。</p>
+<p>将导出的图片放在合适的位置，在配置文件的 <code>defaults</code> 字段中添加如下内容（和主体设置在一起），第一行设置背景图路径，第二行设置不透明度。此时打开终端发现图片显示可能有问题，无法正好在右下角显示整个人物，这时候通过裁剪背景图上方和左边的空白，不断调整和预览，可以获得想要的效果，最终效果就是本小节开头的图片。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="s2">&#34;backgroundImage&#34;</span><span class="err">:</span> <span class="s2">&#34;F:\\OneDrive\\图片\\收藏\\谏山黄泉-背景图.png&#34;</span><span class="err">,</span>
+<span class="s2">&#34;backgroundImageOpacity&#34;</span><span class="err">:</span> <span class="mf">0.8</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>注1：不少人喜欢下面这种标签式的效果，叫做 Powerline，但我没感觉，所以没添加，想使用可以参考 <a href="https://docs.microsoft.com/zh-cn/windows/terminal/custom-terminal-gallery/powerline-in-powershell" target="_blank" rel="noopener noreffer">Windows 终端的 PowerShell 主题中的 Powerline</a></p>
+<p></p>
+<p>注2：官方提供了几种不错的主题，包括 <a href="https://docs.microsoft.com/zh-cn/windows/terminal/custom-terminal-gallery/frosted-glass-theme" target="_blank" rel="noopener noreffer">毛玻璃效果</a> 和 <a href="https://docs.microsoft.com/zh-cn/windows/terminal/custom-terminal-gallery/raspberry-ubuntu" target="_blank" rel="noopener noreffer">Raspberry Ubuntu</a> 我都很喜欢，效果如下</p>
+<p></p>
+<p></p>
+<h2 id="2-winget">2. winget</h2>
+<p>win10 预览版用户直接就可以使用，是系统自带的，非预览版用户从 <a href="https://github.com/microsoft/winget-cli" target="_blank" rel="noopener noreffer">github仓库</a> 自行下载安装。使用说明可以参考 <a href="https://docs.microsoft.com/zh-cn/windows/package-manager/winget/" target="_blank" rel="noopener noreffer">官方文档</a>，安装后可以直接在终端使用</p>
+<p></p>
+]]></description></item><item><title>win10使用powershell批量重命名</title><link>https://shuzang.github.io/use-powershell-rename-multiple-files/</link><pubDate>Sat, 08 Aug 2020 00:00:00 +0000</pubDate><author>作者</author><guid>https://shuzang.github.io/use-powershell-rename-multiple-files/</guid><description><![CDATA[<p>win10 需要批量重命名的时候很多，每次打开专门的软件比较麻烦，于是查了下使用 powershell 如何达成这一目的。</p>
+<p>首先，win10 下无法在 git bash 中使用 rename 命令，不被支持。</p>
+<p>其次，网上搜索得到的各种使用批处理文件的方法过于繁琐，每次新建批处理文件还不如使用批量重命名软件。</p>
+<p>最后，powershell 提供了 <a href="https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/rename-item?view=powershell-7" target="_blank" rel="noopener noreffer">Rename-Item</a> 命令来完成重命名功能。</p>
+<p>下面是官方提供的一个例子，将所有 <code>*.txt</code> 文件替换为 <code>*.log</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="nb">Get-ChildItem</span> <span class="p">*.</span><span class="n">txt</span>
+
+<span class="n">Directory</span><span class="err">:</span> <span class="n">C:</span><span class="p">\</span><span class="n">temp</span><span class="p">\</span><span class="n">files</span>
+
+<span class="n">Mode</span>                <span class="n">LastWriteTime</span>         <span class="n">Length</span> <span class="n">Name</span>
+<span class="p">----</span>                <span class="p">-------------</span>         <span class="p">------</span> <span class="p">----</span>
+<span class="n">-a</span><span class="p">----</span>        <span class="n">10</span><span class="p">/</span><span class="n">3</span><span class="p">/</span><span class="n">2019</span>   <span class="n">7</span><span class="err">:</span><span class="n">47</span> <span class="n">AM</span>           <span class="n">2918</span> <span class="n">Friday</span><span class="p">.</span><span class="n">TXT</span>
+<span class="n">-a</span><span class="p">----</span>        <span class="n">10</span><span class="p">/</span><span class="n">3</span><span class="p">/</span><span class="n">2019</span>   <span class="n">7</span><span class="err">:</span><span class="n">46</span> <span class="n">AM</span>           <span class="n">2918</span> <span class="n">Monday</span><span class="p">.</span><span class="n">Txt</span>
+<span class="n">-a</span><span class="p">----</span>        <span class="n">10</span><span class="p">/</span><span class="n">3</span><span class="p">/</span><span class="n">2019</span>   <span class="n">7</span><span class="err">:</span><span class="n">47</span> <span class="n">AM</span>           <span class="n">2918</span> <span class="n">Wednesday</span><span class="p">.</span><span class="n">txt</span>
+
+<span class="nb">Get-ChildItem</span> <span class="p">*.</span><span class="n">txt</span> <span class="p">|</span> <span class="nb">Rename-Item</span> <span class="n">-NewName</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Name</span> <span class="o">-replace</span> <span class="s1">&#39;.txt&#39;</span><span class="p">,</span><span class="s1">&#39;.log&#39;</span> <span class="p">}</span>
+<span class="nb">Get-ChildItem</span> <span class="p">*.</span><span class="n">log</span>
+
+<span class="n">Directory</span><span class="err">:</span> <span class="n">C:</span><span class="p">\</span><span class="n">temp</span><span class="p">\</span><span class="n">files</span>
+
+<span class="n">Mode</span>                <span class="n">LastWriteTime</span>         <span class="n">Length</span> <span class="n">Name</span>
+<span class="p">----</span>                <span class="p">-------------</span>         <span class="p">------</span> <span class="p">----</span>
+<span class="n">-a</span><span class="p">----</span>        <span class="n">10</span><span class="p">/</span><span class="n">3</span><span class="p">/</span><span class="n">2019</span>   <span class="n">7</span><span class="err">:</span><span class="n">47</span> <span class="n">AM</span>           <span class="n">2918</span> <span class="n">Friday</span><span class="p">.</span><span class="n">log</span>
+<span class="n">-a</span><span class="p">----</span>        <span class="n">10</span><span class="p">/</span><span class="n">3</span><span class="p">/</span><span class="n">2019</span>   <span class="n">7</span><span class="err">:</span><span class="n">46</span> <span class="n">AM</span>           <span class="n">2918</span> <span class="n">Monday</span><span class="p">.</span><span class="n">log</span>
+<span class="n">-a</span><span class="p">----</span>        <span class="n">10</span><span class="p">/</span><span class="n">3</span><span class="p">/</span><span class="n">2019</span>   <span class="n">7</span><span class="err">:</span><span class="n">47</span> <span class="n">AM</span>           <span class="n">2918</span> <span class="n">Wednesday</span><span class="p">.</span><span class="n">log</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>其中，<code>Get-ChildItem</code>  可以获取当前文件夹中所有扩展名为 .txt 的文件，然后将它们通过管道传递给 <code>Rename-Item</code>。NewName 的值是一个脚本块，在将值提交给 NewName 参数之前运行。在脚本块中，<code>$ _</code> 自动变量代表每个文件对象，它们通过管道传递给命令。脚本块使用 <code>-replace</code> 运算符将每个文件的文件扩展名替换为 <code>.log</code>。请注意，使用 -replace 运算符进行的匹配不区分大小写。</p>
+<p>注意，<code>Get-ChildItem</code> 和 <code>Rname-Item</code> 都有别名</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="n">名称</span><span class="err">：</span><span class="nb">Get-ChildItem</span>
+<span class="n">别名</span>
+    <span class="nb">gci
+</span><span class="nb"></span>    <span class="nb">ls
+</span><span class="nb"></span>    <span class="nb">dir
+</span><span class="nb"></span>    
+<span class="n">名称</span><span class="err">：</span><span class="nb">Rename-Item</span>
+<span class="n">别名</span>
+    <span class="nb">rni
+</span><span class="nb"></span>    <span class="nb">ren
+</span></code></pre></td></tr></table>
+</div>
+</div><p>以最常用的电影名重命名为例，一个命令使用的例子为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-powershell" data-lang="powershell"><span class="p">&gt;</span> <span class="nb">ls </span><span class="p">|</span> <span class="nb">ren </span><span class="n">-NewName</span> <span class="p">{</span> <span class="nv">$_</span><span class="p">.</span><span class="n">Name</span> <span class="o">-replace</span> <span class="s1">&#39;\[电影天堂www.dytt89.com\]&#39;</span><span class="p">,</span><span class="s1">&#39;&#39;</span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>最后，在当前文件夹打开 powershell 的操作为，按住 shift 右键鼠标，此时打开的右键菜单中会多出一个 <code>在此处打开powershell</code> 的选项。</p>]]></description></item><item><title>win10效率优化5-系统功能的充分利用</title><link>https://shuzang.github.io/efficient-use-of-win10-5-system-function-use/</link><pubDate>Sun, 19 Jan 2020 00:00:00 +0000</pubDate><author>作者</author><guid>https://shuzang.github.io/efficient-use-of-win10-5-system-function-use/</guid><description><![CDATA[<p>作为一款成熟的商业系统，windows提供了大量实用的功能，尤其是到了win10后，很多功能的体验变得越来越好，本篇对这些功能做总结。</p>
+<p>值得注意的是，很多功能其实只需要设置一次就不需要再理会，或者干脆微软默认已经进行了最佳设置，这对于我们追求效率和极简是一件非常棒的事。</p>
+<h2 id="1-搜索">1. 搜索</h2>
+<p>首先介绍win10的搜索功能。win10系统出现以来，Cortana就一直是任务栏的常驻功能，在响应语音的同时，也兼职文件搜索，不过并不好用。直到1903版本之后，Cortana和搜索功能拆分，新的搜索可以搜索电脑中的文档、照片、邮件、应用、系统设置、文件夹等等，并且提升了视觉效果，使用体验高了一倍不止。除此之外，在设置中也增加了「搜索」板块，可以排除不查看的文件夹，缩短搜索时间。</p>
+<p></p>
+<p>事实证明，新的搜索功能非常好用，在下面的内容中，我们会大量使用该功能。唤起搜索的快捷键是<code>win+Q</code>。</p>
+<h2 id="2-磁盘优化">2. 磁盘优化</h2>
+<p>win10的磁盘优化分两种。对机械硬盘来说，指的是碎片整理，磁盘碎片是机械硬盘读写过程中产生的不连续存放空间，随着使用时间的增加，磁盘碎片会不断增长，并影响文件的读写速度，碎片整理是将这些不连续的空间整合成一个大的存储空间，目的是提升我们复制粘贴文件(读写文件)的速度。对于固态硬盘(SSD)来说，指的是<a href="https://www.ithome.com/html/win10/206428.htm" target="_blank" rel="noopener noreffer">TRIM</a>，是把已删除文件标记为无用，避免磁盘将其当成有用数据重复移动，从而影响读写速度和硬盘寿命。</p>
+<p>关于磁盘碎片整理和TRIM的说明，可以查阅一个<a href="https://www.zhihu.com/question/21554450" target="_blank" rel="noopener noreffer">知乎问答</a>。</p>
+<p>win10系统中对硬盘类型做了自动识别，从而采取对应的优化策略，并且默认每周执行一次优化，因此不需要我们手动设置，如果想调整执行优化的周期，可以下面的方式执行</p>
+<ol>
+<li>按「windows 徽标键 + Q」快捷键唤起搜索，输入关键词「磁盘优化」</li>
+<li>选择搜索结果中的「碎片整理和优化驱动器」，一般是第一个结果</li>
+<li>选择「更改设置」，然后更改频率即可</li>
+</ol>
+<p></p>
+<h2 id="3-自动垃圾清理">3. 自动垃圾清理</h2>
+<p>在介绍win10提供的自动垃圾清理功能前，我们先来理解第三方软件清理垃圾时是清理哪些内容，以火绒为例，清理项包括</p>
+<ul>
+<li>系统垃圾：系统运行产生的垃圾，包括常用软件日志、回收站垃圾、系统缓存、系统临时文件、系统日志等</li>
+<li>常用软件垃圾：软件缓存垃圾，如Internet缓存</li>
+<li>注册表垃圾：无效注册表</li>
+<li>快捷方式：用不到的快捷方式</li>
+</ul>
+<p>系统垃圾，尤其是其中的回收站垃圾所占比重最大。从出发点来看，垃圾清理的目的是释放磁盘空间，适用于磁盘空间不足的情况。但很多人其实清理垃圾已经成为了一种习惯，与磁盘空间不足无关，常见的操作是定期清空回收站，至于安全软件提供的垃圾清理功能，往往只有在想起来的情况下才会使用。所以，如果win10可以定期清理回收站呢，甚至定期清理系统缓存、临时系统文件、软件日志等安全软件进行垃圾清理的主要内容，更进一步还包括经常被我们遗忘的「下载」文件夹，以及占用大量空间的<code>windows.old</code>文件夹。win10中的「存储感知」功能可以做到这些事情。</p>
+<p>搜索「存储设置」，点击「配置存储感知或立即执行」，可以设置运行存储感知的频率。我当前设置为「在可用磁盘空间不足时」，可以将其调整为每周或每月。设置中还包括定期清理回收站、下载文件夹和长时间未使用的OneDrive文件，可以说考虑到了绝大部分的使用情况。</p>
+<p></p>
+<p>关于定期运行的「存储感知」，其查找并删除的文件包括但不限于：</p>
+<ul>
+<li>临时设置文件</li>
+<li>旧的索引内容</li>
+<li>系统缓存文件</li>
+<li>Internet 缓存文件</li>
+<li>设备驱动程序包</li>
+<li>系统下载的程序文件</li>
+<li>系统日志文件已过期</li>
+<li>系统错误内存转储文件</li>
+<li>系统错误小型转储文件</li>
+<li>临时系统文件</li>
+<li>Windows 更新临时文件已过期</li>
+</ul>
+<p>因此，开启存储感知功能后，垃圾清理将不再是我们需要考虑的事情，能够节省一些宝贵的时间和精力。当然，如果闲着没事还是想时不时的手动清空一下回收站，谁也拦不住，也没有任何影响。</p>
+<p>理论上，配合windows安全中心，我们是不需要安装第三方安全软件的，不过类似于弹窗拦截等功能，win10系统就无能为力了。</p>
+<h2 id="4-专注助手">4. 专注助手</h2>
+<p>win10提供的「专注助手」功能可以让我们在需要集中注意力时消除让人分心的通知，比如每天固定学习或工作的时间段。在桌面右下角的操作中心中通过点击打开或关闭专注助手，可以在三个设置中循环切换：仅优先通知、仅限闹钟和关闭。</p>
+<p></p>
+<p>搜索「专注助手」，打开其设置页面，可以看到系统提供了一系列的场景，比如使用投影时和全屏模式下启用仅限闹钟、玩游戏时或每天固定的时间段启用仅优先通知。此外，在仅优先通知选项的下面，可以设定自定义的优先列表，但其中的选项对我们都是无意义的，包括来自手机的通知(但win10的这一功能国内不可用)、系统应用的通知等，所以不介绍。</p>
+<p></p>
+<p>我们启用该功能的目的还是提供的这几个场景：游戏、投影、全屏、固定时间段，启用后可以过滤操作中心弹出的大量通知，有经验的应该知道操作中心弹出的通知真的很烦人。不过1909版本后，可以自定义操作中心的通知，将从来不用的系统应用的通知全部关掉就好，搜索「通知和操作设置」可以打开设置页面。</p>
+<h2 id="5-跨设备剪贴板同步">5. 跨设备剪贴板同步</h2>
+<p>将剪贴板的内容进行同步，从而可以在多个设备进行粘贴。搜索「剪贴板」可以打开该设置</p>
+<p></p>
+<p>按「Windows 徽标键 + V」可以查看剪贴板的内容</p>
+<p></p>
+<h2 id="6-快速添加提醒">6. 快速添加提醒</h2>
+<p>win10现在可以从任务栏的时间和日期处快速添加事件或提醒，对于以Outlook为主力日历应用的人来说是非常方便了，但对于以手机日历为主力的人来说没有什么用。</p>
+<p></p>
+<p>对于小米手机来讲，可以将小米日历和win10的日历进行同步，这样，「快速添加提醒」这一功能对我们就变得非常有用了，操作步骤如下</p>
+<ol>
+<li>在win10日历应用中添加Exchange账户，但账户名为outlook邮箱，并在日历设置里把账户同步打开</li>
+<li>在win10邮件应用中登录Exchange账户，账户名依然为outlook邮箱</li>
+<li>在小米手机的电子邮件应用中以Exchange账户登录，账户名还是outlook邮箱</li>
+<li>查看日历的账户设置，发现此时已经拥有两个账户，日历应用中也有了同步过来的所有事件和提醒</li>
+</ol>
+<p>日历的同步间隔跟随邮箱，我设置为1小时一次，以除夕合成五福这一提醒为例，我在电脑上添加的该提醒，现在已经同步到了手机</p>
+<p></p>
+<h2 id="7-就近共享">7. 就近共享</h2>
+<p>两台电脑进行文件传输，我们通常使用QQ、微信或者一些第三方软件，但在近距离情况下，使用蓝牙和WIFI其实是最简单的方式。win10系统将文件传输的功能集成到了右键菜单里，非常方便。</p>
+<p></p>
+<h2 id="8-热点共享">8. 热点共享</h2>
+<p>手机开热点共享WIFI给电脑已经是很常用的操作，电脑共享网络给手机就不是很常见了，通常使用的解决方案是购买随身WIFI。但其实win10本身可以利用内置的无线网卡直接开启热点，而不需要其它的设备。</p>
+<p>搜索「移动热点设置」，可以打开设置页面，开启该功能，并设置网络名和密码，就可以开启一个热点网络，如图所示，现在开启的「书藏的热点」已经被我的手机搜索到并接入，该界面会显示设备名、IP地址和MAC地址。在操作中心可以快捷的打开和关闭热点。</p>
+<p></p>
+<h2 id="9-分屏与虚拟桌面">9. 分屏与虚拟桌面</h2>
+<p>在介绍桌面的那篇文章已经介绍过这两个功能，但有些细节没有提到，这里重提一下。</p>
+<p>将不同的工作窗口朝边缘拖动可以看到分屏的框，虽然看到网上说最多四部分，但我实际操作过程中只能同时分三个窗口。分屏操作是工作和学习中一个非常实用的功能，但该功能其实在win10以前就有，win10所作的改动是，不需要单击某个窗口才能操作，而是将鼠标移动到该窗口的范围就可以执行滚动页面等操作，这个小改进为我们带来了巨大的效率提升。</p>
+<p></p>
+<p>如果说分屏是一个工作同时开启多个窗口，虚拟桌面就是在不同的工作间切换，比如我将论文阅读和博客写作两件事分到不同的桌面。使用「windows 徽标键 + Tab」可以进行切换不同的桌面，同时也可以查看时间线并跳转查看之前的工作。</p>
+<p></p>
+]]></description></item><item><title>win10效率优化6-软件体系整理</title><link>https://shuzang.github.io/efficient-use-of-win10-6-software-collection/</link><pubDate>Sun, 19 Jan 2020 00:00:00 +0000</pubDate><author>作者</author><guid>https://shuzang.github.io/efficient-use-of-win10-6-software-collection/</guid><description><![CDATA[<p>对win10中使用的软件体系进行整理，在满足需要的同时，选择每一类软件中最适合的一种，同时尽量减少安装的软件数量。</p>
+<h2 id="1-系统管理">1. 系统管理</h2>
+<h3 id="11-火绒">1.1 火绒</h3>
+<p>抛弃腾讯和360的全家桶，火绒简单易用，只保留必需的功能，在后台默默工作，没有需要甚至意识不到它的存在。火绒的弹窗拦截功能也非常好用。<a href="https://www.huorong.cn/" target="_blank" rel="noopener noreffer">下载地址</a></p>
+<p></p>
+<h3 id="12-iobit-uninstaller">1.2 IObit Uninstaller</h3>
+<p>软件管理，能把安装的软件卸载的干干净净，而不是残留一堆注册表和空文件夹。<a href="https://www.iobit.com/en/advanceduninstaller.php" target="_blank" rel="noopener noreffer">下载地址</a></p>
+<p></p>
+<h3 id="13-7zip">1.3 7zip</h3>
+<p>免费开源的压缩软件，有更强的压缩能力，体积足够小(1M)且软件足够简单，只提供必要的功能，集成到右键就像系统自带的一样，不会像WinRAR或2345好压那样每次弹出那个丑陋的界面。<a href="https://www.7-zip.org/" target="_blank" rel="noopener noreffer">下载地址</a></p>
+<p></p>
+<h3 id="14-onedrive">1.4 OneDrive</h3>
+<p>文件同步，必备软件，坚果云限制流量不限制空间，OneDrive限制空间不限制流量，后者更适合我。</p>
+<p></p>
+<h2 id="2-生活">2. 生活</h2>
+<h3 id="21-迅雷影音">2.1 迅雷影音</h3>
+<p>很多人推荐PotPlayer，但少有人注意迅雷影音现在已经移除了所有的广告和推荐，只留下干干净净的界面，论功能足够强大，论颜值也比PotPlayer强，所以我换到了它的阵营。<a href="http://video.xunlei.com/pc.html" target="_blank" rel="noopener noreffer">下载地址</a></p>
+<p></p>
+<h3 id="22-edge">2.2 Edge</h3>
+<p>Edge chromium的使用体验挺好的，相比于原版的Edge，支持Chrome商店的所有应用，又有能打的颜值、阅读模式等等实用功能，之前一直用Dev版，1月16日发布正式版后立马跟进。<a href="https://www.microsoft.com/en-us/edge?icid=SMC-IA-4501095" target="_blank" rel="noopener noreffer">下载地址</a></p>
+<p></p>
+<h3 id="23-microsoft-to-do">2.3 Microsoft To Do</h3>
+<p>ToDo类应用，颜值非常高，同时功能全面，还可以和Outlook账户关联同步，手机端也有应用，我现在的待办和备忘是通过它和小米便签协同工作的。<a href="https://todo.microsoft.com/tasks/" target="_blank" rel="noopener noreffer">下载地址</a></p>
+<p></p>
+<h3 id="24-迅雷">2.4 迅雷</h3>
+<p>下载软件，没有选择余地，IDM付费且颜值确实低，FDM的下载速度跟不上，Aria2需要复杂的配置，我平常一般只下载一些电影，得不偿失，所以最后还是用了迅雷。关闭开机启动，用火绒拦截弹窗之后倒也还能用，不会造成太大的困扰。<a href="https://dl.xunlei.com/" target="_blank" rel="noopener noreffer">下载地址</a></p>
+<p></p>
+<h3 id="25-pandownload">2.5 PanDownload</h3>
+<p>网盘文件下载，限于百度云不开会员限速到几K的策略，虽然我自己已经不再用网盘，但网上大量的资源依然以网盘的形式分享出来，我使用的下载工具就是PanDownload，现在还集成了资源搜索功能，不用费力的去网上搜索资源，不过有段日子没用该软件了，不知道现在怎么样。<a href="http://pandownload.com/" target="_blank" rel="noopener noreffer">下载地址</a></p>
+<p></p>
+<h3 id="26-其它">2.6 其它</h3>
+<p>只需要提一个名字，不需要过多介绍的软件，包括</p>
+<ul>
+<li>QQ</li>
+<li>微信电脑版</li>
+<li>网易云音乐</li>
+<li>office套件</li>
+</ul>
+<h2 id="3-美化">3. 美化</h2>
+<h3 id="31-win10萌化通用工具箱">3.1 Win10萌化通用工具箱</h3>
+<p>本质就是一个Win10美化工具箱，用它透明化任务栏、设置文件夹背景、跳转库文件和快速访问的显示等，一个软件可以完成TranslucentTB的多个软件的作用。<a href="http://www.pcmoe.net/thread-71266-1-1.html" target="_blank" rel="noopener noreffer">下载地址</a></p>
+<p></p>
+<h3 id="32-rainmeter">3.2 Rainmeter</h3>
+<p>仅使用其时钟插件，尽可能减少资源消耗。<a href="https://www.rainmeter.net/" target="_blank" rel="noopener noreffer">下载地址</a></p>
+<p></p>
+<h2 id="4-工作">4. 工作</h2>
+<h3 id="41-chocolatey">4.1 Chocolatey</h3>
+<p>包管理工具，方便安装和卸载，我用它安装的软件包括：Golang、Hugo、Git、nvs，对于编程相关的这些软件来说再方便不过了。<a href="https://chocolatey.org/" target="_blank" rel="noopener noreffer">下载地址</a></p>
+<p></p>
+<h3 id="42-vscode">4.2 VScode</h3>
+<p>代码编辑器，足够轻量，功能也足够。<a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreffer">下载地址</a></p>
+<p></p>
+<h3 id="43-typora">4.3 Typora</h3>
+<p>Markdown文档编辑器，所见即所得，写作工具。<a href="https://typora.io/" target="_blank" rel="noopener noreffer">下载地址</a></p>
+<p></p>
+<h3 id="44-snipaste">4.4 Snipaste</h3>
+<p>截图工具，功能全面，不用必须登录QQ，从win10应用商店搜索下载即可。</p>
+<p></p>
+<h3 id="45-zotero">4.5 Zotero</h3>
+<p>文献管理工具，科研必备，转了半天还是它最好用。<a href="https://www.zotero.org/" target="_blank" rel="noopener noreffer">下载地址</a></p>
+<p></p>
+<p>大量的工具都可以通过 chocolately 安装，包括 Edge，Github Desktop，VSCode，Go，Typora，pandoc，iobit uninstaller，git，rainmeter，zotero，uplay 和 steam，openVPN，NZXT，Notion，7zip。</p>
+]]></description></item><item><title>win10效率优化4-文件管理</title><link>https://shuzang.github.io/efficient-use-of-win10-4-file-management/</link><pubDate>Fri, 17 Jan 2020 00:00:00 +0000</pubDate><author>作者</author><guid>https://shuzang.github.io/efficient-use-of-win10-4-file-management/</guid><description><![CDATA[<p>文件管理是效率提升、电子资料极简化的重要部分，本文探索如何有效的对win10中的文件进行管理，核心包括三部分：分类、命名和备份。</p>
+<h2 id="1-分类">1. 分类</h2>
+<p>win10中，最大的分类是磁盘。我的电脑有两块硬盘，划分情况如下</p>
+<ul>
+<li>三星SSD 120G：系统盘(C盘)</li>
+<li>西部数据机械硬盘 1T
+<ul>
+<li>D盘 852G：个人资料</li>
+<li>F盘 80G：其它</li>
+</ul>
+</li>
+</ul>
+<p>SSD只有120G，将其整个作为系统盘，从而提示系统运行流畅度，因为安装的软件不算多，不需要在机械硬盘中单独划分软件安装盘。同时，将软件直接安装在系统盘也可以提升运行流畅度，目前，C盘只占用了50G，因此对于我来说，这种划分方式是合适的。对于游戏来说，一般容量比较大，在安装时就会选择较大的D盘，安装在专门的<code>游戏</code>文件夹。</p>
+<p>硬盘其实作为一个完整的磁盘存在比较好，因为划分后文件的复制粘贴都会浪费大量的时间，但出于<code>秩序</code>的考虑，还是将机械硬盘划分成了两个磁盘。F盘划分了少量的空间，主要有如下用途</p>
+<ul>
+<li>OneDrive同步文件夹</li>
+<li>Github本地仓库</li>
+<li>网易云等软件设置的默认下载文件夹</li>
+</ul>
+<p>我使用OneDrive作为同步策略，免费的情况下能获得的最大容量是15G，Github的仓库一般对应某个开发项目，在有限的时间和精力下，一个人同时开发的项目不会很多，另外，Github每个仓库的存储上限是1G，以同时开发5个项目算(已经很多了，而且很少有项目真的占到1G容量上限)，这两部分内容大概会用到20G容量，剩下的容量足够作为网易云等软件的缓存。</p>
+<p>D盘划分的空间占用了绝大多数，日常的使用以看电影、看剧、收藏动漫和软件、游戏存档和资料、照片为主，因此建立了如下文件夹</p>
+<ul>
+<li>
+<p>电影：故名思意，存放下载的电影，会注意及时删除看过的电影，遇到喜欢的会收藏的移动硬盘中</p>
+</li>
+<li>
+<p>剧集：存放电视剧和动漫，我目前有两个子文件夹，<code>宫崎骏</code>和<code>老友记</code></p>
+</li>
+<li>
+<p>软件：一些解压即用的、小众不易寻找的软件，以及各种系统镜像</p>
+</li>
+<li>
+<p>虚拟：存放VMware的虚拟机，强迫症发作才把名字改成两个字，好在自己明白它是做什么的，因为虚拟机通常都在几十G，放在C盘会占用大量空间，因此放在此处。</p>
+</li>
+<li>
+<p>游戏：以游戏名建立不同的子文件夹，正在玩的游戏存放游戏本体，以前的游戏存放游戏存档和当初收集的游戏资料等。</p>
+</li>
+<li>
+<p>照片：照片的分类整理是最为繁琐的，为了保持相互之间最大的独立，大部分照片按时间线分类，目前有三部分：<code>高中</code>、<code>本科</code>、<code>硕士</code>，除此之外，根据具体情况，还有三个文件夹如下</p>
+<ul>
+<li>
+<p><code>家人</code>：因为家人照片贯穿整个时间线，单独建立文件夹</p>
+</li>
+<li>
+<p><code>旅游</code>：平时经常出去玩，因此单独建立文件夹，里面按景点名建立子文件夹</p>
+</li>
+<li>
+<p><code>待用</code>：存放比如身份证照片、化验单等等工作和生活中可能用到的照片</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>以上是整体的框架体系，OneDrive同步文件夹中的结构在本文第三部分介绍。接下来说明日常生活工作的基本流程。</p>
+<p>电影在下载时直接下载到D盘的<code>电影</code>目录，其它下载的文件默认位置可能是win10默认的<code>下载</code>文件夹和迅雷等下载软件的默认下载目录，注意要及时的做好分类，解压即用的软件放到D盘<code>软件</code>目录，需要收藏的软件也放到这里，一般的软件安装完成后将安装包删除，其它各种文件按这种办法及时的归类和用完删除。</p>
+<p>在<code>此电脑</code>下，win10会默认提供几个文件夹，比如<code>图片</code>、<code>文档</code>、<code>下载</code>、<code>桌面</code>等，其它几个使用频率较小，因此我只保留了这四个。去除该页面不想要的文件夹的方式可以在网上搜索，我使用的是坑晨大佬的<code>Win10萌化通用工具箱</code>，除了自定义资源管理器这些文件夹的显示外，还用它来透明化任务栏、半透明资源管理器背景和在资源管理器右下角添加喜欢的背景人物。我的<code>此电脑</code>界面如下，同时，<code>此电脑</code>也是文件资源管理器的默认打开页面。</p>
+<p></p>
+<p>以上保留的四个文件夹都可以作为单独的文件夹被OneDrive同步，<code>文档</code>经常被各种软件作为默认的数据存放目录，我们可能经常需要到这里找东西，因此在初始页面保留，<code>下载</code>前面已经谈到，主要作为浏览器的默认下载目录，打开的频率很高，<code>桌面</code>就是电脑桌面，我习惯不在桌面放置任何文件，只有在工作时放置一些临时文件，但都是用完即删，但也因此有一定的使用频率。<code>图片</code>是唯一一个添加到OneDrive同步的，和D盘的<code>照片</code>不同的是，这里存放的是使用频率较高的或需要在多个电脑使用的图片，当前有四个子文件夹</p>
+<ul>
+<li>壁纸</li>
+<li>收藏</li>
+<li>头像</li>
+<li>截图</li>
+</ul>
+<p><code>图片</code>目录也是系统截图等很多情况下的默认使用目录。</p>
+<p>除此之外使用频率较高的只有D盘<code>照片</code>目录，定期对新照片进行整理存放即可。F盘的Github本地仓库也根据开发工作进行调整。</p>
+<h2 id="2-命名">2. 命名</h2>
+<p>我们这里谈到的命名是自己经常接触的，需要命名的文件，如Github仓库的项目文件、游戏本体、虚拟机、解压即用的软件等，本身自己作为一个单独的文件夹存在，内部已经有着完善的目录体系，虽然涉及大量不同的文件类型，但我们通常不需要对其进行操作，强行重命名甚至可能导致文件不可用，所以不进行讨论。比如某个虚拟机的目录如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">test.nvram  
+test.vmx          
+test-000002.vmdk    
+test-Snapshot2.vmem  
+test-Snapshot5.vmsn  
+vmware-1.log
+test.vmdk   
+test.vmxf         
+test-c948472c.vmem  
+test-Snapshot2.vmsn  
+vmware.log           
+vmware-2.log
+test.vmsd   
+test-000001.vmdk  
+test-c948472c.vmss  
+test-Snapshot5.vmem  
+vmware-0.log
+</code></pre></td></tr></table>
+</div>
+</div><p>一个好的文件命名应满足如下需求</p>
+<ul>
+<li>良好的可读性</li>
+<li>传达一个清晰的含义</li>
+<li>易于检索</li>
+</ul>
+<p>我们大致将所有存放的文件划分为如下几类</p>
+<ul>
+<li>视频：mp4、mkv等各种格式的视频</li>
+<li>图片：jpg、png等各种格式的图片</li>
+<li>文档：docx、txt、md、xlsx、pptx等各种格式的文档，我们这里将表格和PPT也算作文档类型</li>
+</ul>
+<p>对于视频文件，主要分布在D盘的<code>电影</code>和<code>剧集</code>两个目录下。对于电影来说，我关注的只有电影名，清晰度、是否蓝光或高清、字幕类型等都是下载之前挑选的，下载之后，去除所有的冗余字段，简单的重命名为电影名即可。对于下载的剧集或动漫，一般情况本身具有完整的目录和命名体系，比如我电脑中的老友记，每一季分属不同文件夹，以第一季为例，文件夹和其中每一集的名称如下，完全不需要我们过多的改动。当然，下载的文件没有完善的分类和命名时，可以按一种简化的方式，每一季建立单独文件夹，每一集以剧名和集数命名。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">./Friends.S01.1994.BluRay.720p.x264.AAC-iSCG:
+Friends.S01E01.1994.BluRay.720p.x264.AAC-iSCG.mp4  Friends.S01E13.1994.BluRay.720p.x264.AAC-iSCG.mp4
+Friends.S01E02.1994.BluRay.720p.x264.AAC-iSCG.mp4  Friends.S01E14.1994.BluRay.720p.x264.AAC-iSCG.mp4
+Friends.S01E03.1994.BluRay.720p.x264.AAC-iSCG.mp4  Friends.S01E15.1994.BluRay.720p.x264.AAC-iSCG.mp4
+Friends.S01E04.1994.BluRay.720p.x264.AAC-iSCG.mp4  Friends.S01E16.1994.BluRay.720p.x264.AAC-iSCG.mp4
+Friends.S01E05.1994.BluRay.720p.x264.AAC-iSCG.mp4  Friends.S01E17.1994.BluRay.720p.x264.AAC-iSCG.mp4
+Friends.S01E06.1994.BluRay.720p.x264.AAC-iSCG.mp4  Friends.S01E18.1994.BluRay.720p.x264.AAC-iSCG.mp4
+Friends.S01E07.1994.BluRay.720p.x264.AAC-iSCG.mp4  Friends.S01E19.1994.BluRay.720p.x264.AAC-iSCG.mp4
+Friends.S01E08.1994.BluRay.720p.x264.AAC-iSCG.mp4  Friends.S01E20.1994.BluRay.720p.x264.AAC-iSCG.mp4
+Friends.S01E09.1994.BluRay.720p.x264.AAC-iSCG.mp4  Friends.S01E21.1994.BluRay.720p.x264.AAC-iSCG.mp4
+Friends.S01E10.1994.BluRay.720p.x264.AAC-iSCG.mp4  Friends.S01E22.1994.BluRay.720p.x264.AAC-iSCG.mp4
+Friends.S01E11.1994.BluRay.720p.x264.AAC-iSCG.mp4  Friends.S01E23.1994.BluRay.720p.x264.AAC-iSCG.mp4
+Friends.S01E12.1994.BluRay.720p.x264.AAC-iSCG.mp4  Friends.S01E24.1994.BluRay.720p.x264.AAC-iSCG.mp4
+</code></pre></td></tr></table>
+</div>
+</div><p>对于图片，如前所述，主要是D盘的<code>照片</code>目录和OneDrive的<code>图片</code>目录，基本的命名结构为<code>序号+图片描述+时间戳</code>，三部分之间以下划线<code>_</code>连接。</p>
+<ul>
+<li>序号：序号主要是为了进行区分和对图片合理排序</li>
+<li>图片描述：对图片内容的简单描述，不需要包含时间，因为命名结构的第三部分有时间戳，不需要包含人物，因为我们通常可以一眼辨识出图片中的人物，不要和所属目录的描述字段重复，比如目录已经命名为某个地点，在图片命名时重复添加地点字段</li>
+<li>时间戳：一个格式示例为<code>20200116</code>，意为2020年1月16日，只精确到天，因为精确到时分秒会在重命名时增加大量的工作量</li>
+</ul>
+<p>图片描述部分的说明不是绝对的，命名结构的三部分也都是可选的，不是每张图片名都包含这三部分。比如下面的照片，是我最喜欢的歌手J.Fla，因为电脑里只有一张她的照片，所以命名没有序号字段，同时这种照片添加时间戳是没有意义的，因此也没有时间戳字段，简单起见，该图片直接命名为她的名字，简单易懂，是最合适的命名方法。</p>
+<p></p>
+<p>以张氏帅府说明完整的命名示例</p>
+<p></p>
+<p>对于文档，依然遵循三部分的命名结构，但需根据情况适当调整，命名的目的是便于阅读和检索，在某些字段没有必要时，不必添加，而在标准字段外还需要添加说明，也可以附加其它字段，一切要灵活。比如对书籍的命名可以在前面添加作者名字段。</p>
+<h2 id="3-备份">3. 备份</h2>
+<p>我的备份方案主要分为两部分，OneDrive和移动硬盘，这两种方式选择的主要依据是使用频率。</p>
+<p>移动硬盘保存的是使用频率极小的文件，包括</p>
+<ul>
+<li>看过的非常喜欢的电影、剧集、动漫等</li>
+<li>私密性要求较高的照片。实际上大部分的生活照片都会在移动硬盘中保存一份。相机拍摄的照片一般当天就会分类整理并存放到电脑和备份到移动硬盘，手机拍摄的照片在每周末进行总结的时候整理备份，实际上对我个人来说，拍摄照片的频率并不高，因此这样的更新频率对我比较合适，即使某次忘记了，影响也比较小</li>
+<li>很难找却很有用的软件</li>
+<li>课程资料、书籍等。本科和研究生上课的各种资料、作业，自己学习某个东西时收集的资料等，通常都有一个备份在移动硬盘中，一般是在学习结束的时候做一次完整的备份，然后查看有哪些不会再用了，删掉。</li>
+</ul>
+<p>OneDrive保存的是使用频率比较高的文件，通常是需要在家里、实验室等多个地点处理的，对同步的需求比较高。以我自己为例，OneDrive文件夹下包括如下几个子文件夹</p>
+<ul>
+<li>博文：出于个人博客的更新需求，写的文章对同步的要求比较高，在实验室写，回家接着写，因此放在OneDrive文件夹下</li>
+<li>课题：研究课题的相关资料，包括论文、工作总结、期刊会议列表等资料，随时需要查看，因此也放在OneDrive文件夹下</li>
+<li>学业：培养方案、各门课的课件、电子学历、各种公务群发的公示文件，随时可能查看</li>
+<li>应用：微软应用商店里很多软件使用OneDrive作为数据同步的中转</li>
+<li>文档：书签备份、日程表、收入支出记录、密码提示符等</li>
+</ul>
+<p>这些都是自己建立的文件夹，实际上，OneDrive提供对其它位置的文件夹同步的功能，不过限制很大，只支持前面提到过的<code>桌面</code>、<code>下载</code>等windows自有的文件夹。</p>
+<p>
+</p>
+<p>我只选择了图片文件夹，并在其中存放了壁纸、头像和收藏的一些喜欢的图片，鉴于大量软件使用<code>文档</code>目录存放数据文件，很多游戏也使用它存放存档，可以将其勾选一起同步。</p>
+<p>最后提示的一点是，OneDrive可获得的免费空间为5G，但如果有别人点击我们分享的链接开通OneDrive，微软会提供扩容奖励，最大可以扩容到15G。很多人在贴吧等各种地方散布链接，但出于时间和精力的考虑，推荐淘宝直接购买OneDrive扩容服务，只要2块钱，几分钟之后就可以看到扩容成功。</p>
+<h2 id="4-常用快捷键">4. 常用快捷键</h2>
+<p>很多快捷键非常有用，只是需要前期的熟悉，将这些快捷键记录如下</p>
+<h3 id="41-win系列">4.1 Win系列</h3>
+<ul>
+<li>Win + D：所有窗口消失，显示桌面</li>
+<li>Win + E：打开文件资源管理器</li>
+<li>Win + L：快速锁屏</li>
+<li>Win + I：打开设置页面</li>
+<li>Win + R：打开运行功能</li>
+<li>Win + V：打开剪切板</li>
+<li>Win + 方向键：分屏</li>
+<li>Win + 数字键：快速打开任务栏第N个程序</li>
+<li>Win + Q：搜索</li>
+</ul>
+<h3 id="42-ctrl系列">4.2 Ctrl系列</h3>
+<ul>
+<li>Ctrl + X/C/V：剪切/复制/粘贴</li>
+<li>Ctrl + Z/Y：撤销/恢复</li>
+<li>Ctrl + W：关闭当前窗口</li>
+</ul>
+]]></description></item><item><title>Win10效率优化3-桌面整理</title><link>https://shuzang.github.io/efficient-use-of-win10-3-desktop-management/</link><pubDate>Wed, 23 Oct 2019 00:00:00 +0000</pubDate><author>作者</author><guid>https://shuzang.github.io/efficient-use-of-win10-3-desktop-management/</guid><description><![CDATA[<p>对任何系统来讲，桌面的整理都是重中之重。有些人喜欢文件触手可及，所有东西都放在桌面。有些人喜欢极简美观，桌面一尘不染，全部通过快速搜索完成。也有人做了折衷，桌面只放常用的文件并使用一些整理工具管理。没有对错，没有优劣，这种事情全看个人喜好，自己用着舒服就行。</p>
+<p>至于我自己，大概属于第二种吧。以下也按我的习惯来介绍，主要分三部分：壁纸，桌面，任务栏。</p>
+<h2 id="1-壁纸">1. 壁纸</h2>
+<p>无论个人喜好，壁纸的选择都应以不影响使用为原则，过于花里胡哨的壁纸将严重影响对应用和文件的识别，即使桌面干净的用户，复杂的图片也绝对挑战着人的观感和耐心。因此，挑选壁纸不仅要注意分辨率的大小，还要注意构图尽可能简单，最好拥有1/3以上的邻近色区域。以下两张图片就是一个鲜明的对比。</p>
+<p></p>
+<p></p>
+<p>除此之外，壁纸可分为静态壁纸和动态壁纸两类。</p>
+<p>静态壁纸的使用是主流，但动态壁纸也有不少拥趸。比较有名的动态壁纸软件是steam上的<a href="https://store.steampowered.com/app/431960/Wallpaper_Engine/" target="_blank" rel="noopener noreffer">Wallpaper Engine</a>，在社区中提供了大量高质量的动态壁纸，并且不仅仅是常规意义的动态壁纸，还可以通过鼠标进行交互式控制，甚至直接在壁纸上玩游戏，可以说是把这种类型做到了极致。但该软件的缺点在于比较消耗系统资源，同时在电脑启动时要级联启动steam和该软件，拖累了电脑启动速度，在用了一段时间后，新鲜感下降，我也就弃它而去了。以效率和极简的原则来看，动态壁纸的使用性价比并不高，若为了体验一番或电脑配置较高可以使用，但普通情况下不作建议。</p>
+<p>静态壁纸最重要的就是好的壁纸来源。我个人来讲主要有两个，一个是「Windows聚焦」功能每日更换的锁屏壁纸，遇到喜欢的就保存下来，作为桌面使用；另一个是壁纸网站<a href="https://wallpaperplay.com/" target="_blank" rel="noopener noreffer">Wallpaperplay</a>，提供了大量高质量的图片，可以挑选作为自己的壁纸使用。我最常使用的是以<code>Minimalist</code>开头的分类中的图片。以下的示例图片和本文开头的两张对比图片都来自该网站。</p>
+<p></p>
+<h2 id="2-桌面">2. 桌面</h2>
+<p>之所以把桌面和壁纸分开，是为了谈一谈桌面管理。一般情况下，桌面存在的内容包括软件快捷方式图标和常用文档，也有人放置Todo清单。随意放置的话，即使挑选了一张好的壁纸，最后也会把桌面弄得一团糟。因此有人使用了最简单的四象限分类法，将壁纸设为如下的四象限壁纸，把图标和文件放到不同的区域。</p>
+<p></p>
+<p>也有人使用<a href="https://www.stardock.com/products/fences/" target="_blank" rel="noopener noreffer">Fences</a>或<a href="https://guanjia.qq.com/product/zmzl/" target="_blank" rel="noopener noreffer">腾讯桌面整理</a>，把文件归档，桌面于是变成了下面这种样子。</p>
+<p></p>
+<p>但就我自己而言，四象限法不够优雅美观，桌面整理工具又会破坏桌面整体性，还会在右键菜单添加一大堆不需要的东西，因此我选择不放图标和文件在桌面。常用的软件都固定在了底部任务栏，文件则即用即删，同一时间工作的文档不会很多，同时也提醒自己尽快完成工作，之后就可以从桌面移走。如下是我的桌面。</p>
+<p></p>
+<p>从上图中注意到的另外一点是我在桌面中央放置了一个时钟，使得整个桌面更加和谐，不至于空荡荡的，时钟的位置可以根据壁纸的图案进行调整。而该时钟插件则来源于<a href="https://www.rainmeter.net/" target="_blank" rel="noopener noreffer">Rainmeter</a>。</p>
+<p>实际上关于桌面美化，Rainmeter恐怕不得不提，原本只是一个系统状态监视软件的它，由于强大的可定制性和扩展性，发展出了一个极为庞大的<a href="https://bbs.rainmeter.cn/forum.php" target="_blank" rel="noopener noreffer">社区</a>，并产生了数量难以估计的插件程序和皮肤样式，从而为我们进行系统桌面的美化提供了极大便利，一个官网提供的示例如下</p>
+<p></p>
+<p>Rainmeter可以显示CPU、内存、硬盘容量、网络等系统信息，可以从网络获取如天气、RSS源等信息，而且占用资源极小。但它不能修改如任务栏外观、开始按钮外观等系统视觉样式，也不能替代与之关联的程序，如果一个皮肤关联了网易云，使用的条件必须是网易云在后台运行。</p>
+<p>因此，出于极简与效率的考虑，我们摒弃了在桌面使用插件显示CPU、内存、硬盘等系统信息的想法，这些一般情况下查看的频率极小，没有必要放在桌面显示，需要的时候在任务管理器界面查看即可，更加的详细。</p>
+<p></p>
+<p>我们只简单的添加了一个时钟插件，至于天气信息是否添加，随自己所愿。</p>
+<p>最后是便签，我是曾想过使用那种贴边隐藏的便签的，但思来想去，对我的作用恐怕不是很大，一来便签软件随电脑启动又会增加一项负担，另外就是我个人还是更偏爱使用实际的便签纸贴在工位上，尤其是在看过<a href="https://movie.douban.com/subject/26816519/" target="_blank" rel="noopener noreffer">逃避虽可耻但有用</a>后，新垣结衣工作中使用的便签法给我了极大的启发。</p>
+<h2 id="3-任务栏">3. 任务栏</h2>
+<p>在我的认知中，任务栏的作用可真的是太大了，不仅仅原先在桌面的软件现在全靠任务栏的图标启动，快速搜索、时间线、日期时间显示等都依赖它。不过在介绍各项功能调整之前，我们先来介绍两个任务栏美化的小技巧。</p>
+<h3 id="31-任务栏透明">3.1 任务栏透明</h3>
+<p>任务栏透明的工具千千万，而我独爱<a href="https://github.com/TranslucentTB/TranslucentTB" target="_blank" rel="noopener noreffer">TranslucentTB</a>。说实话，任务栏透明的工具还是不少的，但TranslucentTB集中于这一个功能，把它做到了极致。我曾经使用过很长一段时间坑晨大佬的<a href="http://www.pcmoe.net/thread-71266-1-1.html" target="_blank" rel="noopener noreffer"> Win10 萌化通用工作箱</a>，但到最后发现其中很多功能，包括文件夹背景自定义、系统窗口半透明等我都用不到，或者说这些功能不符合我的使用原则，造成了极大的生产力浪费。直到我找到了TranslucentTB。</p>
+<p>一些高级功能暂且不表，TranslucentTB支持任务栏的<code>Blur</code>，<code>Clear</code>，<code>Normal</code>，<code>Opaque</code>，<code>Fluent</code>五种显示方式，但最为令人惊喜的细节在于，可以在桌面环境和窗口模式下透明，而在全屏模式下不透明。只有经历过的人才会懂这个功能有多么有用。</p>
+<p>
+</p>
+<p>TranslucentTB可以直接从 Win10 商店里下载。</p>
+<h3 id="32-任务栏居中">3.2 任务栏居中</h3>
+<p>任务栏居中可以通过简单的调整实现，无需安装软件。</p>
+<p>首先在磁盘任意位置建立一个空文件夹，命名为自己喜欢的名字。我选择在F盘根目录建立了文件夹<code>Minimalism</code>。</p>
+<p></p>
+<p>右键任务栏，选择<code>工具栏—&gt;新建工具栏</code></p>
+<p></p>
+<p>在弹出的窗口中选择刚刚新建的空文件夹，确认选择。因为我已经操作过一次，所以图中已经可以看到之前新建的<code>Minimalism</code>工具栏。</p>
+<p></p>
+<p>这一步操作之后任务栏应当是如下模样</p>
+<p></p>
+<p>可以看到，名为<code>Minimalism</code>的文件夹出现在了任务栏，可以通过这一特性在任务栏定制自己喜欢的文字，但最好不要太长。同时由于该文件夹成为了新的工具栏，之后也不要往里面放文件，不然会一同显示在任务栏中，出现这种情况。</p>
+<p></p>
+<p>此时继续右键任务栏，取消勾选<code>锁定任务栏</code></p>
+<p></p>
+<p>取消勾选后，<code>Minimalism</code>前将出现双竖线。鼠标点击双竖线使劲向左水平拖动，直到左侧的一堆图标自动移动到右边。</p>
+<p></p>
+<p>然后拖动图标左侧的双竖线移动到任务栏中央，重新锁定任务栏，调整完毕。</p>
+<p></p>
+<h3 id="33-小图标设置">3.3 小图标设置</h3>
+<p>前两步走完之后，其实大体的优化都已经结束了，剩下的是一些细节的说明，包括右侧小图标的显示与否，以及我们把桌面清空之后如何快速搜索软件和文档等。当前主要介绍右下角的小图标设置。</p>
+<p>右键任务栏，点击任务栏设置，所出现的就是我们所有可做的调整了，也许有人从未关注过这些功能，不过其实都挺有意思的，下面将逐个介绍。</p>
+<p></p>
+<p><strong>在桌面模式下自动隐藏任务栏</strong>，如文所述，勾选之后，任务栏将自动隐藏，无论是窗口模式还是全屏模式，只有当鼠标移动到任务栏的位置时任务栏才会显示。也许有人喜欢这样的方式，但我自己来说，即使我喜欢极简，当影响到使用时一样无法接受。由于之前已经将桌面清空，大部分功能依赖任务栏完成，因此对任务栏的使用频率极高，自动隐藏会使人使用起来非常难受，这也是我为什么第一次见到这项功能十分惊喜，但使用连一天都没坚持下来。</p>
+<p>下面的两个图并不是我没有截任务栏哦，是自动隐藏了。</p>
+<p>
+</p>
+<p><strong>使用小任务按钮</strong>，曾经用过一段时间，作用是将任务栏的大小缩小一号，但人年纪大了，眼睛不好，后来还是换了回来(滑稽)。</p>
+<p></p>
+<p></p>
+<p><strong>当我右键单击“开始”按钮或按下Windows键+X时，在菜单中将命令提示符替换为Windows PowerShell</strong>，如文所述，而且一般人用不到。主要决定<code>开始</code>按钮的右键菜单中是出现cmd还是PowerShell。</p>
+<p><strong>在任务栏按钮上显示角标</strong>，以闹钟为例，将其固定到任务栏并开启闹钟后，图标会显示一个角标。我很少固定系统应用在任务栏，以前只是在邮件应用上见过角标，非系统应用还没有见过，所以应该对非系统应用不起作用。而且，角标什么的，对强迫症来讲太难受了。</p>
+<p></p>
+<p><strong>任务栏在屏幕的位置</strong>，有四种选项，分别是<code>底部</code>，<code>顶部</code>，<code>靠左</code>，<code>靠右</code>。各有喜好吧，Mac和Ubuntu任务栏都在顶部，所以也许用惯了这两种的人比较习惯放在顶部。我的话，顶部、靠右都试过一段时间，但最后还是觉得在底部最舒服。</p>
+<p><strong>合并任务栏按钮</strong>，三个选项，<code>始终合并按钮</code>，<code>任务栏已满时</code>，<code>从不</code>。除了选始终合并，其它两种都会出现如下效果，说实话，我觉得显示名称没有意义，好不容易调整的任务栏也被破坏，而且有时候一打开就是好多软件，选<code>始终合并</code>最适合不过了。</p>
+<p></p>
+<p>Win10 本身还在设置里提供了一个<a href="https://support.microsoft.com/zh-cn/help/29280/windows-10-how-to-use-the-taskbar" target="_blank" rel="noopener noreffer">如何自定义任务栏</a>的官方教程，介绍了不少使用方法，除我们上面介绍的外，还包括更改任务栏的颜色，更改任务栏的高度等，不过这些都很简单，基本都能猜出来怎么做，猜不出来的可以点链接看官方说明。</p>
+<p><strong>选择哪些图标显示在任务栏上</strong>，如文所述，选择在通知区域显示的图标，我的选择原则是使用频率，当然是越少越好，目前留下的只有QQ和网络。其它的像音量什么的，其实使用频率不是很高，所以就直接隐藏了，当然这因人而异。</p>
+<p></p>
+<p><strong>打开或关闭系统图标</strong>，很多其实都不是一直显示的，唯一比较麻烦的是输入指示，如果它只显示汉字<code>中</code>或<code>英</code>还好，问题是旁边会附带<code>拼</code>字样。考虑了很久后，最后还是把输入指示关闭掉了，因为一共就两种情况，切换也就一个快捷键的事情，试错成本比较低，就不放着碍眼了。</p>
+<p></p>
+<p><strong>时间和日期</strong>，右键<code>时间和日期</code>同右键任务栏出现的选项有所不同，多出了一个<code>调整日期/时间</code>的选项，单击后会进入设置里的日期和时间页面，主要的功能选项其实没什么可谈的。但右侧有两个很有意思的选项。</p>
+<p></p>
+<p>一个是<code>添加不同时区的时钟</code>，如下图我们添加了美国东部时间(和老师视频用)。</p>
+<p></p>
+<p>单击任务栏的时间和日期或者鼠标悬停在上面都可以看到附加的时钟，对于跨国恋的情侣来说，或者其它经常跨国交流的人，这个功能也是很实用了。</p>
+<p></p>
+<p>另一个设置是日期、时间和区域格式，区域的设置没有什么意义，但我们可以点击<code>更改数据格式</code>，调整日期和时间的显示形式。也许有人觉得没用，那是因为你没有注意到，在不同的显示器上，时间部分显示的完整性是不一样的，比如我的笔记本屏幕比较小，就只显示当前时间，而实验室的显示屏会同时显示当前时间和日期。通过调整这里的显示格式，可以适应不同大小的屏幕，当然，手动调整任务栏的大小也会显示更多内容。</p>
+<p></p>
+<p><strong>通知与操作</strong>，右键日期与时间，选择自定义通知图标，可以添加、删除或重新排列操作中心的操作，同时可以选择接收或不接受某些应用的通知，因为很多时候某些应用的通知我们完全不关心，这个功能还是很有用的。</p>
+<h3 id="34-应用图标">3.4 应用图标</h3>
+<p>很多人喜欢统一化应用图标的风格，我当然没有意见，但这个操作往往涉及很多问题。因为无论是专门的软件还是手动更改，仅仅是在属性页面替换了一下图标文件(ico文件)。应用变动时，比如更新，删除后重装都会失效，而且逐个更改工作量简直爆炸。应用原始图标辨识度也比较高，相比之下，我就不动图标样式了。</p>
+<h3 id="35-搜索及时间线">3.5 搜索及时间线</h3>
+<p>任务栏最左侧的开始按钮以后的文章再讲，与之相邻的Cortana被我取消了显示，因为无论在宿舍还是实验室，语音的交互都会影响到他人。留下的只有搜索和时间线，这两个功能同样在任务栏的右键菜单开启。</p>
+<p></p>
+<p>桌面清空各种常用文件和应用之后，搜索的作用变的大了起来，任务栏固定的只是使用频率高的软件，其它的软件和常用文件都通过搜索来快速访问，完全不会影响效率。只是要注意的是搜索历史默认会上传到云端，不过可以在设置中关闭。</p>
+<p></p>
+<p>任务视图的核心作用有两个，一个是新建和切换桌面，将不同的任务分隔开来，比如我的两个桌面一般情况一个是看论文查资料用的，因为开的窗口过多。当我编程或写作的时候就会切换到桌面2；另一个是时间线，可以回顾最近一段时间每天的工作，用来总结蛮合适的。</p>
+<p></p>
+<p>就这样了，开始菜单涉及的东西比较多，就换下次介绍吧。最后来看一下完整的桌面。</p>
+<p></p>
+]]></description></item><item><title>Win10效率优化1-综述</title><link>https://shuzang.github.io/efficient-use-of-win10-1-overview/</link><pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate><author>作者</author><guid>https://shuzang.github.io/efficient-use-of-win10-1-overview/</guid><description><![CDATA[<p>得益于苹果的生态，MacOS上的优秀软件不少，因此网上存在大量介绍如何利用Mac有效率的学习、工作和生活的文章。但对于Win10来说，这方面的文章就乏善可陈了，但Win10作为一款消费级操作系统，拥有最大的市场占比，更在不断迭代优化，其软件数量也远远超过Mac，因此我相信它是有改善我们学习或工作模式的潜力的。</p>
+<p>我想要收集一些信息，并结合自身的使用经验，做一次这方面的总结，给自己一个备份，也给其他人一些借鉴。相信不论出于何种原因身处Win10的阵营，一颗追求效率和极简的心想必依然是有的。</p>
+<p>我们遵循极简和效率的理念来使用Win10，也以同样的理念安排这一个系列的文章。不过，有别于Mac，在Win10领域有一个庞大的社区是关于美化的，好的视觉效果能让人心情愉快，美观也是我们追求的目标，但这一目标位于效率和极简之后，意思是，美化不应当造成任何操作上的不便。这就是我使用Win10的三原则。</p>
+<p>先来一次头脑风暴，将会涉及的方面包括：</p>
+<ul>
+<li>
+<p>锁屏</p>
+</li>
+<li>
+<p>桌面：包括壁纸、桌面管理、任务栏。</p>
+</li>
+<li>
+<p>文件管理</p>
+<ul>
+<li>
+<p>文件资源管理器的初始界面</p>
+</li>
+<li>
+<p>磁盘划分</p>
+</li>
+<li>
+<p>文件归档</p>
+</li>
+<li>
+<p>文件命名</p>
+</li>
+<li>
+<p>文件同步和设备间文件互传</p>
+</li>
+</ul>
+</li>
+<li>
+<p>系统功能：包括截图、连接、投影、夜间模式、搜索、时间线、VPN、热点等等。</p>
+</li>
+<li>
+<p>软件管理</p>
+<ul>
+<li>软件安装和卸载工具：IObit Uninstaller, Chocolatey</li>
+<li>通信：QQ, 微信</li>
+<li>压缩解压工具：7zip</li>
+<li>浏览器：Edge dev</li>
+<li>安全软件，应包括磁盘扫描，垃圾清理，漏洞修复，火绒</li>
+<li>编程IDE和其它编程相关：VScode, Github</li>
+<li>文献管理：Zotero</li>
+<li>文档编辑：Typora</li>
+<li>音乐、视频播放软件：网易云，迅雷影音</li>
+<li>邮件和日程管理</li>
+</ul>
+</li>
+</ul>
+]]></description></item><item><title>Win10效率优化2-锁屏与登录</title><link>https://shuzang.github.io/efficient-use-of-win10-2-lockscreen-and-login/</link><pubDate>Mon, 21 Oct 2019 00:00:00 +0000</pubDate><author>作者</author><guid>https://shuzang.github.io/efficient-use-of-win10-2-lockscreen-and-login/</guid><description><![CDATA[<p>Win10 系统中，锁屏是我们登录系统前看到的一个界面。它的作用是当我们暂时离开电脑时阻止别人操作，但早晨当我们打开电脑时，第一眼看到也是锁屏界面，因此它可以影响我们的心情，所以要选择好的图片作为锁屏背景。微软提供了一些关于锁屏的有用的功能，包括：</p>
+<ol>
+<li>自定义锁屏背景图片</li>
+<li>在锁屏界面显示当前时间和日期</li>
+<li>在锁屏界面显示日历中日程信息和软件通知</li>
+</ol>
+<p>所有的设置基本都位于个性化设置中的锁屏界面设置。以下我们就来介绍如何定制一个合适的锁屏界面。</p>
+<h2 id="1-锁屏背景">1. 锁屏背景</h2>
+<p>Win10 允许我们以三种方式设置锁屏背景： Windows 聚焦，图片和幻灯片放映。具体的设置方式为</p>
+<ol>
+<li>打开<strong>设置</strong></li>
+<li>点击<strong>个性化</strong></li>
+<li>点击<strong>锁屏界面</strong></li>
+<li>在<strong>背景</strong>下拉菜单中选择自己要使用的方式</li>
+</ol>
+<p></p>
+<p>选择图片作为锁屏背景后，需要点击「浏览」按钮在电脑中选择自己喜欢的图片，所选图片最好不要影响左下角的时间和通知显示，若能相互辉映最好。</p>
+<p></p>
+<p>选择幻灯片放映，则需要选择一个图片文件夹，锁屏界面将循环播放这些图片，每个图片的停留时间大约在10秒左右。</p>
+<p>单张图片容易看腻，幻灯片不仅需要自己劳心劳力寻找图片，切换速度也比较快。这种情况下，第三个选择[ Windows 聚焦](<a href="https://docs.microsoft.com/zh-cn/">https://docs.microsoft.com/zh-cn/</a> Windows /configuration/ Windows -spotlight)最好不过了。</p>
+<p>「 Windows 聚焦」是 Win10 内置的一个锁屏壁纸自动换功能，开启后会在锁屏界面每天更换一张新的壁纸。这里需要注意的是，每天第一次登录电脑看到的依然是昨天的背景图片，因为只有在系统启动并联网后才会自动下载壁纸，当你第二次登录时，壁纸就会更新了。</p>
+<p>Windows 聚焦的壁纸多数为风景照，质量都非常高，而且右上角会有提示询问是否喜欢这张壁纸，选择“不喜欢”将会更换新壁纸，每次选择都会为「 Windows 聚焦」后续筛选壁纸提供参考，从而令锁屏界面出现的壁纸越来越符合个人喜好。</p>
+<p></p>
+<p>上图是我的电脑今天的锁屏壁纸，可以看到，在左上角和中间还有一些文字，一般情况都是对壁纸内容的简单介绍，有时候也会是一些使用小贴士。而右上角除了喜欢与不喜欢的选项外，还显示了该景点的名称和所在地，单击景点名称然后解锁屏幕，Edge浏览器将自动启动并展示该景点更详细的信息。有的时候我们对某个图片的景点喜爱至极，非常想知道是哪个地方，所以这个功能可谓是十分重要了。</p>
+<p></p>
+<p>如前所述，在经过长时间的使用和反馈之后， Windows 聚焦选择的壁纸将会越来越符合我们的喜好，通常大家都会有将其保存下来的冲动。这些壁纸在电脑中的保存路径为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">C:<span class="se">\U</span>sers<span class="se">\u</span>ser<span class="se">\A</span>ppData<span class="se">\L</span>ocal<span class="se">\P</span>ackages<span class="se">\M</span>icrosoft. Windows .ContentDeliveryManager_cw5n1h2txyewy<span class="se">\L</span>ocalState<span class="se">\A</span>ssets
+</code></pre></td></tr></table>
+</div>
+</div><p>其中<code>user</code>字段是个人的用户名。此处保存的所有的壁纸都没有后缀，需要我们手动添加图片格式后缀。不过在将其转变为图片之前，为了不影响当前壁纸的显示，最好把它们复制到一个新的文件夹，如下图Spotlight Wallpapers。之后就可以更改这些文件的后缀为图片类型了，推荐使用<a href="https://www.binfensoft.cn/archives/353" target="_blank" rel="noopener noreffer">批量修改文件名</a>这一软件，更方便一点，文件类型使用<code>.png</code>最好，但<code>.jpg</code>和<code>.jpeg</code>等其它类型也都可以使用。另外，对<code>Asset</code>文件夹中的原始文件按修改日期排序，可以找到当天的壁纸图片。</p>
+<p></p>
+<p>最后还有一点， Windows 聚焦同时提供两种分辨率格式的图片，为1080×1920和1920×1080，前一种可以用于竖屏显示器或手机。</p>
+<p></p>
+<h2 id="2-应用通知">2. 应用通知</h2>
+<p>除了时间和日期， Win10 还支持在锁屏界面显示一个应用的详细状态和多个应用的快速状态。设置按钮位于锁屏背景设置的下方。</p>
+<p></p>
+<p>支持显示的应用基本是 Win10 的系统应用，多数我们平时都不会使用，但天气信息的显示对大部分人都有意义，而Outlook日历用户也是一个不小的群体，因此这两个应用显示在锁屏上是对我们有帮助的。应用显示之前首先应在系统中初始化，比如天气应当首先设置好城市。</p>
+<h2 id="3-登录界面">3. 登录界面</h2>
+<p>在应用通知设置的下方，有一个「在登录屏幕上显示锁屏界面背景图片」的按钮。该按钮出现在 Win10  1903版本之后，会在密码输入页面将锁屏壁纸模糊化显示，取消勾选此选项则只有一片灰色背景，两种情况对比如下，对我个人来讲，更喜欢壁纸模糊化的显示。</p>
+<p>
+</p>
+<h2 id="4-手环解锁">4. 手环解锁</h2>
+<p>Win10 登录方式有人脸、指纹、PIN、物理密钥、图片密码和普通的登录密码。人脸和指纹自然是好的，但老旧的电脑和台式电脑恐怕都力不从心，这种情况下，PIN是最常用的办法。但现在，小米手环可以通过官方的商店应用「小米智能解锁」来快速解锁屏幕。</p>
+<p></p>
+<p>从 Win10 商店下载并安装这款免费应用，跟随提示进行一步步设置，设置完成后，以后只要把手环靠近电脑，敲击键盘任意键就可解锁。但需笔记本保持蓝牙开启和创建PIN码。</p>
+<p>手环解锁固然方便，要是锁屏也可以就好了。在 Win10 的登录选项中，有一种叫做动态锁的功能，使用这种功能， Win10 可以通过与电脑配对的设备获悉我们何时离开电脑，并在这些设备超出范围时锁定电脑。可惜的是这一配套功能不支持手环，只能使用手机，但对手机来讲，平时没有人会持续开启蓝牙，可以说是鸡肋了。</p>
+<h2 id="5-其它设置">5. 其它设置</h2>
+<p>Win10 支持在锁屏界面就唤醒Cortana，但在工位上用语音多少会影响别人，至于屏保，个人认为这一功能没有存在的意义，默认设置为无，我们无需更改。</p>
+<h2 id="6-附录">6. 附录</h2>
+<p>在文章写作过程中涉及到对系统的锁屏和登录界面截图，比较特殊，记录如下。</p>
+<h3 id="61-锁屏界面截图">6.1 锁屏界面截图</h3>
+<p>锁屏界面的截图极为简单，只需要在锁屏界面按下键盘的<code>PrtSc SysRq</code>键（即截图键），锁屏的截图即保存至了粘贴板中，后续登录系统后，及时粘贴保存即可。</p>
+<p></p>
+<h3 id="62-登录界面截图">6.2 登录界面截图</h3>
+<p>登录界面截图无法使用自带的截图键，但可巧妙地利用登录界面右下角地轻松使用功能来完成截图。</p>
+<p>首先在注册表中如下位置新建项<code>utilman.exe</code>，具体路径为<code>HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\ Windows  NT\CurrentVersion\Image File Execution Options</code></p>
+<p></p>
+<p>在新建的<code>utilman.exe</code>中新建字符串值，值名为<code>debugger</code>，值数据为<code>C:\ Windows \System32\cmd.exe</code></p>
+<p></p>
+<p>至此，我们将cmd命令行关联到了轻松使用，接下来需要先下载 Windows 地截图命令行工具<a href="http://www.nirsoft.net/utils/nircmd.html" target="_blank" rel="noopener noreffer">nircmd</a>，下载完成后解压到C盘根目录，并重命名为nircmd。</p>
+<p>按下<code>win+L</code>键锁屏，单击进入登录页面，点击右下角的轻松使用，将会弹出cmd的窗口，在命令行中执行如下命令。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">timeout <span class="m">5</span> <span class="p">&amp;</span> c:<span class="se">\n</span>ircmd<span class="se">\n</span>ircmd.exe savescreenshot c:<span class="se">\\</span>screenshot.png
+</code></pre></td></tr></table>
+</div>
+</div><p>该命令将会延时5秒截取整个屏幕并将截图保存在C盘根目录下，我们需要在延时结束前最小化cmd窗口避免将其置入截图界面。预计截图结束后登录进入系统，将可以在C盘根目录成功找到命名为<code>screenshot.png</code>的截图文件</p>
+]]></description></item></channel></rss>

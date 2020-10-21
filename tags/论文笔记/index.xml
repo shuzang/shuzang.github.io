@@ -1,112 +1,1093 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>论文笔记 on Shuzang's Blog</title><link>https://shuzang.github.io/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</link><description>Recent content in 论文笔记 on Shuzang's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 22 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://shuzang.github.io/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/index.xml" rel="self" type="application/rss+xml"/><item><title>An Attribute-Based Distributed Access Control for Blockchain-enabled IoT</title><link>https://shuzang.github.io/an-attribute-based-distributed-access-control-for-blockchain-enabled-iot/</link><pubDate>Wed, 22 Apr 2020 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/an-attribute-based-distributed-access-control-for-blockchain-enabled-iot/</guid><description>P. Wang, Y. Yue, W. Sun, and J. Liu, “An Attribute-Based Distributed Access Control for Blockchain-enabled IoT,” in 2019 International Conference on Wireless and Mobile Computing, Networking and Communications (WiMob), Barcelona, Spain, Oct. 2019, pp. 1–6, doi: 10.1109/WiMOB.2019.8923232 . 第一作者是西电的，国家自然科学基金项目成果，</description></item><item><title>Attribute-Based Access Control</title><link>https://shuzang.github.io/attribute-based-access-control/</link><pubDate>Wed, 22 Apr 2020 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/attribute-based-access-control/</guid><description>V. C. Hu, D. R. Kuhn, and D. F. Ferraiolo, “Attribute-Based Access Control,” Computer, vol. 48, no. 2, pp. 85–88, Feb. 2015, doi: 10.1109/MC.2015.33 . 1. 引言 传统的访问控制基于用户身份（</description></item><item><title>Supply Chain Management Automation using Wireless Sensor Networks</title><link>https://shuzang.github.io/supply-chain-management-automation-using-wireless-sensor-networks/</link><pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/supply-chain-management-automation-using-wireless-sensor-networks/</guid><description>L. Evers and P. Havinga, “Supply Chain Management Automation using Wireless Sensor Networks,” in 2007 IEEE Internatonal Conference on Mobile Adhoc and Sensor Systems, Pisa, Italy, Oct. 2007, pp. 1–3, doi: 10.1109/MOBHOC.2007.4428689 . 注：插图来自原论文和网络。 1. 引言 这篇论</description></item><item><title>Blockchain and Deep Reinforcement Learning Empowered Intelligent 5G Beyond</title><link>https://shuzang.github.io/blockchain-and-deep-reinforcement-learning-empowered-intelligent-5g-beyond/</link><pubDate>Mon, 13 Apr 2020 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/blockchain-and-deep-reinforcement-learning-empowered-intelligent-5g-beyond/</guid><description>Day Y, Xu D, Maharjan S, 等. Blockchain and Deep Reinforcement Learning Empowered Intelligent 5G Beyond[J]. IEEE Network, 2019, 33(3): 10–17. DOI:10.1109/MNET.2019.1800376 . 1. 引言 区块链和 AI 会在 6G 中扮演关键角色，前者可保证分布式网络安全，后者可用于智能资源</description></item><item><title>LVChain： A Lightweight and Vote-based Blockchain for Access Control in the IoT</title><link>https://shuzang.github.io/lvchain-a-lightweight-and-vote-based-blockchain-for-access-control-in-the-iot/</link><pubDate>Fri, 14 Feb 2020 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/lvchain-a-lightweight-and-vote-based-blockchain-for-access-control-in-the-iot/</guid><description>Yu, Yue &amp;amp; Zhang, Sheng &amp;amp; Chen, Chao &amp;amp; Zhong, Xiaoxiong. (2018). LVChain: A Lightweight and Vote-based Blockchain for Access Control in the IoT. 870-874. DOI: 10.1109/CompComm.2018.8780687 KeyWord: IoT, security, Blockchain, access authorization, BLE-based devies 注：插图经过重新绘制，照片来自原论文截图。 1. 引言 IoT与生活联系的越来</description></item><item><title>Efficient Distributed Authentication and Access Control System</title><link>https://shuzang.github.io/efficient-distributed-authentication-and-access-control-system/</link><pubDate>Sun, 09 Feb 2020 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/efficient-distributed-authentication-and-access-control-system/</guid><description>Benhadj Djilali H., Tandjaoui D. (2019) Efficient Distributed Authentication and Access Control System Management for Internet of Things Using Blockchain. In: Renault É., Boumerdassi S., Leghris C., Bouzefrane S. (eds) Mobile, Secure, and Programmable Networking. MSPN 2019. Lecture Notes in Computer Science, vol 11557. Springer, Cham DOI：https://doi.org/10</description></item><item><title>A Blockchain based access control for IoT</title><link>https://shuzang.github.io/a-blockchain-based-access-control-for-iot/</link><pubDate>Thu, 06 Feb 2020 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/a-blockchain-based-access-control-for-iot/</guid><description>Imen Riabi, Yosr Dhif, Hella Kaffel Ben Ayed, Khaled Zaatouri. A Blockchain based access control for IoT[C]. International Wireless Communications &amp;amp; Mobile Computing Conference (IWCMC), 2019. DOI: 10.1109/IWCMC.2019.8766506 Keywords: Access control, Blockchain, Smart Contract, Internet of Things 注：本文图片来自原论文。 1. 引入 作者的考虑主要基于三点 传统中心化的访</description></item><item><title>An ABAC Model in RFID Systems Based on DApp for Healthcare Environments</title><link>https://shuzang.github.io/an-abac-model-in-rfid-systems-based-on-dapp-for-healthcare-environments/</link><pubDate>Mon, 11 Nov 2019 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/an-abac-model-in-rfid-systems-based-on-dapp-for-healthcare-environments/</guid><description>Figueroa, Añorga, and Arrizabalaga, “An Attribute-Based Access Control Model in RFID Systems Based on Blockchain Decentralized Applications for Healthcare Environments,” Computers, vol. 8, no. 3, p. 57, Jul. 2019, doi: 10.3390/computers8030057 . Keywords: blockchain, smart contract, RFID, ABAC, access control, IoT, healthcare 1. 引言 在医疗领</description></item><item><title>SEC-BlockEdge Security Threats in Blockchain-Edge based IIoT Network</title><link>https://shuzang.github.io/sec-blockedge-security-threats-in-blockchain-edge-based-iiot-network/</link><pubDate>Thu, 24 Oct 2019 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/sec-blockedge-security-threats-in-blockchain-edge-based-iiot-network/</guid><description>Kumar, Tanesh &amp;amp; Braeken, An &amp;amp; Ramani, Vidhya &amp;amp; Ahmad, Ijaz &amp;amp; Harjula, Erkki &amp;amp; Ylianttila, Mika. (2019). SEC-BlockEdge: Security Threats in Blockchain-Edge based Industrial IoT Networks. 以一个木屋建造场景作为IIoT用例，简要介绍了一个区块链-边缘计算框架。然后以此为基础</description></item><item><title>Acceleration of Anomaly Detection in Blockchain Using In-GPU Cache</title><link>https://shuzang.github.io/acceleration-of-anomaly-detection-in-blockchain-using-in-gpu-cache/</link><pubDate>Wed, 16 Oct 2019 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/acceleration-of-anomaly-detection-in-blockchain-using-in-gpu-cache/</guid><description>Morishima S, Matsutani H. Acceleration of anomaly detection in blockchain using in-GPU Cache[C]. international conference on big data and cloud computing, 2019: 244-251. 引言 区块链的不可篡改特性带来安全性的同时，由操作失误或密钥被盗造成的欺诈交易同样无法取消，因此</description></item><item><title>EdgeChain An Edge-IoT Framework and Prototype</title><link>https://shuzang.github.io/edgechain-an-edge-iot-framework-and-prototype/</link><pubDate>Tue, 15 Oct 2019 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/edgechain-an-edge-iot-framework-and-prototype/</guid><description>EdgeChain设计 EdgeChain的核心思想是集成一个许可区块链和内部货币系统，将边缘云资源池与每个物联网设备的账户和资源使用行为关联</description></item><item><title>Securing Majority-Attack in Blockchain Using Machine Learning</title><link>https://shuzang.github.io/securing-majority-attack-in-blockchain-using-machine-learning/</link><pubDate>Thu, 10 Oct 2019 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/securing-majority-attack-in-blockchain-using-machine-learning/</guid><description>Dey S. A Proof of Work: Securing Majority-Attack in Blockchain Using Machine Learning and Algorithmic Game Theory[J]. International Journal of Wireless and Microwave Technologies, 2018, 8(5): 1-9. Abstract 多数人攻击(majority-attack)对公链网络可能不是一个威胁，但对联盟链来</description></item><item><title>When Intrusion Detection Meets Blockchain Technology A Review</title><link>https://shuzang.github.io/when-intrusion-detection-meets-blockchain-technology-a-review/</link><pubDate>Thu, 03 Oct 2019 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/when-intrusion-detection-meets-blockchain-technology-a-review/</guid><description>Meng W, Tischhauser E, Wang Q, et al. When Intrusion Detection Meets Blockchain Technology: A Review[J]. IEEE Access, 2018: 10179-10188. Abstract：以识别网络威胁和可能的事故为目的，入侵检测系统（IDS）已被广泛用于各种计算机网络</description></item><item><title>A Novel Attribute-Based Access Control Scheme Using Blockchain for IoT</title><link>https://shuzang.github.io/a-novel-attribute-based-access-control-scheme-using-blockchain-for-iot/</link><pubDate>Mon, 03 Jun 2019 15:51:00 +0800</pubDate><guid>https://shuzang.github.io/a-novel-attribute-based-access-control-scheme-using-blockchain-for-iot/</guid><description>&lt;p>Ding, Sheng, et al. &amp;ldquo;A Novel Attribute-Based Access Control Scheme Using Blockchain for IoT.&amp;rdquo; &lt;em>IEEE Access&lt;/em> 7 (2019): 38431-38441.&lt;/p>
-&lt;p>DOI: &lt;a href="https://doi-org-s.webvpn.neu.edu.cn/10.1109/ACCESS.2019.2905846" target="_blank">10.1109/ACCESS.2019.2905846&lt;/a>
-&lt;/p>
-&lt;p>KeyWord: Access control, attribute-based access control, blockchain, consortium blockchain, IoT&lt;/p>
-&lt;p>注：插图经过重新绘制，照片来自原论文截图。&lt;/p>
-&lt;h2 id="1-摘要">1. 摘要&lt;/h2>
-&lt;p>随着智能设备数量的急剧增加，物联网近年来得到越来越多的关注和快速发展。它通过现有的网络基础设施有效地将物理世界与Internet集成在一起，以便在智能设备之间共享数据。然而，其复杂的大规模网络结构给物联网系统带来了新的安全风险和挑战。为了保证数据的安全性，传统的访问控制技术由于其复杂的访问管理和集中性导致可靠性不足，不适合直接用于物联网系统的访问控制。本文提出了一种新的基于属性的用于物联网系统的访问控制方案，大大简化了访问管理。我们使用区块链技术来记录属性的分发，以避免单点故障和数据篡改。访问控制过程也进行了优化，以满足对物联网设备进行高效和轻量化计算的需要。安全性和性能分析表明，该方案能够有效抵御多种攻击，并能在物联网系统中得到有效的实现。&lt;/p></description></item><item><title>A Blockchain-Based Solution for Enhancing Security and Privacy in Smart Factory</title><link>https://shuzang.github.io/a-blockchain-based-solution-for-enhancing-security-and-privacy-in-smart-factory/</link><pubDate>Fri, 24 May 2019 21:18:00 +0000</pubDate><guid>https://shuzang.github.io/a-blockchain-based-solution-for-enhancing-security-and-privacy-in-smart-factory/</guid><description>&lt;p>Wan J, Li J, Imran M, et al. A Blockchain-Based Solution for Enhancing Security and Privacy in Smart Factory[J]. IEEE Transactions on Industrial Informatics, 2019.&lt;/p>
-&lt;p>被引：2次&lt;/p>
-&lt;h2 id="abstract">Abstract&lt;/h2>
-&lt;p>通过IIoT，智能工厂进入了蓬勃发展的时期。但是，随着节点数量和网络规模的扩大，传统的IIoT架构无法再为这样庞大的系统提供有效支持。因此，我们引入了区块链。它是一种用于构建分布式网络的新兴方案，用于重塑传统的IIoT架构。首先，分析了传统IIoT架构的主要问题，总结了现有的改进。其次，我们引入了一个安全和隐私模型来帮助设计基于区块链的架构。在此基础上，我们分解并重新组织原始的IIoT架构，以形成一个新的，多中心，部分分散的架构。然后，我们引入一些相关的安全技术，以改进和优化新架构。之后，我们设计了数据交互过程和架构的算法。最后，我们使用自动生产平台来讨论具体的实现。实验结果表明，与传统架构相比，该架构提供了更好的安全性和隐私保护。因此，所提出的架构代表了原始架构的重大改进，这为IIoT开发提供了新的方向&lt;/p>
-&lt;blockquote>
-&lt;p>原因：节点数量和网络规模扩大，传统的IIoT架构无法再为这样庞大的系统提供有效支持。&lt;/p>
-&lt;ol>
-&lt;li>传统IIoT问题和现有改进（Section I）&lt;/li>
-&lt;li>设计基于区块链的架构(Section II)&lt;/li>
-&lt;li>安全与隐私模型(Section III)&lt;/li>
-&lt;li>设计数据交互过程和算法(Section IV)&lt;/li>
-&lt;li>使用自动生产平台具体实施(Section V)&lt;/li>
-&lt;/ol>
-&lt;/blockquote></description></item><item><title>A Review on the Application of Blockchain to the Next Generation</title><link>https://shuzang.github.io/a-review-on-the-application-of-blockchain-to-the-next-generation/</link><pubDate>Thu, 23 May 2019 17:11:00 +0800</pubDate><guid>https://shuzang.github.io/a-review-on-the-application-of-blockchain-to-the-next-generation/</guid><description>&lt;p>Fernández-Caramés T M, Fraga-Lamas P. A Review on the Application of Blockchain for the Next Generation of Cybersecure Industry 4.0 Smart Factories[J]. arXiv preprint arXiv:1902.09604, 2019.&lt;/p>
-&lt;p>DOI: &lt;a href="https://doi.org/10.1109/ACCESS.2019.2908780" target="_blank">10.1109/ACCESS.2019.2908780&lt;/a>
-&lt;/p>
-&lt;h2 id="abstract">Abstract&lt;/h2>
-&lt;p>工业4.0是一个旨在通过使用一些最新技术改进现代工厂运作方式的概念，例如用于创建工业物联网（IIoT），机器人或大数据应用的技术。其中一种技术是区块链，它能够为不同的工业领域增加信任，安全性和去中心化特性。本文重点分析使用区块链和智能合约开发工业4.0应用时产生的好处和挑战。此外，本文还对工业4.0技术中最相关的基于区块链的应用进行了全面的回顾。因此，其目的是为未来的工业4.0开发人员提供详细指南，以确定区块链如何增强下一代网络工业应用的网络安全。&lt;/p></description></item><item><title>Smart Contract-Based Access Control for the Internet of Things</title><link>https://shuzang.github.io/smart-contract-based-access-control-for-the-internet-of-things/</link><pubDate>Tue, 14 May 2019 19:10:00 +0800</pubDate><guid>https://shuzang.github.io/smart-contract-based-access-control-for-the-internet-of-things/</guid><description>Zhang Y, Kasahara S, Shen Y, et al. Smart contract-based access control for the internet of things[J]. IEEE Internet of Things Journal, 2018. 被引：35次 Abstract 该论文调查了物联网中的访问控制问题。提出了一个基于智能合约的访问控制框架，该框架</description></item><item><title>Authentication and Authorization for the Internet of Things</title><link>https://shuzang.github.io/authentication-and-authorization-for-the-internet-of-things/</link><pubDate>Tue, 14 May 2019 15:14:00 +0800</pubDate><guid>https://shuzang.github.io/authentication-and-authorization-for-the-internet-of-things/</guid><description>&lt;p>Kim H, Lee E A. Authentication and Authorization for the Internet of Things[J]. IT Professional, 2017, 19(5): 27-33.&lt;/p>
-&lt;p>核心：locally centralized, globally distributed的认证与授权&lt;/p>
-&lt;p>引入：由2016年DNS服务商Dyn受到的DDoS攻击说明物联网带来的安全挑战。由2015年乌克兰电网受到的攻击说明物联网遭受攻击的后果更具破坏性。这两者反映的是，物联网设备缺乏相应的访问控制机制，导致面对攻击不够健壮。&lt;/p></description></item><item><title>Blockchain Paradigm and Internet of Things</title><link>https://shuzang.github.io/blockchain-paradigm-and-internet-of-things/</link><pubDate>Mon, 13 May 2019 15:42:00 +0800</pubDate><guid>https://shuzang.github.io/blockchain-paradigm-and-internet-of-things/</guid><description>&lt;p>Valentin Rakovic， Jovan Karamachoski，Vladimir Atanasovski，Liljana Gavrilovska&lt;/p>
-&lt;p>Published online: 21 March 2019&lt;/p>
-&lt;p>Wireless Personal Communications (2019) 106:219–235
-&lt;a href="https://doi.org/10.1007/s11277-019-06270-9">https://doi.org/10.1007/s11277-019-06270-9&lt;/a>&lt;/p>
-&lt;h2 id="abstract">Abstract&lt;/h2>
-&lt;p>区块链是在分布式网络中提供隐私和安全的分布式分类账技术，这使得它适用于具有分布式特性的物联网。然而，区块链需要高计算能力，有高带宽开销和延迟，不适合物联网场景，为了将区块链和物联网结合，许多研究旨在开发针对于特定物联网场景需求的区块链方法。本文详细介绍了物联网区块链集成的相关问题，对当前文献和相关部署测试做了全面调查，指出了当前主要的研究和面临的挑战，并讨论了未来可能的研究领域。&lt;/p></description></item><item><title>Industry 4.0 Development and Application of Intelligent Manufacturing</title><link>https://shuzang.github.io/industry-4.0-development-and-application-of-intelligent-manufacturing/</link><pubDate>Mon, 15 Apr 2019 14:22:00 +0800</pubDate><guid>https://shuzang.github.io/industry-4.0-development-and-application-of-intelligent-manufacturing/</guid><description>&lt;p>Author：Guo-Jian Cheng, Li-Ting Liu, Xin-Jian Qiang, Ye Liu&lt;/p>
-&lt;p>Published in：2016 International Conference on Information System and Artificial Intelligence (ISAI)&lt;/p>
-&lt;p>Conference Location：Hong Kong, China&lt;/p>
-&lt;p>Cited times：30&lt;/p>
-&lt;h2 id="abstract">Abstract&lt;/h2>
-&lt;p>过去几年，工业和信息技术领域经历了深刻的变革，进入了工业4.0时代，将从嵌入式系统演变到网络物理系统（CPS）。制造业将通过互联网，整合内部和外部网络，朝着智能化方向发展。本文介绍工业4.0的发展，并以120的智慧信息技术（WIT120）为例介绍网络物理系统，然后通过数字工厂到智能工厂的例子介绍工业4.0在智能制造中的应用。最后分析工业4.0在未来的发展方向，为其在智能制造中的应用提供参考。&lt;/p></description></item><item><title>Distributed Blockchain-Based Data Protection Framework for Modern Power Systems</title><link>https://shuzang.github.io/distributed-blockchain-based-data-protection-framework-for-modern-power-systems/</link><pubDate>Mon, 01 Apr 2019 11:16:00 +0800</pubDate><guid>https://shuzang.github.io/distributed-blockchain-based-data-protection-framework-for-modern-power-systems/</guid><description>&lt;p>Author：Gaoqi Liang , Steven R. Weller, Fengji Luo , Junhua Zhao, Zhao Yang Dong&lt;/p>
-&lt;p>Published in：IEEE Transactions on Smart Grid 2018(Early Access)&lt;/p>
-&lt;p>期刊级别：SCI I区&lt;/p>
-&lt;p>被引量：19次&lt;/p>
-&lt;p>keywords：Blockchain, Modern power systems, Cyber-attacks, Distributed network, False data injection attacks&lt;/p>
-&lt;h2 id="abstract">Abstract&lt;/h2>
-&lt;p>现代电力系统的网络安全同时吸引了学术和工业界的关注，许多针对网络攻击的检测和防御手段因此而被提出。本文提出了一种新的基于区块链的分布式保护框架，用于增强现代电力系统应对网络攻击的自抵御能力。我们对区块链技术如何用于增强电网鲁棒性和安全性做了全面的讨论，使用电表作为分布式网络的节点，将电表的测量数据打包为区块。所提出方案的有效性通过基于IEEE-118节点系统的仿真实验来说明。&lt;/p></description></item><item><title>A Case Study for Blockchain in Manufacturing “FabRec”</title><link>https://shuzang.github.io/a-case-study-for-blockchain-in-manufacturing-fabrec/</link><pubDate>Mon, 25 Mar 2019 10:13:00 +0800</pubDate><guid>https://shuzang.github.io/a-case-study-for-blockchain-in-manufacturing-fabrec/</guid><description>&lt;p>Author：Atin Angrisha, Benjamin Cravera, Mahmud Hasana, Binil Starly&lt;/p>
-&lt;p>Published in：46th SME North American Manufacturing Research Conference, NAMRC 46, Texas, USA&lt;/p>
-&lt;p>被引量：7次&lt;/p>
-&lt;p>keywords：blockchain; cyber-physical systems; smart contracts; ethereum; decentralized networks; shareable databases&lt;/p>
-&lt;h2 id="abstract">Abstract&lt;/h2>
-&lt;p>随着产品定制成为新的商机，制造商必须找到在无信任网络中进行协作和实现信息共享的方法。在本文中，我们提出“FabRec”：一种用于处理由各制造商使用区块链技术产生的制造信息的方法。其中，制造机器和计算节点构成去中心化网络来实现制造过程的自动化与透明化，基于对历史记录的审计实现对制造过程的第三方验证，使用智能合约实现参与者之间无纸化合同。同时，系统将与制造相关的信息分类，并使其在P2P网络上可用，以通过可验证的审计跟踪确保透明度和数据来源。我们通过组合制造机器，片上系统（SoC, System on chip）和计算节点来建立测试平台，以展示组成联盟的不同制造商可以通过分布式网络进行通信的机制。我们的测试平台原型展示了驻留在分布式网络上的计算机代码的价值：用于验证区块链的信息以及在物理世界中自动启动操作的方式。本文旨在通过测试平台揭示系统组成，为更大规模的测试做准备，并讨论区块链在制造业的未来潜力。&lt;/p></description></item><item><title>LightChain:A Lightweight Blockchain System for Industrial Internet of Things</title><link>https://shuzang.github.io/lightchaina-lightweight-blockchain-system-for-industrial-internet-of-things/</link><pubDate>Tue, 19 Mar 2019 11:00:00 +0800</pubDate><guid>https://shuzang.github.io/lightchaina-lightweight-blockchain-system-for-industrial-internet-of-things/</guid><description>&lt;p>Author： Yinqiu Liu, Kun Wang, Yun Lin, and Wenyao Xu&lt;/p>
-&lt;p>Published in：IEEE Transactions on Industrial Informatics&lt;/p>
-&lt;p>State：Early Access&lt;/p>
-&lt;p>Index Terms：Blockchain, Industrial Internet of Things, Distributed System, Consensus Mechanism, Data Filter.&lt;/p>
-&lt;h2 id="abstract">Abstract&lt;/h2>
-&lt;p>虽然区块链和IIoT之间的结合得到了广泛的关注，但区块链的高资源需求和IIoT设备的有限性能之间的矛盾还无法较好的解决。一方面，由于公钥结构、默克尔树和PoW等数学概念的引入，部署区块链需要巨大的算力；另一方面，全节点应该能同步大量的区块数据和处理P2P网络中的大量交易。IIoT设备难以承受其对存储容量和带宽的占用。本文中，我们提出了名为&lt;strong>LightChain&lt;/strong>的轻量级区块链使其适用于IIoT场景，提出了一个名为**Synergistic Multiple Proof（SMP）&lt;strong>的共识机制来促进IIoT设备间的合作，提出了一种称为&lt;/strong>LightBlock（LB）**的轻量级数据结构，用于简化广播内容。此外，还设计了一种 **Unrelated Block Offloading Filter (UBOF)**以避免分类帐的无限增长，同时不影响区块链的可追溯性。实验表明，LightChain可以将计算成本降低39.32％，将块生成速度提高74.06％。在存储和网络使用方面，降幅分别为43.35％和90.55％。&lt;/p></description></item><item><title>Blockchain-Based Platform Architecture for Industrial IoT</title><link>https://shuzang.github.io/blockchain-based-platform-architecture-for-industrial-iot/</link><pubDate>Thu, 28 Feb 2019 10:50:00 +0800</pubDate><guid>https://shuzang.github.io/blockchain-based-platform-architecture-for-industrial-iot/</guid><description>&lt;p>Author：Nikolay Teslya; Igor Ryabchikov&lt;/p>
-&lt;p>Published in：2017 21st Conference of Open Innovations Association(FRUCT)&lt;/p>
-&lt;p>Date of Conference: 6-10 Nov. &lt;strong>2017&lt;/strong>&lt;/p>
-&lt;p>会议举办地：Helsinki, Finland&lt;/p>
-&lt;p>被引量：11次&lt;/p>
-&lt;h2 id="摘要">摘要&lt;/h2>
-&lt;p>机器人技术，物联网概念，大数据处理技术，自动化和分布式数字分类账技术的发展引发了第四次工业革命。新工业的主要问题之一是基于物联网的智能工厂内部组件以及工厂之间的互操作。这种互操作应该提供物联网参与者之间的信任;控制资源的分配（如维护时间，能源等）和成品。本文描述了集成物联网和区块链技术以解决这些问题的可能方法之一。为此，开发了一种结合了Smart-M3信息共享平台和区块链平台的架构。所提出的体系结构的一个主要特征是使用智能合约来处理和存储与智能空间组件之间的交互相关的信息。&lt;/p></description></item><item><title>Blockchain Platforms Overview for Industrial IoT Purpose</title><link>https://shuzang.github.io/blockchain-platforms-overview-for-industrial-iot-purpose/</link><pubDate>Wed, 27 Feb 2019 11:11:00 +0800</pubDate><guid>https://shuzang.github.io/blockchain-platforms-overview-for-industrial-iot-purpose/</guid><description>&lt;p>Author：Nikolay Teslya; Igor Ryabchikov&lt;/p>
-&lt;p>Published in：2018 22nd Conference of Open Innovations Association(FRUCT)&lt;/p>
-&lt;p>Date of Conference: 15-18 May &lt;strong>2018&lt;/strong>&lt;/p>
-&lt;p>会议举办地：Jyvaskyla, Finland&lt;/p>
-&lt;p>被引量：1次&lt;/p>
-&lt;h2 id="abstract">Abstract&lt;/h2>
-&lt;p>如今已有很多可用区块链平台存在。但要集成到工业物联网的智能空间中，区块链平台不仅应支持代币交易，还应支持智能合约、容错共识机制，以及参与者创建和实施新区块和智能合约的地位的平等。本文分析了最常用的共识机制，公共（无权限）和私有（有权限）区块链的具体特征。还描述了满足IIoT平台开发要求的区块链平台。通过分析所得结果，可选择平台和特定模块来实现用于IIoT平台的区块链。&lt;/p></description></item><item><title>Decentralizing Privacy：Using Blockchain to Protect Personal Data</title><link>https://shuzang.github.io/decentralizing-privacyusing-blockchain-to-protect-personal-data/</link><pubDate>Thu, 14 Feb 2019 09:50:00 +0800</pubDate><guid>https://shuzang.github.io/decentralizing-privacyusing-blockchain-to-protect-personal-data/</guid><description>&lt;p>Zyskind G, Nathan O, Pentland A, et al. Decentralizing Privacy: Using Blockchain to Protect Personal Data[C]. ieee symposium on security and privacy, 2015: 180-184.&lt;/p>
-&lt;p>DOI: &lt;a href="https://doi.org/10.1109/SPW.2015.27" target="_blank">10.1109/SPW.2015.27&lt;/a>
-&lt;/p>
-&lt;p>KeyWord: Protocols, Privacy, Data privacy, Online banking, Encryption, Compounds.&lt;/p>
-&lt;p>注：部分插图经过重新绘制，部分来自原论文截图。&lt;/p>
-&lt;h2 id="摘要">摘要&lt;/h2>
-&lt;p>当前的商业模式下，第三方收集和控制了大量的个人隐私，损害了用户权益，越来愈多的安全事件使得这一模式开始受到质疑。比特币证明了通过一个分布式的公有分类账在金融领域进行可信和可审计的计算是可行的。因此，本文提出了一种基于区块链的分布式个人数据管理系统，用于保证用户对个人数据的所有权和控制权。与比特币不同的是，本文提出的系统中，区块链交易不是金融交易，而是用于携带指令，如存储、查询和共享数据等，在文章的最后也会讨论区块链未来可能的发展。&lt;/p></description></item><item><title>Internet of Smart Things-IoST</title><link>https://shuzang.github.io/internet-of-smart-things-iost/</link><pubDate>Thu, 17 Jan 2019 10:06:00 +0800</pubDate><guid>https://shuzang.github.io/internet-of-smart-things-iost/</guid><description>&lt;p>Author：Mayra Samaniego, Ralph Deters&lt;/p>
-&lt;p>Published in：2017 IEEE International Conference on Cognitive Computing (ICCC)&lt;/p>
-&lt;p>Date of Conference: 25-30 June 2017&lt;/p>
-&lt;p>会议级别：不知道&lt;/p>
-&lt;p>被引量：11次&lt;/p>
-&lt;p>keywords：IoT; Management; Blockchain; Multichain;Smart Things; Autonomy;Self-inferencing; Self-monitoring;Fog; Edge.&lt;/p>
-&lt;br/>
-&lt;h3 id="摘要">摘要&lt;/h3>
-&lt;p>构成物联网的大量异构设备需要有效的资源管理。随着雾计算的出现，一些管理任务可以下移到物联网的边缘，更靠近物理设备。建立在雾网络上的区块链可以处理一些物联网的管理任务，如通信、存储和身份验证。这种情况下，以及超越了原来对物联网中Things的定义，可以称之为“Smart Things&amp;rdquo;。Smart Things提供基于CLIPS编程语言的人工智能（AI）功能，以实现自我推理和自我监控。这项工作使用私链构建工具Multichain通过读写块中信息来达成Smart Things之间的通信。本文评估了Edison Arduino板上部署的Smart Things以及雾网络上部署的的Multichain网络。&lt;/p></description></item><item><title>BlockChain：A Distributed Solution to Automotive Security and Privacy</title><link>https://shuzang.github.io/blockchaina-distributed-solution-to-automotive-security-and-privacy/</link><pubDate>Tue, 15 Jan 2019 19:40:00 +0800</pubDate><guid>https://shuzang.github.io/blockchaina-distributed-solution-to-automotive-security-and-privacy/</guid><description>Abstract 智能车辆互联提供了一系列先进的服务，这有益于车主、运输当局、车辆制造商和其它服务提供者。但这也可能把智能汽车暴露在一系列安全和隐私威胁之下</description></item><item><title>Blockchain in Internet of Things:Challenges and Solutions</title><link>https://shuzang.github.io/blockchain-in-internet-of-thingschallenges-and-solutions/</link><pubDate>Wed, 09 Jan 2019 09:50:00 +0800</pubDate><guid>https://shuzang.github.io/blockchain-in-internet-of-thingschallenges-and-solutions/</guid><description>&lt;p>Author：Ali Dorri, Salil S. Kanhere, and Raja Jurdak&lt;/p>
-&lt;p>arXiv预印（非正式发表）&lt;/p>
-&lt;p>2016.08&lt;/p>
-&lt;h3 id="abstract">Abstract&lt;/h3>
-&lt;p>物联网产业在快速发展，但安全和隐私的问题始终没有解决。由于物联网分布式的拓扑结构和资源有限的设备，传统的安全和隐私方法不适用于物联网。区块链能用于保证和物联网具有相同拓扑的P2P网络的安全与隐私，因此应也能用于物联网，然后，BC是计算密集型的，需要较高带宽且延迟较高，并不适合物联网。本文提出一种基于BC技术的安全、私有和轻量级的架构，去除了BC的缺点，同时保留了其安全和隐私特性，使其适用于物联网。利用智能家居场景为例做了描述，整个架构分为智能家居层、覆盖网络层、云存储层三层。在各层使用了不同类型的BC，并对常见的安全威胁做了定性分析，证明了其保证物联网安全与隐私的有效性。&lt;/p></description></item><item><title>Dorri和Novo两人的论文对比</title><link>https://shuzang.github.io/dorri%E5%92%8Cnovo%E4%B8%A4%E4%BA%BA%E7%9A%84%E8%AE%BA%E6%96%87%E5%AF%B9%E6%AF%94/</link><pubDate>Tue, 08 Jan 2019 09:37:00 +0800</pubDate><guid>https://shuzang.github.io/dorri%E5%92%8Cnovo%E4%B8%A4%E4%BA%BA%E7%9A%84%E8%AE%BA%E6%96%87%E5%AF%B9%E6%AF%94/</guid><description>前言 两篇比对的论文分别是： Ali Dorri. Blockchain in Internet of Things:Challenges and Solutions Oscar Novo. Blockchain Meets IoT:An Architecture for Scalable Access Management in IoT 对比的方向主要有：背景、架构、访问控制的实现方式、安全和隐私、性能。 背景</description></item><item><title>Blockchain for IoT Security and Privacy:The Case Study of a Smart Home</title><link>https://shuzang.github.io/blockchain-for-iot-security-and-privacythe-case-study-of-a-smart-home/</link><pubDate>Mon, 07 Jan 2019 14:55:00 +0800</pubDate><guid>https://shuzang.github.io/blockchain-for-iot-security-and-privacythe-case-study-of-a-smart-home/</guid><description>&lt;p>Dorri, Ali &amp;amp; Kanhere, Salil &amp;amp; Jurdak, Raja &amp;amp; Gauravaram, Praveen. (2017). Blockchain for IoT Security and Privacy: The Case Study of a Smart Home. 10.1109/PERCOMW.2017.7917634.&lt;/p>
-&lt;h3 id="abstract">Abstract&lt;/h3>
-&lt;p>由于物联网网络大规模和分布式的特性，物联网（IoT）安全和隐私仍然是一个主要的挑战。基于区块链的方法可以提供分布式的安全性和隐私性，但会带来显著的能量、延迟和计算开销，不适合大多数资源受限的IoT设备。在我们之前的工作中，我们通过去除PoW（Proof of Work, 工作量证明）和货币（coins）的概念，提出了一个适用于物联网的BC（Blockchain, 区块链）的轻量级实例。我们的方法在智能家居环境中进行了验证，主要包括三层：云存储，overlay和智能家居。在本文中，我们深入研究并概述了智能家居层的各种核心组件和功能。每个智能家居都配备了一个永远在线的高资源设备，称为“miner”，负责处理家庭内外的所有通信。该miner还维护一个私有BC，用于控制和审计通信。我们通过彻底分析其在机密性，完整性和可用性的基本安全目标，表明我们提出的基于BC的智能家居框架是安全的。最后，我们利用仿真结果证明我们的方法引入的开销（在流量，处理时间和能耗方面）相对于其安全性和隐私性增益而言是微不足道的。&lt;/p></description></item><item><title>Bubbles of Trust：a decentralized Blockchain-based authentication system for IoT</title><link>https://shuzang.github.io/bubbles-of-trusta-decentralized-blockchain-based-authentication-system-for-iot/</link><pubDate>Thu, 03 Jan 2019 19:26:00 +0800</pubDate><guid>https://shuzang.github.io/bubbles-of-trusta-decentralized-blockchain-based-authentication-system-for-iot/</guid><description>Author：Mohamed Tahar Hammi, Badis Hammi, Patrick Bellot, Ahmed Serhrouchni Published in: Computers &amp;amp; Security(2018.6) SCI期刊分区：3区 Abstract 我们使用的许多东西都配备了电子设备和协议，以使它们互连和连接到互</description></item><item><title>Blockchain Meets IoT：An Architecture for Scalable Access Management in IoT</title><link>https://shuzang.github.io/blockchain-meets-iotan-architecture-for-scalable-access-management-in-iot/</link><pubDate>Fri, 28 Dec 2018 15:42:00 +0800</pubDate><guid>https://shuzang.github.io/blockchain-meets-iotan-architecture-for-scalable-access-management-in-iot/</guid><description>Novo O. Blockchain Meets IoT: An Architecture for Scalable Access Management in IoT[J]. IEEE Internet of Things Journal, 2018, 5(2): 1184-1195. DOI: 10.1109/JIOT.2018.2812239 keywords: Access control, Blockchain, IoT, smart contracts 摘要 物联网所面临的一个问题是部署在全球的数十亿的设备如何去管理，现有的访问管理技</description></item><item><title>Block Chain based Intelligent Industrial Network (DSDIN)</title><link>https://shuzang.github.io/block-chain-based-intelligent-industrial-network-dsdin/</link><pubDate>Fri, 14 Dec 2018 08:37:00 +0800</pubDate><guid>https://shuzang.github.io/block-chain-based-intelligent-industrial-network-dsdin/</guid><description>&lt;p>Author：Barco You, Matthias Hub, Mengzhe You, Bo Xu, Mingzhi Yu and Ican Uemlianin&lt;/p>
-&lt;p>Published in：eprint arXiv:1809.06551(1809意为18年9月)&lt;/p>
-&lt;p>SCI期刊分区：在arXic上，不算正式发表&lt;/p>
-&lt;p>keywords：IIoT, BC, Artificial Intelligence, Industry 4.0, Intelligent Manufacturing, Edge Computing.&lt;/p>
-&lt;p>&lt;strong>主题&lt;/strong>：如何为IIoT构建一个全球范围的分布式工业网络&lt;/p>
-&lt;p>&lt;strong>主要工作&lt;/strong>：&lt;/p>
-&lt;ol>
-&lt;li>综述。从工业互联网讲到工业物联网，最后讲到基于区块链的工业物联网&lt;/li>
-&lt;li>详细描述了所构建的基于区块链的智能工业网络DSDIN的各部分组成&lt;/li>
-&lt;li>介绍了一些可以高效的运行在DSDIN上的应用&lt;/li>
-&lt;li>介绍了维持整个体系健康运行的激励机制&lt;/li>
-&lt;/ol>
-&lt;p>&lt;strong>Abstract&lt;/strong>：过去由于技术限制，制造业是“中央集权”的，工厂（特别是大型制造商）垄断了几乎所有的制造资源，包括：技术，原材料，设备，工人，市场信息等。但是，这种集中生产成本高、效率低并且不灵活，难以应对快速变化，多样化和个性化的用户需求。本文介绍了一个智能工业网络（DSDIN），它提供了一个完全分布式的制造网络，每个人都可以参与制造，因为权力下放而没有中间环节，人们能够快速获得他们想要的产品或服务，获得授权并通过努力（例如提供创意，设计或设备，原材料等）以一种低成本的方式获得回报。DSDIN实际上是一个平台，由DSDIN形成的智能网络，制造中心不再是工厂，实际上没有制造中心。DSDIN为人和物（包括原材料，设备，成品/半成品等）提供多参与的点对点网络。通过网络传输的信息称为智能服务算法（ISA）。用户可以通过ISA将过程模型，公式或控制参数发送到设备，DSDIN中的每个事务都是由ISA定义的智能服务。&lt;/p>
-&lt;p>&lt;em>&lt;font size = 2>注：要构建一个全球范围的分布式工业网络，做的是基于区块链技术的工业物联网平台，和以太坊很相似，从文中也可以看到，大量借鉴了以太坊的思路，但是根据工业物联网的特性做了调整。&lt;/font>&lt;/em>&lt;/p></description></item><item><title>Consortium Blockchain for Secure Energy Trading in Industrial Internet of Things</title><link>https://shuzang.github.io/consortium-blockchain-for-secure-energy-trading-in-industrial-internet-of-things/</link><pubDate>Thu, 13 Dec 2018 17:14:00 +0800</pubDate><guid>https://shuzang.github.io/consortium-blockchain-for-secure-energy-trading-in-industrial-internet-of-things/</guid><description>&lt;p>&lt;strong>主题&lt;/strong>：用联盟链解决工业物联网的能量交易问题&lt;/p>
-&lt;p>&lt;strong>主要工作&lt;/strong>：&lt;/p>
-&lt;ol>
-&lt;li>针对工业物联网(IIoT)里能量交易的安全与隐私问题，提出能量区块链(energy blockchain)&lt;/li>
-&lt;li>为了减少由交易确认的延迟造成的交易限制，提出一个基于信用的支付方案，以支持快速和频繁的能源限制&lt;/li>
-&lt;li>在体系里构建了一个能量银行，并使用Stackelberg 博弈进行基于信用贷款的最优定价&lt;/li>
-&lt;li>对能量区块链解决的安全问题，能量区块链的性能，基于信用的支付方案的性能做分析&lt;/li>
-&lt;/ol></description></item><item><title>Blockchain and the Internet of Things in the Industrial Sector</title><link>https://shuzang.github.io/blockchain-and-the-internet-of-things-in-the-industrial-sector/</link><pubDate>Wed, 24 Oct 2018 12:25:00 +0800</pubDate><guid>https://shuzang.github.io/blockchain-and-the-internet-of-things-in-the-industrial-sector/</guid><description>说明：三个工业物联网和区块链结合的场景 供应链 货物在供应链各环节流通时，装运信息缺乏可见性，并且拥有装运延迟，这种延迟通常是由于一个流通的批准</description></item><item><title>Work-in-Progress Integrating Low-Power IoT devices to</title><link>https://shuzang.github.io/work-in-progress-integrating-low-power-iot-devices-to/</link><pubDate>Tue, 23 Oct 2018 11:22:00 +0800</pubDate><guid>https://shuzang.github.io/work-in-progress-integrating-low-power-iot-devices-to/</guid><description>Özyılmaz, Kazım Rıfat, and Arda Yurdakul. &amp;ldquo;Work-in-Progress: Integrating low-power IoT devices to a blockchain-based infrastructure.&amp;rdquo; 2017 International Conference on Embedded Software (EMSOFT). IEEE, 2017. 说明：关于物联网和区块链结合，节点资源有限的一种解决方案 Introduction</description></item><item><title>Blockchains and Smart Contracts for the Internet of Things</title><link>https://shuzang.github.io/blockchains-and-smart-contracts-for-the-internet-of-things/</link><pubDate>Mon, 22 Oct 2018 10:19:00 +0800</pubDate><guid>https://shuzang.github.io/blockchains-and-smart-contracts-for-the-internet-of-things/</guid><description>&lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>缺失可信中介使交易双方之间的协调更快&lt;/p>
-&lt;p>密码学的大量使用为网络中的所有交互带来了权威性&lt;/p>
-&lt;p>智能合约允许分布式的，高度自动化的工作流程&lt;/p>
-&lt;h2 id="blockchains-and-iot">Blockchains and IoT&lt;/h2>
-&lt;p>目前的中心化模型中，制造商维护以百万计的设备的软件更新代价是高昂的&lt;/p>
-&lt;p>用户缺乏对应用从后台是否私自获取数据的信任，需要一个透明度保障的方法&lt;/p>
-&lt;p>区块链技术可以解决这些问题&lt;/p>
-&lt;p>制造商的所有物联网设备都在同一个区块链网络上运行，制造商部署智能合约并允许它们在区块链网络上存储最新固件更新的哈希值，这些设备要么将智能合约的地址附加到它们的区块链客户端，要么通过发现服务找到它。然后，它们可以查询合约，了解新的固件更新，并通过分式对等文件系统请求更新并通过哈希验证更新正确性，对该文件的第一次请求由制造商自己的节点（该节点也加入区块链网络）提供服务，但更新文件传播到足够的节点后，制造商的节点可以停止提供服务，由已获得更新的设备向未获得更新的设备提供服务，一切自动进行，没有用户交互。&lt;/p></description></item></channel></rss>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>论文笔记 - 标签 - Shuzang's Blog</title><link>https://shuzang.github.io/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/</link><description>论文笔记 - 标签 - Shuzang's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>lylw1996@qq.com (shuzang)</managingEditor><webMaster>lylw1996@qq.com (shuzang)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 22 Apr 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://shuzang.github.io/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" rel="self" type="application/rss+xml"/><item><title>An Attribute-Based Distributed Access Control for Blockchain-enabled IoT</title><link>https://shuzang.github.io/an-attribute-based-distributed-access-control-for-blockchain-enabled-iot/</link><pubDate>Wed, 22 Apr 2020 00:00:00 +0000</pubDate><author>作者</author><guid>https://shuzang.github.io/an-attribute-based-distributed-access-control-for-blockchain-enabled-iot/</guid><description><![CDATA[<p>P. Wang, Y. Yue, W. Sun, and J. Liu, “An Attribute-Based Distributed Access Control for Blockchain-enabled IoT,” in <em>2019 International Conference on Wireless and Mobile Computing, Networking and Communications (WiMob)</em>, Barcelona, Spain, Oct. 2019, pp. 1–6, doi: <a href="https://doi.org/10.1109/WiMOB.2019.8923232" target="_blank" rel="noopener noreffer">10.1109/WiMOB.2019.8923232</a>.</p>
+<p>第一作者是西电的，国家自然科学基金项目成果，研究方向完全一致，都是利用智能合约实现 ABAC 模型完成物联网访问控制。可以看的出来，这篇论文也深受 Zhang<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> 的影响，参考的文献全都看过，由于方向一致，这是必然的事情。因此，这里记的笔记不包括引言、相关工作、实验等部分，仅仅理解和阐述作者的架构描述，并分析其优缺点，将优点吸纳到我们当前的方案。</p>
+<h2 id="1-系统架构">1. 系统架构</h2>
+<p>用来说明方案的 IoT 场景是 smart home，如下图所示。作者将设备分为三类</p>
+<ol>
+<li>有足够计算和存储能力的节点，比如 server 和 desktop，这部分作为区块链全节点；</li>
+<li>只有有限的计算和存储能力，比如 mobile phone 和 smart TV，这部分作为轻节点；</li>
+<li>计算和存储能力高度有限，比如传感器，这些设备称为超轻量级节点，由所连接的网关作为代理。</li>
+</ol>
+<p></p>
+<p>Server 负责存储 IoT 设备产生的数据，包括传感器收集的环境信息、运行过程产生的日志文件，同时向设备提供服务，因此也会发送一些命令到设备从而控制设备的执行。全节点或轻节点通过有线或 Wi-Fi 连到网络，维持区块链的运行，保存所有或部分访问控制信息，执行访问控制。超轻量级节点通过 Bluetooth、Wi-Fi、ZigBee 等技术连到网关，从而连到网络，不存储访问控制信息，只通过网关发起访问控制请求或获取访问控制结果。</p>
+<h2 id="2-访问控制架构">2. 访问控制架构</h2>
+<p>核心是 ABAC 模型，如下图所示，收到访问控制请求后根据主体属性（Subject Attribute, SA）、客体属性（Object Attribute, OA）和环境属性（Environment Attribute, EA）执行预定义的策略，从而得到结果。</p>
+<p></p>
+<p>作者使用了一个 Subject Contract（SC）、一个 Object Contract（OC）、一个 Access Control Contract（ACC）和多个 Policy Contracts（PC）来实现该模型，各部分介绍如下。</p>
+<h3 id="21-subject-contract">2.1 Subject Contract</h3>
+<p>由于设备可以作为 subject 发起访问，也可以作为 object 提供资源，subject 访问不同的 object 时属性还有可能不同，作者将主体属性划分为两部分：</p>
+<ol>
+<li>Manufacturer Attribute（MA）：由制造商在出厂时设置的属性，无法二次修改，主要包括一些设备的基本信息，比如 MAC 地址和序列号。</li>
+<li>Setting by Object Attribute（SOA）：如果设备 o 作为 object 设置了针对 subject s 的 SOA，意味着该属性只在 s 访问 o 时生效，其它 subject 访问 o 不生效。</li>
+</ol>
+<p>SC 负责管理合法制造商的账户、IoT 设备账户和设备的主体属性信息，属性以键值对的形式定义，如下所示
+$$
+[name_1:value_1] [name_2:value_2] ……  [name_n:value_n]
+$$
+一个 MA 的示例为 $[type:remotecontrol][mac:00efefefefef]$，</p>
+<p>一个 SOA 的示例为 $[group:owner][role:children]$</p>
+<p>SC 提供了如下功能</p>
+<ol>
+<li>addmanufacturer()：只能由 SC 所有者调用，传入制造商账户地址，将该地址代表的制造商加如合法制造商列表</li>
+<li>addsubject()：只能由合法制造商列表中的成员调用，负责注册新的 IoT 设备</li>
+<li>addobattr()：由 object 调用，设置针对某个 subject 的 SOA，接收设备地址和一个描述属性的字符串</li>
+<li>delemanufacturer()，deleteobattr()：如函数名</li>
+</ol>
+<h3 id="22-object-contract">2.2 Object Contract</h3>
+<p>OC 负责管理每个设备的 object attributes（OA），和主题属性的结构定义相同，一个 OA 示例为$[type:TV][location:living]$。OC 提供的函数功能有：</p>
+<ol>
+<li>addobattr()：接收设备地址和一个描述属性的字符串，设置客体属性</li>
+<li>deleteobattr()：接收设备地址，删除对应的属性</li>
+<li>getattr()：接收设备地址，获取对应的属性</li>
+</ol>
+<h3 id="23-policy-contract">2.3 Policy Contract</h3>
+<p>每个用户创建自己的 PC，并在 ACC 中和用户的设备进行绑定，因此，一个 PC 可能对应多个 IoT 设备，但只有一个所有者且只有所有者可以添加或删除策略。</p>
+<p><strong><ruby>策略<rt>policy</rt></ruby></strong> 和 <strong><ruby>规则<rt>rule</rt></ruby></strong> 在 PC 中是不同的，策略由如下五个字段定义
+$$
+resource, action,duty,rule,algorithm
+$$
+其中，$duty$ 是实施完访问控制需要做的事；一个策略可能包含多个规则，一个 $rule$ 由 $SA,OA,EA,resource,action,result$ 六部分组成；$algorithm$ 用来在规则产生矛盾时进行判定；返回的结果有两种：$allow$ 和 $deny$。一个示例为</p>
+<blockquote>
+<p>policy: [resource:switch] [action:on] [duty:record] [algorithm:denyoverrides]</p>
+<p>rule1:</p>
+<p>​	subject attribute: [group:owner] [role:parent] [type:remotecontrol]</p>
+<p>​	object attribute: [type:TV] [location:livingroom]</p>
+<p>​	environment attribute: [time: 21:00 - 23:00]</p>
+<p>​	result: allow</p>
+</blockquote>
+<p>PC 提供如下函数功能：</p>
+<ol>
+<li>addpolicy()：添加新策略到用户策略集，接收四个参数：resource, action, duty 和 algorithm</li>
+<li>addrule()：添加新规则到策略，接收六个参数：SA, OA, EA, resource, action 和 result，通过资源和操作，可以找到相应的策略并将规则添加到规则列表</li>
+<li>delepolicy()，delerule()：如函数名</li>
+</ol>
+<h3 id="24-access-control-contract">2.4 Access Control Contract</h3>
+<p>ACC 用来确定请求是否符合用户自定义的策略，最终会返回相应的结果并执行预定的 $duty$，如记录访问历史到区块链等，历史记录结构示例如下</p>
+<p></p>
+<p>PC 提供的函数功能如下</p>
+<ol>
+<li>
+<p>Initialization()：为了和 SC，OC 交互，记录它们的合约地址</p>
+</li>
+<li>
+<p>setobjectpolicyaddress()：负责将 PC 地址绑定到 IoT 设备地址，接收这两个地址作为参数</p>
+</li>
+<li>
+<p>accesscontrol()：执行访问控制，接收 subject address、object address 、resource 、action 四个参数，与其它几个合约交互获取相应的属性信息和策略信息，然后根据策略中每个规则进行判决并记录，如果满足规则，获取 $allow$ 或 $deny$ 两个结果之一，如果不满足，返回 $NotAplicable$，最后利用 $algorithm$ 处理冲突得到最终结果。如果设置了 $duty$ 字段，那么执行该字段描述的任务。该函数的算法伪代码如下</p>
+<p></p>
+</li>
+</ol>
+<h2 id="3-总结与收获">3. 总结与收获</h2>
+<p>这篇论文基本可以看作传统的 XACML 的架构使用智能合约的实现，比如 SC 和 OC 用来维护属性信息，相当于策略信息点（PIP）；PC 维护策略信息，相当于策略管理点（PAP），ACC接收并执行访问控制策略，相当于策略实施点（PEP）和策略决策点（PDP）的结合。这种结构将各部分功能进行了良好的划分，确保了低内聚高耦合，所以现在应该去深入理解一下传统 ABAC 模型，了解其缺点后，再讨论是像这篇论文这一原样实现还是做一些改变。</p>
+<p>在 Ouaddah 的论文中评价了 ABAC 模型的优劣<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>。他认为 ABAC 模型的优点是较好的互操作性和细粒度的访问控制，缺点是较为复杂和非用户驱动，这里介绍一下两个缺点：</p>
+<ol>
+<li><strong>Complexity</strong>：属性语义的诠释，属性的可信度，表达基于属性的授权请求和响应的语法定义，这些都是导致 ABAC 复杂的原因。另外，XACML 的复杂性常导致用户避免使用它转而使用更传统的方法。这种复杂性还阻碍了它在日常场景中的应用，例如，可穿戴娱乐物联网应用领域。只有在需要高度互操作性和细粒度表达的应用中才适合使用这种模型。</li>
+<li><strong>Not User-driven</strong>：尽管 XACML 和 ABAC 是完善而精确的策略描述方法，XACML 策略的结构是复杂的。用户必须深入理解 XACML 才能熟练地写下详细地策略，这使得 XACML 难以掌握和使用。这种方式地隐私管理不支持以<strong><ruby>本机方式<rt>native way</rt></ruby></strong>与用户交互，为了让用户参与策略制定过程，需要一个用户驱动的隐私管理器。</li>
+</ol>
+<p>可以思考如何在区块链中改善这两者。</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>Y. Zhang, S. Kasahara, Y. Shen, X. Jiang, and J. Wan, “Smart contractbased access control for the internet of things,” IEEE Internet of Things Journal, vol. 6, no. 2, pp. 1594–1605, 2019. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>A. Ouaddah, H. Mousannif, A. A. Elkalam, and A. A. Ouahman, “Access control in The Internet of Things: Big challenges and new opportunities,” <em>Computer Networks</em>, vol. 112, pp. 237–262, 2016. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+]]></description></item><item><title>Attribute-Based Access Control</title><link>https://shuzang.github.io/attribute-based-access-control/</link><pubDate>Wed, 22 Apr 2020 00:00:00 +0000</pubDate><author>作者</author><guid>https://shuzang.github.io/attribute-based-access-control/</guid><description><![CDATA[<p>V. C. Hu, D. R. Kuhn, and D. F. Ferraiolo, “Attribute-Based Access Control,” <em>Computer</em>, vol. 48, no. 2, pp. 85–88, Feb. 2015, doi: <a href="https://doi.org/10.1109/MC.2015.33" target="_blank" rel="noopener noreffer">10.1109/MC.2015.33</a>.</p>
+<h2 id="1-引言">1. 引言</h2>
+<p>传统的访问控制基于用户身份（分配给该用户的角色或组），这种方式在管理上非常繁琐，策略的表达能力也不足。一种解决办法是基于用户和对象属性以及环境条件来授予或拒绝用户请求，这种方法称为基于属性的访问控制（Attribute-based access control，ABAC）。</p>
+<h2 id="2-abac-模型介绍">2. ABAC 模型介绍</h2>
+<p>ABAC 是一个逻辑访问控制模型，它通过对实体（<strong><ruby>主体<rt>subject</rt></ruby></strong>和 <strong><ruby>对象<rt>object</rt></ruby></strong>）、操作、与请求相关的环境这三类属性定义评估规则来控制对对象的访问。由于它在决策逻辑中加入了更多的输入变量，提供了更大的可能性，使得策略规则的表示更加明确和详细。</p>
+<p>使用 ABAC 使得我们无需针对每个主体和对象创建访问规则集。例如，南希·史密斯是心脏科的一名护士，我们将她作为主体，并且在她受雇时为她分配一组主体属性，将心脏病患者的病历文件夹作为对象，在文件夹被创建时分配一组对象属性，对象属性由创建者直接赋予或从自动扫描工具接收。管理者或者对象所有者可以利用主体和对象的这些属性创建一组访问控制规则，比如心脏科的护士被允许查看心脏病患者的病例文件夹，从而控制访问请求。</p>
+<p>在 ABAC 模型中，只需要更改属性值即可影响最后的访问结果，而无需维护定义在主体和对象之上的规则集，这种方法提供了更加动态的访问控制管理能力。此外，ABAC 还允许管理员或对象所有者在事先不知道访问主体的情况下定义访问控制策略，也能够应对无限数量主体的访问请求。当新的主体加入组织时，也无需修改访问规则和对象属性，只需要为新加入的主体分配合适的主体属性即可，比如新入职的心脏科护士被分配部门为心脏科的属性。这种针对未知主体的适应性是 ABAC 的主要好处之一。</p>
+<p>由于 ABAC 高度的灵活性，已经引起了整个行业甚至政府的兴趣，并且是当今发展最快的访问控制模型。但是除了为主体、对象和环境设置属性这一基本思路外，ABAC 模型的实现并没有统一的标准。</p>
+<h2 id="3-企业环境下的实现">3. 企业环境下的实现</h2>
+<p>由于缺乏对 ABAC 特性的共识，用户无法准确评估与该模型相关的好处和挑战。为了解决这个问题，国家标准与技术研究所（NIST）发布了《Guide to Attribute Based Access Control (ABAC) Definition and Considerations》<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>。这个文档有两个作用，首先，它提供了 ABAC 的定义和功能组件的描述。其次，它描述了在企业中使用 ABAC 控制信息的计划、设计、实现和操作考虑。这本指南的重点是 ABAC 的实现，而不是成本和效率的权衡。</p>
+<p>当跨企业部署 ABAC 用以增加不同组织之间的信息共享时，其实现可能会变得更加复杂，需要一个属性管理的基础设施、机器可执行的策略以及一系列支持访问决策和策略执行的功能。如下图所示，除了基本的策略、属性和访问控制机制要求外，企业还必须支持企业策略开发和分发、企业身份和主体属性、主体属性共享、企业对象属性、身份验证等管理功能，以及访问控制机制的部署和分发。启用这些功能需要仔细考虑影响企业 ABAC 解决方案设计、安全性和互操作性的许多因素，上面提到的指南可以帮助 ABAC 系统规划者、架构师、管理者和实现者来分阶段完成这些功能。</p>
+<p></p>
+<h2 id="4-attribute-assurance">4. Attribute Assurance</h2>
+<p>ABAC 属性的元数据定义对属性标准化非常重要，通常，属性元数据可分为三类：</p>
+<ul>
+<li><strong>准确性</strong>为在语义和句法上正确使用这些属性和环境条件奠定了基础，并且确保了属性是可信的</li>
+<li><strong>完整性</strong>考虑用于在系统之间安全共享属性的不同标准和协议，以避免损害属性的完整性和机密性，或暴露属性提供者（AP）或依赖方（RP）系统或实体中的漏洞</li>
+<li><strong>可用性</strong>确保属性的更新和检索支持 RP。此外，必须考虑属性存储库的故障转移和备份功能。请注意，某些属性可能会定期或随时间变化</li>
+</ul>
+<p>AP 是提供主体、对象（或资源）或环境条件属性的任何人或系统，可以是原始的权威源，也可以从权威源接收信息，然后重新打包、存储和转发到 ABAC 系统。属性值可以是人工生成的（例如，员工数据库）或从公式（例如，信用评分）派生的。无论属性来源如何，系统都应确保从 AP 接收到的属性值与适用的主体、对象或环境条件准确关联。下表说明了基于准确性、完整性和可用性三个维度的属性保证的级别（Levels of attribute assurance, LOAA）的示例</p>
+<p></p>
+<h2 id="5-总结与收获">5. 总结与收获</h2>
+<p>基于属性的访问控制是一种灵活的访问控制方法，它只受计算语言和可用属性丰富性的限制。这种灵活性使最大范围的主体能够访问最大范围的对象，而无需指定每个主体和每个对象之间的关系，使ABAC成为许多分布式或快速变化的环境的理想选择。更多关于保证属性准确性和可靠性的工作可以查看 <a href="http://csrc.nist.gov/projects/abac/index.html">http://csrc.nist.gov/projects/abac/index.html</a></p>
+<p>了解了 ABAC 的主要优点，了解了 ABAC 在企业环境实现需要考虑很多的问题，实现比较复杂。不过最大的收获是知道了实现 ABAC 可以查看文章提到的指南。最后一部分 Attribute Assurance 没有看懂，似乎是属性定义需要满足的几个特性。</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>V.C. Hu et al., Guide to Attribute Based Access Control (ABAC) Definition and Considerations, Nat’l Institute of Standards and Technology, Jan. 2014, [online] Available: <a href="http://nvlpubs.nist.gov/nistpubs/specialpublications/NIST.sp.800-162.pdf">http://nvlpubs.nist.gov/nistpubs/specialpublications/NIST.sp.800-162.pdf</a>. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+]]></description></item><item><title>Supply Chain Management Automation using Wireless Sensor Networks</title><link>https://shuzang.github.io/supply-chain-management-automation-using-wireless-sensor-networks/</link><pubDate>Mon, 20 Apr 2020 00:00:00 +0000</pubDate><author>作者</author><guid>https://shuzang.github.io/supply-chain-management-automation-using-wireless-sensor-networks/</guid><description><![CDATA[<p>L. Evers and P. Havinga, “Supply Chain Management Automation using Wireless Sensor Networks,” in <em>2007 IEEE Internatonal Conference on Mobile Adhoc and Sensor Systems</em>, Pisa, Italy, Oct. 2007, pp. 1–3, doi: <a href="https://doi.org/10.1109/MOBHOC.2007.4428689" target="_blank" rel="noopener noreffer">10.1109/MOBHOC.2007.4428689</a>.</p>
+<p>注：插图来自原论文和网络。</p>
+<h2 id="1-引言">1. 引言</h2>
+<p>这篇论文谈到的问题是无线传感器网络（WSN）如何用于供应链管理领域。</p>
+<p>以RFID<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>形式出现的无源射频技术已经被引入到供应链管理中用以简化流程，<strong><ruby>主动无线电通信技术<rt>active radio communication</rt></ruby></strong>也可以提高处理效率和降低成本。比如，通过对安装到板条箱（crate）、笼车（roll container）、托盘（pallet）和航运集装箱（shipping containers）上的 WSN 节点进行编程，可以监控整个货物运输过程，包括验证新鲜食品当前温度等环境情况和检测由于突然冲击、打开集装箱和其他形式的违约而造成的损失。这种全流程的监控可以大幅减少交货延误和货物丢失或被盗的可能性，避免造成重大损失。</p>
+<p></p>
+<h2 id="2-场景描述">2. 场景描述</h2>
+<p>如下图，示例场景是一批香蕉从巴西里约热内卢附近的农场运往鹿特丹的超市配送中心。香蕉被打包放到托盘上，每个托盘都装有一个传感器节点。一大早，这些托盘就被卡车从农场运到港口的一个货运码头，在那里，托盘被装进集装箱，然后集装箱一路运到连锁超市的配送中心。在整个旅程中，香蕉的温度需要保持在10到15摄氏度之间，同时应该远离新鲜的咖啡豆等物品，因为这些东西产生的乙烯加速香蕉的成熟过程。</p>
+<p></p>
+<p>从农场到配送中心的运输过程中（称之为<strong><ruby>旅程<rt>journey</rt></ruby></strong>），监控如下事件：</p>
+<ol>
+<li>托盘上的温度传感器测量环境温度，并将测量的温度存储在设备的日志文件中。如果温度超过限制，设备就会发出警报。</li>
+<li>每个托盘的设备与周围其他的设备通信，检查周围是否正在运输咖啡豆等货物。当托盘被装进集装箱时，设备还要求集装箱检查一定距离（比如10米）内是否有运送咖啡店等物品的其它集装箱。如果在附近发现了咖啡店等物品，设备会将其写入日志文件并发出警报。</li>
+<li>在整个旅程中，每个托盘上的设备都检查是否符合运输计划。如图2所示，在旅程的每个阶段，设备都会验证自己是否装到正确的卡车上，是否卸到了正确的仓库，所有的行程都会被记录下来，当设备没有在限定的时间位于正确的地点，就会发出警报。</li>
+</ol>
+<p>在农场中，装上卡车之前，托盘上的设备验证当前位置是否正确。接下来，设备随着托盘被装到卡车上，然后和周围同一卡车上的托盘设备通信，比较记录的目的地和内容，从而进行验证。而在卡车中，托盘节点必须检测从卡车中取出的操作，主要通过检测卡车和港口装卸码头无线基础设施（访问点，access point）的存在来推断。如果没有检测到正确的码头，则需要发出警报。托盘在码头卸货后，装在集装箱内，一直运到配送中心。设备在码头验证它们是否被放到正确的集装箱，最后通过检测配送中心的访问点，验证是否到达配送中心。</p>
+<p>当在旅途中检测到错误时，设备会发出警报。根据运输阶段的不同，使用不同类型的警报方法。例如，当托盘在卡车外面等待装运时，发出警报声和闪烁 LED 引起工人的注意，从而纠正问题。但当进入卡车内部时，应将警报信息发送给卡车驾驶员。</p>
+<h2 id="3-实验">3. 实验</h2>
+<p>作者使用 SensorScheme<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> 进行简单的实现，这是一个基于 Scheme 语言的解释器，能够动态加载 WSN 代码到设备。该平台提供了一个安全的执行环境，在该环境中，程序故障不会使节点崩溃。此外，由于传输的代码比较小，节点能够被快速而高效的编程，在实验中，节点在传输开始前重新编程，只花费了几秒钟。本文使用该平台实现了第二部分提到的场景，对货物运输的全过程进行监控，完成了供应链管理的自动化。<a href="https://srfi.schemers.org/" target="_blank" rel="noopener noreffer">SensorScheme实现</a></p>
+<p>实验在两个位置的桌子间进行，距离10米以上，使彼此的无线电无法直接到达，两边都需要连接到笔记本电脑和其他演示设备。使用一组 Tmote Sky<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>motes作为托盘上安装的设备，两个位置的桌子充当农场、港口、配送中心等不同地点，笔记本电脑连接的 mote 充当这些地点的访问点。</p>
+<p>实验开始时，在农场位置（一个桌子上）对托盘上的 mote 进行编程，然后将它们放到安装了 mote 的一个盒子中，充当场景中的卡车。然后，参与者将这个盒子移动到另一个代表港口船坞位置的桌子，到达该位置后，可以看到图3所示的屏幕上的信息， mote 上的 LED 状态指示灯也会给出指示。在这里，安装了 motes 的托盘被重新放到另一个代表集装箱的盒子里，并移回到第一个位置的桌子，现在这个位置代表配送中心。只有整个运输过程无差错，才不会出现任何警报，否则，笔记本电脑的屏幕会出现警告信息，根据情况， mote 的 LED 也会闪烁提示。运输过程的最后，货物到达配送中心，将读取每个设备的日志文件，其中包括整个旅程中传感器记录的温度信息和所有不当操作触发的警报记录。</p>
+<p></p>
+<p>图3是完成整个运输过程后仓库访问点的屏幕输出，五个托盘节点首先被运送到码头，并在那里与码头的接入点联系，向仓库转发一条信息说明其中一个节点（pallet05）正在移动到错误的位置。触发的警报信息也显示在其中，除了这里的警报信息外，在码头节点还会闪烁红色 LED 来发出警报，其它节点则短暂闪烁绿色 LED 说明其放到了正确的位置。</p>
+<h2 id="4-收获">4. 收获</h2>
+<p>我们将该论文描述的场景作为我们实验的场景，由于我们关注的是访问控制，环境温度的测量与超限警报不进行实现，几个涉及访问控制的关键步骤如下</p>
+<ol>
+<li>托盘上的节点对卡车上的节点发起访问，验证是否被装到了正确的卡车</li>
+<li>托盘上的节点对其它托盘节点发起访问，比较目的地</li>
+<li>托盘上的节点对周围其它托盘节点或集装箱节点发起访问，查看是否存在咖啡豆等货物</li>
+<li>托盘上的节点对农场、码头、配送中心的访问点发起访问，验证是否在正确的时间到达了正确的地点</li>
+</ol>
+<p>我们通过实施这几个访问控制操作验证我们方案的有效性，所有的记录都收集到区块链中，从而保证不可篡改，农场主、货运商、分销商等不同角色对日志的访问权限也受到限制。恶意的请求行为（如短时间高频率的请求）会被记录并判定设备是否被入侵。</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>LogicaCMG, “Making waves: Rfid adoption in returnable packaging,” 2004. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>L. Evers, P. Havinga, and J. Kuper, “Flexible sensor network reprogramming for logistics,” in Proceedings of the fourth IEEE international Conference on Mobile Ad-hoc and Sensor Systems, 2007, to be published. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p>Moteiv, “Tmote sky,” <a href="http://www.moteiv.com/products/tmotesky.php">http://www.moteiv.com/products/tmotesky.php</a>. <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+]]></description></item><item><title>Blockchain and Deep Reinforcement Learning Empowered Intelligent 5G Beyond</title><link>https://shuzang.github.io/blockchain-and-deep-reinforcement-learning-empowered-intelligent-5g-beyond/</link><pubDate>Mon, 13 Apr 2020 00:00:00 +0000</pubDate><author>作者</author><guid>https://shuzang.github.io/blockchain-and-deep-reinforcement-learning-empowered-intelligent-5g-beyond/</guid><description><![CDATA[<p>Day Y, Xu D, Maharjan S, 等. Blockchain and Deep Reinforcement Learning Empowered Intelligent 5G Beyond[J]. IEEE Network, 2019, 33(3): 10–17. DOI:<a href="https://doi.org/10.1109/MNET.2019.1800376" target="_blank" rel="noopener noreffer">10.1109/MNET.2019.1800376</a>.</p>
+<h2 id="1-引言">1. 引言</h2>
+<p>区块链和 AI 会在 6G 中扮演关键角色，前者可保证分布式网络安全，后者可用于智能资源管理。不过 PoW 共识需要大量计算资源和电力，很难用在无线网络中，MEC（mobile edge computing） 是一种可能的解决办法。</p>
+<p>5G 中引入了异构网络和 D2D 通信来提高通信速率和保证无缝覆盖，MEC 同样可以起作用，主要通过计算卸载和分布式内容缓存来减少延迟并避免<strong><ruby>回程拥塞<rt>backhaul congestion</rt></ruby></strong>。但由于无线网络的时变特性，各种新兴应用和未知交通系统的多样化和严格的要求，设计一个解决这些问题（计算卸载或内容缓存）的高性能算法比较困难。AI 可以被引入处理该问题，例如，论文<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>利用深度强化学习（DRL）解决边缘计算和缓存资源分配的问题。</p>
+<p>无论是区块链还是 AI，将它们引入无线网络的研究都已经存在，但这些研究并没有将两者结合。作者在这篇论文中同时集成了这两种技术到无线网络，提出了一个用于下一代无线网络的架构，该架构可以进行安全和智能的资源管理，例如频谱共享、内容缓存、能量交易和计算卸载。主要思路是，利用联盟链建立安全的内容共享环境，利用 DRL 算法设计缓存策略从而最大化系统<strong><ruby>效用<rt>utility</rt></ruby></strong>。我们的主要关注点如下</p>
+<ol>
+<li>集成区块链和 AI 到无线网络的架构组成</li>
+<li>频谱共享、内容缓存、能量交易和计算卸载四个场景的描述</li>
+<li>基于内容缓存场景的方案设计与实现</li>
+</ol>
+<p>引言部分提到的论文中有几篇值得参考。论文<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup> <sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>利用区块链开发了一个安全的本地 P2P 电子交易系统，用于电动汽车间的电力交易。论文<sup id="fnref:4"><a href="#fn:4" class="footnote-ref" role="doc-noteref">4</a></sup>利用区块链和智能合约设计了一个用于车辆边缘网络的基于信誉的数据共享方案。</p>
+<h2 id="2-架构">2. 架构</h2>
+<h3 id="21-架构描述">2.1 架构描述</h3>
+<p>整体架构如下图所示，共分三层：云、边缘和用户。</p>
+<p></p>
+<p><strong>云层</strong>是一批计算、缓存和处理能力都相当强的服务器。一方面，可以利用数据挖掘和大数据等先进技术，通过预测一些事件或预分配一些资源，使 network-level orchestration shifting 从被动的网络操作转变为主动网络操作。另一方面，云服务器也可以处理一些对延迟容忍较高的应用，存储大容量或不受欢迎的内容。此外，云层还有一个中央权威，配备了防篡改硬件，用于管理所有实体的安全参数和密钥：宏基站（macro base station, MBS）、小型基站（small base station, SBS）、路边单元（roadside units, RSU）、移动设备和智能车辆。</p>
+<p><strong>边缘层</strong>是一些用户附近的网络基础设施（例如，MBS、SBS、RSU），这些设施在地理上是分离的，可以作为 MEC 服务器和区块链节点。它们可以为移动设备和车辆提供无缝覆盖和即时的无线通信。MEC 服务器具有一定的计算和缓存资源，也可以提供 AI 的功能，进而能够提供分布式智能无线计算和缓存，服务于计算密集型和延迟敏感型的应用，如最新的消息和紧急警报。区块链则可以记录无线网络中产生的所有交易，提高整个系统的安全性和隐私性。交易可以是频谱共享、计算/缓存资源分配、能量交易等。</p>
+<p>为了构建一个可编程的、灵活的、弹性的移动边缘平台，采用了网络功能虚拟化和软件定义网络（SDN）两种技术。前者可以抽象物理资源，建立虚拟机，使边缘层忽略供应商和协议的差异，通过在分布式边缘实体之间创建、迁移和销毁虚拟机，实现快速的功能部署。后者可以将网络控制和管理功能与数据转发分离，这样边缘层可以进行动态资源管理和智能服务安排。</p>
+<p>异构网络，V2X（vehicle-to-everything）和蜂窝网络共存于<strong>用户层</strong>，用于提高通信速率和确保无缝覆盖，以支持各种新型应用（如自动驾驶和 AR）所需的高度可靠的连接。</p>
+<p>在异构网络中，每个移动设备都有一个计算密集且对延迟敏感的任务，例如导航、视频流和比特币。MBS 和 SBS 具有计算资源和 AI 功能，资源受限的移动设备可以将其任务卸载到异构的边缘基础设施，基站可以利用细粒度的计算资源分配策略来处理卸载的任务。由于移动设备和基站之间的交互是基于信任的，因此在这种情况下不需要使用区块链。</p>
+<p>车辆网络场景支持 车辆到RSU 和车辆到车辆（V2V）通信。对于V2V通信，车辆之间可以共享内容或能量，由于车辆之间可能不信任对方，因此它们在共享内容或能量时需要使用<strong><ruby>假名<rt>pseudonyms</rt></ruby></strong>（区块链账户地址就是一种假名），以便更好地保护安全和隐私。为此，我们在 RSU 上部署区块链。</p>
+<p>在蜂窝网络中，我们考虑一个更一般和更复杂的场景，同时支持 D2D 和 V2V 通信。MBS 通常具有有限的缓存资源，一些最先进的移动设备和车辆也都有一定数量的缓存资源。因此，基站、移动设备和车辆可以协同提供分布式边缘缓存，以充分利用可用资源。也就是说，特定的移动设备或车辆可以选择具有足够缓存资源的任何其他移动设备或车辆作为其内容缓存的服务提供商。由于 D2D 和 V2V 通信不可信，BSs 需要利用区块链技术来确保这种情况下的交易安全。</p>
+<h3 id="22-架构分析">2.2 架构分析</h3>
+<p>如何保证安全，如何适应动态的网络环境，我们通过分析上面的架构来明确这些内容</p>
+<p><strong>安全性</strong>：在该架构中，移动用户间的频谱管理、V2V 能量交易、缓存共享都会记录到区块链中防止篡改，从而保证安全的资源共享和分配。</p>
+<p><strong>灵活的网络</strong>：该架构中MBS、SBS、移动设备和车辆的共存为灵活的网络提供了机会。AI 可以准确地分析当前无线网络的拓扑结构、信道分配和干扰，然后选择最合适的无线接入模式（即蜂窝网络、V2V或D2D），以提高通信速率、降低能耗或增强用户体验。例如，该体系结构可以生成特定于用户的策略，使一些移动用户与 MBS 通信，而另一些连接到 RSU 以维护基本信息交换。</p>
+<h2 id="3-区块链赋能资源管理">3. 区块链赋能资源管理</h2>
+<p>由于缺乏标准化，无线网络的安全性面临挑战。此外，许多无线实体在不考虑个人隐私的情况下公开共享其资源或内容。为了建立一个安全和私有的无线通信环境，作者将联盟链（PBFT共识）集成到无线网络中，并讨论了四个潜在的区块链赋能的资源管理案例：频谱共享，D2D 缓存，能量交易和计算卸载。分别如下图 (a)、(b)、(c)、(d) 所示。</p>
+<p></p>
+<h3 id="31-频谱共享">3.1 频谱共享</h3>
+<p>由于需要适应不同类型的用户、具有不同性能要求的应用，以及需要将<strong><ruby>异构空中接口<rt>heterogeneous air interface</rt></ruby></strong>集成到下一代无线网络中，可能会使无线电频谱更加拥挤。认知无线电是一种能在时变无线环境中估计通信参数并自动进行频谱资源分配的频谱共享技术。在认知无线电系统中，无线电频谱属于主用户，主用户可以根据特定的频谱共享方案将频谱出租给次用户。但是，次用户必须共享他们的私有信息才能使用主用户的频谱。在这种情况下，可以利用区块链实现安全的频谱共享应用，同时集成对次用户的隐私保护。</p>
+<p>上图 (a) 中展示了一个分布式频谱共享系统，其中每个 SBS 作为一个区块链节点。有许可频谱的 SBS 是主用户，没有许可频谱的 SBS 是次用户。如果主用户成功地将频谱出租给了次用户，则次用户向主用户支付报酬，同时形成频谱租赁交易，并被收集到区块链中。认知无线电可以利用人工智能设计最优的频谱共享策略，通过与射频环境的交互，实现长期回报的最大化。</p>
+<h3 id="32-d2d-缓存">3.2 D2D 缓存</h3>
+<p>由传感器或多媒体应用生成的内容正在经历指数增长， MBSs 的容量可能不足。由于一些最先进的设备（如智能手机）具有一定的缓存资源，因此可以通过 D2D 通信将大规模内容缓存在这些实体中。在移动设备上缓存内容对于减少回程链路上的数据流量以及增强最终用户的 QoS 是一种很有潜力的方法。然而，由于内容通常涉及内容所有者的许多敏感和关键的个人信息，缓存请求者不愿意将其内容存储在不受信任的缓存提供程序中。区块链可以使不受信任的节点能够以安全的方式相互交互，因此它为 D2D 缓存提供了一种很有前途的方法。</p>
+<p>上图 (b) 显示了区块链授权的 D2D 缓存系统。在该系统中，具有大规模内容的资源受限移动设备被定义为缓存请求者。具有足够缓存资源的设备被定义为缓存提供程序。MBSs 配备了 AI 算法来预测缓存请求者和缓存提供者之间的 D2D 通信持续时间，并执行缓存对匹配和资源分配以提高缓存命中率或系统实用性。如果内容成功存储在一个缓存提供程序中，则缓存请求程序将创建一个交易并将其发送到最近的 MBS。每个 MBS 将接收到的交易广播给其他 MBS，并在接收到一定数量的交易后构建一个新的区块。注意，MBSs 上的缓存资源用于存储有关 D2D 缓存的整个交易。</p>
+<h3 id="33-能量交易">3.3 能量交易</h3>
+<p>智能车辆不仅可以从固定充电点充电，还可以从其他有剩余电量的智能车俩获取电力。然而，由于隐私问题，拥有剩余电力的智能车辆可能不愿意在本地化的P2P能源交易市场中充当能源供应商。为鼓励电力过剩的汽车参与能源交易，有必要在交易过程中保护智能汽车的隐私。上图 (c) 显示了一个安全的 V2V 能源交易系统。有两种类型的车辆：一种需要充电，另一种有多余的电力。需要充电的车辆通过 V2R 通道向最近的 RSU 发送充电请求。RSU 将收到的请求广播给有剩余电力的当地车辆。然后，剩余电量的车辆以其充电状态响应 RSU。每个 RSU 使用一个AI算法，例如 DRL，来匹配能量交易对。在这里，汽车之间成功的能源交易被定义为 energy transactioin，并记录在区块链中。</p>
+<h3 id="34-计算卸载">3.4 计算卸载</h3>
+<p>区块链可以被视为部署在移动设备上的应用程序。例如，如上图 (d) 所示，每个移动设备是一个挖矿类型的区块链的节点，例如比特币。为了支持比特币，移动设备必须解决PoW难题，然而，PoW难题是一个计算密集和能耗高的任务，资源受限的设备无法提供足够的计算资源和能量来维护比特币。在MEC框架中，移动设备可以将 PoW 任务卸载到附近的 BSs，并利用 BSs 支持的分布式计算。基站计算并向移动设备提供结果（即，关于交易的区块块和哈希指针）。</p>
+<p>鉴于以上讨论的情况，区块链和无线网络是互补的。区块链可以为无线网络建立一个安全可信的资源分配和共享环境，无线网络也可为实现区块链提供分布式但可访问的计算资源和能量。</p>
+<h2 id="4-内容缓存实例">4. 内容缓存实例</h2>
+<p>以内容缓存为例说明区块链和 AI 如何起作用，首先通过联盟链建立安全的内容缓存环境，然后利用 DRL 设计内容缓存方案从而最大化缓存资源效用。</p>
+<h3 id="41-内容缓存区块链">4.1 内容缓存区块链</h3>
+<p>下图是一个 D2D 网络中的内容缓存的框架，展示了缓存过程的一些细节。首先，区块链由 MBS 维持，D2D 缓存交易发生在移动设备间。如果内容成功缓存到了一个缓存提供者，缓存请求者应当创建一个交易记录并发送到最近的 MBS，MBSs 收集和管理它们本地的交易记录。经过共识后，交易记录被打包到区块并附加到区块链末尾，然后永久地存在每个 MBS 中。</p>
+<p></p>
+<p>过程中地一些关键步骤如下：</p>
+<ol>
+<li><strong>系统初始化</strong>：为了保护隐私，每个移动设备在系统初始化阶段需要在系统中注册一个合法身份。在 D2D 缓存区块链中，使用一个椭圆曲线签名算法和非对称加密来进行系统初始化。 一个移动设备 $d_i$ 可以在经过身份认证后获得一个合法身份，该身份保护公钥、私钥和证书（如$PK_i, SK_i,Cert_i$）</li>
+<li><strong>选择 D2D 缓存的角色</strong>：移动设备根据自己当前缓存资源可用性和未来的计划选择它们的角色，包括内容请求者和缓存提供者。有过剩缓存资源的移动设备可作为缓存提供者，用于为缓存请求者提供服务。</li>
+<li><strong>缓存交易</strong>：缓存请求者发送一定量缓存资源和期望的服务时间到最近的 MBS，MBS广播所有收到的缓存请求给本地缓存提供者。 缓存提供者反馈缓存资源量和未来计划给 MBS。然后每个 MBS 利用 DRL 算法匹配缓存需求对，决定每个缓存提供者提供的缓存资源，并分配 MBS 和移动设备的带宽。</li>
+<li><strong>收集到区块链</strong>：MBSs 通过运行 PBFT 共识将所有交易记录收集到区块链。</li>
+</ol>
+<h3 id="42-drl-算法">4.2 DRL 算法</h3>
+<p>内容缓存问题可以被抽象为最大化系统效用的优化问题并用 DRL 算法解决。考虑一个有 $K$ 个BSs 的缓存网络，$M$ 个缓存请求者， $N$ 个缓存提供者。MBS 是区块链节点同时运行 DRL 算法。每个缓存请求有一个大规模内容 $d_i$ 如多媒体文件。如果缓存请求者 $i$ 的内容存在 缓存提供者 $j$ 中，$x_{ij} = 1$ ，否则为0。当两者间的距离小于预定义的通信范围时，两个移动设备可以通过 D2D 通信传输内容给彼此，系统效用由缓存效用和能量消耗组成。缓存效用为 $x_{ij} · d_i · B_i$，其中 $B_i$ 为所存内容的价格，花费分别是通信和缓存过程总的能量消耗。</p>
+<p>通过所提出的架构，缓存能力、缓存请求者的需求、每个内容的规模等信息被收集和发送给代理，然后代理设计一个操作来匹配缓存对和分配资源。在深度强化学习过程中，这里有三个关键因素，分别是状态、操作和奖励。</p>
+<p><strong><ruby>状态<rt>State</rt></ruby></strong>：DRL 中的状态是一个反映环境的空间，可表示为 $S = (D_i, C_j, B_j)$，其中 $D_i$ 代表内容 $i$ 的状态，$C_j$ 代表可用缓存资源，$B_j$ 代表缓存提供者 $j$ 的可用带宽。每个 MBS 将上述信息组合成一个状态发送给代理。</p>
+<p><strong><ruby>操作<rt>Action</rt></ruby></strong>：代理的目标是将状态空间映射到操作空间，在该系统中，操作由两部分组成：$x_{ij}$ 和 $b_{ij}$，前者是二进制值，后者是带宽量。</p>
+<p><strong><ruby>奖励<rt>Reward</rt></ruby></strong>：基于当前状态和操作，代理可以从环境中获得一个奖励。因为奖励函数与目标函数相关，在该场景中，系统效用可以被视为奖励函数进行奖励。</p>
+<p>设计内容缓存策略的 DRL 过程如上图 (b) 所示，其基于<strong><ruby>深度确定性策略梯度方法<rt>deep deterministic policy gradient method</rt></ruby></strong> <sup id="fnref:5"><a href="#fn:5" class="footnote-ref" role="doc-noteref">5</a></sup>。</p>
+<p>在DRL中，主网络由两个深层神经网络组成，即 actor 网络和 critic 网络。actor 网络用来探索策略，而 critic 网络则评估策略的性能并提供 critic 值，这有助于 actor 了解策略的梯度。</p>
+<p>目标网络可以定义为原始网络的旧版本，用于生成训练 Critic-P 的目标值，它包括目标参与者网络和目标批评者网络。目标网络的输入是来自重放存储器的下一个状态（即N-State），输出是训练critic-P 的临界值。</p>
+<p>重放内存存储经验元组，包括当前状态、所选操作、奖励和下一个状态。存储的经验元组可以随机抽样用于训练主网络和目标网络。随机抽样经验元组的目的是减少数据相关性的影响。</p>
+<h3 id="43-数值结果">4.3 数值结果</h3>
+<p>作者通过大量的仿真来评估所提出的 DRL 赋能的 D2D 缓存方案的性能。该体系结构实现了两个部分：环境和代理。在该环境中，有5个缓存提供者和20个缓存请求者随机分布在 500m×500m 的区域内。缓存提供程序的缓存资源是从 [30、31、32、35、40]GB 中随机抽取的。缓存提供程序的最大带宽是从 [22、24、25、28、30]MHz 随机获取的。每个内容的数据大小是从<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>、<sup id="fnref:6"><a href="#fn:6" class="footnote-ref" role="doc-noteref">6</a></sup>、<sup id="fnref:7"><a href="#fn:7" class="footnote-ref" role="doc-noteref">7</a></sup> GB中随机抽取的。</p>
+<p>所提出的 DRL 赋能的 D2D 缓存方案同时进行缓存对匹配和动态带宽分配，以最大化系统效用，而DRL 赋能的基准缓存方案只进行缓存对匹配。下图中可以看出，论文所提方案的累积平均系统效用明显高于基准方案。这是论文所提方案可以为特定的缓存请求者选择最合适的缓存提供者，并优化缓存提供者和缓存请求者之间的带宽，以进一步提高系统的实用性。基准方案在不分配带宽的情况下进行缓存对匹配，从而导致较高的通信能量开销。此外，我们观察到，在学习过程开始时，不同方案的每个系统效用都很低，随着迭代数量的增加，系统效用在运行750个迭代之后达到一个相对稳定的值。</p>
+<p></p>
+<p>下图显示了在不同学习速率下所提出方案的收敛性能。首先，累积平均系统效用在所有学习率上实现收敛。其次，当学习率为$10^{-3}$时，累积平均系统效用明显高于学习率为$10^{-4}$和$10^{-5}$时的情况，这意味着较小的学习率可以获得更好的性能。然而，学习率为$10^{-3}$时的成绩也优于学习率为$10^{-2}$时的成绩。因此，我们可以得出结论，对于论文所提方案，$10^{-3}$是最佳的学习速率。事实上，一个合适的学习率取决于正在优化的模式的体系结构，以及当前优化过程中的环境状态。</p>
+<p></p>
+<h2 id="5-总结与收获">5. 总结与收获</h2>
+<p>论文的核心问题是：区块链和 AI 如何服务于无线网络。作者首先描述了云-边缘-用户三层架构，得出的结论是只有在用户层的三种情况（异构网络、车辆网络和蜂窝网络）中，才需要区块链保证安全，而 AI 功能由边缘层提供，用于执行最优的资源分配策略。紧接着，作者介绍了四个区块链可以起作用的资源管理案例：频谱共享、D2D 缓存、V2V 能量交易和计算卸载。然后针对缓存场景，详细说明了区块链如何保证安全以及 AI 如何最大化资源利用率，数值结果说明了所提方案的有效性。</p>
+<p>更进一步的，我们关心的是计算卸载场景下区块链如何保证 D2D 的安全，因此作者描述的四个资源管理案例有一定的作用。但是，作者的思路是 MBS 作为区块链节点，重新将基站和边缘服务器引入了方案中，我们使用 D2D 进行资源卸载的原因是节省频谱资源并弥补 MEC 场景的不足，将 MBS 引入不太合适。另一方面，MBS 维持区块链意味着这是一个小范围场景，最多整个城市的 MBS 都加入，移动设备或车辆在不同地域间的移动可能会带来数据访问问题，需要不同区块链的协作。最后的担心是，深度强化学习也是一种计算密集型任务，需要不断地训练，将 DRL 算法放在区块链中运行，资源消耗与收益是否匹配犹未可知。最后得到的一个启发是，不必局限于计算卸载，D2D 缓存也是一个方向。</p>
+<p>注：插图源自原论文</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>Y. Dai et al., “Artifi cial Intelligence Empowered Edge Computing and Caching for Internet of Vehicles,” IEEE Wireless Commun., accepted, 2018. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>J. Kang et al., “Enabling Localized Peer-to-Peer Electricity Trading Among Plug-In Hybrid Electric Vehicles Using Consortium Blockchains,” IEEE Trans. Ind. Informat., vol. 13, no. 6, 2017, pp. 3154–64. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p>Z. Li et al., “Consortium Blockchain for Secure Energy Trading in Industrial Internet of Things,” IEEE Trans. Ind. Informat., 2017. <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:4" role="doc-endnote">
+<p>J. Kang et al., “Blockchain for Secure and Efficient Data Sharing in Vehicular Edge Computing and Networks,” IEEE Internet of Things J., 2018. <a href="#fnref:4" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:5" role="doc-endnote">
+<p>T. P. Lillicrap et al., &ldquo;Continuous Control with Deep Reinforcement Learning&rdquo;, <em>Proc. Int&rsquo;l. Conf. Learning Representations</em>, 2016. <a href="#fnref:5" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:6" role="doc-endnote">
+<p>M. A. Rahman et al., &ldquo;Blockchain-Based Mobile Edge Computing Framework for Secure Therapy Applications&rdquo;, <em>IEEE Access</em>, 2018. <a href="#fnref:6" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:7" role="doc-endnote">
+<p>Y. Dai et al., &ldquo;Joint Load Balancing and Offloading in Vehicular Edge Computing and Networks&rdquo;, <em>IEEE Internet of Things J.</em>, pp. 1-1, 2018. <a href="#fnref:7" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+]]></description></item><item><title>LVChain： A Lightweight and Vote-based Blockchain for Access Control in the IoT</title><link>https://shuzang.github.io/lvchain-a-lightweight-and-vote-based-blockchain-for-access-control-in-the-iot/</link><pubDate>Fri, 14 Feb 2020 00:00:00 +0000</pubDate><author>作者</author><guid>https://shuzang.github.io/lvchain-a-lightweight-and-vote-based-blockchain-for-access-control-in-the-iot/</guid><description><![CDATA[<p>Yu, Yue &amp; Zhang, Sheng &amp; Chen, Chao &amp; Zhong, Xiaoxiong. (2018). LVChain: A Lightweight and Vote-based Blockchain for Access Control in the IoT. 870-874.</p>
+<p>DOI: <a href="https://www.researchgate.net/deref/http%3A%2F%2Fdx.doi.org%2F10.1109%2FCompComm.2018.8780687" target="_blank" rel="noopener noreffer">10.1109/CompComm.2018.8780687</a></p>
+<p>KeyWord: IoT, security, Blockchain, access authorization, BLE-based devies</p>
+<p>注：插图经过重新绘制，照片来自原论文截图。</p>
+<h2 id="1-引言">1. 引言</h2>
+<p>IoT与生活联系的越来越紧密，因此安全和隐私问题逐渐得到人们的关注。访问控制是安全的一个重要领域，一个完整而有效的访问控制系统应该满足机密性、完整性和可用性，并包括认证、授权和审计三个部分，这篇文章只关心授权部分。</p>
+<p>传统授权架构是中心化的，比如著名的有XACML、OAuth和UMA，这种架构很难解决单点故障问题和提供良好的可扩展性，因此正在朝着分布式的方向演变。</p>
+<p>作者设计了一条区块链(LVChain)来克服了上面提到的缺点，可以很好的用于蓝牙设备构成的家庭无线自组织网络。作者的主要贡献如下</p>
+<ol>
+<li>提出了一个新的基于区块链的分布式架构，是轻量级、可扩展和容错的；</li>
+<li>在架构中引入和实施了一个基于投票的共识算法，对计算和存储资源依赖更少；</li>
+<li>对性能进行了全面地分析，比较了本文架构、传统中心化架构和现有的分布式架构，在虚拟环境中运行了一个实验证实了本文架构在IoT环境下的可行性。</li>
+</ol>
+<p>论文其余部分组织如下，第二部分为背景和相关工作，第三部分为架构总览，第四部分为性能评估和安全分析，第五部分总结全文。</p>
+<h2 id="2-相关工作">2. 相关工作</h2>
+<p>FairAccess<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>利用智能合约实现了基于token的访问控制，但是有较大的计算和时间开销，预设的授权规则也不可变。</p>
+<p>BlendCAC<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>同样基于token，利用智能合约完成访问授权的注册、传播和撤销。该模型具有较大的计算和存储开销，并且在具有足够资源的树莓派上实现，无法代表多数IoT设备。</p>
+<p>ControlChain<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>使用了四种区块链，分别负责记录设备和用户的关系、存储传感器收集的环境信息、存储授权或拒绝访问的权限信息和保存授权规则。该架构只是理论没有仿真或实现，复杂性较高而兼容性较差。</p>
+<h2 id="3-方案">3. 方案</h2>
+<p>本文的工作用于解决蓝牙设备构成的家庭无线自组织网络中的安全问题，具有如下特征：</p>
+<ol>
+<li>分布式结构，克服中心化结构的缺点，更好地满足IoT的开发需求；</li>
+<li>基于投票的共识，减小资源有限的IoT设备的计算压力，因此是轻量级的</li>
+<li>离线工作，因为控制和授权信息不需要通过连接的蓝牙设备扫描和广播</li>
+</ol>
+<p></p>
+<p>架构总体结构如下图所示，分为三层：数据层、网络层和共识层。</p>
+<p>数据层包括时间戳、控制信息和授权信息，存储在本地来避免泄露隐私。用户控制设备(如switch等)的行为会生成控制信息，并按时间戳顺序链接在一起，这样做同样有利于接下来的审计工作。授权信息是授权用户的身份信息，通过哈希表存储，从而加快查询速度。</p>
+<p>网络层利用P2P协议构建蓝牙设备组成的网状网，由于蓝牙设备的广播和扫描状态，该架构是无连接的。网络中的设备结点是点对点的，一个设备接收到信息，会通过蓝牙转发和广播出去。另外，为了防止网络拥塞，限制了每个消息的转发次数，期间验证机制会验证控制信息的有效性和投票信息是否来自授权用户。</p>
+<p>受限于蓝牙设备的计算能力，使用了基于投票的共识算法。为了减少通信开销，共识算法设计为：请求授权的用户在收到大部分授权用户的投票信息时被授权。</p>
+<p></p>
+<p>整个架构的工作流程如上图，当一个用户尝试操作一个设备时，设备会首先根据数据层的授权信息将用户区分为授权用户和非授权用户。如果是非授权用户，设备向整个P2P网络的授权用户发送授权请求，然后授权用户进行投票，每个用户对每个请求只有一票，同意则进行投票，不同意什么都不做。接下来，在共识层中，设备接收投票回应，检查回应的有效性并计算有效投票数量。在一段确定的时间内，如果投票用户的数量超过了授权用户数量的一半，请求者被授权，其信息存储在数据层中并添加到授权信息。如果是授权用户，一方面设备转发控制请求并将控制信息按时间戳添加到区块链，另一方面如果请求针对自己，设备直接进行响应。</p>
+<h2 id="4-性能评估">4. 性能评估</h2>
+<h3 id="41-方案比较">4.1 方案比较</h3>
+<p>论文中的架构和其它架构的比较如下表，其中(*)表示取决于证明类型和块的生成速度</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Scalability</th>
+<th>Fault Tolerant</th>
+<th>New Authorization</th>
+<th>Get Authorization</th>
+<th>Off-Line working</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>XACML</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+</tr>
+<tr>
+<td>OAuth</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+</tr>
+<tr>
+<td>UMA</td>
+<td>-</td>
+<td>-</td>
+<td>+</td>
+<td>+</td>
+<td>-</td>
+</tr>
+<tr>
+<td>FairAccess</td>
+<td>+</td>
+<td>+-</td>
+<td>-</td>
+<td>-</td>
+<td>+-</td>
+</tr>
+<tr>
+<td>BlendCAC</td>
+<td>+</td>
+<td>+-</td>
+<td>-</td>
+<td>+</td>
+<td>+-</td>
+</tr>
+<tr>
+<td>ControlChain</td>
+<td>+</td>
+<td>+</td>
+<td>-(*)</td>
+<td>+</td>
+<td>+-</td>
+</tr>
+<tr>
+<td>LVChain</td>
+<td>+-</td>
+<td>+</td>
+<td>+-</td>
+<td>+</td>
+<td>+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>可扩展性</strong>：FairAccess、BlendCAC、ControlChain和本文的LVChain都是分布式结构，具有良好的可扩展性，但由于授权信息的不断增加可能对网络造成影响，LVChain的可扩展性可能略逊于其它三种。</p>
+<p><strong>容错性</strong>：分布式结构具有更好的容错性，但FairAcess和BlendCAC使用token，带有一定的中心化特征，因此略逊于另外两种。</p>
+<p><strong>新授权</strong>：评估改变一个授权的延迟。中心化架构更改授权的延迟较低，本文的LVChain使用基于投票的共识，避免和挖矿过程，延迟稍微好点。</p>
+<p><strong>获取授权</strong>：评估获取一个授权的延迟。FairAccess获取权限需要挖掘两个区块，因此比其他方案略差</p>
+<p><strong>离线工作</strong>：评估设备离线工作的可能性，中心化结构都需要稳定的连接，分布式结构都可以从本地副本查询。</p>
+<h3 id="42-仿真">4.2 仿真</h3>
+<p></p>
+<p>作者如上图所示实施了文中提出的架构，使用智能手机代表用户，配备MCU和蓝牙的智能家庭设备代表终端设备。与树莓派相比，这里设备的计算和存储能力更弱，因此能证明本文架构在资源有限的IoT环境下的适用性。软硬件具体情况如下</p>
+<table>
+<thead>
+<tr>
+<th>设备</th>
+<th>详细信息</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IoT设备</td>
+<td>arm cortex-m3，maximum working frequency 48MHz, RAM 80K, ROM 256K（硬件）<br>Keil arm 5.22（软件）</td>
+</tr>
+<tr>
+<td>用户设备</td>
+<td>BLE 4.0， theoretical rate 60Mbps（硬件）<br>ios 8.0（软件）</td>
+</tr>
+</tbody>
+</table>
+<p>当一个未授权用户想要操作设备时，设备查找授权信息确定用户未授权，然后通过蓝牙将授权请求广播给所有授权用户，授权用户接到请求后，如下图所示做出是否同意的决策，选择「NO」不会发送任何信息，选择「YES」发送投票信息。</p>
+<p></p>
+<p>一系列测试的结果如下表所示，共使用了两个嵌入式设备，并使授权用户的数量逐渐增加，反映了网络扩张的过程。结果中可以看出，投票用户超过一半时用户被授权。</p>
+<table>
+<thead>
+<tr>
+<th>The number of authorized users</th>
+<th>The number of voting 「YES」</th>
+<th>The number of voting 「NO」</th>
+<th>The operability of the user requesting access</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>×</td>
+</tr>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>√</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+<td>×</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>1</td>
+<td>×</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>0</td>
+<td>√</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0</td>
+<td>3</td>
+<td>×</td>
+</tr>
+<tr>
+<td>3</td>
+<td>1</td>
+<td>2</td>
+<td>×</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>√</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>0</td>
+<td>√</td>
+</tr>
+</tbody>
+</table>
+<h3 id="43-安全分析">4.3 安全分析</h3>
+<p>理论上，由于本文架构是分布式的，信息在每个设备中都有一个备份，单个设备的故障不会影响其它设备的正常运行。不过恶意用户不得超过一半，否则该架构难以正常运行。</p>
+<h2 id="5-总结与启发">5. 总结与启发</h2>
+<p>很多访问控制方案都是利用原来的区块链或智能合约，本文则设计了一条完全用于访问控制的新链，这也是一种思路。而且作者构建的区块链是完全建立在IoT设备上的区块链，由蓝牙设备作为节点，这种纯粹底层的区块链还没见到过。</p>
+<p>不过，家庭自组织网络中，授权用户的数量不会太多，受到攻击时，一半以上的授权用户被控制的概率比较大，因此，这种场景使用区块链完成访问控制是否有必要值得讨论。</p>
+<p>最后，家庭自组织网络中，蓝牙、WIFI和ZigBee三种协议都有使用，限于一种协议显然是不适合的，以设备为终端节点，需要对各种无线协议做适配，工作量大且更新繁琐，不是最好的选择。</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>A. Ouaddah, A. Abou Elkalam, and A. Ait Ouahman, “Fairaccess: a new blockchain-based access control framework for the internet of things.” Security and Communication Networks, pp. n/a–n/a, 2017, sCN-16-0184. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>R.H. Xu, Y. Chen, et al, &ldquo;BlendCAC: A BLockchain-ENabled Decentralized Capability-based Access Control for IoTs.&rdquo; IEEE Internal Conference on Blockchain IEEE, 2018. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p>Pinno, Otto Julio Ahlert, A. R. A. Gregio, and L. C. E. D. Bona, &ldquo;ControlChain: Blockchain as a Central Enabler for Access Control Authorizations in the IoT.&rdquo; GLOBECOM 2017 - 2017 IEEE Global Communications Conference IEEE, 2018. <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+]]></description></item><item><title>Efficient Distributed Authentication and Access Control System</title><link>https://shuzang.github.io/efficient-distributed-authentication-and-access-control-system/</link><pubDate>Sun, 09 Feb 2020 00:00:00 +0000</pubDate><author>作者</author><guid>https://shuzang.github.io/efficient-distributed-authentication-and-access-control-system/</guid><description><![CDATA[<p>Benhadj Djilali H., Tandjaoui D. (2019) Efficient Distributed Authentication and Access Control System Management for Internet of Things Using Blockchain. In: Renault É., Boumerdassi S., Leghris C., Bouzefrane S. (eds) Mobile, Secure, and Programmable Networking. MSPN 2019. Lecture Notes in Computer Science, vol 11557. Springer, Cham</p>
+<p>DOI：<a href="https://doi.org/10.1007/978-3-030-22885-9_5" target="_blank" rel="noopener noreffer">https://doi.org/10.1007/978-3-030-22885-9_5</a></p>
+<p>Keywords：Internet of Things, Access controls system management, Authentication, Blockchain, Security.</p>
+<h2 id="1-introduction">1. Introduction</h2>
+<p>IoT现在的身份认证体系主要是基于PKI(公钥基础设施)的，以Certificate Authority(CA)作为第三方可信机构，通过数字证书来认证和管理身份。该体系有如下缺点：</p>
+<ol>
+<li>以CA为核心的中心化体系具有<strong>单点故障</strong>的问题，容易被侵入导致安全问题</li>
+<li>使用数字证书在验证过程中引入了<strong>计算开销</strong>，在带宽角度还有较高<strong>通信开销</strong></li>
+<li>为了在消息中包含证书，每条消息长度额外增加，导致通信量大、网络拥塞和资源耗尽，</li>
+</ol>
+<p>许多方案致力于减少计算和通信开销，作者提出利用区块链技术构建一个用于IoT的安全的轻量级访问控制系统，核心思路是：</p>
+<ol>
+<li>利用区块链存储PKI体系中的数字证书，缓解单点故障问题</li>
+<li>对每条消息中嵌入的数字证书的验证过程转换为区块链中存储的数字证书的查询过程，减少认证过程(证书交换和验证)的开销</li>
+</ol>
+<p>论文其余部分组织如下：第二部分总结相关工作，第三部分描述所提出的方案，第四部分讨论和评估系统性能，第五部分总结全文。</p>
+<p>第二部分没有实质性的东西，略过。</p>
+<h2 id="2-proposal">2. Proposal</h2>
+<p>作者所提出的方案是一个用于物联网网络的基于区块链的访问控制系统管理机制，设计目的是消除单点故障、减少原本的中心化PKI体系的通信和验证开销。为了实现这一目的，必须确保下面的功能集的实现：</p>
+<ol>
+<li>IoT设备<strong>注册</strong>公钥</li>
+<li><strong>验证</strong>IoT设备公钥的成员身份</li>
+<li><strong>查找/验证</strong>物联网公钥的有效性。</li>
+<li>从网络中<strong>撤销</strong>物联网的公钥。</li>
+</ol>
+<p>这些函数的细节描述分别在下面各小节中，在此之前，会先进行一次系统总览。</p>
+<p>由于IoT设备的有限能力，作者使用椭圆曲线加密ECC和数字签名ECDSA，而不是普通的公钥加密RSA。</p>
+<h3 id="21-system-overview">2.1 System Overview</h3>
+<p>作者的目标是保证物联网安全的同时，实现物联网的大规模部署。区块链可以为任何类型的数据提供分布式、安全和不可变的记录，如果把认证信息(比如证书)存入区块链，交换和验证这些信息就会变得不再必要。另外，区块链分布式的特性还消除了对可信第三方的需要，从而避免了单点故障发生的可能性。</p>
+<p>下图是系统的总体结构。其中，区块链网络（这篇文章中是permissioned BC）覆盖在现有的物联网网络之上，「验证者」是城市中的一组有一定处理和存储能力的智能实体，如智能交通灯、基站、智能路灯和其它路边的单元等，负责执行共、验证交易有效性。「权威(Authorities)」类似于传统的CA，在智慧城市场景下可能是车辆部门、电子政府、制造商或公司等，作用是证明特定IoT设备是网络的一员。</p>
+<p>在该方案中，不是将来自不同权威的证书收集到一个单独的地方进行决策，而是将所有证书推送到区块链网络，然后由验证者以完全分布式的方式进行决策。IoT设备加入/离开网络的时候，相关的准入/撤销消息以交易形式发送到区块链中，由验证者进行验证并做出最终决策。以IoT设备退出网络为例，检测到恶意行为的某个IoT设备会发送交易到区块链，然后验证者们根据预定义的规则做出从网络中删除可疑IoT设备的决策。</p>
+<p></p>
+<p>一个IoT设备不再需要将证书附加到每条消息中，接收者只需要做一个简单的查找来检查发送者在区块链中的有效状态。通过这种方式，IoT设备间可以以最小的通信和计算开销进行相互认证。</p>
+<h3 id="22-details">2.2 Details</h3>
+<p><strong>IoT Device Registration</strong></p>
+<p>一个 IoT 设备首先需要在网络中进行注册。以设备 IoT<sub>i </sub>为例，首先自己生成公私钥对 (pkIoT<sub>i</sub>，skIoT<sub>i</sub>) 用于签名和验证。为了在区块链中拥有一个有效的成员状态，IoT<sub>i </sub> 需要从相应的权威处获取注册证书，验证合法的情况下，权威 a<sub>j</sub> 使用其私钥 ska<sub>j</sub> 发布一个已签名的证书给IoT<sub>i</sub>，通过注册交易将证书推送到区块链网络中。证书具有如下格式，其中 cert 是生成的证书，sig是证书的签名，证书主要包含IoT设备公钥和有效期。
+$$
+&lt;cert, registered, sig&lt;ska_j, cert&gt;
+$$</p>
+<p><strong>IoT Device Admission</strong></p>
+<p>当区块链网络从一个权威处接收到注册交易时(可能是授权新设备或重新授权被撤销的设备)，如果来自一个经过认证的机构，则被接受。当收到关于 IoT<sub>i</sub> 足够的证书时，某个验证者就会生成一个新的准入交易，从而在区块链中将IoT设备的公钥标记为有效，其它的验证者随之会验证其有效性并将其添加到本地区块链的副本，验证有效性包括检查验证者签名和 IoT<sub>i</sub> 是否拥有足够的证书。准入交易的格式如下：
+$$
+&lt; pkIoT_i, valid, sig(skm_j, pkIoT_i) &gt;
+$$
+<strong>IoT Device Authentication</strong></p>
+<p>一旦 IoT<sub>i</sub> 被标记为有效，他就可以加入网络并开始发送消息。每个接收到来自 IoT<sub>i</sub> 的消息的设备都会检查该设备公钥是否在区块链中存在以及是否被标记为有效，这一步骤通过在区块链中进行简单的公钥值匹配完成。</p>
+<p><strong>IoT Device Revocation</strong></p>
+<p>设备 IoT<sub>j</sub> 检测到恶意行为后，必须发送一个恶意行为交易通知区块链网络，该交易格式如下
+$$
+&lt; pkIoT_i, misbehavior, sig(skIoT_j, pkIoT_j) &gt;
+$$
+其中 pkIoT<sub>i</sub> 是被怀疑的IoT设备的公钥，skIoT<sub>j</sub> 是检测到恶意行为的设备的私钥。如果交易来自有效的IoT设备，验证者会将交易收集到区块链中，这些交易稍后会被验证从而决定是否将被怀疑的设备从网络中删除。撤销资格的规则由权威设置，由验证者强制执行，例如，如果24小时内超过 n 个关于 IoT<sub>i</sub> 的恶意交易被收集到区块链中，则将其驱逐出网络。这一过程通过验证者发起撤销交易并广播到整个区块链实现，撤销交易的格式如下，其中skm<sub>j</sub> 是验证者的私钥
+$$
+&lt; pkIoT_i, revoked, sig(skm_j, pkIoT_i) &gt;
+$$
+一旦收到撤销交易，其它的验证者在验证其来源后就会将其添加到区块链。</p>
+<p>以上提到的四种交易总结如下表</p>
+<table>
+<thead>
+<tr>
+<th>交易类型</th>
+<th>发送者</th>
+<th>交易格式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>注册(Registration)</td>
+<td>权威</td>
+<td>&lt; cert, registered, sig(ska<sub>j</sub>, cert) &gt;</td>
+</tr>
+<tr>
+<td>准入(Admission)</td>
+<td>验证者</td>
+<td>&lt; pkIoT<sub>j</sub>, valid, sig(skm<sub>j</sub>, pkIoT<sub>i</sub>) &gt;</td>
+</tr>
+<tr>
+<td>恶意行为(Misbehavior)</td>
+<td>IoT设备</td>
+<td>&lt; pkIoT<sub>i</sub>, misbehavior, sig(skIoT<sub>j</sub>, pkIoT<sub>j</sub>) &gt;</td>
+</tr>
+<tr>
+<td>撤销(Revocation)</td>
+<td>验证者</td>
+<td>&lt;pkIoT<sub>i</sub>, revoked, sig(skm<sub>j</sub>, pkIoT<sub>i</sub>) &gt;</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-discussion">3. Discussion</h2>
+<h3 id="31-存储优化">3.1 存储优化</h3>
+<p><strong>Multiple blockchains</strong>：不是将注册、准入、恶意行为和撤销等所有消息都保存到一条区块链中，而是不用类型的数据可以存储在不同的区块链。这种情况下，设备可以只使用准入和撤销区块链，只用这两种已经足够认证任何接收到的消息的来源，因此能节省一定的存储空间。</p>
+<p><strong>Cryptographic accumulator</strong>：思路是将一组有效的IoT设备累加到一个智能对象中，每个IoT设备在累加器中都有一个见证者可以证明它已注册。这种情况下，只需要在区块链中保存累加器即可，IoT设备只需要在消息中包含其见证者，接收者就可以通过一个简单的函数检查其成员资格。这种方法能大大减小区块链的大小，并且可以在不影响存储性能的情况下扩展到非常大的网络规模。</p>
+<h3 id="32-性能分析">3.2 性能分析</h3>
+<p>通过使用区块链，设备消息的验证变成了一个简单的查询函数，为了比较本文方案和传统方案的验证时间，做了如下实验。</p>
+<p>为了测试实际场景下查询函数的性能，使用比特币区块链。在比特币区块链中，为了加速访问和搜索操作，需要使用LevelDB 数据库。比特币主要使用两个数据库，一个包含所有已知区块的元数据，存在硬盘，另一个包含UTXO信息，值得注意的是，可以定制数据库从而满足特定需要。在本文方案中，加速了在区块链数据库中搜索特定交易的响应时间。通过使用LeveDB C++，可以直接访问数据库并通过交易标识符(TXID)搜索特定交易。实验使用的硬件和数据库的总结如下表所示</p>
+<table>
+<thead>
+<tr>
+<th>配置类型</th>
+<th>详细信息</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td>8 ∗ Intel R Core(TM) i7-6700HQ 2.60 GHZ</td>
+</tr>
+<tr>
+<td>CPU-cache</td>
+<td>6144 KB</td>
+</tr>
+<tr>
+<td>LevelDB</td>
+<td>Version 1.1</td>
+</tr>
+<tr>
+<td>Number of transactions</td>
+<td>36328994</td>
+</tr>
+</tbody>
+</table>
+<p>结果显示，1000次查询的平均查找时间为0.012ms，传统方案对于长度为256的密钥，验证时间为0.1ms，使用区块链的优势很明显，延迟几乎减少了10倍。</p>
+<h2 id="4-idea">4. Idea</h2>
+<p>这篇论文的偏向是认证，没有使用任何访问控制模型，就是简单的将PKI体系中的证书保存到区块链中，并做了一定的适应性调整。性能有实际的提升，同时具有很大的可行性，能够进行大规模的实际部署。缺点在于这种方式实现的访问控制是粗粒度的，最基本的单元是IoT设备，无法具体到每个资源，而且权限区块链本身对节点准入就会进行控制，功能上可能有一定重合。</p>
+<p>最大的启发在于没有完全抛弃原来的CA，权威依然作为区块链的一部分参与进来，对于区块链监管体系的建立有一定参考价值。</p>
+]]></description></item><item><title>A Blockchain based access control for IoT</title><link>https://shuzang.github.io/a-blockchain-based-access-control-for-iot/</link><pubDate>Thu, 06 Feb 2020 00:00:00 +0000</pubDate><author>作者</author><guid>https://shuzang.github.io/a-blockchain-based-access-control-for-iot/</guid><description><![CDATA[<p>Imen Riabi, Yosr Dhif, Hella Kaffel Ben Ayed, Khaled Zaatouri. A Blockchain based access control for IoT[C]. International Wireless Communications &amp; Mobile Computing Conference (IWCMC), 2019.</p>
+<p>DOI: <a href="https://doi.org/10.1109/IWCMC.2019.8766506" target="_blank" rel="noopener noreffer">10.1109/IWCMC.2019.8766506</a></p>
+<p>Keywords: Access control, Blockchain, Smart Contract, Internet of Things</p>
+<p>注：本文图片来自原论文。</p>
+<h2 id="1-引入">1. 引入</h2>
+<p>作者的考虑主要基于三点</p>
+<ol>
+<li>传统中心化的访问控制带来的单点故障和可扩展性问题；</li>
+<li>资源有限的IoT设备需要轻量级访问控制方案(对CPU、内存、功耗的低需求)</li>
+<li>对低延迟的需求</li>
+</ol>
+<p>文章其它部分的组织结构为：第二部分为相关工作，第三部分为区块链技术介绍(阅读时略过)，第四部分为区块链安全机制介绍，第五部分阐述提出的访问控制模型，第六部分通过实验实施提出的方案，最后总结全文。</p>
+<h2 id="2-相关工作">2. 相关工作</h2>
+<p>该部分说明了已有物联网访问控制方案不合适的原因</p>
+<p><strong>RBAC</strong>：the Role based access control，物联网环境高度动态且用户数量巨大，纯RBAC无法应对。</p>
+<p><strong>ABAC</strong>：the Attribute based access control，规则的数量随着用户、属性的增长迅速增加，不适用于物联网高度动态和实时的环境。</p>
+<p><strong>Cap-BAC</strong>：Capability based access control，主要指OAuth-IoT，主要的问题是中心化结构会带来可扩展性问题和高延迟，同时该模型不支持可移动性。</p>
+<h2 id="3-区块链安全机制">3. 区块链安全机制</h2>
+<p>该部分讨论区块链的安全机制从而评估其安全级别，区块链提供的安全服务和对应的实现机制如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>区块链安全服务</th>
+<th>使用的机制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>完整性</td>
+<td>哈希函数</td>
+</tr>
+<tr>
+<td>交易真实性</td>
+<td>数字签名</td>
+</tr>
+<tr>
+<td>机密性</td>
+<td>非对称加密</td>
+</tr>
+<tr>
+<td>可用性</td>
+<td>多个副本分布于整个网络</td>
+</tr>
+<tr>
+<td>匿名性</td>
+<td>公钥用作节点地址</td>
+</tr>
+<tr>
+<td>可追溯性</td>
+<td>所有交易记录在区块链中</td>
+</tr>
+<tr>
+<td>防篡改</td>
+<td>需要大量的算力才能破坏区块链</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-方案">4. 方案</h2>
+<p>作者选择将 Capability-BAC 和 Identity-BAC 两个模型相结合，利用token向请求者授权(Capability-BAC)，利用访问控制列表ACL记录请求者和对应的访问权限(Identity-BAC)。资源所有者在智能合约中存储ACL，资源请求者发起请求从而逐步填充ACL的内容，从而令区块链替代传统的中心化授权服务器。</p>
+<h3 id="41-actor">4.1 Actor</h3>
+<p>方案中涉及的角色如下</p>
+<ul>
+<li>资源所有者：区块链中拥有资源的节点，部署智能合约并在智能合约中定义ACL，接收来自区块链中其它节点(请求访问资源的节点)的注册请求。</li>
+<li>矿工：区块链中有一定计算能力的节点，替代传统的授权服务器，对来自请求者的请求进行管理，基于资源所有者部署的智能合约中的ACL生成和授予token。</li>
+<li>请求者：区块链中想要以指定权限访问特定资源的节点，希望获取对应的访问token。</li>
+</ul>
+<p>一个传统访问控制和基于区块链的访问控制角色对应表如下</p>
+<table>
+<thead>
+<tr>
+<th>传统访问控制</th>
+<th>基于区块链的访问控制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>资源所有者</td>
+<td>区块链中的资源所有者节点</td>
+</tr>
+<tr>
+<td>请求者</td>
+<td>区块链中的请求者节点</td>
+</tr>
+<tr>
+<td>授权服务器</td>
+<td>区块链中的矿工节点</td>
+</tr>
+</tbody>
+</table>
+<h3 id="42-proposal">4.2 Proposal</h3>
+<p>作者提出的方案使用智能合约存储和管理ACL，每个资源所有者在自己部署的智能合约中定义和资源相关的ACL，这些ACL被矿工用于验证请求者的访问权限，从而生成访问token并给予对应的请求者。节点间的通信使用区块链本身的交易机制。</p>
+<p><strong>注册过程</strong></p>
+<p>一个新的资源请求者在智能合约中注册的时序图如下</p>
+<div class="mermaid" id="id-1"></div>
+<p>资源请求者在对资源发起访问控制前，必须先在智能合约中定义的ACL里进行注册，然后才能向矿工申请到访问用的token。为了实现这一点，资源请求者发送一个注册请求到资源所有者来申请对特定资源的访问权限，如果资源所有者通过该请求，就会将请求者加入到合约中的ACL中，并返回一个接受注册请求的交易，如果拒绝该请求，就会返回一个拒绝注册请求的交易。</p>
+<p><strong>授权过程</strong></p>
+<p>一旦请求者收到资源所有者返回的接受注册请求的交易，就发送一个授权请求交易到矿工，其中包含资源与权限。矿工通过智能合约中定义的ACL验证其是否真的拥有对所请求资源的权限。如果确认拥有权限，就生成一个token，包含请求者地址、资源、权限和表示token生命周期的时间戳，矿工对token进行签名并加密，利用授权响应交易将其发送给请求者节点。如果验证后发现没有权限(智能合约返回无效请求)，矿工就发送一个拒绝授权响应交易给请求者的地址。接收到token后，请求者发送包含token的访问请求交易到资源请求者的地址，资源所有者解密token，验证是否被矿工签名，如果是，访问通过，否则拒绝访问请求。</p>
+<h2 id="5-仿真">5. 仿真</h2>
+<p>作者使用V2X(Vehicle to everything)通信系统验证方案的可行性，使用该系统意味着和汽车通信的对象可能是其它汽车、基础设施或任意连接到汽车网络的其它对象。将驾驶员辅助系统ADAS作为资源，汽车作为资源所有者，任何已连接的对象都可以是资源请求者。</p>
+<p>选择以太坊平台进行实验，使用Truffle框架编译、测试和部署智能合约，使用Geth作为客户端操作区块链节点，使用Node.js编写代码调用web3.js API和区块链节点通信。</p>
+<p>实验使用的设备为电脑和树莓派，两者均安装以太坊节点，电脑中的节点作为矿工和资源请求者，树莓派中的节点作为资源所有者(汽车)。一旦存储ACL的智能合约部署到区块链，资源请求者就可以从矿工申请访问token。</p>
+<p>作者实现了以下接口用于交互：</p>
+<ul>
+<li>
+<p>资源所有者节点接口：运行后显示所连接的汽车节点的地址和汽车节点部署的智能合约的地址，另外，还会显示汽车所有者可执行的操作列表，包括检查以前的请求、设置新的ACL属性、响应注册或访问请求、退出列表。</p>
+<p></p>
+</li>
+<li>
+<p>请求者节点接口：该接口要求请求者输入自己的账户地址和密码，验证通过后显示资源请求者可执行的操作列表，包括检查之前接收到的交易，发送注册请求、申请token的请求或访问请求，退出列表。</p>
+<p></p>
+</li>
+<li>
+<p>矿工接口：该接口显示节点地址和矿工可执行的操作列表，包括检查之前的请求、响应对token的申请和退出列表。</p>
+<p></p>
+</li>
+</ul>
+<p>授权过程被划分为两阶段，第一阶段矿工基于智能合约中的ACL验证和授予token，第二阶段资源所有者基于验证token有效性授予访问权限。</p>
+<ol>
+<li>
+<p>矿工基于ACL中定义的权限进行授权，发送对应的token</p>
+<p></p>
+</li>
+<li>
+<p>资源所有者验证token有效后授予访问权限</p>
+<p></p>
+</li>
+</ol>
+<h2 id="6-总结与启发">6. 总结与启发</h2>
+<p>作者确实利用区块链设计了一个完整可行的访问控制方案，解决了单点故障和可扩展性问题。在该方案中，作者将矿工纳入权限授予过程，保证了权限的不可篡改，和区块链结合的较为深入，这是一个亮点。但依然存在以下两个问题：</p>
+<ol>
+<li>请求者发起一次访问请求需要经过2~3次通信过程。当第一次发起对某个资源的访问请求时，需要首先向资源所有者发起注册请求并获取回应，然后向矿工发起请求获取token，最后再一次向资源所有者发起请求获取权限，总计3次通信过程，之后每次发起请求，依然需要获取token和获取权限两次通信。由于方案中通信的实质是区块链中的交易，而交易打包到区块并经过验证拥有一段确认时间，多次往返通信会造成一个较大的延迟，不利于物联网环境中的实际操作。</li>
+<li>资源所有者利用ACL定义请求者对资源的访问权限，从方案设计来看，每次有新的请求都需要资源所有者主动识别和确认是否授权，物联网环境设备数量较大，因此单位时间产生的访问请求量级也比较大，这种授权方式工作量较大，不利于操作。</li>
+</ol>
+]]></description></item><item><title>An ABAC Model in RFID Systems Based on DApp for Healthcare Environments</title><link>https://shuzang.github.io/an-abac-model-in-rfid-systems-based-on-dapp-for-healthcare-environments/</link><pubDate>Mon, 11 Nov 2019 00:00:00 +0000</pubDate><author>作者</author><guid>https://shuzang.github.io/an-abac-model-in-rfid-systems-based-on-dapp-for-healthcare-environments/</guid><description><![CDATA[<p>Figueroa, Añorga, and Arrizabalaga, “An Attribute-Based Access Control  Model in RFID Systems Based on Blockchain Decentralized Applications for Healthcare Environments,” <em>Computers</em>, vol. 8, no. 3, p. 57, Jul. 2019, doi: <a href="https://doi.org/10.3390/computers8030057" target="_blank" rel="noopener noreffer">10.3390/computers8030057</a>.</p>
+<p>Keywords: blockchain, smart contract, RFID, ABAC, access control, IoT, healthcare</p>
+<h2 id="1-引言">1. 引言</h2>
+<p>在医疗领域使用 RFID，可以追踪患者和医疗设备，更好的管理医疗资产，优化审计过程。如图1所示，一个 RFID 系统通常由四部分组成：</p>
+<ol>
+<li>RFID 标签：包含识别数据</li>
+<li>RFID 阅读器：与标签直接交互并进行信息交换</li>
+<li>RFID 中间件：管理设备，管理数据（过滤、收集、整合、构建）</li>
+<li>信息管理层（业务层）：包含一些应用，如后端数据库，企业资源规划系统（ERP，enterprise resource planning），客户关系管理（CRM，customer relationship management），仓库管理解决方案（WMS，warehouse management solutions），电子产品代码追踪应用（tracking and tracing and electronic product code applications）。</li>
+</ol>
+<p></p>
+<p>GS1（一个全球标准组织）的标准分三类：<strong><ruby>识别<rt>identify</rt></ruby></strong>， <strong><ruby>捕获<rt>capture</rt></ruby></strong>和 <strong><ruby>共享<rt>share</rt></ruby></strong>。RFID 标签启用电子产品代码（EPC，electronic product code）后，标签和阅读器可以执行捕获过程；识别号被编码为 GTIN（Global Trade Item Number）或被解码为 RFID 标签的 EPC 时，中间件执行识别过程；共享过程则由信息管理层完成。</p>
+<p>GTIN 描述了一种数据结构，它使用 14 位数字并以某些组合方式进行编码，目前在条形码和 RFID 领域都有使用。一个 GTIN 号码的结构如下所示：
+$$
+urn:epc:id:sgtin:CompanyPrefix.ItemReference.SerialNumber
+$$
+GS1 标准系统用于实现可追溯性解决方案，尤其是在供应链中，如新鲜食品、健康、技术产业、运输和物流，其中 RFID 系统用于数据捕获和共享。本文以医疗行业的供应链为例，介绍一个追踪医疗资产流动的场景：医院使用大量的资产，如外科医疗器械（SMI），这些资产可以在消毒部门、手术室、实验室等区域间进行周期性的流动，器械位于错误的位置可能会危及患者的生命，缺乏详细的资产记录则可能造成资产损失。</p>
+<p>RFID 是执行数据捕获和共享的关键技术，对任何 RFID 系统来说，安全性都至关重要，但 RFID 系统的安全威胁不同于传统的无线安全威胁，如论文<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>所述，这些威胁可以分为：</p>
+<ol>
+<li>RFID的物理组件遇到的威胁（如克隆标签、反向工程、标签修改），</li>
+<li>通信通道威胁（如窃听、浏览、重放攻击）</li>
+<li>全局系统威胁（如欺骗，DoS， 「tracing and tracking」 ）。</li>
+</ol>
+<p>访问控制（AC）是解决安全问题的核心，这里首先介绍本文方案使用的器械标识方法：在 GS1 的基础上，用 GTIN 标记 SMI（使用无源 RFID 标签）。编码方案如下，包括一个公司前缀（例如，医院 A:000389）、一个产品类型用以对资产进行分类（例如，剪刀：000162）以及一个序列号用以识别特定资产（例如，序列号：000169740）。
+$$
+01.000389.000162.000169740 \\ Header|compPrefix|Product type|Srial Number
+$$
+图2用于详细说明医疗系统的工作流程。源房间（如灭菌室）将一些资产（如SMI）运送到目的房间（如0号手术室、1号手术室）。由于 $Asset_1$ 已被分配到目的房间1（例如，1号手术室），假如由于人为错误试图访问目的房间0（例如，0号手术室），其访问将被拒绝。简而言之，论文所提出的系统的目的是建立医疗资产（如SMI）访问控制系统，防止由于人为错误或外部安全威胁导致不需要的资产进入错误区域（如房间）。</p>
+<p></p>
+<p>访问控制机制通常部署在图1所示 RFID 系统的中间件部分，传统的实现通常是基于 RBAC 的中心化结构，而本文提出的方案中，利用 DApp 执行访问控制策略，智能合约用作 Dapp 和区块链间的接口，从而实现了分布式的访问控制，使允许或阻止某个资产进入某个确定的区域（如手术室）成为可能。该论文提出的方案还将将资产（如 SMI）和 GTIN 代码相关联，用于追踪资产。</p>
+<p>作者在相关工作部分做了两个比较</p>
+<ol>
+<li>ABAC vs. RBAC</li>
+<li>Decentralized Model vs. Centralized Model</li>
+</ol>
+<p>鉴于所作的比较，作者认为使用 ABAC 可以提供良好的灵活性和可扩展性，以及使用以太坊区块链提供分布式信任，实验首先在一个本地以太坊环境中实施，然后部署到 Ropsten 测试网中，最后扩展到以太坊主网络。但在扩展到主网前，需要首先数字化医疗资产。</p>
+<h2 id="2-方案">2. 方案</h2>
+<p>如前所述，整个方案是一个融合多种不同技术的整体，下面首先对基本架构进行描述，从而使读者对该系统如何执行 ABAC 有一个了解。</p>
+<h3 id="21-分布式系统架构">2.1 分布式系统架构</h3>
+<p>基于以太坊实施的 ABAC 模型如下图所示，物理节点由 RFID Reader Control（RFID-RC），DApp和智能合约组成。当一个带有 RFID 标签的医疗器械尝试访问一个房间时，RFID-RC 发送访问请求到 DApp，DApp 查询智能合约返回与资产相关的属性（例如公司前缀，产品类型，序列号等），同时，DApp 还会从 RFID-RC 获取其它的属性如时间戳。然后，DApp 基于获取的这些属性来执行安全策略，从而决定来自标签的访问是允许还是拒绝。同时，物理节点可以通过与区块链建立新连接的方式进行复制，不影响现有节点，这体现了该系统可扩展性的优点。</p>
+<p></p>
+<h3 id="22-访问控制机制">2.2 访问控制机制</h3>
+<p><strong><ruby>主体<rt>subject</rt></ruby></strong>处理某个 <strong><ruby>对象<rt>object</rt></ruby></strong>的访问请求（例如，允许或拒绝访问），主要基于 ABAC  模型，大致检查四个方面：主体属性，访问控制策略，对象属性和环境信息。</p>
+<p>尽管预期主体通常是人类，但诸如<strong><ruby>自主服务<rt>autonomous service</rt></ruby></strong>或应用程序等非人实体也可以作为主体这一角色。本文示例中，Reader 通过 DApp 发起对某个资产（RFID标签）的请求。为了将资产从源房间（如灭菌室）转移到目的房间（如手术室），需要建立一些边界条件。首先，如图4所示，已授权员工通过 DApp发起交易授权资产转移；其次，资产标签使用的 EPC（电子产品代码）如下表示式所示
+$$
+01.000389.000162.000169740 \\ Header|compPrefix|Product type|Srial Number
+$$
+</p>
+<p>DApp 收到访问请求后执行的过程如下所述</p>
+<ol>
+<li>基于 reader name（如，rdr_nm : &ldquo;roomA&rdquo;）和 location（如，loc：“41.40338，2.17403”) 两个属性验证主体(reader)</li>
+<li>验证其它属性，包括公司前缀（如， cmp_prf : 000389）、产品类型（如, item_ref: 000162）、指定资产的序列号（如, ser_nmb: 000169740），以及资产状态（如, st: “STERILIZED”）</li>
+<li>根据资产被送到医疗室，医疗室的阅读器收到来自资产的访问请求所经过的时间来验证环境属性。如果间隔小于10分钟（600秒），则环境条件验证通过。若在两个位置间移动资产，则发起交易设置该时间，变量 time-In（例如 time_-In:156209335）是交易完成后的时间记录，变量 time-out（例如 time-out:156209455）是 阅读器请求访问此 RFID 标签时给定的时间。</li>
+</ol>
+<p>基于论文<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>的符号表示，我们建立了访问控制策略 C 的表达式如下</p>
+<p>$$
+if:(rdr_nm = &ldquo;roomA&rdquo; \cap loc = &ldquo;41.40338,2.17403&rdquo; \cap cmp_pfr = 000389 \cap \\ iem_ref = 000162 \cap ser_nmb = 000169740 \cap st = &ldquo;STERILIZED&rdquo; \cap \\ time_out - time_in \lt 600), C = True  \\
+otherwise: C = False
+$$</p>
+<p>访问控制策略在 DApp 上执行而不是作为智能合约的一部分，主要有两个原因：一是公链存在速度限制，如果策略作为合约的一部分，会导致一定的延迟；二是公链中合约是公开的，访问控制策略将被所有人看到。</p>
+<h3 id="23-技术实施细节">2.3 技术实施细节</h3>
+<p>图4表明整个系统分为三个子系统：ABAC configuration，ABAC execution 和 ETH blockchain monitoring。下表总结了每个子系统中使用的相关技术</p>
+<p></p>
+<h4 id="abac配置子系统">ABAC配置子系统</h4>
+<p>ABAC 配置子系统包括一个基于 React 构建的图形界面（GUI），通过浏览器交互。GUI 有两个视图，第一个视图允许授权员工向系统中添加新资产，员工将公司前缀、产品类型、资产ID（序列号）等参数输入系统，并随之生成交易存储在 ETH 区块链中。第二个视图用于转移资产，授权用户首先需要通过查询智能合约验证资产ID（序列号），这一操作通过点击 「Verify iD」按钮完成，然后就可以在两个房间转移资产，之前的资产属性如资产状态、时间戳都会更新，资产转移操作通过点击「Transfer asset」按钮完成。</p>
+<p></p>
+<h4 id="abac执行子系统">ABAC执行子系统</h4>
+<p>ABAC 执行子系统是图4中的物理节点，可以允许或拒绝对资产的访问请求，该子系统布置在每个医疗室内。执行子系统包括 RFID reader，LLRP服务器，属性解析器（AP），ABAC安全策略（ABAC-SP）和区块链接口（BI）。后三者构成 DApp，RFID Reader 和 LLRP 服务器构成 RFID-RC（RFID Reader Control）</p>
+<p>RFID reader 附加标签的资产以及 LLRP 服务器直接交互。其中 LLRP 是 EPC Global 认可的一种协议，它是构成 reader 与其软件或控制硬件之间的接口，该协议在客户端（reader）和服务器（LLRP server）之间发送 XML 消息，论文使用开源工具 Rifidi 基于 SGTIN96 标准创建虚拟的阅读器和标签来进行概念验证。</p>
+<p>属性解析器 AP 从LLRP服务器收到 RFID 标签的电子产品代码，然后使用一个基于Node.js库的GTIN 转换系统，将 RFID标签 的电子产品代码转换成 EPC 标签 URL。如下表达式所示，属性解析器解析得到公司前缀、产品类型和序列号等属性，同时也控制其它的属性如时间戳、reader name和位置。
+$$
+RFID \ Tag \ EPC: 3074257bf7194e4000001a85 \\
+EPC \ Tag \ URI: urn:epc:tag:sgtin-96:3.0614141.812345.6789,
+$$</p>
+<p>区块链接口构建基于Truffle框架，使用 Drizzle 库与 web3.js 服务器交互。Drizzle 是一个编写DApp 前端的前端库集合。DApp 和 RFID 部分通过执行 GET 和 POST 方法通信，例如，ABAC-SP 决定是否允许或拒绝对资产的访问，它设置一个变量，该变量通过 POST 方法发送到 LLRP 服务器。因此，LLRP 服务器发送一个 XML 消息 「keepalive」来保持与 RFID 标签的交互，或者只是断开连接。</p>
+<h4 id="区块链监控子系统">区块链监控子系统</h4>
+<p>使用了 ETH Network Stats 项目监控区块链系统的运行，如下图所示。这里有一个这篇论文实验的<a href="https://zenodo.org/record/3339217" target="_blank" rel="noopener noreffer">视频演示</a></p>
+<p></p>
+<h2 id="3-实验">3. 实验</h2>
+<p>为了证明方案的可行性，作者在两个环境中进行了实验：本地区块链和 ETH 测试链 Ropsten。</p>
+<p>本地区块链环境下，使用如下命令部署了一个 ETH 节点，但设置为 nodiscover，因此无法连接到主网络。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">geth</span> <span class="err">–</span><span class="nx">datadir</span> <span class="nx">data</span> <span class="err">–</span><span class="nx">unlock</span> <span class="mh">0x8a6d63ea98e05a550b01f8aa4a19021e43bd43f0</span> <span class="err">–</span><span class="nx">networkid</span> <span class="mi">123456</span>
+<span class="err">—</span><span class="o">-</span><span class="nx">ws</span> <span class="o">-</span><span class="nx">wsaddr</span> <span class="mf">192.168.127.95</span> <span class="err">–</span><span class="nx">wsport</span> <span class="mi">8546</span> <span class="err">–</span><span class="nx">wsorigins</span> <span class="s2">&#34;*&#34;</span> <span class="o">-</span><span class="nx">rpc</span> <span class="o">-</span><span class="nx">rpcaddr</span> <span class="mf">192.168.127.95</span>
+<span class="err">–</span><span class="nx">rpcport</span> <span class="mi">8545</span> <span class="err">–</span><span class="nx">rpccorsdomain</span> <span class="s2">&#34;*&#34;</span> <span class="err">–</span><span class="nx">nodiscover</span> <span class="nx">console</span> <span class="mi">2</span><span class="o">&gt;&gt;</span> <span class="nx">ETH</span><span class="p">.</span><span class="nx">log</span><span class="p">,</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>测试链选择 Ropsten 而不是其它几种的原因如下：</p>
+<ol>
+<li>使用 PoW 共识，因此能更好的反映主网情况；</li>
+<li>可以同时使用 geth 和 parity 客户端</li>
+<li>允许添加自己的节点到测试网络，并可以从一些网址获取测试用的 ether</li>
+</ol>
+<p>为了访问网络需要创建一个 Infura 项目，该项目会生成一个系统配置文件（truffle-config.js）会用到的 endpoint URL，如下所示。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">ropsten.infura.io/v3/fa42299dbea54014801bc4145d7a1a1e,
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="31-工具">3.1 工具</h3>
+<p>主要是 ETH Network Stats，Etherscan，Truffle Test 和 Infura Dashboard，这些工具全部被部署到本地环境及测试网络中，其中的例外是 Infura，这只是一个与测试网络有关的工具，下面是对这些工具的描述。</p>
+<p>ETH Network Stats是一个追踪以太坊网络状态的可视化工具，使用WebSockets来接收运行节点的数据并通过界面显示，可以在本地单独运行，主要由前端的 Ethereum Network Stats 和后端的 Ethereum Network Intelligence API组成。至于 ETH Network Status 是一个类似的工具，用于 Ropsten 测试网。</p>
+<p>Etherscan是一个监控区块链和其上交易状态的工具，作为服务器安装，但可以部署在本地。</p>
+<p>Infura Dashboard 是为了更好地理解如何改进 DAPP 而对开发人员需求的响应，使我们能够获得有关调用 web3.js 方法的相关信息，这些方法允许与Ropsten 测试网进行某种类型的交互。</p>
+<p>Truffle 是一个自动化测试框架，可以利用 JS 或 Solidity 编写简单易管理的测试。</p>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>ETH Network Stats</th>
+<th>Ethersacn</th>
+<th>Truffle Test</th>
+<th>Infura Dashboard</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>作用</td>
+<td>网络监控</td>
+<td>区块链监控</td>
+<td>智能合约监控</td>
+<td>带宽监控</td>
+</tr>
+<tr>
+<td>本地环境</td>
+<td>本地节点网络监控</td>
+<td>本地 ETH 区块链监控（如合约地址，交易和区块等）</td>
+<td>测试合约与本地区块链的交互</td>
+<td></td>
+</tr>
+<tr>
+<td>Ropsten测试网</td>
+<td>测试网的网络监控</td>
+<td>Ropsten测试网监控（如合约地址，交易和区块等）</td>
+<td>测试合约与Ropsten的交互</td>
+<td>允许查看每个 web3.js 方法使用的带宽行为</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-测量">3.2 测量</h3>
+<p>论文对实现的每个部分都进行测试，从网络监控，节点数量和网络哈希速率等功能，到智能合约应用的延迟和每个web3.js方法的带宽消耗。下面分别介绍通过上一小节列出的工具可以监视的主要参数。考虑到与每个工具相关的主要特性，下图是这些工具使用的逻辑顺序</p>
+<p></p>
+<p>ETH Network Stats 允许监控一些与 ETH 网络状态相关的参数：成功挖掘的区块数、叔块的出现、最后一个区块的挖掘时间、平均挖掘时间、平均网络哈希速率、难度、活动节点、gas price、gas limit、页面延迟、正常运行时间、节点名称、节点类型、节点延迟等。图7是一个使用示例，利用浏览器从一个本地 IP 的3000端口访问。</p>
+<p>Ethersacn 获取与区块链相关的信息，如账户余额、账户信息、交易哈希、区块号、token类型（如Erc20）、average gas used、交易花费和交易费用等。</p>
+<p>Infura Dashboard 允许获得的参数包括：调用的方法总数、每个方法占用的带宽、占用的总带宽。其测量的主要特征是带宽。</p>
+<p>Truffle Test 测量的主要参数是：数据查询时间，数据插入的时间和花费，完整测试的时间，合约部署的 gas 和时间花费等。</p>
+<h3 id="33-结果">3.3 结果</h3>
+<p>ETH Network State 监控网络状态，在这篇论文分析时，Ropsten 已经挖掘了5931224个区块，有14个活跃节点，平均出块时间为 14.04s，平均网络哈希速率为 120.1 MH/s，难度为 2.16 GH。这些参数可以与图7所示的本地区块链进行对比，本地区块链共挖掘了6967个区块，只有一个活动节点，平均出块时间为 27.45s，平均网络哈希速率为 142 KH/s，难度为 1.43 MH。可以看到，本地网络可用计算资源明显小于公网，这是可以预见的。</p>
+<p>Etherscan 允许我们查看从我们的区块链测试地址发出的所有交易，可以验证的其他属性包括每个交易的状态、交易所在区块、使用的 gas 百分比（例如，平均 gas 使用量为限值的66.67%）、交易成本和费用以及 PoW 中使用的 nonce。本地网络中获得了类似的结果。</p>
+<p>下图来自 Infura Dashboard，详细说明了为了通过智能合约与区块链交互， wpingeb3.js库 调用的主要方法以及它们所花费的带宽。该仪表盘还包括一些其它信息，如每小时带宽使用量的峰值（183.33 MB）和平均值（9.11 MB）。</p>
+<p></p>
+<p>使用 Truffle Test 进行的测试流程如下图所示</p>
+<p></p>
+<p>得到的数据如下表，比较了数据插入、数据查询和完整测试的时间和 gas 消耗。百分比的计算公式如下，因为时间的不确定性，分别记录的最好和最坏时间。
+$$
+(Local_network_time/Ropsten_network_time) × 100
+$$
+</p>
+<p>合约迁移的延迟在本地网络中和测试网中具有很大的不同，但该参数对系统的评价不起决定性作用，因为该过程在系统部署前执行。资产属性的插入是一个主要的方法，尽管延迟是显而易见的，但不会导致访问控制策略的执行延迟。合约部署和数据插入的 gas 消耗不会因网络不同而改变。决定性的指标是数据的查询时间，由于本地网络的节点更少，数据查询的延迟也相对更小。</p>
+<h1 id="4-总结与收获">4. 总结与收获</h1>
+<p>作者利用区块链实现ABAC的思路没有值得称道的地方，但给出了针对医疗资产转移场景的一个完整方案设计，包括具体的属性管理、使用的工具、测量的参数以及详细的实验过程，这对于我们自己进行一个完整的实验是有很大借鉴意义的。</p>
+<p>鉴于本文提到的内容，我们在实现一个基于IoT的访问控制系统时，首先要明确具体的场景并给出示例，基于智能合约实施核心功能后，要实现一个前端界面，以及使用本文提到的诸多工具测量所有相关的参数。对于我们现有的工作，欠缺的是一个前端实现和参数测量。</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>Figueroa Lorenzo, S.; Añorga Benito, J.; García Cardarelli, P.; Alberdi Garaia, J.; Arrizabalaga Juaristi, S. A comprehensive review of RFID and bluetooth security: Practical analysis. Technologies 2019, 7, 15. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p>Samarati, P.; de Vimercati, S.C. Access Control Policies, Models, and Mechanisms. In International School on Foundations of Security Analysis and Design; Springer: Berlin/Heidelberg, Germany, 2011. <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+]]></description></item><item><title>SEC-BlockEdge Security Threats in Blockchain-Edge based IIoT Network</title><link>https://shuzang.github.io/sec-blockedge-security-threats-in-blockchain-edge-based-iiot-network/</link><pubDate>Thu, 24 Oct 2019 00:00:00 +0000</pubDate><author>作者</author><guid>https://shuzang.github.io/sec-blockedge-security-threats-in-blockchain-edge-based-iiot-network/</guid><description><![CDATA[<p>Kumar, Tanesh &amp; Braeken, An &amp; Ramani, Vidhya &amp; Ahmad, Ijaz &amp; Harjula, Erkki &amp; Ylianttila, Mika. (2019). SEC-BlockEdge: Security Threats in Blockchain-Edge based Industrial IoT Networks.</p>
+<p>以一个木屋建造场景作为IIoT用例，简要介绍了一个区块链-边缘计算框架。然后以此为基础讨论了关键的安全需求，每个层次中可能出现的安全威胁和解决方案。</p>
+<h2 id="木屋建造场景">木屋建造场景</h2>
+<p>作者使用的木屋用例包含了一些关键的工业流程。以下是该用例的6个主要阶段。</p>
+<p></p>
+<h2 id="区块链-边缘计算框架">区块链-边缘计算框架</h2>
+<p>结合区块链和边缘计算为 IIoT 提供便利，提出了一个框架，由 Local, Edge, Global, Ledger 四层组成</p>
+<p></p>
+<p><strong>本地层</strong>负责收集原始数据，上传到边缘和云。</p>
+<p><strong>边缘层</strong>提供部分计算资源和能力，处理原始数据并追踪原材料的收集和交付过程。</p>
+<p><strong>全局层</strong>提供更多的资源和能力，访问频繁的资源会放在边缘，但访问频率较低的资源会放在云。</p>
+<p><strong>区块链层</strong>为其它三层提供一些具体的服务，本地层主要是认证和监控是否符合条件，边缘层主要是促进来自不同地方的数据的处理、存储和共享，全局层则是总体的监督。</p>
+<h2 id="安全需求">安全需求</h2>
+<p>以下是一些系统必须遵守的安全需求</p>
+<table>
+<thead>
+<tr>
+<th>需求</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Authentication</td>
+<td>场景涉及不同的角色，包括传感器/执行器，边缘设备/服务器，服务/网络提供者和第三方。这种情况下，保证只有合法实体才能访问和提供资源非常重要。智能合约可以实现。</td>
+</tr>
+<tr>
+<td>Integrity</td>
+<td>木屋场景中的数据处理和共享涉及多个利益相关者，某些如边缘设备可能通过边缘服务器/数据中心共享和复制数据，导致数据完整性受威胁。</td>
+</tr>
+<tr>
+<td>Privacy</td>
+<td>当身份公开，如果交易存储在公链上，任何人都可以跟踪并访问，可能泄露公司与竞争对手相关的重要商业信息。</td>
+</tr>
+<tr>
+<td>Trustworthy Computation</td>
+<td>一些计算/处理工作可能放到不信任的节点上运行，需使用可信计算保证可信度</td>
+</tr>
+<tr>
+<td>Availability</td>
+<td>确保需要的数据在每一个层次上持续可用</td>
+</tr>
+<tr>
+<td>Network Security</td>
+<td>木屋场景中的边缘层是攻击者的主要攻击目标，区块链的一些关键特性可以增强安全性</td>
+</tr>
+</tbody>
+</table>
+<h2 id="安全威胁和解决方案">安全威胁和解决方案</h2>
+<p>以下对作者列出的安全威胁和解决方案做总结和分析。</p>
+<table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Security Threats</th>
+<th>challenges</th>
+<th>solutions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Local</td>
+<td>Docker/Container</td>
+<td>容器可以提供各种本地进程执行所需的轻量级虚拟化微服务。容器虚拟化主要依赖于内核所提供的特性，因此需要特别关注幽灵和熔断这种攻击。此外，随着最近容器的频繁使用，出现了一些与镜像相关的威胁、基于主机和操作系统的漏洞以及基于硬件的攻击。</td>
+<td>通过定期扫描镜像和应用来对抗镜像漏洞。通过加密签名验证已注册镜像， 确保使用可信镜像。对于与内核和操作系统相关的威胁，部署能够验证操作系统和内核安全的管理工具。</td>
+</tr>
+<tr>
+<td>Local</td>
+<td>Local Nodes/Devices</td>
+<td>本地层中的低功耗节点由于节点资源有限，容易受到节点篡改、恶意代码注入、旁道攻击、虚假节点和物理破坏等攻击，可能会被篡改或窃取相关信息，影响网络乃至整个物联网系统的性能和安全。因此，需要轻量级安全机制，特别是密钥管理机制，通过身份认证，来防止所有可能的威胁，并保证消息完整性和机密性。</td>
+<td>预安装密钥是初始化安全机制最简单的方式，目前为止提出的基于对称密钥或公钥的机制已满足了大部分的安全需求(如防篡改、匿名性等)，然而预安装的密钥依赖于可信第三方(TTP)的存在，掌握密钥分发的TTP是整个体系的弱点。一种隐式证书(implicit based)方案允许在没有TTP的情况下生成私钥对，是可能的解决方案。</td>
+</tr>
+<tr>
+<td>Local</td>
+<td>Local Communication</td>
+<td>本地层的短距离通信协议/技术包括：低功耗蓝牙，ZigBee，NFC，Wi-Fi。每一种通信技术都面临多种威胁，被攻击者捕获的设备可能用来假冒正常节点。</td>
+<td>主要的解决方案是使用安全密钥协商协议生成共享密钥用于之后的安全通信。如果需要添加新的安全需求，还需要使用专用协议。而对于防止设备被捕获，可使用如物理不可克隆之类的原语。</td>
+</tr>
+<tr>
+<td>Edge</td>
+<td>Virtualization</td>
+<td>不理解</td>
+<td></td>
+</tr>
+<tr>
+<td>Edge</td>
+<td>Edge Devices</td>
+<td>边缘网络包括网关、IoT设备和边缘数据服务器等多种不同设备，这些设备可能被攻击者物理访问和损坏。边缘数据中心是攻击者的主要攻击目标。例如rogue攻击可能造成管理者完全失去控制权，一旦攻击者夺取了控制权，他就可以控制资源以及所连接的其它设备。边缘服务器同时受到内外两方面攻击的威胁。</td>
+<td>对设备进行身份验证防止篡改，以及使用入侵检测系统（ids）检测和监视边缘服务器和边缘数据中心上的各种威胁。</td>
+</tr>
+<tr>
+<td>Global</td>
+<td>Virtualization</td>
+<td>不理解</td>
+<td></td>
+</tr>
+<tr>
+<td>Global</td>
+<td>Cloud</td>
+<td>DoS/DDoS攻击在云端更为频繁，被认为是数据和服务不可用的主要原因。消费者还担心他们在云端存储的数据，因为不清楚在服务器上如何保护数据。因此，用户缺乏对自己数据的控制使其容易受到各种安全威胁。云也容易受到Web和API的安全攻击。在这种环境下，访问控制和身份管理将变得非常复杂，需要高度重视。由于云服务是由多个利益相关者提供和使用的，因此在用户和其他实体之间就服务的各个方面达成法律协议至关重要。</td>
+<td>不同的加密技术（如同态加密和基于属性的加密）被用于保证云端用户数据的安全、机密和完整以及访问控制。Web和API在开发和运行的生命周期应保证安全。</td>
+</tr>
+<tr>
+<td>Blockchain</td>
+<td>Smart Contract</td>
+<td>Multiple function attack; self destruct function; timestamp dependency</td>
+<td></td>
+</tr>
+<tr>
+<td>Blockchain</td>
+<td>Node</td>
+<td>eclipse attack; Sybil attack</td>
+<td></td>
+</tr>
+<tr>
+<td>Blockchain</td>
+<td>Platform</td>
+<td>DAO; re-entrance attack</td>
+<td></td>
+</tr>
+<tr>
+<td>Blockchain</td>
+<td>General Blockchain</td>
+<td>51% problem; private key security threats</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="理解和想法">理解和想法</h2>
+<p>文中提出的区块链-边缘计算框架是在 Local-Edge-Cloud 这一套体系的基础上加入区块链，解决各参与方之间的信任问题，提供一些服务和功能。这些服务包括目前广泛研究的身份认证、访问控制、数据共享、全局状态审计等功能。区块链运行在所有参与方中有足够能力的设备中。</p>
+<p>但区块链的能力应当不至于此，通过智能合约和Dapp，可以提供更强大的功能，如一些流程、文书工作的自动化，以及平时以云为后端运行的各种应用。也许不再将云视作对立，将其一同纳入区块链范畴是一种思路，但将参与各方的服务器组织起来进行协同计算以及提供分布式的云存储同样可行。</p>
+<p></p>
+<p>区块链的节点应散布在整个架构的所有设备中，终端IoT设备是否作为区块链节点存在应分类讨论或根据场景决定，安装哪种类型的节点（全节点、轻节点还是<a href="https://slock.it/incubed/" target="_blank" rel="noopener noreffer">slock.it</a>这种IoT设备专用节点）根据设备能力确定。如设计中有云的存在，云也应当作为区块链节点。</p>
+<p>由于每个人都能访问链上信息，公链恐怕不适合产业界的使用。无论联盟或大或小，都应使用联盟链/私链，共识的选择同样根据场景而定。除吞吐量和延迟的限制外，联盟链/私链的准入机制和隐私支持是有别于公链而应被企业接受的主要理由。</p>
+<p>区块链不适合海量数据的存储，但可以使用数据哈希来间接的实现该功能。这一机制解决的问题同云使用同态加密或基于属性额加密解决的问题是相同的，但使用基于云的方案还是基于区块链的方案则各有所得。</p>
+<p>异常检测应当是和区块链并行的，每个区块链节点同样有资格作为协作入侵检测(CIDS)的节点，检测区块链网络本身的异常，但同时也可以检测作为区块链节点的物联网设备或边缘设备的异常，这两种应该是统一的。检测的算法可以定义在智能合约或共识算法中，但同样可以独立于区块链网络单纯的利用机器学习算法检测网络中产生的数据。框架中谈到的传感器/执行器状态的监督以及场景整个运行流程的全局状态监督应当指的就是异常检测的一方面。</p>
+<p>关于认证，原先依赖可信第三方建立PKI体系进行认证的设备现在可以依赖区块链建立信任，但本地短距离通信技术面临的种种威胁区块链无法起作用，智能通过传统的密钥协商方案解决。</p>
+<p>如因资源受限使用分层管理的体系，区块链客户端不安装在最底层的IoT设备中，还是会出现单点故障问题，代理网关的沦陷意味着与之连接的所有设备的沦陷，应当采用某种手段如定期的检查代理网关状态，在检测到异常时将网关代理的所有设备技术移交其它网关管理。异常检测依然会在该问题中起到重要作用。</p>
+]]></description></item><item><title>Acceleration of Anomaly Detection in Blockchain Using In-GPU Cache</title><link>https://shuzang.github.io/acceleration-of-anomaly-detection-in-blockchain-using-in-gpu-cache/</link><pubDate>Wed, 16 Oct 2019 00:00:00 +0000</pubDate><author>作者</author><guid>https://shuzang.github.io/acceleration-of-anomaly-detection-in-blockchain-using-in-gpu-cache/</guid><description><![CDATA[<p>Morishima S, Matsutani H. Acceleration of anomaly detection in blockchain using in-GPU Cache[C]. international conference on big data and cloud computing, 2019: 244-251.</p>
+<h2 id="引言">引言</h2>
+<p>区块链的不可篡改特性带来安全性的同时，由操作失误或密钥被盗造成的欺诈交易同样无法取消，因此产生的非法交易可能造成危害。可能的对策是即时的发现非法交易，从而在确认前纠正。</p>
+<p>Pham等人提出一种基于K-means聚类，马氏距离和局部离群因子的区块链异常检测方法，利用该方法对比特币网络历史交易中的异常交易做了检测，但可通过特定特征量和算法检测到的异常交易是有限的，实际实施需要通过改变特征量和算法来重复异常检测，计算量大，计算时间长，该文使用了GPU加速异常检测，减少检测时间。</p>
+<blockquote>
+<p>T. Pham, S. Lee, &ldquo;Anomaly Detection in Bitcoin Network Using Unsupervised Learning Methods&rdquo;, <em>Compution Research Repository</em>, vol. abs/1611.03941, pp. 1-5, Nov. 2016.</p>
+</blockquote>
+<p>我们不关注如何使用GPU加速异常检测，关心的是使用了什么方法进行异常检测，因此该文大部分都会略过</p>
+<h2 id="特征量提取">特征量提取</h2>
+<p>Pham等人提出的方法使用图来代表以用户为中心的交易流，如下图所示，用户是顶点，交易是边，当B向A发起交易时，会创建一条B到A的边，随着交易增加，边也随之变多，图结构变复杂。</p>
+<p>该图用于提取每个区块链用户的特征量，例如，顶点入边的数目是收入交易的数目，出边的数目是支出交易的数目，Pham使用收入交易数目、支出交易数目、平均收入金额、平均支出金额等六个特征量进行异常检测，此外还使用了K-means聚类、马氏距离和局部离群因子三种异常检测算法。采用基于用户图的方法，对比特币网络中两期盗窃案件做了分析。但，即使检测到了异常交易，也很难判断是否真的是欺诈交易，因为大部分盗窃的具体信息并不公布。</p>
+<p></p>
+<h2 id="k-means异常检测">K-means异常检测</h2>
+<p>该文使用了相同的方法提取特征量，但异常检测方法使用了K-means聚类。K-means本身是用来将大量数据分类成簇的，当使用K-means进行异常检测时，如果用户特征量距离聚类中心较远，则被视为异常，当簇的数量为K时，使用K-means聚类进行异常检测的步骤如下：</p>
+<ol>
+<li>初始聚类被随机地分配给每个顶点的特征量向量</li>
+<li>计算聚类中心</li>
+<li>计算每个顶点特征量与聚类中心的距离，然后划归最近的聚类中心的簇</li>
+<li>重复2，3步直到收敛，完成聚类</li>
+<li>计算顶点特征量与聚类中心的距离，超过阈值则为异常</li>
+</ol>
+]]></description></item></channel></rss>
