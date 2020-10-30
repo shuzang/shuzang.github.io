@@ -8,12 +8,8 @@ toc: true
 
 Ubuntu环境下，Unable to acquire the lock这类问题时有发生，本文对该问题的解决方案做一个总结
 
-{{% admonition bug %}}
-
-E: Could not get lock /var/lib/dpkg/lock-frontend - open (11: Resource temporarily unavailable)   
-E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), is another process using it?
-
-{{% /admonition %}}
+> E: Could not get lock /var/lib/dpkg/lock-frontend - open (11: Resource temporarily unavailable)   
+> E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), is another process using it?
 
 ## 第一种情况
  进程中存在与apt相关的正在运行的进程，首先检查是否在运行apt,apt-get相关的进程

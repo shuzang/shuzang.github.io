@@ -7,11 +7,9 @@ categories: [研究生的区块链学习之路]
 
 在智能合约中显式传入地址类型时，可能会出现如下错误
 
-{{% admonition warning "Address checksum" false %}}
-
-This looks like an address but has an invalid checksum. If this is not used as an address, please prepend '00'. 
-
-{{% /admonition %}}
+> Address checksum
+>
+> This looks like an address but has an invalid checksum. If this is not used as an address, please prepend '00'. 
 
 关于该问题的一个讨论见 https://github.com/ethereum/EIPs/issues/55 
 
