@@ -24,7 +24,6 @@ copyright = "This work is licensed under a Creative Commons Attribution-NonComme
 # date format
 dateFormatToUse = "2006-01-02"
 
-
 # Markup related configuration in Hugo
 [markup]
   # Syntax Highlighting (https://gohugo.io/content-management/syntax-highlighting)
@@ -96,13 +95,13 @@ dateFormatToUse = "2006-01-02"
     url = "about"
     weight = 4
 
-#  [[menu.main]]
-#    identifier = "zh"
-#    pre = '<i class="fas fa-language fa-fw"></i>'
-#    name = ""
-#    title = "简体中文"
-#    url = "https://hugo-loveit-zh.netlify.com"
-#    weight = 5
+  # [[menu.main]]
+  #   identifier = "zh"
+  #   pre = '<i class="fas fa-language fa-fw"></i>'
+  #   name = ""
+  #   title = "简体中文"
+  #   url = "https://hugo-loveit-zh.netlify.com"
+  #   weight = 5
 
 [params]
   # LoveIt theme version
@@ -111,51 +110,78 @@ dateFormatToUse = "2006-01-02"
   description = "书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"
   # site keywords
   keywords = ["blog", "Golang", "Hugo", "blockchain", "go", "life"]
-  # site default theme ("light", "dark", "auto")
-  defaultTheme = "auto"
-  # public git repo url to link lastmod git commit only then enableGitInfo is true
-  gitRepo = ""
   toc = true
   autoCollapseToc = true
 
-  # Header info
-  [params.header]
-    # desktop header mode ("fixed", "normal", "auto")
-    desktopMode = "fixed"
-    # mobile header mode ("fixed", "normal", "auto")
-    mobileMode = "auto"
-
-  # Footer Copyright Info
-  [params.footer]
-    # Site creation time
-    since = 2018
-    # ICP info only in China (HTML format is allowed)
-    icp = ""
-    # license info (HTML format is allowed)
-    license= '<a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>'
-
   # Home Page Info
-  [params.home]
-    # Home Page Profile
-    [params.home.profile]
-      enable = true
-      # Gravatar Email for preferred avatar in home page
-      gravatarEmail = ""
-      # URL of avatar shown in home page
-      avatarURL = "images/avatar.png"
-      # subtitle shown in home page
-      subtitle = "随心所向，素履以往"
-      # whether to use typeit animation for subtitle
-      typeit = true
-      # whether to show social links
-      social = true
-    # Home Page Posts
-    [params.home.posts]
-      enable = true
-      # special amount of posts in each home posts page
-      paginate = 2
-      # default behavior when you don't set "hiddenFromHomePage" in front matter
-      defaultHiddenFromHomePage = false
+  ## [post, other] home mode
+  home_mode = "post"
+  ## special amount of posts in each home post page
+  home_paginate = 2
+  ## URL of avatar shown in home page
+  avatar = "images/avatar.png"
+  ## subtitle shown in home page
+  subtitle = "随心所向，素履以往"
+
+  # whether to show social share links in post page
+  socialShare = true
+
+  # Footer CopyRight Info
+  ## Site creation time
+  since = 2018
+  ## ICP info only in China (HTML format is allowed)
+  icp = ""
+  ## license info (HTML format is allowed)
+  license= '<a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a>'
+
+  # public git repo url to link lastmod git commit only then enableGitInfo is true
+  gitRepo = ""
+
+  # mathematical formulas (KaTeX)
+  [params.math]
+    enable = true
+    block_left_delimiter = ""
+    block_right_delimiter = ""
+    inline_left_delimiter = "$"
+    inline_right_delimiter = "$"
+    # KaTeX extension copy_tex
+    copy_tex = true
+    # KaTeX extension mhchem
+    mhchem = true
+
+  # whether to show link to Raw Markdown content of the post
+  linkToMarkdown = true
+
+  # site verification code for Google/Bing/Yandex/Pinterest/Baidu
+  google_verification = ""
+  bing_verification = ""
+  yandex_verification = ""
+  pinterest_verification = ""
+  baidu_verification = ""
+
+  # CSS and JS Files CDN
+  [params.cdn]
+    ## for example '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/all.min.css" integrity="sha256-fdcFNFiBMrNfWL6OcAGQz6jDgNTRxnrLEd4vJYFWScE=" crossorigin="anonymous">'
+    fontawesomeFreeCSS = ''
+    gitalkCSS = ''
+    gitalkJS = ''
+    valineJS = ''
+    lazysizesJS = '<script src="https://cdn.bootcss.com/lazysizes/5.1.2/lazysizes.min.js"></script>'
+    smoothScrollJS = '<script src="https://cdn.bootcss.com/smooth-scroll/16.1.0/smooth-scroll.js"></script>'
+    katexCSS = '<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet">'
+    katexJS = '<script src="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.js"></script>'
+    katexAutoRenderJS = '<script src="https://cdn.bootcss.com/KaTeX/0.11.1/contrib/auto-render.js"></script>'
+    katexCopyTexCSS = '<link href="https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.css" rel="stylesheet">'
+    katexCopyTexJS = '<script src="https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.js"></script>'
+    katexMhchemJS = '<script src="https://cdn.bootcss.com/KaTeX/0.11.1/contrib/mhchem.js"></script>'
+    typeitJS = ''
+    aplayerCSS = '<link href="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.css" rel="stylesheet">'
+    aplayerJS = '<script src="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js"></script>'
+    metingJS = ''
+
+  # Gravatar Info for preferred avatar in home page
+  [params.gravatar]
+    email = ""
 
   # Social Info in home page
   [params.social]
@@ -163,9 +189,10 @@ dateFormatToUse = "2006-01-02"
     Skype = "live:844327696"
     GitHub = "shuzang"  
     bilibili = "15452558"
+    
     #Linkedin = "xxxx"
     #Twitter = "xxxx"
-    #Instagram = "xxxx"    
+    #Instagram = "xxxx"
     #Facebook = "xxxx"
     #Telegram = "xxxx"
     #Medium = "xxxx"
@@ -200,9 +227,10 @@ dateFormatToUse = "2006-01-02"
     #Hackernews = "xxxx"
     #Kickstarter = "xxxx"
     #Patreon = "xxxx"
-    #Steam = "76561198343669932"
+    #Steam = "xxxx"
     #Twitch = "xxxx"
     #Strava = "xxxx"
+    #Skype = "xxxx"
     #Whatsapp = "xxxx"
     #Zhihu = "xxxx"
     #Douban = "xxxx"
@@ -217,19 +245,8 @@ dateFormatToUse = "2006-01-02"
     #Googlescholar = "xxxx"
     #Researchgate = "xxxx"
     #Mastodon = "xxxx"
-    #MastodonPrefix = "https://mastodon.technology/"
     #Thingiverse = "xxxx"
     #Devto = "xxxx"
-    #Gitea = "xxxx"
-    #XMPP = "xxxx"
-    #Matrix ="xxxx"
-
-  # Page config
-  [params.page]
-    # whether to show social share links in post page
-    socialShare = true
-    # whether to show link to Raw Markdown content of the post
-    linkToMarkdown = true
 
   # Social Share Links in post page
   [params.share]
@@ -244,50 +261,6 @@ dateFormatToUse = "2006-01-02"
     #Tumblr = true
     #VKontakte = true
     #Weibo = true
-
-  # mathematical formulas (KaTeX)
-  [params.math]
-    enable = true
-    blockLeftDelimiter = ""
-    blockRightDelimiter = ""
-    inlineLeftDelimiter = "$"
-    inlineRightDelimiter = "$"
-    # KaTeX extension copy_tex
-    copyTex = true
-    # KaTeX extension mhchem
-    mhchem = true
-
-  # CSS and JS Files CDN
-  [params.cdn]
-    ## for example '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.10.1/css/all.min.css" integrity="sha256-fdcFNFiBMrNfWL6OcAGQz6jDgNTRxnrLEd4vJYFWScE=" crossorigin="anonymous">'
-    fontawesomeFreeCSS = ''
-    animateCSS = ''
-    gitalkCSS = ''
-    gitalkJS = ''
-    valineJS = ''
-    lazysizesJS = '<script src="https://cdn.bootcss.com/lazysizes/5.1.2/lazysizes.min.js"></script>'
-    smoothScrollJS = '<script src="https://cdn.bootcss.com/smooth-scroll/16.1.0/smooth-scroll.js"></script>'
-    katexCSS = '<link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet">'
-    katexJS = '<script src="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.js"></script>'
-    katexAutoRenderJS = '<script src="https://cdn.bootcss.com/KaTeX/0.11.1/contrib/auto-render.js"></script>'
-    katexCopyTexCSS = '<link href="https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.css" rel="stylesheet">'
-    katexCopyTexJS = '<script src="https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.js"></script>'
-    katexMhchemJS = '<script src="https://cdn.bootcss.com/KaTeX/0.11.1/contrib/mhchem.js"></script>'
-    mermaidJS = '<script src="https://cdn.bootcss.com/mermaid/8.3.1/mermaid.js"></script>'
-    echartsJS = ''
-    echartsMacaronsJS = ''
-    typeitJS = ''
-    aplayerCSS = '<link href="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.css" rel="stylesheet">'
-    aplayerJS = '<script src="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js"></script>'
-    metingJS = ''
-
-  # site verification code for Google/Bing/Yandex/Pinterest/Baidu
-  [params.verification]
-    google = ""
-    bing = ""
-    yandex = ""
-    pinterest = ""
-    baidu = ""
 
   # Publisher Info just for SEO
   [params.publisher]
@@ -309,24 +282,20 @@ dateFormatToUse = "2006-01-02"
     width = 800
     height = 600
 
-  # Comment Config
-  [params.comment]
-    enable = true
+  # Disqus Comment Config (https://disqus.com/)
+  [params.disqus]
+    # Disqus shortname to use Disqus in posts
+    shortname = ""
 
-    # Disqus Comment Config (https://disqus.com/)
-    [params.comment.disqus]
-      # Disqus shortname to use Disqus in posts
-      shortname = "dillonzq"
+  # Gittalk Comment Config (https://github.com/gitalk/gitalk)
+  [params.gitalk]
+    owner = ""
+    repo = ""
+    clientId = ""
+    clientSecret = ""
 
-    # Gittalk Comment Config (https://github.com/gitalk/gitalk)
-    [params.comment.gitalk]
-      owner = ""
-      repo = ""
-      clientId = ""
-      clientSecret = ""
-
-    # Valine Comment Config (https://github.com/xCss/Valine)
-    [params.comment.valine]
+  # Valine Comment Config (https://github.com/xCss/Valine)
+  [params.valine]
       enable = true
       appId = "GteMvevTjOBmhvFh2QGsopGO-gzGzoHsz"
       appKey = "fL4SYl06GIe012PswFdY17VC"
@@ -339,13 +308,13 @@ dateFormatToUse = "2006-01-02"
       visitor = true
       recordIP = true
 
-    # Facebook Comment Config (https://developers.facebook.com/docs/plugins/comments)
-    [params.comment.facebook]
-      enable = false
-      width = "100%"
-      numPosts = 10
-      appId = ""
-      languageCode = "en_US"
+  # Facebook Comment Config (https://developers.facebook.com/docs/plugins/comments)
+  [params.facebook]
+    enable = false
+    width = "100%"
+    numPosts = 10
+    appId = ""
+    languageCode = "en_US"
 
 # Privacy Info (https://gohugo.io/about/hugo-and-gdpr/)
 [privacy]
