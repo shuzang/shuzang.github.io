@@ -1,12 +1,12 @@
-<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>hugo搭建个人博客2-文章写作 | Shuzang's Blog</title><meta name=Description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><meta property="og:title" content="hugo搭建个人博客2-文章写作"><meta property="og:description" content="本文是 Hugo 使用记录的第二篇，介绍关于文章写作的一些问题，包括分类管理、排版技巧、特殊语法等，所有语法基于 LoveIt 主题。 Hugo支持的文章格式为.md"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.github.io/hugo-blog-article-write/"><meta property="article:published_time" content="2019-05-15T00:00:00+00:00"><meta property="article:modified_time" content="2020-02-17T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="hugo搭建个人博客2-文章写作"><meta name=twitter:description content="本文是 Hugo 使用记录的第二篇，介绍关于文章写作的一些问题，包括分类管理、排版技巧、特殊语法等，所有语法基于 LoveIt 主题。 Hugo支持的文章格式为.md"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel=canonical href=https://shuzang.github.io/hugo-blog-article-write/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=prev href=https://shuzang.github.io/smart-contract-based-access-control-for-the-internet-of-things/><link rel=next href=https://shuzang.github.io/a-review-on-the-application-of-blockchain-to-the-next-generation/><link rel=stylesheet href=/lib/fontawesome-free/all.min.9a680b90260b5106d79f4075491ab31daafa7429eff686453c40b58357309649.css integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="><link rel=stylesheet href=/lib/animate/animate.min.3c770e90f98eb21b0c042fafb49755af93306fbaf42e449524f94fae9fc83295.css integrity="sha256-PHcOkPmOshsMBC+vtJdVr5Mwb7r0LkSVJPlPrp/IMpU="><link rel=stylesheet href=/css/style.min.8596c27951d415c1b2ad9aee1d642e8057049327eca5ce9e397bdd27d84ca62a.css integrity="sha256-hZbCeVHUFcGyrZruHWQugFcEkyfspc6eOXvdJ9hMpio="><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"hugo搭建个人博客2-文章写作","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/hugo-blog-article-write\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"Hugo","wordcount":8457,"url":"https:\/\/shuzang.github.io\/hugo-blog-article-write\/","datePublished":"2019-05-15T00:00:00\x2b00:00","dateModified":"2020-02-17T00:00:00\x2b00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"shuzang","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/logo.png","width":127,"height":40}},"description":""}</script></head><body><script>if(!window.localStorage||!window.localStorage.getItem('theme')){window.isDark=window.matchMedia('(prefers-color-scheme: dark)').matches;}else{window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';}
+<!doctype html><html lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>hugo搭建个人博客2-文章写作 | Shuzang's Blog</title><meta name=Description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><meta property="og:title" content="hugo搭建个人博客2-文章写作"><meta property="og:description" content="本文是 Hugo 使用记录的第二篇，介绍关于文章写作的一些问题，包括分类管理、排版技巧、特殊语法等，所有语法基于 LoveIt 主题。 Hugo支持的文章格式为.md"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.github.io/hugo-blog-article-write/"><meta property="article:published_time" content="2019-05-15T00:00:00+00:00"><meta property="article:modified_time" content="2020-02-17T00:00:00+00:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="hugo搭建个人博客2-文章写作"><meta name=twitter:description content="本文是 Hugo 使用记录的第二篇，介绍关于文章写作的一些问题，包括分类管理、排版技巧、特殊语法等，所有语法基于 LoveIt 主题。 Hugo支持的文章格式为.md"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel=canonical href=https://shuzang.github.io/hugo-blog-article-write/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=prev href=https://shuzang.github.io/smart-contract-based-access-control-for-the-internet-of-things/><link rel=next href=https://shuzang.github.io/a-review-on-the-application-of-blockchain-to-the-next-generation/><link rel=stylesheet href=/lib/fontawesome-free/all.min.9a680b90260b5106d79f4075491ab31daafa7429eff686453c40b58357309649.css integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="><link rel=stylesheet href=/css/style.min.9191e7eb818b288ae5b697554903713021436f69fc49aaa1b74808c7191739db.css integrity="sha256-kZHn64GLKIrltpdVSQNxMCFDb2n8Saqht0gIxxkXOds="><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"hugo搭建个人博客2-文章写作","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/hugo-blog-article-write\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"Hugo","wordcount":5927,"url":"https:\/\/shuzang.github.io\/hugo-blog-article-write\/","datePublished":"2019-05-15T00:00:00\x2b00:00","dateModified":"2020-02-17T00:00:00\x2b00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"shuzang","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/logo.png","width":127,"height":40}},"description":""}</script></head><body><script>if(!window.localStorage||!window.localStorage.getItem('theme')){window.isDark=window.matchMedia('(prefers-color-scheme: dark)').matches;}else{window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';}
 window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class="header-title animated bounceIn"><a href=/>Shuzang's Blog</a></div><div class=menu><a class=menu-item href=/posts>Posts</a><a class=menu-item href=/tags>Tags</a><a class=menu-item href=/categories>Categories</a><a class=menu-item href=/about>About</a><a href=javascript:void(0); class=theme-switch title="Switch Theme">
 <i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a></div></div></header><header class=mobile id=header-mobile><div class=header-wrapper><div class=header-container><div class="header-title animated bounceIn"><a href=/>Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=/posts>Posts</a><a class=menu-item href=/tags>Tags</a><a class=menu-item href=/categories>Categories</a><a class=menu-item href=/about>About</a><a href=javascript:void(0); class=theme-switch title="Switch Theme">
 <i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a></div></div></header><script>window.desktopHeaderMode="fixed";window.mobileHeaderMode="auto";</script><main class=main><div class=container><article class="page single"><h1 class="single-title animated flipInX">hugo搭建个人博客2-文章写作</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a class=author href=https://shuzang.github.io/about/ rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>shuzang</a>
 </span>&nbsp;<span class=post-category>included in&nbsp;
 <span><a href=/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90><i class="far fa-folder fa-fw"></i>爱编程爱技术的孩子</a></span></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-05-15>2019-05-15</time>&nbsp;
-<i class="fas fa-pencil-alt fa-fw"></i>about 8457 words&nbsp;
-<i class="far fa-clock fa-fw"></i>17 min&nbsp;</div></div><div class=featured-image><img class=lazyload src=/svg/loading.min.svg data-sizes=auto data-srcset="/images/hugo%e6%90%ad%e5%bb%ba%e4%b8%aa%e4%ba%ba%e5%8d%9a%e5%ae%a22-%e6%96%87%e7%ab%a0%e5%86%99%e4%bd%9c/%e5%8c%97%e6%ac%a7%e7%91%9e%e5%85%b8%e8%87%aa%e7%84%b6%e9%a3%8e%e5%85%89.jpg, /images/hugo%e6%90%ad%e5%bb%ba%e4%b8%aa%e4%ba%ba%e5%8d%9a%e5%ae%a22-%e6%96%87%e7%ab%a0%e5%86%99%e4%bd%9c/%e5%8c%97%e6%ac%a7%e7%91%9e%e5%85%b8%e8%87%aa%e7%84%b6%e9%a3%8e%e5%85%89.jpg 1.5x, /images/hugo%e6%90%ad%e5%bb%ba%e4%b8%aa%e4%ba%ba%e5%8d%9a%e5%ae%a22-%e6%96%87%e7%ab%a0%e5%86%99%e4%bd%9c/%e5%8c%97%e6%ac%a7%e7%91%9e%e5%85%b8%e8%87%aa%e7%84%b6%e9%a3%8e%e5%85%89.jpg 2x" data-src=/images/hugo%e6%90%ad%e5%bb%ba%e4%b8%aa%e4%ba%ba%e5%8d%9a%e5%ae%a22-%e6%96%87%e7%ab%a0%e5%86%99%e4%bd%9c/%e5%8c%97%e6%ac%a7%e7%91%9e%e5%85%b8%e8%87%aa%e7%84%b6%e9%a3%8e%e5%85%89.jpg alt></div><div class=toc id=toc-auto><h2 class=toc-title>Contents</h2><div class=toc-content id=toc-content-auto></div></div><div class=toc id=toc-static><details><summary><div class=toc-title><span>Contents</span>
-<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=toc-content id=toc-content-static><nav id=TableOfContents><ul><li><a href=#1-前置参数>1. 前置参数</a></li><li><a href=#2-标签与分类>2. 标签与分类</a></li><li><a href=#3-排版风格规范>3. 排版风格规范</a><ul><li><a href=#31-空格>3.1 空格</a></li><li><a href=#32-标点符号>3.2 标点符号</a></li><li><a href=#33-中文和西文符号>3.3 中文和西文符号</a></li><li><a href=#34-专有名词>3.4 专有名词</a></li><li><a href=#35-样式工具>3.5 样式工具</a></li><li><a href=#36-注明引用来源>3.6 注明引用来源</a></li><li><a href=#37----写作建议>3.7 写作建议</a></li></ul></li><li><a href=#4-特殊语法>4. 特殊语法</a><ul><li><a href=#41-font-awesome>4.1 Font Awesome</a></li><li><a href=#42-脚注>4.2 脚注</a></li><li><a href=#43-字符注音或注释>4.3 字符注音或注释</a></li><li><a href=#44-分数>4.4 分数</a></li><li><a href=#45-数学公式>4.5 数学公式</a><ul><li><a href=#公式块>公式块</a></li><li><a href=#行内公式>行内公式</a></li><li><a href=#copy-tex>Copy-tex</a></li><li><a href=#mhchem>mhchem</a></li></ul></li></ul></li><li><a href=#5-扩展shortcode>5. 扩展shortcode</a><ul><li><ul><li><a href=#admonition>Admonition</a></li><li><a href=#style>Style</a></li><li><a href=#bilibili>Bilibili</a></li><li><a href=#mermaid>Mermaid</a></li><li><a href=#echarts>ECharts</a></li><li><a href=#music>Music</a><ul><li><a href=#自定义音乐-url>自定义音乐 URL</a></li><li><a href=#音乐平台-url-的自动识别>音乐平台 URL 的自动识别</a></li><li><a href=#自定义音乐平台-类型和-id>自定义音乐平台, 类型和 ID</a></li><li><a href=#其它参数>其它参数</a></li></ul></li><li><a href=#typeit>Typeit</a></li><li><a href=#image>Image</a></li></ul></li></ul></li><li><a href=#6-写作工具>6. 写作工具</a></li><li><a href=#附录i-shortcode>附录I Shortcode</a></li><li><a href=#附录ii-书影音页面>附录II 书影音页面</a></li></ul></nav></div></details></div><div class=content id=content><p>本文是 Hugo 使用记录的第二篇，介绍关于文章写作的一些问题，包括分类管理、排版技巧、特殊语法等，所有语法基于 LoveIt 主题。</p><p>Hugo支持的文章格式为<code>.md</code>，即用markdown语言编辑的文章。所有的文章都放在<code>content/posts</code>目录下，支持级联目录，即在<code>posts</code>目录下按分类建立多个子文件夹放置文章，比如本博客的文章按分类放在四个子文件夹下。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+<i class="fas fa-pencil-alt fa-fw"></i>about 5927 words&nbsp;
+<i class="far fa-clock fa-fw"></i>12 min&nbsp;</div></div><div class=featured-image><img class=lazyload src=/svg/loading.min.svg data-sizes=auto data-srcset="/images/hugo%e6%90%ad%e5%bb%ba%e4%b8%aa%e4%ba%ba%e5%8d%9a%e5%ae%a22-%e6%96%87%e7%ab%a0%e5%86%99%e4%bd%9c/%e5%8c%97%e6%ac%a7%e7%91%9e%e5%85%b8%e8%87%aa%e7%84%b6%e9%a3%8e%e5%85%89.jpg, /images/hugo%e6%90%ad%e5%bb%ba%e4%b8%aa%e4%ba%ba%e5%8d%9a%e5%ae%a22-%e6%96%87%e7%ab%a0%e5%86%99%e4%bd%9c/%e5%8c%97%e6%ac%a7%e7%91%9e%e5%85%b8%e8%87%aa%e7%84%b6%e9%a3%8e%e5%85%89.jpg 1.5x, /images/hugo%e6%90%ad%e5%bb%ba%e4%b8%aa%e4%ba%ba%e5%8d%9a%e5%ae%a22-%e6%96%87%e7%ab%a0%e5%86%99%e4%bd%9c/%e5%8c%97%e6%ac%a7%e7%91%9e%e5%85%b8%e8%87%aa%e7%84%b6%e9%a3%8e%e5%85%89.jpg 2x" data-src=/images/hugo%e6%90%ad%e5%bb%ba%e4%b8%aa%e4%ba%ba%e5%8d%9a%e5%ae%a22-%e6%96%87%e7%ab%a0%e5%86%99%e4%bd%9c/%e5%8c%97%e6%ac%a7%e7%91%9e%e5%85%b8%e8%87%aa%e7%84%b6%e9%a3%8e%e5%85%89.jpg alt></div><div class=toc id=toc-auto><h2 class=toc-title>Contents</h2><div class=toc-content id=toc-content-auto></div></div><div class=toc id=toc-static><details><summary><div class=toc-title><span>Contents</span>
+<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=toc-content id=toc-content-static><nav id=TableOfContents><ul><li><a href=#1-前置参数>1. 前置参数</a></li><li><a href=#2-标签与分类>2. 标签与分类</a></li><li><a href=#3-排版风格规范>3. 排版风格规范</a><ul><li><a href=#31-空格>3.1 空格</a></li><li><a href=#32-标点符号>3.2 标点符号</a></li><li><a href=#33-中文和西文符号>3.3 中文和西文符号</a></li><li><a href=#34-专有名词>3.4 专有名词</a></li><li><a href=#35-样式工具>3.5 样式工具</a></li><li><a href=#36-注明引用来源>3.6 注明引用来源</a></li><li><a href=#37----写作建议>3.7 写作建议</a></li></ul></li><li><a href=#4-特殊语法>4. 特殊语法</a><ul><li><a href=#41-font-awesome>4.1 Font Awesome</a></li><li><a href=#42-脚注>4.2 脚注</a></li><li><a href=#43-字符注音或注释>4.3 字符注音或注释</a></li><li><a href=#44-分数>4.4 分数</a></li><li><a href=#45-数学公式>4.5 数学公式</a><ul><li><a href=#公式块>公式块</a></li><li><a href=#行内公式>行内公式</a></li><li><a href=#copy-tex>Copy-tex</a></li><li><a href=#mhchem>mhchem</a></li></ul></li></ul></li><li><a href=#5-扩展shortcode>5. 扩展shortcode</a><ul><li><ul><li><a href=#bilibili>Bilibili</a></li><li><a href=#music>Music</a><ul><li><a href=#自定义音乐-url>自定义音乐 URL</a></li><li><a href=#音乐平台-url-的自动识别>音乐平台 URL 的自动识别</a></li><li><a href=#自定义音乐平台-类型和-id>自定义音乐平台, 类型和 ID</a></li><li><a href=#其它参数>其它参数</a></li></ul></li><li><a href=#typeit>Typeit</a></li><li><a href=#image>Image</a></li></ul></li></ul></li><li><a href=#6-写作工具>6. 写作工具</a></li><li><a href=#附录i-shortcode>附录I Shortcode</a></li><li><a href=#附录ii-书影音页面>附录II 书影音页面</a></li></ul></nav></div></details></div><div class=content id=content><p>本文是 Hugo 使用记录的第二篇，介绍关于文章写作的一些问题，包括分类管理、排版技巧、特殊语法等，所有语法基于 LoveIt 主题。</p><p>Hugo支持的文章格式为<code>.md</code>，即用markdown语言编辑的文章。所有的文章都放在<code>content/posts</code>目录下，支持级联目录，即在<code>posts</code>目录下按分类建立多个子文件夹放置文章，比如本博客的文章按分类放在四个子文件夹下。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ ls posts
@@ -86,7 +86,7 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 中设置.</li><li><strong>lastmod</strong>: 上次修改内容的日期时间.</li><li><strong>draft</strong>: 如果设为 <code>true</code>, 除非 <code>hugo</code> 命令使用了 <code>--buildDrafts</code>/<code>-D</code> 参数, 这篇文章不会被渲染.</li><li><strong>author</strong>: 文章作者.</li><li><strong>authorLink</strong>: 文章作者的链接.</li><li><strong>description</strong>: 文章内容的描述.</li><li><strong>license</strong>: 这篇文章特殊的许可.</li><li><strong>tags</strong>: 文章的标签.</li><li><strong>categories</strong>: 文章所属的类别.</li><li><strong>hiddenFromHomePage</strong>: 如果设为 <code>true</code>, 这篇文章将不会显示在主页上, 但是此行为可以在 <a href=../theme-documentation-basics/#site-configuration rel="noopener noreffer">网站配置</a>
 中设置的.</li><li><strong>featuredImage</strong>: 文章的特色图片.</li><li><strong>featuredImagePreview</strong>: 用在主页预览的文章特色图片.</li><li><strong>toc</strong>: 如果设为 <code>true</code>, 这篇文章会显示右侧目录.</li><li><strong>autoCollapseToc</strong>: 如果设为 <code>true</code>, 文章目录会自动折叠.</li><li><strong>math</strong>: 如果设为 <code>true</code>, 将自动渲染文章中的数学公式.</li><li><strong>mapbox</strong>: 和 <a href=../theme-documentation-basics/#site-configuration rel="noopener noreffer">网站配置</a>
 中的 <code>params.mapbox</code> 对象相同.</li><li><strong>lightgallery</strong>: 如果设为 <code>true</code>, 文章中的图片将可以按照画廊形式呈现.</li><li><strong>linkToMarkdown</strong>: 如果设为 <code>true</code>, 内容的页脚将显示指向原始 Markdown 文件的链接.</li><li><strong>share</strong>: 和 <a href=../theme-documentation-basics/#site-configuration rel="noopener noreffer">网站配置</a>
-中的 <code>params.share</code> 对象相同.</li><li><strong>comment</strong>: 如果设为 <code>true</code>, 将启用评论系统.</li></ul><h2 id=2-标签与分类>2. 标签与分类</h2><p>标签和分类字段是归档文章最常用的两种形式。为了更好的使用，我们需要弄清楚它们的区别。以生活与健身的韦恩图为例<sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>，饮食与睡眠同时属于这两个分类，当出现这类型文章时，就可以添加标签来管理。</p><p><img class=lazyload src=/svg/loading.min.svg data-sizes=auto data-srcset="https://cdn.sspai.com/2019/11/17/07062af1ba37669fa8b7e91484e1d3da.jpg?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1, https://cdn.sspai.com/2019/11/17/07062af1ba37669fa8b7e91484e1d3da.jpg?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1 1.5x, https://cdn.sspai.com/2019/11/17/07062af1ba37669fa8b7e91484e1d3da.jpg?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1 2x" data-src=https://cdn.sspai.com/2019/11/17/07062af1ba37669fa8b7e91484e1d3da.jpg?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1 alt=标签与分类 title=标签与分类></p><p>博客文章的存储方式决定了它无法拥有太多的分类，因此，树形逐级检索的方法不适用这种情况，我们应当在将博客分为几个大类的同时，使用标签来管理和检索文章，当同样也要注意不应滥用标签，否则会带来视觉上的混乱和管理的不便。</p><p>在每篇文章的元数据(Front-Matter字段)中添加<code>categories</code>字段作为文章分类，添加<code>tags</code>字段作为文章标签，比如本文：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+中的 <code>params.share</code> 对象相同.</li><li><strong>comment</strong>: 如果设为 <code>true</code>, 将启用评论系统.</li></ul><h2 id=2-标签与分类>2. 标签与分类</h2><p>标签和分类字段是归档文章最常用的两种形式。为了更好的使用，我们需要弄清楚它们的区别。以生活与健身的韦恩图为例<sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>，饮食与睡眠同时属于这两个分类，当出现这类型文章时，就可以添加标签来管理。</p><p><figure><a class=lightgallery href=https://cdn.sspai.com/2019/11/17/07062af1ba37669fa8b7e91484e1d3da.jpg?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1 title=标签与分类 data-thumbnail=https://cdn.sspai.com/2019/11/17/07062af1ba37669fa8b7e91484e1d3da.jpg?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1><img class=lazyload src=/svg/loading.min.svg data-sizes=auto data-srcset="https://cdn.sspai.com/2019/11/17/07062af1ba37669fa8b7e91484e1d3da.jpg?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1, https://cdn.sspai.com/2019/11/17/07062af1ba37669fa8b7e91484e1d3da.jpg?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1 1.5x, https://cdn.sspai.com/2019/11/17/07062af1ba37669fa8b7e91484e1d3da.jpg?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1 2x" data-src=https://cdn.sspai.com/2019/11/17/07062af1ba37669fa8b7e91484e1d3da.jpg?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1 alt=标签与分类></a><figcaption class=image-caption>标签与分类</figcaption></figure></p><p>博客文章的存储方式决定了它无法拥有太多的分类，因此，树形逐级检索的方法不适用这种情况，我们应当在将博客分为几个大类的同时，使用标签来管理和检索文章，当同样也要注意不应滥用标签，否则会带来视觉上的混乱和管理的不便。</p><p>在每篇文章的元数据(Front-Matter字段)中添加<code>categories</code>字段作为文章分类，添加<code>tags</code>字段作为文章标签，比如本文：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-yaml data-lang=yaml><span class=k>tags</span><span class=p>:</span><span class=w> </span><span class=p>[</span>博客写作<span class=p>]</span><span class=w>
 </span><span class=w></span><span class=k>categories</span><span class=p>:</span><span class=w> </span><span class=p>[</span>爱编程爱技术的孩子<span class=p>]</span><span class=w>
@@ -98,22 +98,22 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 上获取所需的图标 <code>class</code>.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-markdown data-lang=markdown>去露营啦! :(fas fa-campground): 很快就回来.
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-markdown data-lang=markdown>去露营啦! {?:}(fas fa-campground): 很快就回来.
 
-真开心! :(far fa-grin-tears):
+真开心! {?:}(far fa-grin-tears):
 </code></pre></td></tr></table></div></div><p>呈现的输出效果如下:</p><p>去露营啦! <i class="fas fa-campground fa-fw"></i>很快就回来.</p><p>真开心! <i class="far fa-grin-tears fa-fw"></i></p><h3 id=42-脚注>4.2 脚注</h3><p>This is a footnote<sup id=fnref:3><a href=#fn:3 class=footnote-ref role=doc-noteref>3</a></sup></p><p>Test all features in development<sup id=fnref:4><a href=#fn:4 class=footnote-ref role=doc-noteref>4</a></sup>.</p><h3 id=43-字符注音或注释>4.3 字符注音或注释</h3><p><strong>LoveIt</strong> 主题支持一种 <strong>字符注音或者注释</strong> Markdown 扩展语法:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-markdown data-lang=markdown>[Hugo]^(一个开源的静态网站生成工具)
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-markdown data-lang=markdown>[Hugo]{?^}(一个开源的静态网站生成工具)
 </code></pre></td></tr></table></div></div><p>呈现的输出效果如下:</p><p><strong><ruby>Hugo<rt>一个开源的静态网站生成工具</rt></ruby></strong></p><h3 id=44-分数>4.4 分数</h3><p><strong>LoveIt</strong> 主题支持一种 <strong>分数</strong> Markdown 扩展语法:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-markdown data-lang=markdown>[浅色]/[深色]
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-markdown data-lang=markdown>[浅色]{?/}[深色]
 
-[99]/[100]
+[99]{?/}[100]
 </code></pre></td></tr></table></div></div><p>呈现的输出效果如下:</p><p>[浅色]/[深色]</p><p>[90]/[100]</p><h3 id=45-数学公式>4.5 数学公式</h3><p><strong>LoveIt</strong> 基于 <a href=https://katex.org/ target=_blank rel="noopener noreffer">$ \KaTeX $</a>
 提供数学公式的支持.</p><p>在你的 <a href=../theme-documentation-basics/#site-configuration rel="noopener noreffer">网站配置</a>
 中的 <code>[params.math]</code> 下面设置属性 <code>enable = true</code>,
-并在文章的前置参数中设置属性 <code>math: true</code>来启用数学公式的自动渲染.</p><div class="admonition tip"><p class=admonition-title><i class="icon fas fa-lightbulb"></i>Tip</p><div class=admonition-content>有一份 <a href=https://katex.org/docs/supported.html target=_blank rel="noopener noreffer">$ \KaTeX $ 中支持的 $ \TeX $ 函数</a>
-清单.</div></div><h4 id=公式块>公式块</h4><p>默认的公式块分割符是 <code>$$</code>/<code>$$</code> 和 <code>\\[</code>/<code>\\]</code>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+并在文章的前置参数中设置属性 <code>math: true</code>来启用数学公式的自动渲染.</p><blockquote><p>有一份 <a href=https://katex.org/docs/supported.html target=_blank rel="noopener noreffer">$ \KaTeX $ 中支持的 $ \TeX $ 函数</a>
+清单.</p></blockquote><h4 id=公式块>公式块</h4><p>默认的公式块分割符是 <code>$$</code>/<code>$$</code> 和 <code>\\[</code>/<code>\\]</code>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-markdown data-lang=markdown>$$ c = \pm\sqrt{a^2 + b^2} $$
@@ -121,8 +121,8 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 \\[ f(x)=\int_{-\infty}^{\infty} \hat{f}(\xi) e^{2 \pi i \xi x} d \xi \\]
 </code></pre></td></tr></table></div></div><p>呈现的输出效果如下:</p><p>$$ c = \pm\sqrt{a^2 + b^2} $$</p><p>\[ f(x)=\int_{-\infty}^{\infty} \hat{f}(\xi) e^{2 \pi i \xi x} d \xi \]</p><h4 id=行内公式>行内公式</h4><p>默认的行内公式分割符是 <code>$</code>/<code>$</code> 和 <code>\\(</code>/<code>\\)</code>:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-markdown data-lang=markdown>$ c = \pm\sqrt{a^2 + b^2} $ 和 \\( f(x)=\int_{-\infty}^{\infty} \hat{f}(\xi) e^{2 \pi i \xi x} d \xi \\)
-</code></pre></td></tr></table></div></div><p>呈现的输出效果如下:</p><p>$ c = \pm\sqrt{a^2 + b^2} $ 和 \( f(x)=\int_{-\infty}^{\infty} \hat{f}(\xi) e^{2 \pi i \xi x} d \xi \)</p><div class="admonition tip"><p class=admonition-title><i class="icon fas fa-lightbulb"></i>Tip</p><div class=admonition-content>你可以在 <a href=../theme-documentation-basics/#site-configuration rel="noopener noreffer">网站配置</a>
-中自定义公式块和行内公式的分割符.</div></div><h4 id=copy-tex>Copy-tex</h4><p><strong><a href=https://github.com/Khan/KaTeX/tree/master/contrib/copy-tex target=_blank rel="noopener noreffer">Copy-tex</a></strong> 是一个 <strong>$ \KaTeX $</strong> 的插件.</p><p>通过这个扩展, 在选择并复制 $ \KaTeX $ 渲染的公式时, 会将其 $ \LaTeX $ 源代码复制到剪贴板.</p><p>在你的 <a href=../theme-documentation-basics/#site-configuration rel="noopener noreffer">网站配置</a>
+</code></pre></td></tr></table></div></div><p>呈现的输出效果如下:</p><p>$ c = \pm\sqrt{a^2 + b^2} $ 和 \( f(x)=\int_{-\infty}^{\infty} \hat{f}(\xi) e^{2 \pi i \xi x} d \xi \)</p><blockquote><p>你可以在 <a href=../theme-documentation-basics/#site-configuration rel="noopener noreffer">网站配置</a>
+中自定义公式块和行内公式的分割符.</p></blockquote><h4 id=copy-tex>Copy-tex</h4><p><strong><a href=https://github.com/Khan/KaTeX/tree/master/contrib/copy-tex target=_blank rel="noopener noreffer">Copy-tex</a></strong> 是一个 <strong>$ \KaTeX $</strong> 的插件.</p><p>通过这个扩展, 在选择并复制 $ \KaTeX $ 渲染的公式时, 会将其 $ \LaTeX $ 源代码复制到剪贴板.</p><p>在你的 <a href=../theme-documentation-basics/#site-configuration rel="noopener noreffer">网站配置</a>
 中的 <code>[params.math]</code> 下面设置属性 <code>copyTex = true</code> 来启用 Copy-tex.</p><p>选择并复制上一节中渲染的公式, 可以发现复制的内容为 LaTeX 源代码.</p><h4 id=mhchem>mhchem</h4><p><strong><a href=https://github.com/Khan/KaTeX/tree/master/contrib/mhchem target=_blank rel="noopener noreffer">mhchem</a></strong> 是一个 <strong>$ \KaTeX $</strong> 的插件.</p><p>通过这个扩展, 你可以在文章中轻松编写漂亮的化学方程式.</p><p>在你的 <a href=../theme-documentation-basics/#site-configuration rel="noopener noreffer">网站配置</a>
 中的 <code>[params.math]</code> 下面设置属性 <code>mhchem = true</code> 来启用 mhchem.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
@@ -130,27 +130,7 @@ window.isDark&&document.body.classList.add('dark-theme');</script><div class=wra
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-markdown data-lang=markdown>$$ \ce{CO2 + C -&gt; 2 CO} $$
 
 $$ \ce{Hg^2+ -&gt;[I-] HgI2 -&gt;[I-] [Hg^{II}I4]^2-} $$
-</code></pre></td></tr></table></div></div><p>呈现的输出效果如下:</p><p>$$ \ce{CO2 + C -> 2 CO} $$</p><p>$$ \ce{Hg^2+ ->[I-] HgI2 ->[I-] [Hg^{II}I4]^2-} $$</p><h2 id=5-扩展shortcode>5. 扩展shortcode</h2><p>关于shortcode的说明见附录I，LoveIt提供了一些shortcode的扩展语法，下面介绍可能会用到的几种。其它的（包括link、mapbox等）自行查看主题文档介绍</p><h4 id=admonition>Admonition</h4><p><code>admonition</code> shortcode 支持 <strong>12</strong> 种 帮助你在页面中插入提示的横幅.</p><p><em>支持 Markdown 或者 HTML 格式.</em></p><div class="admonition note"><p class=admonition-title><i class="icon fas fa-pencil-alt"></i>Note</p><div class=admonition-content>一个 <strong>注意</strong> 横幅</div></div><div class="admonition abstract"><p class=admonition-title><i class="icon fas fa-list-ul"></i>Abstract</p><div class=admonition-content>一个 <strong>摘要</strong> 横幅</div></div><div class="admonition info"><p class=admonition-title><i class="icon fas fa-info-circle"></i>Info</p><div class=admonition-content>一个 <strong>信息</strong> 横幅</div></div><div class="admonition tip"><p class=admonition-title><i class="icon fas fa-lightbulb"></i>Tip</p><div class=admonition-content>一个 <strong>技巧</strong> 横幅</div></div><div class="admonition success"><p class=admonition-title><i class="icon fas fa-check-circle"></i>Success</p><div class=admonition-content>一个 <strong>成功</strong> 横幅</div></div><div class="admonition question"><p class=admonition-title><i class="icon fas fa-question-circle"></i>Question</p><div class=admonition-content>一个 <strong>问题</strong> 横幅</div></div><div class="admonition warning"><p class=admonition-title><i class="icon fas fa-exclamation-triangle"></i>Warning</p><div class=admonition-content>一个 <strong>警告</strong> 横幅</div></div><div class="admonition failure"><p class=admonition-title><i class="icon fas fa-times-circle"></i>Failure</p><div class=admonition-content>一个 <strong>失败</strong> 横幅</div></div><div class="admonition danger"><p class=admonition-title><i class="icon fas fa-skull-crossbones"></i>Danger</p><div class=admonition-content>一个 <strong>危险</strong> 横幅</div></div><div class="admonition bug"><p class=admonition-title><i class="icon fas fa-bug"></i>Bug</p><div class=admonition-content>一个 <strong>Bug</strong> 横幅</div></div><div class="admonition example"><p class=admonition-title><i class="icon fas fa-list-ol"></i>Example</p><div class=admonition-content>一个 <strong>示例</strong> 横幅</div></div><div class="admonition quote"><p class=admonition-title><i class="icon fas fa-quote-right"></i>Quote</p><div class=admonition-content>一个 <strong>引用</strong> 横幅</div></div><p><code>admonition</code> shortcode 有三个命名参数:</p><ul><li><p><strong>type</strong> <em>[必需]</em> (<strong>第一个</strong>位置参数)：<code>admonition</code> 横幅的类型, 默认值是 <code>note</code>.</p></li><li><p><strong>title</strong> <em>[可选]</em> (<strong>第二个</strong>位置参数)：<code>admonition</code> 横幅的标题, 默认值是 <strong>type</strong> 参数的值.</p></li><li><p><strong>details</strong> <em>[可选]</em> (<strong>第三个</strong>位置参数)：横幅内容是否可展开/可折叠, 默认值是 <code>false</code>.</p></li></ul><p>一个 <code>admonition</code> 示例:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span><span class=lnt>6
-</span><span class=lnt>7
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-markdown data-lang=markdown>{{&lt; admonition type=tip title=&#34;This is a tip&#34; details=true &gt;}}
-一个 <span class=gs>**技巧</span><span class=gs>**</span> 横幅
-{{&lt; /admonition &gt;}}
-或者
-{{&lt; admonition tip &#34;This is a tip&#34; true &gt;}}
-一个 <span class=gs>**技巧</span><span class=gs>**</span> 横幅
-{{&lt; /admonition &gt;}}
-</code></pre></td></tr></table></div></div><p>呈现的输出效果如下:</p><details class="admonition tip"><summary class=admonition-title><i class="icon fas fa-lightbulb"></i>This is a tip<i class="details fas fa-angle-down"></i></summary><div class=admonition-content>一个 <strong>技巧</strong> 横幅</div></details><h4 id=style>Style</h4><p><code>style</code> shortcode 用来在你的文章中插入自定义样式，有两个位置参数：第一个参数是自定义样式的内容，第二个参数是包裹你要更改样式的内容的 HTML 标签, 默认值是 <code>p</code>.</p><p>一个示例如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-markdown data-lang=markdown>{{&lt; style &#34;text-align: right;&#34; &gt;}}
-This is a right-aligned paragraph.
-{{&lt; /style &gt;}}
-</code></pre></td></tr></table></div></div><h4 id=bilibili>Bilibili</h4><p><code>bilibili</code> shortcode 提供了一个内嵌的用来播放 bilibili 视频的响应式播放器，如果视频只有一个部分, 则仅需要视频的 <code>av</code> ID, 例如:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><p>呈现的输出效果如下:</p><p>$$ \ce{CO2 + C -> 2 CO} $$</p><p>$$ \ce{Hg^2+ ->[I-] HgI2 ->[I-] [Hg^{II}I4]^2-} $$</p><h2 id=5-扩展shortcode>5. 扩展shortcode</h2><p>关于shortcode的说明见附录I，LoveIt提供了一些shortcode的扩展语法，下面介绍可能会用到的几种。其它的（包括link、mapbox等）自行查看主题文档介绍</p><h4 id=bilibili>Bilibili</h4><p><code>bilibili</code> shortcode 提供了一个内嵌的用来播放 bilibili 视频的响应式播放器，如果视频只有一个部分, 则仅需要视频的 <code>av</code> ID, 例如:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>https://www.bilibili.com/video/av47027633
 </code></pre></td></tr></table></div></div><p>一个 <code>bilibili</code> 示例:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
@@ -158,7 +138,7 @@ This is a right-aligned paragraph.
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-markdown data-lang=markdown>{{&lt; bilibili 47027633 &gt;}}
 或者
 {{&lt; bilibili av=47027633 &gt;}}
-</code></pre></td></tr></table></div></div><p>呈现的输出效果如下:</p><div class=bilibili><iframe src="//player.bilibili.com/player.html?aid=47027633&page=1" scrolling=no border=0 frameborder=no framespacing=0 allowfullscreen></iframe></div><p>如果视频包含多个部分, 则除了视频的 <code>av</code> ID之外, 还需要 <code>p</code>, 默认值为 <code>1</code>, 例如:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><p>呈现的输出效果如下:</p><div class=bilibili><iframe src="//player.bilibili.com/player.html?aid=&cid=&page=1" scrolling=no border=0 frameborder=no framespacing=0 allowfullscreen></iframe></div><p>如果视频包含多个部分, 则除了视频的 <code>av</code> ID之外, 还需要 <code>p</code>, 默认值为 <code>1</code>, 例如:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>https://www.bilibili.com/video/av36570401?p=3
 </code></pre></td></tr></table></div></div><p>一个带有 <code>p</code> 参数的 <code>bilibili</code> 示例:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
@@ -166,625 +146,30 @@ This is a right-aligned paragraph.
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-markdown data-lang=markdown>{{&lt; bilibili 36570401 3 &gt;}}
 或者
 {{&lt; bilibili av=36570401 p=3 &gt;}}
-</code></pre></td></tr></table></div></div><h4 id=mermaid>Mermaid</h4><p><a href=https://mermaidjs.github.io/ target=_blank rel="noopener noreffer">mermaid</a>
-是一个可以帮助你在文章中生成图表和流程图的库, 类似 Markdown 的语法，只需将你的 mermaid 代码插入 <code>mermaid</code> shortcode 中即可.</p><p>一个 <strong>流程图</strong> <code>mermaid</code> 示例如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span><span class=lnt>6
-</span><span class=lnt>7
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-markdown data-lang=markdown>{{&lt; mermaid &gt;}}
-graph LR;
-    A[Hard edge] --&gt;|Link text| B(Round edge)
-    B --&gt; C{Decision}
-    C --&gt;|One| D[Result one]
-    C --&gt;|Two| E[Result two]
-{{&lt; /mermaid &gt;}}
-</code></pre></td></tr></table></div></div><p>呈现的输出效果如下:</p><div class=mermaid id=id-da2ac9></div><p>其它如时序图、甘特图、类图、状态图、Git图和饼图的用法自行查看文档。</p><h4 id=echarts>ECharts</h4><p><a href=https://echarts.apache.org/ target=_blank rel="noopener noreffer">ECharts</a>
-是一个帮助生成交互式数据可视化的库，提供了常规的 <a href=https://echarts.apache.org/zh/option.html#series-line target=_blank rel="noopener noreffer">折线图</a>
-, <a href=https://echarts.apache.org/zh/option.html#series-line target=_blank rel="noopener noreffer">柱状图</a>
-, <a href=https://echarts.apache.org/zh/option.html#series-scatter target=_blank rel="noopener noreffer">散点图</a>
-, <a href=https://echarts.apache.org/zh/option.html#series-pie target=_blank rel="noopener noreffer">饼图</a>
-, <a href=https://echarts.apache.org/zh/option.html#series-candlestick target=_blank rel="noopener noreffer">K线图</a>
-, 用于统计的 <a href=https://echarts.apache.org/zh/option.html#series-boxplot target=_blank rel="noopener noreffer">盒形图</a>
-, 用于地理数据可视化的 <a href=https://echarts.apache.org/zh/option.html#series-map target=_blank rel="noopener noreffer">地图</a>
-, <a href=https://echarts.apache.org/zh/option.html#series-heatmap target=_blank rel="noopener noreffer">热力图</a>
-, <a href=https://echarts.apache.org/zh/option.html#series-lines target=_blank rel="noopener noreffer">线图</a>
-, 用于关系数据可视化的 <a href=https://echarts.apache.org/zh/option.html#series-graph target=_blank rel="noopener noreffer">关系图</a>
-, <a href=https://echarts.apache.org/zh/option.html#series-treemap target=_blank rel="noopener noreffer">treemap</a>
-, <a href=https://echarts.apache.org/zh/option.html#series-sunburst target=_blank rel="noopener noreffer">旭日图</a>
-, 多维数据可视化的 <a href=https://echarts.apache.org/zh/option.html#series-parallel target=_blank rel="noopener noreffer">平行坐标</a>
-, 还有用于 BI 的 <a href=https://echarts.apache.org/zh/option.html#series-funnel target=_blank rel="noopener noreffer">漏斗图</a>
-, <a href=https://echarts.apache.org/zh/option.html#series-gauge target=_blank rel="noopener noreffer">仪表盘</a>
-, 并且支持图与图之间的混搭。只需在 <code>echarts</code> shortcode 中以 <code>JSON</code>/<code>YAML</code>/<code>TOML</code>格式插入 ECharts 选项即可.</p><p>一个 <code>JSON</code> 格式的 <code>echarts</code> 示例:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span><span class=lnt>23
-</span><span class=lnt>24
-</span><span class=lnt>25
-</span><span class=lnt>26
-</span><span class=lnt>27
-</span><span class=lnt>28
-</span><span class=lnt>29
-</span><span class=lnt>30
-</span><span class=lnt>31
-</span><span class=lnt>32
-</span><span class=lnt>33
-</span><span class=lnt>34
-</span><span class=lnt>35
-</span><span class=lnt>36
-</span><span class=lnt>37
-</span><span class=lnt>38
-</span><span class=lnt>39
-</span><span class=lnt>40
-</span><span class=lnt>41
-</span><span class=lnt>42
-</span><span class=lnt>43
-</span><span class=lnt>44
-</span><span class=lnt>45
-</span><span class=lnt>46
-</span><span class=lnt>47
-</span><span class=lnt>48
-</span><span class=lnt>49
-</span><span class=lnt>50
-</span><span class=lnt>51
-</span><span class=lnt>52
-</span><span class=lnt>53
-</span><span class=lnt>54
-</span><span class=lnt>55
-</span><span class=lnt>56
-</span><span class=lnt>57
-</span><span class=lnt>58
-</span><span class=lnt>59
-</span><span class=lnt>60
-</span><span class=lnt>61
-</span><span class=lnt>62
-</span><span class=lnt>63
-</span><span class=lnt>64
-</span><span class=lnt>65
-</span><span class=lnt>66
-</span><span class=lnt>67
-</span><span class=lnt>68
-</span><span class=lnt>69
-</span><span class=lnt>70
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-json data-lang=json><span class=p>{</span><span class=err>{</span><span class=err>&lt;</span> <span class=err>e</span><span class=err>c</span><span class=err>h</span><span class=err>a</span><span class=err>r</span><span class=err>t</span><span class=err>s</span> <span class=err>&gt;</span><span class=p>}</span><span class=err>}</span>
-<span class=p>{</span>
-  <span class=nt>&#34;title&#34;</span><span class=p>:</span> <span class=p>{</span>
-    <span class=nt>&#34;text&#34;</span><span class=p>:</span> <span class=s2>&#34;折线统计图&#34;</span><span class=p>,</span>
-    <span class=nt>&#34;top&#34;</span><span class=p>:</span> <span class=s2>&#34;2%&#34;</span><span class=p>,</span>
-    <span class=nt>&#34;left&#34;</span><span class=p>:</span> <span class=s2>&#34;center&#34;</span>
-  <span class=p>}</span><span class=p>,</span>
-  <span class=nt>&#34;tooltip&#34;</span><span class=p>:</span> <span class=p>{</span>
-    <span class=nt>&#34;trigger&#34;</span><span class=p>:</span> <span class=s2>&#34;axis&#34;</span>
-  <span class=p>}</span><span class=p>,</span>
-  <span class=nt>&#34;legend&#34;</span><span class=p>:</span> <span class=p>{</span>
-    <span class=nt>&#34;data&#34;</span><span class=p>:</span> <span class=p>[</span><span class=s2>&#34;邮件营销&#34;</span><span class=p>,</span> <span class=s2>&#34;联盟广告&#34;</span><span class=p>,</span> <span class=s2>&#34;视频广告&#34;</span><span class=p>,</span> <span class=s2>&#34;直接访问&#34;</span><span class=p>,</span> <span class=s2>&#34;搜索引擎&#34;</span><span class=p>]</span><span class=p>,</span>
-    <span class=nt>&#34;top&#34;</span><span class=p>:</span> <span class=s2>&#34;10%&#34;</span>
-  <span class=p>}</span><span class=p>,</span>
-  <span class=nt>&#34;grid&#34;</span><span class=p>:</span> <span class=p>{</span>
-    <span class=nt>&#34;left&#34;</span><span class=p>:</span> <span class=s2>&#34;5%&#34;</span><span class=p>,</span>
-    <span class=nt>&#34;right&#34;</span><span class=p>:</span> <span class=s2>&#34;5%&#34;</span><span class=p>,</span>
-    <span class=nt>&#34;bottom&#34;</span><span class=p>:</span> <span class=s2>&#34;5%&#34;</span><span class=p>,</span>
-    <span class=nt>&#34;top&#34;</span><span class=p>:</span> <span class=s2>&#34;20%&#34;</span><span class=p>,</span>
-    <span class=nt>&#34;containLabel&#34;</span><span class=p>:</span> <span class=kc>true</span>
-  <span class=p>}</span><span class=p>,</span>
-  <span class=nt>&#34;toolbox&#34;</span><span class=p>:</span> <span class=p>{</span>
-    <span class=nt>&#34;feature&#34;</span><span class=p>:</span> <span class=p>{</span>
-      <span class=nt>&#34;saveAsImage&#34;</span><span class=p>:</span> <span class=p>{</span>
-        <span class=nt>&#34;title&#34;</span><span class=p>:</span> <span class=s2>&#34;保存为图片&#34;</span>
-      <span class=p>}</span>
-    <span class=p>}</span>
-  <span class=p>}</span><span class=p>,</span>
-  <span class=nt>&#34;xAxis&#34;</span><span class=p>:</span> <span class=p>{</span>
-    <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;category&#34;</span><span class=p>,</span>
-    <span class=nt>&#34;boundaryGap&#34;</span><span class=p>:</span> <span class=kc>false</span><span class=p>,</span>
-    <span class=nt>&#34;data&#34;</span><span class=p>:</span> <span class=p>[</span><span class=s2>&#34;周一&#34;</span><span class=p>,</span> <span class=s2>&#34;周二&#34;</span><span class=p>,</span> <span class=s2>&#34;周三&#34;</span><span class=p>,</span> <span class=s2>&#34;周四&#34;</span><span class=p>,</span> <span class=s2>&#34;周五&#34;</span><span class=p>,</span> <span class=s2>&#34;周六&#34;</span><span class=p>,</span> <span class=s2>&#34;周日&#34;</span><span class=p>]</span>
-  <span class=p>}</span><span class=p>,</span>
-  <span class=nt>&#34;yAxis&#34;</span><span class=p>:</span> <span class=p>{</span>
-    <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;value&#34;</span>
-  <span class=p>}</span><span class=p>,</span>
-  <span class=nt>&#34;series&#34;</span><span class=p>:</span> <span class=p>[</span>
-    <span class=p>{</span>
-      <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;邮件营销&#34;</span><span class=p>,</span>
-      <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;line&#34;</span><span class=p>,</span>
-      <span class=nt>&#34;stack&#34;</span><span class=p>:</span> <span class=s2>&#34;总量&#34;</span><span class=p>,</span>
-      <span class=nt>&#34;data&#34;</span><span class=p>:</span> <span class=p>[</span><span class=mi>120</span><span class=p>,</span> <span class=mi>132</span><span class=p>,</span> <span class=mi>101</span><span class=p>,</span> <span class=mi>134</span><span class=p>,</span> <span class=mi>90</span><span class=p>,</span> <span class=mi>230</span><span class=p>,</span> <span class=mi>210</span><span class=p>]</span>
-    <span class=p>}</span><span class=p>,</span>
-    <span class=p>{</span>
-      <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;联盟广告&#34;</span><span class=p>,</span>
-      <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;line&#34;</span><span class=p>,</span>
-      <span class=nt>&#34;stack&#34;</span><span class=p>:</span> <span class=s2>&#34;总量&#34;</span><span class=p>,</span>
-      <span class=nt>&#34;data&#34;</span><span class=p>:</span> <span class=p>[</span><span class=mi>220</span><span class=p>,</span> <span class=mi>182</span><span class=p>,</span> <span class=mi>191</span><span class=p>,</span> <span class=mi>234</span><span class=p>,</span> <span class=mi>290</span><span class=p>,</span> <span class=mi>330</span><span class=p>,</span> <span class=mi>310</span><span class=p>]</span>
-    <span class=p>}</span><span class=p>,</span>
-    <span class=p>{</span>
-      <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;视频广告&#34;</span><span class=p>,</span>
-      <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;line&#34;</span><span class=p>,</span>
-      <span class=nt>&#34;stack&#34;</span><span class=p>:</span> <span class=s2>&#34;总量&#34;</span><span class=p>,</span>
-      <span class=nt>&#34;data&#34;</span><span class=p>:</span> <span class=p>[</span><span class=mi>150</span><span class=p>,</span> <span class=mi>232</span><span class=p>,</span> <span class=mi>201</span><span class=p>,</span> <span class=mi>154</span><span class=p>,</span> <span class=mi>190</span><span class=p>,</span> <span class=mi>330</span><span class=p>,</span> <span class=mi>410</span><span class=p>]</span>
-    <span class=p>}</span><span class=p>,</span>
-    <span class=p>{</span>
-      <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;直接访问&#34;</span><span class=p>,</span>
-      <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;line&#34;</span><span class=p>,</span>
-      <span class=nt>&#34;stack&#34;</span><span class=p>:</span> <span class=s2>&#34;总量&#34;</span><span class=p>,</span>
-      <span class=nt>&#34;data&#34;</span><span class=p>:</span> <span class=p>[</span><span class=mi>320</span><span class=p>,</span> <span class=mi>332</span><span class=p>,</span> <span class=mi>301</span><span class=p>,</span> <span class=mi>334</span><span class=p>,</span> <span class=mi>390</span><span class=p>,</span> <span class=mi>330</span><span class=p>,</span> <span class=mi>320</span><span class=p>]</span>
-    <span class=p>}</span><span class=p>,</span>
-    <span class=p>{</span>
-      <span class=nt>&#34;name&#34;</span><span class=p>:</span> <span class=s2>&#34;搜索引擎&#34;</span><span class=p>,</span>
-      <span class=nt>&#34;type&#34;</span><span class=p>:</span> <span class=s2>&#34;line&#34;</span><span class=p>,</span>
-      <span class=nt>&#34;stack&#34;</span><span class=p>:</span> <span class=s2>&#34;总量&#34;</span><span class=p>,</span>
-      <span class=nt>&#34;data&#34;</span><span class=p>:</span> <span class=p>[</span><span class=mi>820</span><span class=p>,</span> <span class=mi>932</span><span class=p>,</span> <span class=mi>901</span><span class=p>,</span> <span class=mi>934</span><span class=p>,</span> <span class=mi>1290</span><span class=p>,</span> <span class=mi>1330</span><span class=p>,</span> <span class=mi>1320</span><span class=p>]</span>
-    <span class=p>}</span>
-  <span class=p>]</span>
-<span class=p>}</span>
-<span class=p>{</span><span class=err>{</span><span class=err>&lt;</span> <span class=err>/</span><span class=err>e</span><span class=err>c</span><span class=err>h</span><span class=err>a</span><span class=err>r</span><span class=err>t</span><span class=err>s</span> <span class=err>&gt;</span><span class=p>}</span><span class=err>}</span>
-</code></pre></td></tr></table></div></div><p>一个 <code>YAML</code> 格式的 <code>echarts</code> 示例:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span><span class=lnt>23
-</span><span class=lnt>24
-</span><span class=lnt>25
-</span><span class=lnt>26
-</span><span class=lnt>27
-</span><span class=lnt>28
-</span><span class=lnt>29
-</span><span class=lnt>30
-</span><span class=lnt>31
-</span><span class=lnt>32
-</span><span class=lnt>33
-</span><span class=lnt>34
-</span><span class=lnt>35
-</span><span class=lnt>36
-</span><span class=lnt>37
-</span><span class=lnt>38
-</span><span class=lnt>39
-</span><span class=lnt>40
-</span><span class=lnt>41
-</span><span class=lnt>42
-</span><span class=lnt>43
-</span><span class=lnt>44
-</span><span class=lnt>45
-</span><span class=lnt>46
-</span><span class=lnt>47
-</span><span class=lnt>48
-</span><span class=lnt>49
-</span><span class=lnt>50
-</span><span class=lnt>51
-</span><span class=lnt>52
-</span><span class=lnt>53
-</span><span class=lnt>54
-</span><span class=lnt>55
-</span><span class=lnt>56
-</span><span class=lnt>57
-</span><span class=lnt>58
-</span><span class=lnt>59
-</span><span class=lnt>60
-</span><span class=lnt>61
-</span><span class=lnt>62
-</span><span class=lnt>63
-</span><span class=lnt>64
-</span><span class=lnt>65
-</span><span class=lnt>66
-</span><span class=lnt>67
-</span><span class=lnt>68
-</span><span class=lnt>69
-</span><span class=lnt>70
-</span><span class=lnt>71
-</span><span class=lnt>72
-</span><span class=lnt>73
-</span><span class=lnt>74
-</span><span class=lnt>75
-</span><span class=lnt>76
-</span><span class=lnt>77
-</span><span class=lnt>78
-</span><span class=lnt>79
-</span><span class=lnt>80
-</span><span class=lnt>81
-</span><span class=lnt>82
-</span><span class=lnt>83
-</span><span class=lnt>84
-</span><span class=lnt>85
-</span><span class=lnt>86
-</span><span class=lnt>87
-</span><span class=lnt>88
-</span><span class=lnt>89
-</span><span class=lnt>90
-</span><span class=lnt>91
-</span><span class=lnt>92
-</span><span class=lnt>93
-</span><span class=lnt>94
-</span><span class=lnt>95
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-yaml data-lang=yaml>{{&lt;<span class=w> </span>echarts<span class=w> </span>&gt;}}<span class=w>
-</span><span class=w></span><span class=k>title</span><span class=p>:</span><span class=w>
-</span><span class=w></span><span class=w>    </span><span class=k>text</span><span class=p>:</span><span class=w> </span>折线统计图<span class=w>
-</span><span class=w>    </span><span class=k>top</span><span class=p>:</span><span class=w> </span><span class=m>2</span>%<span class=w>
-</span><span class=w>    </span><span class=k>left</span><span class=p>:</span><span class=w> </span>center<span class=w>
-</span><span class=w></span><span class=k>tooltip</span><span class=p>:</span><span class=w>
-</span><span class=w></span><span class=w>    </span><span class=k>trigger</span><span class=p>:</span><span class=w> </span>axis<span class=w>
-</span><span class=w></span><span class=k>legend</span><span class=p>:</span><span class=w>
-</span><span class=w></span><span class=w>    </span><span class=k>data</span><span class=p>:</span><span class=w>
-</span><span class=w></span><span class=w>        </span>- 邮件营销<span class=w>
-</span><span class=w>        </span>- 联盟广告<span class=w>
-</span><span class=w>        </span>- 视频广告<span class=w>
-</span><span class=w>        </span>- 直接访问<span class=w>
-</span><span class=w>        </span>- 搜索引擎<span class=w>
-</span><span class=w>    </span><span class=k>top</span><span class=p>:</span><span class=w> </span><span class=m>10</span>%<span class=w>
-</span><span class=w></span><span class=k>grid</span><span class=p>:</span><span class=w>
-</span><span class=w></span><span class=w>    </span><span class=k>left</span><span class=p>:</span><span class=w> </span><span class=m>5</span>%<span class=w>
-</span><span class=w>    </span><span class=k>right</span><span class=p>:</span><span class=w> </span><span class=m>5</span>%<span class=w>
-</span><span class=w>    </span><span class=k>bottom</span><span class=p>:</span><span class=w> </span><span class=m>5</span>%<span class=w>
-</span><span class=w>    </span><span class=k>top</span><span class=p>:</span><span class=w> </span><span class=m>20</span>%<span class=w>
-</span><span class=w>    </span><span class=k>containLabel</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
-</span><span class=w></span><span class=k>toolbox</span><span class=p>:</span><span class=w>
-</span><span class=w></span><span class=w>    </span><span class=k>feature</span><span class=p>:</span><span class=w>
-</span><span class=w></span><span class=w>        </span><span class=k>saveAsImage</span><span class=p>:</span><span class=w>
-</span><span class=w></span><span class=w>            </span><span class=k>title</span><span class=p>:</span><span class=w> </span>保存为图片<span class=w>
-</span><span class=w></span><span class=k>xAxis</span><span class=p>:</span><span class=w>
-</span><span class=w></span><span class=w>    </span><span class=k>type</span><span class=p>:</span><span class=w> </span>category<span class=w>
-</span><span class=w>    </span><span class=k>boundaryGap</span><span class=p>:</span><span class=w> </span><span class=kc>false</span><span class=w>
-</span><span class=w>    </span><span class=k>data</span><span class=p>:</span><span class=w>
-</span><span class=w></span><span class=w>        </span>- 周一<span class=w>
-</span><span class=w>        </span>- 周二<span class=w>
-</span><span class=w>        </span>- 周三<span class=w>
-</span><span class=w>        </span>- 周四<span class=w>
-</span><span class=w>        </span>- 周五<span class=w>
-</span><span class=w>        </span>- 周六<span class=w>
-</span><span class=w>        </span>- 周日<span class=w>
-</span><span class=w></span><span class=k>yAxis</span><span class=p>:</span><span class=w>
-</span><span class=w></span><span class=w>    </span><span class=k>type</span><span class=p>:</span><span class=w> </span>value<span class=w>
-</span><span class=w></span><span class=k>series</span><span class=p>:</span><span class=w>
-</span><span class=w></span><span class=w>    </span>- <span class=k>name</span><span class=p>:</span><span class=w> </span>邮件营销<span class=w>
-</span><span class=w>      </span><span class=k>type</span><span class=p>:</span><span class=w> </span>line<span class=w>
-</span><span class=w>      </span><span class=k>stack</span><span class=p>:</span><span class=w> </span>总量<span class=w>
-</span><span class=w>      </span><span class=k>data</span><span class=p>:</span><span class=w>
-</span><span class=w></span><span class=w>          </span>- <span class=m>120</span><span class=w>
-</span><span class=w>          </span>- <span class=m>132</span><span class=w>
-</span><span class=w>          </span>- <span class=m>101</span><span class=w>
-</span><span class=w>          </span>- <span class=m>134</span><span class=w>
-</span><span class=w>          </span>- <span class=m>90</span><span class=w>
-</span><span class=w>          </span>- <span class=m>230</span><span class=w>
-</span><span class=w>          </span>- <span class=m>210</span><span class=w>
-</span><span class=w>    </span>- <span class=k>name</span><span class=p>:</span><span class=w> </span>联盟广告<span class=w>
-</span><span class=w>      </span><span class=k>type</span><span class=p>:</span><span class=w> </span>line<span class=w>
-</span><span class=w>      </span><span class=k>stack</span><span class=p>:</span><span class=w> </span>总量<span class=w>
-</span><span class=w>      </span><span class=k>data</span><span class=p>:</span><span class=w>
-</span><span class=w></span><span class=w>          </span>- <span class=m>220</span><span class=w>
-</span><span class=w>          </span>- <span class=m>182</span><span class=w>
-</span><span class=w>          </span>- <span class=m>191</span><span class=w>
-</span><span class=w>          </span>- <span class=m>234</span><span class=w>
-</span><span class=w>          </span>- <span class=m>290</span><span class=w>
-</span><span class=w>          </span>- <span class=m>330</span><span class=w>
-</span><span class=w>          </span>- <span class=m>310</span><span class=w>
-</span><span class=w>    </span>- <span class=k>name</span><span class=p>:</span><span class=w> </span>视频广告<span class=w>
-</span><span class=w>      </span><span class=k>type</span><span class=p>:</span><span class=w> </span>line<span class=w>
-</span><span class=w>      </span><span class=k>stack</span><span class=p>:</span><span class=w> </span>总量<span class=w>
-</span><span class=w>      </span><span class=k>data</span><span class=p>:</span><span class=w>
-</span><span class=w></span><span class=w>          </span>- <span class=m>150</span><span class=w>
-</span><span class=w>          </span>- <span class=m>232</span><span class=w>
-</span><span class=w>          </span>- <span class=m>201</span><span class=w>
-</span><span class=w>          </span>- <span class=m>154</span><span class=w>
-</span><span class=w>          </span>- <span class=m>190</span><span class=w>
-</span><span class=w>          </span>- <span class=m>330</span><span class=w>
-</span><span class=w>          </span>- <span class=m>410</span><span class=w>
-</span><span class=w>    </span>- <span class=k>name</span><span class=p>:</span><span class=w> </span>直接访问<span class=w>
-</span><span class=w>      </span><span class=k>type</span><span class=p>:</span><span class=w> </span>line<span class=w>
-</span><span class=w>      </span><span class=k>stack</span><span class=p>:</span><span class=w> </span>总量<span class=w>
-</span><span class=w>      </span><span class=k>data</span><span class=p>:</span><span class=w>
-</span><span class=w></span><span class=w>          </span>- <span class=m>320</span><span class=w>
-</span><span class=w>          </span>- <span class=m>332</span><span class=w>
-</span><span class=w>          </span>- <span class=m>301</span><span class=w>
-</span><span class=w>          </span>- <span class=m>334</span><span class=w>
-</span><span class=w>          </span>- <span class=m>390</span><span class=w>
-</span><span class=w>          </span>- <span class=m>330</span><span class=w>
-</span><span class=w>          </span>- <span class=m>320</span><span class=w>
-</span><span class=w>    </span>- <span class=k>name</span><span class=p>:</span><span class=w> </span>搜索引擎<span class=w>
-</span><span class=w>      </span><span class=k>type</span><span class=p>:</span><span class=w> </span>line<span class=w>
-</span><span class=w>      </span><span class=k>stack</span><span class=p>:</span><span class=w> </span>总量<span class=w>
-</span><span class=w>      </span><span class=k>data</span><span class=p>:</span><span class=w>
-</span><span class=w></span><span class=w>          </span>- <span class=m>820</span><span class=w>
-</span><span class=w>          </span>- <span class=m>932</span><span class=w>
-</span><span class=w>          </span>- <span class=m>901</span><span class=w>
-</span><span class=w>          </span>- <span class=m>934</span><span class=w>
-</span><span class=w>          </span>- <span class=m>1290</span><span class=w>
-</span><span class=w>          </span>- <span class=m>1330</span><span class=w>
-</span><span class=w>          </span>- <span class=m>1320</span><span class=w>
-</span><span class=w></span>{{&lt;<span class=w> </span>/echarts<span class=w> </span>&gt;}}<span class=w>
-</span></code></pre></td></tr></table></div></div><p>一个 <code>TOML</code> 格式的 <code>echarts</code> 示例:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>  1
-</span><span class=lnt>  2
-</span><span class=lnt>  3
-</span><span class=lnt>  4
-</span><span class=lnt>  5
-</span><span class=lnt>  6
-</span><span class=lnt>  7
-</span><span class=lnt>  8
-</span><span class=lnt>  9
-</span><span class=lnt> 10
-</span><span class=lnt> 11
-</span><span class=lnt> 12
-</span><span class=lnt> 13
-</span><span class=lnt> 14
-</span><span class=lnt> 15
-</span><span class=lnt> 16
-</span><span class=lnt> 17
-</span><span class=lnt> 18
-</span><span class=lnt> 19
-</span><span class=lnt> 20
-</span><span class=lnt> 21
-</span><span class=lnt> 22
-</span><span class=lnt> 23
-</span><span class=lnt> 24
-</span><span class=lnt> 25
-</span><span class=lnt> 26
-</span><span class=lnt> 27
-</span><span class=lnt> 28
-</span><span class=lnt> 29
-</span><span class=lnt> 30
-</span><span class=lnt> 31
-</span><span class=lnt> 32
-</span><span class=lnt> 33
-</span><span class=lnt> 34
-</span><span class=lnt> 35
-</span><span class=lnt> 36
-</span><span class=lnt> 37
-</span><span class=lnt> 38
-</span><span class=lnt> 39
-</span><span class=lnt> 40
-</span><span class=lnt> 41
-</span><span class=lnt> 42
-</span><span class=lnt> 43
-</span><span class=lnt> 44
-</span><span class=lnt> 45
-</span><span class=lnt> 46
-</span><span class=lnt> 47
-</span><span class=lnt> 48
-</span><span class=lnt> 49
-</span><span class=lnt> 50
-</span><span class=lnt> 51
-</span><span class=lnt> 52
-</span><span class=lnt> 53
-</span><span class=lnt> 54
-</span><span class=lnt> 55
-</span><span class=lnt> 56
-</span><span class=lnt> 57
-</span><span class=lnt> 58
-</span><span class=lnt> 59
-</span><span class=lnt> 60
-</span><span class=lnt> 61
-</span><span class=lnt> 62
-</span><span class=lnt> 63
-</span><span class=lnt> 64
-</span><span class=lnt> 65
-</span><span class=lnt> 66
-</span><span class=lnt> 67
-</span><span class=lnt> 68
-</span><span class=lnt> 69
-</span><span class=lnt> 70
-</span><span class=lnt> 71
-</span><span class=lnt> 72
-</span><span class=lnt> 73
-</span><span class=lnt> 74
-</span><span class=lnt> 75
-</span><span class=lnt> 76
-</span><span class=lnt> 77
-</span><span class=lnt> 78
-</span><span class=lnt> 79
-</span><span class=lnt> 80
-</span><span class=lnt> 81
-</span><span class=lnt> 82
-</span><span class=lnt> 83
-</span><span class=lnt> 84
-</span><span class=lnt> 85
-</span><span class=lnt> 86
-</span><span class=lnt> 87
-</span><span class=lnt> 88
-</span><span class=lnt> 89
-</span><span class=lnt> 90
-</span><span class=lnt> 91
-</span><span class=lnt> 92
-</span><span class=lnt> 93
-</span><span class=lnt> 94
-</span><span class=lnt> 95
-</span><span class=lnt> 96
-</span><span class=lnt> 97
-</span><span class=lnt> 98
-</span><span class=lnt> 99
-</span><span class=lnt>100
-</span><span class=lnt>101
-</span><span class=lnt>102
-</span><span class=lnt>103
-</span><span class=lnt>104
-</span><span class=lnt>105
-</span><span class=lnt>106
-</span><span class=lnt>107
-</span><span class=lnt>108
-</span><span class=lnt>109
-</span><span class=lnt>110
-</span><span class=lnt>111
-</span><span class=lnt>112
-</span><span class=lnt>113
-</span><span class=lnt>114
-</span><span class=lnt>115
-</span><span class=lnt>116
-</span><span class=lnt>117
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-toml data-lang=toml><span class=err>{</span><span class=err>{</span><span class=err>&lt;</span> <span class=nx>echarts</span> <span class=err>&gt;</span><span class=err>}</span><span class=err>}</span>
-<span class=p>[</span><span class=nx>title</span><span class=p>]</span>
-<span class=nx>text</span> <span class=p>=</span> <span class=s2>&#34;折线统计图&#34;</span>
-<span class=nx>top</span> <span class=p>=</span> <span class=s2>&#34;2%&#34;</span>
-<span class=nx>left</span> <span class=p>=</span> <span class=s2>&#34;center&#34;</span>
-
-<span class=p>[</span><span class=nx>tooltip</span><span class=p>]</span>
-<span class=nx>trigger</span> <span class=p>=</span> <span class=s2>&#34;axis&#34;</span>
-
-<span class=p>[</span><span class=nx>legend</span><span class=p>]</span>
-<span class=nx>data</span> <span class=p>=</span> <span class=p>[</span>
-  <span class=s2>&#34;邮件营销&#34;</span><span class=p>,</span>
-  <span class=s2>&#34;联盟广告&#34;</span><span class=p>,</span>
-  <span class=s2>&#34;视频广告&#34;</span><span class=p>,</span>
-  <span class=s2>&#34;直接访问&#34;</span><span class=p>,</span>
-  <span class=s2>&#34;搜索引擎&#34;</span>
-<span class=p>]</span>
-<span class=nx>top</span> <span class=p>=</span> <span class=s2>&#34;10%&#34;</span>
-
-<span class=p>[</span><span class=nx>grid</span><span class=p>]</span>
-<span class=nx>left</span> <span class=p>=</span> <span class=s2>&#34;5%&#34;</span>
-<span class=nx>right</span> <span class=p>=</span> <span class=s2>&#34;5%&#34;</span>
-<span class=nx>bottom</span> <span class=p>=</span> <span class=s2>&#34;5%&#34;</span>
-<span class=nx>top</span> <span class=p>=</span> <span class=s2>&#34;20%&#34;</span>
-<span class=nx>containLabel</span> <span class=p>=</span> <span class=kc>true</span>
-
-<span class=p>[</span><span class=nx>toolbox</span><span class=p>]</span>
-<span class=p>[</span><span class=nx>toolbox</span><span class=p>.</span><span class=nx>feature</span><span class=p>]</span>
-<span class=p>[</span><span class=nx>toolbox</span><span class=p>.</span><span class=nx>feature</span><span class=p>.</span><span class=nx>saveAsImage</span><span class=p>]</span>
-<span class=nx>title</span> <span class=p>=</span> <span class=s2>&#34;保存为图片&#34;</span>
-
-<span class=p>[</span><span class=nx>xAxis</span><span class=p>]</span>
-<span class=nx>type</span> <span class=p>=</span> <span class=s2>&#34;category&#34;</span>
-<span class=nx>boundaryGap</span> <span class=p>=</span> <span class=kc>false</span>
-<span class=nx>data</span> <span class=p>=</span> <span class=p>[</span>
-  <span class=s2>&#34;周一&#34;</span><span class=p>,</span>
-  <span class=s2>&#34;周二&#34;</span><span class=p>,</span>
-  <span class=s2>&#34;周三&#34;</span><span class=p>,</span>
-  <span class=s2>&#34;周四&#34;</span><span class=p>,</span>
-  <span class=s2>&#34;周五&#34;</span><span class=p>,</span>
-  <span class=s2>&#34;周六&#34;</span><span class=p>,</span>
-  <span class=s2>&#34;周日&#34;</span>
-<span class=p>]</span>
-
-<span class=p>[</span><span class=nx>yAxis</span><span class=p>]</span>
-<span class=nx>type</span> <span class=p>=</span> <span class=s2>&#34;value&#34;</span>
-
-<span class=p>[</span><span class=p>[</span><span class=nx>series</span><span class=p>]</span><span class=p>]</span>
-<span class=nx>name</span> <span class=p>=</span> <span class=s2>&#34;邮件营销&#34;</span>
-<span class=nx>type</span> <span class=p>=</span> <span class=s2>&#34;line&#34;</span>
-<span class=nx>stack</span> <span class=p>=</span> <span class=s2>&#34;总量&#34;</span>
-<span class=nx>data</span> <span class=p>=</span> <span class=p>[</span>
-  <span class=mf>120.0</span><span class=p>,</span>
-  <span class=mf>132.0</span><span class=p>,</span>
-  <span class=mf>101.0</span><span class=p>,</span>
-  <span class=mf>134.0</span><span class=p>,</span>
-  <span class=mf>90.0</span><span class=p>,</span>
-  <span class=mf>230.0</span><span class=p>,</span>
-  <span class=mf>210.0</span>
-<span class=p>]</span>
-
-<span class=p>[</span><span class=p>[</span><span class=nx>series</span><span class=p>]</span><span class=p>]</span>
-<span class=nx>name</span> <span class=p>=</span> <span class=s2>&#34;联盟广告&#34;</span>
-<span class=nx>type</span> <span class=p>=</span> <span class=s2>&#34;line&#34;</span>
-<span class=nx>stack</span> <span class=p>=</span> <span class=s2>&#34;总量&#34;</span>
-<span class=nx>data</span> <span class=p>=</span> <span class=p>[</span>
-  <span class=mf>220.0</span><span class=p>,</span>
-  <span class=mf>182.0</span><span class=p>,</span>
-  <span class=mf>191.0</span><span class=p>,</span>
-  <span class=mf>234.0</span><span class=p>,</span>
-  <span class=mf>290.0</span><span class=p>,</span>
-  <span class=mf>330.0</span><span class=p>,</span>
-  <span class=mf>310.0</span>
-<span class=p>]</span>
-
-<span class=p>[</span><span class=p>[</span><span class=nx>series</span><span class=p>]</span><span class=p>]</span>
-<span class=nx>name</span> <span class=p>=</span> <span class=s2>&#34;视频广告&#34;</span>
-<span class=nx>type</span> <span class=p>=</span> <span class=s2>&#34;line&#34;</span>
-<span class=nx>stack</span> <span class=p>=</span> <span class=s2>&#34;总量&#34;</span>
-<span class=nx>data</span> <span class=p>=</span> <span class=p>[</span>
-  <span class=mf>150.0</span><span class=p>,</span>
-  <span class=mf>232.0</span><span class=p>,</span>
-  <span class=mf>201.0</span><span class=p>,</span>
-  <span class=mf>154.0</span><span class=p>,</span>
-  <span class=mf>190.0</span><span class=p>,</span>
-  <span class=mf>330.0</span><span class=p>,</span>
-  <span class=mf>410.0</span>
-<span class=p>]</span>
-
-<span class=p>[</span><span class=p>[</span><span class=nx>series</span><span class=p>]</span><span class=p>]</span>
-<span class=nx>name</span> <span class=p>=</span> <span class=s2>&#34;直接访问&#34;</span>
-<span class=nx>type</span> <span class=p>=</span> <span class=s2>&#34;line&#34;</span>
-<span class=nx>stack</span> <span class=p>=</span> <span class=s2>&#34;总量&#34;</span>
-<span class=nx>data</span> <span class=p>=</span> <span class=p>[</span>
-  <span class=mf>320.0</span><span class=p>,</span>
-  <span class=mf>332.0</span><span class=p>,</span>
-  <span class=mf>301.0</span><span class=p>,</span>
-  <span class=mf>334.0</span><span class=p>,</span>
-  <span class=mf>390.0</span><span class=p>,</span>
-  <span class=mf>330.0</span><span class=p>,</span>
-  <span class=mf>320.0</span>
-<span class=p>]</span>
-
-<span class=p>[</span><span class=p>[</span><span class=nx>series</span><span class=p>]</span><span class=p>]</span>
-<span class=nx>name</span> <span class=p>=</span> <span class=s2>&#34;搜索引擎&#34;</span>
-<span class=nx>type</span> <span class=p>=</span> <span class=s2>&#34;line&#34;</span>
-<span class=nx>stack</span> <span class=p>=</span> <span class=s2>&#34;总量&#34;</span>
-<span class=nx>data</span> <span class=p>=</span> <span class=p>[</span>
-  <span class=mf>820.0</span><span class=p>,</span>
-  <span class=mf>932.0</span><span class=p>,</span>
-  <span class=mf>901.0</span><span class=p>,</span>
-  <span class=mf>934.0</span><span class=p>,</span>
-  <span class=mf>1290.0</span><span class=p>,</span>
-  <span class=mf>1330.0</span><span class=p>,</span>
-  <span class=mf>1320.0</span>
-<span class=p>]</span>
-<span class=err>{</span><span class=err>{</span><span class=err>&lt;</span> <span class=err>/</span><span class=nx>echarts</span> <span class=err>&gt;</span><span class=err>}</span><span class=err>}</span>
-</code></pre></td></tr></table></div></div><p><code>echarts</code> shortcode 还有以下命名参数:</p><ul><li><p><strong>width</strong> <em>[可选]</em> (<strong>第一个</strong>位置参数)： 数据可视化的宽度, 默认值是 <code>100%</code>.</p></li><li><p><strong>height</strong> <em>[可选]</em> (<strong>第二个</strong>位置参数)： 数据可视化的高度, 默认值是 <code>30rem</code>.</p></li></ul><h4 id=music>Music</h4><p><code>music</code> shortcode 基于 <a href=https://github.com/MoePlayer/APlayer target=_blank rel="noopener noreffer">APlayer</a>
+</code></pre></td></tr></table></div></div><h4 id=music>Music</h4><p><code>music</code> shortcode 基于 <a href=https://github.com/MoePlayer/APlayer target=_blank rel="noopener noreffer">APlayer</a>
 和 <a href=https://github.com/metowolf/MetingJS target=_blank rel="noopener noreffer">MetingJS</a>
 提供了一个内嵌的响应式音乐播放器，有三种使用方式</p><h5 id=自定义音乐-url>自定义音乐 URL</h5><p><code>music</code> shortcode 有以下命名参数来使用自定义音乐 URL:</p><ul><li><p><strong>server</strong> <em>[必需]</em>：音乐的链接.</p></li><li><p><strong>type</strong> <em>[可选]</em>：音乐的名称.</p></li><li><p><strong>artist</strong> <em>[可选]</em>：音乐的创作者.</p></li><li><p><strong>cover</strong> <em>[可选]</em>：音乐的封面链接.</p></li></ul><p>一个使用自定义音乐 URL 的 <code>music</code> 示例:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-markdown data-lang=markdown>{{&lt; music url=&#34;https://rainymood.com/audio1110/0.m4a&#34; name=rainymood artist=rainymood cover=&#34;https://rainymood.com/i/badge.jpg&#34; &gt;}}
-</code></pre></td></tr></table></div></div><p>呈现的输出效果如下:</p><meting-js url=https://rainymood.com/audio1110/0.m4a name=rainymood artist=rainymood cover=https://rainymood.com/i/badge.jpg theme=#a9a9b3></meting-js><h5 id=音乐平台-url-的自动识别>音乐平台 URL 的自动识别</h5><p><code>music</code> shortcode 有一个命名参数来使用音乐平台 URL 的自动识别:</p><ul><li><strong>auto</strong> <em>[必需]]</em> (<strong>第一个</strong>位置参数)：用来自动识别的音乐平台 URL, 支持 <code>netease</code>, <code>tencent</code> 和 <code>xiami</code> 平台.</li></ul><p>一个使用音乐平台 URL 的自动识别的 <code>music</code> 示例:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><p>呈现的输出效果如下:</p><meting-js server type id theme=#A9A9B3></meting-js><h5 id=音乐平台-url-的自动识别>音乐平台 URL 的自动识别</h5><p><code>music</code> shortcode 有一个命名参数来使用音乐平台 URL 的自动识别:</p><ul><li><strong>auto</strong> <em>[必需]]</em> (<strong>第一个</strong>位置参数)：用来自动识别的音乐平台 URL, 支持 <code>netease</code>, <code>tencent</code> 和 <code>xiami</code> 平台.</li></ul><p>一个使用音乐平台 URL 的自动识别的 <code>music</code> 示例:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-markdown data-lang=markdown>{{&lt; music auto=&#34;https://music.163.com/#/playlist?id=60198&#34; &gt;}}
 或者
 {{&lt; music &#34;https://music.163.com/#/playlist?id=60198&#34; &gt;}}
-</code></pre></td></tr></table></div></div><p>呈现的输出效果如下:</p><meting-js auto="https://music.163.com/#/playlist?id=60198" theme=#a9a9b3></meting-js><h5 id=自定义音乐平台-类型和-id>自定义音乐平台, 类型和 ID</h5><p><code>music</code> shortcode 有以下命名参数来使用自定义音乐平台:</p><ul><li><p><strong>server</strong> <em>[必需]</em> (<strong>第一个</strong>位置参数)：[<code>netease</code>, <code>tencent</code>, <code>kugou</code>, <code>xiami</code>, <code>baidu</code>]，音乐平台.</p></li><li><p><strong>type</strong> <em>[必需]</em> (<strong>第二个</strong>位置参数)：[<code>song</code>, <code>playlist</code>, <code>album</code>, <code>search</code>, <code>artist</code>]，音乐类型.</p></li><li><p><strong>id</strong> <em>[必需]</em> (<strong>第三个</strong>位置参数)：歌曲 ID, 或者播放列表 ID, 或者专辑 ID, 或者搜索关键词, 或者创作者 ID.</p></li></ul><p>一个使用自定义音乐平台的 <code>music</code> 示例:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</code></pre></td></tr></table></div></div><p>呈现的输出效果如下:</p><meting-js server type id theme=#A9A9B3></meting-js><h5 id=自定义音乐平台-类型和-id>自定义音乐平台, 类型和 ID</h5><p><code>music</code> shortcode 有以下命名参数来使用自定义音乐平台:</p><ul><li><p><strong>server</strong> <em>[必需]</em> (<strong>第一个</strong>位置参数)：[<code>netease</code>, <code>tencent</code>, <code>kugou</code>, <code>xiami</code>, <code>baidu</code>]，音乐平台.</p></li><li><p><strong>type</strong> <em>[必需]</em> (<strong>第二个</strong>位置参数)：[<code>song</code>, <code>playlist</code>, <code>album</code>, <code>search</code>, <code>artist</code>]，音乐类型.</p></li><li><p><strong>id</strong> <em>[必需]</em> (<strong>第三个</strong>位置参数)：歌曲 ID, 或者播放列表 ID, 或者专辑 ID, 或者搜索关键词, 或者创作者 ID.</p></li></ul><p>一个使用自定义音乐平台的 <code>music</code> 示例:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-markdown data-lang=markdown>{{&lt; music server=&#34;netease&#34; type=&#34;song&#34; id=&#34;1868553&#34; &gt;}}
 或者
 {{&lt; music netease song 1868553 &gt;}}
-</code></pre></td></tr></table></div></div><p>呈现的输出效果如下:</p><meting-js server=netease type=song id=1868553 theme=#a9a9b3></meting-js><h5 id=其它参数>其它参数</h5><p><code>music</code> shortcode 有一些可以应用于以上三种方式的其它命名参数:</p><ul><li><p><strong>theme</strong> *[可选]*音乐播放器的主题色, 默认值是 <code>#448aff</code>.</p></li><li><p><strong>fixed</strong> <em>[可选]</em>：是否开启固定模式, 默认值是 <code>false</code>.</p></li><li><p><strong>mini</strong> <em>[可选]</em>：是否开启迷你模式, 默认值是 <code>false</code>.</p></li><li><p><strong>autoplay</strong> <em>[可选]</em>：是否自动播放音乐, 默认值是 <code>false</code>.</p></li><li><p><strong>volume</strong> <em>[可选]</em>：第一次打开播放器时的默认音量, 会被保存在浏览器缓存中, 默认值是 <code>0.7</code>.</p></li><li><p><strong>mutex</strong> <em>[可选]</em>：是否自动暂停其它播放器, 默认值是 <code>true</code>.</p></li></ul><p><code>music</code> shortcode 还有一些只适用于音乐列表方式的其它命名参数:</p><ul><li><p><strong>loop</strong> <em>[可选]</em>：[<code>all</code>, <code>one</code>, <code>none</code>]，音乐列表的循环模式, 默认值是 <code>none</code>.</p></li><li><p><strong>order</strong> <em>[可选]</em>：[<code>list</code>, <code>random</code>]，音乐列表的播放顺序, 默认值是 <code>list</code>.</p></li><li><p><strong>list-folded</strong> <em>[可选]</em>：初次打开的时候音乐列表是否折叠, 默认值是 <code>false</code>.</p></li><li><p><strong>list-max-height</strong> <em>[可选]</em>：音乐列表的最大高度, 默认值是 <code>340px</code>.</p></li></ul><h4 id=typeit>Typeit</h4><p><code>typeit</code> shortcode 基于 <a href=https://typeitjs.com/ target=_blank rel="noopener noreffer">TypeIt</a>
+</code></pre></td></tr></table></div></div><p>呈现的输出效果如下:</p><meting-js server=netease type=song id=1868553 theme=#A9A9B3></meting-js><h5 id=其它参数>其它参数</h5><p><code>music</code> shortcode 有一些可以应用于以上三种方式的其它命名参数:</p><ul><li><p><strong>theme</strong> *[可选]*音乐播放器的主题色, 默认值是 <code>#448aff</code>.</p></li><li><p><strong>fixed</strong> <em>[可选]</em>：是否开启固定模式, 默认值是 <code>false</code>.</p></li><li><p><strong>mini</strong> <em>[可选]</em>：是否开启迷你模式, 默认值是 <code>false</code>.</p></li><li><p><strong>autoplay</strong> <em>[可选]</em>：是否自动播放音乐, 默认值是 <code>false</code>.</p></li><li><p><strong>volume</strong> <em>[可选]</em>：第一次打开播放器时的默认音量, 会被保存在浏览器缓存中, 默认值是 <code>0.7</code>.</p></li><li><p><strong>mutex</strong> <em>[可选]</em>：是否自动暂停其它播放器, 默认值是 <code>true</code>.</p></li></ul><p><code>music</code> shortcode 还有一些只适用于音乐列表方式的其它命名参数:</p><ul><li><p><strong>loop</strong> <em>[可选]</em>：[<code>all</code>, <code>one</code>, <code>none</code>]，音乐列表的循环模式, 默认值是 <code>none</code>.</p></li><li><p><strong>order</strong> <em>[可选]</em>：[<code>list</code>, <code>random</code>]，音乐列表的播放顺序, 默认值是 <code>list</code>.</p></li><li><p><strong>list-folded</strong> <em>[可选]</em>：初次打开的时候音乐列表是否折叠, 默认值是 <code>false</code>.</p></li><li><p><strong>list-max-height</strong> <em>[可选]</em>：音乐列表的最大高度, 默认值是 <code>340px</code>.</p></li></ul><h4 id=typeit>Typeit</h4><p><code>typeit</code> shortcode 基于 <a href=https://typeitjs.com/ target=_blank rel="noopener noreffer">TypeIt</a>
 提供了打字动画，只需将需要打字动画的内容插入 <code>typeit</code> shortcode 中即可。允许使用 <code>Markdown</code> 格式的简单内容, 并且 <strong>不包含</strong> 富文本的块内容, 例如图像等等&mldr;</p><p>一个 <code>typeit</code> 示例:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-markdown data-lang=markdown>{{&lt; typeit &gt;}}
 这一个带有基于 [<span class=nt>TypeIt</span>](<span class=na>https://typeitjs.com/</span>) 的 <span class=gs>**打字动画</span><span class=gs>**</span> 的 <span class=ge>*段落*</span>...
 {{&lt; /typeit &gt;}}
-</code></pre></td></tr></table></div></div><p>呈现的输出效果如下:</p><div class=typeit><div id=id-c6dd49></div></div><h4 id=image>Image</h4><p><code>image</code> shortcode 是 <code>figure</code> shortcode的替代，可以充分利用 <a href=https://github.com/aFarkas/lazysizes target=_blank rel="noopener noreffer">lazysizes</a>
+</code></pre></td></tr></table></div></div><p>呈现的输出效果如下:</p><div class=typeit><p id=id-ca7b50></p></div><h4 id=image>Image</h4><p><code>image</code> shortcode 是 <code>figure</code> shortcode的替代，可以充分利用 <a href=https://github.com/aFarkas/lazysizes target=_blank rel="noopener noreffer">lazysizes</a>
 和 <a href=https://github.com/sachinchoolur/lightgallery.js target=_blank rel="noopener noreffer">lightgallery.js</a>
 两个依赖库.</p><p>主要使用的参数如下:</p><ul><li><p><strong>src</strong> <em>[必需]</em> (<strong>第一个</strong>位置参数)：图片的 URL.</p></li><li><p><strong>alt</strong> <em>[可选]</em> (<strong>第二个</strong>位置参数)：图片无法显示时的替代文本, 默认值是 <strong>src</strong> 参数的值.</p></li><li><p><strong>caption</strong> <em>[可选]</em> (<strong>第三个</strong>位置参数)：图片标题.</p></li><li><p><strong>title</strong> <em>[可选]</em>：当悬停在图片上会显示的提示.</p></li><li><p><strong>class</strong> <em>[可选]</em>：HTML <code>figure</code> 标签的 <code>class</code> 属性.</p></li><li><p><strong>src_s</strong> <em>[可选]</em>：图片缩略图的 URL, 用在画廊模式中, 默认值是 <strong>src</strong> 参数的值.</p></li><li><p><strong>src_l</strong> <em>[可选]</em>：高清图片的 URL, 用在画廊模式中, 默认值是 <strong>src</strong> 参数的值.</p></li><li><p><strong>height</strong> <em>[可选]</em>：图片的 <code>height</code> 属性.</p></li><li><p><strong>width</strong> <em>[可选]</em>：图片的 <code>width</code> 属性.</p></li><li><p><strong>linked</strong> <em>[可选]</em>：图片是否需要被链接, 默认值是 <code>true</code>.</p></li><li><p><strong>rel</strong> <em>[可选]</em>：HTML <code>a</code> 标签 的 <code>rel</code> 补充属性, 仅在 <strong>linked</strong> 属性设置成 <code>true</code> 时有效.</p></li><li><p><strong>large</strong> <em>[可选]</em>：图片是否是大尺寸的, 用来加载动画, 仅在 <strong>linked</strong> 属性设置成 <code>false</code> 时有效.</p></li></ul><p>一个 <code>image</code> 示例:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-markdown data-lang=markdown>{{&lt; image src=&#34;/images/theme-documentation-extended-shortcodes/lighthouse.jpg&#34; caption=&#34;Lighthouse (`image`)&#34; src-s=&#34;/images/theme-documentation-extended-shortcodes/lighthouse-small.jpg&#34; src-l=&#34;/images/theme-documentation-extended-shortcodes/lighthouse-large.jpg&#34; &gt;}}
@@ -816,4 +201,4 @@ graph LR;
 <a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:3 role=doc-endnote><p>This is a footnote <a href=#fnref:3 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li id=fn:4 role=doc-endnote><p><a href=https://www.google.com/>https://www.google.com/</a> <a href=#fnref:4 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></section></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>The article was updated on 2020-02-17</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=https://shuzang.github.io/hugo-blog-article-write/index.md target=_blank>Read Markdown</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://shuzang.github.io/hugo-blog-article-write/ data-title=hugo搭建个人博客2-文章写作 data-hashtags=Hugo><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://shuzang.github.io/hugo-blog-article-write/ data-hashtag=Hugo><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="Share on Reddit" data-sharer=reddit data-url=https://shuzang.github.io/hugo-blog-article-write/><i class="fab fa-reddit fa-fw"></i></a></span></div></div></div><div class=post-info-more><section><span><a href=/tags/hugo><i class="fas fa-tag fa-fw"></i>Hugo</a>
 </span>&nbsp;</section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=https://shuzang.github.io/smart-contract-based-access-control-for-the-internet-of-things/ class=prev rel=prev title="Smart Contract-Based Access Control for the Internet of Things"><i class="fas fa-angle-left fa-fw"></i>Smart Contract-Based Access Control for the Internet of Things</a>
 <a href=https://shuzang.github.io/a-review-on-the-application-of-blockchain-to-the-next-generation/ class=next rel=next title="A Review on the Application of Blockchain to the Next Generation">A Review on the Application of Blockchain to the Next Generation<i class="fas fa-angle-right fa-fw"></i></a></div></div><div class=comment><div id=disqus_thread></div><noscript>Please enable JavaScript to view the <a href=https://disqus.com/?ref_noscript>comments powered by Disqus.</a></noscript><div id=valine></div><script>document.addEventListener("DOMContentLoaded",function(event){new Valine({el:'#valine',appId:'GteMvevTjOBmhvFh2QGsopGO-gzGzoHsz',appKey:'fL4SYl06GIe012PswFdY17VC',placeholder:'Your comment ...',verify:true,avatar:'hide',pageSize:10,lang:'en',visitor:true,recordIP:true,});});</script><noscript>Please enable JavaScript to view the <a href=https://valine.js.org/>comments powered by Valine.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> | Theme - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a></div><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://shuzang.github.io/about/ target=_blank>shuzang</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><a href=# class="dynamic-to-top animated faster" id=dynamic-to-top><span>&nbsp;</span>
-</a><script>document.addEventListener('DOMContentLoaded',function(){lightGallery(document.getElementById('content'),{selector:'.lightgallery',speed:400,hideBarsDelay:2000,thumbnail:true,exThumbImage:'data-thumbnail',thumbWidth:80,thumbContHeight:80,});});</script><script>window.typeitArr=[["id-c6dd49"]];</script><script>document.addEventListener('DOMContentLoaded',function(){renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false},],strict:false,});});</script><script>window.mermaidArr=["id-da2ac9"];</script><script>window.contentMap={"id-c6dd49":"这一个带有基于 \u003ca href=\"https://typeitjs.com/\" target=\"_blank\" rel=\"noopener noreffer\"\u003eTypeIt\u003c/a\u003e\n 的 \u003cstrong\u003e打字动画\u003c/strong\u003e 的 \u003cem\u003e段落\u003c/em\u003e\u0026hellip;","id-da2ac9":"graph LR;\n    A[Hard edge] --\u003e|Link text| B(Round edge)\n    B --\u003e C{Decision}\n    C --\u003e|One| D[Result one]\n    C --\u003e|Two| E[Result two]"};</script><link href=https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css rel=stylesheet><link href=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.css rel=stylesheet><link href=https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.css rel=stylesheet><link rel=stylesheet href=/lib/valine/dark.210f14917270f9f7ab9803acf878a152fb54ecb3003722bbee3adcd1d6e70fc1.css integrity="sha256-IQ8UkXJw+fermAOs+HihUvtU7LMANyK77jrc0dbnD8E="><link rel=stylesheet href=/lib/lightgallery/lightgallery.min.a0f67639490aba5d9a250783c0aa0ed69f83a6f151fb0d7b9fb617c9dbc54565.css integrity="sha256-oPZ2OUkKul2aJQeDwKoO1p+DpvFR+w17n7YXydvFRWU="><link rel=stylesheet href=/lib/mermaid/mermaid.09c6c87e3f704711f046f42ab95a68a7f81e573f2b740e8fd718a5b49c8f06f9.css integrity="sha256-CcbIfj9wRxHwRvQquVpop/geVz8rdA6P1xiltJyPBvk="><link rel=stylesheet href=/lib/aplayer/dark.cf3d10211c52ef53113d7dc3ab708c366141ee4459043a50b02215bc8a2ef76a.css integrity="sha256-zz0QIRxS71MRPX3Dq3CMNmFB7kRZBDpQsCIVvIou92o="><script src=https://dillonzq.disqus.com/embed.js></script><script src=https://cdn.bootcss.com/smooth-scroll/16.1.0/smooth-scroll.js></script><script src=https://cdn.bootcss.com/lazysizes/5.1.2/lazysizes.min.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/auto-render.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/mhchem.js></script><script src=https://cdn.bootcss.com/mermaid/8.3.1/mermaid.js></script><script src=https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js></script><script src=/lib/valine/Valine.min.cecee02afc36ef02fd550a02f12abfdd057905e78aa4439749675fce96148861.js integrity="sha256-zs7gKvw27wL9VQoC8Sq/3QV5BeeKpEOXSWdfzpYUiGE="></script><script src=/lib/sharer/sharer.min.9c88f86c7f0820287113f6236200459832693656e80d7556cc80a93dfbd45813.js integrity="sha256-nIj4bH8IIChxE/YjYgBFmDJpNlboDXVWzICpPfvUWBM="></script><script src=/lib/lightgallery/lightgallery.min.7a84c63ab156d68e4a7269487c9c65a4eb34b0c7864f2d3fd2b87f7c664480d3.js integrity="sha256-eoTGOrFW1o5KcmlIfJxlpOs0sMeGTy0/0rh/fGZEgNM="></script><script src=/lib/lightgallery/lg-thumbnail.min.eab31af8f90835b7ab674b2dd2474841039bc01022aa312f80dde6e22fde58d7.js integrity="sha256-6rMa+PkINberZ0st0kdIQQObwBAiqjEvgN3m4i/eWNc="></script><script src=/lib/lightgallery/lg-zoom.min.e3a7e6bb4a69f8627654ba9e0ab1252971bcfb400538dbb0605db9a3342ce5b9.js integrity="sha256-46fmu0pp+GJ2VLqeCrElKXG8+0AFONuwYF25ozQs5bk="></script><script src=/lib/typeit/typeit.min.e0475fae9716b6a9b04351483a3fd2cd2a42e9ab286da89d2e97de5ecbdaac8e.js integrity="sha256-4EdfrpcWtqmwQ1FIOj/SzSpC6asobaidLpfeXsvarI4="></script><script src=/lib/meting/Meting.min.94e50ffa5f6a2db31368260a2cd74beac05917ef0966b1715e65eb55bcd2823d.js integrity="sha256-lOUP+l9qLbMTaCYKLNdL6sBZF+8JZrFxXmXrVbzSgj0="></script><script src=/js/theme.min.1482fc67bfa2c3b8cebe476d0037b9321b5b7a8a1525b547b94143948be90e9e.js integrity="sha256-FIL8Z7+iw7jOvkdtADe5MhtbeooVJbVHuUFDlIvpDp4="></script></body></html>
+</a><script>document.addEventListener('DOMContentLoaded',function(){lightGallery(document.getElementById('content'),{selector:'.lightgallery',speed:400,hideBarsDelay:2000,thumbnail:true,exThumbImage:'data-thumbnail',thumbWidth:80,thumbContHeight:80,});});</script><script>window.typeitArr=[["id-ca7b50"]];</script><script>document.addEventListener('DOMContentLoaded',function(){renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'\\[',right:'\\]',display:true},{left:'$',right:'$',display:false},{left:'\\(',right:'\\)',display:false},{left:'$',right:'$',display:false},]});});</script><link href=https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css rel=stylesheet><link href=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.css rel=stylesheet><link href=https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.css rel=stylesheet><link rel=stylesheet href=/lib/valine/dark.210f14917270f9f7ab9803acf878a152fb54ecb3003722bbee3adcd1d6e70fc1.css integrity="sha256-IQ8UkXJw+fermAOs+HihUvtU7LMANyK77jrc0dbnD8E="><link rel=stylesheet href=/lib/lightgallery/lightgallery.min.a0f67639490aba5d9a250783c0aa0ed69f83a6f151fb0d7b9fb617c9dbc54565.css integrity="sha256-oPZ2OUkKul2aJQeDwKoO1p+DpvFR+w17n7YXydvFRWU="><link rel=stylesheet href=/lib/aplayer/dark.cf3d10211c52ef53113d7dc3ab708c366141ee4459043a50b02215bc8a2ef76a.css integrity="sha256-zz0QIRxS71MRPX3Dq3CMNmFB7kRZBDpQsCIVvIou92o="><script src=https://dillonzq.disqus.com/embed.js></script><script src=https://cdn.bootcss.com/smooth-scroll/16.1.0/smooth-scroll.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/auto-render.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/copy-tex.js></script><script src=https://cdn.bootcss.com/KaTeX/0.11.1/contrib/mhchem.js></script><script src=https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js></script><script src=/lib/valine/Valine.min.cecee02afc36ef02fd550a02f12abfdd057905e78aa4439749675fce96148861.js integrity="sha256-zs7gKvw27wL9VQoC8Sq/3QV5BeeKpEOXSWdfzpYUiGE="></script><script src=/lib/sharer/sharer.min.9c88f86c7f0820287113f6236200459832693656e80d7556cc80a93dfbd45813.js integrity="sha256-nIj4bH8IIChxE/YjYgBFmDJpNlboDXVWzICpPfvUWBM="></script><script src=/lib/lightgallery/lightgallery.min.7a84c63ab156d68e4a7269487c9c65a4eb34b0c7864f2d3fd2b87f7c664480d3.js integrity="sha256-eoTGOrFW1o5KcmlIfJxlpOs0sMeGTy0/0rh/fGZEgNM="></script><script src=/lib/lightgallery/lg-thumbnail.min.eab31af8f90835b7ab674b2dd2474841039bc01022aa312f80dde6e22fde58d7.js integrity="sha256-6rMa+PkINberZ0st0kdIQQObwBAiqjEvgN3m4i/eWNc="></script><script src=/lib/lightgallery/lg-zoom.min.e3a7e6bb4a69f8627654ba9e0ab1252971bcfb400538dbb0605db9a3342ce5b9.js integrity="sha256-46fmu0pp+GJ2VLqeCrElKXG8+0AFONuwYF25ozQs5bk="></script><script src=/lib/typeit/typeit.min.e0475fae9716b6a9b04351483a3fd2cd2a42e9ab286da89d2e97de5ecbdaac8e.js integrity="sha256-4EdfrpcWtqmwQ1FIOj/SzSpC6asobaidLpfeXsvarI4="></script><script src=/lib/meting/Meting.min.94e50ffa5f6a2db31368260a2cd74beac05917ef0966b1715e65eb55bcd2823d.js integrity="sha256-lOUP+l9qLbMTaCYKLNdL6sBZF+8JZrFxXmXrVbzSgj0="></script><script src=/js/theme.min.1482fc67bfa2c3b8cebe476d0037b9321b5b7a8a1525b547b94143948be90e9e.js integrity="sha256-FIL8Z7+iw7jOvkdtADe5MhtbeooVJbVHuUFDlIvpDp4="></script></body></html>
