@@ -37,8 +37,8 @@ tags: []
 categories: []
 hiddenFromHomePage: false
 
-featuredImage: ""
-featuredImagePreview: ""
+featured_image: ""
+featured_image_preview: ""
 
 toc: false
 autoCollapseToc: true
@@ -482,42 +482,6 @@ https://www.bilibili.com/video/av36570401?p=3
 {{< typeit >}}
 这一个带有基于 [TypeIt](https://typeitjs.com/) 的 **打字动画** 的 *段落*...
 {{< /typeit >}}
-
-#### Image
-
-`image` shortcode 是 `figure` shortcode的替代，可以充分利用 [lazysizes](https://github.com/aFarkas/lazysizes) 和 [lightgallery.js](https://github.com/sachinchoolur/lightgallery.js) 两个依赖库.
-
-主要使用的参数如下:
-
-* **src** *[必需]* (**第一个**位置参数)：图片的 URL.
-
-* **alt** *[可选]* (**第二个**位置参数)：图片无法显示时的替代文本, 默认值是 **src** 参数的值.
-
-* **caption** *[可选]* (**第三个**位置参数)：图片标题.
-
-* **title** *[可选]*：当悬停在图片上会显示的提示.
-
-* **class** *[可选]*：HTML `figure` 标签的 `class` 属性.
-
-* **src_s** *[可选]*：图片缩略图的 URL, 用在画廊模式中, 默认值是 **src** 参数的值.
-
-* **src_l** *[可选]*：高清图片的 URL, 用在画廊模式中, 默认值是 **src** 参数的值.
-
-* **height** *[可选]*：图片的 `height` 属性.
-
-* **width** *[可选]*：图片的 `width` 属性.
-
-* **linked** *[可选]*：图片是否需要被链接, 默认值是 `true`.
-
-* **rel** *[可选]*：HTML `a` 标签 的 `rel` 补充属性, 仅在 **linked** 属性设置成 `true` 时有效.
-
-* **large** *[可选]*：图片是否是大尺寸的, 用来加载动画, 仅在 **linked** 属性设置成 `false` 时有效.
-
-一个 `image` 示例:
-
-```markdown
-{{</* image src="/images/theme-documentation-extended-shortcodes/lighthouse.jpg" caption="Lighthouse (`image`)" src-s="/images/theme-documentation-extended-shortcodes/lighthouse-small.jpg" src-l="/images/theme-documentation-extended-shortcodes/lighthouse-large.jpg" */>}}
-```
 
 ## 6. 写作工具
 
