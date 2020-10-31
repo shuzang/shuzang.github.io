@@ -6,8 +6,7 @@ tags: [Hugo]
 categories: [爱编程爱技术的孩子]
 
 autoCollapseToc: false
-slug: Hugo blog advanced setup
-featuredImage: /images/hugo搭建个人博客3-进阶设置/一艘被打捞上来的沉船残骸.jpg 
+slug: Hugo blog-advanced setup
 ---
 
 本文是 Hugo 使用记录的第二篇，介绍如何为Hugo开启更多的功能。
@@ -123,6 +122,7 @@ categories: [爱编程爱技术的孩子]
 其中，example.img为图片名。至此为止，网页中可以正常显示插入的图片，但是Typora中无法显示图片，因此我们需要设置Typora的图片根目录，方法是在文章开头的YAML头中添加如下字段
 
 ```yaml 
+
 ```
 
 路径根据自己的文章位置而定，也可以在工具栏选择「格式—>图像—>设置图片根目录」，产生的效果是相同的，也是在文章头部添加该字段。

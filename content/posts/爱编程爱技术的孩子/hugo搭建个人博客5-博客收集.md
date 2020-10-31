@@ -6,7 +6,6 @@ tags: [Hugo]
 categories: [爱编程爱技术的孩子]
 
 slug: Hugo blog themes collection
-featuredImage: https://cdn.wispx.cn/wallpaper/2018/07/08/8262676104910bcced443f4642bb2d22.jpg!wallpaper.detail
 ---
 
 本文用来收集喜欢的主题和有参考价值的博客(使用Hexo或Hugo的)。

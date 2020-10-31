@@ -1,13 +1,12 @@
 ---
 title: hugo搭建个人博客1-基础建站
 date: 2019-04-26T10:45:00+08:00
-lastmod: 2020-04-05
+lastmod: 2020-10-31
 tags: [Hugo]
 categories: [爱编程爱技术的孩子]
 
 autoCollapseToc: false
-slug: Hugo builds personal blog 1
-featuredImage: /images/hugo搭建个人博客1-基础建站/拉德克利夫图书馆.jpg 
+slug: Hugo blog-build personal blog
 ---
 
 [Hugo](https://gohugo.io/) 是由 Go 语言实现的静态网站生成器，可以快速建立一个静态网站，虽然多数情况下用来搭建个人博客，但也可以用作展示在线书籍、个人简历等。在使用 Hugo 之前，我一直使用 Hexo 搭建个人博客，促使我更换工具的原因主要有两个
