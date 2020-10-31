@@ -179,10 +179,6 @@ dateFormatToUse = "2006-01-02"
     aplayerJS = '<script src="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js"></script>'
     metingJS = ''
 
-  # Gravatar Info for preferred avatar in home page
-  [params.gravatar]
-    email = ""
-
   # Social Info in home page
   [params.social]
     Email = "lylw1996@qq.com"
