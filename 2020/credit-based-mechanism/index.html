@@ -1,0 +1,217 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>区块链实验7-恶意行为检测机制设计 | Shuzang's Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><link rel=prev href=https://shuzang.github.io/2020/2018-2020-research-history/><link rel=next href=https://shuzang.github.io/2020/algorithm-dynamic-programming/><link rel=canonical href=https://shuzang.github.io/2020/credit-based-mechanism/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><meta name=twitter:card content="summary"><meta name=twitter:title content="区块链实验7-恶意行为检测机制设计"><meta name=twitter:description content="吸收了一些新论文的想法，对原访问控制系统功能做了补充，添加了恶意行为检测（或者称为动态访问控制），目的是减少恶意行为，增加合法行为在区块链中得到确认的几率。所有调整总结查看 附录I。"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"区块链实验7-恶意行为检测机制设计","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/2020\/credit-based-mechanism\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"科研记录","wordcount":12028,"url":"https:\/\/shuzang.github.io\/2020\/credit-based-mechanism\/","datePublished":"2020-04-28T00:00:00\x2b00:00","dateModified":"2020-10-22T00:00:00\x2b00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"shuzang","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/logo.png","width":127,"height":40}},"description":""}</script><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css></head><body><script>window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><nav class=navbar><div class=top-scroll-bar></div><div class=navbar-container><div class="navbar-header animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=navbar-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><nav class=navbar-mobile><div class=top-scroll-bar></div><div class=navbar-container><div class=navbar-header><div class="navbar-header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=navbar-menu id=mobile-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><main class=main><div class=container><article class=page><h1 class="post-title animated flipInX">区块链实验7-恶意行为检测机制设计</h1><div class=post-meta><i class="far fa-calendar-alt fa-fw"></i>published on&nbsp;<time datetime=2020-04-28>2020-04-28</time>&nbsp;
+<i class="fas fa-pencil-alt fa-fw"></i>about 12028 words&nbsp;<span id=/2020/credit-based-mechanism/ class=leancloud_visitors data-flag-title=区块链实验7-恶意行为检测机制设计>
+<i class="far fa-eye fa-fw"></i><span class=leancloud-visitors-count></span>views
+</span>&nbsp;<span class=post-category><i class="far fa-folder fa-fw"></i>included in&nbsp;<a href=https://shuzang.github.io/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/>研究生的区块链学习之路</a>&nbsp;</span></div><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#1-背景>1. 背景</a><ul><li><a href=#11-结合方式>1.1 结合方式</a></li><li><a href=#12-好处和困难>1.2 好处和困难</a></li></ul></li><li><a href=#2-相关工作>2. 相关工作</a></li><li><a href=#3-方案>3. 方案</a><ul><li><a href=#31-合约架构>3.1 合约架构</a></li><li><a href=#32-acs的新功能>3.2 ACS的新功能</a></li><li><a href=#33-恶意行为检测>3.3 恶意行为检测</a><ul><li><a href=#331-信誉算法>3.3.1 信誉算法</a></li><li><a href=#332-一些考虑>3.3.2 一些考虑</a></li></ul></li></ul></li><li><a href=#4-性能测试的指标>4. 性能测试的指标</a><ul><li><a href=#41-访问控制系统>4.1 访问控制系统</a></li><li><a href=#42-恶意行为检测>4.2 恶意行为检测</a></li></ul></li><li><a href=#5-实验>5. 实验</a><ul><li><a href=#51-合约测试>5.1 合约测试</a></li><li><a href=#52-合约审计>5.2 合约审计</a></li></ul></li><li><a href=#附录i-所做调整>附录I 所做调整</a></li><li><a href=#附录ii-参考的信誉算法>附录II 参考的信誉算法</a></li><li><a href=#附录iii-整数信誉算法>附录III 整数信誉算法</a></li></ul></nav></div></div><div class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
+<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><a href=#1-背景>1. 背景</a><ul><li><a href=#11-结合方式>1.1 结合方式</a></li><li><a href=#12-好处和困难>1.2 好处和困难</a></li></ul></li><li><a href=#2-相关工作>2. 相关工作</a></li><li><a href=#3-方案>3. 方案</a><ul><li><a href=#31-合约架构>3.1 合约架构</a></li><li><a href=#32-acs的新功能>3.2 ACS的新功能</a></li><li><a href=#33-恶意行为检测>3.3 恶意行为检测</a><ul><li><a href=#331-信誉算法>3.3.1 信誉算法</a></li><li><a href=#332-一些考虑>3.3.2 一些考虑</a></li></ul></li></ul></li><li><a href=#4-性能测试的指标>4. 性能测试的指标</a><ul><li><a href=#41-访问控制系统>4.1 访问控制系统</a></li><li><a href=#42-恶意行为检测>4.2 恶意行为检测</a></li></ul></li><li><a href=#5-实验>5. 实验</a><ul><li><a href=#51-合约测试>5.1 合约测试</a></li><li><a href=#52-合约审计>5.2 合约审计</a></li></ul></li><li><a href=#附录i-所做调整>附录I 所做调整</a></li><li><a href=#附录ii-参考的信誉算法>附录II 参考的信誉算法</a></li><li><a href=#附录iii-整数信誉算法>附录III 整数信誉算法</a></li></ul></nav></div></details></div><div class=post-content><p>吸收了一些新论文的想法，对原访问控制系统功能做了补充，添加了恶意行为检测（或者称为动态访问控制），目的是减少恶意行为，增加合法行为在区块链中得到确认的几率。所有调整总结查看 <a href=#jump>附录I</a>。</p><a class=post-dummy-target id=1-背景></a><h2>1. 背景</h2><p>Blockchain, IoT, Access Control 是核心的三个关键词。该领域的研究中，大部分论文介绍背景从 IoT+Access Control 起步，介绍区块链能带来的好处，少部分从 Blockchain+IoT 起步，介绍访问控制对场景的必要性，事实上，我们研一开始的研究路径就是这样，先考虑 Blockchain 用于 IoT 有哪些好处，然后才选择了 Acccess Control 子方向。</p><p>前者可以参考之前写好的论文，或者该博客的另外一篇文章 <a href=https://shuzang.github.io/blockchain-based-access-control-for-iot/ target=_blank>区块链用于物联网访问控制</a>；后者可以参考 <a href=https://www.ibm.com/cn-zh/blockchain/solutions/food-trust target=_blank>IBM Food Trust</a> 项目的介绍，或者查看本系列上一篇文章 <a href=https://shuzang.github.io/analysis-and-selection-of-experimental-scenes target=_blank>实验场景的分析与选择</a> 的第三部分。</p><p>无论从哪一个角度，亦或者从更直观的现象看（该方向论文超过 200 篇），都能得出一个结论：这三者的结合是必要的，至少是益处更多的。</p><a class=post-dummy-target id=11-结合方式></a><h3>1.1 结合方式</h3><a class=post-dummy-target id=fnref:1></a><p>我们之前遵循的分类是史锦山等在一篇综述<sup><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>中提出的，该论文将这三种的结合分为两类：</p><ol><li>区块链与已有的物联网访问控制模型结合，区块链充当可信实体；</li><li>新的完全基于区块链的物联网访问控制模型，该分类又包括两种<ul><li>基于区块链交易或脚本机制实现的访问控制</li><li>基于智能合约实现的访问控制</li></ul></li></ol><p>然而我们在研究中逐渐意识到，第二种并不能作为一个单独的分类。基于区块链交易或脚本实现的访问控制本质是基于 token 在区块链中的实现，基于智能合约实现的访问控制，多数依然采用了传统 ACL、RBAC、ABAC、UCON、CapBAC 等的思想，仅仅是利用智能合约重新做了实现，是实现手段的变更，实现的手段从传统的 XACML、UMA 等变到了智能合约，只不过这种实现手段附带了区块链的优点。因此研究者们所做的工作，是探索传统访问控制思想与现有实现手段（区块链、智能合约）之间的高效结合方式，探索如何充分利用区块链的优点，以及尽可能消除区块链所引入的困难。</p><p>明白这一点对我们主要有如下帮助</p><ol><li>区块链和传统访问控制模型的简单结合并不能看作一个创新型的工作，即不能在用智能合约实现了 UCON 模型就声称自己提出了一种新的方案，重点在于你的结合和其它结合的区别，如何更高效的利用了区块链的优点，或者如何更有力的消除了区块链的缺点；</li><li>如果之前没有人在区块链中实现传统访问控制模型，而你做了，可以算创新，因为要真正实现这一点需要做很多的工作（尤其是没有前人的经验借鉴是比较难的），但是这一点现在基本不太可能，因为传统模型只有几种，现在基本都有了区块链的实现；</li><li>大家所做的更多的是系统设计性的工作，而非算法改进，因为采用一种新的手段实现已有模型很少涉及算法，更多的是通过合约结构或合约功能的某种设计和实现，做了一定的优化；</li><li>应当充分吸收传统访问控制的优点。传统访问控制经历了多年的发展，在某些实现细节上有很多值得借鉴的设计，当换了一种新的实现手段，这些设计都可以移用过来。目前该方向的研究者大部分都是从区块链入手，考虑访问控制的实现，少有专业的访问控制方向的研究者转向区块链的实现，因此大部分的方案在功能完整性方面甚至都存在一定的不足，无法做全局的考虑。</li></ol><p>下一小节我们描述区块链这种手段为物联网访问控制带来的优点和引入的困难，这将是我们进行方案优化和性能评估的凭借。</p><a class=post-dummy-target id=12-好处和困难></a><h3>1.2 好处和困难</h3><p>区块链的引入解决的核心问题是<strong>信任</strong>。链式结构和共识算法带来的不可篡改、透明、便于审计等特性，从而<strong>提高了系统的安全性</strong>，最终帮助我们搭建了协作实体之间的信任关系。基于这种信任关系，我们可以搭建一个统一的平台，从而又带来效率的提高。</p><p>安全性又包含两个方面，一个是系统运行过程中对各种攻击的抵御，这是现有物联网系统急缺的能力，这部分的研究主要就是区块链能抵御哪些攻击，添加某些设计又可以抵御哪些新的攻击，逐步完善它的能力；另一个是系统出问题后快速追查出问题的地方，这一点从供应链角度更好理解，建立了统一的平台后，各参与者直接的交接完全数字化和透明，减少了欺诈风险，同时由于数字记录不可篡改，出现问题时可以快速追查到出问题的环节。</p><p>区块链还引入了两个优点：<strong>自动化</strong>和<strong>分布式</strong>。自动化是智能合约带来的，基于智能合约图灵完备的能力提高各参与者之间的交接效率，推进数字化进程；分布式是区块链的实现方式带来的，解决了传统集中式方案的单点故障问题。尽管这两个优点是解决信任问题附带的产物，但如果充分利用这两个优点，同样可以是我们考虑的问题。</p><p>区块链带来的困难包括</p><ol><li>实时性。某些场景下可能对实时性有一定的要求，但是，一个合法的交易在区块链中得到确认，需要经历被收集到区块、广播到区块链网络、经由大多数节点验证等过程，与传统方案相比，区块链方案显然有一定的差距；</li><li>吞吐量。同样的原因，区块链的吞吐量相比于传统方案有一定的差距，但影响吞吐量的决定性因素是区块链平台和共识算法的选择，架构设计产生的影响不大；</li><li>IoT 设备的资源（能力）限制。运行共识算法需要一定的计算能力，不是所有的 IoT 设备都有这样的能力；</li><li>IoT 环境的异构性。IoT 设备种类、软件平台、网络环境等千差万别，不是所有 IoT 设备都可以实用区块链客户端，并且可以实时地持续接入区块链网络；</li><li>区块链存储的昂贵性。在区块链中存储大量数据会导致区块链快速增长，对成员节点设备的存储性能是一个考验，因此应当尽量避免这一点；</li><li>成本问题。例如 Ethereum 中部署合约及与合约交互都需要以太币，更少的 Gas 消耗保证了更低的成本。</li></ol><p>我们的解决思路</p><ol><li>实时性和吞吐量：平台和共识选择；</li><li>设备资源限制和环境异构性：分层管理；</li><li>存储问题：调整合约架构</li></ol><a class=post-dummy-target id=fnref:3></a><p>然而，基于智能合约实现的系统中，恶意的行为（如短时间频繁的调用）仍可能产生过量的交易，从而降低合法交易被区块链收集的概率，或者使得确认时间延长，而区块链本身无法对这类行为做出规避。另一方面，物联网环境是一个动态变化的环境，基于属性的访问控制缺乏对这些变化的应对能力，我们应针对操作的严重性、资源的敏感性、用户的访问历史记录等信息，对决策做出动态的调整。目前，只有少数Blockchain-IoT 访问控制的论文结合了动态访问控制的思想<sup id=fnref:2><a href=#fn:2 class=footnote-ref role=doc-noteref>2</a></sup> <sup><a href=#fn:3 class=footnote-ref role=doc-noteref>3</a></sup>。</p><a class=post-dummy-target id=2-相关工作></a><h2>2. 相关工作</h2><a class=post-dummy-target id=fnref:4></a><p>Huang等<sup><a href=#fn:4 class=footnote-ref role=doc-noteref>4</a></sup> 在论文中设计了一个基于信誉的 PoW 共识机制来取得效率与安全的平衡。首先为节点 $i$ 设置一个信誉值属性 $Cr_i$，该值会随着节点的行为实时的变化。正常的行为，如遵守系统规则发送交易，会随着时间的推移使信誉值逐步增加，与之相反，节点产生异常行为会导致信誉值下降。PoW 机制的难度根据每个节点的信誉值自调整，信誉值越低，运行 PoW 算法花费的时间越长。因此，诚实的节点消耗的资源更少，恶意节点攻击所需的花费更多。</p><p>在该论文中，作者定义的攻击模型有两个（即两种恶意行为）：</p><ol><li>Lazy Tips：懒惰的节点指那些总是验证固定的以前的交易，而不去验证最新的交易的节点。例如，恶意实体可以通过发出许多验证固定交易对的交易来人为地扩大<strong><ruby>提示<rt>tips</rt></ruby></strong>的数量。这会使其它节点有更高的概率选中这些提示，而丢弃属于诚实节点的提示</li><li>Double-spending：通过在前一次花费被验证之前提交多个交易，恶意节点希望将一枚代币花费两次或多次，这就是双花问题。尽管这样的行为会被共识机制检测到并撤销，但它降低了系统效率，因为其它相关的交易也会被撤销重新执行。</li></ol><p>更具体的信誉值增减算法的设计，可以参考附录II。但作者设计的算法与 PoW 结合程度较深，对恶意行为的惩罚依赖于难度值得调整，无法在 BFT 类共识算法中继续得到使用，同时，对于智能合约中由于函数调用产生的一些恶意行为，也难以阻止。</p><a class=post-dummy-target id=fnref:3></a><p>Mohammed等<sup><a href=#fn:3 class=footnote-ref role=doc-noteref>3</a></sup> 在 RBAC 中结合了信誉机制来消除恶意行为的影响，但该方案依赖于一个中心化的证书权威，恶意行为主要指的是证书的不一致和证书过期。</p><p>待补充&mldr;</p><a class=post-dummy-target id=3-方案></a><h2>3. 方案</h2><p>首先介绍调整以后整体的合约架构，每种合约的功能，然后介绍原先的访问控制系统做了哪些改动，最后介绍恶意行为检测机制的设计。</p><a class=post-dummy-target id=31-合约架构></a><h3>3.1 合约架构</h3><p>添加恶意行为检测部分后，将原系统中的注册合约（RC）更名为管理合约（MC），将原系统中的判决合约（JC）更名为信誉合约（RC）。因此，当前系统中的三种合约分别为：管理合约（Management Contract, MC），访问控制合约（Access Control Contract, ACC）和信誉合约（Reputation Contract, RC），这几种合约间的调用关系如下图</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/%E5%90%88%E7%BA%A6%E6%9E%B6%E6%9E%84.png alt=合约架构 class=lazyload><figcaption class=image-caption>合约架构</figcaption></figure></p><p>管理合约 MC 负责管理其它合约和管理设备属性。ACC 在进行访问控制决策时，会首先从 MC 获取访问者的相关属性，然后和定义的策略进行匹配。对 MC 相关函数的调用操作会产生相应的行为日志，并自动提交给 RC 供分析。在 MC 中注册的所有设备都新增了一个 TimeofUnblocked 固定属性，用于设置阻塞终止时间，该字段只能被信誉合约更新，用户和管理中都无法改动。</p><p>访问控制合约 ACC 负责管理 object 属性、管理策略和执行访问控制决策。对 ACC 相关函数的调用，其行为日志也会提交给 RC 供分析。在执行访问控制决策时，会首先从 MC 读取访问者的 TimeofUnblocked 字段，查看是否大于当前时间，如果大于则直接阻止该请求，不会进入区块链网络。</p><p>信誉合约 RC 负责根据 MC 和 ACC 提交的行为记录计算信誉函数的值，并根据该值计算阻塞终止时间，最后调用 MC 的相关函数更新对应设备的 TimeofUnblocked 字段。</p><a class=post-dummy-target id=32-acs的新功能></a><h3>3.2 ACS的新功能</h3><p>我们为访问控制系统（ACS）增加了两个新的功能，主要为了完善原系统没有考虑到的问题。</p><a class=post-dummy-target id=fnref:5></a><p>首先是策略冲突的解决机制，指的是当定义的众多策略条目产生冲突时，如何决定最终的结果。我们在 ACC 中为设备增加了一个算法（algorithm）字段，该字段可选的值有两个：denyoverrides 和 allowoverrides。前者表示只要有一条策略结果为 deny，最终的结果就是 deny，后者表示只要有一条策略结果为 allow，最终的结果就是 allow。在核心的访问控制决策函数中针对算法字段做出了相应的处理。该思路来自<sup><a href=#fn:5 class=footnote-ref role=doc-noteref>5</a></sup>，我们先前的方案相当于默认使用 allowoverrides 冲突解决机制。</p><p>其次是无策略定义时的处理方式。依靠管理员定义策略的一个问题是，总有可能出现遗漏，比如说，针对设备的某个资源没有定义策略，那么访问控制决策时就没有凭借。在之前的决策逻辑中，这种情况会被直接算作访问通过，然后给予授权，显然，这种处理方式是不合理的。我们在决策逻辑中，处理 deny 和 allow 两种结果，额外增加了一种名为 NotDefine 的结果，用作标识这种没有定义策略的情况。</p><p>注：决策函数的算法将在最后给出。</p><a class=post-dummy-target id=33-恶意行为检测></a><h3>3.3 恶意行为检测</h3><p>由背景部分所述，为了处理区块链无法抵御的一些恶意行为，在吞吐量有限的情况下尽可能为合法行为提供更高的打包机会，我们添加了恶意行为检测和处理机制，同时也可以作为一种动态的访问控制方法，基于设备的历史行为等进行决策。采用信誉算法的原因是，不同的恶意行为严重程度不一致，我们不仅需要完成惩罚和奖励的基本功能，也需要提供一定的容忍。</p><a class=post-dummy-target id=331-信誉算法></a><h4>3.3.1 信誉算法</h4><p>设备 $i$ 信誉值由两部分组成，合法行为的正面影响和恶意行为的负面影响，如下公式，其中，$Cr_i^N$ 为负面部分，$Cr_i^P$ 为正面部分，$\lambda_1$ 和 $\lambda_2$ 分别是它们的权重。
+$$
+Cr_i = \lambda_1Cr_i^N + \lambda_2Cr_i^P
+$$
+信誉值的负面影响部分 $Cr_i^N$ 也可以称为惩罚函数，其值与历史恶意行为的数量和类型（历史行为记录和操作严重性）有关，每个恶意行为的影响随着时间的推移逐渐减小，但不可以变为0，具体的函数如下
+$$
+Cr_i^N = -m_i \sum_{k=0}^{m_i-1} \frac{\alpha_k }{m_i-k}
+$$
+其中 $m_i$ 表示设备 $i$ 当前的恶意行为总数，$k$ 表示历史恶意行为的索引顺序，$\alpha_k$ 表示第 $k$ 个恶意行为的惩罚系数，该系数在 0-1 内取值。$k$ 的最大取值为 $m_i-1$，因此分母最小值为 1，不会导致值过大；$k$ 从 0 开始取值是为了保证所有得历史恶意行为都会对当前结果产生影响。恶意行为种类包括如下四种</p><ol><li>短时间高密集的请求，行为 ID 为 1；</li><li>策略检查失败（非法访问），行为 ID 为 2；</li><li>同时符合上面两条，行为 ID 为 3；</li><li>重要策略检查失败。我们可以标识某条策略条目为重要，当违反该策略时，会作为恶意行为进行记录，比如，某个设备的访问目标一直都是固定的，突然发生了改变，说明可能是恶意的，又或者访问者的位置突然发生了改变等。这一类恶意行为优先级高于普通的策略检查失败（非法访问），计算时权重更高，行为 ID 为 4。</li></ol><p>信誉值的正面影响部分 $Cr_i^P$ 可以称为奖励函数，其值与合法行为数量正相关，定义如下
+$$
+Cr_i^P = min({Cr_i^P}<em>{max}, \frac{1}{l_i-k_1} \sum</em>{k=k_1}^{l_i-1} \omega_k \Gamma^{k-k_1})
+$$
+其中，${Cr_i^P}_{max}$ 是 $Cr_i^P$ 的上界，防止奖励无限制积累，$l_i$ 为设备 $i$ 的合法行为总数，$k_1$ 是上一次做出惩罚时计算的最后一个合法行为索引，因此，$l_i-k_1$ 其实相当于当前计算奖励值得一个滑动窗口大小。$\Gamma$ 为遗忘因子，取值为 0-1。$\omega_k$ 是第 $k$ 个合法行为的权重，合法行为的种类也有四种</p><ol><li>普通的增加操作，包括对设备注册、属性注册、策略增加等，行为 ID 为 1；</li><li>普通的更新操作，包括属性更新、策略更新等，行为 ID 为 2；</li><li>普通的删除操作，包括设备删除、属性删除、策略删除等，行为 ID 为 3；</li><li>访问通过，行为 ID 为 4；</li></ol><p>每一次行为提交都会更新行为列表，合法行为添加到合法行为列表，恶意行为添加到恶意行为列表，然后分别计算 惩罚函数和奖励函数的值并得到最终的信誉值。当信誉值小于 0 时，会计算阻塞时间并更新 MC 中设备对应的阻塞时间属性， 同时更新计算使用的最后一个合法行为索引，当下次统计合法行为时，该索引之前的合法行为将不会被再次计算。与之相对的，恶意行为记录永远不会清空，虽然它们产生的影响随着时间的推移变小，但不可能消失，因此每次惩罚函数计算都会读取所有恶意行为。</p><p>我们采取的惩罚是阻塞设备的访问请求，意思是计算一个阻塞时间，从当前时间开始的这一段时间内，来自该设备的所有访问请求都被拒绝。阻塞时间根据如下指数函数来计算，可以看出，惩罚函数的值越大，阻塞时间越长。
+$$
+T_{Blocked} = 2^{-Cr_i}
+$$</p><a class=post-dummy-target id=332-一些考虑></a><h4>3.3.2 一些考虑</h4><p>将设计方案时的一些考虑和存在的问题总结如下</p><ol><li>设备信誉值不应当与设备活跃程度有关，某种设备可能短时间一次请求都不发起，但这种情况不应当对设备信誉值产生影响；</li><li>如果设备一直遵守规则，信誉值会保持不断增长，最终可能导致超限。因此需要为信誉值设置上限和下限；</li><li>设备前期累积的信誉值不应当与设备产生的特定恶意行为抵消，也就是说，设备产生了某种特别恶劣的行为，即时它前期积累了很高的信誉，也必须惩罚；</li><li>以太坊智能合约语言 Solidity 不支持浮点数定义和运算，因此公式中涉及的除法运算和浮点数定义需要调整，我们设计了一个整数信誉算法供使用，可以参考附录 III；</li><li>Solidity 中时间的计算单位是 s，以时间作为衡量的话，可能由于两次行为间隔太久导致结果过大，因此将行为数量作为窗口而不是时间间隔；</li><li>非法的属性、策略修改请求会被直接拒绝，不会作为交易提交到区块链，阻塞期间继续访问也会被直接拒绝，只有这样才能阻止更多的非法交易进入区块链</li></ol><p>参数设置出于直觉，我们暂时设置为</p><ol><li>惩罚函数中，$\alpha_0 = 0.2, \alpha_1 = 0.3, \alpha_2 = 0.5, \alpha_3 = 0.4$，因为第三种恶意行为是前两种的综合；</li><li>奖励函数中，$\omega_0 = 0.1, \omega_1 = 0.1, \omega_2 = 0.1, \omega_3 = 0.2$，因为访问被通过是主要的合法行为；</li><li>奖励函数中，遗忘因子 $\Gamma = 0.3$</li><li>奖励函数中，${Cr_i^P}_{max} = 30$，也是一个直觉判断，需要后续更正</li></ol><p>我们最后没有使用整数信誉算法，而是直接使用了这个涉及浮点数定义和运算的算法，方法是使用了一个提供四精度浮点数运算的库，同时，为了输入需要的参数，我们采用10进制移位的方法，比如，想输入 0.1，采用 1/10 的方式，输入 1.34，采用 134/100 的方式，通过两个整数计算得到最终的值。</p><a class=post-dummy-target id=4-性能测试的指标></a><h2>4. 性能测试的指标</h2><p>我们可以通过分析，证明方案的完整性优于其它方案，也可以分析说明整个系统对于某些攻击的抵御能力和对隐私的保护。但这部分主要声明的，是一些数值化的结果，可以定量的证明方案由于其它论文的部分。</p><p>主要分为两部分：访问控制系统和恶意行为检测，下面对其进行讨论，实际上，在 1.2 节好处与困难部分我们已经进行了一部分说明。</p><a class=post-dummy-target id=41-访问控制系统></a><h3>4.1 访问控制系统</h3><p><strong>测量值1</strong>：合约部署和重要操作的Gas 消耗。</p><p>Gas 消耗可以通过 Remix 测试的时候获取，虽然对于 Quorum 而言，Gas 消耗并无太大意义，因为并不会真正消耗掉，而是会被返还，但对于大多数基于以太坊的方案来说，Gas 消耗意味着实际的金钱消耗。另一方面，Gas 消耗一定程度上能反映合约的体积。</p><p><strong>测量值2</strong>：一些重要的合约交互需要的时间。</p><p>当然，首先我们应当确定，测量得到的时间中，是合约执行的时间占主要地位，还是区块链网络的同步时间占主要地位，只有前者得到的结果具有实际的意义。</p><p><strong>测量值3</strong>：属性及策略的增加对访问时间产生的影响。</p><p>由于访问决策的逻辑，对策略的判断基本是遍历的方式，这意味着属性和策略的增加可能会使访问时间延长，我们应测量并讨论这一影响的后果及与其它方案的比较。</p><p><strong>测量值4</strong>：不同的方案对区块链造成的存储压力。</p><p>由于方案设计的不同，区块链受到的存储压力不同。即，有些方案需要部署更多的合约，存储更多的数据，从而导致区块链的快速增长。我们需要测量完成同样多的访问不同方案的区块链增长速度，一个可度量的参数是单位时间增加的区块数。</p><p><strong>测量值5</strong>：不同方案的吞吐量。</p><p>实际上，吞吐量更大程度上受区块链选择的影响，不过可以作为我们的一个测量方向。</p><a class=post-dummy-target id=42-恶意行为检测></a><h3>4.2 恶意行为检测</h3><p>需要验证奖励、惩罚、容忍、报警四大功能。</p><p>惩罚就是阻塞时间到期之前不允许方案，是一个功能测试；奖励和容忍是一体的，由于奖励的存在，某些不太重要的恶意行为可以被容忍而不会触发惩罚；报警是触发恶意行为时及时向管理员反馈，只要持续检测合约发送的事件即可。</p><p>我们可以得到的数据值包括：某个行为发生的时间、行为描述、信誉值（包括奖励和惩罚两部分都可以知道）、做出惩罚的时间、惩罚计算出的阻塞时间大小。我们可以得到以下结果</p><ol><li>信誉值随时间的变化；</li><li>检测到恶意行为的概率（与容忍相关）；</li><li>阻塞时间的变化；</li><li>同样多的请求，恶意行为被阻止的百分比；</li></ol><p>恶意行为检测需要大量的输入，包括访问控制系统中各种不同类型的行为，各行为产生的时间等，但是，还有一些注意事项：</p><ol><li>实际环境中，不同的行为产生的概率可能不一致，例如更新操作多一点，而注册和删除操作少一点，访问操作最多等；</li><li>不同的行为间有先后关系，例如，更新、删除操作都必须在注册操作之后，访问操作也需要测量所依赖的属性已存在；</li><li>新增、更新或删除的属性或策略，可能会影响访问结果；</li><li>访问时间的随机性会决定「短时间频繁请求」这一恶意行为是否会产生；</li></ol><p>我们将输入参数定义为一个文件，文件包括两列，第一列是行为产生的时间（应当随机产生），第二列是行为类型，根据行为类型的不同调用不同的脚本，从而完成这一行为。</p><p>对上述注意事项的解决办法是：</p><ol><li>访问允许或拒绝依赖于已定义的属性和策略，这些属性和策略恒定不会被更新和删除，而所有新的新增、更新、删除操作是额外的；</li><li>如果某种行为产生时依赖的属性或策略不存在，比如更新时发现属性还未定义，那么跳过它执行下一个行为；</li><li>不同行为以等概率的方式随机生成；</li><li>我们以生成时间间隔的方式产生随机的时间；</li></ol><a class=post-dummy-target id=5-实验></a><h2>5. 实验</h2><a class=post-dummy-target id=51-合约测试></a><h3>5.1 合约测试</h3><p>在 Remix 中进行 测试，编译配置开启 <code>Enable optimization</code>（可以大幅减少 gas 消耗），1-7步的顺序不能改变</p><ol><li><p>系统管理者部署MC</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>MC部署账户(系统管理者)：0x4542ED8d83107Db8e9Cab06d9A8D7a02b896f7d9
+返回：
+ MC合约地址：0x1f1e534ff105d9e697a1c9afabcd02560de55bbe
+transaction cost：3164548 gas
+</code></pre></td></tr></table></div></div></li><li><p>监管机构部署RC</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>RC部署账户(监管机构)：0x5521Ba0bC012bE5dC12855f4972c48505Dc88c4A
+传入：
+ MC合约地址：0x1f1e534ff105d9e697a1c9afabcd02560de55bbe
+返回：
+ RC合约地址：0x644e0e3b47ad746be213e1553928f96f70a2655c
+transaction cost：1244974 gas
+</code></pre></td></tr></table></div></div></li><li><p>系统管理者调用 MC中的 setRC() 进行设置</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>调用账户(系统管理者)：0x4542ED8d83107Db8e9Cab06d9A8D7a02b896f7d9
+传入：
+ RC合约地址：0x644e0e3b47ad746be213e1553928f96f70a2655c
+ 监管机构账户：0x5521Ba0bC012bE5dC12855f4972c48505Dc88c4A
+</code></pre></td></tr></table></div></div></li><li><p>设备管理者部署 ACC</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>ACC部署账户(设备管理者)：0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
+传入：
+ MC合约地址：0x1f1e534ff105d9e697a1c9afabcd02560de55bbe
+ RC合约地址：0x644e0e3b47ad746be213e1553928f96f70a2655c
+ 设备管理者地址：0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
+返回：
+ ACC合约地址：0x19455cac7bd27705661d467e20ee82b1cc48737b
+transaction cost：5635472 gas
+</code></pre></td></tr></table></div></div></li><li><p>设备管理者调用 MC 中的 deviceRegister() 函数，注册自身</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>调用账户(设备管理者)：0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
+传入参数为：
+ 设备地址：0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
+ 管理者地址：0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
+ 合约地址：0x19455cac7bd27705661d467e20ee82b1cc48737b
+ 设备ID：gateway33
+ 设备类型：gateway
+ 设备角色：manager
+</code></pre></td></tr></table></div></div></li><li><p>设备部署 ACC</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>ACC部署账户(设备)：0xB52fd79681f876af9dac92d1ED9a23Aac3fdBfa1
+传入：
+ MC合约地址：0x1f1e534ff105d9e697a1c9afabcd02560de55bbe
+ RC合约地址：0x644e0e3b47ad746be213e1553928f96f70a2655c
+ 设备管理者地址：0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
+返回：
+ ACC合约地址：0x54d463eca95c313077815ce0a893b4036199e28e
+transaction cost：5635472 gas
+</code></pre></td></tr></table></div></div></li><li><p>设备管理者调用 MC 中的 deviceRegister() 函数，注册设备固定属性</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>调用账户(设备管理者)：0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
+传入参数为：
+ 设备地址：0xB52fd79681f876af9dac92d1ED9a23Aac3fdBfa1
+ 管理者地址：0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
+ 合约地址：0x54d463eca95c313077815ce0a893b4036199e28e
+ 设备ID：pallat23
+ 设备类型：pallat
+ 设备角色：device
+</code></pre></td></tr></table></div></div></li><li><p>设备管理者调用 MC 中的 addAttribute() 函数，添加额外属性</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>调用账户(设备管理者): 0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
+传入参数：
+ 设备地址：0xB52fd79681f876af9dac92d1ED9a23Aac3fdBfa1
+ 属性名：currentFruit
+ 属性值：apple
+</code></pre></td></tr></table></div></div></li><li><p>调用 MC 中的 get 类函数，查看设备属性，包括 getFixedAttribute(), getDeviceRelatedAddress(), getCustomedAttribute() 三个函数</p></li><li><p>设备管理者调用 MC 中的 updateAttribute() 函数，更改属性</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>调用账户(设备管理者): 0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
+传入参数：
+    设备地址：0xB52fd79681f876af9dac92d1ED9a23Aac3fdBfa1
+    属性名：currentFruit
+    属性值：peer
+</code></pre></td></tr></table></div></div><p>调用 MC 中的 getCustomedAttribute() 函数，查看更改后的属性，确认无误</p></li><li><p>设备管理者调用 MC 中的 deleteAttribute() 函数，删除 currentFruit 属性</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>调用账户(设备管理者): 0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
+传入参数：
+    设备地址：0xB52fd79681f876af9dac92d1ED9a23Aac3fdBfa1
+    属性名：currentFruit
+</code></pre></td></tr></table></div></div><p>调用 MC 中的 getCustomedAttribute() 函数，会返回 Attribute not exist! 错误</p></li></ol><p>接下来测试访问控制合约（ACC）</p><ol><li><p>设备管理者调用 ACC 的 addResourceAttr() 函数添加资源属性</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>调用账户(设备管理者): 0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
+传入参数：
+ 资源名：GPS
+ 属性名：currentLocation
+ 属性值：116.309551, 39.896559 
+</code></pre></td></tr></table></div></div><p>然后调用 getResourceAttr() 函数查看</p></li><li><p>设备管理者调用 ACC 的 updateResourceAttr() 函数更新资源属性，继续查看；最后调用 deleteResourceAttr() 函数删除资源属性，查看返回 Resource attribute not exist! 错误</p></li><li><p>设备管理者调用 ACC 的 addPolic() 函数添加策略</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>调用账户(设备管理者): 0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
+传入参数：
+ 资源名：truck
+ 操作：read
+ 属性所有者：subject
+ 属性名：deviceType
+ 操作符：=
+ 属性值：gateway
+</code></pre></td></tr></table></div></div><p>成功后查看策略</p></li><li><p>设备管理者调用 ACC 的 accessControl() 函数，测试访问控制</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>调用账户(设备管理者): 0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
+传入参数：
+ 资源名：truck
+ 操作：read
+</code></pre></td></tr></table></div></div></li></ol><a class=post-dummy-target id=52-合约审计></a><h3>5.2 合约审计</h3><p>依旧打算使用 Mythx 进行合约审计，但 Mythx 已转为收费，合约审计部分的工作只能放弃。</p><a class=post-dummy-target id=附录i-所做调整></a><h2>附录I 所做调整</h2><p><span id=jump></span>下面是所作的调整总结</p><ul><li><i class="far fa-square fa-fw"></i>功能-策略冲突解决机制</li><li><i class="far fa-square fa-fw"></i>功能-无匹配策略时的处理</li><li><i class="far fa-square fa-fw"></i>功能-恶意行为检测</li><li><i class="far fa-check-square fa-fw"></i>架构-策略定义拆分单独的合约（提供重用性）</li><li><i class="far fa-square fa-fw"></i>架构-部分函数迁移到单独的库文件 Utils.sol（for gas save）</li><li><i class="far fa-square fa-fw"></i>语法-匹配最新版本编译器</li><li><i class="far fa-square fa-fw"></i>语法-统一代码风格</li><li><i class="far fa-square fa-fw"></i>实验过程-去除合约审计（MythX 转为收费）</li><li><i class="far fa-square fa-fw"></i>实验过程-移除树莓派节点（在家的时候没有树莓派）</li><li><i class="far fa-square fa-fw"></i>实验过程-恶意行为的测试方案</li><li><i class="far fa-check-square fa-fw"></i>实验过程-测试新的性能指标（必要的）</li><li><i class="far fa-check-square fa-fw"></i>实验过程-利用 JavaScript 和 Bash 交互迁移到利用 Go</li><li><i class="far fa-square fa-fw"></i>思路-明晰背景（为什么做这件事）</li><li><i class="far fa-square fa-fw"></i>思路-明晰场景</li><li><i class="far fa-square fa-fw"></i>思路-信誉算法设计</li></ul><a class=post-dummy-target id=附录ii-参考的信誉算法></a><h2>附录II 参考的信誉算法</h2><p>根据节点 $i$ 的行为，将其信誉值 $Cr_i$ 划分为两部分，公式如下
+$$
+Cr_i = \lambda_1 Cr_i^P + \lambda_2 Cr_i^N
+$$
+其中 $Cr_i^P$ 代表正面影响部分，$Cr_i^P$ 代表负面影响部分。$\lambda_1$ 和 $\lambda_2$ 分别代表各部分的权重系数，调节这两个值就可以调整两部分所占权重，比如，如果我们想要严格的惩罚策略，应该令 $\lambda_2$ 更大一点。</p><p>$Cr_i^P$ 与节点 $i$ 单位时间内正常的交易数量成正相关，即通过节点活跃程度定义，表示如下
+$$
+Cr_i^P = \frac{\sum_{k=1}^{n_i} \omega_k} {\Delta T}
+$$
+其中 $n_i$ 代表节点 $i$ 在最近的单位时间内有效交易的数量，$\Delta T$ 代表单位时间，$\omega_k$ 代表第 $k$ 个交易的权重，交易的权重指的是该交易被验证的次数。也就是说，如果节点 $i$ 在一段时间内保持活跃，$Cr_i^P$ 将根据活跃程度不断调整，保证活跃节点可以使用更少的算力更快地发布交易。如果节点 $i$ 在一段时间内没有发布交易，就认为它是不活跃的，甚至是不可信节点，所以系统不会为它降低 PoW 的难度，即 $Cr_i^P = 0$。</p><p>$Cr_i^N$ 与节点 $i$ 的恶意行为数量成负相关，可以表示为
+$$
+Cr_i^N = -\sum_{k=1}^{m_i} \alpha(\beta) · \frac{\Delta T}{t-t_k}
+$$
+其中 $m_i$ 表示节点 $i$ 的恶意行为总数，$t$ 表示当前时间，$t_k$ 表示节点 $i$ 造成的第 $k$ 个恶意行为的时间点，$\alpha(\beta)$ 表示恶意行为 $\beta$ 的惩罚系数，该系数定义如下，其中 $\alpha_l$ 和 $\alpha_d$ 可以根据对恶意行为敏感度的要求进行调整。
+$$
+\alpha(\beta) = \begin{cases} \alpha_l&\text{if β is lazy tips behavior;} \\ \alpha_d & \text{if β is double-spending behavior} \end{cases}
+$$
+从$Cr_i^N$ 的公式中我们可以发现，随着时间的推移，恶意行为对节点的影响在逐渐减小，但不同于 $Cr_i^P$，它无法减小到0，也就是完全消除。当一个恶意行为发生的时候，$Cr_i^N$ 的绝对值会很大，由于 PoW 难度巨大，攻击将无法持续，通过这种方式我们可以及时阻止恶意行为。</p><p>该机制正常运行的需求是我们可以获取每个节点相关的所有交易，这样就可以计算出交易权重 $\omega$ 和 恶意行为记录 $\alpha(\beta)$，从而可以独立地计算出 $Cr_i^P$ 和 $Cr_i^N$，最终得到信誉值。作者在论文中将信誉值与 PoW 难度关联，具体来说，这两种成反比，定义公式为 $Cr_i = \delta \frac 1{D_i}$，其中 $D_i$ 为节点 $i$ 的 PoW 难度，$\delta$ 为比例系数。这样，信誉值高的难度低，信誉值低的难度高，难度的调整通过控制前缀0的最小长度完成，整个系统得以实现。</p><p>具体的实验中以上公式中的相关参数如何设置，作者给出了一些描述。交易权重 $\omega$ 可以直接计算，两个权重系数设置为 $\lambda_1 = 1,\lambda_2 = 0.5$，因为 $Cr_i^N$ 的值可能相对比较大，如果想要更严厉的惩罚措施，$\lambda_2$ 可以设置的更大。考虑到 IIoT 系统的请求频率，单位时间设置为 $\Delta T = 30s$，一个不是太长的间隔。对于 lazy tips，设置 $\alpha(\beta) = 0.5$，对于 double-spending，设置 $\alpha(\beta) = 1$，因为双花对系统造成的损害更严重。</p><a class=post-dummy-target id=附录iii-整数信誉算法></a><h2>附录III 整数信誉算法</h2><p>改进后的方案中，惩罚公式如下
+$$
+Cr_i^N = -\sum_{k=1}^{m} max \{\alpha(\beta)-(m - k), 1 \}
+$$
+其中，$m$ 为设备 $i$ 当前的恶意行为总数，$k$ 是第 k 个恶意行为发生时的恶意行为总数，$\alpha(\beta)$ 表示恶意行为 $\beta$ 的惩罚系数，在1-10内取值,该系数定义如下，可以根据对恶意行为敏感度的要求进行调整。
+$$
+\alpha(\beta) = \begin{cases}
+\alpha_1 & \text{如果 β 非法的访问控制请求; } \\
+\alpha_2 & \text{如果 β 代表短时间发起大量请求}
+\end{cases}
+$$
+$max \{\alpha(\beta)-(m - k), 1 \}$ 的含义是，每发生一个新的恶意行为，旧的恶意行为惩罚系数就减一，底线是惩罚系数的最小值1，这能保证随着时间的推移，旧的恶意行为的影响不断减小，但不会减小到0。</p><p>奖励函数 $Cr_i^P$ 定义不变， $\omega_k$ 代表第 $k$ 种操作的权重，$n_k$ 代表第 $k$ 种操作的数量，但权重的取值范围限定在 1-10
+$$
+Cr_i^P = max \{ Cr_{imax}^P , \sum_{k=1}^4 \omega_k n_k \}
+$$</p><p>最终的信誉值计算公式如下
+$$
+Cr_i = Cr_i^P + Cr_i^N
+$$
+阻塞时间的计算依然是以 2 为底的指数函数，但这里会进行判断，当恶意行为是短时间发起大量请求时，立刻进行处罚，否则只有在信誉值低于某个值$\gamma$ 时才进行处罚。阻塞时间函数如下
+$$
+T_{blocked} = 2^{Cr_i}, if \ \text{频繁请求恶意行为} \ or \ \text{(信誉值} &lt; \gamma)
+$$</p><section class=footnotes role=doc-endnotes><hr><ol><li role=doc-endnote><p><a class=post-dummy-target id=fn:1></a>史锦山, 李茹, 等. 物联网下的区块链访问控制综述[J]. 软件学报, 2019, Vol.30Issue(6): 1632–1648. <a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li role=doc-endnote><p><a class=post-dummy-target id=fn:2></a>ZHANG Y, KASAHARA S, SHEN Y, 等. Smart Contract-Based Access Control for the Internet of Things[J]. IEEE Internet of Things Journal, 2019, 6(2): 1594–1605. DOI:<a href=https://doi.org/10.1109/JIOT.2018.2847705 target=_blank>10.1109/JIOT.2018.2847705</a>. <a href=#fnref:2 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li role=doc-endnote><p><a class=post-dummy-target id=fn:3></a>AMOON M, ALTAMEEM T, ALTAMEEM A. RRAC: Role Based Reputed Access Control Method for Mitigating Malicious Impact in Intelligent IoT Platforms[J]. Computer Communications, 2020, 151: 238–246. DOI:<a href=https://doi.org/10.1016/j.comcom.2020.01.011 target=_blank>10.1016/j.comcom.2020.01.011</a>. <a href=#fnref:3 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li role=doc-endnote><p><a class=post-dummy-target id=fn:4></a>J. Huang, L. Kong, G. Chen, M.-Y. Wu, X. Liu, and P. Zeng, “Towards Secure Industrial IoT: Blockchain System With Credit-Based Consensus Mechanism,” <em>IEEE Trans. Ind. Inf.</em>, vol. 15, no. 6, pp. 3680–3689, Jun. 2019, doi: <a href=https://doi.org/10.1109/TII.2019.2903342 target=_blank>10.1109/TII.2019.2903342</a>. <a href=#fnref:4 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li><li role=doc-endnote><p><a class=post-dummy-target id=fn:5></a>WANG P, YUE Y, SUN W, 等. An Attribute-Based Distributed Access Control for Blockchain-enabled IoT[C/OL]//2019 International Conference on Wireless and Mobile Computing, Networking and Communications (WiMob). Barcelona, Spain: IEEE, 2019: 1–6[2020–04–02]. <a href=https://ieeexplore.ieee.org/document/8923232/>https://ieeexplore.ieee.org/document/8923232/</a>. DOI:<a href=https://doi.org/10.1109/WiMOB.2019.8923232 target=_blank>10.1109/WiMOB.2019.8923232</a>. <a href=#fnref:5 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></section></div><div class=post-copyright id=post-footer><p class=copyright-item><span>Author:&nbsp;</span>
+<span>shuzang</span></p><p class=copyright-item><span>Updated on:&nbsp;</span>
+<span>2020-10-22</span></p><p class=copyright-item><span>Share on:&nbsp;</span>
+<span><a href="//twitter.com/share?url=https%3a%2f%2fshuzang.github.io%2f2020%2fcredit-based-mechanism%2f&text=%e5%8c%ba%e5%9d%97%e9%93%be%e5%ae%9e%e9%aa%8c7-%e6%81%b6%e6%84%8f%e8%a1%8c%e4%b8%ba%e6%a3%80%e6%b5%8b%e6%9c%ba%e5%88%b6%e8%ae%be%e8%ae%a1&via=" target=_blank title="Share on Twitter"><i class="fab fa-twitter fa-fw"></i></a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fshuzang.github.io%2f2020%2fcredit-based-mechanism%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook-square fa-fw"></i></a><a href="//reddit.com/submit?url=https%3a%2f%2fshuzang.github.io%2f2020%2fcredit-based-mechanism%2f&title=%e5%8c%ba%e5%9d%97%e9%93%be%e5%ae%9e%e9%aa%8c7-%e6%81%b6%e6%84%8f%e8%a1%8c%e4%b8%ba%e6%a3%80%e6%b5%8b%e6%9c%ba%e5%88%b6%e8%ae%be%e8%ae%a1" target=_blank title="Share on Reddit"><i class="fab fa-reddit fa-fw"></i></a></span></p><p class=copyright-item></p><p class=copyright-item></p></div><br><div class=post-info-more><section><span class=tag><a href=https://shuzang.github.io/tags/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95/><i class="fas fa-tag fa-fw"></i>&nbsp;科研记录</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://shuzang.github.io>Home</a></span></section></div><div class=post-nav><a href=https://shuzang.github.io/2020/2018-2020-research-history/ class=prev rel=prev title="2018-2020 研究历史"><i class="fas fa-angle-left fa-fw"></i>2018-2020 研究历史</a>
+<a href=https://shuzang.github.io/2020/algorithm-dynamic-programming/ class=next rel=next title=算法-动态规划>算法-动态规划<i class="fas fa-angle-right fa-fw"></i></a></div><div class=post-comment><div id=vcomments></div><script src=/js/lib/valine/Valine.min.min.js></script><script type=text/javascript>(function(){if(window.location.hostname=="localhost")
+return;new Valine({el:"#vcomments",appId:"GteMvevTjOBmhvFh2QGsopGO-gzGzoHsz",appKey:"fL4SYl06GIe012PswFdY17VC",meta:["nick","mail"],notify:"false",verify:"true",avatar:"hide",placeholder:"Your comment ...",visitor:"true",recordIP:"true",lang:"en",});})();</script><noscript>Please enable JavaScript to view the <a href=https://valine.js.org/>comments powered by Valine.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://shuzang.github.io/about/ target=_blank>shuzang</a> | </span>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> & <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt</a></div></div></footer></div><a href=# class=dynamic-to-top id=dynamic-to-top data-scroll><span>&nbsp;</span>
+</a><script src=/js/lib/jquery/jquery.slim.min.js></script><script src=/js/lib/lazysizes/lazysizes.min.js></script><script src=/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js></script><script>window.scroll=new SmoothScroll('[data-scroll]',{speed:300,speedAsDuration:true});</script><link rel=stylesheet href=/css/lib/katex/katex.min.css><script src=/js/lib/katex/katex.min.js></script><script defer src=/js/lib/katex/auto-render.min.js></script><link rel=stylesheet href=/css/lib/katex/copy-tex.min.css><script defer src=/js/lib/katex/copy-tex.min.js></script><script defer src=/js/lib/katex/mhchem.min.js></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true},{left:"$",right:"$",display:false},]});});</script><script src=/js/blog.min.js></script></body></html>

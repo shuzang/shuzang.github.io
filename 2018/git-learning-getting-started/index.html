@@ -1,0 +1,308 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Git入门-基本概念, 基本原理, 安装使用 | Shuzang's Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><link rel=prev href=https://shuzang.github.io/2018/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E9%80%89%E6%8B%A9/><link rel=next href=https://shuzang.github.io/2018/git-learning-improvement/><link rel=canonical href=https://shuzang.github.io/2018/git-learning-getting-started/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><meta name=twitter:card content="summary"><meta name=twitter:title content="Git入门-基本概念, 基本原理, 安装使用"><meta name=twitter:description content="版本控制系统在代码开发过程中必不可缺，本系列学习 Git 的使用，版本托管服务则是 Github。以廖雪峰大神 git教程 为主体，辅以使用过程中遇到的问题和心得。"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Git入门-基本概念, 基本原理, 安装使用","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/2018\/git-learning-getting-started\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"git","wordcount":5391,"url":"https:\/\/shuzang.github.io\/2018\/git-learning-getting-started\/","datePublished":"2018-04-20T19:06:20\x2b08:00","dateModified":"2020-10-08T00:00:00\x2b00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"shuzang","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/logo.png","width":127,"height":40}},"description":""}</script><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css></head><body><script>window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><nav class=navbar><div class=top-scroll-bar></div><div class=navbar-container><div class="navbar-header animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=navbar-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><nav class=navbar-mobile><div class=top-scroll-bar></div><div class=navbar-container><div class=navbar-header><div class="navbar-header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=navbar-menu id=mobile-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><main class=main><div class=container><article class=page><h1 class="post-title animated flipInX">Git入门-基本概念, 基本原理, 安装使用</h1><div class=post-meta><i class="far fa-calendar-alt fa-fw"></i>published on&nbsp;<time datetime=2018-04-20>2018-04-20</time>&nbsp;
+<i class="fas fa-pencil-alt fa-fw"></i>about 5391 words&nbsp;<span id=/2018/git-learning-getting-started/ class=leancloud_visitors data-flag-title="Git入门-基本概念, 基本原理, 安装使用">
+<i class="far fa-eye fa-fw"></i><span class=leancloud-visitors-count></span>views
+</span>&nbsp;<span class=post-category><i class="far fa-folder fa-fw"></i>included in&nbsp;<a href=https://shuzang.github.io/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/>爱编程爱技术的孩子</a>&nbsp;</span></div><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#1-版本控制系统>1. 版本控制系统</a><ul><li><a href=#11-作用>1.1 作用</a></li><li><a href=#11-历史>1.1 历史</a></li><li><a href=#12-github>1.2 Github</a></li></ul></li><li><a href=#2-安装使用>2. 安装使用</a><ul><li><a href=#21-linux安装>2.1 Linux安装</a></li><li><a href=#22-windows安装>2.2 windows安装</a></li></ul></li><li><a href=#3-仓库和文件>3. 仓库和文件</a><ul><li><a href=#31-创建一个仓库>3.1 创建一个仓库</a></li><li><a href=#32-在仓库中添加文件>3.2 在仓库中添加文件</a></li><li><a href=#33-对文件进行修改>3.3 对文件进行修改</a></li></ul></li><li><a href=#4-远程仓库>4. 远程仓库</a><ul><li><a href=#41-创建ssh-key>4.1 创建SSH Key</a></li><li><a href=#42-登陆github>4.2 登陆GitHub</a></li><li><a href=#43-创建远程仓库>4.3 创建远程仓库</a></li><li><a href=#44-从远程仓库克隆到本地>4.4 从远程仓库克隆到本地</a></li></ul></li><li><a href=#5-历史版本>5. 历史版本</a><ul><li><a href=#51-查看历史版本>5.1 查看历史版本</a></li><li><a href=#52-回退>5.2 回退</a></li></ul></li><li><a href=#6-三大工作区域>6. 三大工作区域</a><ul><li><a href=#61-丢弃修改>6.1 丢弃修改</a></li><li><a href=#62-删除文件>6.2 删除文件</a></li></ul></li><li><a href=#参考与扩展>参考与扩展</a></li></ul></nav></div></div><div class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
+<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><a href=#1-版本控制系统>1. 版本控制系统</a><ul><li><a href=#11-作用>1.1 作用</a></li><li><a href=#11-历史>1.1 历史</a></li><li><a href=#12-github>1.2 Github</a></li></ul></li><li><a href=#2-安装使用>2. 安装使用</a><ul><li><a href=#21-linux安装>2.1 Linux安装</a></li><li><a href=#22-windows安装>2.2 windows安装</a></li></ul></li><li><a href=#3-仓库和文件>3. 仓库和文件</a><ul><li><a href=#31-创建一个仓库>3.1 创建一个仓库</a></li><li><a href=#32-在仓库中添加文件>3.2 在仓库中添加文件</a></li><li><a href=#33-对文件进行修改>3.3 对文件进行修改</a></li></ul></li><li><a href=#4-远程仓库>4. 远程仓库</a><ul><li><a href=#41-创建ssh-key>4.1 创建SSH Key</a></li><li><a href=#42-登陆github>4.2 登陆GitHub</a></li><li><a href=#43-创建远程仓库>4.3 创建远程仓库</a></li><li><a href=#44-从远程仓库克隆到本地>4.4 从远程仓库克隆到本地</a></li></ul></li><li><a href=#5-历史版本>5. 历史版本</a><ul><li><a href=#51-查看历史版本>5.1 查看历史版本</a></li><li><a href=#52-回退>5.2 回退</a></li></ul></li><li><a href=#6-三大工作区域>6. 三大工作区域</a><ul><li><a href=#61-丢弃修改>6.1 丢弃修改</a></li><li><a href=#62-删除文件>6.2 删除文件</a></li></ul></li><li><a href=#参考与扩展>参考与扩展</a></li></ul></nav></div></details></div><div class=post-content><p>版本控制系统在代码开发过程中必不可缺，本系列学习 Git 的使用，版本托管服务则是 Github。以廖雪峰大神 <a href=https://www.liaoxuefeng.com/wiki/896043488029600 target=_blank>git教程</a> 为主体，辅以使用过程中遇到的问题和心得。</p><a class=post-dummy-target id=1-版本控制系统></a><h2>1. 版本控制系统</h2><a class=post-dummy-target id=11-作用></a><h3>1.1 作用</h3><p>版本控制系统用来解决两种情况</p><ol><li><p>文章不断进行修改，但又觉得之前的版本可能有用，于是产生大量重命名文件，代码编辑亦如是，而且更加不容易回溯。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>版本1.doc   
+版本2.doc   
+最终版本.doc   
+最终版本改.doc   
+真的是最终版本了.doc
+</code></pre></td></tr></table></div></div></li><li><p>多人协作，每次都需要校对对方的改动，然后进行合并，会花费大量不必要的精力</p></li></ol><p>版本控制的作用就是记录所有的修改历史，便于需要时回退，同时提供一个协作的平台。</p><a class=post-dummy-target id=11-历史></a><h3>1.1 历史</h3><p>Git 属于分布式版本控制，在此之前主要是<strong>集中式的版本控制</strong>，基本原理是有一个服务器放所有的代码，要工作的时候下载回来，改动完上传回去，记录不同人的改动和合并都由服务器端完成，这种形式极度依赖于服务器性能和网速。</p><p>2005 年 Linux 内核代码版本控制使用的软件失效，Linux 创始人 Linus 花了一周开发了 Git 这个分布式版本控制系统，其后慢慢流行，现在已用于大多数的项目代码管理。</p><p><strong>分布式版本控制</strong>和 torrent 差不多，每个人的电脑都是服务器，修改完直接把修改的部分推送给所有拥有这个项目的人。分布式版本控制也有服务器，但主要是负责做备份，并方便大家的交换用的，并不是必要。</p><a class=post-dummy-target id=12-github></a><h3>1.2 Github</h3><p><strong>Github</strong>，发音为「 ɡɪthʌb 」，是为开源项目免费提供 Git 存储的网站，2008年上线。</p><p>注意，Git 和 Github 这两个单词在官方的网站上首字母都是大写，因此我们遵从这样的规则。</p><a class=post-dummy-target id=2-安装使用></a><h2>2. 安装使用</h2><p>Git 是全平台的软件，命令行界面，连接到服务商（比如 Github）就能使用，目前 Github 已经推出了 windows 上的 GUI 版本，操作更加简便。</p><a class=post-dummy-target id=21-linux安装></a><h3>2.1 Linux安装</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo apt-get install git
+$ git version
+</code></pre></td></tr></table></div></div><p>安装完成后还要设置自己的名字和Email地址</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ git config --global  user.name   <span class=s2>&#34;your name&#34;</span>
+$ git config --global  user.email  <span class=s2>&#34;email@example.com&#34;</span>
+</code></pre></td></tr></table></div></div><p><code>--global</code>参数的意思是这个名字和邮箱应用于所有git仓库</p><a class=post-dummy-target id=22-windows安装></a><h3>2.2 windows安装</h3><p>从<a href=https://git-scm.com/ target=_blank>官网</a>下载<code>Download x.xx for Windows</code>按照，会自动配置环境变量。我一般使用chocolatey包管理工具，执行命令如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-powershell data-lang=powershell><span class=p>&gt;</span> <span class=n>choco</span> <span class=n>install</span> <span class=n>git</span>
+</code></pre></td></tr></table></div></div><p>Windows下GUI版下载地址为：https://desktop.github.com/ ，嗯，真香，windows下我已经很久不用命令行的git了，一般都当作shell工具来使用，而不是执行git命令。</p><a class=post-dummy-target id=3-仓库和文件></a><h2>3. 仓库和文件</h2><p><strong><ruby>仓库<rt>repository</rt></ruby></strong>，本质是一个文件夹，存放归属同一个项目的所有文件，是版本控制中的一个重要概念，可分为本地仓库和云端仓库。本地仓库是自己的代码编辑工作区，云端仓库是代码的备份。</p><a class=post-dummy-target id=31-创建一个仓库></a><h3>3.1 创建一个仓库</h3><p>在本地任意路径创建<code>gittest</code>文件夹，路径自定义</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ mkdir gittest
+</code></pre></td></tr></table></div></div><p>进入创建的文件夹，使用 <code>git init</code> 命令把该目录变成git的仓库</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ <span class=nb>cd</span> gittest
+$ git init
+</code></pre></td></tr></table></div></div><p>然后仓库就建好了，该目录下会多一个<code>.git</code>隐藏文件夹，用来跟踪管理仓库。使用<code>ls -a</code>命令可以看到该文件夹，默认隐藏说明它很重要，里面的文件改动的话很容易导致仓库损坏。<code>.git</code>文件夹下的内容包括</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ ls .git
+config  description  HEAD  hooks/  info/  objects/  refs/
+</code></pre></td></tr></table></div></div><p>一些文件的作用在<code>暂存区和工作区</code>部分解释。</p><a class=post-dummy-target id=32-在仓库中添加文件></a><h3>3.2 在仓库中添加文件</h3><p>添加文件的类型有讲究</p><ul><li><p>对txt文档、代码文件等文件类型，版本控制系统可记录每次的改动</p></li><li><p>对图片、视频、PDF等文件类型，版本控制系统只能管理，不能记录改动，最多只能记录大小变化，Word文件实质是二进制格式，所以同样没法跟踪改动</p></li></ul><p>首先新建一个txt文件并放在gittest目录下，编辑其文件内容</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ <span class=nb>cd</span> gittest
+$ touch hellogit.txt
+$ cat hellogit.txt
+hello git
+</code></pre></td></tr></table></div></div><p>用<code>git add</code>命令将该文件添加到暂存区，暂存区的概念之后解释</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ git add  hellogit.txt
+</code></pre></td></tr></table></div></div><p>用git commit命令将文件提交到仓库(这里指本地仓库)</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ git commit -m <span class=s2>&#34;first commit&#34;</span>
+<span class=o>[</span>master <span class=o>(</span>root-commit<span class=o>)</span> a91c248<span class=o>]</span> first commit
+ <span class=m>1</span> file changed, <span class=m>1</span> insertion<span class=o>(</span>+<span class=o>)</span>
+ create mode <span class=m>100644</span> hellogit.txt
+</code></pre></td></tr></table></div></div><p>双引号中为备注信息，是该次提交的说明，一般情况是描述此次修改的。commit添加的提交信息对于代码review具有重要的作用，要遵循一定的规范。</p><p>命令执行完后的提示包括以下内容：</p><ol><li>提交到了主分支（master)，备注信息为「first commit」</li><li>改动了一个文件（hellogit.txt），加了1行内容(注意那个+号)</li><li>最后一行中100代表regular file，644代表文件权限</li></ol><p><code>git add</code>命令可以有多个，分多次将文件添加到暂存区，之后执行<code>git commit</code>命令会一次性将之前add的所有文件一起提交，如</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>git add file1.txt
+git add file2.txt file3.txt
+git commit -m <span class=s2>&#34;add 3 files&#34;</span>
+</code></pre></td></tr></table></div></div><p>也可以使用如下命令一次性将所有修改添加到暂存区，然后执行<code>commit</code>命令</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash> $ git add .
+</code></pre></td></tr></table></div></div><a class=post-dummy-target id=33-对文件进行修改></a><h3>3.3 对文件进行修改</h3><p>版本控制的目的就是记录文件的改动，我们将hellogit.txt文件的内容进行第二次修改，用 git status 命令查看仓库当前状态</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ git status
+On branch master
+Changes not staged <span class=k>for</span> commit:
+  <span class=o>(</span>use <span class=s2>&#34;git add &lt;file&gt;...&#34;</span> to update what will be committed<span class=o>)</span>
+  <span class=o>(</span>use <span class=s2>&#34;git checkout -- &lt;file&gt;...&#34;</span> to discard changes in working directory<span class=o>)</span>
+
+        modified:   hellogit.txt
+
+no changes added to commit <span class=o>(</span>use <span class=s2>&#34;git add&#34;</span> and/or <span class=s2>&#34;git commit -a&#34;</span><span class=o>)</span>
+</code></pre></td></tr></table></div></div><p>返回的提示内容会包括</p><ul><li>位于哪个分支</li><li>修改了哪个文件</li><li>「修改尚未加入提交」</li></ul><p>如果我们想看到具体做了哪些修改，用<code>git diff</code>命令，diff就是diffenence，所以<code>git diff</code>的意思就是查看不同</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ git diff hellogit.txt
+diff --git a/hellogit.txt b/hellogit.txt
+index f09e9c3..a90a76d <span class=m>100644</span>
+--- a/hellogit.txt
++++ b/hellogit.txt
+@@ -1 +1,2 @@
+-hello git
+<span class=se>\ </span>No newline at end of file
++hello git
++add a line
+<span class=se>\ </span>No newline at end of file
+</code></pre></td></tr></table></div></div><p>提示中说明了我们在末尾添加了一行，其内容为<code>add a line</code>。此时我们确认了做的修改是我们心里所想的，就可以再次提交了</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ git add hellogit.txt
+$ git status
+On branch master
+Changes to be committed:
+  <span class=o>(</span>use <span class=s2>&#34;git reset HEAD &lt;file&gt;...&#34;</span> to unstage<span class=o>)</span>
+
+        modified:   hellogit.txt
+
+$ git commit -m <span class=s2>&#34;add a line&#34;</span>
+<span class=o>[</span>master ae3c27f<span class=o>]</span> add a line
+ <span class=m>1</span> file changed, <span class=m>2</span> insertions<span class=o>(</span>+<span class=o>)</span>, <span class=m>1</span> deletion<span class=o>(</span>-<span class=o>)</span>
+
+$ git status
+On branch master
+nothing to commit, working tree clean
+</code></pre></td></tr></table></div></div><p>提交过程中可以每一步都使用<code>git status</code>命令查看当前状态，最后commit提交完的状态提示为：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>位于master分支
+无文件要提交，干净的工作区
+</code></pre></td></tr></table></div></div><p>此时就放心了，每次修改完或者要离开工作岗位的时候提交一次，就像游戏存档，离开之前或者重要关卡前存档，失败的时候就能读档重来，这里修改出错也可以从上一次的commit重来</p><a class=post-dummy-target id=4-远程仓库></a><h2>4. 远程仓库</h2><p>本地仓库的代码编辑完成后，需要推送到远程仓库进行备份，我们使用Github提供的免费远程仓库。由于本地Git仓库和GitHub远程仓库之间的传输是通过SSH加密的，所以，需要先设置SSH密钥。</p><a class=post-dummy-target id=41-创建ssh-key></a><h3>4.1 创建SSH Key</h3><p>在用户主目录下，看看有没有<code>.ssh</code>(默认隐藏)目录，如果有，再看看这个目录下有没有<code>id_rsa</code>和<code>id_rsa.pub</code>这两个文件，如果已经有了，可直接跳到下一步。如果没有，打开终端，创建SSH Key：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ ssh-keygen -t rsa -C <span class=s2>&#34;youremail@example.com&#34;</span>
+</code></pre></td></tr></table></div></div><p>把邮件地址换成自己的邮件地址，然后一路回车，使用默认值即可，是否设置密码自己选择。</p><p>如果一切顺利的话，可以在用户主目录里找到<code>.ssh</code>目录，里面有私钥<code>id_rsa</code>和公钥<code>id_rsa.pub</code>两个文件。</p><a class=post-dummy-target id=42-登陆github></a><h3>4.2 登陆GitHub</h3><p>点击右上角头像，打开<code>Settings——>SSH and GPG Keys——>New SSH Key</code></p><p>填上任意Title，在Key文本框里粘贴<code>id_rsa.pub</code>文件的内容，然后点击<code>Add SSH key</code>就行了</p><p>GitHub需要SSH Key识别出你推送的提交确实是你推送的，而不是别人冒充的。当然，GitHub允许添加多个Key。假定有若干电脑，只要把每台电脑的Key都添加到GitHub，就可以在每台电脑上往GitHub推送了。</p><a class=post-dummy-target id=43-创建远程仓库></a><h3>4.3 创建远程仓库</h3><p>首先在Github创建一个<strong>同名仓库</strong></p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/3A5tOA.png alt=新建仓库 class=lazyload><figcaption class=image-caption>新建仓库</figcaption></figure><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://user-images.githubusercontent.com/26682846/71865229-126b2800-313d-11ea-928e-ee03fc5ffdd1.png alt=新建仓库 class=lazyload><figcaption class=image-caption>新建仓库</figcaption></figure></p><p>创建完成后跳转界面给我们提供了三个选择</p><ul><li><p>&mldr;or create a new repository on the command line</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=nb>echo</span> <span class=s2>&#34;# gittest&#34;</span> &gt;&gt; README.md
+git init
+git add README.md
+git commit -m <span class=s2>&#34;first commit&#34;</span>
+git remote add origin https://github.com/shuzang/gittest.git
+git push -u origin master
+</code></pre></td></tr></table></div></div></li><li><p>&mldr;or push an existing repository from the command line</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>git remote add origin https://github.com/shuzang/gittest.git
+git push -u origin master
+</code></pre></td></tr></table></div></div></li><li><p>&mldr;or import code from another repository</p><p>You can initialize this repository with code from a Subversion, Mercurial, or TFS project.</p></li></ul><p>第一个选项基本就是没有本地仓库的情况下我们要做的所有事情，不过现在我们已经有了本地仓库，所以选择第二个选项，将本地已存在的gittest仓库关联到Github。</p><p>按提示执行命令即可</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ git remote add origin https://github.com/shuzang/gittest.git
+$ git push -u origin master
+Enumerating objects: 6, <span class=k>done</span>.
+Counting objects: 100% <span class=o>(</span>6/6<span class=o>)</span>, <span class=k>done</span>.
+Delta compression using up to <span class=m>4</span> threads
+Compressing objects: 100% <span class=o>(</span>2/2<span class=o>)</span>, <span class=k>done</span>.
+Writing objects: 100% <span class=o>(</span>6/6<span class=o>)</span>, <span class=m>448</span> bytes <span class=p>|</span> 448.00 KiB/s, <span class=k>done</span>.
+Total <span class=m>6</span> <span class=o>(</span>delta 0<span class=o>)</span>, reused <span class=m>0</span> <span class=o>(</span>delta 0<span class=o>)</span>
+To https://github.com/shuzang/gittest.git
+ * <span class=o>[</span>new branch<span class=o>]</span>      master -&gt; master
+Branch <span class=s1>&#39;master&#39;</span> <span class=nb>set</span> up to track remote branch <span class=s1>&#39;master&#39;</span> from <span class=s1>&#39;origin&#39;</span>.
+</code></pre></td></tr></table></div></div><p>返回的结果告诉我们分支master设置为跟踪来自origin的远程分支master，代码已推送到远程仓库。此时查看远程仓库如下</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/3A5DfS.png alt=gittest仓库 class=lazyload><figcaption class=image-caption>gittest仓库</figcaption></figure></p><p>点击左侧中间的<code>2 commits</code>可以查看提交的具体情况</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/3A52mn.png alt=提交信息 class=lazyload><figcaption class=image-caption>提交信息</figcaption></figure></p><p>继续点击每个具体的提交可以查看代码或文件的改动</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/3A5opF.png alt="add a line" class=lazyload><figcaption class=image-caption>add a line</figcaption></figure></p><p>查看别人的代码时，可以从这里查看一次次提交的改动和commit信息，有助于帮助我们学习别人的代码和编写思路</p><p>以后编辑和提交代码，主体就三个命令</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ git add .
+$ git commit -m <span class=s2>&#34;commit message&#34;</span>
+$ git push origin master
+</code></pre></td></tr></table></div></div><p>其它的git命令都是辅助，之后会慢慢介绍</p><a class=post-dummy-target id=44-从远程仓库克隆到本地></a><h3>4.4 从远程仓库克隆到本地</h3><p>换到新电脑或者不是自己从头新建仓库，而是使用别人的仓库进行合作开发，使用<code>git clone</code>命令，</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ git clone 仓库地址
+</code></pre></td></tr></table></div></div><p>如果是下载某个指定分支的内容，命令为</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ git clone -b 分支名 仓库地址
+</code></pre></td></tr></table></div></div><a class=post-dummy-target id=5-历史版本></a><h2>5. 历史版本</h2><p>修改的次数会逐渐变多，随着时间的流逝，我们完全不会记得每次修改了哪些内容，当然，git的出现就是为了帮我们解决这个问题，所以理所当然的会有查看历史版本的能力，以及回退到某个版本的能力，云端查看历史版本如上节所述，本地命令行如何查看在本节详细解释，以及介绍如果丢弃错误的提交。</p><a class=post-dummy-target id=51-查看历史版本></a><h3>5.1 查看历史版本</h3><p>使用 <code>git log</code> 命令可以查看历史改动</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ git log
+commit ae3c27f99068e6eb301fd7d28960b97ec56b9733 <span class=o>(</span>HEAD -&gt; master, origin/master<span class=o>)</span>
+Author: shuzang &lt;844327696@qq.com&gt;
+Date:   Tue Jan <span class=m>7</span> 10:52:14 <span class=m>2020</span> +0800
+
+    add a line
+
+commit a91c24851ecd74e933bd638fd30773050bd7c692
+Author: shuzang &lt;844327696@qq.com&gt;
+Date:   Tue Jan <span class=m>7</span> 10:42:01 <span class=m>2020</span> +0800
+
+    first commit
+</code></pre></td></tr></table></div></div><p>提示内容是按从近到远的顺序把所有改动列举一遍，包括用户名、邮箱、修改日期，当时添加的message信息，不想看名称、邮箱和日期可以使用参数简化显示，如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ git log --pretty<span class=o>=</span>oneline
+ae3c27f99068e6eb301fd7d28960b97ec56b9733 <span class=o>(</span>HEAD -&gt; master, origin/master<span class=o>)</span> add a line
+a91c24851ecd74e933bd638fd30773050bd7c692 first commit
+</code></pre></td></tr></table></div></div><p>也可以用以下命令查看参数使用方式</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ git log --help
+</code></pre></td></tr></table></div></div><p>提示内容中每次修改最前面的一串长字符是版本号（commit id），用十六进制表示，用来代表我们每次修改的版本</p><a class=post-dummy-target id=52-回退></a><h3>5.2 回退</h3><p>首先，在git中，用<code>HEAD</code>表示当前版本，上一个版本就是<code>HEAD^</code>，上上一个版本就是<code>HEAD^^</code>，当然历史版本数多的时候写<code>^</code>写不过来，所以写成<code>HEAD~number</code>，如往上100个版本就是<code>HEAD-100</code><br>回退命令为<code>git reset</code>，比如，回退到上一个版本</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ git  reset --hard HEAD^
+HEAD is now at a91c248 first commit
+</code></pre></td></tr></table></div></div><p>然后我们就看到真的变回去了，如果记下了版本号，我们还可以再跳回最后一个修改版本，也就是说，我们突然不想回退了，或者退多了</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ git reset  --hard ae3c
+HEAD is now at ae3c27f add a line
+</code></pre></td></tr></table></div></div><p><code>ae3c</code>为其版本号，但版本号没必要写全，因为它的作用是为了区分各版本，所以只要找到第一个不相同的那位字母，写到那里就行了</p><p>版本切换的速度非常快，主要是因为<code>HEAD</code>只是一个指向当前版本的指针，跳转版本的时候也仅仅移动指针</p><p>在不记得版本号的情况下，git还提供了<code>git reflog</code>命令记录每次<code>HEAD</code>指针移动</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ git reflog
+ae3c27f <span class=o>(</span>HEAD -&gt; master, origin/master<span class=o>)</span> HEAD@<span class=o>{</span>0<span class=o>}</span>: reset: moving to ae3c
+a91c248 HEAD@<span class=o>{</span>1<span class=o>}</span>: reset: moving to HEAD^
+ae3c27f <span class=o>(</span>HEAD -&gt; master, origin/master<span class=o>)</span> HEAD@<span class=o>{</span>2<span class=o>}</span>: commit: add a line
+a91c248 HEAD@<span class=o>{</span>3<span class=o>}</span>: commit <span class=o>(</span>initial<span class=o>)</span>: first commit
+</code></pre></td></tr></table></div></div><p>该命令会显示每次修改版本的版本号</p><a class=post-dummy-target id=6-三大工作区域></a><h2>6. 三大工作区域</h2><p>使用 Git 最好理解它的三大工作区域：工作目录、暂存区和版本仓库。</p><p><strong>工作目录</strong>就是代码编辑的主体目录，存放整个项目的源码和相关文件。</p><p><strong>暂存区</strong>也叫做索引，用来跟踪工作目录的所有文件。事实上，工作目录中的每一个文件要么处于已跟踪状态，要么处于未跟踪状态，执行这个跟踪动作的，就是索引。索引所对应的静态文件是工作目录下 <code>.git</code> 隐藏文件夹中的 <code>index</code> 文件，其中记录每个已跟踪文件的文件名、文件时间戳、文件长度等元数据信息。需要注意的是，索引并不保持文件的具体内容，只记录文件的改动，文件的具体内容保持在版本仓库中。<code>git add</code> 命令可以将改变提交给暂存区。</p><p><strong>版本仓库</strong>就是本地电脑具体保存所有代码的地方。具体位置是 <code>.git/objects</code> 文件夹，暂存区的文件经过 <code>git commit</code> 命令可以提交到本地版本仓库。本地版本仓库需要和远程的云端仓库（也就是存在 Github 服务器里的仓库文件）同步，如果有修改，需要推送到远程仓库，如果远程有别人的提交，需要拉取和本地代码合并。</p><p>版本库里有暂存区，还有自动创建的第一个分支master，以及指向master的一个指针叫HEAD<figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/3AIQns.png alt=工作区与版本库图解 class=lazyload><figcaption class=image-caption>工作区与版本库图解</figcaption></figure><code>git add</code>实际上是把文件修改添加到暂存区；
+<code>git commit</code>实际上是把暂存区的所有内容提交到当前分支</p><p>在推送到远程仓库之前，一切修改都有挽救的机会</p><a class=post-dummy-target id=61-丢弃修改></a><h3>6.1 丢弃修改</h3><p><strong>场景1</strong>：当改乱了工作区某个文件的内容，想直接丢弃工作区的修改时，使用命令</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># 撤销单个文件修改</span>
+$ git checkout -- file
+<span class=c1># 撤销从上次提交后所有修改</span>
+$ git checkout -- *
+</code></pre></td></tr></table></div></div><p><strong>场景2</strong>：当不但改乱了工作区某个文件的内容，还添加到了暂存区时，想丢弃修改，分两步，第一步用命令</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ git reset HEAD file
+$ git checkout -- file
+</code></pre></td></tr></table></div></div><p><strong>场景3</strong>：已经提交了不合适的修改到版本库时，想要撤销本次提交，参考上一节进行版本回退</p><p>最后，如果代码已经提交到了远程仓库，那么只能进行修复然后进行新的提交</p><a class=post-dummy-target id=62-删除文件></a><h3>6.2 删除文件</h3><p>一般情况，是直接在文件夹中用rm命令删除，但这样工作区和版本库就不一致了</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ rm hellogit.txt
+$ git status
+On branch master
+Your branch is up to date with <span class=s1>&#39;origin/master&#39;</span>.
+
+Changes not staged <span class=k>for</span> commit:
+  <span class=o>(</span>use <span class=s2>&#34;git add/rm &lt;file&gt;...&#34;</span> to update what will be committed<span class=o>)</span>
+  <span class=o>(</span>use <span class=s2>&#34;git checkout -- &lt;file&gt;...&#34;</span> to discard changes in working directory<span class=o>)</span>
+
+        deleted:    hellogit.txt
+
+no changes added to commit <span class=o>(</span>use <span class=s2>&#34;git add&#34;</span> and/or <span class=s2>&#34;git commit -a&#34;</span><span class=o>)</span>
+$ git add .
+$ git commit -m <span class=s2>&#34;remove hellogit.txt&#34;</span>
+</code></pre></td></tr></table></div></div><p>可以用命令恢复</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ git checkout -- hellogit.txt
+</code></pre></td></tr></table></div></div><p>正常从版本库中删除该文件，用<code>git rm</code>命令，并且<code>git commit</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ git rm hellogit.txt
+rm <span class=s1>&#39;hellogit.txt&#39;</span>
+$ git status
+On branch master
+Your branch is up to date with <span class=s1>&#39;origin/master&#39;</span>.
+
+Changes to be committed:
+  <span class=o>(</span>use <span class=s2>&#34;git reset HEAD &lt;file&gt;...&#34;</span> to unstage<span class=o>)</span>
+
+        deleted:    hellogit.txt
+
+$ git commit -m <span class=s2>&#34;remove hellogit.txt&#34;</span>
+</code></pre></td></tr></table></div></div><p>两者的区别是直接删除需要额外执行<code>git add</code>命令，而<code>git rm</code>删除后可以直接<code>commit</code>，当然，其实没有多少影响，具体用什么方法，自己选择就好。</p><a class=post-dummy-target id=参考与扩展></a><h2>参考与扩展</h2><p>[1] <a href=https://www.liaoxuefeng.com/wiki/896043488029600 target=_blank>廖雪峰的官方网站-git教程</a></p><p>[2] <a href=https://backlog.com/git-tutorial/cn/intro/intro1_1.html target=_blank>猴子都能懂的git入门</a></p><p>[3] <a href=https://lab.github.com/ target=_blank>Github Learning Lab</a></p><p>[4] <a href=https://hellogithub.com/ target=_blank>Hellogithub</a></p></div><div class=post-copyright id=post-footer><p class=copyright-item><span>Author:&nbsp;</span>
+<span>shuzang</span></p><p class=copyright-item><span>Updated on:&nbsp;</span>
+<span>2020-10-08</span></p><p class=copyright-item><span>Share on:&nbsp;</span>
+<span><a href="//twitter.com/share?url=https%3a%2f%2fshuzang.github.io%2f2018%2fgit-learning-getting-started%2f&text=Git%e5%85%a5%e9%97%a8-%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5%2c%20%e5%9f%ba%e6%9c%ac%e5%8e%9f%e7%90%86%2c%20%e5%ae%89%e8%a3%85%e4%bd%bf%e7%94%a8&via=" target=_blank title="Share on Twitter"><i class="fab fa-twitter fa-fw"></i></a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fshuzang.github.io%2f2018%2fgit-learning-getting-started%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook-square fa-fw"></i></a><a href="//reddit.com/submit?url=https%3a%2f%2fshuzang.github.io%2f2018%2fgit-learning-getting-started%2f&title=Git%e5%85%a5%e9%97%a8-%e5%9f%ba%e6%9c%ac%e6%a6%82%e5%bf%b5%2c%20%e5%9f%ba%e6%9c%ac%e5%8e%9f%e7%90%86%2c%20%e5%ae%89%e8%a3%85%e4%bd%bf%e7%94%a8" target=_blank title="Share on Reddit"><i class="fab fa-reddit fa-fw"></i></a></span></p><p class=copyright-item></p><p class=copyright-item></p></div><br><div class=post-info-more><section><span class=tag><a href=https://shuzang.github.io/tags/git/><i class="fas fa-tag fa-fw"></i>&nbsp;git</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://shuzang.github.io>Home</a></span></section></div><div class=post-nav><a href=https://shuzang.github.io/2018/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E9%80%89%E6%8B%A9/ class=prev rel=prev title=编程语言选择><i class="fas fa-angle-left fa-fw"></i>编程语言选择</a>
+<a href=https://shuzang.github.io/2018/git-learning-improvement/ class=next rel=next title="Git提高-分支管理, 多人协作, 标签管理, gitignore, commit信息">Git提高-分支管理, 多人协作, 标签管理, gitignore, commit信息<i class="fas fa-angle-right fa-fw"></i></a></div><div class=post-comment><div id=vcomments></div><script src=/js/lib/valine/Valine.min.min.js></script><script type=text/javascript>(function(){if(window.location.hostname=="localhost")
+return;new Valine({el:"#vcomments",appId:"GteMvevTjOBmhvFh2QGsopGO-gzGzoHsz",appKey:"fL4SYl06GIe012PswFdY17VC",meta:["nick","mail"],notify:"false",verify:"true",avatar:"hide",placeholder:"Your comment ...",visitor:"true",recordIP:"true",lang:"en",});})();</script><noscript>Please enable JavaScript to view the <a href=https://valine.js.org/>comments powered by Valine.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://shuzang.github.io/about/ target=_blank>shuzang</a> | </span>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> & <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt</a></div></div></footer></div><a href=# class=dynamic-to-top id=dynamic-to-top data-scroll><span>&nbsp;</span>
+</a><script src=/js/lib/jquery/jquery.slim.min.js></script><script src=/js/lib/lazysizes/lazysizes.min.js></script><script src=/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js></script><script>window.scroll=new SmoothScroll('[data-scroll]',{speed:300,speedAsDuration:true});</script><link rel=stylesheet href=/css/lib/katex/katex.min.css><script src=/js/lib/katex/katex.min.js></script><script defer src=/js/lib/katex/auto-render.min.js></script><link rel=stylesheet href=/css/lib/katex/copy-tex.min.css><script defer src=/js/lib/katex/copy-tex.min.js></script><script defer src=/js/lib/katex/mhchem.min.js></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true},{left:"$",right:"$",display:false},]});});</script><script src=/js/blog.min.js></script></body></html>

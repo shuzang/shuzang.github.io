@@ -1,0 +1,505 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Golang数据库编程 | Shuzang's Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><link rel=prev href=https://shuzang.github.io/2020/mysql-learning-6-data-query-language/><link rel=next href=https://shuzang.github.io/2020/development-of-online-forum-based-on-golang-1-overall-design-and-data-model/><link rel=canonical href=https://shuzang.github.io/2020/golang-interact-with-mysql/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><meta name=twitter:card content="summary"><meta name=twitter:title content="Golang数据库编程"><meta name=twitter:description content="Go 官方提供了database 包，database 包下有 sql/driver。该包用来定义操作数据库的接口，这保证了无论使用哪种数据库，操作方"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Golang数据库编程","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/2020\/golang-interact-with-mysql\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"Go项目基础","wordcount":3830,"url":"https:\/\/shuzang.github.io\/2020\/golang-interact-with-mysql\/","datePublished":"2020-05-26T00:00:00\x2b00:00","dateModified":"2020-05-28T00:00:00\x2b00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"shuzang","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/logo.png","width":127,"height":40}},"description":""}</script><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css></head><body><script>window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><nav class=navbar><div class=top-scroll-bar></div><div class=navbar-container><div class="navbar-header animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=navbar-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><nav class=navbar-mobile><div class=top-scroll-bar></div><div class=navbar-container><div class=navbar-header><div class="navbar-header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=navbar-menu id=mobile-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><main class=main><div class=container><article class=page><h1 class="post-title animated flipInX">Golang数据库编程</h1><div class=post-meta><i class="far fa-calendar-alt fa-fw"></i>published on&nbsp;<time datetime=2020-05-26>2020-05-26</time>&nbsp;
+<i class="fas fa-pencil-alt fa-fw"></i>about 3830 words&nbsp;<span id=/2020/golang-interact-with-mysql/ class=leancloud_visitors data-flag-title=Golang数据库编程>
+<i class="far fa-eye fa-fw"></i><span class=leancloud-visitors-count></span>views
+</span>&nbsp;<span class=post-category><i class="far fa-folder fa-fw"></i>included in&nbsp;<a href=https://shuzang.github.io/categories/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/>Golang学习之路</a>&nbsp;</span></div><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#1-安装>1. 安装</a></li><li><a href=#2-导入>2. 导入</a></li><li><a href=#3-连接数据库>3. 连接数据库</a></li><li><a href=#4-增删改数据>4. 增删改数据</a></li><li><a href=#5-查询数据>5. 查询数据</a></li><li><a href=#6-示例代码>6. 示例代码</a></li></ul></nav></div></div><div class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
+<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><a href=#1-安装>1. 安装</a></li><li><a href=#2-导入>2. 导入</a></li><li><a href=#3-连接数据库>3. 连接数据库</a></li><li><a href=#4-增删改数据>4. 增删改数据</a></li><li><a href=#5-查询数据>5. 查询数据</a></li><li><a href=#6-示例代码>6. 示例代码</a></li></ul></nav></div></details></div><div class=post-content><p>Go 官方提供了database 包，database 包下有 sql/driver。该包用来定义操作数据库的接口，这保证了无论使用哪种数据库，操作方式都是相同的。但 Go 官方并没有提供连接数据库的 driver，如果要操作数据库，还需要第三方的 driver 包。这里介绍 <a href=https://github.com/go-sql-driver/mysql target=_blank>go-mysql-driver</a> 的使用。</p><a class=post-dummy-target id=1-安装></a><h2>1. 安装</h2><p>在执行了 <code>go mod</code> 的项目目录下执行如下安装命令</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ go get -u github.com/go-sql-driver/mysql
+</code></pre></td></tr></table></div></div><p>Win10 下，go-sql-driver 包将被安装到 <code>%GOPATH%\pkg\mod\github.com\go-sql-driver\mysql@v1.5.0</code> 目录下，其它项目使用时不必重复下载，执行上述命令即可直接引入。</p><a class=post-dummy-target id=2-导入></a><h2>2. 导入</h2><p>示例代码如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>import</span> <span class=p>(</span>
+	<span class=s>&#34;database/sql&#34;</span>
+    <span class=s>&#34;fmt&#34;</span>
+    <span class=nx>_</span> <span class=s>&#34;github.com/go-sql-driver/mysql&#34;</span>
+<span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>Golang 提供了database/sql 包，用于对 SQL 数据库的访问。它提供了一系列接口方法，用于访问关系数据库但并不会提供数据库特有的方法，那些特有的方法交给数据库驱动去实现。</p><p>对于数据库操作来说，开发者不应该直接使用导入的驱动包所提供的方法，而应该使用 sql.DB 对象所提供的统一的方法。因此在导入 MySQL 驱动时，使用了匿名导入包的方式，即将 go-sql-driver 包重命名为特殊符号 <code>_</code>。采用这种方式只会执行其中的 init 函数和初始化其全局变量，无法调用函数。</p><a class=post-dummy-target id=3-连接数据库></a><h2>3. 连接数据库</h2><p>连接数据库使用 sql 包中的 Open() 函数，原型如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>Open</span><span class=p>(</span><span class=nx>driverName</span><span class=p>,</span> <span class=nx>dataSourceName</span> <span class=kt>string</span><span class=p>)</span> <span class=p>(</span><span class=o>*</span><span class=nx>DB</span><span class=p>,</span> <span class=kt>error</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><ul><li>driverName：使用的驱动名。这个名字其实就是数据库驱动注册到 database/sql 时所使用的名字</li><li>dataSourceName：数据库连接信息。它包含了数据库的用户名、密码、数据库主机以及需要连接的数据库名等信息。</li></ul><p>使用示例如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=nx>db</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>sql</span><span class=p>.</span><span class=nf>Open</span><span class=p>(</span><span class=s>&#34;mysql&#34;</span><span class=p>,</span> <span class=s>&#34;用户名:密码@tcp(IP:端口)/数据库?charset=utf8&#34;</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>sql.Open() 返回的 sql.DB 对象是 Goroutine 并发安全的。sql.DB 通过数据库驱动为开发者提供管理底层数据库连接的打开和关闭操作。sql.DB 帮助开发者管理数据库连接池。正在使用的连接被标记为繁忙，用完后回到连接池等待下次使用。所以，如果开发者没有把连接释放回连接池，会导致过多连接使系统资源耗尽。</p><p>sql.DB 的设计目标就是作为长连接（一次连接多次数据交互）使用，不宜频繁开关。比较好的做法是，为每个不同的 datastore 建一个DB 对象，保持这些对象打开。如果需要短连接（一次连接一次数据交互），就把 DB 作为参数传入函数，而不要在函数中开关。</p><a class=post-dummy-target id=4-增删改数据></a><h2>4. 增删改数据</h2><p>直接调用DB对象的 Exec() 方法如下所示</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=p>(</span><span class=nx>db</span> <span class=o>*</span><span class=nx>DB</span><span class=p>)</span> <span class=nf>Exec</span><span class=p>(</span><span class=nx>query</span> <span class=kt>string</span><span class=p>,</span> <span class=nx>args</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span> <span class=p>(</span><span class=nx>Result</span><span class=p>,</span> <span class=kt>error</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>通过db.Exec()插入数据，通过返回的 err 可知插入失败的原因，通过返回的结果可以进一步查询本次插入数据影响的行数（RowsAffected）和最后插入的ID（如果数据库支持查询最后插入ID）。事实上，Result 是对已执行的 SQL 命令的总结，类型定义如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>type</span> <span class=nx>Result</span> <span class=kd>interface</span> <span class=p>{</span>
+    <span class=c1>// LastInsertId返回一个数据库生成的回应命令的整数。
+</span><span class=c1></span>    <span class=c1>// 当插入新行时，一般来自一个&#34;自增&#34;列。
+</span><span class=c1></span>    <span class=c1>// 不是所有的数据库都支持该功能，该状态的语法也各有不同。
+</span><span class=c1></span>    <span class=nf>LastInsertId</span><span class=p>(</span><span class=p>)</span> <span class=p>(</span><span class=kt>int64</span><span class=p>,</span> <span class=kt>error</span><span class=p>)</span>
+
+    <span class=c1>// RowsAffected返回被update、insert或delete命令影响的行数。
+</span><span class=c1></span>    <span class=c1>// 不是所有的数据库都支持该功能。
+</span><span class=c1></span>    <span class=nf>RowsAffected</span><span class=p>(</span><span class=p>)</span> <span class=p>(</span><span class=kt>int64</span><span class=p>,</span> <span class=kt>error</span><span class=p>)</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>Exec() 方法的使用方式如下所示</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=nx>result</span><span class=p>,</span><span class=nx>err</span> <span class=o>:=</span> <span class=nx>db</span><span class=p>.</span><span class=nf>Exec</span><span class=p>(</span><span class=s>&#34;INSERT INTO user_info (username, departname, created) VALUES (?,?,?)&#34;</span><span class=p>,</span> <span class=s>&#34;Steven&#34;</span><span class=p>,</span> <span class=s>&#34;区块链教学部&#34;</span><span class=err>，</span> <span class=s>&#34;2017-10-1&#34;</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>预编译语句（PreparedStatement）提供了诸多好处。PreparedStatement 可以实现自定义参数的查询，通常来说比手动拼接字符串SQL语句高效；PreparedStatement 还可以防止SQL注入攻击。因此，开发中应尽量使用它。</p><p>通常使用 PreparedStatement 和 Exec() 完成 INSERT、UPDATE、DELETE 操作。使用DB对象的Prepare() 方法获得预编译对象 stmt，然后调用 Exec() 方法，语法如下所示。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=p>(</span><span class=nx>db</span> <span class=o>*</span><span class=nx>DB</span><span class=p>)</span> <span class=nf>Prepare</span><span class=p>(</span><span class=nx>query</span> <span class=kt>string</span><span class=p>)</span> <span class=p>(</span><span class=o>*</span><span class=nx>Stmt</span><span class=p>,</span> <span class=kt>error</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>具体用法如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=nx>stmt</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>db</span><span class=p>.</span><span class=nf>Prepare</span><span class=p>(</span><span class=s>&#34;INSERT INTO user_info SET username=?, departnamt=?, created=?&#34;</span><span class=p>)</span>
+<span class=nx>result</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>stmt</span><span class=p>.</span><span class=nf>Exec</span><span class=p>(</span><span class=s>&#34;Jackson&#34;</span><span class=p>,</span> <span class=s>&#34;研发部&#34;</span><span class=p>,</span> <span class=s>&#34;2017-10-1&#34;</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>获取影响数据库的行数，可以根据该数值判断是否操作（插入、删除或修改）成功。语法如下所示。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=nx>count</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>result</span><span class=p>.</span><span class=nf>RowsAffected</span><span class=p>(</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>预编译对象 stmt 属于 Stmt 类型，是一个准备好的状态，可以安全地被多个 Goroutine 同时使用，类型定义与方法集如下，定义在 DB 对象上的 Exec 和 Stmt 对象上的 Exec 传入参数有区别，后者不需要 SQL 语句，但作用应该是相同的。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>type</span> <span class=nx>Stmt</span> <span class=kd>struct</span> <span class=p>{</span>
+    <span class=c1>// 内含隐藏或非导出字段
+</span><span class=c1></span><span class=p>}</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>s</span> <span class=o>*</span><span class=nx>Stmt</span><span class=p>)</span> <span class=nf>Exec</span><span class=p>(</span><span class=nx>args</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span> <span class=p>(</span><span class=nx>Result</span><span class=p>,</span> <span class=kt>error</span><span class=p>)</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>s</span> <span class=o>*</span><span class=nx>Stmt</span><span class=p>)</span> <span class=nf>Query</span><span class=p>(</span><span class=nx>args</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span> <span class=p>(</span><span class=o>*</span><span class=nx>Rows</span><span class=p>,</span> <span class=kt>error</span><span class=p>)</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>s</span> <span class=o>*</span><span class=nx>Stmt</span><span class=p>)</span> <span class=nf>QueryRow</span><span class=p>(</span><span class=nx>args</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span> <span class=o>*</span><span class=nx>Row</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>s</span> <span class=o>*</span><span class=nx>Stmt</span><span class=p>)</span> <span class=nf>Close</span><span class=p>(</span><span class=p>)</span> <span class=kt>error</span>
+</code></pre></td></tr></table></div></div><a class=post-dummy-target id=5-查询数据></a><h2>5. 查询数据</h2><p>数据查询的一般步骤如下</p><ol><li><p>调用 db.Query() 方法执行 SQL 语句，此方法返回一个 Rows 作为查询结果，语法如下所示</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=p>(</span><span class=nx>db</span> <span class=o>*</span><span class=nx>DB</span><span class=p>)</span> <span class=nf>Query</span><span class=p>(</span><span class=nx>query</span> <span class=kt>string</span><span class=p>,</span> <span class=nx>args</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span> <span class=p>(</span><span class=o>*</span><span class=nx>Rows</span><span class=p>,</span> <span class=kt>error</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>注意，Rows 作为查询结果，其游标指向结果集的第零行</p></li><li><p>将 rows.Next() 方法的返回值作为 for 循环的条件，迭代查询数据，语法如下所示。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=p>(</span><span class=nx>rs</span> <span class=o>*</span><span class=nx>Rows</span><span class=p>)</span> <span class=nf>Next</span><span class=p>(</span><span class=p>)</span> <span class=kt>bool</span>
+</code></pre></td></tr></table></div></div><p>Next 的返回值不是简单的一个对下一个结果是否存在的判断，而是准备下一行结果用于 Scan 方法进行扫描，如果准备好，返回 true，如果没有下一行或准备时出现错误，返回 false</p></li><li><p>在循环中，通过 rows.Scan()方法读取每一行数据，语法如下所示。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=p>(</span><span class=nx>rs</span> <span class=o>*</span><span class=nx>Rows</span><span class=p>)</span> <span class=nf>Scan</span><span class=p>(</span><span class=nx>dest</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span> <span class=kt>error</span>
+</code></pre></td></tr></table></div></div><p>rows.Scan() 方法的参数顺序很重要，必须和查询结果的列相对应（数量和顺序都需要一致）。假设 <code>SELECT * From user_info where age ＞=20 AND age ＜ 30</code> 查询的列顺序是 <code>id, name, age</code>，和插入操作顺序相同，rows.Scan() 的参数传入也需要按照此顺序 <code>rows.Scan(＆id, ＆name, ＆age)</code>，不然会造成数据读取的错位。</p></li><li><p>调用db.Close()关闭查询，Close 关闭 DB对象，释放任何打开的资源，但实际上因为 DB 句柄通常被多个 Go 协程共享，不会被关闭。</p></li></ol><p>查询多行数据的一个完整示例如下所示</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=nx>stmt</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>db</span><span class=p>.</span><span class=nf>Prepare</span><span class=p>(</span><span class=s>&#34;SELECT * FROM user_info WHERE uid&lt;?&#34;</span><span class=p>)</span>
+<span class=nx>rows</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>stmt</span><span class=p>.</span><span class=nf>Query</span><span class=p>(</span><span class=mi>10</span><span class=p>)</span>  <span class=c1>// 注意这里的 Query 也是 stmt 的方法
+</span><span class=c1></span><span class=nx>user</span> <span class=o>:=</span> <span class=nb>new</span><span class=p>(</span><span class=nx>UserTable</span><span class=p>)</span>
+<span class=k>for</span> <span class=nx>rows</span><span class=p>.</span><span class=nf>Next</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>err</span> <span class=o>:=</span> <span class=nx>rows</span><span class=p>.</span><span class=nf>Scan</span><span class=p>(</span><span class=o>&amp;</span><span class=nx>user</span><span class=p>.</span><span class=nx>Uid</span><span class=p>,</span> <span class=o>&amp;</span><span class=nx>user</span><span class=p>.</span><span class=nx>Username</span><span class=p>,</span> <span class=o>&amp;</span><span class=nx>user</span><span class=p>.</span><span class=nx>Department</span><span class=p>,</span> <span class=o>&amp;</span><span class=nx>user</span><span class=p>.</span><span class=nx>Created</span><span class=p>)</span>
+    <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=nb>panic</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+        <span class=k>continue</span>
+    <span class=p>}</span>
+    <span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=o>*</span><span class=nx>user</span><span class=p>)</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>因为 Golang 是强类型语言，所以查询数据时先定义数据类型。数据库中的数据有3种可能状态：存在值、存在零值、未赋值，因此可以将待查询的数据类型定义为 sql.NullString、sql.NullInt64 类型等。可以通过 Valid 值来判断查询到的值是赋值状态还是未赋值状态。</p><p>每次 db.Query() 操作后，都建议调用 rows.Close()。因为 db.Query() 会从数据库连接池中获取一个连接，这个底层连接在结果集（rows）未关闭前会被标记为处于繁忙状态。当遍历读到最后一条记录时，会发生一个内部 EOF 错误，自动调用 rows.Close()。但如果出现异常，提前退出循环，rows 不会关闭，连接不会回到连接池中，连接也不会关闭，则此连接会一直被占用。因此通常使用 defer rows.Close() 来确保数据库连接可以正确放回到连接池中。rows.Close() 操作是幂等操作，而一个幂等操作的特点是：其任意多次执行所产生的影响与一次执行的影响相同。所以即便对已关闭的 rows 再执行 close() 也没关系。</p><p>谈到这里，我们可以注意到 Close 方法一共有三种，分别定义在 DB、Stmt、Rows 三个方法上，用于关闭数据库连接、预准备状态和查询结果，不过本质上都是释放某个连接池中的连接。</p><p>单条数据通过 QueryRow() 方法查询，语法如下所示。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=p>(</span><span class=nx>db</span> <span class=o>*</span><span class=nx>DB</span><span class=p>)</span> <span class=nf>QueryRow</span><span class=p>(</span><span class=nx>query</span> <span class=kt>string</span><span class=p>,</span> <span class=nx>args</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span> <span class=o>*</span><span class=nx>Row</span>
+</code></pre></td></tr></table></div></div><p>使用示例如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>var</span> <span class=nx>username</span><span class=p>,</span> <span class=nx>departname</span><span class=p>,</span> <span class=nx>created</span> <span class=kt>string</span>
+<span class=nx>err</span> <span class=o>:=</span> <span class=nx>db</span><span class=p>.</span><span class=nf>QueryRow</span><span class=p>(</span><span class=s>&#34;SELECT username, departname, created FROM user_info WHERE uid=?&#34;</span><span class=p>,</span> <span class=mi>3</span><span class=p>)</span><span class=p>.</span><span class=nf>Scan</span><span class=p>(</span><span class=o>&amp;</span><span class=nx>username</span><span class=p>,</span> <span class=o>&amp;</span><span class=nx>departname</span><span class=p>,</span> <span class=o>&amp;</span><span class=nx>created</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><a class=post-dummy-target id=6-示例代码></a><h2>6. 示例代码</h2><p>定义一个表结构如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>mysql&gt; CREATE TABLE user_info (
+    -&gt; uid INT(10) NOT NULL AUTO_INCREMENT,
+    -&gt; username VARCHAR(64) DEFAULT NULL,
+    -&gt; departname VARCHAR(64) DEFAULT NULL,
+    -&gt; created DATE DEFAULT NULL,
+    -&gt; PRIMARY KEY(uid)
+    -&gt; );
+Query OK, 0 rows affected, 1 warning (0.03 sec)
+
+mysql&gt; DESC user_info;
++------------+-------------+------+-----+---------+----------------+
+| Field      | Type        | Null | Key | Default | Extra          |
++------------+-------------+------+-----+---------+----------------+
+| uid        | int         | NO   | PRI | NULL    | auto_increment |
+| username   | varchar(64) | YES  |     | NULL    |                |
+| departname | varchar(64) | YES  |     | NULL    |                |
+| created    | date        | YES  |     | NULL    |                |
++------------+-------------+------+-----+---------+----------------+
+4 rows in set (0.00 sec)
+</code></pre></td></tr></table></div></div><p>编写一个完整的测试代码，使用上述提到的所有数据库操作</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
+</span><span class=lnt>138
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span><span class=lnt>142
+</span><span class=lnt>143
+</span><span class=lnt>144
+</span><span class=lnt>145
+</span><span class=lnt>146
+</span><span class=lnt>147
+</span><span class=lnt>148
+</span><span class=lnt>149
+</span><span class=lnt>150
+</span><span class=lnt>151
+</span><span class=lnt>152
+</span><span class=lnt>153
+</span><span class=lnt>154
+</span><span class=lnt>155
+</span><span class=lnt>156
+</span><span class=lnt>157
+</span><span class=lnt>158
+</span><span class=lnt>159
+</span><span class=lnt>160
+</span><span class=lnt>161
+</span><span class=lnt>162
+</span><span class=lnt>163
+</span><span class=lnt>164
+</span><span class=lnt>165
+</span><span class=lnt>166
+</span><span class=lnt>167
+</span><span class=lnt>168
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=p>(</span>
+	<span class=s>&#34;database/sql&#34;</span>
+	<span class=s>&#34;fmt&#34;</span>
+
+	<span class=nx>_</span> <span class=s>&#34;github.com/go-sql-driver/mysql&#34;</span>
+<span class=p>)</span>
+
+<span class=c1>// 定义数据库连接信息
+</span><span class=c1></span><span class=kd>type</span> <span class=nx>DbConn</span> <span class=kd>struct</span> <span class=p>{</span>
+	<span class=nx>Dsn</span> <span class=kt>string</span> <span class=c1>// 数据库驱动字符串
+</span><span class=c1></span>	<span class=nx>Db</span>  <span class=o>*</span><span class=nx>sql</span><span class=p>.</span><span class=nx>DB</span>
+<span class=p>}</span>
+
+<span class=c1>// 数据库中的用户表的映射对象
+</span><span class=c1></span><span class=kd>type</span> <span class=nx>UserTable</span> <span class=kd>struct</span> <span class=p>{</span>
+	<span class=nx>Uid</span>        <span class=kt>int</span>
+	<span class=nx>Username</span>   <span class=kt>string</span>
+	<span class=nx>Department</span> <span class=kt>string</span>
+	<span class=nx>Created</span>    <span class=kt>string</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+	<span class=kd>var</span> <span class=nx>err</span> <span class=kt>error</span>
+	<span class=nx>dbConn</span> <span class=o>:=</span> <span class=nx>DbConn</span><span class=p>{</span>
+		<span class=nx>Dsn</span><span class=p>:</span> <span class=s>&#34;root:@tcp(127.0.0.1:3306)/testdb?charset=utf8&#34;</span><span class=p>,</span>
+	<span class=p>}</span>
+	<span class=nx>dbConn</span><span class=p>.</span><span class=nx>Db</span><span class=p>,</span> <span class=nx>err</span> <span class=p>=</span> <span class=nx>sql</span><span class=p>.</span><span class=nf>Open</span><span class=p>(</span><span class=s>&#34;mysql&#34;</span><span class=p>,</span> <span class=nx>dbConn</span><span class=p>.</span><span class=nx>Dsn</span><span class=p>)</span>
+	<span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+	<span class=p>}</span>
+	<span class=k>defer</span> <span class=nx>dbConn</span><span class=p>.</span><span class=nx>Db</span><span class=p>.</span><span class=nf>Close</span><span class=p>(</span><span class=p>)</span>
+
+	<span class=c1>//1. 测试直接使用 DB 的 Exec() 方法增删改
+</span><span class=c1></span>	<span class=nf>execData</span><span class=p>(</span><span class=o>&amp;</span><span class=nx>dbConn</span><span class=p>)</span>
+	<span class=c1>//2. 测试使用预编译语句和 Exec() 方法增删改
+</span><span class=c1></span>	<span class=nf>preExecData</span><span class=p>(</span><span class=o>&amp;</span><span class=nx>dbConn</span><span class=p>)</span>
+	<span class=c1>//3. 查询单行数据(以最后一条数据为例)
+</span><span class=c1></span>	<span class=nx>result</span> <span class=o>:=</span> <span class=nx>dbConn</span><span class=p>.</span><span class=nf>QueryRowData</span><span class=p>(</span><span class=s>&#34;select * from user_info where uid = (select max(uid) from user_info)&#34;</span><span class=p>)</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>result</span><span class=p>)</span>
+	<span class=c1>//4. 查询多行数据
+</span><span class=c1></span>	<span class=nx>result1</span> <span class=o>:=</span> <span class=nx>dbConn</span><span class=p>.</span><span class=nf>QueryData</span><span class=p>(</span><span class=s>&#34;select * from user_info where uid&lt;10&#34;</span><span class=p>)</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=nx>result1</span><span class=p>)</span><span class=p>)</span>
+	<span class=c1>//5. 查询多行数据（使用预编译语句）
+</span><span class=c1></span>	<span class=nx>result2</span> <span class=o>:=</span> <span class=nx>dbConn</span><span class=p>.</span><span class=nf>PreQueryData</span><span class=p>(</span><span class=s>&#34;select * from user_info where uid&lt;? order by uid desc&#34;</span><span class=p>,</span> <span class=mi>10</span><span class=p>)</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nb>len</span><span class=p>(</span><span class=nx>result2</span><span class=p>)</span><span class=p>)</span>
+	<span class=c1>//遍历查询的结果集
+</span><span class=c1></span>	<span class=k>for</span> <span class=nx>k</span><span class=p>,</span> <span class=nx>v</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>result2</span> <span class=p>{</span>
+		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;uid: &#34;</span><span class=p>,</span> <span class=nx>k</span><span class=p>,</span> <span class=nx>v</span><span class=p>)</span>
+	<span class=p>}</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=nf>execData</span><span class=p>(</span><span class=nx>dbConn</span> <span class=o>*</span><span class=nx>DbConn</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>count</span><span class=p>,</span> <span class=nx>id</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>dbConn</span><span class=p>.</span><span class=nf>ExecData</span><span class=p>(</span><span class=s>&#34;insert user_info (username,departname,created) values (&#39;Josh&#39;, &#39;business group&#39;,&#39;2020-06-14&#39;)&#34;</span><span class=p>)</span>
+	<span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>err</span><span class=p>.</span><span class=nf>Error</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
+	<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;受影响的行数：&#34;</span><span class=p>,</span> <span class=nx>count</span><span class=p>)</span>
+		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;新添加数据的id：&#34;</span><span class=p>,</span> <span class=nx>id</span><span class=p>)</span>
+	<span class=p>}</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>dbConn</span> <span class=o>*</span><span class=nx>DbConn</span><span class=p>)</span> <span class=nf>ExecData</span><span class=p>(</span><span class=nx>sqlString</span> <span class=kt>string</span><span class=p>)</span> <span class=p>(</span><span class=nx>count</span><span class=p>,</span> <span class=nx>id</span> <span class=kt>int64</span><span class=p>,</span> <span class=nx>err</span> <span class=kt>error</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>result</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>dbConn</span><span class=p>.</span><span class=nx>Db</span><span class=p>.</span><span class=nf>Exec</span><span class=p>(</span><span class=nx>sqlString</span><span class=p>)</span>
+	<span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+		<span class=k>return</span>
+	<span class=p>}</span>
+	<span class=k>if</span> <span class=nx>id</span><span class=p>,</span> <span class=nx>err</span> <span class=p>=</span> <span class=nx>result</span><span class=p>.</span><span class=nf>LastInsertId</span><span class=p>(</span><span class=p>)</span><span class=p>;</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+		<span class=k>return</span>
+	<span class=p>}</span>
+	<span class=k>if</span> <span class=nx>count</span><span class=p>,</span> <span class=nx>err</span> <span class=p>=</span> <span class=nx>result</span><span class=p>.</span><span class=nf>RowsAffected</span><span class=p>(</span><span class=p>)</span><span class=p>;</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+		<span class=k>return</span>
+	<span class=p>}</span>
+	<span class=k>return</span> <span class=nx>count</span><span class=p>,</span> <span class=nx>id</span><span class=p>,</span> <span class=kc>nil</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=nf>preExecData</span><span class=p>(</span><span class=nx>dbConn</span> <span class=o>*</span><span class=nx>DbConn</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>count</span><span class=p>,</span> <span class=nx>id</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>dbConn</span><span class=p>.</span><span class=nf>PreExecData</span><span class=p>(</span><span class=s>&#34;insert user_info (username,departname,created) values (&#39;Jackson&#39;, &#39;Education Department&#39;,&#39;2020-06-14&#39;)&#34;</span><span class=p>)</span>
+	<span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>err</span><span class=p>.</span><span class=nf>Error</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
+	<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;受影响的行数：&#34;</span><span class=p>,</span> <span class=nx>count</span><span class=p>)</span>
+		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;新添加数据的id：&#34;</span><span class=p>,</span> <span class=nx>id</span><span class=p>)</span>
+	<span class=p>}</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>dbConn</span> <span class=o>*</span><span class=nx>DbConn</span><span class=p>)</span> <span class=nf>PreExecData</span><span class=p>(</span><span class=nx>sqlString</span> <span class=kt>string</span><span class=p>,</span> <span class=nx>args</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span> <span class=p>(</span><span class=nx>count</span><span class=p>,</span> <span class=nx>id</span> <span class=kt>int64</span><span class=p>,</span> <span class=nx>err</span> <span class=kt>error</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>stmt</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>dbConn</span><span class=p>.</span><span class=nx>Db</span><span class=p>.</span><span class=nf>Prepare</span><span class=p>(</span><span class=nx>sqlString</span><span class=p>)</span>
+	<span class=k>defer</span> <span class=nx>stmt</span><span class=p>.</span><span class=nf>Close</span><span class=p>(</span><span class=p>)</span>
+	<span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+		<span class=k>return</span>
+	<span class=p>}</span>
+	<span class=nx>result</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>stmt</span><span class=p>.</span><span class=nf>Exec</span><span class=p>(</span><span class=nx>args</span><span class=o>...</span><span class=p>)</span>
+	<span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+		<span class=k>return</span>
+	<span class=p>}</span>
+	<span class=k>if</span> <span class=nx>id</span><span class=p>,</span> <span class=nx>err</span> <span class=p>=</span> <span class=nx>result</span><span class=p>.</span><span class=nf>LastInsertId</span><span class=p>(</span><span class=p>)</span><span class=p>;</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+		<span class=k>return</span>
+	<span class=p>}</span>
+	<span class=k>if</span> <span class=nx>count</span><span class=p>,</span> <span class=nx>err</span> <span class=p>=</span> <span class=nx>result</span><span class=p>.</span><span class=nf>RowsAffected</span><span class=p>(</span><span class=p>)</span><span class=p>;</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+		<span class=k>return</span>
+	<span class=p>}</span>
+	<span class=k>return</span> <span class=nx>count</span><span class=p>,</span> <span class=nx>id</span><span class=p>,</span> <span class=kc>nil</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>dbConn</span> <span class=o>*</span><span class=nx>DbConn</span><span class=p>)</span> <span class=nf>QueryRowData</span><span class=p>(</span><span class=nx>sqlString</span> <span class=kt>string</span><span class=p>)</span> <span class=p>(</span><span class=nx>data</span> <span class=nx>UserTable</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>user</span> <span class=o>:=</span> <span class=nb>new</span><span class=p>(</span><span class=nx>UserTable</span><span class=p>)</span>
+	<span class=nx>err</span> <span class=o>:=</span> <span class=nx>dbConn</span><span class=p>.</span><span class=nx>Db</span><span class=p>.</span><span class=nf>QueryRow</span><span class=p>(</span><span class=nx>sqlString</span><span class=p>)</span><span class=p>.</span><span class=nf>Scan</span><span class=p>(</span><span class=o>&amp;</span><span class=nx>user</span><span class=p>.</span><span class=nx>Uid</span><span class=p>,</span> <span class=o>&amp;</span><span class=nx>user</span><span class=p>.</span><span class=nx>Username</span><span class=p>,</span> <span class=o>&amp;</span><span class=nx>user</span><span class=p>.</span><span class=nx>Department</span><span class=p>,</span> <span class=o>&amp;</span><span class=nx>user</span><span class=p>.</span><span class=nx>Created</span><span class=p>)</span>
+	<span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+		<span class=k>return</span>
+	<span class=p>}</span>
+	<span class=k>return</span> <span class=o>*</span><span class=nx>user</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>dbConn</span> <span class=o>*</span><span class=nx>DbConn</span><span class=p>)</span> <span class=nf>QueryData</span><span class=p>(</span><span class=nx>sqlString</span> <span class=kt>string</span><span class=p>)</span> <span class=p>(</span><span class=nx>resultSet</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>UserTable</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>rows</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>dbConn</span><span class=p>.</span><span class=nx>Db</span><span class=p>.</span><span class=nf>Query</span><span class=p>(</span><span class=nx>sqlString</span><span class=p>)</span>
+	<span class=k>defer</span> <span class=nx>rows</span><span class=p>.</span><span class=nf>Close</span><span class=p>(</span><span class=p>)</span>
+	<span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+		<span class=k>return</span>
+	<span class=p>}</span>
+	<span class=nx>resultSet</span> <span class=p>=</span> <span class=nb>make</span><span class=p>(</span><span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>UserTable</span><span class=p>)</span>
+	<span class=nx>user</span> <span class=o>:=</span> <span class=nb>new</span><span class=p>(</span><span class=nx>UserTable</span><span class=p>)</span>
+	<span class=k>for</span> <span class=nx>rows</span><span class=p>.</span><span class=nf>Next</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+		<span class=nx>err</span> <span class=o>:=</span> <span class=nx>rows</span><span class=p>.</span><span class=nf>Scan</span><span class=p>(</span><span class=o>&amp;</span><span class=nx>user</span><span class=p>.</span><span class=nx>Uid</span><span class=p>,</span> <span class=o>&amp;</span><span class=nx>user</span><span class=p>.</span><span class=nx>Username</span><span class=p>,</span> <span class=o>&amp;</span><span class=nx>user</span><span class=p>.</span><span class=nx>Department</span><span class=p>,</span> <span class=o>&amp;</span><span class=nx>user</span><span class=p>.</span><span class=nx>Created</span><span class=p>)</span>
+		<span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+			<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+			<span class=k>continue</span>
+		<span class=p>}</span>
+		<span class=nx>resultSet</span><span class=p>[</span><span class=nx>user</span><span class=p>.</span><span class=nx>Uid</span><span class=p>]</span> <span class=p>=</span> <span class=o>*</span><span class=nx>user</span>
+	<span class=p>}</span>
+	<span class=k>return</span> <span class=nx>resultSet</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>dbConn</span> <span class=o>*</span><span class=nx>DbConn</span><span class=p>)</span> <span class=nf>PreQueryData</span><span class=p>(</span><span class=nx>sqlString</span> <span class=kt>string</span><span class=p>,</span> <span class=nx>args</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span> <span class=p>(</span><span class=nx>resultSet</span> <span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>UserTable</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>stmt</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>dbConn</span><span class=p>.</span><span class=nx>Db</span><span class=p>.</span><span class=nf>Prepare</span><span class=p>(</span><span class=nx>sqlString</span><span class=p>)</span>
+	<span class=k>defer</span> <span class=nx>stmt</span><span class=p>.</span><span class=nf>Close</span><span class=p>(</span><span class=p>)</span>
+	<span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+		<span class=k>return</span>
+	<span class=p>}</span>
+	<span class=nx>rows</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>stmt</span><span class=p>.</span><span class=nf>Query</span><span class=p>(</span><span class=nx>args</span><span class=o>...</span><span class=p>)</span>
+	<span class=k>defer</span> <span class=nx>rows</span><span class=p>.</span><span class=nf>Close</span><span class=p>(</span><span class=p>)</span>
+	<span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+		<span class=k>return</span>
+	<span class=p>}</span>
+	<span class=nx>resultSet</span> <span class=p>=</span> <span class=nb>make</span><span class=p>(</span><span class=kd>map</span><span class=p>[</span><span class=kt>int</span><span class=p>]</span><span class=nx>UserTable</span><span class=p>)</span>
+	<span class=nx>user</span> <span class=o>:=</span> <span class=nb>new</span><span class=p>(</span><span class=nx>UserTable</span><span class=p>)</span>
+	<span class=k>for</span> <span class=nx>rows</span><span class=p>.</span><span class=nf>Next</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+		<span class=nx>err</span> <span class=o>:=</span> <span class=nx>rows</span><span class=p>.</span><span class=nf>Scan</span><span class=p>(</span><span class=o>&amp;</span><span class=nx>user</span><span class=p>.</span><span class=nx>Uid</span><span class=p>,</span> <span class=o>&amp;</span><span class=nx>user</span><span class=p>.</span><span class=nx>Username</span><span class=p>,</span> <span class=o>&amp;</span><span class=nx>user</span><span class=p>.</span><span class=nx>Department</span><span class=p>,</span> <span class=o>&amp;</span><span class=nx>user</span><span class=p>.</span><span class=nx>Created</span><span class=p>)</span>
+		<span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+			<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>err</span><span class=p>)</span>
+			<span class=k>continue</span>
+		<span class=p>}</span>
+		<span class=nx>resultSet</span><span class=p>[</span><span class=nx>user</span><span class=p>.</span><span class=nx>Uid</span><span class=p>]</span> <span class=p>=</span> <span class=o>*</span><span class=nx>user</span>
+	<span class=p>}</span>
+	<span class=k>return</span> <span class=nx>resultSet</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>运行结果为</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ go run main.go
+受影响的行数： <span class=m>1</span>
+新添加数据的id： <span class=m>2</span>
+受影响的行数： <span class=m>1</span>
+新添加数据的id： <span class=m>3</span>
+<span class=o>{</span><span class=m>3</span> Jackson Education Department 2020-06-14<span class=o>}</span>        
+<span class=m>3</span>
+<span class=m>3</span>
+uid:  <span class=m>3</span> <span class=o>{</span><span class=m>3</span> Jackson Education Department 2020-06-14<span class=o>}</span>
+uid:  <span class=m>2</span> <span class=o>{</span><span class=m>2</span> Josh business group 2020-06-14<span class=o>}</span>
+uid:  <span class=m>1</span> <span class=o>{</span><span class=m>1</span> Steven 区块链教学部 2017-10-01<span class=o>}</span>
+</code></pre></td></tr></table></div></div><p><a href=https://weread.qq.com/web/reader/df83279071b1ee24df86404k07c32570311607cdfd23f04>https://weread.qq.com/web/reader/df83279071b1ee24df86404k07c32570311607cdfd23f04</a></p></div><div class=post-copyright id=post-footer><p class=copyright-item><span>Author:&nbsp;</span>
+<span>shuzang</span></p><p class=copyright-item><span>Updated on:&nbsp;</span>
+<span>2020-05-28</span></p><p class=copyright-item><span>Share on:&nbsp;</span>
+<span><a href="//twitter.com/share?url=https%3a%2f%2fshuzang.github.io%2f2020%2fgolang-interact-with-mysql%2f&text=Golang%e6%95%b0%e6%8d%ae%e5%ba%93%e7%bc%96%e7%a8%8b&via=" target=_blank title="Share on Twitter"><i class="fab fa-twitter fa-fw"></i></a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fshuzang.github.io%2f2020%2fgolang-interact-with-mysql%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook-square fa-fw"></i></a><a href="//reddit.com/submit?url=https%3a%2f%2fshuzang.github.io%2f2020%2fgolang-interact-with-mysql%2f&title=Golang%e6%95%b0%e6%8d%ae%e5%ba%93%e7%bc%96%e7%a8%8b" target=_blank title="Share on Reddit"><i class="fab fa-reddit fa-fw"></i></a></span></p><p class=copyright-item></p><p class=copyright-item></p></div><br><div class=post-info-more><section><span class=tag><a href=https://shuzang.github.io/tags/go%E9%A1%B9%E7%9B%AE%E5%9F%BA%E7%A1%80/><i class="fas fa-tag fa-fw"></i>&nbsp;Go项目基础</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://shuzang.github.io>Home</a></span></section></div><div class=post-nav><a href=https://shuzang.github.io/2020/mysql-learning-6-data-query-language/ class=prev rel=prev title=Mysql学习6-操作表中数据><i class="fas fa-angle-left fa-fw"></i>Mysql学习6-操作表中数据</a>
+<a href=https://shuzang.github.io/2020/development-of-online-forum-based-on-golang-1-overall-design-and-data-model/ class=next rel=next title=基于Go语言开发在线论坛1-整体设计与数据模型>基于Go语言开发在线论坛1-整体设计与数据模型<i class="fas fa-angle-right fa-fw"></i></a></div><div class=post-comment><div id=vcomments></div><script src=/js/lib/valine/Valine.min.min.js></script><script type=text/javascript>(function(){if(window.location.hostname=="localhost")
+return;new Valine({el:"#vcomments",appId:"GteMvevTjOBmhvFh2QGsopGO-gzGzoHsz",appKey:"fL4SYl06GIe012PswFdY17VC",meta:["nick","mail"],notify:"false",verify:"true",avatar:"hide",placeholder:"Your comment ...",visitor:"true",recordIP:"true",lang:"en",});})();</script><noscript>Please enable JavaScript to view the <a href=https://valine.js.org/>comments powered by Valine.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://shuzang.github.io/about/ target=_blank>shuzang</a> | </span>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> & <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt</a></div></div></footer></div><a href=# class=dynamic-to-top id=dynamic-to-top data-scroll><span>&nbsp;</span>
+</a><script src=/js/lib/jquery/jquery.slim.min.js></script><script src=/js/lib/lazysizes/lazysizes.min.js></script><script src=/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js></script><script>window.scroll=new SmoothScroll('[data-scroll]',{speed:300,speedAsDuration:true});</script><link rel=stylesheet href=/css/lib/katex/katex.min.css><script src=/js/lib/katex/katex.min.js></script><script defer src=/js/lib/katex/auto-render.min.js></script><link rel=stylesheet href=/css/lib/katex/copy-tex.min.css><script defer src=/js/lib/katex/copy-tex.min.js></script><script defer src=/js/lib/katex/mhchem.min.js></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true},{left:"$",right:"$",display:false},]});});</script><script src=/js/blog.min.js></script></body></html>

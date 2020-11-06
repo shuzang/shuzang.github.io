@@ -1,0 +1,207 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Golang深入学习9-调用栈 | Shuzang's Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><link rel=prev href=https://shuzang.github.io/2020/golang-deep-learning-8-stack-heap-and-escape-analysis/><link rel=next href=https://shuzang.github.io/2020/operate-system-5-device-management/><link rel=canonical href=https://shuzang.github.io/2020/golang-deep-learning-9-call-stack/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><meta name=twitter:card content="summary"><meta name=twitter:title content="Golang深入学习9-调用栈"><meta name=twitter:description content="本篇介绍如何分析 Go 的调用栈。"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Golang深入学习9-调用栈","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/2020\/golang-deep-learning-9-call-stack\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"Go语法","wordcount":848,"url":"https:\/\/shuzang.github.io\/2020\/golang-deep-learning-9-call-stack\/","datePublished":"2020-08-15T09:47:00\x2b08:00","dateModified":"2020-08-15T00:00:00\x2b00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"shuzang","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/logo.png","width":127,"height":40}},"description":""}</script><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css></head><body><script>window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><nav class=navbar><div class=top-scroll-bar></div><div class=navbar-container><div class="navbar-header animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=navbar-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><nav class=navbar-mobile><div class=top-scroll-bar></div><div class=navbar-container><div class=navbar-header><div class="navbar-header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=navbar-menu id=mobile-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><main class=main><div class=container><article class=page><h1 class="post-title animated flipInX">Golang深入学习9-调用栈</h1><div class=post-meta><i class="far fa-calendar-alt fa-fw"></i>published on&nbsp;<time datetime=2020-08-15>2020-08-15</time>&nbsp;
+<i class="fas fa-pencil-alt fa-fw"></i>about 848 words&nbsp;<span id=/2020/golang-deep-learning-9-call-stack/ class=leancloud_visitors data-flag-title=Golang深入学习9-调用栈>
+<i class="far fa-eye fa-fw"></i><span class=leancloud-visitors-count></span>views
+</span>&nbsp;<span class=post-category><i class="far fa-folder fa-fw"></i>included in&nbsp;<a href=https://shuzang.github.io/categories/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/>Golang学习之路</a>&nbsp;</span></div><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents></nav></div></div><div class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
+<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile></nav></div></details></div><div class=post-content><p>本篇介绍如何分析 Go 的调用栈。</p><p>测试使用的版本是Go 1.14.3，下面介绍如何在Go调试的时候查看堆栈跟踪信息及识别传递的参数。</p><p>示例程序如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=p>(</span>
+	<span class=s>&#34;runtime/debug&#34;</span>
+<span class=p>)</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>slice</span> <span class=o>:=</span> <span class=nb>make</span><span class=p>(</span><span class=p>[</span><span class=p>]</span><span class=kt>string</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>4</span><span class=p>)</span>
+	<span class=nf>Example</span><span class=p>(</span><span class=nx>slice</span><span class=p>,</span> <span class=s>&#34;hello&#34;</span><span class=p>,</span> <span class=mi>10</span><span class=p>)</span>
+<span class=p>}</span>
+<span class=kd>func</span> <span class=nf>Example</span><span class=p>(</span><span class=nx>slice</span> <span class=p>[</span><span class=p>]</span><span class=kt>string</span><span class=p>,</span> <span class=nx>str</span> <span class=kt>string</span><span class=p>,</span> <span class=nx>i</span> <span class=kt>int</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>debug</span><span class=p>.</span><span class=nf>PrintStack</span><span class=p>(</span><span class=p>)</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>在程序中我们使用了 runtime/debug 下的 PrintStack() 函数将调用栈的返回信息打印到标准错误输出，如下所示</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=nx>goroutine</span> <span class=mi>1</span> <span class=p>[</span><span class=nx>running</span><span class=p>]</span><span class=p>:</span>
+<span class=nx>runtime</span><span class=o>/</span><span class=nx>debug</span><span class=p>.</span><span class=nf>Stack</span><span class=p>(</span><span class=mh>0x0</span><span class=p>,</span> <span class=mh>0x0</span><span class=p>,</span> <span class=mh>0x0</span><span class=p>)</span>
+	<span class=nx>c</span><span class=p>:</span><span class=o>/</span><span class=k>go</span><span class=o>/</span><span class=nx>src</span><span class=o>/</span><span class=nx>runtime</span><span class=o>/</span><span class=nx>debug</span><span class=o>/</span><span class=nx>stack</span><span class=p>.</span><span class=k>go</span><span class=p>:</span><span class=mi>24</span> <span class=o>+</span><span class=mh>0xa8</span>
+<span class=nx>runtime</span><span class=o>/</span><span class=nx>debug</span><span class=p>.</span><span class=nf>PrintStack</span><span class=p>(</span><span class=p>)</span>
+	<span class=nx>c</span><span class=p>:</span><span class=o>/</span><span class=k>go</span><span class=o>/</span><span class=nx>src</span><span class=o>/</span><span class=nx>runtime</span><span class=o>/</span><span class=nx>debug</span><span class=o>/</span><span class=nx>stack</span><span class=p>.</span><span class=k>go</span><span class=p>:</span><span class=mi>16</span> <span class=o>+</span><span class=mh>0x29</span>
+<span class=nx>main</span><span class=p>.</span><span class=nf>Example</span><span class=p>(</span><span class=mh>0xc000077f38</span><span class=p>,</span> <span class=mh>0x2</span><span class=p>,</span> <span class=mh>0x4</span><span class=p>,</span> <span class=mh>0x4a8534</span><span class=p>,</span> <span class=mh>0x5</span><span class=p>,</span> <span class=mh>0xa</span><span class=p>)</span>
+	<span class=nx>f</span><span class=p>:</span><span class=o>/</span><span class=nx>Gotest</span><span class=o>/</span><span class=nx>main</span><span class=p>.</span><span class=k>go</span><span class=p>:</span><span class=mi>13</span> <span class=o>+</span><span class=mh>0x2e</span>
+<span class=nx>main</span><span class=p>.</span><span class=nf>main</span><span class=p>(</span><span class=p>)</span>
+	<span class=nx>f</span><span class=p>:</span><span class=o>/</span><span class=nx>Gotest</span><span class=o>/</span><span class=nx>main</span><span class=p>.</span><span class=k>go</span><span class=p>:</span><span class=mi>9</span> <span class=o>+</span><span class=mh>0xb1</span>
+<span class=nx>Process</span> <span class=nx>exiting</span> <span class=nx>with</span> <span class=nx>code</span><span class=p>:</span> <span class=mi>0</span>
+</code></pre></td></tr></table></div></div><p>注意，在其它编程语言如C中，运行一个程序会启动一个线程来执行，在Go中，启动的是一个 Goroutine。上面第一行就说明了启动了一个 Goroutine，Goroutine ID 为1，其后各行是不同层次的调用，最深的调用最先打印，最浅的调用最后打印。各行说明如下</p><p>第8、9行：main package 的 main 函数，代码文件路径为 <code>f:/Gotest/main.go</code>，调用出现在 main.go 文件的第9行</p><p>第6、7行：main 函数调用 Example 函数</p><p>第4、5行：Example 函数调用 debug.PrintStack 函数</p><p>第2，3行：debug.PrintStack 函数调用 debug.Stack 函数</p><p>Example 函数传参信息如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=c1>// 调用
+</span><span class=c1></span><span class=nx>slice</span> <span class=o>:=</span> <span class=nb>make</span><span class=p>(</span><span class=p>[</span><span class=p>]</span><span class=kt>string</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>4</span><span class=p>)</span>
+<span class=nf>Example</span><span class=p>(</span><span class=nx>slice</span><span class=p>,</span> <span class=s>&#34;hello&#34;</span><span class=p>,</span> <span class=mi>10</span><span class=p>)</span>
+<span class=c1>// 栈追踪
+</span><span class=c1></span><span class=nx>main</span><span class=p>.</span><span class=nf>Example</span><span class=p>(</span><span class=mh>0xc000077f38</span><span class=p>,</span> <span class=mh>0x2</span><span class=p>,</span> <span class=mh>0x4</span><span class=p>,</span> <span class=mh>0x4a8534</span><span class=p>,</span> <span class=mh>0x5</span><span class=p>,</span> <span class=mh>0xa</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>堆栈跟踪信息中，前三个参数分别代表切片的指针、长度、容量，第4和第5个参数代表字符串的指针和大小，最后一个参数指向整型数值</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=c1>// 切片
+</span><span class=c1></span><span class=nx>Pointer</span><span class=p>:</span> <span class=mh>0xc000077f38</span>
+<span class=nx>Length</span><span class=p>:</span> <span class=mh>0x2</span>
+<span class=nx>Capacity</span><span class=p>:</span> <span class=mh>0x4</span>
+<span class=c1>// 字符串
+</span><span class=c1></span><span class=nx>Pointer</span><span class=p>:</span> <span class=mh>0x4a8534</span>
+<span class=nx>Length</span><span class=p>:</span> <span class=mh>0x5</span>
+<span class=c1>// 整数
+</span><span class=c1></span><span class=nx>base</span> <span class=mi>16</span><span class=p>:</span> <span class=mh>0xa</span>
+</code></pre></td></tr></table></div></div><p>如果是调用方法，跟踪信息会显示接收者</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=c1>// 程序
+</span><span class=c1></span><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=p>(</span>
+   <span class=s>&#34;fmt&#34;</span>
+   <span class=s>&#34;runtime/debug&#34;</span>
+<span class=p>)</span>
+
+<span class=kd>type</span> <span class=nx>trace</span> <span class=kd>struct</span><span class=p>{</span><span class=p>}</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+   <span class=nx>slice</span> <span class=o>:=</span> <span class=nb>make</span><span class=p>(</span><span class=p>[</span><span class=p>]</span><span class=kt>string</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>4</span><span class=p>)</span>
+   <span class=kd>var</span> <span class=nx>t</span> <span class=nx>trace</span>
+   <span class=nx>t</span><span class=p>.</span><span class=nf>Example</span><span class=p>(</span><span class=nx>slice</span><span class=p>,</span> <span class=s>&#34;hello&#34;</span><span class=p>,</span> <span class=mi>10</span><span class=p>)</span>
+<span class=p>}</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>t</span> <span class=o>*</span><span class=nx>trace</span><span class=p>)</span> <span class=nf>Example</span><span class=p>(</span><span class=nx>slice</span> <span class=p>[</span><span class=p>]</span><span class=kt>string</span><span class=p>,</span> <span class=nx>str</span> <span class=kt>string</span><span class=p>,</span> <span class=nx>i</span> <span class=kt>int</span><span class=p>)</span> <span class=p>{</span>
+   <span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Receiver Address: %p\n&#34;</span><span class=p>,</span> <span class=nx>t</span><span class=p>)</span>
+   <span class=nx>debug</span><span class=p>.</span><span class=nf>PrintStack</span><span class=p>(</span><span class=p>)</span>
+<span class=p>}</span>
+<span class=c1>// 堆栈信息
+</span><span class=c1></span><span class=nx>Receiver</span> <span class=nx>Address</span><span class=p>:</span> <span class=mh>0x5781c8</span>
+<span class=nx>goroutine</span> <span class=mi>1</span> <span class=p>[</span><span class=nx>running</span><span class=p>]</span><span class=p>:</span>
+<span class=nx>runtime</span><span class=o>/</span><span class=nx>debug</span><span class=p>.</span><span class=nf>Stack</span><span class=p>(</span><span class=mh>0x15</span><span class=p>,</span> <span class=mh>0xc000071ef0</span><span class=p>,</span> <span class=mh>0x1</span><span class=p>)</span>
+	<span class=nx>C</span><span class=p>:</span><span class=o>/</span><span class=nx>Go</span><span class=o>/</span><span class=nx>src</span><span class=o>/</span><span class=nx>runtime</span><span class=o>/</span><span class=nx>debug</span><span class=o>/</span><span class=nx>stack</span><span class=p>.</span><span class=k>go</span><span class=p>:</span><span class=mi>24</span> <span class=o>+</span><span class=mh>0xae</span>
+<span class=nx>runtime</span><span class=o>/</span><span class=nx>debug</span><span class=p>.</span><span class=nf>PrintStack</span><span class=p>(</span><span class=p>)</span>
+	<span class=nx>C</span><span class=p>:</span><span class=o>/</span><span class=nx>Go</span><span class=o>/</span><span class=nx>src</span><span class=o>/</span><span class=nx>runtime</span><span class=o>/</span><span class=nx>debug</span><span class=o>/</span><span class=nx>stack</span><span class=p>.</span><span class=k>go</span><span class=p>:</span><span class=mi>16</span> <span class=o>+</span><span class=mh>0x29</span>
+<span class=nx>main</span><span class=p>.</span><span class=p>(</span><span class=o>*</span><span class=nx>trace</span><span class=p>)</span><span class=p>.</span><span class=nf>Example</span><span class=p>(</span><span class=mh>0x5781c8</span><span class=p>,</span> <span class=mh>0xc000071f48</span><span class=p>,</span> <span class=mh>0x2</span><span class=p>,</span> <span class=mh>0x4</span><span class=p>,</span> <span class=mh>0x4c04bb</span><span class=p>,</span> <span class=mh>0x5</span><span class=p>,</span> <span class=mh>0xa</span><span class=p>)</span>
+	<span class=nx>D</span><span class=p>:</span><span class=o>/</span><span class=nx>gopath</span><span class=o>/</span><span class=nx>src</span><span class=o>/</span><span class=nx>example</span><span class=o>/</span><span class=nx>example</span><span class=o>/</span><span class=nx>main</span><span class=p>.</span><span class=k>go</span><span class=p>:</span><span class=mi>17</span> <span class=o>+</span><span class=mh>0x7c</span>
+<span class=nx>main</span><span class=p>.</span><span class=nf>main</span><span class=p>(</span><span class=p>)</span>
+	<span class=nx>D</span><span class=p>:</span><span class=o>/</span><span class=nx>gopath</span><span class=o>/</span><span class=nx>src</span><span class=o>/</span><span class=nx>example</span><span class=o>/</span><span class=nx>example</span><span class=o>/</span><span class=nx>main</span><span class=p>.</span><span class=k>go</span><span class=p>:</span><span class=mi>13</span> <span class=o>+</span><span class=mh>0x9a</span>
+</code></pre></td></tr></table></div></div><p>传递的参数全部为值类型时，可能会防止一个32位的字中</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=c1>// 程序
+</span><span class=c1></span><span class=kn>import</span> <span class=p>(</span>
+   <span class=s>&#34;runtime/debug&#34;</span>
+<span class=p>)</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+   <span class=nf>Example</span><span class=p>(</span><span class=kc>true</span><span class=p>,</span> <span class=kc>false</span><span class=p>,</span> <span class=kc>true</span><span class=p>,</span> <span class=mi>25</span><span class=p>)</span>
+<span class=p>}</span>
+<span class=kd>func</span> <span class=nf>Example</span><span class=p>(</span><span class=nx>b1</span><span class=p>,</span> <span class=nx>b2</span><span class=p>,</span> <span class=nx>b3</span> <span class=kt>bool</span><span class=p>,</span> <span class=nx>i</span> <span class=kt>uint8</span><span class=p>)</span> <span class=p>{</span>
+
+   <span class=nx>debug</span><span class=p>.</span><span class=nf>PrintStack</span><span class=p>(</span><span class=p>)</span>
+<span class=p>}</span>
+<span class=c1>// 堆栈信息
+</span><span class=c1></span><span class=nx>goroutine</span> <span class=mi>1</span> <span class=p>[</span><span class=nx>running</span><span class=p>]</span><span class=p>:</span>
+<span class=nx>runtime</span><span class=o>/</span><span class=nx>debug</span><span class=p>.</span><span class=nf>Stack</span><span class=p>(</span><span class=mh>0x4</span><span class=p>,</span> <span class=mh>0xc00007a010</span><span class=p>,</span> <span class=mh>0xc000077f88</span><span class=p>)</span>
+	<span class=nx>C</span><span class=p>:</span><span class=o>/</span><span class=nx>Go</span><span class=o>/</span><span class=nx>src</span><span class=o>/</span><span class=nx>runtime</span><span class=o>/</span><span class=nx>debug</span><span class=o>/</span><span class=nx>stack</span><span class=p>.</span><span class=k>go</span><span class=p>:</span><span class=mi>24</span> <span class=o>+</span><span class=mh>0xae</span>
+<span class=nx>runtime</span><span class=o>/</span><span class=nx>debug</span><span class=p>.</span><span class=nf>PrintStack</span><span class=p>(</span><span class=p>)</span>
+	<span class=nx>C</span><span class=p>:</span><span class=o>/</span><span class=nx>Go</span><span class=o>/</span><span class=nx>src</span><span class=o>/</span><span class=nx>runtime</span><span class=o>/</span><span class=nx>debug</span><span class=o>/</span><span class=nx>stack</span><span class=p>.</span><span class=k>go</span><span class=p>:</span><span class=mi>16</span> <span class=o>+</span><span class=mh>0x29</span>
+<span class=nx>main</span><span class=p>.</span><span class=nf>Example</span><span class=p>(</span><span class=mh>0xc019010001</span><span class=p>)</span>
+	<span class=nx>D</span><span class=p>:</span><span class=o>/</span><span class=nx>gopath</span><span class=o>/</span><span class=nx>src</span><span class=o>/</span><span class=nx>example</span><span class=o>/</span><span class=nx>example</span><span class=o>/</span><span class=nx>main</span><span class=p>.</span><span class=k>go</span><span class=p>:</span><span class=mi>12</span> <span class=o>+</span><span class=mh>0x27</span>
+<span class=nx>main</span><span class=p>.</span><span class=nf>main</span><span class=p>(</span><span class=p>)</span>
+	<span class=nx>D</span><span class=p>:</span><span class=o>/</span><span class=nx>gopath</span><span class=o>/</span><span class=nx>src</span><span class=o>/</span><span class=nx>example</span><span class=o>/</span><span class=nx>example</span><span class=o>/</span><span class=nx>main</span><span class=p>.</span><span class=k>go</span><span class=p>:</span><span class=mi>8</span> <span class=o>+</span><span class=mh>0x30</span>
+</code></pre></td></tr></table></div></div><p>可以看到 Example 的参数只有一个，实际上底层四个参数放在一个字中</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=c1>// Parameter values
+</span><span class=c1></span><span class=kc>true</span><span class=p>,</span> <span class=kc>false</span><span class=p>,</span> <span class=kc>true</span><span class=p>,</span> <span class=mi>25</span>
+
+<span class=c1>// Word value
+</span><span class=c1></span><span class=nx>Bits</span>    <span class=nx>Binary</span>      <span class=nx>Hex</span>   <span class=nx>Value</span>
+<span class=mo>00</span><span class=o>-</span><span class=mo>07</span>   <span class=mo>0000</span> <span class=mo>0001</span>   <span class=mo>01</span>    <span class=kc>true</span>
+<span class=mi>0</span><span class=mi>8</span><span class=o>-</span><span class=mi>15</span>   <span class=mo>0000</span> <span class=mo>0000</span>   <span class=mo>00</span>    <span class=kc>false</span>
+<span class=mi>16</span><span class=o>-</span><span class=mi>23</span>   <span class=mo>0000</span> <span class=mo>0001</span>   <span class=mo>01</span>    <span class=kc>true</span>
+<span class=mi>24</span><span class=o>-</span><span class=mi>31</span>   <span class=mo>0001</span> <span class=mi>1001</span>   <span class=mi>19</span>    <span class=mi>25</span>
+</code></pre></td></tr></table></div></div></div><div class=post-copyright id=post-footer><p class=copyright-item><span>Author:&nbsp;</span>
+<span>shuzang</span></p><p class=copyright-item><span>Updated on:&nbsp;</span>
+<span>2020-08-15</span></p><p class=copyright-item><span>Share on:&nbsp;</span>
+<span><a href="//twitter.com/share?url=https%3a%2f%2fshuzang.github.io%2f2020%2fgolang-deep-learning-9-call-stack%2f&text=Golang%e6%b7%b1%e5%85%a5%e5%ad%a6%e4%b9%a09-%e8%b0%83%e7%94%a8%e6%a0%88&via=" target=_blank title="Share on Twitter"><i class="fab fa-twitter fa-fw"></i></a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fshuzang.github.io%2f2020%2fgolang-deep-learning-9-call-stack%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook-square fa-fw"></i></a><a href="//reddit.com/submit?url=https%3a%2f%2fshuzang.github.io%2f2020%2fgolang-deep-learning-9-call-stack%2f&title=Golang%e6%b7%b1%e5%85%a5%e5%ad%a6%e4%b9%a09-%e8%b0%83%e7%94%a8%e6%a0%88" target=_blank title="Share on Reddit"><i class="fab fa-reddit fa-fw"></i></a></span></p><p class=copyright-item></p><p class=copyright-item></p></div><br><div class=post-info-more><section><span class=tag><a href=https://shuzang.github.io/tags/go%E8%AF%AD%E6%B3%95/><i class="fas fa-tag fa-fw"></i>&nbsp;Go语法</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://shuzang.github.io>Home</a></span></section></div><div class=post-nav><a href=https://shuzang.github.io/2020/golang-deep-learning-8-stack-heap-and-escape-analysis/ class=prev rel=prev title=Golang深入学习8-堆栈与逃逸分析><i class="fas fa-angle-left fa-fw"></i>Golang深入学习8-堆栈与逃逸分析</a>
+<a href=https://shuzang.github.io/2020/operate-system-5-device-management/ class=next rel=next title=操作系统5-设备管理>操作系统5-设备管理<i class="fas fa-angle-right fa-fw"></i></a></div><div class=post-comment><div id=vcomments></div><script src=/js/lib/valine/Valine.min.min.js></script><script type=text/javascript>(function(){if(window.location.hostname=="localhost")
+return;new Valine({el:"#vcomments",appId:"GteMvevTjOBmhvFh2QGsopGO-gzGzoHsz",appKey:"fL4SYl06GIe012PswFdY17VC",meta:["nick","mail"],notify:"false",verify:"true",avatar:"hide",placeholder:"Your comment ...",visitor:"true",recordIP:"true",lang:"en",});})();</script><noscript>Please enable JavaScript to view the <a href=https://valine.js.org/>comments powered by Valine.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://shuzang.github.io/about/ target=_blank>shuzang</a> | </span>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> & <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt</a></div></div></footer></div><a href=# class=dynamic-to-top id=dynamic-to-top data-scroll><span>&nbsp;</span>
+</a><script src=/js/lib/jquery/jquery.slim.min.js></script><script src=/js/lib/lazysizes/lazysizes.min.js></script><script src=/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js></script><script>window.scroll=new SmoothScroll('[data-scroll]',{speed:300,speedAsDuration:true});</script><link rel=stylesheet href=/css/lib/katex/katex.min.css><script src=/js/lib/katex/katex.min.js></script><script defer src=/js/lib/katex/auto-render.min.js></script><link rel=stylesheet href=/css/lib/katex/copy-tex.min.css><script defer src=/js/lib/katex/copy-tex.min.js></script><script defer src=/js/lib/katex/mhchem.min.js></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true},{left:"$",right:"$",display:false},]});});</script><script src=/js/blog.min.js></script></body></html>

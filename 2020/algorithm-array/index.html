@@ -1,0 +1,195 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>算法-数组类问题 | Shuzang's Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><link rel=prev href=https://shuzang.github.io/2020/%E8%A7%A6%E5%8A%A8%E4%BA%BA%E5%BF%83%E7%9A%84%E5%8F%A5%E5%AD%90/><link rel=next href=https://shuzang.github.io/2020/%E5%9B%BE%E9%85%8D%E6%96%87/><link rel=canonical href=https://shuzang.github.io/2020/algorithm-array/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><meta name=twitter:card content="summary"><meta name=twitter:title content="算法-数组类问题"><meta name=twitter:description content="数组的访问时间为 $O(1)$，这是它最大的优势，但限于数组固定的大小，平常使用最多的是动态数组。在 Golang 中，其实就是[切片]^(slice)，动"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"算法-数组类问题","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/2020\/algorithm-array\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"数据结构与算法","wordcount":1523,"url":"https:\/\/shuzang.github.io\/2020\/algorithm-array\/","datePublished":"2020-03-20T00:00:00\x2b00:00","dateModified":"2020-03-20T00:00:00\x2b00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"shuzang","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/logo.png","width":127,"height":40}},"description":""}</script><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css></head><body><script>window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><nav class=navbar><div class=top-scroll-bar></div><div class=navbar-container><div class="navbar-header animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=navbar-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><nav class=navbar-mobile><div class=top-scroll-bar></div><div class=navbar-container><div class=navbar-header><div class="navbar-header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=navbar-menu id=mobile-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><main class=main><div class=container><article class=page><h1 class="post-title animated flipInX">算法-数组类问题</h1><div class=post-meta><i class="far fa-calendar-alt fa-fw"></i>published on&nbsp;<time datetime=2020-03-20>2020-03-20</time>&nbsp;
+<i class="fas fa-pencil-alt fa-fw"></i>about 1523 words&nbsp;<span id=/2020/algorithm-array/ class=leancloud_visitors data-flag-title=算法-数组类问题>
+<i class="far fa-eye fa-fw"></i><span class=leancloud-visitors-count></span>views
+</span>&nbsp;<span class=post-category><i class="far fa-folder fa-fw"></i>included in&nbsp;<a href=https://shuzang.github.io/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/>爱编程爱技术的孩子</a>&nbsp;</span></div><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#1-方向转换>1. 方向转换</a></li><li><a href=#2-对撞指针>2. 对撞指针</a></li><li><a href=#3-滑动窗口>3. 滑动窗口</a></li></ul></nav></div></div><div class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
+<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><a href=#1-方向转换>1. 方向转换</a></li><li><a href=#2-对撞指针>2. 对撞指针</a></li><li><a href=#3-滑动窗口>3. 滑动窗口</a></li></ul></nav></div></details></div><div class=post-content><p>数组的访问时间为 $O(1)$，这是它最大的优势，但限于数组固定的大小，平常使用最多的是动态数组。在 Golang 中，其实就是<strong><ruby>切片<rt>slice</rt></ruby></strong>，动态数组的初始化、访问、修改、迭代、添加、删除等都是 Golang 语法的内容，这里不再介绍。事实上，一维数组的大部分问题都很好解决，我们在本文中仅介绍二维数组的一些典型问题，更多维的数组思路是相似，而且由于其复杂性，实际上很少出现。</p><a class=post-dummy-target id=1-方向转换></a><h2>1. 方向转换</h2><p>下面是一个叫做「对角线遍历」的例子，在这个例子中，我们可以理解如何在二维数组中转换前进方向，这是一个很有用的技巧。</p><p>螺旋矩阵是指一个呈螺旋状的矩阵，它的数字由第一行开始到右边不断变大，向下变大，向左变大，向上变大，如此循环。给定m和n，返回一个大小为m*n的螺旋矩阵</p><p><strong>示例：</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>input:
+3 3
+Output:
+1 2 3
+8 9 4
+7 6 5
+</code></pre></td></tr></table></div></div><p><strong>思路：</strong></p><ol><li>每一步走完，判断是否超出矩阵范围，若超出，计算向哪个方向转，无论是否转向，计算下一步所在位置的x,y坐标</li><li>螺旋矩阵的转向顺序是固定的，为<code>右->下->左->上</code></li></ol><p><strong>代码：</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>spiralArray</span><span class=p>(</span><span class=nx>m</span><span class=p>,</span> <span class=nx>n</span> <span class=kt>int</span><span class=p>)</span> <span class=p>{</span>
+	<span class=kd>var</span> <span class=nx>result</span> <span class=p>[</span><span class=p>]</span><span class=p>[</span><span class=p>]</span><span class=kt>int</span>
+	<span class=k>for</span> <span class=nx>i</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=nx>m</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span> <span class=p>{</span>
+		<span class=nx>result</span> <span class=p>=</span> <span class=nb>append</span><span class=p>(</span><span class=nx>result</span><span class=p>,</span> <span class=nb>make</span><span class=p>(</span><span class=p>[</span><span class=p>]</span><span class=kt>int</span><span class=p>,</span> <span class=nx>n</span><span class=p>)</span><span class=p>)</span>
+	<span class=p>}</span>
+    <span class=c1>//x,y为当前坐标，d为方向
+</span><span class=c1></span>	<span class=nx>x</span><span class=p>,</span> <span class=nx>y</span><span class=p>,</span> <span class=nx>d</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=mi>0</span>
+    <span class=c1>//以“右-&gt;下-&gt;左-&gt;上”顺序循环，dx,dy是每一种转向的坐标变化方式
+</span><span class=c1></span>	<span class=nx>dx</span> <span class=o>:=</span> <span class=p>[</span><span class=p>]</span><span class=kt>int</span><span class=p>{</span><span class=mi>0</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>}</span>
+	<span class=nx>dy</span> <span class=o>:=</span> <span class=p>[</span><span class=p>]</span><span class=kt>int</span><span class=p>{</span><span class=mi>1</span><span class=p>,</span> <span class=mi>0</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>,</span> <span class=mi>0</span><span class=p>}</span>
+	<span class=k>for</span> <span class=nx>t</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>t</span> <span class=p>&lt;</span> <span class=nx>m</span><span class=o>*</span><span class=nx>n</span><span class=p>;</span> <span class=nx>t</span><span class=o>++</span> <span class=p>{</span>
+		<span class=nx>result</span><span class=p>[</span><span class=nx>x</span><span class=p>]</span><span class=p>[</span><span class=nx>y</span><span class=p>]</span> <span class=p>=</span> <span class=nx>t</span>
+		<span class=nx>nx</span><span class=p>,</span> <span class=nx>ny</span> <span class=o>:=</span> <span class=nx>x</span><span class=o>+</span><span class=nx>dx</span><span class=p>[</span><span class=nx>d</span><span class=p>]</span><span class=p>,</span> <span class=nx>y</span><span class=o>+</span><span class=nx>dy</span><span class=p>[</span><span class=nx>d</span><span class=p>]</span> <span class=c1>//计算下一个坐标
+</span><span class=c1></span>		<span class=k>if</span> <span class=nx>nx</span> <span class=p>&lt;</span> <span class=mi>0</span> <span class=o>||</span> <span class=nx>nx</span> <span class=o>&gt;=</span> <span class=nx>m</span> <span class=o>||</span> <span class=nx>ny</span> <span class=p>&lt;</span> <span class=mi>0</span> <span class=o>||</span> <span class=nx>ny</span> <span class=o>&gt;=</span> <span class=nx>n</span> <span class=o>||</span> <span class=nx>result</span><span class=p>[</span><span class=nx>nx</span><span class=p>]</span><span class=p>[</span><span class=nx>ny</span><span class=p>]</span> <span class=o>!=</span> <span class=mi>0</span> <span class=p>{</span>
+			<span class=nx>d</span> <span class=p>=</span> <span class=p>(</span><span class=nx>d</span> <span class=o>+</span> <span class=mi>1</span><span class=p>)</span> <span class=o>%</span> <span class=mi>4</span> <span class=c1>//下一个坐标有问题，采用下一种转向方式
+</span><span class=c1></span>			<span class=nx>nx</span> <span class=p>=</span> <span class=nx>x</span> <span class=o>+</span> <span class=nx>dx</span><span class=p>[</span><span class=nx>d</span><span class=p>]</span>
+			<span class=nx>ny</span> <span class=p>=</span> <span class=nx>y</span> <span class=o>+</span> <span class=nx>dy</span><span class=p>[</span><span class=nx>d</span><span class=p>]</span>
+		<span class=p>}</span>
+		<span class=nx>x</span> <span class=p>=</span> <span class=nx>nx</span>
+		<span class=nx>y</span> <span class=p>=</span> <span class=nx>ny</span>
+	<span class=p>}</span>
+	<span class=nx>w</span> <span class=o>:=</span> <span class=nx>bufio</span><span class=p>.</span><span class=nf>NewWriter</span><span class=p>(</span><span class=nx>os</span><span class=p>.</span><span class=nx>Stdout</span><span class=p>)</span>
+	<span class=k>for</span> <span class=nx>i</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=nx>m</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span> <span class=p>{</span>
+		<span class=k>for</span> <span class=nx>j</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>j</span> <span class=p>&lt;</span> <span class=nx>n</span><span class=p>;</span> <span class=nx>j</span><span class=o>++</span> <span class=p>{</span>
+			<span class=nx>w</span><span class=p>.</span><span class=nf>WriteString</span><span class=p>(</span><span class=nx>fmt</span><span class=p>.</span><span class=nf>Sprintf</span><span class=p>(</span><span class=s>&#34;%d&#34;</span><span class=p>,</span> <span class=nx>result</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span><span class=p>[</span><span class=nx>j</span><span class=p>]</span><span class=p>)</span><span class=p>)</span>
+			<span class=k>if</span> <span class=nx>j</span> <span class=o>!=</span> <span class=nx>n</span><span class=o>-</span><span class=mi>1</span> <span class=p>{</span>
+				<span class=nx>w</span><span class=p>.</span><span class=nf>WriteString</span><span class=p>(</span><span class=nx>fmt</span><span class=p>.</span><span class=nf>Sprintf</span><span class=p>(</span><span class=s>&#34; &#34;</span><span class=p>)</span><span class=p>)</span>
+			<span class=p>}</span>
+		<span class=p>}</span>
+		<span class=nx>w</span><span class=p>.</span><span class=nf>WriteString</span><span class=p>(</span><span class=nx>fmt</span><span class=p>.</span><span class=nf>Sprintf</span><span class=p>(</span><span class=s>&#34;\n&#34;</span><span class=p>)</span><span class=p>)</span>
+	<span class=p>}</span>
+	<span class=nx>w</span><span class=p>.</span><span class=nf>Flush</span><span class=p>(</span><span class=p>)</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><a class=post-dummy-target id=2-对撞指针></a><h2>2. 对撞指针</h2><p>对撞指针是数组类问题另一个常用的技巧，其含义是：将指针 i 和 j 分别指向数组第一个元素和最后一个元素，然后指针 i 不断向前，指针 j 不断递减，直到 i == j（终止条件是可以根据题目变化的）。</p><p>下面我们以两数之和为例给出一个对撞指针使用的示范。题目描述如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>给定一个已按照升序排列的有序数组，找到两个数使得它们相加之和等于目标数。函数应该返回这两个下标值 index1 和 index2，其中 index1 必须小于 index2。
+
+说明：
+- 返回的下标值（index1 和 index2）不是从零开始的。
+- 你可以假设每个输入只对应唯一的答案，而且你不可以重复使用相同的元素
+
+示例
+输入: numbers = [2, 7, 11, 15], target = 9
+输出: [1,2]
+解释: 2 与 7 之和等于目标数 9 。因此 index1 = 1, index2 = 2 。
+</code></pre></td></tr></table></div></div><p>普通的办法需要两层循环，时间复杂度是$O(n^2)$，利用对撞指针，我们可以将复杂度降低到 $O(n)$</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>twoSum</span><span class=p>(</span><span class=nx>numbers</span> <span class=p>[</span><span class=p>]</span><span class=kt>int</span><span class=p>,</span> <span class=nx>target</span> <span class=kt>int</span><span class=p>)</span> <span class=p>[</span><span class=p>]</span><span class=kt>int</span> <span class=p>{</span>
+    <span class=nx>i</span><span class=p>,</span><span class=nx>j</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>,</span><span class=nb>len</span><span class=p>(</span><span class=nx>numbers</span><span class=p>)</span><span class=o>-</span><span class=mi>1</span>
+    <span class=k>for</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=nx>j</span> <span class=p>{</span>
+        <span class=k>if</span> <span class=nx>numbers</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span> <span class=o>+</span> <span class=nx>numbers</span><span class=p>[</span><span class=nx>j</span><span class=p>]</span> <span class=p>&gt;</span> <span class=nx>target</span> <span class=p>{</span>
+            <span class=nx>j</span><span class=o>--</span>
+        <span class=p>}</span><span class=k>else</span> <span class=k>if</span> <span class=nx>numbers</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span> <span class=o>+</span> <span class=nx>numbers</span><span class=p>[</span><span class=nx>j</span><span class=p>]</span> <span class=p>&lt;</span> <span class=nx>target</span> <span class=p>{</span>
+            <span class=nx>i</span><span class=o>++</span>
+        <span class=p>}</span><span class=k>else</span><span class=p>{</span>
+            <span class=k>return</span> <span class=p>[</span><span class=p>]</span><span class=kt>int</span><span class=p>{</span><span class=nx>i</span><span class=o>+</span><span class=mi>1</span><span class=p>,</span><span class=nx>j</span><span class=o>+</span><span class=mi>1</span><span class=p>}</span>
+        <span class=p>}</span>
+    <span class=p>}</span>
+    <span class=k>return</span> <span class=kc>nil</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><a class=post-dummy-target id=3-滑动窗口></a><h2>3. 滑动窗口</h2><p>对撞指针是两个指针向中间靠拢，滑动窗口是两个指针向同一侧移动，如果还记得计算机网络的内容，这里就非常容易理解。滑动窗口同样可以将时间复杂度控制在 $O(n)$ 级别。</p><p>我们以「长度最小的子数组」为例给出一个滑动窗口解题的例子，题目描述如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=nx>给定一个含有</span> <span class=nx>n</span> <span class=nx>个正整数的数组和一个正整数</span> <span class=nx>s</span> <span class=err>，</span><span class=nx>找出该数组中满足其和</span> <span class=err>≥</span> <span class=nx>s</span> <span class=nx>的长度最小的子数组</span><span class=err>，</span><span class=nx>并返回其长度</span><span class=err>。</span><span class=nx>如果不存在符合条件的子数组</span><span class=err>，</span><span class=nx>返回</span> <span class=mi>0</span><span class=err>。</span>
+
+<span class=nx>示例</span>
+<span class=nx>输入</span><span class=err>：</span><span class=nx>s</span> <span class=p>=</span> <span class=mi>7</span><span class=p>,</span> <span class=nx>nums</span> <span class=p>=</span> <span class=p>[</span><span class=mi>2</span><span class=p>,</span><span class=mi>3</span><span class=p>,</span><span class=mi>1</span><span class=p>,</span><span class=mi>2</span><span class=p>,</span><span class=mi>4</span><span class=p>,</span><span class=mi>3</span><span class=p>]</span>
+<span class=nx>输出</span><span class=err>：</span><span class=mi>2</span>
+<span class=nx>解释</span><span class=err>：</span><span class=nx>子数组</span> <span class=p>[</span><span class=mi>4</span><span class=p>,</span><span class=mi>3</span><span class=p>]</span> <span class=nx>是该条件下的长度最小的子数组</span><span class=err>。</span>
+</code></pre></td></tr></table></div></div><p>暴力法的复杂度显然是 $O(n^2)$，我们尝试用滑动窗口求解</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>minSubArrayLen</span><span class=p>(</span><span class=nx>s</span> <span class=kt>int</span><span class=p>,</span> <span class=nx>nums</span> <span class=p>[</span><span class=p>]</span><span class=kt>int</span><span class=p>)</span> <span class=kt>int</span> <span class=p>{</span>
+    <span class=nx>n</span> <span class=o>:=</span> <span class=nb>len</span><span class=p>(</span><span class=nx>nums</span><span class=p>)</span>
+   
+    <span class=nx>i</span><span class=p>,</span><span class=nx>j</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>,</span><span class=mi>0</span>
+    <span class=nx>sum</span> <span class=o>:=</span> <span class=mi>0</span>
+    <span class=nx>min</span> <span class=o>:=</span> <span class=nx>n</span><span class=o>+</span><span class=mi>1</span>
+    
+    <span class=k>for</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=nx>n</span> <span class=p>{</span>
+        <span class=k>if</span> <span class=nx>j</span> <span class=p>&lt;</span> <span class=nx>n</span> <span class=o>&amp;&amp;</span> <span class=nx>sum</span> <span class=p>&lt;</span> <span class=nx>s</span> <span class=p>{</span>
+            <span class=nx>sum</span> <span class=o>+=</span> <span class=nx>nums</span><span class=p>[</span><span class=nx>j</span><span class=p>]</span>
+            <span class=nx>j</span><span class=o>++</span>
+        <span class=p>}</span><span class=k>else</span><span class=p>{</span>
+            <span class=nx>sum</span> <span class=o>-=</span> <span class=nx>nums</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span>
+            <span class=nx>i</span><span class=o>++</span>
+        <span class=p>}</span>
+        <span class=k>if</span> <span class=nx>sum</span> <span class=o>&gt;=</span> <span class=nx>s</span> <span class=o>&amp;&amp;</span> <span class=nx>j</span><span class=o>-</span><span class=nx>i</span> <span class=p>&lt;</span> <span class=nx>min</span> <span class=p>{</span>
+            <span class=nx>min</span> <span class=p>=</span> <span class=nx>j</span><span class=o>-</span><span class=nx>i</span>
+        <span class=p>}</span>
+    <span class=p>}</span>
+    <span class=k>if</span> <span class=nx>min</span> <span class=o>==</span> <span class=nx>n</span><span class=o>+</span><span class=mi>1</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=mi>0</span>
+    <span class=p>}</span>
+    <span class=k>return</span> <span class=nx>min</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>滑动窗口最重要的是确定何时移动两个指针，当然，边界和初始值也非常重要。</p><p>当然，总体来看的话，其实后面两种方法都属于双指针的技巧。</p></div><div class=post-copyright id=post-footer><p class=copyright-item><span>Author:&nbsp;</span>
+<span>shuzang</span></p><p class=copyright-item><span>Updated on:&nbsp;</span>
+<span>2020-03-20</span></p><p class=copyright-item><span>Share on:&nbsp;</span>
+<span><a href="//twitter.com/share?url=https%3a%2f%2fshuzang.github.io%2f2020%2falgorithm-array%2f&text=%e7%ae%97%e6%b3%95-%e6%95%b0%e7%bb%84%e7%b1%bb%e9%97%ae%e9%a2%98&via=" target=_blank title="Share on Twitter"><i class="fab fa-twitter fa-fw"></i></a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fshuzang.github.io%2f2020%2falgorithm-array%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook-square fa-fw"></i></a><a href="//reddit.com/submit?url=https%3a%2f%2fshuzang.github.io%2f2020%2falgorithm-array%2f&title=%e7%ae%97%e6%b3%95-%e6%95%b0%e7%bb%84%e7%b1%bb%e9%97%ae%e9%a2%98" target=_blank title="Share on Reddit"><i class="fab fa-reddit fa-fw"></i></a></span></p><p class=copyright-item></p><p class=copyright-item></p></div><br><div class=post-info-more><section><span class=tag><a href=https://shuzang.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/><i class="fas fa-tag fa-fw"></i>&nbsp;数据结构与算法</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://shuzang.github.io>Home</a></span></section></div><div class=post-nav><a href=https://shuzang.github.io/2020/%E8%A7%A6%E5%8A%A8%E4%BA%BA%E5%BF%83%E7%9A%84%E5%8F%A5%E5%AD%90/ class=prev rel=prev title=触动人心的句子><i class="fas fa-angle-left fa-fw"></i>触动人心的句子</a>
+<a href=https://shuzang.github.io/2020/%E5%9B%BE%E9%85%8D%E6%96%87/ class=next rel=next title=图配文>图配文<i class="fas fa-angle-right fa-fw"></i></a></div><div class=post-comment><div id=vcomments></div><script src=/js/lib/valine/Valine.min.min.js></script><script type=text/javascript>(function(){if(window.location.hostname=="localhost")
+return;new Valine({el:"#vcomments",appId:"GteMvevTjOBmhvFh2QGsopGO-gzGzoHsz",appKey:"fL4SYl06GIe012PswFdY17VC",meta:["nick","mail"],notify:"false",verify:"true",avatar:"hide",placeholder:"Your comment ...",visitor:"true",recordIP:"true",lang:"en",});})();</script><noscript>Please enable JavaScript to view the <a href=https://valine.js.org/>comments powered by Valine.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://shuzang.github.io/about/ target=_blank>shuzang</a> | </span>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> & <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt</a></div></div></footer></div><a href=# class=dynamic-to-top id=dynamic-to-top data-scroll><span>&nbsp;</span>
+</a><script src=/js/lib/jquery/jquery.slim.min.js></script><script src=/js/lib/lazysizes/lazysizes.min.js></script><script src=/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js></script><script>window.scroll=new SmoothScroll('[data-scroll]',{speed:300,speedAsDuration:true});</script><link rel=stylesheet href=/css/lib/katex/katex.min.css><script src=/js/lib/katex/katex.min.js></script><script defer src=/js/lib/katex/auto-render.min.js></script><link rel=stylesheet href=/css/lib/katex/copy-tex.min.css><script defer src=/js/lib/katex/copy-tex.min.js></script><script defer src=/js/lib/katex/mhchem.min.js></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true},{left:"$",right:"$",display:false},]});});</script><script src=/js/blog.min.js></script></body></html>

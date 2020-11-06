@@ -1,0 +1,119 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>基于Go语言开发在线论坛9-部署Go Web应用 | Shuzang's Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><link rel=prev href=https://shuzang.github.io/2020/development-of-online-forum-based-on-golang-8-message-view-and-date-time-localizationsingleton-mode/><link rel=next href=https://shuzang.github.io/2020/how-to-avoid-information-overload/><link rel=canonical href=https://shuzang.github.io/2020/development-of-online-forum-based-on-golang-9-deploy-go-web-application/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><meta name=twitter:card content="summary"><meta name=twitter:title content="基于Go语言开发在线论坛9-部署Go Web应用"><meta name=twitter:description content="部署 Go 应用相对简单，因为所有应用代码都被打包成一个二进制文件了（视图模板、静态资源和配置文件等非 Go 代码除外），并且不需要依赖其他库，不需要额外的运行时环境（比如 Java 需要再安装 JVM），也不需要部署额外的 HTTP 服务器。"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"基于Go语言开发在线论坛9-部署Go Web应用","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/2020\/development-of-online-forum-based-on-golang-9-deploy-go-web-application\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"Go实战","wordcount":1929,"url":"https:\/\/shuzang.github.io\/2020\/development-of-online-forum-based-on-golang-9-deploy-go-web-application\/","datePublished":"2020-06-07T20:50:00\x2b08:00","dateModified":"2020-06-07T00:00:00\x2b00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"shuzang","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/logo.png","width":127,"height":40}},"description":""}</script><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css></head><body><script>window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><nav class=navbar><div class=top-scroll-bar></div><div class=navbar-container><div class="navbar-header animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=navbar-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><nav class=navbar-mobile><div class=top-scroll-bar></div><div class=navbar-container><div class=navbar-header><div class="navbar-header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=navbar-menu id=mobile-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><main class=main><div class=container><article class=page><h1 class="post-title animated flipInX">基于Go语言开发在线论坛9-部署Go Web应用</h1><div class=post-meta><i class="far fa-calendar-alt fa-fw"></i>published on&nbsp;<time datetime=2020-06-07>2020-06-07</time>&nbsp;
+<i class="fas fa-pencil-alt fa-fw"></i>about 1929 words&nbsp;<span id=/2020/development-of-online-forum-based-on-golang-9-deploy-go-web-application/ class=leancloud_visitors data-flag-title="基于Go语言开发在线论坛9-部署Go Web应用">
+<i class="far fa-eye fa-fw"></i><span class=leancloud-visitors-count></span>views
+</span>&nbsp;<span class=post-category><i class="far fa-folder fa-fw"></i>included in&nbsp;<a href=https://shuzang.github.io/categories/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/>Golang学习之路</a>&nbsp;</span></div><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#1-构建应用>1. 构建应用</a></li><li><a href=#2-部署应用>2. 部署应用</a><ul><li><a href=#21-部署代码>2.1 部署代码</a></li><li><a href=#22-数据库初始化>2.2 数据库初始化</a></li><li><a href=#23-访问应用>2.3 访问应用</a></li></ul></li><li><a href=#3-通过-nginx-做反向代理>3. 通过 Nginx 做反向代理</a></li><li><a href=#4-通过-supervisor-维护应用守护进程>4. 通过 Supervisor 维护应用守护进程</a></li></ul></nav></div></div><div class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
+<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><a href=#1-构建应用>1. 构建应用</a></li><li><a href=#2-部署应用>2. 部署应用</a><ul><li><a href=#21-部署代码>2.1 部署代码</a></li><li><a href=#22-数据库初始化>2.2 数据库初始化</a></li><li><a href=#23-访问应用>2.3 访问应用</a></li></ul></li><li><a href=#3-通过-nginx-做反向代理>3. 通过 Nginx 做反向代理</a></li><li><a href=#4-通过-supervisor-维护应用守护进程>4. 通过 Supervisor 维护应用守护进程</a></li></ul></nav></div></details></div><div class=post-content><p>部署 Go 应用相对简单，因为所有应用代码都被打包成一个二进制文件了（视图模板、静态资源和配置文件等非 Go 代码除外），并且不需要依赖其他库，不需要额外的运行时环境（比如 Java 需要再安装 JVM），也不需要部署额外的 HTTP 服务器。</p><p>对于在线论坛项目，包含了静态资源文件（CSS、JavaScript、图片），所以我们将在 Go Web 应用之前前置一个 Nginx 服务器处理静态资源请求，然后通过反向代理处理动态资源请求（指向 Go 处理器方法的请求），对于那些不包含静态资源和视图模板的纯 API 项目，通常只需要打包一份二进制文件部署到服务器即可，更加便捷。</p><blockquote><p>注：其实 Go 应用部署的最佳实践是基于 Docker，后续我们在部署专题中再介绍如何基于 Docker 将应用快速部署到远程云服务器。</p></blockquote><a class=post-dummy-target id=1-构建应用></a><h2>1. 构建应用</h2><p>首先，我们可以在本地项目根目录下通过如下命令将应用代码打包成二进制可执行文件：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=nx>GOOS</span><span class=p>=</span><span class=nx>linux</span> <span class=nx>GOARCH</span><span class=p>=</span><span class=nx>amd64</span> <span class=k>go</span> <span class=nx>build</span>
+</code></pre></td></tr></table></div></div><p>注意这里指定了 <code>GOOS</code> 和 <code>GOARCH</code> 选项进行交叉编译，因为我们是在 Win10 系统（<code>amd64</code>）中打包，并且目标二进制文件需要在 Linux 服务器（<code>linux</code>）执行。该命令执行成功后会在当前目录下生成和项目名称相同的二进制文件：</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://qcdn.xueyuanjun.com/storage/uploads/images/gallery/2020-04/image-15871088999900.jpg alt class=lazyload></figure></p><p>然后我们可以将代码提交到 Github 或者其他代码仓库。</p><a class=post-dummy-target id=2-部署应用></a><h2>2. 部署应用</h2><a class=post-dummy-target id=21-部署代码></a><h3>2.1 部署代码</h3><p>再登录服务器到部署目录下拉取代码：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>git clone https://github.com/nonfu/chitchat
+</code></pre></td></tr></table></div></div><p>初次拉取使用 <code>git clone</code>，后续在 <code>chitchat</code> 目录下运行 <code>git pull</code> 即可。</p><p>然后我们进入 <code>chitchat</code> 目录，配置 <code>config.json</code> 进行服务端数据库配置（正式项目不要将 <code>config.json</code> 提交到代码仓库，以免安全风险和后续拉取代码覆盖），确保 <code>logs</code> 目录对 Web 用户具有写权限（比如配置权限为 <code>777</code>，或者所属用户与 Web 用户组一致）。</p><blockquote><p>注：当然我们这里部署代码的方式比较原始，对于多人协作的大型项目，可以借助持续集成工具（比如 Jenkins）进行自动化部署，并且由于项目比较简单，就不再演示单元测试、CI/CD 等其他 DevOps 工具的使用了。</p></blockquote><a class=post-dummy-target id=22-数据库初始化></a><h3>2.2 数据库初始化</h3><p>在服务端 MySqL 数据库中创建 <code>chitchat</code> 数据库，并初始化对应数据表。如果不了解如何安装和创建数据库，可以参考这篇教程：<a href=https://xueyuanjun.com/post/9749.html#bkmrk-%E5%88%9B%E5%BB%BA%E7%BA%BF%E4%B8%8A%E6%95%B0%E6%8D%AE%E5%BA%93 target=_blank>将博客应用自动部署到线上服务器完整流程详解</a>。</p><a class=post-dummy-target id=23-访问应用></a><h3>2.3 访问应用</h3><p>完成以上工作后，我们就可以在 <code>chitchat</code> 项目目录下运行 <code>chitchat</code> 二进制文件启动应用了：</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://qcdn.xueyuanjun.com/storage/uploads/images/gallery/2020-04/image-15871116372180.jpg alt class=lazyload></figure></p><p>然后我们在本地 <code>hosts</code> 文件中自定义一个测试域名与服务器 IP 的映射：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>your-server-ip-address chitchat.test
+</code></pre></td></tr></table></div></div><p>将上述 <code>your-server-ip-address</code> 替换成自己的远程服务器 IP 地址，然后我们就可以在浏览器中通过 <code>http://chitchat.test:8080</code> 访问应用了：</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://qcdn.xueyuanjun.com/storage/uploads/images/gallery/2020-04/image-15871123187423.jpg alt class=lazyload></figure></p><a class=post-dummy-target id=3-通过-nginx-做反向代理></a><h2>3. 通过 Nginx 做反向代理</h2><p>虽然上述方式可以正常运行，但是如果要高效处理静态资源文件并对其做缓存，可以借助 Nginx 作为反向代理服务器来完成，我们在 Nginx 虚拟主机配置目录 <code>/etc/nginx/sites-available</code> 中新增一个配置文件 <code>chitchat.conf</code>（以 Ubuntu 服务器为例）：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-nginx data-lang=nginx><span class=k>server</span> <span class=p>{</span>
+    <span class=kn>listen</span>      <span class=mi>80</span><span class=p>;</span> 
+    <span class=kn>server_name</span> <span class=s>chitchat.test</span> <span class=s>www.chitchat.test</span><span class=p>;</span>
+    
+    <span class=c1># 静态资源交由 Nginx 管理，并缓存一天
+</span><span class=c1></span>    <span class=kn>location</span> <span class=s>/static</span> <span class=p>{</span>
+        <span class=kn>root</span>        <span class=s>/var/www/chitchat/public</span><span class=p>;</span>
+        <span class=kn>expires</span>     <span class=s>1d</span><span class=p>;</span>
+        <span class=kn>add_header</span>  <span class=s>Cache-Control</span> <span class=s>public</span><span class=p>;</span>
+        <span class=kn>access_log</span>  <span class=no>off</span><span class=p>;</span>
+        <span class=kn>try_files</span> <span class=nv>$uri</span> <span class=s>@goweb</span><span class=p>;</span>
+    <span class=p>}</span>
+    
+    <span class=kn>location</span> <span class=s>/</span> <span class=p>{</span>
+        <span class=kn>try_files</span> <span class=s>/_not_exists_</span> <span class=s>@goweb</span><span class=p>;</span>
+    <span class=p>}</span>
+    
+    <span class=c1># 动态请求默认通过 Go Web 服务器处理
+</span><span class=c1></span>    <span class=kn>location</span> <span class=s>@goweb</span> <span class=p>{</span>
+        <span class=kn>proxy_set_header</span> <span class=s>Host</span> <span class=nv>$http_host</span><span class=p>;</span>
+        <span class=kn>proxy_set_header</span> <span class=s>X-Real-IP</span> <span class=nv>$remote_addr</span><span class=p>;</span>
+        <span class=kn>proxy_set_header</span> <span class=s>X-Forwarded-For</span> <span class=nv>$proxy_add_x_forwarded_for</span><span class=p>;</span>
+        <span class=kn>proxy_set_header</span> <span class=s>X-Scheme</span> <span class=nv>$scheme</span><span class=p>;</span>
+        <span class=kn>proxy_redirect</span> <span class=no>off</span><span class=p>;</span>
+        <span class=kn>proxy_pass</span> <span class=s>http://127.0.0.1:8080</span><span class=p>;</span>
+    <span class=p>}</span>
+    
+    <span class=kn>error_log</span> <span class=s>/var/log/nginx/chitchat_error.log</span><span class=p>;</span>
+    <span class=kn>access_log</span> <span class=s>/var/log/nginx/chitchat_access.log</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>然后再启用该配置文件：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>ln -s /etc/nginx/sites-available/chitchat /etc/nginx/sites-enabled/chitchat
+</code></pre></td></tr></table></div></div><p>重启 Nginx 服务：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>service nginx restart
+</code></pre></td></tr></table></div></div><p>与此同时，我们可以把 <code>chitchat/config.json</code> 中的 <code>App</code> 配置项启动 IP 地址改为 <code>127.0.0.1</code>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=s2>&#34;App&#34;</span>: <span class=o>{</span>
+    <span class=s2>&#34;Address&#34;</span>: <span class=s2>&#34;127.0.0.1:8080&#34;</span>,
+    <span class=s2>&#34;Static&#34;</span>: <span class=s2>&#34;public&#34;</span>,
+    <span class=s2>&#34;Log&#34;</span>: <span class=s2>&#34;logs&#34;</span>,
+    <span class=s2>&#34;Locale&#34;</span>: <span class=s2>&#34;locales&#34;</span>,
+    <span class=s2>&#34;Language&#34;</span>: <span class=s2>&#34;zh&#34;</span>
+  <span class=o>}</span>,
+</code></pre></td></tr></table></div></div><p>并再次重启这个 Go 应用，这样就只能通过 Nginx 访问应用，在浏览器中访问 <code>http://chitchat.test</code>：</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://qcdn.xueyuanjun.com/storage/uploads/images/gallery/2020-04/image-15871168431728.jpg alt class=lazyload></figure>而当你试图再通过 <code>http://chitchat.test:8080</code> 访问应用，则会报错：</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://qcdn.xueyuanjun.com/storage/uploads/images/gallery/2020-04/image-15871169152394.jpg alt class=lazyload></figure></p><p>我们可以测试下注册登录功能以及创建新群组功能：</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://qcdn.xueyuanjun.com/storage/uploads/images/gallery/2020-04/image-15871169671758.jpg alt class=lazyload></figure></p><a class=post-dummy-target id=4-通过-supervisor-维护应用守护进程></a><h2>4. 通过 Supervisor 维护应用守护进程</h2><p>看起来一切都 OK 了，但是目前这种模式下，用户退出后 Go Web 应用进程会关闭，这显然是不行的，而且如果 Go Web 应用进程因为其他异常挂掉，也无法自动重启，每次需要我们登录到服务器进行启动操作，这很不方便，也影响在线应用的稳定性，为此，我们需要借助第三方进程监控工具帮我们实现 Go Web 应用进程以后台守护进程的方式运行。常见的进程监控工具有 Supervisor、Upstart、systemd 等，由于我的服务器之前部署过 Supervisor，所以我就借助它来管理 Go Web 应用进程。</p><blockquote><p>注：对 Supervisor 安装配置不了解的同学，可以参考这篇教程 —— <a href=https://xueyuanjun.com/post/21566#bkmrk-%E9%83%A8%E7%BD%B2-horizon target=_blank>队列系统解决方案：Horizon</a>。</p></blockquote><p>首先创建对应的 Supervisor 配置文件 <code>/etc/supervisor/conf.d/chitchat.conf</code>，这里需要设置进程启动目录及命令、进程意外挂掉后是否自动重启、以及日志文件路径等：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>[program:chitchat]
+process_name=%(program_name)s
+directory=/var/www/chitchat
+command=/var/www/chitchat/chitchat
+autostart=true
+autorestart=true
+user=root
+redirect_stderr=true
+stdout_logfile=/var/www/chitchat/logs/chitchat.log
+</code></pre></td></tr></table></div></div><blockquote><p>注意：我们需要进入 <code>chitchat</code> 所在目录执行启动命令，否则会找不到配置文件和其他资源路径，所以需要配置 <code>directory</code> 选项。</p></blockquote><p>然后关闭之前通过手动运行 <code>chitchat</code> 启动的 Go Web 服务器，再运行如下指令通过 Supervisor 启动并维护 Go Web 应用进程：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>supervisorctl reread
+supervisorctl update
+supervisorctl start chitchat
+</code></pre></td></tr></table></div></div><p>你可以通过 <code>ps -ef | grep chitchat</code> 查看进程是否启动成功：</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://qcdn.xueyuanjun.com/storage/uploads/images/gallery/2020-04/image-15871330990937.jpg alt class=lazyload></figure></p><p>启动成功后，就可以在浏览器通过 <code>http://chitchat.test</code> 访问部署在远程服务器的在线论坛了：</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://qcdn.xueyuanjun.com/storage/uploads/images/gallery/2020-04/image-15871331767149.jpg alt class=lazyload></figure></p><p>并且无论是否退出远程服务器还是关闭 Go Web 应用进程，都不会影响在线论坛的访问，因为它是以守护进程的方式运行的，并且可以在关闭后自动重启。</p></div><div class=post-copyright id=post-footer><p class=copyright-item><span>Author:&nbsp;</span>
+<span>xueyuanjun</span></p><p class=copyright-item><span>Updated on:&nbsp;</span>
+<span>2020-06-07</span></p><p class=copyright-item><span>Share on:&nbsp;</span>
+<span><a href="//twitter.com/share?url=https%3a%2f%2fshuzang.github.io%2f2020%2fdevelopment-of-online-forum-based-on-golang-9-deploy-go-web-application%2f&text=%e5%9f%ba%e4%ba%8eGo%e8%af%ad%e8%a8%80%e5%bc%80%e5%8f%91%e5%9c%a8%e7%ba%bf%e8%ae%ba%e5%9d%9b9-%e9%83%a8%e7%bd%b2Go%20Web%e5%ba%94%e7%94%a8&via=" target=_blank title="Share on Twitter"><i class="fab fa-twitter fa-fw"></i></a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fshuzang.github.io%2f2020%2fdevelopment-of-online-forum-based-on-golang-9-deploy-go-web-application%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook-square fa-fw"></i></a><a href="//reddit.com/submit?url=https%3a%2f%2fshuzang.github.io%2f2020%2fdevelopment-of-online-forum-based-on-golang-9-deploy-go-web-application%2f&title=%e5%9f%ba%e4%ba%8eGo%e8%af%ad%e8%a8%80%e5%bc%80%e5%8f%91%e5%9c%a8%e7%ba%bf%e8%ae%ba%e5%9d%9b9-%e9%83%a8%e7%bd%b2Go%20Web%e5%ba%94%e7%94%a8" target=_blank title="Share on Reddit"><i class="fab fa-reddit fa-fw"></i></a></span></p><p class=copyright-item></p><p class=copyright-item></p></div><br><div class=post-info-more><section><span class=tag><a href=https://shuzang.github.io/tags/go%E5%AE%9E%E6%88%98/><i class="fas fa-tag fa-fw"></i>&nbsp;Go实战</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://shuzang.github.io>Home</a></span></section></div><div class=post-nav><a href=https://shuzang.github.io/2020/development-of-online-forum-based-on-golang-8-message-view-and-date-time-localizationsingleton-mode/ class=prev rel=prev title=基于Go语言开发在线论坛8-消息、视图和日期时间本地化><i class="fas fa-angle-left fa-fw"></i>基于Go语言开发在线论坛8-消息、视图和日期时间本地化</a>
+<a href=https://shuzang.github.io/2020/how-to-avoid-information-overload/ class=next rel=next title=如何避免信息过载>如何避免信息过载<i class="fas fa-angle-right fa-fw"></i></a></div><div class=post-comment><div id=vcomments></div><script src=/js/lib/valine/Valine.min.min.js></script><script type=text/javascript>(function(){if(window.location.hostname=="localhost")
+return;new Valine({el:"#vcomments",appId:"GteMvevTjOBmhvFh2QGsopGO-gzGzoHsz",appKey:"fL4SYl06GIe012PswFdY17VC",meta:["nick","mail"],notify:"false",verify:"true",avatar:"hide",placeholder:"Your comment ...",visitor:"true",recordIP:"true",lang:"en",});})();</script><noscript>Please enable JavaScript to view the <a href=https://valine.js.org/>comments powered by Valine.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://shuzang.github.io/about/ target=_blank>shuzang</a> | </span>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> & <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt</a></div></div></footer></div><a href=# class=dynamic-to-top id=dynamic-to-top data-scroll><span>&nbsp;</span>
+</a><script src=/js/lib/jquery/jquery.slim.min.js></script><script src=/js/lib/lazysizes/lazysizes.min.js></script><script src=/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js></script><script>window.scroll=new SmoothScroll('[data-scroll]',{speed:300,speedAsDuration:true});</script><link rel=stylesheet href=/css/lib/katex/katex.min.css><script src=/js/lib/katex/katex.min.js></script><script defer src=/js/lib/katex/auto-render.min.js></script><link rel=stylesheet href=/css/lib/katex/copy-tex.min.css><script defer src=/js/lib/katex/copy-tex.min.js></script><script defer src=/js/lib/katex/mhchem.min.js></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true},{left:"$",right:"$",display:false},]});});</script><script src=/js/blog.min.js></script></body></html>

@@ -1,0 +1,319 @@
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>区块链实验3-访问控制原型系统实现 | Shuzang's Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><link rel=prev href=https://shuzang.github.io/2019/i-still-love-you/><link rel=next href=https://shuzang.github.io/2019/edgechain-an-edge-iot-framework-and-prototype/><link rel=canonical href=https://shuzang.github.io/2019/access-control-prototype-system-implementation/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><meta name=twitter:card content="summary"><meta name=twitter:title content="区块链实验3-访问控制原型系统实现"><meta name=twitter:description content="本文是在前面搭建好的区块链实验平台基础上，对 zhang 的 Smart contract-based access control for the internet of things1 这篇论文进行复现。主要记录这篇论文里提到的访问控制系统的复现和测试过程。"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"区块链实验3-访问控制原型系统实现","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/2019\/access-control-prototype-system-implementation\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"科研记录","wordcount":4271,"url":"https:\/\/shuzang.github.io\/2019\/access-control-prototype-system-implementation\/","datePublished":"2019-10-15T00:00:00\x2b00:00","dateModified":"2020-10-12T00:00:00\x2b00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"shuzang","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/logo.png","width":127,"height":40}},"description":""}</script><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css></head><body><script>window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><nav class=navbar><div class=top-scroll-bar></div><div class=navbar-container><div class="navbar-header animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=navbar-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><nav class=navbar-mobile><div class=top-scroll-bar></div><div class=navbar-container><div class=navbar-header><div class="navbar-header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=navbar-menu id=mobile-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><main class=main><div class=container><article class=page><h1 class="post-title animated flipInX">区块链实验3-访问控制原型系统实现</h1><div class=post-meta><i class="far fa-calendar-alt fa-fw"></i>published on&nbsp;<time datetime=2019-10-15>2019-10-15</time>&nbsp;
+<i class="fas fa-pencil-alt fa-fw"></i>about 4271 words&nbsp;<span id=/2019/access-control-prototype-system-implementation/ class=leancloud_visitors data-flag-title=区块链实验3-访问控制原型系统实现>
+<i class="far fa-eye fa-fw"></i><span class=leancloud-visitors-count></span>views
+</span>&nbsp;<span class=post-category><i class="far fa-folder fa-fw"></i>included in&nbsp;<a href=https://shuzang.github.io/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/>研究生的区块链学习之路</a>&nbsp;</span></div><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#1-合约功能>1. 合约功能</a><ul><li><a href=#11-注册合约>1.1 注册合约</a></li><li><a href=#12-访问控制合约>1.2 访问控制合约</a></li><li><a href=#13-判决合约>1.3 判决合约</a></li></ul></li><li><a href=#2-合约功能测试>2. 合约功能测试</a><ul><li><a href=#21-注册>2.1 注册</a></li><li><a href=#22-更新>2.2 更新</a></li><li><a href=#23-删除>2.3 删除</a></li><li><a href=#23-策略管理>2.3 策略管理</a></li><li><a href=#24-访问控制>2.4 访问控制</a></li></ul></li><li><a href=#3-实施访问控制>3. 实施访问控制</a></li><li><a href=#4-附录>4. 附录</a><ul><li><a href=#附录1-两个js脚本的算法>附录1 两个js脚本的算法</a></li><li><a href=#附录2-web3js与节点交互的参考文档>附录2 web3.js与节点交互的参考文档</a></li><li><a href=#附录3-可能遇到的问题及解决方案>附录3 可能遇到的问题及解决方案</a></li><li><a href=#附录4-合约部署的方式>附录4 合约部署的方式</a></li><li><a href=#附录5-执行js命令的方法>附录5 执行js命令的方法</a></li></ul></li></ul></nav></div></div><div class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
+<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><a href=#1-合约功能>1. 合约功能</a><ul><li><a href=#11-注册合约>1.1 注册合约</a></li><li><a href=#12-访问控制合约>1.2 访问控制合约</a></li><li><a href=#13-判决合约>1.3 判决合约</a></li></ul></li><li><a href=#2-合约功能测试>2. 合约功能测试</a><ul><li><a href=#21-注册>2.1 注册</a></li><li><a href=#22-更新>2.2 更新</a></li><li><a href=#23-删除>2.3 删除</a></li><li><a href=#23-策略管理>2.3 策略管理</a></li><li><a href=#24-访问控制>2.4 访问控制</a></li></ul></li><li><a href=#3-实施访问控制>3. 实施访问控制</a></li><li><a href=#4-附录>4. 附录</a><ul><li><a href=#附录1-两个js脚本的算法>附录1 两个js脚本的算法</a></li><li><a href=#附录2-web3js与节点交互的参考文档>附录2 web3.js与节点交互的参考文档</a></li><li><a href=#附录3-可能遇到的问题及解决方案>附录3 可能遇到的问题及解决方案</a></li><li><a href=#附录4-合约部署的方式>附录4 合约部署的方式</a></li><li><a href=#附录5-执行js命令的方法>附录5 执行js命令的方法</a></li></ul></li></ul></nav></div></details></div><div class=post-content><a class=post-dummy-target id=fnref:1></a><p>本文是在前面搭建好的区块链实验平台基础上，对 zhang 的 Smart contract-based access control for the internet of things<sup><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup> 这篇论文进行复现。主要记录这篇论文里提到的访问控制系统的复现和测试过程。</p><a class=post-dummy-target id=1-合约功能></a><h2>1. 合约功能</h2><p>论文中的访问控制系统主要包括三种合约：Register Contract（注册合约，RC），Access Control Contract（访问控制合约，ACC）和 Judge Contract（判决合约，JC）。本小节介绍三种合约的作用及其中定义的功能。</p><a class=post-dummy-target id=11-注册合约></a><h3>1.1 注册合约</h3><p>RC 的作用主要是注册 ACC 和 JC，在需要的时候返回它们的相关信息，使用了一个 lookupTable 来存储每个已注册合约的基本信息，这些基本信息包括：</p><table><thead><tr><th>字段名</th><th>解释</th></tr></thead><tbody><tr><td>scName</td><td>注册的合约名</td></tr><tr><td>subject</td><td>subject-object对中的subject地址</td></tr><tr><td>object</td><td>subject-object对中的object地址</td></tr><tr><td>creator</td><td>合约创建者地址</td></tr><tr><td>scAddress</td><td>合约地址</td></tr></tbody></table><p>使用了一个映射结构来构造信息表，<code>mapping(bytes32=>Method) public lookupTable</code>，以上基本信息均作为结构体Method的一部分，作为表的值。表的键是 bytes32 类型，是方法(method)名，这里方法的含义很模糊，作用应该是描述已注册合约的作用。RC 合约定义了如下功能：</p><ol><li>methodRegister：ACC和JC注册</li><li>methodScnameUpdate：已注册的合约名字段更新</li><li>methodAcAddressUpdate：已注册的合约地址字段更新</li><li>methodNameUpdate：方法名更新</li><li>methodDelete：方法删除</li><li>getContractAddr：获取方法名对应的合约地址</li></ol><p>存在的问题</p><ol><li>作为表键的方法名除了带来大量的 gas 消耗没有任何益处，反而由于处理的难题，使用内联汇编带来了大量 gas 消耗。可以用注册合约的合约地址作为键，而在 Method 结构体中新增合约描述字段</li><li>结构体中合约名也没有意义，可与合约描述字段合并，或者更改为合约类型字段，用于区分 ACC 和 JC</li><li>存储注册合约的 abi 没有意义，反而带来处理上的难题和大量 gas 消耗，实际上，实验中存在的 abi 只有三种，RC，ACC 和 JC，预先记录即可，如果考虑到ACC 或 JC 合约内容变动，可设置指向函数，在改变合约时将请求指向新合约。</li></ol><a class=post-dummy-target id=12-访问控制合约></a><h3>1.2 访问控制合约</h3><p>ACC 的作用是对 subject 和 object 对的每个访问控制方法做描述。拥有两个表，Misbehavior 记录行为用作判决，PolicyItem 记录访问控制策略用于访问控制。并使用了一个事件返回访问控制相关结果。合约相关函数如下：</p><ol><li>setJC：设置 JC 合约地址，用于调用 JC 合约</li><li>policyAdd：策略添加</li><li>getPolicy：策略查询</li><li>policyUpdate：策略权限字段更新</li><li>minIntervalUpdate：策略时间间隔字段更新</li><li>thresholdUpdate：策略阈值字段更新</li><li>policyDelete：策略删除</li><li>accessControl：实施访问控制</li><li>getTimeofUnblock：获取惩罚时间</li><li>deleteACC：合约自我销毁</li></ol><p>ACC由object部署，可以控制subject发起的访问请求。我们假设subject和object就多条访问控制方法达成了一致，因此，一个subject-object对应多个ACC，但一个ACC只对应一个subject-object。</p><a class=post-dummy-target id=13-判决合约></a><h3>1.3 判决合约</h3><p>JC 的表结构记录了恶意行为，并拥有恶意行为判决函数，同时有一个事件返回判决基本信息，其函数如下：</p><ol><li>misbeaviorJudge：进行恶意行为判决</li><li>getLatestMisbehavior：获取最新判决的一个恶意行为</li><li>deleteJC：合约自我销毁</li></ol><a class=post-dummy-target id=2-合约功能测试></a><h2>2. 合约功能测试</h2><p>作者提供了三种合约的<a href=http://mdlval.blogspot.jp/ target=_blank>源代码</a>，但该地址目前已不可访问，不过根据论文描述，我们自己做了实现，实现的代码未来将会上传到Github，不过会是改进后的方案代码，不是复现代码。我们使用 Remix 编辑器编写代码，实现的过程不会详细介绍，这里只介绍代码编写完成后进行功能测试的一系列步骤。</p><a class=post-dummy-target id=21-注册></a><h3>2.1 注册</h3><p>注册新的访问控制方法/恶意行为判决方法</p><p>step1：为新方法创建新的 ACC</p><p>step2：部署新创建的 ACC 到区块链</p><p>step3：调用 RC 合约的 methodRegister 方法注册 ACC</p><a class=post-dummy-target id=22-更新></a><h3>2.2 更新</h3><p>更新已有的访问控制方法（不觉得有存在的必要）</p><p>step1：创建新的 ACC，用于替换旧的</p><p>step2：部署新创建的 ACC</p><p>step3：调用 RC 合约的 methodUpdate 方法更新相关字段，如 ScName, ScAddress, ABI 等</p><p>step4：调用旧 ACC 的 deleteACC 方法自我销毁</p><a class=post-dummy-target id=23-删除></a><h3>2.3 删除</h3><p>删除已有的访问控制方法</p><p>step1：调用 RC 合约的 methodDelete 方法从注册表删除方法的相关信息</p><p>step2：调用 ACC 合约的 deleteACC 方法自我销毁</p><a class=post-dummy-target id=23-策略管理></a><h3>2.3 策略管理</h3><p>添加，更新和删除策略，主要调用 ACC 合约的 policyAdd, policyUpdate 和 policyDelete 方法完成</p><a class=post-dummy-target id=24-访问控制></a><h3>2.4 访问控制</h3><p>假设 subject 和 object 知道它们间所有可用的访问控制方法，当前有一个 subject 想访问 object 的资源，需要执行下列步骤</p><p>step1：subject 调用 RC 合约的 getContract 方法检索用于访问控制的 ACC</p><p>step2：RC 合约返回所查询 ACC 的 address 和 ABI 给发起查询的 subject</p><p>step3：subject 调用 ACC 合约的 accessControl 方法发起访问控制，该交易将被收集到区块中，区块被确认后，accessControl 方法得以执行</p><p>step4：访问控制执行期间，ACC 调用 JC 合约的 misbehaviorJudge 方法查看该 subject 是否存在恶意行为</p><p>step5：misbehaviorJudge 完成恶意行为检测与判决，将判决结果返回给 ACC</p><p>step6：访问控制结束后，结果同时返回给 subject 和 object</p><a class=post-dummy-target id=3-实施访问控制></a><h2>3. 实施访问控制</h2><p>功能测试完成后，我们模拟 subject 向 object 发起访问控制请求的场景，验证所设计的系统的可行性。实际实施以 pi3B+ 作为 subject，以 pi3B 作为 object，实验流程如下</p><ol><li><p>在台式电脑中安装<a href=https://web3js.readthedocs.io/en/v1.2.1/getting-started.html target=_blank>web3.js</a>，之后通过websocket远程操作树莓派</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># 安装npm和node</span>
+$ sudo apt-get install npm
+<span class=c1># 更新npm到最新</span>
+$ sudo npm install npm@latest -g
+<span class=c1># 安装node管理工具</span>
+$ sudo npm install n -g
+<span class=c1># 更新node.js到最新</span>
+$ sudo n lts
+<span class=c1># 授权普通用户否则npm无法对模块进行本地安装</span>
+$ sudo chown -R <span class=k>$(</span>whoami<span class=k>)</span> ~/.npm
+$ sudo chown -R <span class=k>$(</span>whoami<span class=k>)</span> ~/.config
+<span class=c1># 安装web3.js</span>
+$ npm install web3@1.0.0-beta.18
+<span class=c1># 查看已安装本地模块列表</span>
+$ npm list --depth <span class=m>0</span>
+/home/shuzang/istanbul
+└── web3@1.0.0-beta.18
+</code></pre></td></tr></table></div></div><p>不建议直接使用<code>npm install web3</code>，默认会安装web3@1.2.1版本，函数调用出现了<code>Transaction has been reverted by the EVM</code>的问题，<a href=https://github.com/ethereum/web3.js/issues/2518 target=_blank>论坛</a>提到这是版本问题，切换了不少版本，但直到1.0.0-beta.18才执行成功。已安装高级版本情况下可以使用如下命令覆盖</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ npm install web3@1.0.0-beta.18 --save
+</code></pre></td></tr></table></div></div></li><li><p>在 node0 根目录启动 geth</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ ps <span class=p>|</span> grep geth
+$ killall -INT geth
+$ ./startall.sh
+$ geth attach data/geth.ipc
+</code></pre></td></tr></table></div></div><p>解锁账户（之后执行操作脚本都有实现解锁账户，默认账户解锁维持5分钟）</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-json data-lang=json><span class=err>&gt;</span> <span class=err>p</span><span class=err>e</span><span class=err>r</span><span class=err>s</span><span class=err>o</span><span class=err>n</span><span class=err>a</span><span class=err>l</span><span class=err>.</span><span class=err>u</span><span class=err>n</span><span class=err>l</span><span class=err>o</span><span class=err>c</span><span class=err>k</span><span class=err>A</span><span class=err>c</span><span class=err>c</span><span class=err>o</span><span class=err>u</span><span class=err>n</span><span class=err>t</span><span class=err>(</span><span class=err>e</span><span class=err>t</span><span class=err>h</span><span class=err>.</span><span class=err>a</span><span class=err>c</span><span class=err>c</span><span class=err>o</span><span class=err>u</span><span class=err>n</span><span class=err>t</span><span class=err>s</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=err>)</span>
+</code></pre></td></tr></table></div></div></li><li><p>使用 Remix 编译注册合约(RC)，并在<code>Compilation Details</code>中获取<code>WEB3DEPLOY</code>，复制并粘贴在 geth 控制台运行，记录返回的交易哈希和合约地址。</p></li><li><p>以同样的方法部署判决合约(JC)，记录返回的交易哈希和合约地址。合约初始化需要的两个参数设置为</p><ul><li>base = 2</li><li>interval = 3</li></ul></li><li><p>调用 RC 合约的 methodRegister 函数，注册判决合约</p></li><li><p>在 object 部署 ACC 合约，合约初始化参数为 subject 节点的账户地址，记录返回的交易哈希和账户地址。</p></li><li><p>调用 ACC 合约的 SetJC 函数，传入的参数为 JC 合约地址，用于进行合约调用</p></li><li><p>调用 ACC 合约的 policyAdd 函数预定义一批访问控制策略，传入的参数中令时间间隔<code>minInterval=100</code>，阈值<code>threshold=2</code></p><table><thead><tr><th>Resource</th><th>Action</th><th>Permission</th><th>ToLR</th></tr></thead><tbody><tr><td>file A</td><td>read</td><td>allow</td><td>例如：2019-10-04 10:47</td></tr><tr><td>file A</td><td>write</td><td>deny</td><td></td></tr><tr><td>program A</td><td>execute</td><td>deny</td><td></td></tr><tr><td>&mldr;</td><td>&mldr;</td><td>&mldr;</td><td>&mldr;</td></tr></tbody></table></li><li><p>调用 ACC 合约的 getPolicy 函数验证定义的策略</p></li><li><p>调用 RC 合约的 methodRegister 函数，注册访问控制合约</p></li><li><p>编写 object 下的 monitor.js，用于监听访问控制请求</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=kd>var</span> <span class=nx>Web3</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;web3&#39;</span><span class=p>)</span><span class=p>;</span>
+<span class=kd>var</span> <span class=nx>web3</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Web3</span><span class=p>(</span><span class=nx>Web3</span><span class=p>.</span><span class=nx>givenProvider</span> <span class=o>||</span> <span class=s2>&#34;ws://192.168.191.4:8545&#34;</span><span class=p>)</span><span class=p>;</span>
+
+<span class=kd>var</span> <span class=nx>rcAbi</span> <span class=o>=</span> <span class=p>[</span><span class=p>]</span>
+<span class=kd>var</span> <span class=nx>accAbi</span> <span class=o>=</span> <span class=s2>&#34; &#34;</span>
+
+<span class=kd>var</span> <span class=nx>rcAddr</span> <span class=o>=</span> <span class=s2>&#34;0xa49fe05a90c49c44b7d533c64b8cc33e5e6d582e&#34;</span><span class=p>;</span>
+
+<span class=kd>var</span> <span class=nx>methodName</span> <span class=o>=</span> <span class=s2>&#34;Access Control&#34;</span><span class=p>;</span>
+<span class=kd>var</span> <span class=nx>register</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>web3</span><span class=p>.</span><span class=nx>eth</span><span class=p>.</span><span class=nx>Contract</span><span class=p>(</span><span class=nx>rcAbi</span><span class=p>,</span> <span class=nx>rcAddr</span><span class=p>)</span><span class=p>;</span>
+<span class=nx>register</span><span class=p>.</span><span class=nx>methods</span><span class=p>.</span><span class=nx>getContractAddr</span><span class=p>(</span><span class=nx>methodName</span><span class=p>)</span><span class=p>.</span><span class=nx>call</span><span class=p>(</span><span class=p>{</span>
+    <span class=nx>from</span><span class=o>:</span> <span class=s2>&#34;0x44d13e0c0d91a2ebe570c58cdadef2b99bf55bc1&#34;</span><span class=p>,</span>
+    <span class=nx>gas</span><span class=o>:</span> <span class=mi>10000000</span>
+<span class=p>}</span><span class=p>,</span><span class=kd>function</span><span class=p>(</span><span class=nx>error</span><span class=p>,</span><span class=nx>result</span><span class=p>)</span><span class=p>{</span>
+    <span class=k>if</span><span class=p>(</span><span class=o>!</span><span class=nx>error</span><span class=p>)</span> <span class=p>{</span>
+        <span class=nx>listen</span><span class=p>(</span><span class=nx>result</span><span class=p>)</span><span class=p>;</span>
+    <span class=p>}</span>
+<span class=p>}</span><span class=p>)</span><span class=p>;</span>
+    
+<span class=kd>function</span> <span class=nx>listen</span><span class=p>(</span><span class=nx>accAddr</span><span class=p>)</span> <span class=p>{</span>
+    <span class=kd>var</span> <span class=nx>myACC</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>web3</span><span class=p>.</span><span class=nx>eth</span><span class=p>.</span><span class=nx>Contract</span><span class=p>(</span><span class=nx>accAbi</span><span class=p>,</span> <span class=nx>accAddr</span><span class=p>)</span><span class=p>;</span>
+    
+    <span class=nx>myACC</span><span class=p>.</span><span class=nx>events</span><span class=p>.</span><span class=nx>ReturnAccessResult</span><span class=p>(</span><span class=p>{</span>
+        <span class=nx>fromBlock</span><span class=o>:</span> <span class=mi>0</span>
+    <span class=p>}</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>error</span><span class=p>,</span> <span class=nx>result</span><span class=p>)</span><span class=p>{</span>
+            <span class=k>if</span><span class=p>(</span><span class=o>!</span><span class=nx>error</span><span class=p>)</span> <span class=p>{</span>
+                <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;Contract: &#34;</span><span class=o>+</span><span class=nx>result</span><span class=p>.</span><span class=nx>address</span><span class=p>)</span><span class=p>;</span>
+                <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;Block Number: &#34;</span><span class=o>+</span><span class=nx>result</span><span class=p>.</span><span class=nx>blockNumber</span><span class=p>)</span><span class=p>;</span>
+                <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;Tx Hash: &#34;</span><span class=o>+</span><span class=nx>result</span><span class=p>.</span><span class=nx>transactionHash</span><span class=p>)</span><span class=p>;</span>
+                <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;Block Hash: &#34;</span><span class=o>+</span><span class=nx>result</span><span class=p>.</span><span class=nx>blockHash</span><span class=p>)</span><span class=p>;</span>
+                <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;Time: &#34;</span><span class=o>+</span><span class=nx>result</span><span class=p>.</span><span class=nx>returnValues</span><span class=p>.</span><span class=nx>_time</span><span class=p>)</span><span class=p>;</span>
+                <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;Message: &#34;</span><span class=o>+</span><span class=nx>result</span><span class=p>.</span><span class=nx>returnValues</span><span class=p>.</span><span class=nx>_errmsg</span><span class=p>)</span><span class=p>;</span>
+                <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;Result: &#34;</span><span class=o>+</span><span class=nx>result</span><span class=p>.</span><span class=nx>returnValues</span><span class=p>.</span><span class=nx>_result</span><span class=p>)</span><span class=p>;</span>
+                <span class=k>if</span> <span class=p>(</span><span class=nx>result</span><span class=p>.</span><span class=nx>returnValues</span><span class=p>.</span><span class=nx>_penalty</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+                    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;Requests are blocked for &#34;</span> <span class=o>+</span> <span class=nx>result</span><span class=p>.</span><span class=nx>returnValues</span><span class=p>.</span><span class=nx>_penalty</span> <span class=o>+</span><span class=s2>&#34;seconds!&#34;</span><span class=p>)</span>
+                <span class=p>}</span>
+                <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;\n&#39;</span><span class=p>)</span><span class=p>;</span>
+            <span class=p>}</span>
+    <span class=p>}</span><span class=p>)</span>
+<span class=p>}</span>
+    
+</code></pre></td></tr></table></div></div></li><li><p>编写 subject 下的 requester.js，用于发起访问控制。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=kd>var</span> <span class=nx>Web3</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;web3&#39;</span><span class=p>)</span><span class=p>;</span>
+<span class=kd>var</span> <span class=nx>readline</span> <span class=o>=</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;readline&#39;</span><span class=p>)</span><span class=p>;</span>
+<span class=kd>var</span> <span class=nx>web3</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>Web3</span><span class=p>(</span><span class=nx>Web3</span><span class=p>.</span><span class=nx>givenProvider</span> <span class=o>||</span> <span class=s2>&#34;ws://192.168.191.3:8545&#34;</span><span class=p>)</span><span class=p>;</span>
+    
+<span class=kd>var</span> <span class=nx>rcAbi</span> <span class=o>=</span> <span class=p>[</span><span class=p>]</span><span class=p>;</span>
+<span class=kd>var</span> <span class=nx>accAbi</span> <span class=o>=</span> <span class=p>[</span><span class=p>]</span><span class=p>;</span>
+    
+<span class=kd>var</span> <span class=nx>subject</span> <span class=o>=</span> <span class=s2>&#34;0x9abf7020cc405fce60fdfb84168fb9457bde52e2&#34;</span><span class=p>;</span>
+<span class=kd>var</span> <span class=nx>rcAddr</span> <span class=o>=</span> <span class=s2>&#34;0xa49fe05a90c49c44b7d533c64b8cc33e5e6d582e&#34;</span><span class=p>;</span>
+    
+<span class=kd>var</span> <span class=nx>methodName</span> <span class=o>=</span> <span class=s2>&#34;Access Control&#34;</span><span class=p>;</span>
+<span class=kd>var</span> <span class=nx>register</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>web3</span><span class=p>.</span><span class=nx>eth</span><span class=p>.</span><span class=nx>Contract</span><span class=p>(</span><span class=nx>rcAbi</span><span class=p>,</span> <span class=nx>rcAddr</span><span class=p>)</span><span class=p>;</span>
+<span class=nx>register</span><span class=p>.</span><span class=nx>methods</span><span class=p>.</span><span class=nx>getContractAddr</span><span class=p>(</span><span class=nx>methodName</span><span class=p>)</span><span class=p>.</span><span class=nx>call</span><span class=p>(</span><span class=p>{</span>
+    <span class=nx>from</span><span class=o>:</span> <span class=s2>&#34;0x9abf7020cc405fce60fdfb84168fb9457bde52e2&#34;</span><span class=p>,</span>
+    <span class=nx>gas</span><span class=o>:</span> <span class=mi>10000000</span>
+<span class=p>}</span><span class=p>,</span><span class=kd>function</span><span class=p>(</span><span class=nx>error</span><span class=p>,</span><span class=nx>result</span><span class=p>)</span><span class=p>{</span>
+    <span class=k>if</span><span class=p>(</span><span class=o>!</span><span class=nx>error</span><span class=p>)</span> <span class=p>{</span>
+        <span class=nx>sendAccessControl</span><span class=p>(</span><span class=nx>result</span><span class=p>)</span><span class=p>;</span>
+    <span class=p>}</span>
+<span class=p>}</span><span class=p>)</span><span class=p>;</span>
+    
+<span class=kd>function</span> <span class=nx>sendAccessControl</span><span class=p>(</span><span class=nx>accAddr</span><span class=p>)</span> <span class=p>{</span>
+    <span class=kd>var</span> <span class=nx>myACC</span> <span class=o>=</span> <span class=k>new</span> <span class=nx>web3</span><span class=p>.</span><span class=nx>eth</span><span class=p>.</span><span class=nx>Contract</span><span class=p>(</span><span class=nx>accAbi</span><span class=p>,</span> <span class=nx>accAddr</span><span class=p>)</span><span class=p>;</span>
+    
+    <span class=kd>var</span> <span class=nx>previousTxHash</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+    <span class=kd>var</span> <span class=nx>currentTxHash</span> <span class=o>=</span> <span class=mi>0</span><span class=p>;</span>
+    
+    <span class=kd>var</span> <span class=nx>rl</span> <span class=o>=</span> <span class=nx>readline</span><span class=p>.</span><span class=nx>createInterface</span><span class=p>(</span><span class=p>{</span>
+        <span class=nx>input</span><span class=o>:</span> <span class=nx>process</span><span class=p>.</span><span class=nx>stdin</span><span class=p>,</span>
+        <span class=nx>output</span><span class=o>:</span> <span class=nx>process</span><span class=p>.</span><span class=nx>stdout</span><span class=p>,</span>
+        <span class=nx>prompt</span><span class=o>:</span> <span class=s1>&#39;Send access request?(y/n)&#39;</span>
+    <span class=p>}</span><span class=p>)</span><span class=p>;</span>
+    
+    <span class=nx>rl</span><span class=p>.</span><span class=nx>prompt</span><span class=p>(</span><span class=p>)</span><span class=p>;</span>
+    <span class=nx>rl</span><span class=p>.</span><span class=nx>on</span><span class=p>(</span><span class=s1>&#39;line&#39;</span><span class=p>,</span><span class=p>(</span><span class=nx>answer</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+        <span class=k>if</span><span class=p>(</span><span class=s1>&#39;y&#39;</span> <span class=o>==</span> <span class=nx>answer</span><span class=p>)</span> <span class=p>{</span>
+        <span class=kd>var</span> <span class=nx>currentTime</span> <span class=o>=</span> <span class=k>new</span> <span class=nb>Date</span><span class=p>(</span><span class=p>)</span><span class=p>.</span><span class=nx>getTime</span><span class=p>(</span><span class=p>)</span><span class=o>/</span><span class=mi>1000</span><span class=p>;</span>
+        <span class=nx>myACC</span><span class=p>.</span><span class=nx>methods</span><span class=p>.</span><span class=nx>accessControl</span><span class=p>(</span><span class=s2>&#34;File A&#34;</span><span class=p>,</span> <span class=s2>&#34;read&#34;</span><span class=p>,</span> <span class=nx>currentTime</span><span class=p>)</span><span class=p>.</span><span class=nx>send</span><span class=p>(</span><span class=p>{</span>
+                <span class=nx>from</span><span class=o>:</span> <span class=s2>&#34;0x9abf7020cc405fce60fdfb84168fb9457bde52e2&#34;</span><span class=p>,</span>
+                <span class=nx>gas</span><span class=o>:</span> <span class=mi>10000000</span>
+            <span class=p>}</span><span class=p>,</span><span class=kd>function</span><span class=p>(</span><span class=nx>error</span><span class=p>,</span><span class=nx>result</span><span class=p>)</span><span class=p>{</span>
+                <span class=k>if</span><span class=p>(</span><span class=o>!</span><span class=nx>error</span><span class=p>)</span><span class=p>{</span>
+                    <span class=nx>currentTxHash</span> <span class=o>=</span> <span class=nx>result</span>
+                    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;currentTxHash&#34;</span><span class=p>,</span> <span class=nx>result</span><span class=p>)</span>
+                <span class=p>}</span>
+            <span class=p>}</span><span class=p>)</span>
+    
+        <span class=nx>myACC</span><span class=p>.</span><span class=nx>events</span><span class=p>.</span><span class=nx>ReturnAccessResult</span><span class=p>(</span><span class=p>{</span>
+                <span class=nx>fromBlock</span><span class=o>:</span> <span class=mi>0</span>
+            <span class=p>}</span><span class=p>,</span> <span class=kd>function</span><span class=p>(</span><span class=nx>error</span><span class=p>,</span> <span class=nx>result</span><span class=p>)</span><span class=p>{</span>
+            <span class=k>if</span><span class=p>(</span><span class=o>!</span><span class=nx>error</span><span class=p>)</span> <span class=p>{</span>
+                <span class=k>if</span><span class=p>(</span><span class=nx>previousTxHash</span> <span class=o>!=</span> <span class=nx>result</span><span class=p>.</span><span class=nx>transactionHash</span> <span class=o>&amp;&amp;</span> <span class=nx>currentTxHash</span> <span class=o>==</span> <span class=nx>result</span><span class=p>.</span><span class=nx>transactionHash</span><span class=p>)</span> <span class=p>{</span>
+                    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;Contract: &#34;</span><span class=o>+</span><span class=nx>result</span><span class=p>.</span><span class=nx>address</span><span class=p>)</span><span class=p>;</span>
+                    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;Block Number: &#34;</span><span class=o>+</span><span class=nx>result</span><span class=p>.</span><span class=nx>blockNumber</span><span class=p>)</span><span class=p>;</span>
+                    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;Tx Hash: &#34;</span><span class=o>+</span><span class=nx>result</span><span class=p>.</span><span class=nx>transactionHash</span><span class=p>)</span><span class=p>;</span>
+                    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;Block Hash: &#34;</span><span class=o>+</span><span class=nx>result</span><span class=p>.</span><span class=nx>blockHash</span><span class=p>)</span><span class=p>;</span>
+                    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;Time: &#34;</span><span class=o>+</span><span class=nx>result</span><span class=p>.</span><span class=nx>returnValues</span><span class=p>.</span><span class=nx>_time</span><span class=p>)</span><span class=p>;</span>
+                    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;Message: &#34;</span><span class=o>+</span><span class=nx>result</span><span class=p>.</span><span class=nx>returnValues</span><span class=p>.</span><span class=nx>_errmsg</span><span class=p>)</span><span class=p>;</span>
+                    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;Result: &#34;</span><span class=o>+</span><span class=nx>result</span><span class=p>.</span><span class=nx>returnValues</span><span class=p>.</span><span class=nx>_result</span><span class=p>)</span><span class=p>;</span>
+                    <span class=k>if</span> <span class=p>(</span><span class=nx>result</span><span class=p>.</span><span class=nx>returnValues</span><span class=p>.</span><span class=nx>_penalty</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+                        <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;Requests are blocked for &#34;</span> <span class=o>+</span> <span class=nx>result</span><span class=p>.</span><span class=nx>returnValues</span><span class=p>.</span><span class=nx>_penalty</span> <span class=o>+</span><span class=s2>&#34;seconds!&#34;</span><span class=p>)</span>
+                    <span class=p>}</span>
+                    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;\n&#39;</span><span class=p>)</span><span class=p>;</span>
+                    <span class=nx>previousTxHash</span> <span class=o>=</span> <span class=nx>result</span><span class=p>.</span><span class=nx>transactionHash</span><span class=p>;</span>
+                    <span class=nx>rl</span><span class=p>.</span><span class=nx>prompt</span><span class=p>(</span><span class=p>)</span><span class=p>;</span>
+                <span class=p>}</span>
+            <span class=p>}</span>
+        <span class=p>}</span><span class=p>)</span>
+        <span class=p>}</span>
+        <span class=k>else</span><span class=p>{</span>
+        <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s2>&#34;access request doesn&#39;t send!&#34;</span><span class=p>)</span>
+        <span class=nx>rl</span><span class=p>.</span><span class=nx>prompt</span><span class=p>(</span><span class=p>)</span><span class=p>;</span>
+        <span class=p>}</span>
+    <span class=p>}</span><span class=p>)</span><span class=p>.</span><span class=nx>on</span><span class=p>(</span><span class=s1>&#39;close&#39;</span><span class=p>,</span><span class=p>(</span><span class=p>)</span> <span class=p>=&gt;</span><span class=p>{</span>
+        <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;All actions had executed!&#39;</span><span class=p>)</span><span class=p>;</span>
+        <span class=nx>process</span><span class=p>.</span><span class=nx>exit</span><span class=p>(</span><span class=mi>0</span><span class=p>)</span><span class=p>;</span>
+    <span class=p>}</span><span class=p>)</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div></li><li><p>将注册合约(RC)的合约地址和 Abi，访问控制合约的Abi填充到上面两个 js 文件的rcAddr，rcAbi和accAbi变量</p></li><li><p>在台式电脑中开启两个控制台界面，先后执行两个脚本。requester.js 发起的访问控制返回的结果，monitor.js 都能检测到。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ node monitor.js
+$ node requester.js
+</code></pre></td></tr></table></div></div></li></ol><a class=post-dummy-target id=4-附录></a><h2>4. 附录</h2><a class=post-dummy-target id=附录1-两个js脚本的算法></a><h3>附录1 两个js脚本的算法</h3><blockquote><p>Algorithm 2 Access Request JavaScript</p><p><strong>Input</strong>: resource, action, time</p><p><strong>Output</strong>: result, penalty</p><p>1: Create a RC instance register.<br>2: Specify the access control method name method.<br>3: (addr, abi)4— register.getContract(method).<br>4: Create an ACC instance acc with addr, abi.<br>5: Send a transaction containing parameters (resource, action, time) to the accessControl ABI of acc.<br>6: while ture do<br>7: if Event returnResult() is captured then<br>8: (result, penalty) 4— returnResult().<br>9: break.<br>10: end if<br>11: end while<br>12: return result, penalty<br><br></p></blockquote><blockquote><p>Algorithm 3 Access Monitor JavaScript</p><p>1: Create a RC instance register.<br>2: Specify the access control method name method.<br>3: (addr, abi)4— register.getContract(method).<br>4: Create an ACC instance acc with addr, abi.<br>5: while ture do<br>6: if Event returnResult() is captured then<br>7: (result, penalty) 4— returnResult().<br>8: Display result, penalty.<br>9: end if<br>10: end while</p></blockquote><a class=post-dummy-target id=附录2-web3js与节点交互的参考文档></a><h3>附录2 web3.js与节点交互的参考文档</h3><p><a href=https://blog.csdn.net/dieju8330/article/details/83090660>https://blog.csdn.net/dieju8330/article/details/83090660</a></p><p><a href=https://blog.csdn.net/dieju8330/article/details/83149164>https://blog.csdn.net/dieju8330/article/details/83149164</a></p><a class=post-dummy-target id=附录3-可能遇到的问题及解决方案></a><h3>附录3 可能遇到的问题及解决方案</h3><p>获取节点账户列表</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=o>&gt;</span> <span class=nx>eth</span><span class=p>.</span><span class=nx>accounts</span>
+</code></pre></td></tr></table></div></div><p>解锁账户</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=o>&gt;</span> <span class=nx>personal</span><span class=p>.</span><span class=nx>unlockAccount</span><span class=p>(</span><span class=nx>eth</span><span class=p>.</span><span class=nx>accounts</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=p>)</span>
+<span class=err>#</span> <span class=nx>可以解锁时直接添加密码和持续时间</span><span class=p>(</span><span class=nx>未添加持续时间默认300s</span><span class=err>，</span><span class=nx>即5分钟</span><span class=p>)</span>
+<span class=o>&gt;</span> <span class=nx>personal</span><span class=p>.</span><span class=nx>unlockAccount</span><span class=p>(</span><span class=nx>address</span><span class=p>,</span> <span class=s2>&#34;password&#34;</span><span class=p>,</span> <span class=mi>300</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>查看已连接节点</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=o>&gt;</span> <span class=nx>admin</span><span class=p>.</span><span class=nx>peers</span>
+</code></pre></td></tr></table></div></div><p>启动geth时即解锁账户</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=nx>geth</span> <span class=o>--</span><span class=nx>unlock</span> <span class=s2>&#34;0x...&#34;</span> <span class=o>--</span><span class=nx>password</span> <span class=s2>&#34;密码&#34;</span>
+</code></pre></td></tr></table></div></div><p>启动geth时允许远程web3接入</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=nx>geth</span> <span class=o>--</span><span class=nx>rpccorsdomain</span> <span class=s2>&#34;*&#34;</span>
+</code></pre></td></tr></table></div></div><p>remix通过web3 provider部署合约，网址栏https改为http，否则无法连接</p><p>更多关于账户的命令参见<a href=https://github.com/ethereum/go-ethereum/wiki/Managing-your-accounts target=_blank>Managing your accounts</a></p><a class=post-dummy-target id=附录4-合约部署的方式></a><h3>附录4 合约部署的方式</h3><ol><li>复制Remix中合约编译生成的web3deploy到geth控制台执行</li><li>使用Remix的web3 Provider远程部署（关闭adblock，使用http，但仍然一直处于creation of Register pending&mldr;中，未知原因，可能是http连接已弃用）</li><li>利用web3.js编写js脚本进行部署</li><li>使用truffle</li></ol><a class=post-dummy-target id=附录5-执行js命令的方法></a><h3>附录5 执行js命令的方法</h3><p><strong>方法1</strong>：geth控制台执行以下命令，默认路径为执行<code>geth attach</code>的路径</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=nx>loadScript</span><span class=p>(</span><span class=s1>&#39;requester.js&#39;</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>但总出现类似“err: TypeError: &lsquo;send&rsquo; is not a function”的问题，无法解决，可能是<code>web3.js</code>的问题，网上有人建议换用<code>ethers.js</code></p><p><strong>方法2</strong>：执行<code>geth attach</code>时添加参数</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=nx>geth</span> <span class=o>--</span><span class=nx>exec</span> <span class=s1>&#39;loadScript(&#34;request.js&#34;)&#39;</span> <span class=nx>attach</span> <span class=nx>data</span><span class=o>/</span><span class=nx>geth</span><span class=p>.</span><span class=nx>ipc</span>
+</code></pre></td></tr></table></div></div><p>使用举例见<a href=https://github.com/ethereum/go-ethereum/wiki/JavaScript-Console target=_blank>JavaScript Console</a></p><p><strong>方法3</strong>：使用node直接运行</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ node requester.js
+</code></pre></td></tr></table></div></div><p>方法3是唯一执行成功的。</p><section class=footnotes role=doc-endnotes><hr><ol><li role=doc-endnote><p><a class=post-dummy-target id=fn:1></a>Zhang Y, Kasahara S, Shen Y, et al. Smart contract-based access control for the internet of things[J]. IEEE Internet of Things Journal, 2018. <a href=#fnref:1 class=footnote-backref role=doc-backlink>&#8617;&#xfe0e;</a></p></li></ol></section></div><div class=post-copyright id=post-footer><p class=copyright-item><span>Author:&nbsp;</span>
+<span>shuzang</span></p><p class=copyright-item><span>Updated on:&nbsp;</span>
+<span>2020-10-12</span></p><p class=copyright-item><span>Share on:&nbsp;</span>
+<span><a href="//twitter.com/share?url=https%3a%2f%2fshuzang.github.io%2f2019%2faccess-control-prototype-system-implementation%2f&text=%e5%8c%ba%e5%9d%97%e9%93%be%e5%ae%9e%e9%aa%8c3-%e8%ae%bf%e9%97%ae%e6%8e%a7%e5%88%b6%e5%8e%9f%e5%9e%8b%e7%b3%bb%e7%bb%9f%e5%ae%9e%e7%8e%b0&via=" target=_blank title="Share on Twitter"><i class="fab fa-twitter fa-fw"></i></a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fshuzang.github.io%2f2019%2faccess-control-prototype-system-implementation%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook-square fa-fw"></i></a><a href="//reddit.com/submit?url=https%3a%2f%2fshuzang.github.io%2f2019%2faccess-control-prototype-system-implementation%2f&title=%e5%8c%ba%e5%9d%97%e9%93%be%e5%ae%9e%e9%aa%8c3-%e8%ae%bf%e9%97%ae%e6%8e%a7%e5%88%b6%e5%8e%9f%e5%9e%8b%e7%b3%bb%e7%bb%9f%e5%ae%9e%e7%8e%b0" target=_blank title="Share on Reddit"><i class="fab fa-reddit fa-fw"></i></a></span></p><p class=copyright-item></p><p class=copyright-item></p></div><br><div class=post-info-more><section><span class=tag><a href=https://shuzang.github.io/tags/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95/><i class="fas fa-tag fa-fw"></i>&nbsp;科研记录</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://shuzang.github.io>Home</a></span></section></div><div class=post-nav><a href=https://shuzang.github.io/2019/i-still-love-you/ class=prev rel=prev title=我还是喜欢你><i class="fas fa-angle-left fa-fw"></i>我还是喜欢你</a>
+<a href=https://shuzang.github.io/2019/edgechain-an-edge-iot-framework-and-prototype/ class=next rel=next title="EdgeChain An Edge-IoT Framework and Prototype">EdgeChain An Edge-IoT Framework and Prototype<i class="fas fa-angle-right fa-fw"></i></a></div><div class=post-comment><div id=vcomments></div><script src=/js/lib/valine/Valine.min.min.js></script><script type=text/javascript>(function(){if(window.location.hostname=="localhost")
+return;new Valine({el:"#vcomments",appId:"GteMvevTjOBmhvFh2QGsopGO-gzGzoHsz",appKey:"fL4SYl06GIe012PswFdY17VC",meta:["nick","mail"],notify:"false",verify:"true",avatar:"hide",placeholder:"Your comment ...",visitor:"true",recordIP:"true",lang:"en",});})();</script><noscript>Please enable JavaScript to view the <a href=https://valine.js.org/>comments powered by Valine.</a></noscript></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2020</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://shuzang.github.io/about/ target=_blank>shuzang</a> | </span>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> & <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt</a></div></div></footer></div><a href=# class=dynamic-to-top id=dynamic-to-top data-scroll><span>&nbsp;</span>
+</a><script src=/js/lib/jquery/jquery.slim.min.js></script><script src=/js/lib/lazysizes/lazysizes.min.js></script><script src=/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js></script><script>window.scroll=new SmoothScroll('[data-scroll]',{speed:300,speedAsDuration:true});</script><link rel=stylesheet href=/css/lib/katex/katex.min.css><script src=/js/lib/katex/katex.min.js></script><script defer src=/js/lib/katex/auto-render.min.js></script><link rel=stylesheet href=/css/lib/katex/copy-tex.min.css><script defer src=/js/lib/katex/copy-tex.min.js></script><script defer src=/js/lib/katex/mhchem.min.js></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true},{left:"$",right:"$",display:false},]});});</script><script src=/js/blog.min.js></script></body></html>
