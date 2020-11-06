@@ -67,7 +67,7 @@ dateFormatToUse = "2006-01-02"
 
 # Permalinks Info (https://gohugo.io/content-management/urls/#permalinks)
 [Permalinks]
-  posts = ":slug"
+  posts = ":year/:slug"
 
 # Menu Info
 [menu]
