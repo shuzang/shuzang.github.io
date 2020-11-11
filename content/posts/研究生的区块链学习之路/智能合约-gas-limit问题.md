@@ -1,7 +1,7 @@
 ---
 title: 智能合约-gas limit问题
 date: 2019-03-21T22:00:00+08:00
-tags: [区块链]
+tags: [智能合约]
 categories: [研究生的区块链学习之路]
 ---
 

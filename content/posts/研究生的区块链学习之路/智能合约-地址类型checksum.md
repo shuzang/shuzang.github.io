@@ -1,7 +1,7 @@
 ---
 title: Address checksum
 date: 2020-01-01
-tags: [Solidity]
+tags: [智能合约]
 categories: [研究生的区块链学习之路] 
 ---
 

@@ -1,8 +1,10 @@
 ---
-title: geth命令参数说明
+title: 以太坊开发3-geth客户端命令
 date: 2019-03-08T9:26:00+08:00
+lastmod: 2020-11-11
 tags: [区块链]
 categories: [研究生的区块链学习之路]
+slug: geth client use
 ---
 
 Geth是以太坊智能合约开发工具，是一个命令行工具，所以熟悉其命令参数有助于提高开发效率。本文是geth help的翻译，基于geth 1.8.11-stable版本。

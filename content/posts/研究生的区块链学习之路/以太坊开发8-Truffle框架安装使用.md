@@ -1,8 +1,10 @@
 ---
-title: Truffle框架安装使用
+title: 以太坊开发8-Truffle框架安装使用
 date: 2019-11-06
+lastmod: 2020-11-11
 tags: [区块链]
 categories: [研究生的区块链学习之路] 
+slug: use truffle develop ethereum project 
 ---
 
 Truffle和Ganache的安装使用

@@ -1,7 +1,7 @@
 ---
 title: 区块链实验2-Quorum区块链实验平台搭建
 date: 2019-10-02
-tags: [科研记录, 区块链]
+tags: [科研记录]
 categories: [研究生的区块链学习之路]
 slug: build Quorum private blockchain network 
 ---

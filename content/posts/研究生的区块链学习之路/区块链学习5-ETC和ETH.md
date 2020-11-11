@@ -1,8 +1,10 @@
 ---
-title: Ethereum Classic
+title: 区块链学习5-ETC和ETH
 date: 2019-01-16T10:48:00+08:00
-tags: [区块链, 杂谈]
+lastmod: 2020-11-11
+tags: [区块链]
 categories: [研究生的区块链学习之路] 
+slug: ethereum and ethereum classic
 ---
 
 最近ETC遭受疑似51%攻击的影响很大，虽然最后的结果还没出来，仍不确定是真的遭受了51%攻击，还是之前官方所称的ASIC矿机测试带来的问题。但我们现在默认以前一种情况分析。

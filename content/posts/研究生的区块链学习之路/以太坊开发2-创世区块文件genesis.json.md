@@ -1,6 +1,7 @@
 ---
-title: 创世区块文件genesis.json
+title: 以太坊开发2-创世区块文件genesis.json
 date: 2019-03-07T19:48:00+08:00
+lastmod: 2020-11-11
 tags: [区块链]
 categories: [研究生的区块链学习之路]
 ---
