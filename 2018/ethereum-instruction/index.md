@@ -1,53 +1,31 @@
-# 以太坊基础知识
+# 区块链学习4-以太坊基础知识
 
 
 ## 1. 基本知识
 
-基本知识大概需要了解两部分，一部分是以太坊历史，或者说规划；一部分是基本的概念。这些都可以从以太坊中国社区找到。下面就贴三个链接。
+基本知识需要了解两部分
 
-### 1.1 历史
+第一部分是以太坊版本演进过程：白皮书——>黄皮书——>Frontier版本——>Homestead版本——>Metropolis版本——>Serenity版本，目前处于Metropolis版本，也就是大都会，更多内容参考 [以太坊发布过程](https://ethfans.org/posts/ethereum-launch-process)。
 
-[以太坊发布过程](https://ethfans.org/posts/ethereum-launch-process)
+另一部分是基本的概念，下面是以太坊中国社区有人整理的 Vitalik Buterin（以太坊创始人）在Ethereum Devcon3（以太坊第三次开发者大会）上的演讲《Ethereum in 25 minutes, vision 2017》，基本上对以太坊做了一个全面的描述。
 
-白皮书——>黄皮书——>Frontier版本——>Homestead版本——>Metropolis版本——>Serenity版本
+[Vitalik: 25分钟认识以太坊（上）](https://ethfans.org/posts/Ethereum-in-25-minites-vision-2017-1)，[Vitalik: 25分钟认识以太坊（下）](https://ethfans.org/posts/25-minutes-in-Ethereum-vision-2017-2)
 
-目前处于Metropolis版本，也就是大都会
+## 2. 工具
 
-### 1.2 基本概念
-
-[Vitalik: 25分钟认识以太坊（上）](https://ethfans.org/posts/Ethereum-in-25-minites-vision-2017-1)
-
-[Vitalik: 25分钟认识以太坊（下）](https://ethfans.org/posts/25-minutes-in-Ethereum-vision-2017-2)
-
-这是社区有人整理的Vitalik Buterin（以太坊创始人）在Ethereum Devcon3（以太坊第三次开发者大会）上的演讲《Ethereum in 25 minutes, vision 2017》，基本上对以太坊做了一个全面的描述。
-
-## 2. 客户端
-
-以太坊客户端以编写语言分类，在github上分成了不同项目，项目地址为[https://github.com/ethereum/](https://github.com/ethereum/)
-
-目前最流行的应该是Go语言客户端go-ethereum，star和fork的数量都远远超过其它客户端，不过下面首先介绍以太坊钱包mist
-
-### 2.1 mist
-
-[mist](https://ethereum.org/)是以太坊基金会主推的项目，目前处于测试阶段，开源，所有人都可以贡献代码。可以离线管理账户，包括账户的创建、备份、导入、更新等，现在最重要的功能是进行以太币的交易，但其实它定位不只是一个钱包，而是将来Dapp的市场，类似于安卓的应用商店，在这里可以有你的账号，可以浏览、发布和买卖以太坊的Dapp应用。目前因为开发还不够全面，名称暂时显示为Ethereum-Wallet。
+以太坊钱包 [mist](https://ethereum.org/) 是以太坊基金会主推的项目，目前处于测试阶段，开源，所有人都可以贡献代码。可以离线管理账户，包括账户的创建、备份、导入、更新等，现在最重要的功能是进行以太币的交易，但其实它定位不只是一个钱包，而是将来Dapp的市场，类似于安卓的应用商店，在这里可以有你的账号，可以浏览、发布和买卖以太坊的Dapp应用。目前因为开发还不够全面，名称暂时显示为 Ethereum-Wallet。
 
 下载地址（需要科学上网）：[Releases](https://github.com/ethereum/mist/releases)
 
 刚打开的时候mist会同步全网信息，需要的时间可能久一点，同步完成后可以进行创建账户、设置密码和转账等操作。其界面如下：
 
-![mist界面](https://picped-1301226557.cos.ap-beijing.myqcloud.com/54515592-7ac30000-4997-11e9-8a8e-c5f8d4500f96.png)
+<img src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/54515592-7ac30000-4997-11e9-8a8e-c5f8d4500f96.png" alt="mist界面" style="zoom: 67%;" />
 
-### 2.2 Remix
+[Remix ](https://remix.ethereum.org/#optimize=false&version=builtin) 是一个基于浏览器的编译器和IDE，是用C++开发的，客户端不需要安装，能够使用Solidity语言构建以太坊合约并调试。界面如下：
 
-[Remix](https://remix.ethereum.org/#optimize=false&version=builtin)是一个基于浏览器的编译器和IDE，是用C++开发的，客户端不需要安装，能够使用Solidity语言构建以太坊合约并调试。界面如下：
+<img src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/54515603-84e4fe80-4997-11e9-9d6c-3d19be7d9236.png" alt="Remix界面" style="zoom:80%;" />
 
-![Remix界面](https://picped-1301226557.cos.ap-beijing.myqcloud.com/54515603-84e4fe80-4997-11e9-9d6c-3d19be7d9236.png)
-
-### 2.3 go-ethereum
-
-项目自己的介绍是*以太坊协议的官方go语言实现*。实际上是一个全功能的客户端，名字是geth，可以实现搭建私有链、挖矿、账户管理、部署智能合约、调用以太坊接口等常用功能。不过它是完全的命令行界面。
-
-本文主要由两部分组成：以太坊架构和以太坊组成。以太坊组成包括区块、账户、共识机制、以太币和交易。
+以太坊客户端以编写语言分类，在github上分成了[不同项目]((https://github.com/ethereum/))，下面进行介绍。目前最流行的应该是 Go 语言客户端 geth，star和fork的数量都远远超过其它客户端，项目介绍是「以太坊协议的官方 go 语言实现」，可以实现搭建私有链、挖矿、账户管理、部署智能合约、调用以太坊接口等常用功能。。
 
 ## 3. 架构
 
@@ -55,23 +33,15 @@
 
 ![架构和组成](https://picped-1301226557.cos.ap-beijing.myqcloud.com/69927821-72463180-14f4-11ea-984d-07f4ea13a42b.jpeg)
 
-分三层：底层服务，核心层，顶层应用
+各层介绍如下
 
-### 3.1 底层服务
-
-底层服务包括P2P网络、LevelDB数据库、密码学算法和分片（Sharding）优化。[LevelDB数据库](https://leveldb.org.cn/)是谷歌开发的一个轻量，高效的key-value数据库，在以太坊中用来存储区块、交易等数据。而[分片](https://ethfans.org/posts/the-authoritative-guide-to-blockchain-sharding-part-1)则是为了解决以太坊，甚至所有公有区块链目前面临的低吞吐量和高延迟问题，因为问题的核心在网络中的节点需要处理所有的交易，分片就是将网络中的工作分摊给所有参与的节点。分片优化使得可以并行验证交易，加快了交易验证速度，从而加快了区块生成速度。
-
-### 3.2 核心层
-
-核心层包括区块链、共识算法和以太坊虚拟机。区块链和共识算法是区块链平台的基础，以太坊虚拟机则是以太坊的主要特点，用来作为运行智能合约的载体。
-
-### 3.3 顶层应用
-
-包括API接口、智能合约和去中心化应用。以太坊的Dapp通过Web3.js与智能合约层进行信息交换，所有的智能合约都运行在EVM上，并会用到RPC的调用。
+- 底层服务：底层服务包括P2P网络、LevelDB数据库、密码学算法和分片（Sharding）优化。[LevelDB数据库](https://leveldb.org.cn/)是谷歌开发的一个轻量，高效的key-value数据库，在以太坊中用来存储区块、交易等数据。而[分片](https://ethfans.org/posts/the-authoritative-guide-to-blockchain-sharding-part-1)则是为了解决以太坊，甚至所有公有区块链目前面临的低吞吐量和高延迟问题，因为问题的核心在网络中的节点需要处理所有的交易，分片就是将网络中的工作分摊给所有参与的节点。分片优化使得可以并行验证交易，加快了交易验证速度，从而加快了区块生成速度。
+- 核心层：包括区块链、共识算法和以太坊虚拟机。区块链和共识算法是区块链平台的基础，以太坊虚拟机则是以太坊的主要特点，用来作为运行智能合约的载体。
+- 顶层应用：包括API接口、智能合约和去中心化应用。以太坊的Dapp通过Web3.js与智能合约层进行信息交换，所有的智能合约都运行在EVM上，并会用到RPC的调用。
 
 ## 4. 区块
 
-以太坊使用了比特币区块链的技术，但做了一些调整，区块由**区块头**、**交易列表**和**叔区块头**三部分组成。
+以太坊使用了比特币区块链的技术，但做了一些调整，区块由 **区块头**、**交易列表** 和 **叔区块头** 三部分组成。
 
 ### 4.1 区块头
 
@@ -110,18 +80,14 @@
 - 外部账户（Externally Owned Accounts）
 - 合约账户（Contracts Accounts）
 
-### 5.1 外部账户（由外部角色拥有的账户）
-
-一个外部账户
+外部账户是由外部角色拥有的账户，一个外部账户：
 
 - 有一个以太币余额
 - 可以发送交易（以太币的转移或触发合约代码）
 - 由一个私钥所控制
 - 没有关联代码
 
-### 5.2 合约账户
-
-一个合约
+合约账户，顾名思义，是合约的账户，它
 
 - 有一个以太币余额
 - 有关联代码
@@ -133,7 +99,7 @@
 
 以太坊区块链上的所有动作，都被设定为由外部账户所发出的交易所触发。每当合约账户接收到交易，它的代码会根据作为交易的一部分传入的参数来具体执行。将在网络中每个节点上的以太坊虚拟机中被执行，并被作为它们对新区块的验证结果的一部分。
 
-账户的地址由公钥得到，而公钥由私钥得到，所以私钥文件是最重要的，也是需要保存的唯一文件。目前常见的私钥有三种形态：Private key、Keystore&Password以及Memonic code。
+账户的地址由公钥得到，而公钥由私钥得到，所以私钥文件是最重要的，也是需要保存的唯一文件。目前常见的私钥有三种形态：Private key、Keystore&Password 以及 Memonic code。
 
 1. Private key就是一份随机生成的256位二进制数字，用户甚至可以用纸笔来随机地生成一个私钥，即随机写下一串256位的仅包含“0”或“1”的字符串。该256位二进制数字就是私钥最初始的状态。
 2. 而在以太坊官方钱包[插图]中，私钥和公钥将会以加密的方式保存一份JSON文件，存储在keystore子目录下。这份JSON文件就是Keystore，所以用户需要同时备份Keystore和对应的Password（创建钱包时设置的密码）。
@@ -151,7 +117,7 @@
 
 在BFT风格的PoS中，分配给验证者相对的权利，让他们有权提出块并且给被提出的块投票，从而决定哪个块是新块，并在每一轮选出一个新块加入区块链。在每一轮中，每一个验证者都为某一特定的块进行“投票”，最后所有在线和诚实的验证者都将“商量”被给定的块是否可以添加到区块链中，并且意见不能改变。
 
-许多早先的PoS算法中，生产区块只会产生奖励而不会惩罚。但这样会出现无利害关系问题。该问题有两种解决方案。见[共识算法的比较：Casper vs Tendermint](https://ethfans.org/posts/consensus-compare-casper-vs-tendermint)
+许多早先的PoS算法中，生产区块只会产生奖励而不会惩罚。但这样会出现无利害关系问题。该问题有两种解决方案。见 [共识算法的比较：Casper vs Tendermint](https://ethfans.org/posts/consensus-compare-casper-vs-tendermint)
 
 同时，其中的Casper正是现在以太坊的共识算法，这是以太坊转向PoS的过渡。
 
@@ -167,11 +133,11 @@
 
     小块数据的 hash 两两组合再次生成新的 hash, 然后新生成的 hash 又两两合并生成更新的 hash, 直至最后两个 hash 生成一个 hash root, 这个叫 merkle root(默克尔根)。可见 merkle tree 和传统 bt 分片技术只是对小块数据 hash 的组织方式不一样。
 
-![](https://img-blog.csdn.net/20180418160919283?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSVRsZWFrcw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+<img src="https://img-blog.csdn.net/20180418160919283?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSVRsZWFrcw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" style="zoom:50%;" />
 
 看到上面的图，你可能会说，merkle tree 不是生成更多 hash 数据了啊，怎么能降低数据传输量。确实，对于数据发送方来说，相比传统分片技术，它是需要保存完整 merkle tree, 会多占用一点空间。但是对于接受方来说，它在验证某一块数据不需要下载全部 hash, 只需一段 merkle 路径即可，比如下图
 
-![](https://img-blog.csdn.net/20180418160856140?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSVRsZWFrcw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+<img src="https://img-blog.csdn.net/20180418160856140?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSVRsZWFrcw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" style="zoom:50%;" />
 
 如果要验证 slice2 数据的正确性，只需要拿到 hash1, h12, h02 这 3 个 hash 再加上本地存储的 root hash, 就可以验证了。需要传输的 hash 数据量从 n 变为 log2n.
 
@@ -181,7 +147,7 @@
 
 patricia tree 前缀树，是一种编码方式, 它是传统 trie 的改进。
 
-#### Trie 树
+**Trie 树**
 
 Trie，又称前缀树或字典树，是一种有序树状的数据结构，其中的键通常是字符串，常用语存储 Key-value 数据结构。
 
@@ -189,7 +155,7 @@ Trie 与二叉查找树不同，键不是直接保存在节点中，而是由节
 
 如果 key 是英文单词，trie 的每个节点就是一个长度为 27 的指针数组，index0-25 代表 a-z 字符，26 为标志域。
 
-    ![](https://img-blog.csdn.net/20180426143736225?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L0lUbGVha3M=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+    <img src="https://img-blog.csdn.net/20180426143736225?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L0lUbGVha3M=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" style="zoom:50%;" />
 
 上面的存储的数据如下：
 
@@ -197,11 +163,11 @@ Trie 与二叉查找树不同，键不是直接保存在节点中，而是由节
 
 从上面可以看出 zaab 这个 key, 没有和任何其他 key 共享字段，但是却产生了 6 层，这种无用的深度增加有什么方法减呢？Patricia Tree 就可以解决这个问题
 
-#### Merkle Patricia Tree 对 trie 的改进
+**Merkle Patricia Tree 对 trie 的改进**
 
 上面 tries 出现的问题的根本原因是每个前置节点只能表示一个字母，key 有多长，树的深度就会多长，不管这个 key 有没有和其他 key 共享部分 key。因而允许一个节点表示变长的 key 就可以解决这个深度，具体以官方的下图为例：
 
-![](https://img-blog.csdn.net/20180418161019455?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSVRsZWFrcw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+<img src="https://img-blog.csdn.net/20180418161019455?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvSVRsZWFrcw==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast" style="zoom:50%;" />
 
 上图存储的 key-value 如下：
 
@@ -215,7 +181,7 @@ Trie 与二叉查找树不同，键不是直接保存在节点中，而是由节
 *   分支节点（branch），因为 MPT 树中的 key 被编码成一种特殊的 16 进制的表示，再加上最后的 value，所以分支节点是一个长度为 17 的 list，前 16 个元素对应着 key 中的 16 个可能的十六进制字符，如果有一个 [key,value] 对在这个分支节点终止，最后一个元素代表一个值，即分支节点既可以搜索路径的终止也可以是路径的中间节点。分支节点的父亲必然是 extension node
 *   空节点，代码中用 null 表示
 
-#### 原理解释
+**原理解释**
 
 插入第一个 <a711355, 45>，由于只有一个 key, 直接用 leaf node 既可表示
 
@@ -223,29 +189,29 @@ Trie 与二叉查找树不同，键不是直接保存在节点中，而是由节
 
 接着插入 a77d337, 由于和 a711355 共享前缀’a7’, 因而可以创建’a7'扩展节点。
 
-![](https://img-blog.csdn.net/20180426140449579?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L0lUbGVha3M=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+<img src="https://img-blog.csdn.net/20180426140449579?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L0lUbGVha3M=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" style="zoom:50%;" />
 
 接着插入 a7f9365, 也是共享’a7’, 只需新增一个 leaf node.
 
-![](https://img-blog.csdn.net/20180426140519624?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L0lUbGVha3M=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+<img src="https://img-blog.csdn.net/20180426140519624?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L0lUbGVha3M=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" style="zoom:50%;" />
 
 最后插入 a77d397, 这个 key 和 a77d337 共享’a7’+’d3’, 因而再需要创建一个’d3’扩展节点
 
-![](https://img-blog.csdn.net/20180426140349241?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L0lUbGVha3M=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+<img src="https://img-blog.csdn.net/20180426140349241?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L0lUbGVha3M=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" style="zoom:50%;" />
 
-#### **MPT 中的 Merkle Tree 哪去了**
+**MPT 中的 Merkle Tree 哪去了**
 
 前面为了和官方图一致，将叶子节点和最后的 short node 合并到一个节点了，事实上源码实现需要再深一层，最后一层的叶子节点只有数据
 
-    ![](https://img-blog.csdn.net/20180426140420538?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L0lUbGVha3M=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+    <img src="https://img-blog.csdn.net/20180426140420538?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L0lUbGVha3M=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" style="zoom:50%;" />
 
 MPT 节点有个 flag 字段, flag.hash 会保存该节点采用 merkle tree 类似算法生成的 hash, 同时会将 hash 和源数据以 <hash, node.rlprawdata> 方式保存在 leveldb 数据库中。这样后面通过 hash 就可以反推出节点数据。具体结构如下 (蓝色的 hash 部分就是 flag.hash 字段)
 
-![](https://img-blog.csdn.net/20180426140526610?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L0lUbGVha3M=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+<img src="https://img-blog.csdn.net/20180426140526610?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L0lUbGVha3M=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" style="zoom:50%;" />
 
 这样一个结构的核心思想是：hash 可以还原出节点上的数据，这样只需要保存一个 root(hash)，即可还原出完整的树结构，同时还可以按需展开节点数据，比如如果只需要访问 < a771355, 45 > 这个数据，只需展开 h00, h10, h20, h30 这四个 hash 对应的节点
 
-![](https://img-blog.csdn.net/20180426140505475?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L0lUbGVha3M=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center)
+<img src="https://img-blog.csdn.net/20180426140505475?watermark/2/text/Ly9ibG9nLmNzZG4ubmV0L0lUbGVha3M=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/Center" style="zoom:50%;" />
 
 ## 8. ENS
 
