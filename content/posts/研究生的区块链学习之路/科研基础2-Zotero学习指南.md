@@ -1,8 +1,10 @@
 ---
-title: 文献管理工具 Zotero 学习指南
-date: 2020-03-13
+title: 科研基础2-文献管理工具 Zotero 学习指南
+date: 2018-11-11
+lastmod: 2020-03-13
 tags: [科研记录]
 categories: [研究生的区块链学习之路] 
+slug: introduction to zotero
 ---
 
 在文献管理方面的需求包括：
