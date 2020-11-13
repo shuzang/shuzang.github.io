@@ -1,4 +1,4 @@
-# 阶段总结4-区块链与异常检测
+# 研究记录5-区块链与异常检测方向探索
 
 
 对区块链进行异常检测（Anomaly detection）也是一个重要的方向，不过有的论文中也称作侵入检测（Intrusion detection），尤其是协作入侵检测（Collaborative Intrusion Detection, CID）的概念比较流行。我们虽然在搜索论文时对两种都进行了统计，但在下文说明中统一称呼为「异常检测」。

@@ -1,4 +1,4 @@
-# 区块链实验3-访问控制原型系统实现
+# 研究记录7-原始论文复现
 
 
 本文是在前面搭建好的区块链实验平台基础上，对 zhang 的 Smart contract-based access control for the internet of things[^1] 这篇论文进行复现。主要记录这篇论文里提到的访问控制系统的复现和测试过程。
