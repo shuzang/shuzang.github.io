@@ -1,13 +1,13 @@
 # 研究记录1-区块链的数据存储问题
 
 
-区块链的本质是一个只增数据库，这就意味着其中存储的数据会随着时间的推移不断增加，而区块链分布式的特性要求节点需要存储区块链的整个副本，因此，区块链对对节点存储能力的要求是越来越高的。
+区块链的本质是一个只增数据库，这就意味着其中存储的数据会随着时间的推移不断增加，而区块链分布式的特性要求节点需要存储区块链的整个副本，因此，区块链对节点存储能力的要求是越来越高的。
 
 因此，我们首先来分析普通的电脑是否能应付区块链不断增长的体积，考虑最流行的比特币和以太坊两个平台。
 
 ## 1. 区块链的数据承载能力
 
-以比特币和以太坊为例，但不考虑硬分叉产生的Bitcoin Cash和Ethereum Classic，只考虑比特币和以太坊的主干，到2019.01.11  15:06为止，一些数据总结如下表，数据来源为[BitInfoCharts](https://bitinfocharts.com/)。
+以比特币和以太坊为例，但不考虑硬分叉产生的 Bitcoin Cash 和 Ethereum Classic，只考虑比特币和以太坊的主干，到 2019.01.11  15:06 为止，一些数据总结如下表，数据来源为 [BitInfoCharts](https://bitinfocharts.com/)。
 
 |                            | Bitcoin    | Ethereum   |
 | -------------------------- | ---------- | ---------- |
@@ -22,21 +22,21 @@
 
 首先，从总体上看。比特币发展十年链上数据共232.51GB，以太坊667.10GB，现有的存储介质，一台普通的电脑即可承受，但是，物联网设备是难以承受的。
 
-从单位时间产生的数据量看区块链的承受能力，数据来源为[区块链浏览器](https://www.blockchain.com/zh/explorer)。下面两个图分别展示了到2019.01.11  15:36为止Bitcoin和Ethereum最近的五个区块的情况，图中“大小（KB）”一栏右起第一个逗号实际上是小数点。比如第一个图(Bitcoin)中第一行数值中的1,162,094，实际上是1162.094KB；第二个图中第一行数值中的31,052，实际上是31.052KB
+从单位时间产生的数据量看区块链的承受能力，数据来源为 [区块链浏览器](https://www.blockchain.com/zh/explorer)。下面两个图分别展示了到 2019.01.11  15:36 为止 Bitcoin 和 Ethereum 最近的五个区块的情况，图中“大小（KB）”一栏右起第一个逗号实际上是小数点。比如第一个图(Bitcoin)中第一行数值中的1,162,094，实际上是1162.094KB；第二个图中第一行数值中的31,052，实际上是31.052KB
 
-![图1-1  2019.01.11  15:36 最近的五个Bitcoin区块](https://picped-1301226557.cos.ap-beijing.myqcloud.com/54515410-f07a9c00-4996-11e9-8dfd-30f554d1e88b.png)
+![图1  2019.01.11  15:36 最近的五个Bitcoin区块](https://picped-1301226557.cos.ap-beijing.myqcloud.com/54515410-f07a9c00-4996-11e9-8dfd-30f554d1e88b.png)
 
 ![图1-2   2019.01.11  15:36 最近的五个Ethereum区块](https://user-images.githubusercontent.com/26682846/54515425-fff9e500-4996-11e9-93c1-049a0f2b3445.png)
 
-从已掌握的知识以及上面两个图可以看出，每个块中的交易数量是不定的，交易的大小也难以确定，所以数据量的大小我们以区块为最小单位。区块链出块的时间是受到控制的，但是具体到每个区块，出块时间都有不同，区块的大小也不同，而上面两个图中五个数据的样本较小，我们利用上面的表中的“平均每小时区块数”和下图中区块大小的历史变化做一定估计。下图数据来源为[BitInfoCharts](https://bitinfocharts.com/comparison/size-btc-eth.html#log)，蓝色为比特币区块大小变化，红色为以太坊区块大小变化。
+从已掌握的知识以及上面两个图可以看出，每个块中的交易数量是不定的，交易的大小也难以确定，所以数据量的大小我们以区块为最小单位。区块链出块的时间是受到控制的，但是具体到每个区块，出块时间都有不同，区块的大小也不同，而上面两个图中五个数据的样本较小，我们利用上面的表中的“平均每小时区块数”和下图中区块大小的历史变化做一定估计。下图数据来源为 [BitInfoCharts](https://bitinfocharts.com/comparison/size-btc-eth.html#log)，蓝色为比特币区块大小变化，红色为以太坊区块大小变化。
 
 ![图2 bitcoin,ethereum block size historical chart](https://picped-1301226557.cos.ap-beijing.myqcloud.com/54515452-0c7e3d80-4997-11e9-8c5a-65dd1e0f515e.png)
 
-结合已掌握的知识，比特币控制区块大小在1M左右，当然，这么长时间的发展，比特币的区块扩容之路非常坎坷，并因此衍生出多条硬分叉。但此次我们只考虑1M限制的这种情况。另外，我们还简单的把整个区块的大小作为数据大小，不考虑区块头等固定结构的存在，这种情况下：
+结合已掌握的知识，比特币控制区块大小在 1M 左右，当然，这么长时间的发展，比特币的区块扩容之路非常坎坷，并因此衍生出多条硬分叉。但此次我们只考虑 1M 限制的这种情况。另外，我们还简单的把整个区块的大小作为数据大小，不考虑区块头等固定结构的存在，这种情况下：
 $$
 比特币每秒处理的数据量 = \frac {平均每小时区块数 \times 区块大小}{3600} \approx 1.71KB
 $$
-而在以太坊中，理论上对交易大小或区块的大小都没有什么规定，不过这并不意味着交易携带的数据量大小没有上限，因为一个区块可以使用的gas是有上限的，叫做gas limit。截至写这篇文章时，即2019.01.11  16:40为止，[ethstats](https://ethstats.net/)显示的这个值为8,000,029，约为800万。因此，理论上，我们通过创建一个交易，让它消耗掉一个区块能用的全部gas，就能得知一个交易理论上可以包含的最多数据。另外，决定数据大小的另一个因素是数据内容，因为不同的数据消耗的gas不同，具体的情况见[以太坊黄皮书](http://gavwood.com/Paper.pdf)的附录G. Fee Schedule。为了便于计算，我们抽取如下几条：
+而在以太坊中，理论上对交易大小或区块的大小都没有什么规定，不过这并不意味着交易携带的数据量大小没有上限，因为一个区块可以使用的 gas 是有上限的，叫做 gas limit。截至写这篇文章时，即 2019.01.11  16:40 为止，[ethstats](https://ethstats.net/) 显示的这个值为 8,000,029，约为 800万。因此，理论上，我们通过创建一个交易，让它消耗掉一个区块能用的全部 gas，就能得知一个交易理论上可以包含的最多数据。另外，决定数据大小的另一个因素是数据内容，因为不同的数据消耗的 gas 不同，具体的情况见 [以太坊黄皮书](http://gavwood.com/Paper.pdf) 的附录G. Fee Schedule。为了便于计算，我们抽取如下几条：
 
 - 4gas，paid for every zero byte of data or code for a transaction
 - 68gas，paid for every non-zero byte of data or code for a transaction
@@ -46,11 +46,11 @@ $$
 $$
 一笔交易的最大数据量 = \frac {8000029-21000}{68 \times 1024} \approx 114.59KB
 $$
-同时，这大概也是一个区块的数据量上限。虽然实际环境下，根本达不到这么大（使用以太坊钱包Mist尝试过创建），而且在图1-2中也显示出了区块的大小基本都在40KB以下，但我们还是使用这个理论值做接下来的计算。和比特币的计算类似：
+同时，这大概也是一个区块的数据量上限。虽然实际环境下，根本达不到这么大（使用以太坊钱包Mist尝试过创建），而且在图2中也显示出了区块的大小基本都在 40KB 以下，但我们还是使用这个理论值做接下来的计算。和比特币的计算类似：
 $$
 以太坊每秒处理的数据量 = \frac {平均每小时区块数 \times 区块大小}{3600} \approx 177.81KB
 $$
-综上，以太坊平台下，预计物联网设备每秒产生的数据在177.81KB以下的话，可以直接将数据存在区块链中，而实际上，这个值已经是各种情况下的最优值了，正常运行能存的数据大小要比这个小的多。
+综上，以太坊平台下，预计物联网设备每秒产生的数据在 177.81KB 以下的话，可以直接将数据存在区块链中，而实际上，这个值已经是各种情况下的最优值了，正常运行能存的数据大小要比这个小的多。
 
 在工业环境下我们经常考虑实时性问题，一开始我以为这实际上是数据量的问题，即使是非实时的数据采集，但当数据量足够大时，也和实时数据的情况无异。但现在明白，实时的含义就是即时的响应，这是区块链的延迟永远无法企及的，只能尽量提高。
 
@@ -58,7 +58,7 @@ $$
 
 考虑数据存储在区块链中时，我们先来考虑这样做是否是值得的，因为，区块链上存数据相比于传统数据库真的是昂贵的
 
-首先考虑目前的去中心化存储的概况，来自[Wulf Kaal在Quora的回答](https://www.quora.com/How-can-blockchain-be-used-as-a-database-to-store-data)
+首先考虑目前的去中心化存储的概况，来自 [Wulf Kaal在Quora的回答](https://www.quora.com/How-can-blockchain-be-used-as-a-database-to-store-data)
 
 当前的区块链应用存储数据有如下几种选择：
 
@@ -66,7 +66,7 @@ $$
 - P2P文件系统（Peer to peer file system），比如IPFS
 - 去中心化的云文件存储，如Storj, Sia, Ethereum Swarm等
 - 分布式数据库，如Apache Cassandra, Rethink DB等
-- 巨链数据库BigChainDB
+- 巨链数据库 BigChainDB
 - Ties DB
 
 对每一种进行详细分析：
@@ -85,9 +85,9 @@ $$
 
 6. **Ties DB**：这是目前好的公共数据库的可选项。最接近理想的是 noSQL 数据库。它们唯一缺乏的是拜占庭容错（Byzantine fault tolerance）。Ties.Network 数据库：ties.network 是对 Cassandra 数据库的深度修改，提供了一个更好的解决方案：TiesDB 继承了基础 noSQL 数据库的大部分功能，并增加了拜占庭容错和激励。有了这些功能，它可以成为公共数据库，并通过智能合约在 Ethereum 和其他区块链上启用功能丰富的应用程序。任何用户都有数据库写入权限。但是，用户由他们的公钥识别，同时，所有的请求有签名。创建之后，记录记住它的创建者，创建者则成为记录的所有者。之后，记录只能被记录所有者修改。每个人都可以阅读所有的记录，因为数据库是公开的。根据请求和复制检查所有的权限。额外的权限可以通过智能合约管理。
 
-总的来讲，使用集中式的存储还是如上任何一种分布式的存储，都取决于应用场景。对于IoT数据来将，将数据完全存在区块链里是不值得的，同时也无法实现，理想的存储方式包括Ties DB，去中心化的云文件存储（如Swarm），P2P文件系统（如IPFS）
+总的来讲，不论使用集中式的存储还是如上任何一种分布式的存储，都取决于应用场景。对于 IoT 数据来将，将数据完全存在区块链里是不值得的，同时也无法实现，理想的存储方式包括 Ties DB，去中心化的云文件存储（如Swarm），P2P文件系统（如IPFS）
 
-当然，还有一篇[How Blockchain Data Storage Can Work for Enterprise Data Management](https://eleks.com/blog/blockchain-data-storage-enterprise-data-management/)供参考
+当然，还有一篇 [How Blockchain Data Storage Can Work for Enterprise Data Management](https://eleks.com/blog/blockchain-data-storage-enterprise-data-management/) 供参考
 
 ## 3. 论文中使用的存储方案
 
@@ -97,7 +97,7 @@ $$
 Román, Victor, and Joaquín Ordieres-Meré. "[WiP] IoT Blockchain Technologies for Smart Sensors Based on Raspberry Pi." 2018 IEEE 11th Conference on Service-Oriented Computing and Applications (SOCA). IEEE, 2018.
 ```
 
-Román首先考虑了几种可选的经典存储方案，如InfluxDB，MongoDB和MariaDB。这些方案面临像由数据库引擎本身不可用（关机，维护等）引起的数据丢失问题，同时，一个主要的限制是，这样一个系统中的查询需要共享对不同用户的访问权限，存储的数据能够轻易的暴露给攻击者。作者选用了BigchainDB作为存储方案，主要因为其结合了区块链和分布式数据库的优点，如下表：
+Román首先考虑了几种可选的经典存储方案，如 InfluxDB，MongoDB和MariaDB。这些方案面临像由数据库引擎本身不可用（关机，维护等）引起的数据丢失问题，同时，一个主要的限制是，这样一个系统中的查询需要共享对不同用户的访问权限，存储的数据能够轻易的暴露给攻击者。作者选用了 BigchainDB 作为存储方案，主要因为其结合了区块链和分布式数据库的优点，如下表：
 
 ![Compared characteristics for data storage](https://picped-1301226557.cos.ap-beijing.myqcloud.com/59248167-396b8500-8c54-11e9-86f5-ec64b7a9004c.png)
 
@@ -153,6 +153,6 @@ Ali, Saqib, et al. "Secure Data Provenance in Cloud-Centric Internet of Things v
 
 ## 完整梳理
 
-Multichain虽然针对的是金融领域，但是在2.0中推出了一种称之为off-chain的结构用来存储大量的数据，减轻区块链负担，在这一特性的描述中，Multichain对区块链数据存储问题给出了一个非常棒的总结。
+Multichain 虽然针对的是金融领域，但是在 2.0 中推出了一种称之为 off-chain 的结构用来存储大量的数据，减轻区块链负担，在这一特性的描述中，Multichain 对区块链数据存储问题给出了一个非常棒的总结。
 
 文章地址：https://www.multichain.com/blog/2018/06/scaling-blockchains-off-chain-data/
