@@ -1,21 +1,24 @@
 # 研究记录4-利用虚拟机搭建实验平台(失败)
 
 
-由于网络原因最后没有成功
-
-先声明结论：最后由于网络原因没有成功
+先声明结论：最后由于网络原因没有成功，这种在多台电脑中安装虚拟机来联网的方式是存在一定问题的，其次，本篇所述的搭建方法过于繁琐，稍有不慎需要全部从头再来，在后面的实验中我们使用了简化的搭建流程。
 
 ## 一. 前言
 
-为了设计一个对物联网的访问控制方案，首先利用两台树莓派和两台计算机搭建完成了一个quorum区块链实验平台，并采用了Istanbul-BFT共识算法，但未启用隐私管理器。之后将在该实验平台上部署编写的访问控制合约。实验平台的网络拓扑如下：
+为了设计一个对物联网的访问控制方案，首先利用两台树莓派和两台计算机搭建完成了一个 Quorum 区块链实验平台，并采用了 Istanbul-BFT 共识算法，但未启用隐私管理器。之后将在该实验平台上部署编写的访问控制合约。实验平台的网络拓扑如下：
 
-![路由器建立局域网](https://picped-1301226557.cos.ap-beijing.myqcloud.com/81gwvD.png)
+![利用路由器建立局域网](https://picped-1301226557.cos.ap-beijing.myqcloud.com/81gwvD.png)
 
-平台的搭建主要分为以下几步
+IBFT 共识允许的最小节点数量为 4，所以设置了 4 个节点，其中，两台电脑作为管理者或者用户的角色，能比较容易的和区块链交互，因为传感器和执行器本身没有足够的能力运行区块链节点，两台树莓派作为 IoT 设备的网关，我们所验证的是其中一台树莓派管理的设备向另一台树莓派管理的设备发起的访问。这里要注意两点：
+
+1. 系统中不止设备对设备的访问，一定还包括用户通过 PC 或移动设备对 IoT 设备的访问；
+2. 使用树莓派的原因是尽量模拟实际的环境，但事实上，树莓派依然与实际环境相差巨大，更多的是验证当前方案在资源受限的网关设备上运行的可能性及对设备造成的运行压力。
+
+下面介绍平台的搭建过程，主要分为以下几步
 
 1. 计算机环境配置
 2. 树莓派启动和环境配置
-3. quorum私链网络搭建和测试运行
+3. Quorum 私链网络搭建和测试运行
 
 
 ## 二. 计算机环境配置
@@ -42,15 +45,15 @@
 | Pi 3B+         | NodeC  | 192.168.191.4 | Raspbian Buster  |
 | Pi 3B          | NodeD  | 192.168.191.5 | Raspbian Buster  |
 
-注：以下以PC为例进行相关配置，Laptop配置操作基本相同。
+注：以下以 PC 为例进行相关配置，Laptop 配置操作基本相同。
 
 ### 3. 操作系统设置
 
-在VM ware中安装Ubuntu 18.04虚拟机，安装完成后完成如下基础配置操作：
+在 VM ware 中安装 Ubuntu 18.04 虚拟机，安装完成后完成如下基础配置操作：
 
 **(1) 更新源和系统**
 
-> 根据自己需要选择是否更换软件源，此处我使用了原生的源
+根据自己需要选择是否更换软件源，此处我使用了原生的源
 
 ```bash
 $ sudo apt-get update
@@ -101,7 +104,7 @@ $ hostnamectl
 
 **(4) 设置静态ip**
 
-安装`net-tools`工具
+安装 `net-tools` 工具
 
 ```bash
 $ sudo apt-get install net-tools
@@ -147,15 +150,15 @@ lo: ...
 
 **(5) 重新安装VMware tools**
 
-只有安装VMware tools之后，虚拟机界面才会自动调整，并且能在虚拟机和主机之间互传文件。
+只有安装 VMware tools 之后，虚拟机界面才会自动调整全屏，并且能在虚拟机和主机之间互传文件。
 
 ### 4. 区块链环境配置
 
-使用的是Quorum区块链，共识是Istanbul BFT。
+使用的是 Quorum 区块链，共识是 Istanbul BFT。
 
 **(1) 安装golang**
 
-获取与安装go1.13
+获取与安装 go1.13
 
 ```bash
 $ wget https://dl.google.com/go/go1.13.linux-amd64.tar.gz
@@ -217,7 +220,7 @@ GOROOT=/home/travis/.gimme/versions/go1.11.12.linux.amd64
 
 **(3) 获取并编译istanbul-tools**
 
-istanbul-tools用来初始化istanbul-BFT共识网络及进行网络测试
+istanbul-tools 用来初始化 istanbul-BFT 共识网络及进行网络测试
 
 ```bash
 $ sudo apt-get install git
@@ -242,11 +245,11 @@ istanbul version v1.0.1
 
 ## 三. 树莓派启动及环境配置
 
-以Pi 3B+为例，Pi3B配置操作基本相同
+以Pi 3B+为例，Pi3B 配置操作基本相同
 
 ### 1. 树莓派启动
 
-将Raspbian Buster镜像写入准备好的SD卡，重新加载在电脑中的SD卡会出现boot盘，同时也是树莓派的`/boot`目录。在boot盘根目录新建名为`ssh`的文件，开启SSH连接。同时新建`wpa_supplicant.conf`文件，编辑其内容如下：
+将 Raspbian Buster 镜像写入准备好的SD卡，重新加载在电脑中的SD卡会出现boot盘，同时也是树莓派的`/boot`目录。在boot盘根目录新建名为`ssh`的文件，开启SSH连接。同时新建`wpa_supplicant.conf`文件，编辑其内容如下：
 
 ```
 ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
