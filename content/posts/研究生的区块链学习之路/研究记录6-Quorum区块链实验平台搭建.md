@@ -1,12 +1,13 @@
 ---
 title: 研究记录6-Quorum区块链实验平台搭建
 date: 2019-10-02
+lastmod: 2020-11-24
 tags: [科研记录]
 categories: [研究生的区块链学习之路]
 slug: build Quorum private blockchain network 
 ---
 
-上篇文章已经确定了使用 Quorum 区块链，本文记录搭建 Quorum 私有区块链网络的过程。
+上篇文章已经确定了使用 Quorum 区块链，本文记录搭建 Quorum 私有区块链网络的过程。值得一提的是，相比于之前区块链平台搭建的尝试，本篇所述内容已经是一个完整无冗余的方案，后续对区块链平台搭建过程的优化，更多的是根据具体情况进行取舍，以及使用新出的一些更好用的工具。
 
 <!--more-->
 
@@ -70,7 +71,7 @@ LoRa/GPS HAT，CC1350 LaunchPad都内置一个温度传感器，LoRa/GPS HAT除�
 
 ![网络拓扑设计](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8l9ZqJ.png)
 
-注意，当前虚拟机和树莓派都是通过无线网卡接入路由器共享的无线网络(网络名为 quorum)
+注意，当前虚拟机和树莓派都是通过无线网卡接入路由器共享的无线网络(网络名为 quorum)。
 
 ### 3.1 设备和操作系统选择
 

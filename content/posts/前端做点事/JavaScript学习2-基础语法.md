@@ -17,6 +17,7 @@ let myName; 			// 声明
 myName = 'shuzang'; 	// 初始化
 let nyName = 'shuzang'; // 声明 + 初始化，这是最常使用的方式
 myName = 'newName';     // 声明后更新变量值
+let a=10,b=20,c=30;  	// 同时声明多个变量
 ```
 
 注：关键字更换的原因参考 [var 与 let 的区别](https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/First_steps/Variables#var_与_let_的区别)，更换只有好处没有坏处
@@ -27,7 +28,7 @@ myName = 'newName';     // 声明后更新变量值
 const button = document.querySelector('button');
 ```
 
-变量与常量的命名规则与其它语言相同，额外的一条规则是不能以下划线开头，因为可能有特殊含义
+变量与常量的命名规则与其它语言相同，由字母、数字、下划线、美元符组成，不能以数字开头。
 
 ## 2. 数据类型
 
