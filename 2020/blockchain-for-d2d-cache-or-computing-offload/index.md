@@ -72,7 +72,7 @@
 
 除了这篇论文外还有一篇值得参考的论文[^zhou2019BCEdge]
 
-[^zhou2019BCEdge]:Zhou, Ao, Qibo Sun和Jinglin Li. BCEdge: Blockchain‐based Resource Management in D2D‐assisted Mobile Edge Computing. *Software: Practice and Experience*, 2019年10月21日, spe.2758. https://doi.org/10.1002/spe.2758. blockchain, smart contract, privacy 
+[^zhou2019BCEdge]:Zhou, Ao, Qibo Sun和Jinglin Li. BCEdge: Blockchain‐based Resource Management in D2D‐assisted Mobile Edge Computing. *Software: Practice and Experience*, 2019年10月21日, spe.2758. https://doi.org/10.1002/spe.2758.  
 
 ## 4. 问题与思考
 
