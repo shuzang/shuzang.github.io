@@ -23,35 +23,39 @@
 
 这里要注意的是，明度和纯度比较高的颜色都比较吸引人，普通人很难驾驭，一不小心就是体育老师，所以色彩搭配的第一个原则是：**尽量选择明度和纯度低的颜色**。
 
-![色彩鲜艳明亮的衣服](https://picped-1301226557.cos.ap-beijing.myqcloud.com/冷暖色环.jpg)
+![色彩鲜艳明亮的衣服](https://picped-1301226557.cos.ap-beijing.myqcloud.com/色彩鲜艳明亮的衣服.jpg)
+
+
 
 除此之外，色彩还有冷暖的区别，冷暖强调的是给人的感觉，而且所有颜色都有冷暖之分，像白色，就有象牙白（暖色）和纯白（冷色）。
 
-![冷暖色环](https://picped-1301226557.cos.ap-beijing.myqcloud.com/皮肤色调判断.jpg)
+![冷暖色环](https://picped-1301226557.cos.ap-beijing.myqcloud.com/冷暖色环.jpg)
 
 第二个原则：**根据肤色挑选冷暖色**。人的肤色也有冷暖之分，最常用的辨别方法是看血管颜色，观察手腕内侧静脉的颜色，如果静脉呈蓝色或紫色，那么肤色就是冷色调
 
-![皮肤冷色调](https://picped-1301226557.cos.ap-beijing.myqcloud.com/色彩鲜艳明亮的衣服.jpg)
+![皮肤冷色调](https://picped-1301226557.cos.ap-beijing.myqcloud.com/皮肤冷色调.jpg)
 
 如果静脉呈绿色，那么肤色就是暖色调
 
-![皮肤暖色调](https://picped-1301226557.cos.ap-beijing.myqcloud.com/皮肤冷色调.jpg)
+![皮肤暖色调](https://picped-1301226557.cos.ap-beijing.myqcloud.com/皮肤暖色调.jpg)
+
+
 
 当然还有更直接的方法，那就是在自然光下把手放到下面的图片上做对比，手放在橙色上显得暗沉，就是冷色调皮肤，放在粉色上显得暗沉是暖色调皮肤，两边差距都不大难以识别的是中性色调皮肤。
 
-![皮肤色调判断](https://picped-1301226557.cos.ap-beijing.myqcloud.com/胡歌暖色调.jpg)
+![皮肤色调判断](https://picped-1301226557.cos.ap-beijing.myqcloud.com/皮肤色调判断.jpg)
 
 大致判断的话，我自己的肤色属于黑暖色（秋季型），适合暖色饱和度高的色彩，比如驼色、牡蛎色、棕色等作为底色，要尽量选择明度和纯度较小的颜色，而且越温暖浓郁的颜色越能衬托秋季型人的成熟气质，推荐在相同色系或相邻色系中进行浓淡搭配。
 
 确定了皮肤色调后，下面是适合不同色调皮肤的颜色
 
-![适合不同色调皮肤的颜色](https://picped-1301226557.cos.ap-beijing.myqcloud.com/皮肤暖色调.jpg)
+![适合不同色调皮肤的颜色](https://picped-1301226557.cos.ap-beijing.myqcloud.com/适合不同色调皮肤的颜色.jpg)
 
 下面是两个例子，其中，鹿晗是冷色调，胡歌是暖色调
 
-![鹿晗冷色调](https://picped-1301226557.cos.ap-beijing.myqcloud.com/适合不同色调皮肤的颜色.jpg)
+![鹿晗冷色调](https://picped-1301226557.cos.ap-beijing.myqcloud.com/鹿晗冷色调.jpg)
 
-![胡歌暖色调](https://picped-1301226557.cos.ap-beijing.myqcloud.com/郭德纲基础色搭配.jpg)
+![胡歌暖色调](https://picped-1301226557.cos.ap-beijing.myqcloud.com/胡歌暖色调.jpg)
 
 不过，根据皮肤色调选颜色并不绝对，只要让自己穿的看起来舒服就行了。
 
@@ -75,7 +79,9 @@
 
 基础色是不吃颜值的，比如郭德纲这种使用基础色搭配看起来也会很舒服
 
-![郭德纲基础色搭配](https://picped-1301226557.cos.ap-beijing.myqcloud.com/鹿晗冷色调.jpg)
+![胡歌暖色调](https://picped-1301226557.cos.ap-beijing.myqcloud.com/郭德纲基础色搭配.jpg)
+
+
 
 ### 1.3 基础色加一种颜色
 
@@ -123,7 +129,7 @@
 
 当采用对比色或互补色时，可以在两种颜色之间有一小块中间的颜色用来过渡，也可以起到缓冲颜色的冲击力。比如下图，左边衬衫的灰色作为黑白的过渡，右边衬衫的白色作为黑灰的过渡。
 
-![颜色过渡](https://picped-1301226557.cos.ap-beijing.myqcloud.com/T恤领口加固.jpg)
+![颜色过渡](https://picped-1301226557.cos.ap-beijing.myqcloud.com/颜色过渡.jpg)
 
 #### 色彩的呼应
 
@@ -141,7 +147,7 @@
 
 更复杂一些，仍以上面的颜色过渡的图为例，左边卫衣和鞋子以白色呼应，右边露出的衬衣和鞋子呼应。
 
-![颜色过渡](https://picped-1301226557.cos.ap-beijing.myqcloud.com/T恤领口加固.jpg)
+![T恤收腰](https://picped-1301226557.cos.ap-beijing.myqcloud.com/颜色过渡.jpg)
 
 ### 1.5 色彩的对比
 
@@ -220,31 +226,31 @@ T恤的问题是洗了易变形，白色T恤还容易发黄，所以对面料材
 
 关于做工细节，主要是注意领口、袖口、肩条、下摆以及各个位置的缝线。领口选择小圆领即可，V领适合内搭，领口过大会显得没精神，总之其它领口看起来都很不舒服；
 
-![T恤领口](https://picped-1301226557.cos.ap-beijing.myqcloud.com/T恤肩条.jpg)
+![T恤领口](https://picped-1301226557.cos.ap-beijing.myqcloud.com/T恤领口.jpg)
 
 由于洗的适合领口容易编写，应当选择多针加固的螺纹领，普通的螺纹领和布包边领都存在清洗几次就变形的问题；
 
-![T恤领口加固](https://picped-1301226557.cos.ap-beijing.myqcloud.com/T恤领口.jpg)
+![领口加固](https://picped-1301226557.cos.ap-beijing.myqcloud.com/T恤领口加固.jpg)
 
 此外，有肩条加固也可以防止领口变形，同时还有保持版型，使T恤挺阔的作用
 
-![T恤肩条](https://picped-1301226557.cos.ap-beijing.myqcloud.com/T恤肩线.jpg)
+![T恤领口](https://picped-1301226557.cos.ap-beijing.myqcloud.com/T恤肩条.jpg)
 
 同样的，袖口、侧缝、下摆都应当采用多针加固，还应当注意各个地方的缝线应该工整讲究，针眼对其，没有多余的线头，否则很容易穿几次就发现有线头脱落。
 
-![T恤缝线](https://picped-1301226557.cos.ap-beijing.myqcloud.com/T恤收腰.jpg)
+![灰色毛衣](https://picped-1301226557.cos.ap-beijing.myqcloud.com/T恤缝线.jpg)
 
 关于版型，首先应当选择修身、合身或略宽松的T恤，肩线应当在肩胛骨那里，不论缩到里面还是下落到手臂下面都很别扭
 
-![T恤肩线](https://picped-1301226557.cos.ap-beijing.myqcloud.com/T恤衬线.jpg)
+![T恤肩条](https://picped-1301226557.cos.ap-beijing.myqcloud.com/T恤肩线.jpg)
 
 至于衬线，也就是肩膀上前后面料的缝合处，在中间位置适合体型正常的人，稍微靠后适合宽松的版型
 
-![T恤衬线](https://picped-1301226557.cos.ap-beijing.myqcloud.com/纯色T恤.jpg)
+![T恤衬线](https://picped-1301226557.cos.ap-beijing.myqcloud.com/T恤衬线.jpg)
 
 关于腰部，略微收腰和直筒都可以，但紧身风格则很不合适
 
-![T恤收腰](https://picped-1301226557.cos.ap-beijing.myqcloud.com/颜色过渡.jpg)
+![T恤收腰](https://picped-1301226557.cos.ap-beijing.myqcloud.com/T恤收腰.jpg)
 
 袖长不要超过手肘，但也不要太短，标准袖长和5分袖适合大多数人，下摆的长度则应当在手腕或盖过皮带1-2cm的位置。如果新买的衣服各处不合适，找个服装店裁剪一下。
 
@@ -254,15 +260,15 @@ T恤发黄的问题可以参考 [女朋友教你怎么穿：白T出汗容易发�
 
 夏天穿黑T太热，所以替换的T恤可以选择浅灰色或任意一种糖果色等其它色彩，注意是纯色的，如下图
 
-![纯色T恤](https://picped-1301226557.cos.ap-beijing.myqcloud.com/T恤上的小图案.jpg)
+![纯色T恤](https://picped-1301226557.cos.ap-beijing.myqcloud.com/纯色T恤.jpg)
 
 如果想要一点图案，则应该选择比较小的，有设计感的，想要表达明确思想的，可以在左胸或T恤上半部正中的位置，当然，也可以在纯色T恤上用胸针。
 
-![T恤上的小图案](https://picped-1301226557.cos.ap-beijing.myqcloud.com/有趣的胸针.jpg)
+![有趣的胸针](https://picped-1301226557.cos.ap-beijing.myqcloud.com/有趣的胸针.jpg)
 
-![有趣的胸针](https://picped-1301226557.cos.ap-beijing.myqcloud.com/有图案的T恤.jpg)
+![T恤上的小图案](https://picped-1301226557.cos.ap-beijing.myqcloud.com/T恤上的小图案.jpg)
 
-![有图案的T恤](https://picped-1301226557.cos.ap-beijing.myqcloud.com/长袖衬衫.jpg)
+![有图案的T恤](https://picped-1301226557.cos.ap-beijing.myqcloud.com/有图案的T恤.jpg)
 
 具体选择哪种做替换，看每年的心情吧。
 
@@ -272,7 +278,7 @@ T恤发黄的问题可以参考 [女朋友教你怎么穿：白T出汗容易发�
 
 长袖衬衫夏天可以选择清爽一点的颜色，面料夏季可以选棉或棉麻的，牛津纺卷袖子易皱比较适合秋冬，长袖衬衫版型宽松一点，可以在偏凉的天气或者冷气太大的室内作外搭。有空也可以试试牛仔衬衫。
 
-![长袖衬衫](https://picped-1301226557.cos.ap-beijing.myqcloud.com/灰色毛衣.jpg)
+![长袖衬衫](https://picped-1301226557.cos.ap-beijing.myqcloud.com/长袖衬衫.jpg)
 
 不过一般在夏季也不考虑了，可能会尝试，但现在没感觉，用白衬衫在秋冬作为内搭，其它颜色的衬衫看心情。如果是为了防冷，比如雨后、清晨等，可以选择卫衣或薄夹克。
 
@@ -280,7 +286,7 @@ T恤发黄的问题可以参考 [女朋友教你怎么穿：白T出汗容易发�
 
 毛衣选择圆领的灰色或驼色，因为脸胖脖子短，就不选半高领和高领了，
 
-![灰色毛衣](https://picped-1301226557.cos.ap-beijing.myqcloud.com/T恤缝线.jpg)
+![灰色毛衣](https://picped-1301226557.cos.ap-beijing.myqcloud.com/灰色毛衣.jpg)
 
 ![驼色毛衣](https://picped-1301226557.cos.ap-beijing.myqcloud.com/驼色毛衣.jpg)
 
@@ -290,7 +296,7 @@ T恤发黄的问题可以参考 [女朋友教你怎么穿：白T出汗容易发�
 
 ![无帽卫衣](https://picped-1301226557.cos.ap-beijing.myqcloud.com/连帽卫衣.jpg)
 
-![连帽卫衣](https://picped-1301226557.cos.ap-beijing.myqcloud.com/牛仔夹克蓝.jpg)
+![牛仔夹克蓝](https://picped-1301226557.cos.ap-beijing.myqcloud.com/无帽卫衣.jpg)
 
 开衫的卫衣就算了
 
@@ -298,35 +304,37 @@ T恤发黄的问题可以参考 [女朋友教你怎么穿：白T出汗容易发�
 
 牛仔夹克，经典永不过时，秋冬必备单品，牛仔蓝、深蓝色、原色
 
-![牛仔夹克蓝](https://picped-1301226557.cos.ap-beijing.myqcloud.com/无帽卫衣.jpg)
+
 
 ![牛仔夹克原色](https://picped-1301226557.cos.ap-beijing.myqcloud.com/工装夹克.jpg)
 
+![牛仔夹克蓝](https://picped-1301226557.cos.ap-beijing.myqcloud.com/牛仔夹克蓝.jpg)
+
 飞行员/棒球夹克都是很经典的秋冬外套
+
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/飞行员夹克.jpg)
 
 ![飞行员夹克](https://picped-1301226557.cos.ap-beijing.myqcloud.com/飞行员夹克穿搭.jpg)
 
-![飞行员夹克穿搭](https://picped-1301226557.cos.ap-beijing.myqcloud.com/短款大衣.jpg)
-
 皮夹克暂时就算了，工装夹克比较硬朗，西装夹克暂时用不到
 
-![工装夹克](https://picped-1301226557.cos.ap-beijing.myqcloud.com/牛仔夹克原色.jpg)
+![牛仔夹克原色](https://picped-1301226557.cos.ap-beijing.myqcloud.com/牛仔夹克原色.jpg)
 
 #### 大衣
 
 事实上有短款的大衣，不挑人
 
-![短款大衣](https://picped-1301226557.cos.ap-beijing.myqcloud.com/飞行员夹克.jpg)
+![短款大衣](https://picped-1301226557.cos.ap-beijing.myqcloud.com/短款大衣.jpg)
 
 中长款可选驼色系、灰色系、藏青色和黑色，个子不高最好不要选长款
 
-![大衣](https://picped-1301226557.cos.ap-beijing.myqcloud.com/棉服.jpg)
+![大衣](https://picped-1301226557.cos.ap-beijing.myqcloud.com/大衣.jpg)
 
 #### 羽绒服和棉服
 
 不少棉服的造型还是可以的
 
-![棉服](https://picped-1301226557.cos.ap-beijing.myqcloud.com/羽绒服.jpg)
+![棉服](https://picped-1301226557.cos.ap-beijing.myqcloud.com/棉服.jpg)
 
 派克大衣也是棉服的一种，外观不错
 
@@ -334,7 +342,9 @@ T恤发黄的问题可以参考 [女朋友教你怎么穿：白T出汗容易发�
 
 米其林轮胎一样的羽绒服就比较丑了，尽量选下面这种类型的羽绒服
 
-![羽绒服](https://picped-1301226557.cos.ap-beijing.myqcloud.com/短裤裤长.jpg)
+![羽绒服](https://picped-1301226557.cos.ap-beijing.myqcloud.com/羽绒服.jpg)
+
+
 
 #### 五分裤
 
@@ -342,47 +352,51 @@ T恤发黄的问题可以参考 [女朋友教你怎么穿：白T出汗容易发�
 
 ![短裤裤长](https://picped-1301226557.cos.ap-beijing.myqcloud.com/短裤裤管宽度.jpg)
 
-![短裤裤管宽度](https://picped-1301226557.cos.ap-beijing.myqcloud.com/大衣.jpg)
+![短裤裤长](https://picped-1301226557.cos.ap-beijing.myqcloud.com/短裤裤长.jpg)
 
 对于裤子的面料，黑色纯棉比较容易粘毛，喜欢纯棉可以考虑卡其色、灰色、灰绿等，粘毛看不出来，没有特别喜好可选择棉质斜纹面料、亚麻面料或泡泡纱。
 
-![短裤面料](https://picped-1301226557.cos.ap-beijing.myqcloud.com/短裤面料太软.png)
+![短裤待选](https://picped-1301226557.cos.ap-beijing.myqcloud.com/短裤面料.jpg)
 
 泡泡纱成分是涤纶，外观经机器压泡后表面有凹凸不平的小泡泡，给人立体感比较强，穿着时不易贴身，抗皱性强，凉爽与挺阔感很好。我好像有一件，确实完全不发皱，只是裤管有点粗。
 
 ![泡泡纱材质短裤](https://picped-1301226557.cos.ap-beijing.myqcloud.com/泡泡纱材质短裤.png)
 
-最后，5分库要有立体感，面料像T恤的那种看起来像睡裤一样，有点传不出去
+最后，5分库要有立体感，面料像T恤的那种看起来像睡裤一样，有点穿不出去
 
-![短裤面料太软](https://picped-1301226557.cos.ap-beijing.myqcloud.com/经典牛仔裤.jpg)
+![短裤面料太软](https://picped-1301226557.cos.ap-beijing.myqcloud.com/短裤面料太软.png)
 
 由于天气原因也不要黑色，选浅灰、卡其色或军绿，准备2件换洗，短裤是非消耗品，可以穿很多年。
 
-![短裤待选](https://picped-1301226557.cos.ap-beijing.myqcloud.com/短裤面料.jpg)
+![短裤待选](https://picped-1301226557.cos.ap-beijing.myqcloud.com/短裤待选.jpg)
 
 #### 长裤
 
-拒绝修身、太宽松，拒绝各种宽松奇特的裤子看起来应该松紧有度，腿型不好可以选择直筒，一定要保证腰围和裤管，裤长可以拿去改，合适的裤长是刚好到鞋面，牛仔裤也可以卷裤脚，可以在视觉上营造层次感，看起来更清爽。
+拒绝紧身、太宽松，拒绝各种宽松奇特的裤子看起来应该松紧有度，腿型不好可以选择直筒，一定要保证腰围和裤管，裤长可以拿去改，合适的裤长是刚好到鞋面，牛仔裤也可以卷裤脚，可以在视觉上营造层次感，看起来更清爽。
 
-![牛仔裤穿搭](https://picped-1301226557.cos.ap-beijing.myqcloud.com/冬天的牛仔裤.jpg)
+![牛仔裤穿搭](https://picped-1301226557.cos.ap-beijing.myqcloud.com/牛仔裤穿搭.jpg)
 
 牛仔裤选择经典款就可以了，不用花里胡哨多其他的东西，经典包括浅蓝、天蓝、湖蓝、深蓝、深灰、原色，如下图
 
-![经典牛仔裤](https://picped-1301226557.cos.ap-beijing.myqcloud.com/工装裤.jpg)
+![短裤面料太软](https://picped-1301226557.cos.ap-beijing.myqcloud.com/经典牛仔裤.jpg)
+
+![夏天的牛仔](https://picped-1301226557.cos.ap-beijing.myqcloud.com/夏天穿的牛仔.jpg)
 
 冬天的话有下面这几种
 
-![冬天的牛仔裤](https://picped-1301226557.cos.ap-beijing.myqcloud.com/休闲长裤.jpg)
+![冬天的牛仔裤](https://picped-1301226557.cos.ap-beijing.myqcloud.com/冬天的牛仔裤.jpg)
 
 休闲长裤选择宽松简单的，普通的黑灰、浅米白、浅卡其、灰绿、深蓝都不错
 
-![休闲长裤](https://picped-1301226557.cos.ap-beijing.myqcloud.com/短裤待选.jpg)
+![休闲长裤](https://picped-1301226557.cos.ap-beijing.myqcloud.com/休闲长裤.jpg)
 
 秋冬的裤子选棉、灯芯绒、羊毛等，颜色选灰色系、大地色等深色系，比如灰、深灰、藏青、黑色、深棕等
 
 夏天可以选择浅色、薄一点的，秋冬深色、厚一点，尤其是冬天，裤管可以适当大一点，因为里面要穿保暖裤或棉裤，裤管小的话会被撑起来，比较难看，实际上工装裤裤管比较大，可以很好的包裹
 
-![工装裤](https://picped-1301226557.cos.ap-beijing.myqcloud.com/帆布鞋.jpg)
+![工装裤](https://picped-1301226557.cos.ap-beijing.myqcloud.com/工装裤.jpg)
+
+
 
 #### 鞋
 
@@ -390,11 +404,13 @@ T恤发黄的问题可以参考 [女朋友教你怎么穿：白T出汗容易发�
 
 夏季可以选择低帮的休闲板鞋，比如经典的德军训练鞋，德训鞋不同于小白鞋，鞋身的反绒面与生胶底看上去很有辨识度，能同时给人简约与复古感，整体质感也很不错。
 
-![德训鞋](https://picped-1301226557.cos.ap-beijing.myqcloud.com/牛仔裤穿搭.jpg)
+![德训鞋](https://picped-1301226557.cos.ap-beijing.myqcloud.com/德训鞋.png)
 
 帆布鞋回力、匡威、vans、P.F 等各品牌的经典款都可以，不容易出错（PS：没穿过，不过知道感觉怎么样）
 
-![帆布鞋](https://picped-1301226557.cos.ap-beijing.myqcloud.com/项链.jpg)
+![帆布鞋](https://picped-1301226557.cos.ap-beijing.myqcloud.com/帆布鞋.jpg)
+
+
 
 还有基本款的小白鞋，最重要的是保持干净，如果不能保证干净，不如不穿
 
@@ -410,11 +426,15 @@ T恤发黄的问题可以参考 [女朋友教你怎么穿：白T出汗容易发�
 
 由于脸比较圆，夏天戴一条项链可以在视觉上起到延伸作用，款式应当尽量简约，可以选择一些有趣的、有意义的，颜色建议金属色或银色，没有信仰最好不要戴十字架
 
-![项链](https://picped-1301226557.cos.ap-beijing.myqcloud.com/项链位置.jpg)
+![项链](https://picped-1301226557.cos.ap-beijing.myqcloud.com/项链.jpg)
+
+
 
 项链的长度不要过长，在胸部位置最好
 
-![项链位置](https://picped-1301226557.cos.ap-beijing.myqcloud.com/夏天穿的牛仔.jpg)
+![项链位置](https://picped-1301226557.cos.ap-beijing.myqcloud.com/项链位置.jpg)
+
+
 
 手链就算了，背包我喜欢帆布，选简约一些的款式，帽子的话其实圆脸大头不好选，就不戴了。
 
@@ -531,31 +551,35 @@ T恤：1-2件白T，任意一种除黑色外的其它纯色
 
 夏季一般就是三大件：上衣、下衣和鞋子，然后就是可能的饰品：手表、项链、手链、背包、帽子等，如下图
 
-![男生夏季单品](https://picped-1301226557.cos.ap-beijing.myqcloud.com/短袖5分裤鞋子.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/有颜色的T恤裤子鞋子.jpg)
 
 下面是具体的搭配，首先是短袖+5分裤+鞋子，5分裤根据肤色自选颜色，以项链搭配
 
-![短袖5分裤鞋子](https://picped-1301226557.cos.ap-beijing.myqcloud.com/德训鞋.png)
-
-![有颜色的T恤裤子鞋子](https://picped-1301226557.cos.ap-beijing.myqcloud.com/米白色裤子.jpg)
-
-![灰半袖军绿裤子](https://picped-1301226557.cos.ap-beijing.myqcloud.com/有颜色的T恤黑裤鞋子.jpg)
+![短袖5分裤子](https://picped-1301226557.cos.ap-beijing.myqcloud.com/短袖5分裤鞋子.jpg)
 
 米白色的裤子很百搭
 
-![米白色裤子](https://picped-1301226557.cos.ap-beijing.myqcloud.com/灰半袖军绿裤子.jpg)
+![米白色裤子](https://picped-1301226557.cos.ap-beijing.myqcloud.com/米白色裤子.jpg)
 
 其次是T恤+长裤+鞋子
 
-![有颜色的T恤黑裤鞋子](https://picped-1301226557.cos.ap-beijing.myqcloud.com/有颜色的T恤裤子鞋子.jpg)
+![灰半袖军绿裤子](https://picped-1301226557.cos.ap-beijing.myqcloud.com/有颜色的T恤黑裤鞋子.jpg)
 
-![T恤牛仔或休闲](https://picped-1301226557.cos.ap-beijing.myqcloud.com/白T衬衫.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/灰半袖军绿裤子.jpg)
+
+
 
 白T+衬衫+裤子+鞋
 
-![白T衬衫](https://picped-1301226557.cos.ap-beijing.myqcloud.com/T恤牛仔或休闲.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/白T衬衫.jpg)
+
+
+
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/T恤牛仔或休闲.jpg)
 
 穿起来的时候记得把T恤下摆塞到裤子里，叠穿时里面应该比外面的衣摆短
+
+
 
 ![白T衬衫穿起来的样子](https://picped-1301226557.cos.ap-beijing.myqcloud.com/打底卫衣长裤.jpg)
 
