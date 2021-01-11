@@ -26,7 +26,7 @@
 
 选择幻灯片放映，则需要选择一个图片文件夹，锁屏界面将循环播放这些图片，每个图片的停留时间大约在10秒左右。
 
-单张图片容易看腻，幻灯片不仅需要自己劳心劳力寻找图片，切换速度也比较快。这种情况下，第三个选择[ Windows 聚焦](https://docs.microsoft.com/zh-cn/ Windows /configuration/ Windows -spotlight)最好不过了。
+单张图片容易看腻，幻灯片不仅需要自己劳心劳力寻找图片，切换速度也比较快。这种情况下，第三个选择[Windows 聚焦](https://docs.microsoft.com/zh-cn/windows/configuration/windows-spotlight) 最好不过了。
 
 「 Windows 聚焦」是 Win10 内置的一个锁屏壁纸自动换功能，开启后会在锁屏界面每天更换一张新的壁纸。这里需要注意的是，每天第一次登录电脑看到的依然是昨天的背景图片，因为只有在系统启动并联网后才会自动下载壁纸，当你第二次登录时，壁纸就会更新了。
 
