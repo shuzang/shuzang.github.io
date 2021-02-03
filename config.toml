@@ -292,9 +292,9 @@ dateFormatToUse = "2006-01-02"
 
   # Valine Comment Config (https://github.com/xCss/Valine)
   [params.valine]
-      enable = true
-      appId = "GteMvevTjOBmhvFh2QGsopGO-gzGzoHsz"
-      appKey = "fL4SYl06GIe012PswFdY17VC"
+      enable = false
+      appId = ""
+      appKey = ""
       placeholder = "Your comment ..."
       notify = false
       verify = true
