@@ -1,8 +1,8 @@
 ---
-title: 函数修饰词pure和view
+title: Solidity-函数修饰词pure和view
 author: 深入浅出区块链
 date: 2020-05-04
-tags: [智能合约]
+tags: [区块链]
 categories: [研究生的区块链学习之路]
 slug: pure and view keyword
 ---

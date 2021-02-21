@@ -1,7 +1,7 @@
 ---
 title: Mysql学习4-数据表操作
 date: 2020-05-24T11:25:00+08:00
-tags: [mysql]
+tags: [计算机基础]
 categories: [爱编程爱技术的孩子]
 slug: mysql learning 4 data manipulation language 
 ---

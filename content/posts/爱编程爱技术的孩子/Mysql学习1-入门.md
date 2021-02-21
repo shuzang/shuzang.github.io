@@ -1,7 +1,7 @@
 ---
 title: Mysql学习1-入门
 date: 2020-05-24T08:02:00+08:00
-tags: [mysql]
+tags: [计算机基础]
 categories: [爱编程爱技术的孩子]
 slug: mysql learning 1 introduction 
 ---

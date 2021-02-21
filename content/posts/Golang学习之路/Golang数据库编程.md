@@ -2,7 +2,7 @@
 title: Golang数据库编程
 date: 2020-05-26
 lastmod: 2020-05-28
-tags: [Go项目基础]
+tags: [Go实战]
 categories: [Golang学习之路]
 slug: Golang interact with MySQL 
 ---

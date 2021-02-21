@@ -1,8 +1,8 @@
 ---
-title: TCP和UDP协议
+title: 计算机网络-TCP和UDP协议
 date: 2020-07-07T21:16:00+08:00
 lastmod: 2020-08-20
-tags: [计算机网络]
+tags: [计算机基础]
 categories: [爱编程爱技术的孩子]
 slug: Transmission Control Protocol and User Datagram protocol 
 ---

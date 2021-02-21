@@ -2,7 +2,7 @@
 title: Mysql学习补充-语句执行顺序
 date: 2020-09-13T16:08:00+08:00
 lastmod: 2020-09-13
-tags: [mysql]
+tags: [计算机基础]
 categories: [爱编程爱技术的孩子]
 slug: mysql learning supplement-statement execution order 
 ---

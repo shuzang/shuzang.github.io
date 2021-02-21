@@ -1,8 +1,8 @@
 ---
-title: Debian系统的移植
+title: 系统移植2-Debian系统的移植
 date: 2018-04-11
 lastmod: 2020-04-27
-tags: [系统移植,linux]
+tags: [linux]
 categories: [爱编程爱技术的孩子]
 autoCollapseToc: true
 slug: Migration of Debian system 

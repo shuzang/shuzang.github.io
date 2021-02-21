@@ -1,8 +1,8 @@
 ---
-title: ICMP协议
+title: 计算机网络-ICMP协议
 date: 2018-10-01
 lastmod: 2020-08-20
-tags: [计算机网络]
+tags: [计算机基础]
 categories: [爱编程爱技术的孩子]
 slug: Internet Control Message Protocol 
 ---

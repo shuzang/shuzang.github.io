@@ -1,8 +1,8 @@
 ---
-title: HTTP与HTTPS协议
+title: 计算机网络-HTTP与HTTPS协议
 date: 2020-07-09T20:43:00+08:00
 lastmod: 2020-07-09
-tags: [计算机网络]
+tags: [计算机基础]
 categories: [爱编程爱技术的孩子]
 slug: HTTP and HTTPS 
 ---

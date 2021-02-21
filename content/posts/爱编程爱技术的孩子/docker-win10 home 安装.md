@@ -1,7 +1,7 @@
 ---
-title: Win10 Home版安装Docker Desktop on Windows
+title: Docker-Win10 Home版安装Docker Desktop on Windows
 date: 2020-04-23
-tags: [Docker]
+tags: [linux]
 categories: [爱编程爱技术的孩子]
 slug: Install Docker Desktop on Windows 10 Home
 ---

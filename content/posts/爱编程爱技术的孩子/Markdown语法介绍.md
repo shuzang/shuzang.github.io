@@ -2,7 +2,7 @@
 title: Markdown语法
 date: 2018-06-30
 lastmod: 2020-02-12
-tags: [Markdown]
+tags: [Hugo]
 categories: [爱编程爱技术的孩子]
 
 slug: Markdown syntax

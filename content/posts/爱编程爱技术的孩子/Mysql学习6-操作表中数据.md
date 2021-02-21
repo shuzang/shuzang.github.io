@@ -2,7 +2,7 @@
 title: Mysql学习6-操作表中数据
 date: 2020-05-24T17:03:00+08:00
 lastmod: 2020-09-13
-tags: [mysql]
+tags: [计算机基础]
 categories: [爱编程爱技术的孩子]
 slug: mysql learning 6 data query language 
 ---

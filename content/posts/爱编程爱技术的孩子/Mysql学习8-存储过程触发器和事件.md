@@ -1,7 +1,7 @@
 ---
 title: Mysql学习8-存储过程、触发器和事件
 date: 2020-07-15T17:22:00+08:00
-tags: [mysql]
+tags: [计算机基础]
 categories: [爱编程爱技术的孩子]
 slug: mysql learning 8 procedure trigger and event 
 ---

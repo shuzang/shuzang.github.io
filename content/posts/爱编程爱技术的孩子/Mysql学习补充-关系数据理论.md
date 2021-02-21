@@ -1,7 +1,7 @@
 ---
 title: Mysql学习补充-关系数据理论
 date: 2020-09-11T19:30:00+08:00
-tags: [mysql]
+tags: [计算机基础]
 categories: [爱编程爱技术的孩子]
 slug: mysql learning supplement-relational data theory 
 ---

@@ -2,7 +2,7 @@
 title: Golang设置与使用cookie
 date: 2020-06-01T20:11:00+08:00
 lastmod: 2020-06-03
-tags: [Go项目基础]
+tags: [Go实战]
 categories: [Golang学习之路]
 slug: Golang set and use cookie
 ---
