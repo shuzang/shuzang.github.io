@@ -1,4 +1,4 @@
-# 函数修饰词pure和view
+# Solidity-函数修饰词pure和view
 
 
 转自[深入理解Solidity-函数](https://learnblockchain.cn/docs/solidity/contracts.html#view)

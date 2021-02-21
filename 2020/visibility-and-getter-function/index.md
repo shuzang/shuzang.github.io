@@ -1,4 +1,4 @@
-# 可见性与Getter函数
+# Solidity-可见性与Getter函数
 
 
 转自：[Solidity 0.6.4 中文文档](https://learnblockchain.cn/docs/solidity/contracts.html#getter)

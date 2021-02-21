@@ -1,4 +1,4 @@
-# 字符串匹配
+# Solidity-字符串匹配
 
 
 翻译自：[Fravoll-String Equality Comparison](https://fravoll.github.io/solidity-patterns/string_equality_comparison.html)
