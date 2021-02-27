@@ -1,4 +1,4 @@
-# 研究过程中的问题
+# 研究记录15-研究过程中的问题总结
 
 
 一些以前理解上出现偏差的地方，这里做校正或完善。
@@ -100,8 +100,5 @@ Remix 编译时的一些 warning 可以总结一下作为一部分实现上的�
 > [研究记录8](https://shuzang.github.io/2019/summary-of-problems-and-optimization-considerations-about-prototype-system/) 一文有大量的想法记录，值得多次查看，很多想法都忘了但是却很有意义。
 
 架构设计上的一些想法与减少 Gas 消耗无关，比如 Quorum 区块链的选择，分层结构的设计。
-
-未完待续……
-
 
 未完待续……
