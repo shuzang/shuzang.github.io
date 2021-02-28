@@ -75,23 +75,23 @@
 
 [^学会吃饭]: 珍·克里斯特勒. 学会吃饭[M]. 中国友谊出版公司. 2019.07.
 
-![评价体系的三要素](D:\OneDrive\图片\博客图片\网络小说防沉迷之从提高审美能力开始\评价体系的三要素.png)
+![评价体系的三要素](https://picped-1301226557.cos.ap-beijing.myqcloud.com/评价体系的三要素.png)
 
 我构建的评价体系主要由三部分构成。第一部分是世界观和等级体系设定，我们看网络小说，很大程度是想看天马行空的想象，这也就意味着，世界观设定比较新，就能吸引人，因此一直以来，各种网络小说的流派层出不穷，每一种都能掀起一整潮流，从而维持着网络文学的欣欣向荣，比如无限流、直播流、第四天灾流等等。另外，等级体系是否严谨而逻辑自洽也应当是关注的重点，小说不仅不能出现力量体系崩坏，还应当在既定世界观的基础上，让人们信服每个等级的设定，正如人类的数学体系是由几条简单的公理推得的一样，小说世界同样应当如此。下面的视频作为参考，其中提到的两部作品设定就非常不错。
 
-<iframe src="//player.bilibili.com/player.html?aid=288147446&bvid=BV1of4y1Y7eT&cid=266763673&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+<iframe src="//player.bilibili.com/player.html?aid=288147446&bvid=BV1of4y1Y7eT&cid=266763673&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width: 100%;height: 600px;"> </iframe>
 
 第二部分是立意，读者阅读网文虽然始终保证一种娱乐消遣的心态，但这种“可读性”仅仅能满足人们最浅薄的欲望狂欢，它只停留在人的情绪表层，无法触碰到人们内心深处最柔软的部分，不能带给我们更加强烈的心灵震颤。然而文学不仅是供给烦闷的人们去解闷，逃避现实的人们去陶醉的，它应当有激励人心的积极性，应当可以和人的灵魂、人的精神发生对话。很多人会说网络小说本来就是通俗文学，不必承担和传统文学一样的责任，但这显然是不对的，只要某种东西成为社会现象，会对整个社会产生影响，它就应当担负起引导社会价值观的责任，毕竟所有人都不希望下一代整体拥有着一种扭曲的价值观。当然，网络小说的某些元素也注定了作者只有努力挖掘一种积极的正面意义，拥有较高的立意，才能吸引读者，乃至成为经典。这里的反面例子可以举一下唐家三少，如下面的视频。
 
-<iframe src="//player.bilibili.com/player.html?aid=629451372&bvid=BV1yb4y1X7m6&cid=304102692&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+<iframe src="//player.bilibili.com/player.html?aid=629451372&bvid=BV1yb4y1X7m6&cid=304102692&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width: 100%;height: 600px;"> </iframe>
 
 我们以穿越和重生类题材为例，B 站的 UP 主大门ZRR 在对《琥珀之剑》的分析中给出了这样的分析。
 
-<iframe src="//player.bilibili.com/player.html?aid=203436874&bvid=BV1kh41117p7&cid=275712527&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+<iframe src="//player.bilibili.com/player.html?aid=203436874&bvid=BV1kh41117p7&cid=275712527&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width: 100%;height: 600px;"> </iframe>
 
 第三部分是文学的底蕴。我们所有人都感受过诗歌的华美，感受过文字那种震撼人心的力量，网络小说以文字作为载体，意味着它在这方面具有和传统文学一样的潜力，不能因为它是通俗文学就大幅度的放款要求，从语言本身的美感，到人物形象塑造、人物关系处理，再到气氛和情绪渲染、战斗场面描写、故事情节的设计，网络小说都应当在一定水准之上。关于这方面的问题，从 UP 主大门ZRR 对《剑来》一书的分析中可以学到很多东西。
 
-<iframe src="//player.bilibili.com/player.html?aid=373889724&bvid=BV1So4y1R7Lk&cid=291963640&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+<iframe src="//player.bilibili.com/player.html?aid=373889724&bvid=BV1So4y1R7Lk&cid=291963640&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width: 100%;height: 600px;"> </iframe>
 
 ## 3. 后记
 
