@@ -42,9 +42,7 @@ arXiv预印（非正式发表）
 
 以一个典型的智能家居场景为例，屋主为Alice，屋内设备有智能恒温器，智能灯泡，IP摄像头，一些传感器。整个架构分三层：智能家居层（也即本地网络层），覆盖网络层，云存储层。如图1所示
 
-图1.
-
-![Ali的方案架构](https://picped-1301226557.cos.ap-beijing.myqcloud.com/54513845-8c0a0d80-4993-11e9-92f6-ea1029425358.png)
+![图1 Ali的方案架构](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20190109_Ali%E7%9A%84%E6%96%B9%E6%A1%88%E6%9E%B6%E6%9E%84)
 
 考虑两个情况：
 
@@ -89,7 +87,7 @@ overlay BC由所有CH维护，包含访问交易和云存储发送的多签名�
 
 图2.
 
-![恒温器数据送到云存储](https://picped-1301226557.cos.ap-beijing.myqcloud.com/54513881-a5ab5500-4993-11e9-8334-824cc0d00051.png)
+![恒温器数据送到云存储](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20190109_%E6%81%92%E6%B8%A9%E5%99%A8%E6%95%B0%E6%8D%AE%E9%80%81%E5%88%B0%E4%BA%91%E5%AD%98%E5%82%A8)
 
 共享存储和本地存储的过程要简单很多
 
@@ -99,9 +97,7 @@ SP可能访问确定时间段内的数据或确定设备的数据。为例访问
 
 该方案中，通信涉及的所有CH都要存该交易。
 
-图3.
-
-![访问恒温器数据](https://picped-1301226557.cos.ap-beijing.myqcloud.com/54513947-c378ba00-4993-11e9-9a1e-2e75a790d575.png)
+![图3 访问恒温器数据](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20190109_%E8%AE%BF%E9%97%AE%E6%81%92%E6%B8%A9%E5%99%A8%E6%95%B0%E6%8D%AE)
 
 #### C. Monitoring
 
@@ -146,7 +142,7 @@ SP可能访问确定时间段内的数据或确定设备的数据。为例访问
 
 表3.
 
-![Ali方案性能评估](https://picped-1301226557.cos.ap-beijing.myqcloud.com/54513972-d5f2f380-4993-11e9-801f-38badb5dd376.png)
+![Ali方案性能评估](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20190109_Ali%E6%96%B9%E6%A1%88%E6%80%A7%E8%83%BD%E8%AF%84%E4%BC%B0)
 
 实际上，即使最坏情况，交易数量也只和簇的数量成正比，而不是和节点数量。
 
