@@ -13,7 +13,7 @@ L. Evers and P. Havinga, “Supply Chain Management Automation using Wireless Se
 
 [^logica2004making]:LogicaCMG, “Making waves: Rfid adoption in returnable packaging,” 2004.
 
-![图1 从左到右依次是板条箱、笼车、托盘和集装箱](https://picped-1301226557.cos.ap-beijing.myqcloud.com/%E5%90%84%E7%A7%8D%E7%AE%B1%E5%AD%90.jpg)
+![图1 从左到右依次是板条箱、笼车、托盘和集装箱](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20200420_%E5%90%84%E7%A7%8D%E7%AE%B1%E5%AD%90.jpg)
 
 ## 2. 场景描述
 

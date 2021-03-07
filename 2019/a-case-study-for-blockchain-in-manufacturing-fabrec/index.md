@@ -33,7 +33,7 @@ keywords：blockchain; cyber-physical systems; smart contracts; ethereum; decent
 
 ### 2.1 FabRec系统总览
 
-![FabRec overview](https://picped-1301226557.cos.ap-beijing.myqcloud.com/54916118-b6c80900-4f33-11e9-93eb-42416e577c54.png)
+![FabRec overview](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20190325_FabRec-overview)
 
 <center>图2.1 FavRec Overview</center>
 图2.1中的虚线代表信任域的边界，整个系统能实现跨信任域的受控信息共享，即允许跨信任域边界的数据集成。系统中参与者可能是人类、制造机器、计算节点以及制造商的代理，
@@ -61,7 +61,7 @@ keywords：blockchain; cyber-physical systems; smart contracts; ethereum; decent
 
 一个示例区块结构如图2.2所示，包含了有关机器信息的交易。
 
-![example of block structure](https://picped-1301226557.cos.ap-beijing.myqcloud.com/54916169-e119c680-4f33-11e9-91e1-4c642f4c0367.png)
+![example of block structure](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20190325_区块结构示例)
 
 <center>图2.2 example of block structure</center>
 随着车间中机器的不断使用，事件也被不断的记录到链中。因此，当客户打算与制造商进行交易时，可以被授予访问历史制造记录的权限，验证数据的真实性和来源。这种信息共享可以提高制造商的信誉并增加赢得新业务的几率。
@@ -84,7 +84,7 @@ keywords：blockchain; cyber-physical systems; smart contracts; ethereum; decent
 
 三种智能合约的结构如图2.3所示。
 
-![Smart Contract Structure in FabRec](https://user-images.githubusercontent.com/26682846/54916210-fa227780-4f33-11e9-8357-2bcfb85b843d.png)
+![Smart Contract Structure in FabRec](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20190325_合约结构.png)
 
 <center>图2.3 Smart Contract Structure in FabRec</center>
 为了说明，一个关于涉及制造商、机器和消费者的智能合约场景如下：
@@ -100,7 +100,7 @@ keywords：blockchain; cyber-physical systems; smart contracts; ethereum; decent
 3. Nodal Database Sentry through MongoDB，Nodal Sentry可以被认为是执行加密证明的程序，
 4. FabRec区块链管理器，以可视化的人类可读的形式追踪区块链上交易，类似于etherscan.io但是用于机器数据。
 
-![Data Exchange between participants](https://user-images.githubusercontent.com/26682846/54916334-41106d00-4f34-11e9-9d0e-8c173bf64d0b.png)
+![Data Exchange between participants](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20190325_参与者之间的数据交换.png)
 
 <center>图2.4 Data Exchange between participants</center>
 提供了这些组件的实现，这些组件与MongoDB数据库集成并通过用户界面进行管理。此外，任何数据库后端和用户界面都可以实现即插即用功能，只要它们可以通过API调用区块链上的相关智能合约。
@@ -115,7 +115,7 @@ keywords：blockchain; cyber-physical systems; smart contracts; ethereum; decent
 
 机器通过Beaglebone Black中的MachineKit接口（LinuxCNC的修改形式）也连接到网络，成为网络中的节点。在MachineKit OS中编写的脚本将关键事件（例如机器开/关/工作状态）发送到网络，矿工节点验证事件真实性并将其添加到区块链，可以对事件进行批处理以提高数据收集到区块的效率。仿真系统旨在演示智能合约如何处理机器传递的事件，并触发到另一台物理设备的命令，如控制Arduino板上LED的亮灭。并且，设备不必位于同一制造工厂的网络中，即同一信任域内。
 
-![Physical devices interacting on the FabRec](https://user-images.githubusercontent.com/26682846/54916397-6dc48480-4f34-11e9-9410-abde076c4cd1.png)
+![Physical devices interacting on the FabRec](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20190325_物理设备间的交互.png)
 
 <center>图3.1  Physical devices interacting on the FabRec</center>
 如图3.1所示，智能合约设置为以交易的形式接受来自不同实体的出价。使用脚本通过API检查所有事件，并查找想要的字符串，查找到字符串后，脚本向Arduino发送信号使LED亮起。
