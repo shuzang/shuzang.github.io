@@ -96,7 +96,7 @@ Ethereum Classic目前兑换比例为1 ETC=$4.22 USD，算力大小为8.832 Thas
 
 两者的历史算力变化如下图
 
-![历史算力变化](https://picped-1301226557.cos.ap-beijing.myqcloud.com/71581872-67f27400-2b42-11ea-9a48-faefd8ce6787.png)
+![历史算力变化](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20190116_历史算力变化.png)
 
 PoW需要挖矿，挖矿的本质是哈希运算，而每秒能做多少次哈希运算，即hash/s，就是算力的单位。算力每隔千位划为一个单位，最小单位 H=1次    
 
