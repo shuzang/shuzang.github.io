@@ -1,6 +1,618 @@
-<!doctype html><html lang=en><head><meta name=generator content="Hugo 0.63.2"><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Shuzang's Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><link rel=canonical href=https://shuzang.github.io/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><link rel=alternate href=/index.xml type=application/rss+xml title="Shuzang's Blog"><link rel=feed href=/index.xml type=application/rss+xml title="Shuzang's Blog"><meta name=twitter:card content="summary"><meta name=twitter:title content="Shuzang's Blog"><meta name=twitter:description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","url":"https:\/\/shuzang.github.io","author":{"@type":"Person","name":"shuzang"},"description":"书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊","image":"https:\/\/shuzang.github.io\/cover.png","thumbnailUrl":"https:\/\/shuzang.github.io\/logo.png","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","name":"Shuzang\x27s Blog"}</script><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css></head><body><script>window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><nav class=navbar><div class=navbar-container><div class="navbar-header animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=navbar-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><nav class=navbar-mobile><div class=navbar-container><div class=navbar-header><div class="navbar-header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=navbar-menu id=mobile-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><main class=main><div class=container><div class=page><div class=home-intro><div class=home-avatar><a href=/posts><img src=/images/avatar.png alt=avatar title=Home></a></div><h2 class=home-description><div id=rtp-3c0a4282539e1c3c149528c40a394747 hidden>随心所向，素履以往</div><div id=tp-3c0a4282539e1c3c149528c40a394747 class=typeit></div></h2><div class=home-social-links><a href=https://github.com/shuzang rel="me noopener noreffer" target=_blank><i class="fab fa-github-alt fa-fw" title=Github></i></a><a href=skype:live:844327696 rel="me noopener noreffer" target=_blank><i class="fab fa-skype fa-fw" title=Skype></i></a><a href=mailto:lylw1996@qq.com rel="me noopener noreffer"><i class="far fa-envelope fa-fw" target=_blank title=Email></i></a></div></div><article class=post itemscope itemtype=http://schema.org/Article><h1 class="post-title post-list-title" itemprop="name headline"><a href=https://shuzang.github.io/2020/summary-of-smart-contract-knowledge-points/>智能合约知识点总结</a></h1><div class=post-meta><a class=author href=https://shuzang.github.io/about/ rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>shuzang
-</a>published on <time datetime=2020-05-04>2020-05-04</time>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i>
-<a href=https://shuzang.github.io/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/>研究生的区块链学习之路</a></span></div><div class=post-content><p>项目进行过程中知识点的总结</p><a class=post-dummy-target id=1-字符串比较></a><h2>1. 字符串比较</h2><p>翻译自：<a href=https://fravoll.github.io/solidity-patterns/string_equality_comparison.html target=_blank>Fravoll-String Equality Comparison</a></p><p>比较两个给定字符串是否相等，是 Solidity 编程中最常见的一种情况，但语言本身并没有提供内置函数用于字符串比较，本文介绍两种可用方法并分析 Gas 消耗情况。</p><a class=post-dummy-target id=11-stringutils-库></a><h3>1.1 StringUtils 库</h3><p>第一种方法是使用 Ethereum 基金会提供的 StringUtils 库，它对每个字符进行成对比较，如果有一个字符对不匹配，则返回false。这种办法可以返回正确的结果，对于短字符串和字符不同发生在字符串前面的情况仅消耗少量 Gas。但是对于相等的字符串和长字符串，这种方法的 Gas 消耗较高，因为必须做很多比较才能得到正确结果。因此，字符串比较的两个可衡量的因素是字符串平均长度和正确率。</p><a class=post-dummy-target id=12-哈希函数></a><h3>1.2 哈希函数</h3><p>作者提出使用哈希函数进行比较，同时检查所提供的字符串的长度，从一开始就剔除长度不匹配的字符串。其步骤如下</p><ol><li>检查两个字符串是否有相同长度，通过转换为 <code>bytes</code> 类型完成，因为 <code>bytes</code> 类型有内置长度函数。如果相同进入第2步，如果不相同返回结果；</li><li>使用 <code>keccak256()</code> 函数对两个字符串求哈希，然后比较计算得到的哈希值，从而确定是否相等。</li></ol><p>一个示例代码如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+<!doctype html><html lang=en><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>智能合约知识点总结 | Shuzang's Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><link rel=prev href=https://shuzang.github.io/2020/algorithm-backtracking/><link rel=next href=https://shuzang.github.io/2020/image-container-and-repository/><link rel=canonical href=https://shuzang.github.io/2020/summary-of-smart-contract-knowledge-points/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><meta name=twitter:card content="summary"><meta name=twitter:title content="智能合约知识点总结"><meta name=twitter:description content="项目进行过程中知识点的总结
+1. 字符串比较
+翻译自：Fravoll-String Equality Comparison
+比较两个给定字符串是否相等，是 Solidity 编程中最常见的一种情况，但语言本身并没有提供内置函数用于字符串比较，本文介绍两种可用方法并分析 Gas 消耗情况。
+1.1 StringUtils 库
+第一种方法是使用 Ethereum 基金会提供的 StringUtils 库，它对每个字符进行成对比较，如果有一个字符对不匹配，则返回false。这种办法可以返回正确的结果，对于短字符串和字符不同发生在字符串前面的情况仅消耗少量 Gas。但是对于相等的字符串和长字符串，这种方法的 Gas 消耗较高，因为必须做很多比较才能得到正确结果。因此，字符串比较的两个可衡量的因素是字符串平均长度和正确率。
+1.2 哈希函数
+作者提出使用哈希函数进行比较，同时检查所提供的字符串的长度，从一开始就剔除长度不匹配的字符串。其步骤如下
+
+检查两个字符串是否有相同长度，通过转换为 bytes 类型完成，因为 bytes 类型有内置长度函数。如果相同进入第2步，如果不相同返回结果；
+使用 keccak256() 函数对两个字符串求哈希，然后比较计算得到的哈希值，从而确定是否相等。
+
+一个示例代码如下
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+
+
+# 这段代码未经安全审计，使用有风险
+function hashCompareWithLengthCheck(string a, string b) internal returns (bool) {
+    if(bytes(a).length != bytes(b).length) {
+        return false;
+    } else {
+        return keccak256(abi.encodePacket(a)) == keccak256(abi.encodePacket(b));
+    }
+}
+
+
+abi.encodePacket(...) returns (bytes) 用于对给定参数执行紧打包编码，官方文档中不推荐使用 keccak256(...) 直接计算哈希，而是使用 keccak256(abi.encodePacked(...))
+1.3 Gas 消耗分析
+在 Remix 编写代码测试了三种不同情况的字符串比较的 Gas 消耗
+
+比较哈希
+比较每个字符，同时比较字符串长度
+比较哈希，同时比较字符串长度
+
+结果如下表所示，输入列为输入的待比较字符串，输出列的单位为 Wei
+
+
+
+Input A
+Input B
+Hash
+Character + Length
+Hash + Length
+
+
+
+
+abcdefghijklmnopqrstuvwxyz
+abcdefghijklmnopqrstuvwxyz
+1225
+7062
+1261
+
+
+abcdefghijklmnopqrstuvwxyX
+abcdefghijklmnopqrstuvwxyz
+1225
+7012
+1261
+
+
+Xbcdefghijklmnopqrstuvwxyz
+abcdefghijklmnopqrstuvwxyz
+1225
+912
+1261
+
+
+aXcdefghijklmnopqrstuvwxyz
+abcdefghijklmnopqrstuvwxyz
+1225
+1156
+1261
+
+
+abXdefghijklmnopqrstuvwxyz
+abcdefghijklmnopqrstuvwxyz
+1225
+1400
+1261
+
+
+abcdefghijkl
+abcdefghijklmnopqrstuvwxyz
+1225
+690
+707
+
+
+a
+a
+1225
+962
+1261
+
+
+ab
+ab
+1225
+1156
+1261
+
+
+abc
+abc
+1225
+1450
+1261
+
+
+
+可以看出，哈希+字符串长度 的比较方式 Gas 消耗更加稳定，这种方式比较高效。
+2. 可见性与Getter函数
+转自：Solidity 0.6.4 中文文档
+Solidity 有两种函数调用：内部调用（Internal Function Calls）和外部调用（External Function Calls）。前者指直接或递归地调用合约内部函数，不会产生实际的 EVM 调用，因此也被称为「消息嗲用」，后者指从合约外部调用合约中的函数，会产生一个 EVM 调用。
+2.1 可见性
+因此，函数和状态变量有四种可见性。函数可以指定为 external，public，internal 或 private，对于状态变量， 默认是 internal 且不能设置为 external。
+
+external：外部函数作为合约接口的一部分，意味着我们可以从其他合约和交易中调用。 一个外部函数 f 不能从内部调用（即 f 不起作用，但 this.f()可以）。 当收到大量数据的时候，外部函数有时候会更有效率，因为数据不会从calldata复制到内存.
+public：public 函数是合约接口的一部分，可以在内部或通过消息调用。对于 public 状态变量， 会自动生成一个 getter 函数（见下面）。
+internal：这些函数和状态变量只能是内部访问（即从当前合约内部或从它派生的合约访问），不使用 this 调用。
+private：private 函数和状态变量仅在当前定义它们的合约中使用，并且不能被派生合约使用。
+
+
+合约中的所有内容对外部观察者都是可见的。设置一些 private 类型只能阻止其他合约访问和修改这些信息， 但是对于区块链外的整个世界它仍然是可见的。
+
+可见性标识符的定义位置，对于状态变量来说是在类型后面，对于函数是在参数列表和返回关键字中间，如下例
+
+
+1
+2
+3
+4
+5
+6
+7
+
+
+pragma solidity  >=0.4.16 <0.7.0;
+
+contract C {
+    function f(uint a) private pure returns (uint b) { return a + 1; }
+    function setData(uint a) internal { data = a; }
+    uint public data;
+}
+
+
+在下面的例子中，D 可以调用 c.getData（） 来获取状态存储中 data 的值，但不能调用 f 。 合约 E 继承自 C ，因此可以调用 compute。
+
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+
+
+pragma solidity >=0.4.0 <0.7.0;
+
+contract C {
+    uint private data;
+
+    function f(uint a) private returns(uint b) { return a + 1; }
+    function setData(uint a) public { data = a; }
+    function getData() public returns(uint) { return data; }
+    function compute(uint a, uint b) internal returns (uint) { return a+b; }
+}
+
+// 下面代码编译错误
+contract D {
+    function readData() public {
+        C c = new C();
+        uint local = c.f(7); // 错误：成员 `f` 不可见
+        c.setData(3);
+        local = c.getData();
+        local = c.compute(3, 5); // 错误：成员 `compute` 不可见
+    }
+}
+
+contract E is C {
+    function g() public {
+        C c = new C();
+        uint val = compute(3, 5); // 访问内部成员（从继承合约访问父合约成员）
+    }
+}
+
+
+2.2 Getter 函数
+编译器自动为所有 public 状态变量创建 getter 函数。对于下面给出的合约，编译器会生成一个名为 data 的函数， 该函数没有参数，返回值是一个 uint 类型，即状态变量 data 的值。 状态变量的初始化可以在声明时完成。
+
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+
+
+pragma solidity  >=0.4.0 <0.7.0;
+
+contract C {
+    uint public data = 42;
+}
+
+contract Caller {
+    C c = new C();
+    function f() public {
+        uint local = c.data();
+    }
+}
+
+
+getter 函数具有外部（external）可见性。如果在内部访问 getter（即没有 this. ），它被认为一个状态变量。 如果使用外部访问（即用 this. ），它被认作为一个函数。
+
+
+1
+2
+3
+4
+5
+6
+7
+8
+9
+
+
+pragma solidity ^0.4.0 <0.7.0;
+
+contract C {
+    uint public data;
+    function x() public {
+        data = 3; // 内部访问
+        uint val = this.data(); // 外部访问
+    }
+}
+
+
+如果你有一个数组类型的 public 状态变量，那么你只能通过生成的 getter 函数访问数组的单个元素。 这个机制以避免返回整个数组时的高成本gas。 可以使用如 data(0) 用于指定参数要返回的单个元素。 如果要在一次调用中返回整个数组，则需要写一个函数，例如：
+
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+
+
+pragma solidity >=0.4.0 <0.7.0;
+
+contract arrayExample {
+  // public state variable
+  uint[] public myArray;
+
+  // 指定生成的Getter 函数
+  /*
+  function myArray(uint i) public view returns (uint) {
+      return myArray[i];
+  }
+  */
+
+  // 返回整个数组
+  function getArray() public view returns (uint[] memory) {
+      return myArray;
+  }
+}
+
+
+现在可以使用 getArray() 获得整个数组，而 myArray(i) 是返回单个元素。
+下一个例子稍微复杂一些：
+
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+
+
+pragma solidity ^0.4.0 <0.7.0;
+
+contract Complex {
+    struct Data {
+        uint a;
+        bytes3 b;
+        mapping (uint => uint) map;
+    }
+    mapping (uint => mapping(bool => Data[])) public data;
+}
+
+
+这将会生成以下形式的函数
+
+
+1
+2
+3
+4
+
+
+function data(uint arg1, bool arg2, uint arg3) public returns (uint a, bytes3 b) {
+    a = data[arg1][arg2][arg3].a;
+    b = data[arg1][arg2][arg3].b;
+}
+
+
+请注意，因为没有好的方法来提供映射的键，所以结构中的映射被省略。
+3. 合约间调用
+之前的实验合约间的调用没有成功，这次就仔细地研究一下合约间地调用机制。分为两种情况
+
+调用者和被调用者在一个sol文件中
+调用者和被调用者在不同的sol文件中
+
+本文提到的合约调用方法的实质是抽象合约的使用。
+3.1 同sol文件的智能合约调用
+下面的智能合约中，Main和Add两个合约定义在一个Main.sol文件中，可以同时编译，然后逐个部署。
+
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+
+
+pragma solidity ^0.5.0;
+
+
+contract Main {
+  Add add;
+  
+  constructor(address _m) public {
+     add = Add(_m);
+  }
+  
+  function Addnumber() public view returns (uint) {
+    return add.add5(10);
+  }
+}
+
+contract Add {
+  function add5(uint s) public pure returns (uint){
+      return 5+s;
+  }
+}
+
+
+以使用Remix为例，点击编译按钮编译Main.sol文件，将会同时编译Main和Add两个合约。
+编译
+然后首先部署Add合约，因为Main合约的部署需要Add的合约地址作为参数。切换到部署和运行选项卡，选择Add合约，点击Deploy，成功部署后，复制合约地址。
+deploy simple Add
+然后重新选择Main合约，填入Add合约地址作为参数，点击部署按钮。
+deploy simple Main
+测试合约间调用，由合约内容可知，Main合约中的Addnumber函数调用了Add合约的add5函数，传入参数为10，得到的结果应为15。展开左侧的Deployed Contracts，点击Addnumber进行调用，结果如下。
+call test
+3.2 不同sol文件的智能合约调用
+这一次我们测试不同sol文件的智能合约调用，来一个复杂一点的，两个合约分别是Add.sol和Main.sol。
+Add.sol使用了一个结构体来定义数值，并通过映射定义查找表来寻找这个值。文件中定义了两个函数，numRegister用来向表中添加数值，addValue用来将从表中查到的指定值+5返回。之所以用这个结构是因为我们的项目里用到了，这里来测试一下可不可行。
+
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+
+
+pragma solidity ^0.5.0;
+
+contract Add {
+    struct Num{
+        uint value;
+    }
+    mapping(uint => Num) public lookupTable;
+    
+    function numRegister(uint key, uint _value) public {
+        lookupTable[key].value = _value;
+    }
+    
+    function addValue(uint key) public view returns (uint) {
+        return lookupTable[key].value + 5;
+    }
+
+}
+
+
+Main.sol没有多大变化
+
+
+ 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+
+
+pragma solidity ^0.5.0;
+
+contract Main {
+  Add add;
+  
+  constructor(address _m) public {
+     add = Add(_m);
+  }
+  
+  function Addnumber() public view returns (uint) {
+    return add.addValue(5);
+  }
+}
+
+contract Add {
+      function addValue(uint key) public view returns (uint);
+}
+
+
+仍然是先编译部署Add合约，部署后调用numRegister函数写入数值5，并调用addValue函数测试返回。
+deploy comlex Add
+接着编译部署Main合约，复制Add合约地址作为初始化参数，部署后调用Addnumber函数测试
+deploy comlex Main
+3.3 总结
+合约内的调用方法是相同的，都要先实例化，然后传入被调合约地址，接着才能调用。而写在不同sol文件中时，需要额外声明被调合约的抽象合约，有些文章中说使用call，callcode或delegatecall，但并不建议，因为这三个函数都是非常底层的函数，破坏了类型的安全，只能作为最后的手段使用。
+详细的解释参考了StackExchange-Calling function from deployed contract
+4. 函数修饰词pure和view
+转自深入理解Solidity-函数
+这两个函数修饰词的作用是告诉编译器函数是否会读取/修改状态，view 表示保证不修改状态，pure 表示保证不读取也不修改状态。Solidity v0.4.17 之前没有这两个修饰词，而是使用 constant 关键字，和 view 的含义相同，不过在 v0.5.0 之后被移除，现在只能使用这两个 view 和 pure。
+4.1 view 视图函数
+Getter 方法会被自动标记为 view，除此之外，一个 view 修饰的例子如下
+
+
+1
+2
+3
+4
+5
+6
+7
+
+
+pragma solidity  >=0.5.0 <0.7.0;
+
+contract C {
+    function f(uint a, uint b) public view returns (uint) {
+        return a * (b + 42) + now;
+    }
+}
+
+
+view 保证函数不修改状态，以下操作会被认为是修改状态
+
+修改状态变量。
+产生事件。
+创建其它合约。
+使用 selfdestruct。
+通过调用发送以太币。
+调用任何没有标记为 view 或者 pure 的函数。
+使用低级调用。
+使用包含特定操作码的内联汇编。
+
+4.2 pure 纯函数
+pure 保证不读取也不修改状态，不修改的定义上面已经提到，下面的操作被认为是读取状态
+
+读取状态变量。
+访问 address(this).balance 或者 .balance。
+访问 block，tx， msg 中任意成员 （除 msg.sig 和 msg.data 之外）。
+调用任何未标记为 pure 的函数。
+使用包含某些操作码的内联汇编。
+
+一个 pure 修饰的例子如下
+
+
+1
+2
+3
+4
+5
+6
+7
+
+
+pragma solidity >=0.5.0 <0.7.0;
+
+contract C {
+    function f(uint a, uint b) public pure returns (uint) {
+        return a * (b + 42);
+    }
+}
+
+
+5. 浮点数处理
+首先声明，Solidity 中支持浮点数定义，但无法赋值和进行计算。文档中对其描述是「目前还不完全支持」，虽然这意味着以后可能会完全支持，但等不及了，下面记录几个可参考的资料。
+
+来自 ethereum stackexchange 中的回答，介绍了一些可用的库；
+ABDK Math Quad，包含两个合约库，一个支持定点数，一个支持浮点数；
+Mikhail Vladimirov 的 Math in Solidity 系列文章，介绍如何在 Solidity 中处理各种数学运算，写的非常棒。
+
+6. 地址类型
+在智能合约中显式传入地址类型时，可能会出现如下错误
+
+Address checksum
+This looks like an address but has an invalid checksum. If this is not used as an address, please prepend &lsquo;00&rsquo;.
+
+关于该问题的一个讨论见 https://github.com/ethereum/EIPs/issues/55
+这是因为合约中现在使用地址类型必须做一个转换，不是简单的全部大写字母或小写字母，而是遵循一定的规则，这个规则见 ethereum/EIPs#55
+但是网上提供的解决方案一般是使用JS库中的转换函数，在智能合约中无法直接解决，好在，web3提供了一个在线API接口，可以调用其checkAddressChecksum函数对地址进行转换，然后将转换后的结果直接用于合约代码。
+7. Gas limit问题
+在搭建的以太坊私链上进行智能合约部署时，出现了以下问题
+
+
+1
+2
+
+
+INFO [03-21|13:50:11.690] Served eth_sendTransaction               reqid=24 t=684.186µs    err=&#34;exceeds block gas limit&#34;
+Error: exceeds block gas limit undefined
+
+
+出现该错误的原因如错误描述，是当前合约所需的gas超过了区块的最大gas。这可能与参数gasLimit有关。在创世区块的配置文件中，我们使用了默认的配置值，为0x2fefd8，转换为10进制即3141592。
+注：在线转换工具"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"智能合约知识点总结","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/2020\/summary-of-smart-contract-knowledge-points\/"},"image":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/cover.png","width":800,"height":600},"genre":"posts","keywords":"区块链","wordcount":5032,"url":"https:\/\/shuzang.github.io\/2020\/summary-of-smart-contract-knowledge-points\/","datePublished":"2020-05-04T00:00:00\x2b00:00","dateModified":"2020-05-04T00:00:00\x2b00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"shuzang","logo":{"@type":"ImageObject","url":"https:\/\/shuzang.github.io\/logo.png","width":127,"height":40}},"description":""}</script><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css></head><body><script>window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><nav class=navbar><div class=top-scroll-bar></div><div class=navbar-container><div class="navbar-header animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=navbar-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><nav class=navbar-mobile><div class=top-scroll-bar></div><div class=navbar-container><div class=navbar-header><div class="navbar-header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=navbar-menu id=mobile-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><main class=main><div class=container><article class=page><h1 class="post-title animated flipInX">智能合约知识点总结</h1><div class=post-meta><i class="far fa-calendar-alt fa-fw"></i>published on&nbsp;<time datetime=2020-05-04>2020-05-04</time>&nbsp;
+<i class="fas fa-pencil-alt fa-fw"></i>about 5032 words&nbsp;<span class=post-category><i class="far fa-folder fa-fw"></i>included in&nbsp;<a href=https://shuzang.github.io/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/>研究生的区块链学习之路</a>&nbsp;</span></div><div class=post-toc id=post-toc><h2 class=post-toc-title>Contents</h2><div class=post-toc-content><nav id=TableOfContents><ul><li><a href=#1-字符串比较>1. 字符串比较</a><ul><li><a href=#11-stringutils-库>1.1 StringUtils 库</a></li><li><a href=#12-哈希函数>1.2 哈希函数</a></li><li><a href=#13-gas-消耗分析>1.3 Gas 消耗分析</a></li></ul></li><li><a href=#2-可见性与getter函数>2. 可见性与Getter函数</a><ul><li><a href=#21-可见性>2.1 可见性</a></li><li><a href=#22-getter-函数>2.2 Getter 函数</a></li></ul></li><li><a href=#3-合约间调用>3. 合约间调用</a><ul><li><a href=#31-同sol文件的智能合约调用>3.1 同sol文件的智能合约调用</a></li><li><a href=#32-不同sol文件的智能合约调用>3.2 不同sol文件的智能合约调用</a></li><li><a href=#33-总结>3.3 总结</a></li></ul></li><li><a href=#4-函数修饰词pure和view>4. 函数修饰词pure和view</a><ul><li><a href=#41-view-视图函数>4.1 view 视图函数</a></li><li><a href=#42-pure-纯函数>4.2 pure 纯函数</a></li></ul></li><li><a href=#5-浮点数处理>5. 浮点数处理</a></li><li><a href=#6-地址类型>6. 地址类型</a></li><li><a href=#7-gas-limit问题>7. Gas limit问题</a><ul><li><a href=#原因查找>原因查找</a></li><li><a href=#解决办法>解决办法</a></li></ul></li></ul></nav></div></div><div class=post-toc-mobile id=post-toc-mobile><details><summary><div class=post-toc-title><span>Contents</span>
+<span><i class="details icon fas fa-angle-down"></i></span></div></summary><div class=post-toc-content><nav id=TableOfContentsMobile><ul><li><a href=#1-字符串比较>1. 字符串比较</a><ul><li><a href=#11-stringutils-库>1.1 StringUtils 库</a></li><li><a href=#12-哈希函数>1.2 哈希函数</a></li><li><a href=#13-gas-消耗分析>1.3 Gas 消耗分析</a></li></ul></li><li><a href=#2-可见性与getter函数>2. 可见性与Getter函数</a><ul><li><a href=#21-可见性>2.1 可见性</a></li><li><a href=#22-getter-函数>2.2 Getter 函数</a></li></ul></li><li><a href=#3-合约间调用>3. 合约间调用</a><ul><li><a href=#31-同sol文件的智能合约调用>3.1 同sol文件的智能合约调用</a></li><li><a href=#32-不同sol文件的智能合约调用>3.2 不同sol文件的智能合约调用</a></li><li><a href=#33-总结>3.3 总结</a></li></ul></li><li><a href=#4-函数修饰词pure和view>4. 函数修饰词pure和view</a><ul><li><a href=#41-view-视图函数>4.1 view 视图函数</a></li><li><a href=#42-pure-纯函数>4.2 pure 纯函数</a></li></ul></li><li><a href=#5-浮点数处理>5. 浮点数处理</a></li><li><a href=#6-地址类型>6. 地址类型</a></li><li><a href=#7-gas-limit问题>7. Gas limit问题</a><ul><li><a href=#原因查找>原因查找</a></li><li><a href=#解决办法>解决办法</a></li></ul></li></ul></nav></div></details></div><div class=post-content><p>项目进行过程中知识点的总结</p><a class=post-dummy-target id=1-字符串比较></a><h2>1. 字符串比较</h2><p>翻译自：<a href=https://fravoll.github.io/solidity-patterns/string_equality_comparison.html target=_blank>Fravoll-String Equality Comparison</a></p><p>比较两个给定字符串是否相等，是 Solidity 编程中最常见的一种情况，但语言本身并没有提供内置函数用于字符串比较，本文介绍两种可用方法并分析 Gas 消耗情况。</p><a class=post-dummy-target id=11-stringutils-库></a><h3>1.1 StringUtils 库</h3><p>第一种方法是使用 Ethereum 基金会提供的 StringUtils 库，它对每个字符进行成对比较，如果有一个字符对不匹配，则返回false。这种办法可以返回正确的结果，对于短字符串和字符不同发生在字符串前面的情况仅消耗少量 Gas。但是对于相等的字符串和长字符串，这种方法的 Gas 消耗较高，因为必须做很多比较才能得到正确结果。因此，字符串比较的两个可衡量的因素是字符串平均长度和正确率。</p><a class=post-dummy-target id=12-哈希函数></a><h3>1.2 哈希函数</h3><p>作者提出使用哈希函数进行比较，同时检查所提供的字符串的长度，从一开始就剔除长度不匹配的字符串。其步骤如下</p><ol><li>检查两个字符串是否有相同长度，通过转换为 <code>bytes</code> 类型完成，因为 <code>bytes</code> 类型有内置长度函数。如果相同进入第2步，如果不相同返回结果；</li><li>使用 <code>keccak256()</code> 函数对两个字符串求哈希，然后比较计算得到的哈希值，从而确定是否相等。</li></ol><p>一个示例代码如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -332,7 +944,81 @@
 </span><span class=lnt>2
 </span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=nx>INFO</span> <span class=p>[</span><span class=mi>03</span><span class=o>-</span><span class=mi>21</span><span class=o>|</span><span class=mi>13</span><span class=o>:</span><span class=mi>50</span><span class=o>:</span><span class=mf>11.690</span><span class=p>]</span> <span class=nx>Served</span> <span class=nx>eth_sendTransaction</span>               <span class=nx>reqid</span><span class=o>=</span><span class=mi>24</span> <span class=nx>t</span><span class=o>=</span><span class=mf>684.186</span><span class=nx>µs</span>    <span class=nx>err</span><span class=o>=</span><span class=s2>&#34;exceeds block gas limit&#34;</span>
 <span class=nb>Error</span><span class=o>:</span> <span class=nx>exceeds</span> <span class=nx>block</span> <span class=nx>gas</span> <span class=nx>limit</span> <span class=kc>undefined</span>
-</code></pre></td></tr></table></div></div><p>出现该错误的原因如错误描述，是当前合约所需的gas超过了区块的最大gas。这可能与参数gasLimit有关。在创世区块的配置文件中，我们使用了默认的配置值，为<code>0x2fefd8</code>，转换为10进制即<code>3141592</code>。</p><p>注：<a href=http://tool.oschina.net/hexconvert/ target=_blank>在线转换工具</a></p></div><div class=post-footer><a href=https://shuzang.github.io/2020/summary-of-smart-contract-knowledge-points/>Read More</a><div class=post-tags><span class=tag>&nbsp;<a href=https://shuzang.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/><i class="fas fa-tag fa-fw"></i>&nbsp;区块链</a></span></div></div></article><article class=post itemscope itemtype=http://schema.org/Article><h1 class="post-title post-list-title" itemprop="name headline"><a href=https://shuzang.github.io/2020/algorithm-backtracking/>算法-回溯</a></h1><div class=post-meta><a class=author href=https://shuzang.github.io/about/ rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>shuzang
-</a>published on <time datetime=2020-05-04>2020-05-04</time>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i>
-<a href=https://shuzang.github.io/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/>爱编程爱技术的孩子</a></span></div><div class=post-content>在真实的世界中，很多问题是不存在快速解法的，只能穷尽搜索，因此一个高效的搜索技术非常重要。回溯（Backtracking）和分支限界（Bra</div><div class=post-footer><a href=https://shuzang.github.io/2020/algorithm-backtracking/>Read More</a><div class=post-tags><span class=tag>&nbsp;<a href=https://shuzang.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/><i class="fas fa-tag fa-fw"></i>&nbsp;数据结构与算法</a></span></div></div></article><ul class=pagination><li class=page-item><span class=page-link><a href=/>1</a></span></li><li class=page-item><span class=page-link aria-hidden=true>&mldr;</span></li><li class=page-item><span class=page-link><a href=/page/43/>43</a></span></li><li class=page-item><span class=page-link><a href=/page/44/>44</a></span></li><li class="page-item active"><span class=page-link><a href=/page/45/>45</a></span></li><li class=page-item><span class=page-link><a href=/page/46/>46</a></span></li><li class=page-item><span class=page-link><a href=/page/47/>47</a></span></li><li class=page-item><span class=page-link aria-hidden=true>&mldr;</span></li><li class=page-item><span class=page-link><a href=/page/143/>143</a></span></li></ul></div></div></main><footer class=footer><div class=copyright><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2021</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://shuzang.github.io/about/ target=_blank>shuzang</a> | </span>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> & <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt</a></div></div></footer></div><a href=# class=dynamic-to-top id=dynamic-to-top data-scroll><span>&nbsp;</span>
-</a><script src=/js/lib/jquery/jquery.slim.min.js></script><script src=/js/lib/lazysizes/lazysizes.min.js></script><script src=/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js></script><script>window.scroll=new SmoothScroll('[data-scroll]',{speed:300,speedAsDuration:true});</script><script src=/js/lib/typeit/typeit.min.js></script><script>window.typeitArr=[["tp-3c0a4282539e1c3c149528c40a394747"]];</script><link rel=stylesheet href=/css/lib/katex/katex.min.css><script src=/js/lib/katex/katex.min.js></script><script defer src=/js/lib/katex/auto-render.min.js></script><link rel=stylesheet href=/css/lib/katex/copy-tex.min.css><script defer src=/js/lib/katex/copy-tex.min.js></script><script defer src=/js/lib/katex/mhchem.min.js></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true},{left:"$",right:"$",display:false},]});});</script><script src=/js/blog.min.js></script></body></html>
+</code></pre></td></tr></table></div></div><p>出现该错误的原因如错误描述，是当前合约所需的gas超过了区块的最大gas。这可能与参数gasLimit有关。在创世区块的配置文件中，我们使用了默认的配置值，为<code>0x2fefd8</code>，转换为10进制即<code>3141592</code>。</p><p>注：<a href=http://tool.oschina.net/hexconvert/ target=_blank>在线转换工具</a></p><a class=post-dummy-target id=原因查找></a><h3>原因查找</h3><p>因为部署智能合约之前已经进行过挖矿，区块链中已有数个区块，我们查询目前的gasLimit值。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=o>&gt;</span><span class=nx>eth</span><span class=p>.</span><span class=nx>getBlock</span><span class=p>(</span><span class=nx>eth</span><span class=p>.</span><span class=nx>blockNumber</span><span class=p>)</span>
+<span class=p>{</span>
+  <span class=nx>difficulty</span><span class=o>:</span> <span class=mi>131072</span><span class=p>,</span>
+  <span class=nx>extraData</span><span class=o>:</span> <span class=s2>&#34;0xd683010900846765746886676f312e3132856c696e7578&#34;</span><span class=p>,</span>
+  <span class=nx>gasLimit</span><span class=o>:</span> <span class=mi>3147727</span><span class=p>,</span>
+  <span class=nx>gasUsed</span><span class=o>:</span> <span class=mi>0</span><span class=p>,</span>
+  <span class=nx>hash</span><span class=o>:</span> <span class=s2>&#34;0x7e03472bcad02f6e85a3cdb21cfba856da58a4955dd2b6d21e3b8561446ae390&#34;</span><span class=p>,</span>
+  <span class=nx>logsBloom</span><span class=o>:</span> <span class=s2>&#34;0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000&#34;</span><span class=p>,</span>
+  <span class=nx>miner</span><span class=o>:</span> <span class=s2>&#34;0x79b43b2196723fff1485999aba45fda3e8b4df58&#34;</span><span class=p>,</span>
+  <span class=nx>mixHash</span><span class=o>:</span> <span class=s2>&#34;0x10a5130f4ea573f1f1599c11b8ade9ac3feb256c0414db1a277b7b63e8343d48&#34;</span><span class=p>,</span>
+  <span class=nx>nonce</span><span class=o>:</span> <span class=s2>&#34;0x6bba1166a347ba0f&#34;</span><span class=p>,</span>
+  <span class=nx>number</span><span class=o>:</span> <span class=mi>2</span><span class=p>,</span>
+  <span class=nx>parentHash</span><span class=o>:</span> <span class=s2>&#34;0xed8c7febfc1ab5e4e388bd886be1182635e77b0047f530c93af4eb31f898bd7c&#34;</span><span class=p>,</span>
+  <span class=nx>receiptsRoot</span><span class=o>:</span> <span class=s2>&#34;0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421&#34;</span><span class=p>,</span>
+  <span class=nx>sha3Uncles</span><span class=o>:</span> <span class=s2>&#34;0x1dcc4de8dec75d7aab85b567b6ccd41ad312451b948a7413f0a142fd40d49347&#34;</span><span class=p>,</span>
+  <span class=nx>size</span><span class=o>:</span> <span class=mi>534</span><span class=p>,</span>
+  <span class=nx>stateRoot</span><span class=o>:</span> <span class=s2>&#34;0x741c086895803cc3f85c8e7fb738acfb42aa03a12a03edf246b1c14055123b78&#34;</span><span class=p>,</span>
+  <span class=nx>timestamp</span><span class=o>:</span> <span class=mi>1552396507</span><span class=p>,</span>
+  <span class=nx>totalDifficulty</span><span class=o>:</span> <span class=mi>263168</span><span class=p>,</span>
+  <span class=nx>transactions</span><span class=o>:</span> <span class=p>[</span><span class=p>]</span><span class=p>,</span>
+  <span class=nx>transactionsRoot</span><span class=o>:</span> <span class=s2>&#34;0x56e81f171bcc55a6ff8345e692c0f86e5b48e01b996cadc001622fb5e363b421&#34;</span><span class=p>,</span>
+  <span class=nx>uncles</span><span class=o>:</span> <span class=p>[</span><span class=p>]</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>发现此时区块的gasLimit值为<code>3147727</code>。</p><p>查找我们部署的合约web3代码</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=kd>var</span> <span class=nx>testContract</span> <span class=o>=</span> <span class=nx>web3</span><span class=p>.</span><span class=nx>eth</span><span class=p>.</span><span class=nx>contract</span><span class=p>(</span><span class=p>[</span><span class=p>{</span><span class=s2>&#34;constant&#34;</span><span class=o>:</span><span class=kc>true</span><span class=p>,</span><span class=s2>&#34;inputs&#34;</span><span class=o>:</span><span class=p>[</span><span class=p>{</span><span class=s2>&#34;name&#34;</span><span class=o>:</span><span class=s2>&#34;a&#34;</span><span class=p>,</span><span class=s2>&#34;type&#34;</span><span class=o>:</span><span class=s2>&#34;uint256&#34;</span><span class=p>}</span><span class=p>]</span><span class=p>,</span><span class=s2>&#34;name&#34;</span><span class=o>:</span><span class=s2>&#34;multiply&#34;</span><span class=p>,</span><span class=s2>&#34;outputs&#34;</span><span class=o>:</span><span class=p>[</span><span class=p>{</span><span class=s2>&#34;name&#34;</span><span class=o>:</span><span class=s2>&#34;d&#34;</span><span class=p>,</span><span class=s2>&#34;type&#34;</span><span class=o>:</span><span class=s2>&#34;uint256&#34;</span><span class=p>}</span><span class=p>]</span><span class=p>,</span><span class=s2>&#34;payable&#34;</span><span class=o>:</span><span class=kc>false</span><span class=p>,</span><span class=s2>&#34;stateMutability&#34;</span><span class=o>:</span><span class=s2>&#34;pure&#34;</span><span class=p>,</span><span class=s2>&#34;type&#34;</span><span class=o>:</span><span class=s2>&#34;function&#34;</span><span class=p>}</span><span class=p>]</span><span class=p>)</span><span class=p>;</span>
+<span class=kd>var</span> <span class=nx>test</span> <span class=o>=</span> <span class=nx>testContract</span><span class=p>.</span><span class=k>new</span><span class=p>(</span>
+   <span class=p>{</span>
+     <span class=nx>from</span><span class=o>:</span> <span class=nx>web3</span><span class=p>.</span><span class=nx>eth</span><span class=p>.</span><span class=nx>accounts</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=p>,</span> 
+     <span class=nx>data</span><span class=o>:</span> <span class=s1>&#39;0x6080604052348015600f57600080fd5b5060a58061001e6000396000f3fe6080604052348015600f57600080fd5b506004361060285760003560e01c8063c6888fa114602d575b600080fd5b605660048036036020811015604157600080fd5b8101908080359060200190929190505050606c565b6040518082815260200191505060405180910390f35b600060078202905091905056fea165627a7a72305820028fd57d2fec4df9170b559fe84245ed4f81bc40f3cad3c185c8035501bdb3220029&#39;</span><span class=p>,</span> 
+     <span class=nx>gas</span><span class=o>:</span> <span class=s1>&#39;4700000&#39;</span>
+   <span class=p>}</span><span class=p>,</span> <span class=kd>function</span> <span class=p>(</span><span class=nx>e</span><span class=p>,</span> <span class=nx>contract</span><span class=p>)</span><span class=p>{</span>
+    <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=nx>e</span><span class=p>,</span> <span class=nx>contract</span><span class=p>)</span><span class=p>;</span>
+    <span class=k>if</span> <span class=p>(</span><span class=k>typeof</span> <span class=nx>contract</span><span class=p>.</span><span class=nx>address</span> <span class=o>!==</span> <span class=s1>&#39;undefined&#39;</span><span class=p>)</span> <span class=p>{</span>
+         <span class=nx>console</span><span class=p>.</span><span class=nx>log</span><span class=p>(</span><span class=s1>&#39;Contract mined! address: &#39;</span> <span class=o>+</span> <span class=nx>contract</span><span class=p>.</span><span class=nx>address</span> <span class=o>+</span> <span class=s1>&#39; transactionHash: &#39;</span> <span class=o>+</span> <span class=nx>contract</span><span class=p>.</span><span class=nx>transactionHash</span><span class=p>)</span><span class=p>;</span>
+    <span class=p>}</span>
+ <span class=p>}</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>发现合约所需gas为<code>4700000</code>，比gasLimit值高，所以部署失败，出现了<code>Error: exceeds block gas limit undefined</code>的错误</p><a class=post-dummy-target id=解决办法></a><h3>解决办法</h3><p>第一种解决办法是修改<code>genesis.json</code>中的gasLimit参数，设置一个更大的值。但这样做需要重新构建网络，极为繁琐。</p><p>另一种解决办法是通过geth命令的<code>--targetgaslimit</code>参数来调整gasLimit值</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=o>&gt;</span> <span class=o>--</span><span class=nx>targetgaslimit</span> <span class=mi>4712388</span>
+</code></pre></td></tr></table></div></div><p>这里没有调整成功，提示原因是端口在运行，可能和docker有关，不知道怎么解决。</p><p>该问题最后是通过调整web3中的gaslimit值解决的，因为这个简单的智能合约怎么看都不像能消耗4700000gas的样子，果然查询之后发现只消耗100000左右，于是将web3代码中的gaslimit调整到120000，重新部署，果然成功。</p><p>一个关于gaslimit的解释见：<a href=https://tinycalf.github.io/2018/07/02/20180702-%E4%BB%A5%E5%A4%AA%E5%9D%8A%E5%9D%97gas%E4%B8%8A%E9%99%90%E5%8A%A8%E6%80%81%E8%B0%83%E6%95%B4%E7%A0%94%E7%A9%B6/ target=_blank>以太坊Block Gaslimit动态调整机制分析</a></p></div><div class=post-copyright id=post-footer><p class=copyright-item><span>Author:&nbsp;</span>
+<span>shuzang</span></p><p class=copyright-item><span>Updated on:&nbsp;</span>
+<span>2020-05-04</span></p><p class=copyright-item><span>Share on:&nbsp;</span>
+<span><a href="//twitter.com/share?url=https%3a%2f%2fshuzang.github.io%2f2020%2fsummary-of-smart-contract-knowledge-points%2f&text=%e6%99%ba%e8%83%bd%e5%90%88%e7%ba%a6%e7%9f%a5%e8%af%86%e7%82%b9%e6%80%bb%e7%bb%93&via=" target=_blank title="Share on Twitter"><i class="fab fa-twitter fa-fw"></i></a><a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fshuzang.github.io%2f2020%2fsummary-of-smart-contract-knowledge-points%2f" target=_blank title="Share on Facebook"><i class="fab fa-facebook-square fa-fw"></i></a><a href="//reddit.com/submit?url=https%3a%2f%2fshuzang.github.io%2f2020%2fsummary-of-smart-contract-knowledge-points%2f&title=%e6%99%ba%e8%83%bd%e5%90%88%e7%ba%a6%e7%9f%a5%e8%af%86%e7%82%b9%e6%80%bb%e7%bb%93" target=_blank title="Share on Reddit"><i class="fab fa-reddit fa-fw"></i></a></span></p><p class=copyright-item></p><p class=copyright-item></p></div><br><div class=post-info-more><section><span class=tag><a href=https://shuzang.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/><i class="fas fa-tag fa-fw"></i>&nbsp;区块链</a>&nbsp;</span></section><section><span><a href=javascript:window.history.back();>Back</a></span>&nbsp;|&nbsp;<span><a href=https://shuzang.github.io>Home</a></span></section></div><div class=post-nav><a href=https://shuzang.github.io/2020/algorithm-backtracking/ class=prev rel=prev title=算法-回溯><i class="fas fa-angle-left fa-fw"></i>算法-回溯</a>
+<a href=https://shuzang.github.io/2020/image-container-and-repository/ class=next rel=next title=Docker-镜像、容器与仓库>Docker-镜像、容器与仓库<i class="fas fa-angle-right fa-fw"></i></a></div><div class=post-comment></div></article></div></main><footer class=footer><div class=copyright><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2021</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://shuzang.github.io/about/ target=_blank>shuzang</a> | </span>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> & <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt</a></div></div></footer></div><a href=# class=dynamic-to-top id=dynamic-to-top data-scroll><span>&nbsp;</span>
+</a><script src=/js/lib/jquery/jquery.slim.min.js></script><script src=/js/lib/lazysizes/lazysizes.min.js></script><script src=/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js></script><script>window.scroll=new SmoothScroll('[data-scroll]',{speed:300,speedAsDuration:true});</script><link rel=stylesheet href=/css/lib/katex/katex.min.css><script src=/js/lib/katex/katex.min.js></script><script defer src=/js/lib/katex/auto-render.min.js></script><link rel=stylesheet href=/css/lib/katex/copy-tex.min.css><script defer src=/js/lib/katex/copy-tex.min.js></script><script defer src=/js/lib/katex/mhchem.min.js></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true},{left:"$",right:"$",display:false},]});});</script><script src=/js/blog.min.js></script></body></html>

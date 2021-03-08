@@ -44,7 +44,7 @@ Istanbul BFT是一个状态机复制算法，每个验证者为了达成区块�
 
 ### 2. 状态转换
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/41951806-4824998c-79ff-11e8-99f0-153fca7708a4.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191029_状态转换图.png)
 
 - New round —> Pre-prepared
   - proposer从交易池收集交易

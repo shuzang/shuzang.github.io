@@ -55,19 +55,19 @@ Password needs to contain: Length: 8 and 64 characters; One lowercase (a-z) and 
 
 以 Remix 自带的示例合约 ballot.sol 为例，首先编译该合约，然后切换到 MythX 选项卡，输入之前关联到 MythX 的以太坊账户地址，MythX 提供的或自己更改后的密码，点击`Save`，然后点击`Analyze`
 
-![登录并进行分析](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8lZdFe.png)
+![登录并进行分析](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20200115_8lZdFe.png)
 
 经过一段时间的等待后，将可以在`Report`界面查看到安全分析结果
 
-![查看分析结果](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8lZcef.png)
+![查看分析结果](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20200115_8lZcef.png)
 
 也可以点击上图 Log 记录中的链接进入 MythX Dashboard 查看详细结果
 
-![详细分析结果](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8lZfYQ.png)
+![详细分析结果](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20200115_8lZfYQ.png)
 
 点击`Analysed Files`查看错误的详细位置与说明，然后更改源代码，重新测试，直到合约安全性达到自己想要的结果。
 
-![迭代修改](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8lZoyq.png)
+![迭代修改](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20200115_8lZoyq.png)
 
 检测到的合约弱点(漏洞)以SWC-XXX编号的形式出现，由 https://swcregistry.io/ 可查看完整的安全问题列表和解释。但是，免费的 MythX 只能检测10种安全问题，Pro版和企业版可以检测26种安全问题，具体对每种安全问题的支持程度见该页面： https://mythx.io/swc-coverage/ 
 
@@ -77,7 +77,7 @@ Password needs to contain: Length: 8 and 64 characters; One lowercase (a-z) and 
 
 我们所编写的 RC，ACC 和 JC 三个合约在经过多次修改后，将出现的安全问题降低到了可接受的程度，如下图所示
 
-![访问控制合约检测结果](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8leP0K.png)
+![访问控制合约检测结果](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20200115_8leP0K.png)
 
 三个合约出现的低级安全问题均为SWC-103: Floating Pragma ，即编译器的版本指定为一个范围，但这样具有更好的适用性，因此不进行修改
 
@@ -87,7 +87,7 @@ Password needs to contain: Length: 8 and 64 characters; One lowercase (a-z) and 
 
 ACC出现的15个中级安全问题在详情列表中无法查看
 
-![ACC的安全问题](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8leZpd.png)
+![ACC的安全问题](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20200115_8leZpd.png)
 
 邮件询问后官方的回复如下，字节码级别的错误如果不依靠安全工具很难检出并修正，因此我们只能忽略掉这些安全问题。
 
@@ -818,10 +818,13 @@ myACC.events.ReturnAccessResult({
 
 实验结果如下
 
-![request access authorized](https://picped-1301226557.cos.ap-beijing.myqcloud.com/81cdmj.png)
-![monitor access authorized](https://picped-1301226557.cos.ap-beijing.myqcloud.com/81c6pT.png)
-![request blocked](https://picped-1301226557.cos.ap-beijing.myqcloud.com/81gC38.png)
-![monitor request blocked](https://picped-1301226557.cos.ap-beijing.myqcloud.com/81gK3T.png)
+![request access authorized](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20200115_81cdmj.png)
+
+![monitor access authorized](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20200115_81c6pT.png)
+
+![request blocked](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20200115_81gC38.png)
+
+![monitor request blocked](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20200115_81g8b9.png)
 
 ### 3.6 错误测试
 
@@ -883,8 +886,9 @@ truffle(lightnode2)> Register.deployed().then(function(instance) {instance.getAt
 
 错误测试的结果如下
 
-![request static check failed](https://picped-1301226557.cos.ap-beijing.myqcloud.com/81gQvF.png)
-![monitor static check failed](https://picped-1301226557.cos.ap-beijing.myqcloud.com/81g8b9.png)
+![request static check failed](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20200115_81gQvF.png)
+
+![monitor static check failed](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20200115_81gK3T.png)
 
 ### 3.7 步骤总结
 

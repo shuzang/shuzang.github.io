@@ -63,7 +63,7 @@ LoRa/GPS HAT，CC1350 LaunchPad都内置一个温度传感器，LoRa/GPS HAT除�
 
 最终使用了两台树莓派和一台计算机搭建完成 6 节点的 Quorum 网络，采用了 IBFT 共识，未启用隐私管理器。网络拓扑如下：
 
-![网络拓扑设计](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8l9ZqJ.png)
+![网络拓扑设计](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191002_网络拓扑设计.png)
 
 注意，当前虚拟机和树莓派都是通过无线网卡接入路由器共享的无线网络(网络名为 quorum)。
 
@@ -152,11 +152,11 @@ Ubuntu18.04 必须使用[netplan](https://ubuntu.com/blog/ubuntu-bionic-netplan)
 
 在设置页面选择无线网络，然后点击网络连接的 quorum 网络的小齿轮图标，进入网络设置页面
 
-<img src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/8lCt6U.png" style="zoom: 80%;" />
+<img src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191002_网络设置1.png" style="zoom: 80%;" />
 
 点击`IPv4`选项卡，选择`Manual`，输入我们之前预先设计的IP`192.168.191.2`，子网掩码、网关和DNS都做相应的设置，然后点击应用。
 
-<img src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/8lCDt1.png" style="zoom:80%;" />
+<img src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191002_网络设置2.png" style="zoom:80%;" />
 
 查看设置好的网络地址
 

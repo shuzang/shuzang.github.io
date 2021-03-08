@@ -144,7 +144,7 @@ Engineering information公司则于1998年被Elsevier收购，现如今依然通
 
 JCR分区在Web of Science的搜索结果中任意选取一篇文章点看查看细节，点击`查看期刊影响力`可以看到结果
 
-![JCR分区查询](https://picped-1301226557.cos.ap-beijing.myqcloud.com/70436413-2ed75e80-1ac4-11ea-9c3f-285014cb7450.png)
+![JCR分区查询](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20181109_JCR分区查询.png)
 
 ## 5.  会议分级
 

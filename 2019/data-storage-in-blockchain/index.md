@@ -24,13 +24,13 @@
 
 从单位时间产生的数据量看区块链的承受能力，数据来源为 [区块链浏览器](https://www.blockchain.com/zh/explorer)。下面两个图分别展示了到 2019.01.11  15:36 为止 Bitcoin 和 Ethereum 最近的五个区块的情况，图中“大小（KB）”一栏右起第一个逗号实际上是小数点。比如第一个图(Bitcoin)中第一行数值中的1,162,094，实际上是1162.094KB；第二个图中第一行数值中的31,052，实际上是31.052KB
 
-![图1  2019.01.11  15:36 最近的五个Bitcoin区块](https://picped-1301226557.cos.ap-beijing.myqcloud.com/54515410-f07a9c00-4996-11e9-8dfd-30f554d1e88b.png)
+![图1  2019.01.11  15:36 最近的五个Bitcoin区块](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20190316_最近的五个比特币区块.png)
 
-![图1-2   2019.01.11  15:36 最近的五个Ethereum区块](https://user-images.githubusercontent.com/26682846/54515425-fff9e500-4996-11e9-93c1-049a0f2b3445.png)
+![图1-2   2019.01.11  15:36 最近的五个Ethereum区块](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20190316_最近的五个以太坊区块.png)
 
 从已掌握的知识以及上面两个图可以看出，每个块中的交易数量是不定的，交易的大小也难以确定，所以数据量的大小我们以区块为最小单位。区块链出块的时间是受到控制的，但是具体到每个区块，出块时间都有不同，区块的大小也不同，而上面两个图中五个数据的样本较小，我们利用上面的表中的“平均每小时区块数”和下图中区块大小的历史变化做一定估计。下图数据来源为 [BitInfoCharts](https://bitinfocharts.com/comparison/size-btc-eth.html#log)，蓝色为比特币区块大小变化，红色为以太坊区块大小变化。
 
-![图2 bitcoin,ethereum block size historical chart](https://picped-1301226557.cos.ap-beijing.myqcloud.com/54515452-0c7e3d80-4997-11e9-8c5a-65dd1e0f515e.png)
+![图2 bitcoin,ethereum block size historical chart](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20190316_比特币和以太坊区块大小历史折线图.png)
 
 结合已掌握的知识，比特币控制区块大小在 1M 左右，当然，这么长时间的发展，比特币的区块扩容之路非常坎坷，并因此衍生出多条硬分叉。但此次我们只考虑 1M 限制的这种情况。另外，我们还简单的把整个区块的大小作为数据大小，不考虑区块头等固定结构的存在，这种情况下：
 $$
@@ -99,11 +99,11 @@ Román, Victor, and Joaquín Ordieres-Meré. "[WiP] IoT Blockchain Technologies 
 
 Román首先考虑了几种可选的经典存储方案，如 InfluxDB，MongoDB和MariaDB。这些方案面临像由数据库引擎本身不可用（关机，维护等）引起的数据丢失问题，同时，一个主要的限制是，这样一个系统中的查询需要共享对不同用户的访问权限，存储的数据能够轻易的暴露给攻击者。作者选用了 BigchainDB 作为存储方案，主要因为其结合了区块链和分布式数据库的优点，如下表：
 
-![Compared characteristics for data storage](https://picped-1301226557.cos.ap-beijing.myqcloud.com/59248167-396b8500-8c54-11e9-86f5-ec64b7a9004c.png)
+![Compared characteristics for data storage](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20190316_数据存储的方案比较.png)
 
 实际上，如下图，作者选用了不同的存储方案以适应不同的情况。如果数据旨在内部流通，则MariaDB足够；如果利益来自于产品价值链相关的不同组织，则使用BigchainDB；当商业模型中的利益需要公众参与，为了提供合适的透明度等级，应当使用完全公开的架构，即IOTA的Tangle。
 
-![Proposed framework,useful in different context of stakeholders](https://picped-1301226557.cos.ap-beijing.myqcloud.com/59248189-4be5be80-8c54-11e9-99ed-a50ff08b0d96.png)
+![Proposed framework,useful in different context of stakeholders](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20190316_所提出的框架.png)
 
 ```bash
 Yu, Xiao Liang, Xiwei Xu, and Bin Liu. "EthDrive: A Peer-to-Peer Data Storage with Provenance." *CAiSE-Forum-DC*. 2017.
@@ -135,7 +135,7 @@ Ayoade, Gbadebo, et al. "Decentralized iot data management using blockchain and 
 
 论文使用了Inter的可信执行环境保存数据，其架构如下图：
 
-![A simplified architecture of iotsmartcontarct](https://picped-1301226557.cos.ap-beijing.myqcloud.com/59248211-5bfd9e00-8c54-11e9-96a0-248ac8e66774.png)
+![A simplified architecture of iotsmartcontarct](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20190316_一个简单架构.png)
 
 ```bash
 Ozyilmaz, Kazim Rifat, and Arda Yurdakul. "Designing a Blockchain-Based IoT With Ethereum, Swarm, and LoRa: The Software Solution to Create High Availability With Minimal Security Risks." *IEEE Consumer Electronics Magazine* 8.2 (2019): 28-34.

@@ -1,4 +1,589 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>区块链 on Shuzang's Blog</title><link>https://shuzang.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</link><description>Recent content in 区块链 on Shuzang's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Sun, 18 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://shuzang.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/index.xml" rel="self" type="application/rss+xml"/><item><title>Solidity-浮点数处理</title><link>https://shuzang.github.io/2020/math-in-solidity/</link><pubDate>Sun, 18 Oct 2020 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/2020/math-in-solidity/</guid><description>&lt;p>对 Solidity 中如何进行浮点数的处理做说明。&lt;/p></description></item><item><title>区块链学习7-交易池底层实现</title><link>https://shuzang.github.io/2020/transaction-and-txpool/</link><pubDate>Fri, 04 Sep 2020 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/2020/transaction-and-txpool/</guid><description>&lt;p>起源于老师提出的一个问题：区块链是如何处理同时发起的多个请求的。想了想觉得核心是交易池机制，因此准备看一下交易池的原理和实现。&lt;/p></description></item><item><title>Solidity-函数修饰词pure和view</title><link>https://shuzang.github.io/2020/pure-and-view-keyword/</link><pubDate>Mon, 04 May 2020 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/2020/pure-and-view-keyword/</guid><description>转自深入理解Solidity-函数 这两个函数修饰词的作用是告诉编译器函数是否会读取/修改状态，view 表示保证不修改状态，pure 表示保证不</description></item><item><title>Solidity-可见性与Getter函数</title><link>https://shuzang.github.io/2020/visibility-and-getter-function/</link><pubDate>Mon, 04 May 2020 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/2020/visibility-and-getter-function/</guid><description>转自：Solidity 0.6.4 中文文档 Solidity 有两种函数调用：内部调用（Internal Function Calls）和外部调用（External Function Calls）。前者指</description></item><item><title>Solidity-字符串匹配</title><link>https://shuzang.github.io/2020/string-equality-comparison/</link><pubDate>Mon, 04 May 2020 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/2020/string-equality-comparison/</guid><description>翻译自：Fravoll-String Equality Comparison 比较两个给定字符串是否相等，是 Solidity 编程中最常见的一种情况，但语言本身并没有提供内置函数用于字符串比较，</description></item><item><title>面对疫情区块链可以做些什么</title><link>https://shuzang.github.io/2020/what-can-blockchain-do-during-the-covid-19/</link><pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/2020/what-can-blockchain-do-during-the-covid-19/</guid><description>这场年初爆发的疫情在国内控制住以后，反而开始在全世界其它国家蔓延，如大数据、5G等技术均在当前这场疫情中产生了自己的作用，区块链能做些什么，</description></item><item><title>Solidity-Address checksum</title><link>https://shuzang.github.io/2020/solidity-address-checksum/</link><pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/2020/solidity-address-checksum/</guid><description>在智能合约中显式传入地址类型时，可能会出现如下错误 Address checksum This looks like an address but has an invalid checksum. If this is not used as an address, please prepend &amp;lsquo;00&amp;rsquo;. 关于该问题的一个讨论见 https://github.com/ethereum/EIPs/issues/55 这是因为合约中现在使</description></item><item><title>区块链方向有参考价值的文章收集</title><link>https://shuzang.github.io/2019/articles-about-blockchain/</link><pubDate>Tue, 26 Nov 2019 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/2019/articles-about-blockchain/</guid><description>很多区块链领域极有启发性的文章或者介绍极为详细的文章都很值得保存，以前直接将文章完整的转载过来，但最近发现这种方法占用空间而且毫无意义，因此</description></item><item><title>Solidity-合约间调用</title><link>https://shuzang.github.io/2019/call-between-contracts/</link><pubDate>Fri, 08 Nov 2019 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/2019/call-between-contracts/</guid><description>之前的实验合约间的调用没有成功，这次就仔细地研究一下合约间地调用机制。分为两种情况 调用者和被调用者在一个sol文件中 调用者和被调用者在不同的</description></item><item><title>以太坊开发8-Truffle框架安装使用</title><link>https://shuzang.github.io/2019/use-truffle-develop-ethereum-project/</link><pubDate>Wed, 06 Nov 2019 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/2019/use-truffle-develop-ethereum-project/</guid><description>Truffle和Ganache的安装使用 1. 安装Truffle 在Ubuntu18.04 下安装运行，要求Node.js版本高于v8.9.4 1 2 3</description></item><item><title>区块链学习6-IBFT共识</title><link>https://shuzang.github.io/2019/ibft-consensus/</link><pubDate>Tue, 29 Oct 2019 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/2019/ibft-consensus/</guid><description>AMIS公司提出的 Istanbul Byzantine Fault Tolerance Consensus（简称IBFT或Istanbul BFT），是一个基于PBFT的交易一致性的共识。因为要考虑可能发</description></item><item><title>提取以太坊的区块产生时间</title><link>https://shuzang.github.io/2019/extract-the-block-generation-time-of-ethereum/</link><pubDate>Fri, 05 Apr 2019 21:35:00 +0800</pubDate><guid>https://shuzang.github.io/2019/extract-the-block-generation-time-of-ethereum/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>区块链 on Shuzang's Blog</title><link>https://shuzang.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</link><description>Recent content in 区块链 on Shuzang's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Fri, 04 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://shuzang.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/index.xml" rel="self" type="application/rss+xml"/><item><title>区块链学习7-交易池底层实现</title><link>https://shuzang.github.io/2020/transaction-and-txpool/</link><pubDate>Fri, 04 Sep 2020 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/2020/transaction-and-txpool/</guid><description>&lt;p>起源于老师提出的一个问题：区块链是如何处理同时发起的多个请求的。想了想觉得核心是交易池机制，因此准备看一下交易池的原理和实现。&lt;/p></description></item><item><title>智能合约知识点总结</title><link>https://shuzang.github.io/2020/summary-of-smart-contract-knowledge-points/</link><pubDate>Mon, 04 May 2020 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/2020/summary-of-smart-contract-knowledge-points/</guid><description>&lt;p>项目进行过程中知识点的总结&lt;/p>
+&lt;h2 id="1-字符串比较">1. 字符串比较&lt;/h2>
+&lt;p>翻译自：&lt;a href="https://fravoll.github.io/solidity-patterns/string_equality_comparison.html" target="_blank">Fravoll-String Equality Comparison&lt;/a>&lt;/p>
+&lt;p>比较两个给定字符串是否相等，是 Solidity 编程中最常见的一种情况，但语言本身并没有提供内置函数用于字符串比较，本文介绍两种可用方法并分析 Gas 消耗情况。&lt;/p>
+&lt;h3 id="11-stringutils-库">1.1 StringUtils 库&lt;/h3>
+&lt;p>第一种方法是使用 Ethereum 基金会提供的 StringUtils 库，它对每个字符进行成对比较，如果有一个字符对不匹配，则返回false。这种办法可以返回正确的结果，对于短字符串和字符不同发生在字符串前面的情况仅消耗少量 Gas。但是对于相等的字符串和长字符串，这种方法的 Gas 消耗较高，因为必须做很多比较才能得到正确结果。因此，字符串比较的两个可衡量的因素是字符串平均长度和正确率。&lt;/p>
+&lt;h3 id="12-哈希函数">1.2 哈希函数&lt;/h3>
+&lt;p>作者提出使用哈希函数进行比较，同时检查所提供的字符串的长度，从一开始就剔除长度不匹配的字符串。其步骤如下&lt;/p>
+&lt;ol>
+&lt;li>检查两个字符串是否有相同长度，通过转换为 &lt;code>bytes&lt;/code> 类型完成，因为 &lt;code>bytes&lt;/code> 类型有内置长度函数。如果相同进入第2步，如果不相同返回结果；&lt;/li>
+&lt;li>使用 &lt;code>keccak256()&lt;/code> 函数对两个字符串求哈希，然后比较计算得到的哈希值，从而确定是否相等。&lt;/li>
+&lt;/ol>
+&lt;p>一个示例代码如下&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-solidity" data-lang="solidity">&lt;span class="err">#&lt;/span> &lt;span class="err">这&lt;/span>&lt;span class="err">段&lt;/span>&lt;span class="err">代&lt;/span>&lt;span class="err">码&lt;/span>&lt;span class="err">未&lt;/span>&lt;span class="err">经&lt;/span>&lt;span class="err">安&lt;/span>&lt;span class="err">全&lt;/span>&lt;span class="err">审&lt;/span>&lt;span class="err">计&lt;/span>&lt;span class="err">，&lt;/span>&lt;span class="err">使&lt;/span>&lt;span class="err">用&lt;/span>&lt;span class="err">有&lt;/span>&lt;span class="err">风&lt;/span>&lt;span class="err">险&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="n">hashCompareWithLengthCheck&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">string&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">string&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="kr">internal&lt;/span> &lt;span class="k">returns&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">bool&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">bytes&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">length&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="kt">bytes&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">length&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="kc">false&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span> &lt;span class="k">else&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="nf">keccak256&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">abi&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">encodePacket&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="nf">keccak256&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">abi&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">encodePacket&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;code>abi.encodePacket(...) returns (bytes)&lt;/code> 用于对给定参数执行&lt;a href="https://solidity-cn.readthedocs.io/zh/develop/abi-spec.html#abi-packed-mode" target="_blank">紧打包编码&lt;/a>，官方文档中不推荐使用 &lt;code>keccak256(...)&lt;/code> 直接计算哈希，而是使用 &lt;code>keccak256(abi.encodePacked(...))&lt;/code>&lt;/p>
+&lt;h3 id="13-gas-消耗分析">1.3 Gas 消耗分析&lt;/h3>
+&lt;p>在 Remix 编写代码测试了三种不同情况的字符串比较的 Gas 消耗&lt;/p>
+&lt;ol>
+&lt;li>比较哈希&lt;/li>
+&lt;li>比较每个字符，同时比较字符串长度&lt;/li>
+&lt;li>比较哈希，同时比较字符串长度&lt;/li>
+&lt;/ol>
+&lt;p>结果如下表所示，输入列为输入的待比较字符串，输出列的单位为 Wei&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th align="left">Input A&lt;/th>
+&lt;th align="left">Input B&lt;/th>
+&lt;th align="right">Hash&lt;/th>
+&lt;th align="right">Character + Length&lt;/th>
+&lt;th align="right">Hash + Length&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td align="left">abcdefghijklmnopqrstuvwxyz&lt;/td>
+&lt;td align="left">abcdefghijklmnopqrstuvwxyz&lt;/td>
+&lt;td align="right">1225&lt;/td>
+&lt;td align="right">7062&lt;/td>
+&lt;td align="right">1261&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="left">abcdefghijklmnopqrstuvwxy&lt;strong>X&lt;/strong>&lt;/td>
+&lt;td align="left">abcdefghijklmnopqrstuvwxyz&lt;/td>
+&lt;td align="right">1225&lt;/td>
+&lt;td align="right">7012&lt;/td>
+&lt;td align="right">1261&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="left">&lt;strong>X&lt;/strong>bcdefghijklmnopqrstuvwxyz&lt;/td>
+&lt;td align="left">abcdefghijklmnopqrstuvwxyz&lt;/td>
+&lt;td align="right">1225&lt;/td>
+&lt;td align="right">912&lt;/td>
+&lt;td align="right">1261&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="left">a&lt;strong>X&lt;/strong>cdefghijklmnopqrstuvwxyz&lt;/td>
+&lt;td align="left">abcdefghijklmnopqrstuvwxyz&lt;/td>
+&lt;td align="right">1225&lt;/td>
+&lt;td align="right">1156&lt;/td>
+&lt;td align="right">1261&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="left">ab&lt;strong>X&lt;/strong>defghijklmnopqrstuvwxyz&lt;/td>
+&lt;td align="left">abcdefghijklmnopqrstuvwxyz&lt;/td>
+&lt;td align="right">1225&lt;/td>
+&lt;td align="right">1400&lt;/td>
+&lt;td align="right">1261&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="left">abcdefghijkl&lt;/td>
+&lt;td align="left">abcdefghijklmnopqrstuvwxyz&lt;/td>
+&lt;td align="right">1225&lt;/td>
+&lt;td align="right">690&lt;/td>
+&lt;td align="right">707&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="left">a&lt;/td>
+&lt;td align="left">a&lt;/td>
+&lt;td align="right">1225&lt;/td>
+&lt;td align="right">962&lt;/td>
+&lt;td align="right">1261&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="left">ab&lt;/td>
+&lt;td align="left">ab&lt;/td>
+&lt;td align="right">1225&lt;/td>
+&lt;td align="right">1156&lt;/td>
+&lt;td align="right">1261&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td align="left">abc&lt;/td>
+&lt;td align="left">abc&lt;/td>
+&lt;td align="right">1225&lt;/td>
+&lt;td align="right">1450&lt;/td>
+&lt;td align="right">1261&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>可以看出，哈希+字符串长度 的比较方式 Gas 消耗更加稳定，这种方式比较高效。&lt;/p>
+&lt;h2 id="2-可见性与getter函数">2. 可见性与Getter函数&lt;/h2>
+&lt;p>转自：&lt;a href="https://learnblockchain.cn/docs/solidity/contracts.html#getter" target="_blank">Solidity 0.6.4 中文文档&lt;/a>&lt;/p>
+&lt;p>Solidity 有两种函数调用：内部调用（Internal Function Calls）和外部调用（External Function Calls）。前者指直接或递归地调用合约内部函数，不会产生实际的 EVM 调用，因此也被称为「消息嗲用」，后者指从合约外部调用合约中的函数，会产生一个 EVM 调用。&lt;/p>
+&lt;h3 id="21-可见性">2.1 可见性&lt;/h3>
+&lt;p>因此，函数和状态变量有四种可见性。函数可以指定为 &lt;code>external&lt;/code>，&lt;code>public&lt;/code>，&lt;code>internal&lt;/code> 或 &lt;code>private&lt;/code>，对于状态变量， 默认是 &lt;code>internal&lt;/code> 且不能设置为 &lt;code>external&lt;/code>。&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>external&lt;/code>：外部函数作为合约接口的一部分，意味着我们可以从其他合约和交易中调用。 一个外部函数 &lt;code>f&lt;/code> 不能从内部调用（即 &lt;code>f&lt;/code> 不起作用，但 &lt;code>this.f()&lt;/code>可以）。 当收到大量数据的时候，外部函数有时候会更有效率，因为数据不会从calldata复制到内存.&lt;/li>
+&lt;li>&lt;code>public&lt;/code>：public 函数是合约接口的一部分，可以在内部或通过消息调用。对于 public 状态变量， 会自动生成一个 getter 函数（见下面）。&lt;/li>
+&lt;li>&lt;code>internal&lt;/code>：这些函数和状态变量只能是内部访问（即从当前合约内部或从它派生的合约访问），不使用 &lt;code>this&lt;/code> 调用。&lt;/li>
+&lt;li>&lt;code>private&lt;/code>：private 函数和状态变量仅在当前定义它们的合约中使用，并且不能被派生合约使用。&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>合约中的所有内容对外部观察者都是可见的。设置一些 &lt;code>private&lt;/code> 类型只能阻止其他合约访问和修改这些信息， 但是对于区块链外的整个世界它仍然是可见的。&lt;/p>
+&lt;/blockquote>
+&lt;p>可见性标识符的定义位置，对于状态变量来说是在类型后面，对于函数是在参数列表和返回关键字中间，如下例&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-solidity" data-lang="solidity">&lt;span class="kr">pragma solidity&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">16&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">7&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kd">contract&lt;/span> &lt;span class="n">C&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">uint&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="kr">private&lt;/span> &lt;span class="kr">pure&lt;/span> &lt;span class="k">returns&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">uint&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="k">return&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="n">setData&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">uint&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="kr">internal&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="n">data&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="kt">uint&lt;/span> &lt;span class="kr">public&lt;/span> &lt;span class="n">data&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>在下面的例子中，&lt;code>D&lt;/code> 可以调用 &lt;code>c.getData（）&lt;/code> 来获取状态存储中 &lt;code>data&lt;/code> 的值，但不能调用 &lt;code>f&lt;/code> 。 合约 &lt;code>E&lt;/code> 继承自 &lt;code>C&lt;/code> ，因此可以调用 &lt;code>compute&lt;/code>。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;span class="lnt">21
+&lt;/span>&lt;span class="lnt">22
+&lt;/span>&lt;span class="lnt">23
+&lt;/span>&lt;span class="lnt">24
+&lt;/span>&lt;span class="lnt">25
+&lt;/span>&lt;span class="lnt">26
+&lt;/span>&lt;span class="lnt">27
+&lt;/span>&lt;span class="lnt">28
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-solidity" data-lang="solidity">&lt;span class="kr">pragma solidity&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">0&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">7&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kd">contract&lt;/span> &lt;span class="n">C&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kt">uint&lt;/span> &lt;span class="kr">private&lt;/span> &lt;span class="n">data&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">uint&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="kr">private&lt;/span> &lt;span class="k">returns&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">uint&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="k">return&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="n">setData&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">uint&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="kr">public&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="n">data&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="n">getData&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="kr">public&lt;/span> &lt;span class="k">returns&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">uint&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="k">return&lt;/span> &lt;span class="n">data&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="n">compute&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">uint&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">uint&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="kr">internal&lt;/span> &lt;span class="k">returns&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">uint&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span> &lt;span class="k">return&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="c1">// 下面代码编译错误
+&lt;/span>&lt;span class="c1">&lt;/span>&lt;span class="kd">contract&lt;/span> &lt;span class="n">D&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="n">readData&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="kr">public&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="n">C&lt;/span> &lt;span class="n">c&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">C&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kt">uint&lt;/span> &lt;span class="n">local&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">f&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">7&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="c1">// 错误：成员 `f` 不可见
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">setData&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">local&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">getData&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">local&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">compute&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="c1">// 错误：成员 `compute` 不可见
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="kd">contract&lt;/span> &lt;span class="n">E&lt;/span> &lt;span class="kr">is&lt;/span> &lt;span class="n">C&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="n">g&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="kr">public&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="n">C&lt;/span> &lt;span class="n">c&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">C&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kt">uint&lt;/span> &lt;span class="n">val&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">compute&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">3&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="c1">// 访问内部成员（从继承合约访问父合约成员）
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="22-getter-函数">2.2 Getter 函数&lt;/h3>
+&lt;p>编译器自动为所有 &lt;strong>public&lt;/strong> 状态变量创建 getter 函数。对于下面给出的合约，编译器会生成一个名为 &lt;code>data&lt;/code> 的函数， 该函数没有参数，返回值是一个 &lt;code>uint&lt;/code> 类型，即状态变量 &lt;code>data&lt;/code> 的值。 状态变量的初始化可以在声明时完成。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-solidity" data-lang="solidity">&lt;span class="kr">pragma solidity&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">0&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">7&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kd">contract&lt;/span> &lt;span class="n">C&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kt">uint&lt;/span> &lt;span class="kr">public&lt;/span> &lt;span class="n">data&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">42&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="kd">contract&lt;/span> &lt;span class="n">Caller&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="n">C&lt;/span> &lt;span class="n">c&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">C&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="kr">public&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kt">uint&lt;/span> &lt;span class="n">local&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>getter 函数具有外部（external）可见性。如果在内部访问 getter（即没有 &lt;code>this.&lt;/code> ），它被认为一个状态变量。 如果使用外部访问（即用 &lt;code>this.&lt;/code> ），它被认作为一个函数。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-solidity" data-lang="solidity">&lt;span class="kr">pragma solidity&lt;/span> &lt;span class="o">^&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">0&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">7&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kd">contract&lt;/span> &lt;span class="n">C&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kt">uint&lt;/span> &lt;span class="kr">public&lt;/span> &lt;span class="n">data&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="kr">public&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="n">data&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">3&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="c1">// 内部访问
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kt">uint&lt;/span> &lt;span class="n">val&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nb">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="c1">// 外部访问
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>如果你有一个数组类型的 &lt;code>public&lt;/code> 状态变量，那么你只能通过生成的 getter 函数访问数组的单个元素。 这个机制以避免返回整个数组时的高成本gas。 可以使用如 &lt;code>data(0)&lt;/code> 用于指定参数要返回的单个元素。 如果要在一次调用中返回整个数组，则需要写一个函数，例如：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-solidity" data-lang="solidity">&lt;span class="kr">pragma solidity&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">0&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">7&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kd">contract&lt;/span> &lt;span class="n">arrayExample&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="c1">// public state variable
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kt">uint&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="kr">public&lt;/span> &lt;span class="n">myArray&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="c1">// 指定生成的Getter 函数
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="cm">/*
+&lt;/span>&lt;span class="cm"> function myArray(uint i) public view returns (uint) {
+&lt;/span>&lt;span class="cm"> return myArray[i];
+&lt;/span>&lt;span class="cm"> }
+&lt;/span>&lt;span class="cm"> */&lt;/span>
+&lt;span class="c1">// 返回整个数组
+&lt;/span>&lt;span class="c1">&lt;/span> &lt;span class="kd">function&lt;/span> &lt;span class="n">getArray&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="kr">public&lt;/span> &lt;span class="kr">view&lt;/span> &lt;span class="k">returns&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">uint&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="kr">memory&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">myArray&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>现在可以使用 &lt;code>getArray()&lt;/code> 获得整个数组，而 &lt;code>myArray(i)&lt;/code> 是返回单个元素。&lt;/p>
+&lt;p>下一个例子稍微复杂一些：&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-solidity" data-lang="solidity">&lt;span class="kr">pragma solidity&lt;/span> &lt;span class="o">^&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">4&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">0&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">7&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kd">contract&lt;/span> &lt;span class="n">Complex&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kd">struct&lt;/span> &lt;span class="n">Data&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kt">uint&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kt">bytes3&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kd">mapping&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">uint&lt;/span> &lt;span class="o">=&amp;gt;&lt;/span> &lt;span class="kt">uint&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="n">map&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="kd">mapping&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">uint&lt;/span> &lt;span class="o">=&amp;gt;&lt;/span> &lt;span class="kd">mapping&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">bool&lt;/span> &lt;span class="o">=&amp;gt;&lt;/span> &lt;span class="n">Data&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="kr">public&lt;/span> &lt;span class="n">data&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>这将会生成以下形式的函数&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-solidity" data-lang="solidity">&lt;span class="kd">function&lt;/span> &lt;span class="n">data&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">uint&lt;/span> &lt;span class="n">arg1&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">bool&lt;/span> &lt;span class="n">arg2&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">uint&lt;/span> &lt;span class="n">arg3&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="kr">public&lt;/span> &lt;span class="k">returns&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">uint&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">bytes3&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="n">a&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">data&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">arg1&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">arg2&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">arg3&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="n">b&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">data&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">arg1&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">arg2&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">arg3&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>请注意，因为没有好的方法来提供映射的键，所以结构中的映射被省略。&lt;/p>
+&lt;h2 id="3-合约间调用">3. 合约间调用&lt;/h2>
+&lt;p>之前的实验合约间的调用没有成功，这次就仔细地研究一下合约间地调用机制。分为两种情况&lt;/p>
+&lt;ol>
+&lt;li>调用者和被调用者在一个sol文件中&lt;/li>
+&lt;li>调用者和被调用者在不同的sol文件中&lt;/li>
+&lt;/ol>
+&lt;p>本文提到的合约调用方法的实质是抽象合约的使用。&lt;/p>
+&lt;h3 id="31-同sol文件的智能合约调用">3.1 同sol文件的智能合约调用&lt;/h3>
+&lt;p>下面的智能合约中，Main和Add两个合约定义在一个Main.sol文件中，可以同时编译，然后逐个部署。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;span class="lnt">18
+&lt;/span>&lt;span class="lnt">19
+&lt;/span>&lt;span class="lnt">20
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="nx">pragma&lt;/span> &lt;span class="nx">solidity&lt;/span> &lt;span class="o">^&lt;/span>&lt;span class="mf">0.5&lt;/span>&lt;span class="mf">.0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="nx">contract&lt;/span> &lt;span class="nx">Main&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">Add&lt;/span> &lt;span class="nx">add&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="nx">constructor&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">address&lt;/span> &lt;span class="nx">_m&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="kr">public&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">add&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">Add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">_m&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="nx">Addnumber&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="kr">public&lt;/span> &lt;span class="nx">view&lt;/span> &lt;span class="nx">returns&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">uint&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="nx">add&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">add5&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">10&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="nx">contract&lt;/span> &lt;span class="nx">Add&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="nx">add5&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">uint&lt;/span> &lt;span class="nx">s&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="kr">public&lt;/span> &lt;span class="nx">pure&lt;/span> &lt;span class="nx">returns&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">uint&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="p">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="nx">s&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>以使用Remix为例，点击编译按钮编译Main.sol文件，将会同时编译Main和Add两个合约。&lt;/p>
+&lt;p>&lt;figure>&lt;img src="https://shuzang.github.io/svg/loading.min.svg" data-sizes="auto" data-src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472178-e6294d00-025a-11ea-8b4b-41a53b471c18.png" alt="编译" class="lazyload">&lt;figcaption class="image-caption">编译&lt;/figcaption>&lt;/figure>&lt;/p>
+&lt;p>然后首先部署Add合约，因为Main合约的部署需要Add的合约地址作为参数。切换到部署和运行选项卡，选择Add合约，点击&lt;code>Deploy&lt;/code>，成功部署后，复制合约地址。&lt;/p>
+&lt;p>&lt;figure>&lt;img src="https://shuzang.github.io/svg/loading.min.svg" data-sizes="auto" data-src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472256-0e18b080-025b-11ea-9a24-e324c82cd7b5.png" alt="deploy simple Add" class="lazyload">&lt;figcaption class="image-caption">deploy simple Add&lt;/figcaption>&lt;/figure>&lt;/p>
+&lt;p>然后重新选择Main合约，填入Add合约地址作为参数，点击部署按钮。&lt;/p>
+&lt;p>&lt;figure>&lt;img src="https://shuzang.github.io/svg/loading.min.svg" data-sizes="auto" data-src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472285-1a047280-025b-11ea-8bb5-a1fb5c65574e.png" alt="deploy simple Main" class="lazyload">&lt;figcaption class="image-caption">deploy simple Main&lt;/figcaption>&lt;/figure>&lt;/p>
+&lt;p>测试合约间调用，由合约内容可知，Main合约中的Addnumber函数调用了Add合约的add5函数，传入参数为10，得到的结果应为15。展开左侧的&lt;code>Deployed Contracts&lt;/code>，点击Addnumber进行调用，结果如下。&lt;/p>
+&lt;p>&lt;figure>&lt;img src="https://shuzang.github.io/svg/loading.min.svg" data-sizes="auto" data-src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472220-f5a89600-025a-11ea-9d2a-b39c8e39a810.png" alt="call test" class="lazyload">&lt;figcaption class="image-caption">call test&lt;/figcaption>&lt;/figure>&lt;/p>
+&lt;h3 id="32-不同sol文件的智能合约调用">3.2 不同sol文件的智能合约调用&lt;/h3>
+&lt;p>这一次我们测试不同sol文件的智能合约调用，来一个复杂一点的，两个合约分别是Add.sol和Main.sol。&lt;/p>
+&lt;p>Add.sol使用了一个结构体来定义数值，并通过映射定义查找表来寻找这个值。文件中定义了两个函数，numRegister用来向表中添加数值，addValue用来将从表中查到的指定值+5返回。之所以用这个结构是因为我们的项目里用到了，这里来测试一下可不可行。&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="nx">pragma&lt;/span> &lt;span class="nx">solidity&lt;/span> &lt;span class="o">^&lt;/span>&lt;span class="mf">0.5&lt;/span>&lt;span class="mf">.0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="nx">contract&lt;/span> &lt;span class="nx">Add&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">struct&lt;/span> &lt;span class="nx">Num&lt;/span>&lt;span class="p">{&lt;/span>
+&lt;span class="nx">uint&lt;/span> &lt;span class="nx">value&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="nx">mapping&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">uint&lt;/span> &lt;span class="p">=&amp;gt;&lt;/span> &lt;span class="nx">Num&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="kr">public&lt;/span> &lt;span class="nx">lookupTable&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="nx">numRegister&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">uint&lt;/span> &lt;span class="nx">key&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="nx">uint&lt;/span> &lt;span class="nx">_value&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="kr">public&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">lookupTable&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nx">key&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">value&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">_value&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="nx">addValue&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">uint&lt;/span> &lt;span class="nx">key&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="kr">public&lt;/span> &lt;span class="nx">view&lt;/span> &lt;span class="nx">returns&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">uint&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="nx">lookupTable&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="nx">key&lt;/span>&lt;span class="p">]&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">value&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">5&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>Main.sol没有多大变化&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;span class="lnt">11
+&lt;/span>&lt;span class="lnt">12
+&lt;/span>&lt;span class="lnt">13
+&lt;/span>&lt;span class="lnt">14
+&lt;/span>&lt;span class="lnt">15
+&lt;/span>&lt;span class="lnt">16
+&lt;/span>&lt;span class="lnt">17
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="nx">pragma&lt;/span> &lt;span class="nx">solidity&lt;/span> &lt;span class="o">^&lt;/span>&lt;span class="mf">0.5&lt;/span>&lt;span class="mf">.0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="nx">contract&lt;/span> &lt;span class="nx">Main&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">Add&lt;/span> &lt;span class="nx">add&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="nx">constructor&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">address&lt;/span> &lt;span class="nx">_m&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="kr">public&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="nx">add&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="nx">Add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">_m&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="nx">Addnumber&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="kr">public&lt;/span> &lt;span class="nx">view&lt;/span> &lt;span class="nx">returns&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">uint&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="nx">add&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="nx">addValue&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">5&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="nx">contract&lt;/span> &lt;span class="nx">Add&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="nx">addValue&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nx">uint&lt;/span> &lt;span class="nx">key&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="kr">public&lt;/span> &lt;span class="nx">view&lt;/span> &lt;span class="nx">returns&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="nx">uint&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>仍然是先编译部署Add合约，部署后调用numRegister函数写入数值5，并调用addValue函数测试返回。&lt;/p>
+&lt;p>&lt;figure>&lt;img src="https://shuzang.github.io/svg/loading.min.svg" data-sizes="auto" data-src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472316-2d174280-025b-11ea-96a6-51af8dd4fd4c.png" alt="deploy comlex Add" class="lazyload">&lt;figcaption class="image-caption">deploy comlex Add&lt;/figcaption>&lt;/figure>&lt;/p>
+&lt;p>接着编译部署Main合约，复制Add合约地址作为初始化参数，部署后调用Addnumber函数测试&lt;/p>
+&lt;p>&lt;figure>&lt;img src="https://shuzang.github.io/svg/loading.min.svg" data-sizes="auto" data-src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472331-399b9b00-025b-11ea-933f-8c03ff95c55a.png" alt="deploy comlex Main" class="lazyload">&lt;figcaption class="image-caption">deploy comlex Main&lt;/figcaption>&lt;/figure>&lt;/p>
+&lt;h3 id="33-总结">3.3 总结&lt;/h3>
+&lt;p>合约内的调用方法是相同的，都要先实例化，然后传入被调合约地址，接着才能调用。而写在不同sol文件中时，需要额外声明被调合约的抽象合约，有些文章中说使用&lt;code>call&lt;/code>，&lt;code>callcode&lt;/code>或&lt;code>delegatecall&lt;/code>，但并不建议，因为这三个函数都是非常底层的函数，破坏了类型的安全，只能作为最后的手段使用。&lt;/p>
+&lt;p>详细的解释参考了&lt;a href="https://ethereum.stackexchange.com/questions/9733/calling-function-from-deployed-contract" target="_blank">StackExchange-Calling function from deployed contract&lt;/a>&lt;/p>
+&lt;h2 id="4-函数修饰词pure和view">4. 函数修饰词pure和view&lt;/h2>
+&lt;p>转自&lt;a href="https://learnblockchain.cn/docs/solidity/contracts.html#view" target="_blank">深入理解Solidity-函数&lt;/a>&lt;/p>
+&lt;p>这两个函数修饰词的作用是告诉编译器函数是否会读取/修改状态，view 表示保证不修改状态，pure 表示保证不读取也不修改状态。Solidity v0.4.17 之前没有这两个修饰词，而是使用 constant 关键字，和 view 的含义相同，不过在 v0.5.0 之后被移除，现在只能使用这两个 view 和 pure。&lt;/p>
+&lt;h3 id="41-view-视图函数">4.1 view 视图函数&lt;/h3>
+&lt;p>Getter 方法会被自动标记为 &lt;code>view&lt;/code>，除此之外，一个 view 修饰的例子如下&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-solidity" data-lang="solidity">&lt;span class="kr">pragma solidity&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">5&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">0&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">7&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kd">contract&lt;/span> &lt;span class="n">C&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">uint&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">uint&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="kr">public&lt;/span> &lt;span class="kr">view&lt;/span> &lt;span class="k">returns&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">uint&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">b&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">42&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="nb">now&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>view 保证函数不修改状态，以下操作会被认为是修改状态&lt;/p>
+&lt;ol>
+&lt;li>修改状态变量。&lt;/li>
+&lt;li>产生事件。&lt;/li>
+&lt;li>创建其它合约。&lt;/li>
+&lt;li>使用 &lt;code>selfdestruct&lt;/code>。&lt;/li>
+&lt;li>通过调用发送以太币。&lt;/li>
+&lt;li>调用任何没有标记为 &lt;code>view&lt;/code> 或者 &lt;code>pure&lt;/code> 的函数。&lt;/li>
+&lt;li>使用低级调用。&lt;/li>
+&lt;li>使用包含特定操作码的内联汇编。&lt;/li>
+&lt;/ol>
+&lt;h3 id="42-pure-纯函数">4.2 pure 纯函数&lt;/h3>
+&lt;p>pure 保证不读取也不修改状态，不修改的定义上面已经提到，下面的操作被认为是读取状态&lt;/p>
+&lt;ol>
+&lt;li>读取状态变量。&lt;/li>
+&lt;li>访问 &lt;code>address(this).balance&lt;/code> 或者 &lt;code>.balance&lt;/code>。&lt;/li>
+&lt;li>访问 &lt;code>block&lt;/code>，&lt;code>tx&lt;/code>， &lt;code>msg&lt;/code> 中任意成员 （除 &lt;code>msg.sig&lt;/code> 和 &lt;code>msg.data&lt;/code> 之外）。&lt;/li>
+&lt;li>调用任何未标记为 &lt;code>pure&lt;/code> 的函数。&lt;/li>
+&lt;li>使用包含某些操作码的内联汇编。&lt;/li>
+&lt;/ol>
+&lt;p>一个 pure 修饰的例子如下&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-solidity" data-lang="solidity">&lt;span class="kr">pragma solidity&lt;/span> &lt;span class="o">&amp;gt;=&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">5&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">0&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">7&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="kd">contract&lt;/span> &lt;span class="n">C&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="kd">function&lt;/span> &lt;span class="n">f&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">uint&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">uint&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="kr">public&lt;/span> &lt;span class="kr">pure&lt;/span> &lt;span class="k">returns&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">uint&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;span class="k">return&lt;/span> &lt;span class="n">a&lt;/span> &lt;span class="o">*&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">b&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">42&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;span class="p">}&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="5-浮点数处理">5. 浮点数处理&lt;/h2>
+&lt;p>首先声明，Solidity 中支持浮点数定义，但无法赋值和进行计算。文档中对其描述是「目前还不完全支持」，虽然这意味着以后可能会完全支持，但等不及了，下面记录几个可参考的资料。&lt;/p>
+&lt;ol>
+&lt;li>来自 &lt;a href="https://ethereum.stackexchange.com/questions/83785/what-fixed-or-float-point-math-libraries-are-available-in-solidity" target="_blank">ethereum stackexchange&lt;/a> 中的回答，介绍了一些可用的库；&lt;/li>
+&lt;li>&lt;a href="https://github.com/abdk-consulting/abdk-libraries-solidity/blob/master/ABDKMathQuad.md" target="_blank">ABDK Math Quad&lt;/a>，包含两个合约库，一个支持定点数，一个支持浮点数；&lt;/li>
+&lt;li>Mikhail Vladimirov 的 &lt;a href="https://medium.com/coinmonks/math-in-solidity-part-1-numbers-384c8377f26d" target="_blank">Math in Solidity&lt;/a> 系列文章，介绍如何在 Solidity 中处理各种数学运算，写的非常棒。&lt;/li>
+&lt;/ol>
+&lt;h2 id="6-地址类型">6. 地址类型&lt;/h2>
+&lt;p>在智能合约中显式传入地址类型时，可能会出现如下错误&lt;/p>
+&lt;blockquote>
+&lt;p>Address checksum&lt;/p>
+&lt;p>This looks like an address but has an invalid checksum. If this is not used as an address, please prepend &amp;lsquo;00&amp;rsquo;.&lt;/p>
+&lt;/blockquote>
+&lt;p>关于该问题的一个讨论见 &lt;a href="https://github.com/ethereum/EIPs/issues/55">https://github.com/ethereum/EIPs/issues/55&lt;/a>&lt;/p>
+&lt;p>这是因为合约中现在使用地址类型必须做一个转换，不是简单的全部大写字母或小写字母，而是遵循一定的规则，这个规则见 &lt;a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-55.md" target="_blank">ethereum/EIPs#55&lt;/a>&lt;/p>
+&lt;p>但是网上提供的解决方案一般是使用JS库中的转换函数，在智能合约中无法直接解决，好在，web3提供了一个&lt;a href="https://web3-tools.netlify.com/" target="_blank">在线API接口&lt;/a>，可以调用其&lt;code>checkAddressChecksum&lt;/code>函数对地址进行转换，然后将转换后的结果直接用于合约代码。&lt;/p>
+&lt;h2 id="7-gas-limit问题">7. Gas limit问题&lt;/h2>
+&lt;p>在搭建的以太坊私链上进行智能合约部署时，出现了以下问题&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="nx">INFO&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">03&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">21&lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="mi">13&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="mi">50&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="mf">11.690&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="nx">Served&lt;/span> &lt;span class="nx">eth_sendTransaction&lt;/span> &lt;span class="nx">reqid&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">24&lt;/span> &lt;span class="nx">t&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mf">684.186&lt;/span>&lt;span class="nx">µs&lt;/span> &lt;span class="nx">err&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;exceeds block gas limit&amp;#34;&lt;/span>
+&lt;span class="nb">Error&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">exceeds&lt;/span> &lt;span class="nx">block&lt;/span> &lt;span class="nx">gas&lt;/span> &lt;span class="nx">limit&lt;/span> &lt;span class="kc">undefined&lt;/span>
+&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>出现该错误的原因如错误描述，是当前合约所需的gas超过了区块的最大gas。这可能与参数gasLimit有关。在创世区块的配置文件中，我们使用了默认的配置值，为&lt;code>0x2fefd8&lt;/code>，转换为10进制即&lt;code>3141592&lt;/code>。&lt;/p>
+&lt;p>注：&lt;a href="http://tool.oschina.net/hexconvert/" target="_blank">在线转换工具&lt;/a>&lt;/p></description></item><item><title>面对疫情区块链可以做些什么</title><link>https://shuzang.github.io/2020/what-can-blockchain-do-during-the-covid-19/</link><pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/2020/what-can-blockchain-do-during-the-covid-19/</guid><description>这场年初爆发的疫情在国内控制住以后，反而开始在全世界其它国家蔓延，如大数据、5G等技术均在当前这场疫情中产生了自己的作用，区块链能做些什么，</description></item><item><title>区块链方向有参考价值的文章收集</title><link>https://shuzang.github.io/2019/articles-about-blockchain/</link><pubDate>Tue, 26 Nov 2019 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/2019/articles-about-blockchain/</guid><description>很多区块链领域极有启发性的文章或者介绍极为详细的文章都很值得保存，以前直接将文章完整的转载过来，但最近发现这种方法占用空间而且毫无意义，因此</description></item><item><title>以太坊开发8-Truffle框架安装使用</title><link>https://shuzang.github.io/2019/use-truffle-develop-ethereum-project/</link><pubDate>Wed, 06 Nov 2019 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/2019/use-truffle-develop-ethereum-project/</guid><description>Truffle和Ganache的安装使用 1. 安装Truffle 在Ubuntu18.04 下安装运行，要求Node.js版本高于v8.9.4 1 2 3</description></item><item><title>区块链学习6-IBFT共识</title><link>https://shuzang.github.io/2019/ibft-consensus/</link><pubDate>Tue, 29 Oct 2019 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/2019/ibft-consensus/</guid><description>AMIS公司提出的 Istanbul Byzantine Fault Tolerance Consensus（简称IBFT或Istanbul BFT），是一个基于PBFT的交易一致性的共识。因为要考虑可能发</description></item><item><title>提取以太坊的区块产生时间</title><link>https://shuzang.github.io/2019/extract-the-block-generation-time-of-ethereum/</link><pubDate>Fri, 05 Apr 2019 21:35:00 +0800</pubDate><guid>https://shuzang.github.io/2019/extract-the-block-generation-time-of-ethereum/</guid><description>&lt;h2 id="前言">前言&lt;/h2>
 &lt;p>目的是提取以太坊的区块产生时间形成数据集，初步的思路有两种：&lt;/p>
 &lt;ul>
 &lt;li>爬取以太坊区块浏览器中的时间数据，然后格式化形成数据集输出&lt;/li>
@@ -14,19 +599,7 @@
 &lt;li>
 &lt;p>&lt;a href="https://github.com/ethersphere/go-ethereum/wiki/IPFS-&amp;amp;-SWARM" target="_blank">swarm和ipfs的比较&lt;/a>&lt;/p>
 &lt;/li>
-&lt;/ul></description></item><item><title>Solidity-gas limit问题</title><link>https://shuzang.github.io/2019/solidity-gas-limit%E9%97%AE%E9%A2%98/</link><pubDate>Thu, 21 Mar 2019 22:00:00 +0800</pubDate><guid>https://shuzang.github.io/2019/solidity-gas-limit%E9%97%AE%E9%A2%98/</guid><description>&lt;p>在搭建的以太坊私链上进行智能合约部署时，出现了以下问题&lt;/p>
-&lt;div class="highlight">&lt;div class="chroma">
-&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code>&lt;span class="lnt">1
-&lt;/span>&lt;span class="lnt">2
-&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
-&lt;td class="lntd">
-&lt;pre class="chroma">&lt;code class="language-js" data-lang="js">&lt;span class="nx">INFO&lt;/span> &lt;span class="p">[&lt;/span>&lt;span class="mi">03&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">21&lt;/span>&lt;span class="o">|&lt;/span>&lt;span class="mi">13&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="mi">50&lt;/span>&lt;span class="o">:&lt;/span>&lt;span class="mf">11.690&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="nx">Served&lt;/span> &lt;span class="nx">eth_sendTransaction&lt;/span> &lt;span class="nx">reqid&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">24&lt;/span> &lt;span class="nx">t&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mf">684.186&lt;/span>&lt;span class="nx">µs&lt;/span> &lt;span class="nx">err&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;exceeds block gas limit&amp;#34;&lt;/span>
-&lt;span class="nb">Error&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="nx">exceeds&lt;/span> &lt;span class="nx">block&lt;/span> &lt;span class="nx">gas&lt;/span> &lt;span class="nx">limit&lt;/span> &lt;span class="kc">undefined&lt;/span>
-&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
-&lt;/div>
-&lt;/div>&lt;p>出现该错误的原因如错误描述，是当前合约所需的gas超过了区块的最大gas。这可能与参数gasLimit有关。在创世区块的配置文件中，我们使用了默认的配置值，为&lt;code>0x2fefd8&lt;/code>，转换为10进制即&lt;code>3141592&lt;/code>。&lt;/p>
-&lt;p>注：&lt;a href="http://tool.oschina.net/hexconvert/" target="_blank">在线转换工具&lt;/a>&lt;/p></description></item><item><title>以太坊开发6-Docker搭建以太坊私链</title><link>https://shuzang.github.io/2019/use-docker-to-build-ethereum-private-chain/</link><pubDate>Tue, 12 Mar 2019 11:24:00 +0800</pubDate><guid>https://shuzang.github.io/2019/use-docker-to-build-ethereum-private-chain/</guid><description>&lt;p>在以太坊github的&lt;a href="https://github.com/ethereum/go-ethereum" target="_blank">官方项目地址&lt;/a>发现其支持Docker启动，同时因为Docker相对于虚拟机的易用性，决定尝试使用Docker搭建以太坊联盟链&lt;/p>
+&lt;/ul></description></item><item><title>以太坊开发6-Docker搭建以太坊私链</title><link>https://shuzang.github.io/2019/use-docker-to-build-ethereum-private-chain/</link><pubDate>Tue, 12 Mar 2019 11:24:00 +0800</pubDate><guid>https://shuzang.github.io/2019/use-docker-to-build-ethereum-private-chain/</guid><description>&lt;p>在以太坊github的&lt;a href="https://github.com/ethereum/go-ethereum" target="_blank">官方项目地址&lt;/a>发现其支持Docker启动，同时因为Docker相对于虚拟机的易用性，决定尝试使用Docker搭建以太坊联盟链&lt;/p>
 &lt;p>Docker安装部分查看自官方说明，搭建过程主要参考&lt;a href="https://www.jianshu.com/p/7994db7a2b89?from=singlemessage" target="_blank">简书-使用Docker搭建以太坊私有链并部署合约&lt;/a>&lt;/p>
 &lt;h2 id="一docker安装">一、Docker安装&lt;/h2>
 &lt;p>OS环境：Ubuntu 18.04 LTS(bionic)&lt;/p>

@@ -15,7 +15,7 @@ Swarm和ETH的区别见：[IPFS&Swarm](https://github.com/ethersphere/go-ethereu
 
 在以太坊生态中，智能合约smart contract实现了分布式逻辑，Swarm实现了分布式存储，Whisper实现了分布式消息，整体结构如下所示
 
-![以太坊生态](https://picped-1301226557.cos.ap-beijing.myqcloud.com/54515474-215ad100-4997-11e9-919b-e24dca446640.jpg)
+![YJS_20190401_以太坊生态](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20190401_以太坊生态.jpg)
 
 参考链接：[Swarm文档说明](https://swarm-guide.readthedocs.io/en/latest/introduction.html)，[Swarm内容搜索](http://swarm-gateways.net/)，[Swarm简单入门](https://mitchellcash.com/2016/12/29/getting-started-with-ethereum-s-swarm-on-the-testnet.html)
 
