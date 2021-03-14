@@ -9,13 +9,13 @@
 
 12月27日20时45分，长征五号遥三运载火箭(别名“胖五”)在中国文昌航天发射场点火升空，2000多秒后，与实践二十号卫星成功分离，将卫星送入预定轨道，任务取得圆满成功，这是长征系列运载火箭第323次发射。 对这个事有印象是因为火箭别名太可爱了。
 
-<img src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/71710107-99668a80-2e35-11ea-86ee-eae4cd2cd69f.jpg" alt="胖五发射" style="zoom: 80%;" />
+<img src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/ZK_20200103_胖五火箭发射.jpg" alt="胖五发射" style="zoom: 80%;" />
 
 2、[“尼德兰Netherlands”取代“荷兰Holland”成为荷兰新国家标识](http://www.thecover.cn/news/3286977) 12.29
 
 荷兰政府近日宣布，为重塑国际形象，将从2020年开始更换国家标识，原来使用的“荷兰Holland”一词将变为“尼德兰Netherlands”，郁金香图案也将被设计成郁金香形状的“NL”所取代。 从2020年1月起，荷兰政府机构、使领馆、企业、学校、各城市及体育机构在对外项目中都将使用这一标识。
 
-![旧标识](https://picped-1301226557.cos.ap-beijing.myqcloud.com/71710136-c31fb180-2e35-11ea-9b35-d42efe776494.jpg)
+![旧标识](https://picped-1301226557.cos.ap-beijing.myqcloud.com/ZK_20200103_荷兰旧国家标识.jpg)
 ![新标识](https://user-images.githubusercontent.com/26682846/71710114-a8e5d380-2e35-11ea-8d2d-cf8fcc841fa8.jpg)
 
 “荷兰Holland”一词仅指荷兰的两个省，包括著名的阿姆斯特丹、鹿特丹和海牙等城市，但实际上，该国共有十二个省，“Holland”只是尼德兰的一小部分。而且荷兰的官方名也不是Holland，而是The Kingdom of the Netherlands，这次的行动大概只能算正名。不过虽然荷兰政府做出了这一决定，但叫顺口的普通民众是否会改口很难说。
@@ -24,29 +24,35 @@
 
 前日产董事长兼 CEO， Carlos Ghosn 涉嫌财务犯罪被捕。在得到保释后，这名年逾花甲的金领嫌疑犯，居然在日本当局严密监控之下「人间蒸发」，毫无征兆地在黎巴嫩现身，上演一出金蝉脱壳的好戏。
 
-![Carlos Ghosn](https://picped-1301226557.cos.ap-beijing.myqcloud.com/71710128-b9964980-2e35-11ea-9695-6578aa34bfd6.jpg)
+![Carlos Ghosn](https://picped-1301226557.cos.ap-beijing.myqcloud.com/ZK_20200103_日产董事长戈恩.jpg)
 
 4、[习近平主席2020新年贺词](http://tv.cctv.com/2020/01/01/VIDE6GMLrpHrVML4eTwm1mOq200101.shtml) 01.01
 
 2020年在即将过去的这一周到来，各平台都推出了各种年度总结，习近平主席也通过中央广播电视总台和互联网发表了新年贺词。`书藏的生活周刊`第一期也即将发布，不管2019年充实还是虚度，不管问心无愧还是有所遗憾，一切都已经过去，2019年初制定的计划完成了大半，现在回顾，发现自己改变了很多，在迅速的成长，也希望自己在2020年开开心心，万事顺利。2020，你好！
 
-![2020元旦](https://picped-1301226557.cos.ap-beijing.myqcloud.com/71710111-a5524c80-2e35-11ea-8bc4-6a94f2d786a6.jpg)
+![2020](https://picped-1301226557.cos.ap-beijing.myqcloud.com/ZK_20200103_2020.jpg)
+
+
 
 5、[台湾一"黑鹰"直升机坠毁，多名高级军官罹难](http://henan.china.com.cn/news/2020-01/03/content_41021184.htm)
 
 台湾防务部门一架黑鹰直升机1月2日上午在新北市乌来山区坠毁，台湾防务部门证实，包括“参谋总长”沈一鸣、“政战局”副局长于亲文等多名台军高级军官都在机上。13人目前有5位获救，其他8位没有生命迹象，罹难者包括“参谋总长”沈一鸣。 
 
-<img src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/72693470-ed7aaa00-3b6b-11ea-8604-2d32e7d92814.jpg" alt="失事搜救现场" style="zoom: 80%;" />
+![失事搜救现场](https://picped-1301226557.cos.ap-beijing.myqcloud.com/ZK_20200103_失事搜救现场.jpg)
+
+
 
 ## 小事
 
 1、2019.12.26，陪同学去换医保卡，顺便到辽宁大学崇山校区逛了一圈，食堂的饭是真便宜啊，为什么会有这么大区别呢。
 
-![辽宁大学崇山校区食堂](https://picped-1301226557.cos.ap-beijing.myqcloud.com/71710148-d03ca080-2e35-11ea-930e-5388287b133f.jpg)
+<img src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/ZK_20200103_辽宁大学崇山校区食堂.jpg" alt="辽宁大学崇山校区食堂" style="zoom: 80%;" />
 
 2、2019.12.31晚，和实验室几个师兄一起去全运万达吃烤鱼，致敬逝去的2019。
 
-![吃烤鱼](https://picped-1301226557.cos.ap-beijing.myqcloud.com/71710183-ee0a0580-2e35-11ea-96ff-80bb241a8761.png)
+![吃烤鱼](https://picped-1301226557.cos.ap-beijing.myqcloud.com/ZK_20200103_吃烤鱼.jpg)
+
+
 
 ## 2019年终总结
 
@@ -102,7 +108,7 @@
 
 介绍了子弹笔记，这是一种类似于康奈尔笔记的笔记方式，一种可定制的、宽松的笔记系统，通过主题、页码、短句和简单的符号完成整个笔记，较容易实现和坚持。
 
-![Bullet Journal](https://picped-1301226557.cos.ap-beijing.myqcloud.com/72693469-ed7aaa00-3b6b-11ea-946f-47386baf4679.jpg)
+![子弹笔记](https://picped-1301226557.cos.ap-beijing.myqcloud.com/ZK_20200103_子弹笔记.jpg)
 
 3、[Github Action 教程：定时发送天气邮件](http://www.ruanyifeng.com/blog/2019/12/github_actions.html)
 
@@ -116,7 +122,9 @@ Github在2019年11月发布的新功能，是一个持续集成工具，也可�
 
 2019年11月02日看的电影，当初不想跑太远，于是从最近的影院唯一上映的三部电影中选择了《终结者》，不过看完后发现很不错，值回票价了。
 
-![终结者 黑暗命运](https://picped-1301226557.cos.ap-beijing.myqcloud.com/71710233-2d385680-2e36-11ea-913e-ad2f75189b6e.png)
+![吃烤鱼](https://picped-1301226557.cos.ap-beijing.myqcloud.com/ZK_20200103_终结者黑暗命运.jpg)
+
+
 
 琳达·汉密尔顿老年气质大涨，是真的令人着迷，州长也变得有了人情味，足够令人感慨。新的终结者和守护者形象设计也挺好的，这种电影，看的开心就好。
 
@@ -124,7 +132,7 @@ Github在2019年11月发布的新功能，是一个持续集成工具，也可�
 
 大家都说攀登者不怎么样，不过我觉得还可以，起码看的时候情绪确实被调动起来了，最后的感受就是，每个人在特定时刻做出的决定其实是没有对错的，都代表了他当时的认知。人生就是选择的过程，无论是方五洲为了救曲松林放弃摄像机，还是曲松林愿意保护摄像机而牺牲自己，是李国梁在第一次登顶失败后毅然决定再次带队登顶，还是徐缨为了帮助方五洲登顶带病上山获取更详细的气象资料而牺牲，亦或者是几十年后的杨光带着残疾之身也要完成登顶梦想，或者两次攀登中那些默默无闻的人们，普通的登山队员，气象组的小姑娘，无论艰难险阻，一声令下就跟着方五洲他们前进。每个人做出了自己的选择，也获得了自己生命的意义。曲松林活下来最终领悟了生命更重要，但如果当时牺牲了同样是登山英雄，虽然想法改变了，但并不是当初的决定是错的。短短一辈子，选择平平淡淡也好，选择轰轰烈烈也好，自己觉得过的有意义就好。
 
-![攀登者](https://picped-1301226557.cos.ap-beijing.myqcloud.com/71710190-fb26f480-2e35-11ea-8d5b-06692d7d1bd1.png)
+![攀登者](https://picped-1301226557.cos.ap-beijing.myqcloud.com/ZK_20200103_攀登者.jpg)
 
 看完之后还去了解了以下相关的资料，最后发现了一个牛人，王勇峰，中国登山队队长，和李致新在20世纪80年代到90年代的11年中，完成了中国人首次登顶世界七大洲所有最高峰的壮举，真的很厉害，难以想象。
 
@@ -132,11 +140,11 @@ Github在2019年11月发布的新功能，是一个持续集成工具，也可�
 
 2019年12月07日，冰雪奇缘是我非常喜欢的一部动画，不过这次一直等到快下映的时候才有时间去看。虽然看完后整体的映像不如第一部深刻，但也非常不错，看完感觉十分幸福那种，就喜欢这种大团圆的结局。很多隐藏的细节看的时候其实注意不到，后来通过[《冰雪奇缘2》： 从成长到成熟](https://movie.douban.com/review/12029508/)这篇影评才发现，总体非常满意。
 
-![冰雪奇缘2](https://picped-1301226557.cos.ap-beijing.myqcloud.com/71649250-04399800-2d48-11ea-976c-8bd18f02c869.png)
+<img src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/ZK_20200103_冰雪奇缘2.jpg" alt="冰雪奇缘2" style="zoom: 50%;" />
 
 值得一提的是本篇里艾莎找到自己的力量时来了一次大变身，简直惊艳，语言无法言表，真的会令人惊呼的。实际上第二部里艾莎和安娜整体的服装风格都成熟不少，毕竟已经成为了合格的女王和公主。
 
-<img src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/71649251-04d22e80-2d48-11ea-88b0-bcb91b4bc083.png" alt="艾莎与安娜" style="zoom: 50%;" />
+![艾莎与安娜](https://picped-1301226557.cos.ap-beijing.myqcloud.com/ZK_20200103_艾莎与安娜.jpg)
 
 ### 概念
 
@@ -144,7 +152,7 @@ Github在2019年11月发布的新功能，是一个持续集成工具，也可�
 
  2008年，阿拉善SEE生态协会发起成立阿拉善SEE基金会，致力于资助和扶持中国民间环保公益组织成长，一开始意味它是蚂蚁森林背后的基金组织，因为有一个项目叫做`一亿颗梭梭`，现在有点不确定，但官网当前公布的项目列表很丰富，涉及各个方面，比如地下水保护、三江源保护、卫蓝侠、任鸟飞等项目。
 
-![一亿颗梭梭项目实景图](https://picped-1301226557.cos.ap-beijing.myqcloud.com/71710663-67a2f300-2e38-11ea-9220-4618ddecf1c6.jpg)
+![一亿颗梭梭项目实景图](https://picped-1301226557.cos.ap-beijing.myqcloud.com/ZK_20200103_一亿颗梭梭.png)
 
 2、[Google AIY](https://aiyprojects.withgoogle.com/) 
 
@@ -152,13 +160,13 @@ Do-it-yourself artificial intelligence，意为动手创造你的人工智能。
 
 Google当前有两个套件，Voice Kit和Vision Kit，前者可以用于创建虚拟语音助手，为自己的项目添加语音交互功能，后者是一套简单的计算机视觉系统，可运行3中基于TensorFlow的类神经网络模型应用。
 
-![Voice Kit and Vision Kit](https://picped-1301226557.cos.ap-beijing.myqcloud.com/64760476-5b82e500-d56c-11e9-9347-b592a3cd5c9a.png)
+<img src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/ZK_20200103_GoogleAIY.png" alt="Voice Kit and Vision Kit" style="zoom: 50%;" />
 
 3、[水果证件照](https://usdawatercolors.nal.usda.gov/pom/search.xhtml?start=0)
 
 美国农业部为全世界已知水果制作了7500幅水彩证件照，并提供了高清下载，下面是苹果的证件照。
 
-![苹果证件照](https://picped-1301226557.cos.ap-beijing.myqcloud.com/71641291-41644280-2cd4-11ea-9ba4-a5f10009b0b6.png)
+![水果证件照](https://picped-1301226557.cos.ap-beijing.myqcloud.com/ZK_20200103_水果证件照.jpg)
 
 github有一个项目，[用python爬虫保存美国农业部网站上的水果证件照](https://github.com/jwenjian/ghiblog/issues/114)，专门用来下载保存这些图片。
 
@@ -182,7 +190,7 @@ github有一个项目，[用python爬虫保存美国农业部网站上的水果�
 
 一个纯Javascript的图表库，百度开源的一个数据可视化工具，提供大量直观，生动，可交互，克高度定制化的数据可视化图标，做出来的图表好看且炫酷，下面是一个截图，实际上可以交互。
 
-![Echarts 全国主要城市 PM2 5](https://picped-1301226557.cos.ap-beijing.myqcloud.com/64760475-5aea4e80-d56c-11e9-8401-c200889be64c.png)
+![Echarts 全国主要城市 PM2 5](https://picped-1301226557.cos.ap-beijing.myqcloud.com/ZK_20200103_Echart示例.png)
 
 ### 工具
 
@@ -242,61 +250,43 @@ github提供的分享代码片段的服务，可以把代码片段保存在这�
 
 1、你所浪费的今日，是昨日死去之人奢望的明日。你所厌恶的现在，是未来的你回不去的曾经
 
-![时间](https://picped-1301226557.cos.ap-beijing.myqcloud.com/64760474-5aea4e80-d56c-11e9-9de7-32dc662812ca.jpeg)
+![时间流逝](https://picped-1301226557.cos.ap-beijing.myqcloud.com/ZK_20200103_时间.png)
+
+
 
 2、20岁那年买得起10岁那年买不起的玩具，又有什么意义呢？认识就是这样，错过了就再也回不来了。有些事，现在不做，以后再也不会做了
 
-![成长](https://picped-1301226557.cos.ap-beijing.myqcloud.com/71710449-3a097a00-2e37-11ea-859c-bb435b8830da.png)
+![成长](https://picped-1301226557.cos.ap-beijing.myqcloud.com/ZK_20200103_成长.png)
 
 3、遥不可及的并非十年之后，而是今日之前。
 
-<img src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/71641192-56d86d00-2cd2-11ea-88a5-9653b10b006f.png" alt="过去" style="zoom: 50%;" />
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/ZK_20200103_遗憾.png)
 
 4、人生最可悲的事情，莫过于胸怀大志，却又虚度光阴。
 
-<img src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/64760477-5b82e500-d56c-11e9-935d-9befab0bae41.jpg" alt="最可悲的事情" style="zoom:50%;" />
+<img src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/ZK_20200103_最可悲的事.png" alt="最可悲的事情" style="zoom:50%;" />
 
 ### 文摘
 
 1、一寸山河一寸血，十万青年十万军
 
-<br>
-
 2、只是希望，能有一个可以在身边。两个人的生活圈子，是有着重叠的地方的，一个人生病了的时候，另外一个人就可以立马过来照顾。不需要心急如焚的，等待着去购买车票。哪怕是夜深了，也能够一起约出来，在附近的街道上吃着宵夜。哪怕是下雨了，忘记带伞也能够让对方，很快的就是给你送来一把雨伞。哪怕是下雪了，你也能够拍摄照片，和对方一起分享下雪时候的快乐，一起约好了去打雪仗堆雪人，而不是只能在朋友圈里对着照片点赞留言。这终究，缺少了现实接触的温度。每一句话，每一个呼吸，每一次心跳，都是幸福的味道。
-
-<br>
 
 3、因为不知道下辈子还能不能遇到，所以这辈子拼命给你温暖给你拥抱
 
-<br>
-
 4、所谓的意义只是智慧生命为了体现自身价值而设定的一个概念，是生命活着的一种体现，既然没有外物赋予自身意义，那么为什么不可以给自己下一个有意义的定义呢？ 
-
-<br>
 
 5、人有贫富，但无贵贱，达到这一点的时候已是平等的起源
 
-<br>
-
 6、人生最可怕的事在于：每个人都有他的理由
-
-<br>
 
 7、我们都知道，如果可以回到过去，改变任何一件小事情，都将极大地改变未来。然而，几乎没有人想到，今天只要小小改变，就会改变自己的未来。
 
-<br>
-
 8、我口袋里有一个小设备，可以访问几乎全部的人类知识。我却用它与不认识的人进行毫无意义的争论，并看猫的照片。
-
-<br>
 
 9、按时长大，平安喜乐。
 
-<br>
-
 10、年轻的时候就应该不去想那么多，想得越多，遗憾越多。
-
-<br>
 
 11、这世上，唯有感情在冲动的时候没有错。
 　
