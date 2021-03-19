@@ -43,8 +43,8 @@ Markdown用习惯之后，就会不管什么事都想用它来做，因为真的
 
 建立一个名为`动漫收藏.md`的新文档保存上面的测试内容，导出为OPML格式，然后在幕布中导入，幕布导入时以文件名为标题，导入后大纲与思维导图两种模式的显示效果如下
 
-![mubu大纲模式](https://picped-1301226557.cos.ap-beijing.myqcloud.com/1HYkxx.png)
-![mubu思维导图模式](https://picped-1301226557.cos.ap-beijing.myqcloud.com/1HYMid.png)
+![mubu大纲模式](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180701_1HYkxx.png)
+![mubu思维导图模式](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180701_1HYMid.png)
 
 这种方法的缺点是幕布的思维导图展示风格只有最普通的形式，高级的功能需要付费，而且即时付费后，幕布中也缺乏好看的思维导图风格。
 
@@ -56,7 +56,7 @@ Markdown用习惯之后，就会不管什么事都想用它来做，因为真的
 
 Xmind Zen导入需要在上述幕布导入内容的基础上添加标题，比如前面用来测试的动漫收藏md文档全部为三级标题内容，需要在开头加入二级标题`动漫收藏`，导入后以彩色线条的风格显示，取消背景颜色，选择分支自由模式，调整后效果如下
 
-![Xzen](https://picped-1301226557.cos.ap-beijing.myqcloud.com/1HYGsf.png)
+![Xzen](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180701_1HYGsf.png)
 
 Xmind也可以将思维导图导出为markdown格式存储。但是Xmind Zen软件是有试用期的，试用期过后将无法使用。
 

@@ -164,7 +164,7 @@ $code-font-family: Fira Mono, Source Code Pro, Menlo, Consolas, Monaco, monospac
 
 使用CNAME别名映射域名，比设置A记录更方便，最重要的是A记录无法开启https。参数设置如下图所示。
 
-![CNAME设置](https://picped-1301226557.cos.ap-beijing.myqcloud.com/1Heu1H.png)
+![CNAME设置](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20190712_1Heu1H.png)
 
 访问网址时可能会加www前缀，因此可以设置一个二级域名解析，方法相同。
 
@@ -172,11 +172,11 @@ $code-font-family: Fira Mono, Source Code Pro, Menlo, Consolas, Monaco, monospac
 
 到 Github `shuzang.github.io`仓库设置里，在 `Custom domain` 这里填写`shuzang.top`域名并保存。
 
-![github域名设置](https://picped-1301226557.cos.ap-beijing.myqcloud.com/1He3HP.png)
+![github域名设置](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20190712_1He3HP.png)
 
  `Custom domain` 下方 `Enforce HTTPS` 这个选项一并勾选，Github 跟 Let’s Encrypt 有合作，如果勾选了这个选项，Let’s Encrypt 就会给你的博客签发一张 SSL 证书，免费的。
 
-![启用HTTPS](https://picped-1301226557.cos.ap-beijing.myqcloud.com/1HeJN8.png)
+![启用HTTPS](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20190712_1HeJN8.png)
 
 
 

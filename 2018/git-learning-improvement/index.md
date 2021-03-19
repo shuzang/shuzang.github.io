@@ -206,7 +206,7 @@ git pull
 
 下面的图片展示了 git 如何随着时间存储数据，其中每个「Version」都是一个 commit：
 
-![checking over time](https://picped-1301226557.cos.ap-beijing.myqcloud.com/3AIT4f.png)
+![checking over time](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180422_3AIT4f.png)
 
 ### 5.1 Commit message
 

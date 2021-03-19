@@ -36,7 +36,7 @@ HTTP 有两类报文：
 
 上一小节已经提到过，HTTP 是面向文本的，本质上是一串 ASCII 码字符串，报文的格式就是对字符串的各部分含义进行规定，各部分长度也是不固定的。
 
-![HTTP请求与响应报文](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_655484_323.jpg)
+![HTTP请求与响应报文](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200709_epub_655484_323.jpg)
 
 HTTP 请求与响应报文都是由三个部分组成：开始行、首部行和实体主体。
 
@@ -145,7 +145,7 @@ HTTPS 全称为安全超文本传输协议（Secure Hypertext Transfer Protocol�
 
 SSL 全称为安全套接字层（Secure Socket Layer），是网景公司在1994年开发的安全协议，是一个运输层协议（实际上是位于运输层和应用层之间）。1995年 SSL 就被转交给了 IETF（互联网工程任务组），开始进行标准化。IETF 在 SSL 3.0 的基础上设计了 TLS 协议，现在使用的基本都是2008年发布的 TLS 1.2，不过在2018年已经发布了最新的 TLS 1.3。`F12`打开浏览器控制台，在安全选项卡可以看到当前网页使用的 TLS 版本。至此我们知道，SSL和TLS不是两个协议，而是一个协议的不同阶段。
 
-![浏览器查看TLS版本](https://picped-1301226557.cos.ap-beijing.myqcloud.com/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9F%A5%E7%9C%8BTLS%E7%89%88%E6%9C%AC.png)
+![浏览器查看TLS版本](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200709_%E6%B5%8F%E8%A7%88%E5%99%A8%E6%9F%A5%E7%9C%8BTLS%E7%89%88%E6%9C%AC.png)
 
 SSL/TLS 协议主要是解决 HTTP 身份认证和明文传输问题，以网上购物为例，假如购物网站使用 HTTP 协议，那么可能出现如下问题
 
@@ -158,11 +158,11 @@ SSL/TLS 通过证书机制进行身份鉴别，通过协商一个对称会话密
 
 一个比较清晰的流程说明图片如下
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/2641864607-5e11d65c74244.png)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200709_2641864607-5e11d65c74244.png)
 
 第一部分是**证书验证过程**，服务端的公司需要首先向专门的数字证书认证机构申请数字证书，获得证书的同时会得到一对公私钥，私钥自己保存，公钥放在证书里。另外，证书里除了公钥外，还包含证书颁发机构信息、公司信息和证书有效期等字段。客户端通过 HTTPS 协议进行请求时，服务器就会把证书传给客户端。注意，证书颁发机构颁发证书时，已经用自己的私钥进行了签名，公钥公开在网络中，所以客户端收到证书后，就可以利用网络中的证书颁发机构的公钥来验证证书的合法性，这就是验证服务端身份的过程。我们点击浏览器搜索栏的锁图标，可以查看网站证书，下面是B站的证书。
 
-![B站数字证书](https://picped-1301226557.cos.ap-beijing.myqcloud.com/B%E7%AB%99%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6.png)
+![B站数字证书](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200709_B%E7%AB%99%E6%95%B0%E5%AD%97%E8%AF%81%E4%B9%A6.png)
 
 
 
@@ -172,7 +172,7 @@ SSL/TLS 通过证书机制进行身份鉴别，通过协商一个对称会话密
 
 这是一个大致的过程，实际的请求与响应如下，这里借用了《图解HTTP》的图，还要注意的一点是，TLS 的通信过程是在建立 TCP连接后开始的。
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_907764_181.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200709_epub_907764_181.jpg)
 
 
 

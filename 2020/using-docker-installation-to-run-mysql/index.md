@@ -85,7 +85,7 @@ mysql>
 
 第一种是使用 Navicat for MySQL 测试，Navicat 安装在宿主机的 win10系统中
 
-![测试连接](https://picped-1301226557.cos.ap-beijing.myqcloud.com/%E6%B5%8B%E8%AF%95%E8%BF%9E%E6%8E%A5.png)
+![测试连接](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200423_%E6%B5%8B%E8%AF%95%E8%BF%9E%E6%8E%A5.png)
 
 点击「测试连接」查看连接是否成功，成功后点确定可以进入以图形化方式查看数据库
 

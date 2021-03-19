@@ -65,7 +65,7 @@ ms := &struct1{f1:15.5，i1:10}  //括号内声明字段名，这样可以不按
 
 其中第二行称为混合字面量语法，但底层仍然会调用`new()`，因此与使用 `new()` 初始化是等同的。以`type Point struct {x,y int}`为例，这几种初始化方式的内存布局如下
 
-<img src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/3EkqRU.jpg" alt="结构体内存布局" style="zoom: 80%;" />
+<img src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20191126_3EkqRU.jpg" alt="结构体内存布局" style="zoom: 80%;" />
 
 从上图可以看出，结构体和它包含的数据在内存中是以连续块的形式存在的，即使结构体中嵌套其它的结构体，同样如此。
 
