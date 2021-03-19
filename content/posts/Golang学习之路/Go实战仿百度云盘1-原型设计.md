@@ -17,7 +17,7 @@ slug: Go implement distributed cloud storage system 1-Prototype design
 
 整个项目是一个递进式的实现过程，一开始，先实现一个简单的原型系统，架构如下
 
-![服务架构说明](https://picped-1301226557.cos.ap-beijing.myqcloud.com/%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E8%AF%B4%E6%98%8E.png)
+![服务架构说明](https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20200810_%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E8%AF%B4%E6%98%8E.png)
 
 根据该架构图，先设计接口，列表如下
 

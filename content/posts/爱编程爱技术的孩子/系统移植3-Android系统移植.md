@@ -80,13 +80,13 @@ System.img经常以两种格式出现：raw和sparse。
 
 一种是raw ext4 image，即raw image，使用file命令可查看它：
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/image-20200427163333049.png)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_image-20200427163333049.png)
 
 其特点是完整的ext4分区镜像（包含很多全零的无效填充区），可以直接使用mount进行挂载，因此比较大（一般1G左右）。
 
 另一种是sparse ext4 image，即simg，使用file命令查看它：
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/image-20200427163351924.png)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_image-20200427163351924.png)
 
 就是说是一个非常普通的dat文件。由于它将raw ext4进行稀疏描述，因此尺寸比较小（没有全零的无效填充区，一般在300到500M之间）。
 
@@ -97,7 +97,7 @@ system/core/libsparse/simg2img.c // 将sparse image转换为raw image；
 system/core/libsparse/img2simg.c // 将raw image转换为sparse image
 ```
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/image-20200427163428279.png)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_image-20200427163428279.png)
 
 转换的命令如下
 
@@ -147,11 +147,11 @@ $ saveenv
 
 ## 4. 使用界面
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/image-20200427163821116.png)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_image-20200427163821116.png)
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/image-20200427163831726.png)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_image-20200427163831726.png)
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/image-20200427163844988.png)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_image-20200427163844988.png)
 
 ## 5. Android 项目源码管理
 
@@ -165,15 +165,15 @@ AOSP项目由不同的子项目组成,为了方便进行管理,Google采用Git�
 
 我们有个非常庞大的项目Pre,该项目由很多个子项目R1,R2,...Rn等组成,为了方便管理和协同开发,我们为每个子项目创立自己的仓库,整个项目的结构如下:
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/clip_image002.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_clip_image002.jpg)
 
 将一个项目Pre进行分库后会遇到这么一个问题:如果我们想要创建Pre分支来做feature开发,这就意味着,我们需要到每个子项目中分别创建对应的分支,这个过程如果纯粹靠手工做,那简直是个灾难,利索当然我们会想写个自动化处理程序(我们假设这个工具叫做RepoUtil)来帮助我们解决这个问题.这个RepoUtil也会有版本管理之类的需求,因此我们也用Git对其管理,并为其创建对应的仓库.此时整个项目的结构如下:
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/clip_image004.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_clip_image004.jpg)
 
 这里RepoUtil知道整个项目Pre下的每个子项目(即维护子项目的列表),同时需要提供对这些子项目的管理功能,比如统一创建分支等.但是从"单一职责"角度来看,RepoUitl这个工具的功能过于复杂,我们完全可以将维护子项目列表这个功能抽取出来作为一个新项目sub_projects,因为子项目也会变化,因此,为其创建对应的仓库,并用Git管理,这样的化,RepoUtil只需要通过简单的对ub_projects进行依赖即可,此时整个项目的结构如下:
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/clip_image006.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_clip_image006.jpg)
 
 AOSP项目结构和我上文的描述非常类似.repo工具对应RepoUtil,mainfest对应sub_projects.
 

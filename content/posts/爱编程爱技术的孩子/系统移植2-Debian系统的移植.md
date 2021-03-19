@@ -34,7 +34,7 @@ $ git clone https://github.com/EMSYM/U-boot.git
 $ git checkout -b v4.1 origin/blurr-4.1.15
 ```
 
-![创建并切换分支](https://picped-1301226557.cos.ap-beijing.myqcloud.com/d1bb18bcb403.png)
+![创建并切换分支](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_d1bb18bcb403.png)
 
 ### 1.3 安装依赖
 
@@ -47,7 +47,7 @@ $ sudo apt-get install build-essential gcc
 
 注：Ubuntu缺省情况下，并没有提供C/C++的编译环境，因此还需要手动安装。如果单独安装gcc以及g++比较麻烦，幸运的是，为了能够编译Ubuntu的内核，Ubuntu提供了一个build-essential软件包。因为依赖关系的问题，安装了该软件包，编译c/c++所需要的软件包也都会被安装。因此如果想在Ubuntu中编译c/c++程序，只需要安装该软件包就可以了。
 
-![build-essential的依赖关系](https://picped-1301226557.cos.ap-beijing.myqcloud.com/8135c2d310f2.png)
+![build-essential的依赖关系](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_8135c2d310f2.png)
 
 ### 1.4 开始编译
 
@@ -63,7 +63,7 @@ $ ARCH=arm
 $ make mx6dl_blurr_defconfig
 ```
 
-![生成配置文件](https://picped-1301226557.cos.ap-beijing.myqcloud.com/c22b1be42612.png)
+![生成配置文件](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_c22b1be42612.png)
 
 指定交叉编译前缀，编译u-boot
 
@@ -71,7 +71,7 @@ $ make mx6dl_blurr_defconfig
 $ make CROSS_COMPILE=arm-linux-gnueabi- 
 ```
 
-![编译通过](https://picped-1301226557.cos.ap-beijing.myqcloud.com/967c5a8d8bba.png)
+![编译通过](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_967c5a8d8bba.png)
 
 执行完上述步骤后，编译即可成功
 
@@ -79,7 +79,7 @@ $ make CROSS_COMPILE=arm-linux-gnueabi-
 
 同样，对应于blurr开发板的Linux内核项目也在GitHub上开源维护，[项目地址](https://github.com/EMSYM/linux)
 
-![github上的工程](https://picped-1301226557.cos.ap-beijing.myqcloud.com/fd26ed77a3ab.png)
+![github上的工程](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_fd26ed77a3ab.png)
 
 ### 2.1 源码下载
 
@@ -93,7 +93,7 @@ $ sudo apt-get install lzop
 
 lzop是最后生成时要用到的一个压缩工具，当没有安装此工具就开始编译，过程中会出现一个lozp：not found的错误
 
-![lozp：not fountd](https://picped-1301226557.cos.ap-beijing.myqcloud.com/5665b6610702.png)
+![lozp：not fountd](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_5665b6610702.png)
 
 ### 2.3 编译
 
@@ -108,7 +108,7 @@ $ make
 
 前两句的意思是指定芯片的架构以及交叉编译器前缀，然后就开始编译了（之前编译u-boot时已装好交叉编译器），可参考 [export命令的介绍](http://blog.csdn.net/wl_fln/article/details/7258294)
 
-![四条指令](https://picped-1301226557.cos.ap-beijing.myqcloud.com/57171204afb8.png)
+![四条指令](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_57171204afb8.png)
 
 会有一些warning，但不碍事
 
@@ -116,7 +116,7 @@ $ make
 
 要等很久.....
 
-![编译成功](https://picped-1301226557.cos.ap-beijing.myqcloud.com/cc3a1d8404d3.png)
+![编译成功](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_cc3a1d8404d3.png)
 
 完成如上步骤后即可编译完成，我们需要编译得到的zImage文件和imx6dl-blurr.dtb文件位置如下：
 
@@ -126,11 +126,11 @@ $ make
 
 zImage位置如下图
 
-![zImage](https://picped-1301226557.cos.ap-beijing.myqcloud.com/beb1c3962a3d.png)
+![zImage](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_beb1c3962a3d.png)
 
 imx6dl-blurr.dtb直接从上面目录里的dts点进去
 
-![imx6dl-blurr.dtb](https://picped-1301226557.cos.ap-beijing.myqcloud.com/6488bacf69de.png)
+![imx6dl-blurr.dtb](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_6488bacf69de.png)
 
 ## 3. Debian 根文件系统的制作与配置
 
@@ -232,7 +232,7 @@ $ sudo LANG=C.UTF-8 chroot debian_armhf_stretch
    $ sudo apt-get install plasma-desktop
    ```
 
-   ![plasma-desktop](https://picped-1301226557.cos.ap-beijing.myqcloud.com/ff04dfdcef82.png)
+   ![plasma-desktop](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_ff04dfdcef82.png)
 
    这句执行也是真的久，不要着急，中间可能会自动进入一些配置界面，根据选项自己选就行，如果乱码的话可以选第一个，其实上面设置成中文就没乱码了。
 
@@ -280,7 +280,7 @@ $ sudo fdisk -l
 
 这个命令作用为查看磁盘使用情况的，最后那个即为我们新挂载的SD卡
 
-![查看挂载地址](https://picped-1301226557.cos.ap-beijing.myqcloud.com/e2b342bb2c91.png)
+![查看挂载地址](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_e2b342bb2c91.png)
 
 从结果输出中可以看到SD卡，挂载位置是/dev/sdb，输入命令
 
@@ -290,13 +290,13 @@ $ sudo fdisk /dev/sdb
 
 该命令含义为进入分割硬盘模式，这个命令执行结束就可以操作分区了。
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/0b65803507c5.png)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_0b65803507c5.png)
 
 #### 删除原有分区
 
 输入m可以获取帮助，显示所有可用命令。先用d 命令删除原来的分区，提示Selected partition，在后面输入要删除的分区号，回车，分区即可删除成功
 
-![删除分区](https://picped-1301226557.cos.ap-beijing.myqcloud.com/image-20200427153230942.png)
+![删除分区](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_image-20200427153230942.png)
 
 输入命令p查看此时的分区信息，已变成一整块的磁盘未分区，接下来开始分区
 
@@ -306,11 +306,11 @@ n命令新建分区，第一次输入p分割为主分区，分区号为1，分�
 
 n命令新建分区，第二次输入e分割分区，分区号为2，起始位置接着上一个分区的结束位置。
 
-![分区](https://picped-1301226557.cos.ap-beijing.myqcloud.com/bd06ff3756c8.png)
+![分区](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_bd06ff3756c8.png)
 
 p命令查看分区信息，看是否符合预想。w命令保存退出。弹出重新插入SD卡或者重新启动Ubuntu系统，之后再次查看分区信息，这是为了更新分区表给内核，否则看不到分好的区。
 
-![再次查看](https://picped-1301226557.cos.ap-beijing.myqcloud.com/b3f7856930ad.png)
+![再次查看](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_b3f7856930ad.png)
 
 格式化新建的分区
 
@@ -318,7 +318,7 @@ p命令查看分区信息，看是否符合预想。w命令保存退出。弹出
 $ sudo mkfs.ext4 /dev/sdb2
 ```
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/81816c5f55ca.png)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_81816c5f55ca.png)
 
 然后对两个分区格式化
 
@@ -330,7 +330,7 @@ $ sudo mkfs.ext4 /dev/sdb2
 
 w命令保存
 
-![格式化分区](https://picped-1301226557.cos.ap-beijing.myqcloud.com/823a55d4bfef.png)
+![格式化分区](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_823a55d4bfef.png)
 
 ### 5.2 烧录
 
@@ -342,7 +342,7 @@ w命令保存
 $ sudo dd if=u-boot.imx of=/dev/sdb  bs=512 seek=2 ;sync
 ```
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/image-20200427154449772.png)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_image-20200427154449772.png)
 
 [dd命令的解释](http://blog.csdn.net/pugu12/article/details/47047341)，至于为什么要seek=2，跳过头两个块我现在也不懂
 
@@ -350,7 +350,7 @@ $ sudo dd if=u-boot.imx of=/dev/sdb  bs=512 seek=2 ;sync
 
 把编译好的内核的两个文件zImage和imx6dl-blurr.dtb复制到第一个分区，可以直接鼠标操作
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/image-20200427154551645.png)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_image-20200427154551645.png)
 
 #### 根文件系统
 
@@ -380,7 +380,7 @@ $ sudo umount /mnt
 
 1. 靠近 HDMI接口的地方有个开关，拨动开关到boot一端，设置八位红色开关为0100001
 
-   ![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/image-20200427155128647.png)
+   ![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_image-20200427155128647.png)
 
 2. 将SD卡插入SD3插槽
 
@@ -390,7 +390,7 @@ $ sudo umount /mnt
 
 5. 打开putty，选择serial，将COM1改成上面设备管理器里看到的COM号，speed改为115200，然后最下面点open
 
-   ![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/image-20200427155359810.png)
+   ![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_image-20200427155359810.png)
 
 6. 此时看到串口输出（若没有，请按开发板HDMI口旁边的RESET按钮），按回车进入调试模式，输入如下命令命令
 
@@ -405,15 +405,15 @@ $ sudo umount /mnt
    bootz 12000000 - 11000000
    ```
 
-   ![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/image-20200427155557593.png)
+   ![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_image-20200427155557593.png)
 
 开发板上电，如果SD卡中此时只有u-boot和内核，屏幕上会有两只企鹅，
 
-<img src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/stickpicture.png" alt="显示企鹅" style="zoom:33%;" />
+<img src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_stickpicture.png" alt="显示企鹅" style="zoom:33%;" />
 
 如果根文件系统也已经放进去了，那就会出现登录选项，连接键盘与开发板，输入root，这个是拿到的这个根文件系统就是这个名字，之后即可使用键盘输入各种命令与开发板交互。在命令行使用如下命令可以启动 GUI，然后就进入KDE桌面环境了，Debian系统哦
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/image-20200427160233842.png)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_image-20200427160233842.png)
 
 注：开发板获得读写权限的方法如下，如果模拟器中已完成此工作则不需要
 
@@ -423,9 +423,9 @@ $ mount rw -o remount /
 
 ## 7. 使用界面
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/image-20200427160245617.png)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_image-20200427160245617.png)
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/image-20200427160256212.png)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20180411_image-20200427160256212.png)
 
 ## 8. 参考
 

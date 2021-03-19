@@ -54,13 +54,13 @@ goi18n extract -outdir=locales -format=json messages.go
 
 这样，就会在 `locales` 目录下生成可以被 `go-i18n` 包识别并解析的 JSON 格式翻译文件 `active.en.json`：
 
-![Snipaste_2020-06-07_20-37-07](https://picped-1301226557.cos.ap-beijing.myqcloud.com/Snipaste_2020-06-07_20-37-07.png)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20200607_Snipaste_2020-06-07_20-37-07.png)
 
 ### 1.3 编写中文版本翻译文件
 
 然后，要进行本地化编程，可以在同级目录下创建并编辑 `active.zh.json` 用于存放消息文本的中文翻译：
 
-![Snipaste_2020-06-07_20-38-01](https://picped-1301226557.cos.ap-beijing.myqcloud.com/Snipaste_2020-06-07_20-38-01.png)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20200607_Snipaste_2020-06-07_20-38-01.png)
 
 ### 1.4 本地化配置初始化
 
@@ -192,7 +192,7 @@ if err != nil {
 
 首先，我们在 `views` 目录下新增 `en` 和 `zh` 两个子目录，分别用于存放英文视图模板和中文视图模板，然后将原有视图文件移动到 `en` 目录下，并且在 `zh` 目录下创建每个视图模板的中文版本，以首页 `index.html` 为例，对应的中文版本如下：
 
-![Snipaste_2020-06-07_20-40-32](https://picped-1301226557.cos.ap-beijing.myqcloud.com/Snipaste_2020-06-07_20-40-32.png)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/Snipaste_2020-06-07_20-40-32.png)
 
 其他中文视图模板也是类似，将其中的英文文本统一翻译成中文即可。
 

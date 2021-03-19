@@ -7,8 +7,6 @@ slug: JavaScript learning 1 overview
 
 JavaScript 是标准 Web 技术的第三层，负责实现动态的行为，比如实现交互式的地图、2D/3D动画、滚动播放的视频等。
 
-<img src="/images/JavaScript学习1-概览/cake.png" style="zoom:50%;" />
-
 JS 的标准是 ECMAScript，2015年发布了该标准的第六版，通常被称为 ECMAScript 6 或 ES6。此后，ECMAScript 每年发表一次新标准，至今最新的为 [ECMASCript2020](https://tc39.es/ecma262/)
 
 ## 1. API
