@@ -11,7 +11,7 @@
 
 B树的思路是在每个节点不限于存储一个关键字，并保持它二叉搜索树的特性和平衡性，这样可以进一步降低树高，从而提高搜索效率。这样的一棵树就称为多路平衡搜索树，如下图所示。
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_27600261_1121.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200318_epub_27600261_1121.jpg)
 
 ### 1.1 定义
 
@@ -25,7 +25,7 @@ B树，也叫做B-树，多路平衡二叉树。一棵 m 阶的 B 树，或者�
 
 所以上面的图其实少了一层空指针叶子节点，一个完整的3阶B树例子如下图所示。根据定义，内部节点的子树个数为 2~3，所以每个节点可能有 1~2 个关键字，2~3棵子树，所有空指针叶子节点都在最后一层，该树又称为2-3树（因为子树个数范围为 2~3）。
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_27600261_1125.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200318_epub_27600261_1125.jpg)
 
 B 树中所有叶子节点都在最后一层，所以是**平衡**的，B树同样遵循**中序有序**的特性，且每个节点可以有多个分支。
 
@@ -55,7 +55,7 @@ B树通常用于大规模数据的分级存储搜索，就是将内存的「高�
 2. 当前节点不是空指针叶子节点，将75和90一次读入内存，80>75，80<90，进入当前节点的第二个子树；
 3. 当前节点仍不是空指针叶子节点，将80读入内存，80=80，查找成功。
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_27600261_1125.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200318_epub_27600261_1125.jpg)
 
 注意，在任何时刻，通常只有当前节点在内存，其它节点都在外存，需要时才会调入内存。
 
@@ -69,7 +69,7 @@ B树的查找时间包括将节点从外存调入内存和在内存中当前节�
 
 解除上溢的操作叫做**分裂**，即取当前节点中间的关键字 $k_s, s=m/2$，将其上升到父节点 P，左右两部分作为 $k_s$ 的左右孩子，如下图
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_27600261_1135.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200318_epub_27600261_1135.jpg)
 
 如果分裂操作导致父节点同样产生了上溢，则继续分裂操作向上，最远会到达树根，如果树根也发生上溢，那么将树根分裂，根结点的中间关键字分裂成新的树根，此时树的高度加1。
 
@@ -86,15 +86,15 @@ B树的查找时间包括将节点从外存调入内存和在内存中当前节�
 
 首先，如果下溢节点 V 的左兄弟至少包含 $\ulcorner m/2 \urcorner$ 个关键字，少一个也可以维持条件，因此可以借出，借出的方法是，上溢节点向父节点拿一个关键字，然后父节点再向 V 的左兄弟拿一个关键字。如下图
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_27600261_1150.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200318_epub_27600261_1150.jpg)
 
 如果 V 的左兄弟关键字不足 $\ulcorner m/2 \urcorner$ 个，无法借出，而右兄弟关键字的个数足够，则从右兄弟借，方法相似，先向父节点拿一个关键字，然后父节点从右兄弟拿一个关键字。
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_27600261_1150-1594434879891.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200318_epub_27600261_1150-1594434879891.jpg)
 
 最麻烦的情况是左右兄弟关键字的个数都不够，这时候要做的事情是将父节点的一个关键字下移，然后和左兄弟、当前节点合并，组成新节点，然后删除多余指针，如果左兄弟不存在，就和右兄弟合并。
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_27600261_1158.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200318_epub_27600261_1158.jpg)
 
 合并后父节点少了一个关键字，如果不再满足条件，同样用上面的三种方法分情况处理，最远也会到达根，如果根结点也发生下溢，最终会使树高减一。
 
@@ -120,7 +120,7 @@ B+树定义的不同之处在于最后3条，一棵 m 阶的B+树，根结点至
 
 例如，一棵3阶B+树，其内部节点的子树个数2≤k≤3，关键字个数也是2≤n≤3，如下图所示。一般有两个指针，一个指向树根，一个指向倒数第二层关键字最小的节点。
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_27600261_1171.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200318_epub_27600261_1171.jpg)
 
 ### 2.2 查找
 
@@ -130,13 +130,13 @@ B+树支持两种方式的查找，可以利用 t 指针从树根向下索引查
 
 例如，在一棵3阶B+树中查找70，首先和65比较，70>65；再和98比较，70<98，到98的左分支查找；和70比较，相等，继续到70的左分支查找；和68比较，70>68，继续比较，找到70，查找成功，如下图
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_27600261_1172.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200318_epub_27600261_1172.jpg)
 
 B+树不仅支持单个关键字查找，还支持范围查找。例如，查找范围在[a, b]之间的关键字，首先查找a所在的位置，从根到最后一层，查找等于或大于a的关键字。如果找到，则继续在a所在的节点查找；如果未发现大于b的关键字，就可以沿着该节点的最后一个指针查找下一个节点，直到找到一个等于或大于b的关键字停止。
 
 例如，在一棵3阶B+树中查找[60, 80]之间的关键字，首先查找60所在的位置，从根到最后一层，查找等于或大于60的关键字，未找到60，则找到比它大的关键字65；继续在该节点查找，在下下个节点找到了等于80的关键字，查找成功，如下图
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_27600261_1173.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200318_epub_27600261_1173.jpg)
 
 可以看到，范围查找是直接在叶子间进行移动的，这是因为所有叶子节点之间有连接，所以事实上，B+树已经不属于树的范围了。
 
@@ -146,13 +146,13 @@ m阶B+树仅在最后一层节点插入，因为除了最后一层节点，其�
 
 刚刚发生上溢的节点V，插入之前满足条件（关键字个数小于等于m），插入之后大于m，因此V节点现在恰好有m+1个关键字。将该关键字进行分裂操作：取V节点中间的关键字ks（s=m+1/2），将ks上升到其父节点P，左右两部分作为ks的左右孩子，如下图
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_27600261_1174.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200318_epub_27600261_1174.jpg)
 
 中间关键字上升到父节点后，需要检查父节点是否发生上溢，如果发生上溢，则继续分裂，一直向上传递，最远到达树根。如果根节点发生上溢，则需要做以下特殊处理。
 
 树根分裂操作需要分裂的两个子节点的最大关键字一起上升，生成一个新的节点作为新树根，此时树高增1，如下图
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_27600261_1175.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200318_epub_27600261_1175.jpg)
 
 ### 2.4 删除
 
@@ -176,7 +176,7 @@ AVL 树可以保证在最坏情况下，查找、插入、删除的时间复杂�
 
 一棵红黑树示例如下
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_27600261_1191.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200318_epub_27600261_1191.jpg)
 
 由于最后两条性质，从任一节点到叶子的路径上，可能都是黑节点，也可能黑节点和红节点交替出现，这就导致了**对于任何一个节点，其左右子树的高度差不超过两倍**。所以红黑树不是严格的平衡树，这里的平衡条件被放宽了。
 
@@ -211,21 +211,21 @@ $$
 
 **u 为黑色**，如果 g 到 x 的路径为 LL，执行LL型旋转。如下图，将 g 右旋，然后将旋转后的根染黑，两个孩子染红。
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_27600261_1198.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200318_epub_27600261_1198.jpg)
 
 而如果 g 到 x 的路径为 LR，执行 LR型旋转。如下图，先将 x 左旋，再将 g 右旋，然后将旋转后的根染黑，其两个孩子染红。
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_27600261_1200.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200318_epub_27600261_1200.jpg)
 
 还有两种情况是 RR型和RL型，相似，不再赘述。
 
 **u 为红色**，可以简单粗暴的将父亲和叔叔染黑，将祖父染红（保持黑高不变，如果祖父为树根，染黑），因为 g 的父亲有可能是红色，将 g 看作新插入的节点，采用同样的方法处理，每处理一次，上升两层，直到树根。
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_27600261_1203.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200318_epub_27600261_1203.jpg)
 
 插入的几种方法总结如下
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_27600261_1204.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200318_epub_27600261_1204.jpg)
 
 ### 3.5 删除
 
@@ -239,30 +239,30 @@ $$
 
 1. s 为红色：删除s后，r接替其位置，满足红黑树的条件（根为黑、无“双红”、黑高不变）。根据红黑树的性质，红节点必有黑孩子，s为红色，其两个孩子必为黑色，s的其中一个孩子为空，另一个孩子也必为空，因为左右子树黑高相等
 
-   ![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_27600261_1214.jpg)
+   ![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200318_epub_27600261_1214.jpg)
 
 2. s 为黑色，接替者r为红色：因为s为黑色，删除s后，黑高减少。又因为p为黑色或红色，接替者r为红色，有可能出现“双红”。可以直接将r置为黑色，既维护了黑高（删除一个黑色的s，置r为黑色，黑高不变），又避免了“双红
 
-   ![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_27600261_1215.jpg)
+   ![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200318_epub_27600261_1215.jpg)
 
 3. s为黑色，接替者r为黑色：接替者r为黑色，根据左右子树黑高相同原则，r必为空。因为s为黑色，删除s后，黑高减少。被删除节点及其两个孩子都为黑色，这种情况称为“双黑”。为维护红黑树特性，需要分情况处理。将s的兄弟记为b（brother）, s的父亲仍然为p，分以下4种情况
 
    1. b 为黑色，b有红孩子。LL路径则右旋，旋转后的根保留原树根颜色，两个孩子染黑，LR、RR、RL相似
 
-      ![LL旋转染色示例](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_27600261_1218.jpg)
+      ![LL旋转染色示例](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200318_epub_27600261_1218.jpg)
 
    2. b为黑色，b 无红孩子，p为红色。简单粗暴，b、p直接换色
 
-      ![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_27600261_1221.jpg)
+      ![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200318_epub_27600261_1221.jpg)
 
    3. b为黑色，b无红孩子，p为黑色。将 b 直接染成红色，此时等效于p的父节点被删除，继续双黑修正，直到根。
 
-      ![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_27600261_1223.jpg)
+      ![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200318_epub_27600261_1223.jpg)
 
    4. b为红色。这种情况先右旋（LL），b、p换色，转换为第1种或第2种情况继续处理。
 
-      ![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_27600261_1225.jpg)
+      ![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200318_epub_27600261_1225.jpg)
 
 所有的删除方法总结如下表
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/epub_27600261_1226.jpg)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200318_epub_27600261_1226.jpg)

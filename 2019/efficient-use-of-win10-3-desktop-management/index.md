@@ -33,7 +33,7 @@
 
 但就我自己而言，四象限法不够优雅美观，桌面整理工具又会破坏桌面整体性，还会在右键菜单添加一大堆不需要的东西，因此我选择不放图标和文件在桌面。常用的软件都固定在了底部任务栏，文件则即用即删，同一时间工作的文档不会很多，同时也提醒自己尽快完成工作，之后就可以从桌面移走。如下是我的桌面。
 
-![我的桌面](https://picped-1301226557.cos.ap-beijing.myqcloud.com/67372906-3d6bc400-f5b1-11e9-859c-764655c6fa5d.jpg)
+![我的桌面](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20191023_67372906-3d6bc400-f5b1-11e9-859c-764655c6fa5d.jpg)
 
 从上图中注意到的另外一点是我在桌面中央放置了一个时钟，使得整个桌面更加和谐，不至于空荡荡的，时钟的位置可以根据壁纸的图案进行调整。而该时钟插件则来源于[Rainmeter](https://www.rainmeter.net/)。
 
@@ -45,7 +45,7 @@ Rainmeter可以显示CPU、内存、硬盘容量、网络等系统信息，可�
 
 因此，出于极简与效率的考虑，我们摒弃了在桌面使用插件显示CPU、内存、硬盘等系统信息的想法，这些一般情况下查看的频率极小，没有必要放在桌面显示，需要的时候在任务管理器界面查看即可，更加的详细。
 
-![任务管理器](https://picped-1301226557.cos.ap-beijing.myqcloud.com/67372965-58d6cf00-f5b1-11e9-919a-1d5e3a34daa1.png)
+![任务管理器](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20191023_67372965-58d6cf00-f5b1-11e9-919a-1d5e3a34daa1.png)
 
 我们只简单的添加了一个时钟插件，至于天气信息是否添加，随自己所愿。
 
@@ -61,8 +61,8 @@ Rainmeter可以显示CPU、内存、硬盘容量、网络等系统信息，可�
 
 一些高级功能暂且不表，TranslucentTB支持任务栏的`Blur`，`Clear`，`Normal`，`Opaque`，`Fluent`五种显示方式，但最为令人惊喜的细节在于，可以在桌面环境和窗口模式下透明，而在全屏模式下不透明。只有经历过的人才会懂这个功能有多么有用。
 
-![窗口模式的任务栏](https://picped-1301226557.cos.ap-beijing.myqcloud.com/67373023-76a43400-f5b1-11e9-90ab-65f2c407ac60.png)
-![全屏模式的任务栏](https://picped-1301226557.cos.ap-beijing.myqcloud.com/67373032-7dcb4200-f5b1-11e9-8527-440196b8c9c2.png)
+![窗口模式的任务栏](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20191023_67373023-76a43400-f5b1-11e9-90ab-65f2c407ac60.png)
+![全屏模式的任务栏](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20191023_67373032-7dcb4200-f5b1-11e9-8527-440196b8c9c2.png)
 
 TranslucentTB可以直接从 Win10 商店里下载。
 
@@ -72,19 +72,19 @@ TranslucentTB可以直接从 Win10 商店里下载。
 
 首先在磁盘任意位置建立一个空文件夹，命名为自己喜欢的名字。我选择在F盘根目录建立了文件夹`Minimalism`。
 
-![建立空文件夹](https://picped-1301226557.cos.ap-beijing.myqcloud.com/67373057-8a4f9a80-f5b1-11e9-913f-d0ce2a391346.png)
+![建立空文件夹](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20191023_67373057-8a4f9a80-f5b1-11e9-913f-d0ce2a391346.png)
 
 右键任务栏，选择`工具栏—>新建工具栏`
 
-![新建工具栏](https://picped-1301226557.cos.ap-beijing.myqcloud.com/67373105-9c313d80-f5b1-11e9-8660-ac228a24142a.png)
+![新建工具栏](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20191023_67373105-9c313d80-f5b1-11e9-8660-ac228a24142a.png)
 
 在弹出的窗口中选择刚刚新建的空文件夹，确认选择。因为我已经操作过一次，所以图中已经可以看到之前新建的`Minimalism`工具栏。
 
-![关联文件夹](https://picped-1301226557.cos.ap-beijing.myqcloud.com/67373147-afdca400-f5b1-11e9-8158-794412d34733.png)
+![关联文件夹](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20191023_67373147-afdca400-f5b1-11e9-8158-794412d34733.png)
 
 这一步操作之后任务栏应当是如下模样
 
-![新建工具栏后的任务栏](https://picped-1301226557.cos.ap-beijing.myqcloud.com/67373165-bcf99300-f5b1-11e9-8bf2-3a9ad721f1f1.png)
+![新建工具栏后的任务栏](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20191023_67373165-bcf99300-f5b1-11e9-8bf2-3a9ad721f1f1.png)
 
 可以看到，名为`Minimalism`的文件夹出现在了任务栏，可以通过这一特性在任务栏定制自己喜欢的文字，但最好不要太长。同时由于该文件夹成为了新的工具栏，之后也不要往里面放文件，不然会一同显示在任务栏中，出现这种情况。
 
@@ -92,15 +92,15 @@ TranslucentTB可以直接从 Win10 商店里下载。
 
 此时继续右键任务栏，取消勾选`锁定任务栏`
 
-![取消勾选锁定任务栏](https://picped-1301226557.cos.ap-beijing.myqcloud.com/67373220-d4d11700-f5b1-11e9-9b5a-4bd1e28673de.png)
+![取消勾选锁定任务栏](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20191023_67373220-d4d11700-f5b1-11e9-9b5a-4bd1e28673de.png)
 
 取消勾选后，`Minimalism`前将出现双竖线。鼠标点击双竖线使劲向左水平拖动，直到左侧的一堆图标自动移动到右边。
 
-![图标右移](https://picped-1301226557.cos.ap-beijing.myqcloud.com/67373262-e7e3e700-f5b1-11e9-8476-9eb21fda0a6d.png)
+![图标右移](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20191023_67373262-e7e3e700-f5b1-11e9-8476-9eb21fda0a6d.png)
 
 然后拖动图标左侧的双竖线移动到任务栏中央，重新锁定任务栏，调整完毕。
 
-![任务栏居中](https://picped-1301226557.cos.ap-beijing.myqcloud.com/67373283-f29e7c00-f5b1-11e9-8a94-dd44f75d8173.jpg)
+![任务栏居中](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20191023_67373283-f29e7c00-f5b1-11e9-8a94-dd44f75d8173.jpg)
 
 ### 3.3 小图标设置
 
@@ -108,58 +108,58 @@ TranslucentTB可以直接从 Win10 商店里下载。
 
 右键任务栏，点击任务栏设置，所出现的就是我们所有可做的调整了，也许有人从未关注过这些功能，不过其实都挺有意思的，下面将逐个介绍。
 
-![任务栏设置](https://picped-1301226557.cos.ap-beijing.myqcloud.com/67373310-ff22d480-f5b1-11e9-9984-012905dc5a1d.jpg)
+![任务栏设置](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20191023_67373310-ff22d480-f5b1-11e9-9984-012905dc5a1d.jpg)
 
 **在桌面模式下自动隐藏任务栏**，如文所述，勾选之后，任务栏将自动隐藏，无论是窗口模式还是全屏模式，只有当鼠标移动到任务栏的位置时任务栏才会显示。也许有人喜欢这样的方式，但我自己来说，即使我喜欢极简，当影响到使用时一样无法接受。由于之前已经将桌面清空，大部分功能依赖任务栏完成，因此对任务栏的使用频率极高，自动隐藏会使人使用起来非常难受，这也是我为什么第一次见到这项功能十分惊喜，但使用连一天都没坚持下来。
 
 下面的两个图并不是我没有截任务栏哦，是自动隐藏了。
 
-![桌面模式隐藏任务栏（桌面）](https://picped-1301226557.cos.ap-beijing.myqcloud.com/67373586-7eb0a380-f5b2-11e9-9bad-572c072cf95c.jpg)
-![桌面模式隐藏任务栏（全屏）](https://picped-1301226557.cos.ap-beijing.myqcloud.com/67373605-85d7b180-f5b2-11e9-8c2b-ebd7014a718e.jpg)
+![桌面模式隐藏任务栏（桌面）](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20191023_67373586-7eb0a380-f5b2-11e9-9bad-572c072cf95c.jpg)
+![桌面模式隐藏任务栏（全屏）](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20191023_67373605-85d7b180-f5b2-11e9-8c2b-ebd7014a718e.jpg)
 
 **使用小任务按钮**，曾经用过一段时间，作用是将任务栏的大小缩小一号，但人年纪大了，眼睛不好，后来还是换了回来(滑稽)。
 
-![使用小任务按钮](https://picped-1301226557.cos.ap-beijing.myqcloud.com/67374783-44480600-f5b4-11e9-8fe3-02155a72fe06.png)
+![使用小任务按钮](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20191023_67374783-44480600-f5b4-11e9-8fe3-02155a72fe06.png)
 
-![不使用小任务按钮](https://picped-1301226557.cos.ap-beijing.myqcloud.com/67374808-4e6a0480-f5b4-11e9-96d0-4717ef84c2c7.png)
+![不使用小任务按钮](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20191023_67374808-4e6a0480-f5b4-11e9-96d0-4717ef84c2c7.png)
 
 **当我右键单击“开始”按钮或按下Windows键+X时，在菜单中将命令提示符替换为Windows PowerShell**，如文所述，而且一般人用不到。主要决定`开始`按钮的右键菜单中是出现cmd还是PowerShell。
 
 **在任务栏按钮上显示角标**，以闹钟为例，将其固定到任务栏并开启闹钟后，图标会显示一个角标。我很少固定系统应用在任务栏，以前只是在邮件应用上见过角标，非系统应用还没有见过，所以应该对非系统应用不起作用。而且，角标什么的，对强迫症来讲太难受了。
 
-![闹钟角标](https://picped-1301226557.cos.ap-beijing.myqcloud.com/67375716-a2291d80-f5b5-11e9-8b1e-f8338db62fdd.png)
+![闹钟角标](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20191023_67375716-a2291d80-f5b5-11e9-8b1e-f8338db62fdd.png)
 
 **任务栏在屏幕的位置**，有四种选项，分别是`底部`，`顶部`，`靠左`，`靠右`。各有喜好吧，Mac和Ubuntu任务栏都在顶部，所以也许用惯了这两种的人比较习惯放在顶部。我的话，顶部、靠右都试过一段时间，但最后还是觉得在底部最舒服。
 
 **合并任务栏按钮**，三个选项，`始终合并按钮`，`任务栏已满时`，`从不`。除了选始终合并，其它两种都会出现如下效果，说实话，我觉得显示名称没有意义，好不容易调整的任务栏也被破坏，而且有时候一打开就是好多软件，选`始终合并`最适合不过了。
 
-![不合并图标](https://picped-1301226557.cos.ap-beijing.myqcloud.com/67391931-399c6980-f5d2-11e9-9edd-edb285ae2cff.png)
+![不合并图标](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20191023_67391931-399c6980-f5d2-11e9-9edd-edb285ae2cff.png)
 
  Win10 本身还在设置里提供了一个[如何自定义任务栏](https://support.microsoft.com/zh-cn/help/29280/windows-10-how-to-use-the-taskbar)的官方教程，介绍了不少使用方法，除我们上面介绍的外，还包括更改任务栏的颜色，更改任务栏的高度等，不过这些都很简单，基本都能猜出来怎么做，猜不出来的可以点链接看官方说明。
 
 **选择哪些图标显示在任务栏上**，如文所述，选择在通知区域显示的图标，我的选择原则是使用频率，当然是越少越好，目前留下的只有QQ和网络。其它的像音量什么的，其实使用频率不是很高，所以就直接隐藏了，当然这因人而异。
 
-![通知图标的显示](https://picped-1301226557.cos.ap-beijing.myqcloud.com/67377132-cab21700-f5b7-11e9-8cdd-3fd8aff70587.png)
+![通知图标的显示](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20191023_67377132-cab21700-f5b7-11e9-8cdd-3fd8aff70587.png)
 
 **打开或关闭系统图标**，很多其实都不是一直显示的，唯一比较麻烦的是输入指示，如果它只显示汉字`中`或`英`还好，问题是旁边会附带`拼`字样。考虑了很久后，最后还是把输入指示关闭掉了，因为一共就两种情况，切换也就一个快捷键的事情，试错成本比较低，就不放着碍眼了。
 
-![输入指示](https://picped-1301226557.cos.ap-beijing.myqcloud.com/67377501-57f56b80-f5b8-11e9-9c2e-e8a019c49f15.png)
+![输入指示](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20191023_67377501-57f56b80-f5b8-11e9-9c2e-e8a019c49f15.png)
 
 **时间和日期**，右键`时间和日期`同右键任务栏出现的选项有所不同，多出了一个`调整日期/时间`的选项，单击后会进入设置里的日期和时间页面，主要的功能选项其实没什么可谈的。但右侧有两个很有意思的选项。
 
-![日期和时间设置](https://picped-1301226557.cos.ap-beijing.myqcloud.com/67378254-92133d00-f5b9-11e9-8900-5b187c2cd3f6.jpg)
+![日期和时间设置](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20191023_67378254-92133d00-f5b9-11e9-8900-5b187c2cd3f6.jpg)
 
 一个是`添加不同时区的时钟`，如下图我们添加了美国东部时间(和老师视频用)。
 
-![添加附加时钟](https://picped-1301226557.cos.ap-beijing.myqcloud.com/67378420-cedf3400-f5b9-11e9-8ceb-adb3f0e1f02f.png)
+![添加附加时钟](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20191023_67378420-cedf3400-f5b9-11e9-8ceb-adb3f0e1f02f.png)
 
 单击任务栏的时间和日期或者鼠标悬停在上面都可以看到附加的时钟，对于跨国恋的情侣来说，或者其它经常跨国交流的人，这个功能也是很实用了。
 
-![显示两个时间](https://picped-1301226557.cos.ap-beijing.myqcloud.com/67378578-0e0d8500-f5ba-11e9-8417-5a94a62648ce.png)
+![显示两个时间](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20191023_67378578-0e0d8500-f5ba-11e9-8417-5a94a62648ce.png)
 
 另一个设置是日期、时间和区域格式，区域的设置没有什么意义，但我们可以点击`更改数据格式`，调整日期和时间的显示形式。也许有人觉得没用，那是因为你没有注意到，在不同的显示器上，时间部分显示的完整性是不一样的，比如我的笔记本屏幕比较小，就只显示当前时间，而实验室的显示屏会同时显示当前时间和日期。通过调整这里的显示格式，可以适应不同大小的屏幕，当然，手动调整任务栏的大小也会显示更多内容。
 
-![更改时间显示格式](https://picped-1301226557.cos.ap-beijing.myqcloud.com/67378845-79575700-f5ba-11e9-8412-e9d0c863505a.png)
+![更改时间显示格式](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20191023_67378845-79575700-f5ba-11e9-8412-e9d0c863505a.png)
 
 **通知与操作**，右键日期与时间，选择自定义通知图标，可以添加、删除或重新排列操作中心的操作，同时可以选择接收或不接受某些应用的通知，因为很多时候某些应用的通知我们完全不关心，这个功能还是很有用的。
 
@@ -171,18 +171,18 @@ TranslucentTB可以直接从 Win10 商店里下载。
 
 任务栏最左侧的开始按钮以后的文章再讲，与之相邻的Cortana被我取消了显示，因为无论在宿舍还是实验室，语音的交互都会影响到他人。留下的只有搜索和时间线，这两个功能同样在任务栏的右键菜单开启。
 
-![搜索和时间线](https://picped-1301226557.cos.ap-beijing.myqcloud.com/67386891-621f6600-f5c8-11e9-8fff-1bdab78e9766.png)
+![搜索和时间线](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20191023_67386891-621f6600-f5c8-11e9-8fff-1bdab78e9766.png)
 
 桌面清空各种常用文件和应用之后，搜索的作用变的大了起来，任务栏固定的只是使用频率高的软件，其它的软件和常用文件都通过搜索来快速访问，完全不会影响效率。只是要注意的是搜索历史默认会上传到云端，不过可以在设置中关闭。
 
-![搜索文件夹](https://picped-1301226557.cos.ap-beijing.myqcloud.com/67387258-1caf6880-f5c9-11e9-95a8-6bf0d2af05fa.png)
+![搜索文件夹](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20191023_67387258-1caf6880-f5c9-11e9-95a8-6bf0d2af05fa.png)
 
 任务视图的核心作用有两个，一个是新建和切换桌面，将不同的任务分隔开来，比如我的两个桌面一般情况一个是看论文查资料用的，因为开的窗口过多。当我编程或写作的时候就会切换到桌面2；另一个是时间线，可以回顾最近一段时间每天的工作，用来总结蛮合适的。
 
-![任务管理视图](https://picped-1301226557.cos.ap-beijing.myqcloud.com/67387640-e1616980-f5c9-11e9-8e82-772af75c3c2c.jpg)
+![任务管理视图](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20191023_67387640-e1616980-f5c9-11e9-8e82-772af75c3c2c.jpg)
 
 就这样了，开始菜单涉及的东西比较多，就换下次介绍吧。最后来看一下完整的桌面。
 
-![桌面](https://picped-1301226557.cos.ap-beijing.myqcloud.com/67387805-300f0380-f5ca-11e9-82a2-0938dffb7172-1585140325560.jpg)
+![桌面](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20191023_67387805-300f0380-f5ca-11e9-82a2-0938dffb7172-1585140325560.jpg)
 
 

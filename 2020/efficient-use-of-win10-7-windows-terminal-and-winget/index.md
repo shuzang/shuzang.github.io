@@ -25,7 +25,7 @@ Windows terminal 的安装配置和 winget 的基本使用，主要原因是 Pow
 
 默认添加的应用包括 Powershell、cmd、Azure Cloud Shell 和我之前安装的 WSL（Ubuntu 20.04）。
 
-![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/Snipaste_2020-10-07_18-50-39.png)
+![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20201007_Snipaste_2020-10-07_18-50-39.png)
 
 这里将 git bash 添加进去，并设置为启动时默认使用的应用（之前启动 Windows termianl 默认打开 Powershell），并设置起始目录。最终效果如上图
 
@@ -53,7 +53,7 @@ Windows terminal 的安装配置和 winget 的基本使用，主要原因是 Pow
 
 大部分人用 Windows terminal 就是因为它可定制，所以出现了各种各样好看的配色和主题。
 
-![我的终端最终形态](https://picped-1301226557.cos.ap-beijing.myqcloud.com/Snipaste_2020-10-07_19-07-45.png)
+![我的终端最终形态](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20201007_Snipaste_2020-10-07_19-07-45.png)
 
 我从 [主题网站](https://windowsterminalthemes.dev/) 选择了 Builtin Tango Light 主题，配置代码如下，需要将这段代码复制到配置文件的 `schemes` 字段中。
 
@@ -112,7 +112,7 @@ Windows terminal 的安装配置和 winget 的基本使用，主要原因是 Pow
 
 win10 预览版用户直接就可以使用，是系统自带的，非预览版用户从 [github仓库](https://github.com/microsoft/winget-cli) 自行下载安装。使用说明可以参考 [官方文档](https://docs.microsoft.com/zh-cn/windows/package-manager/winget/)，安装后可以直接在终端使用
 
-![winget使用](https://picped-1301226557.cos.ap-beijing.myqcloud.com/Snipaste_2020-10-07_19-20-51.png)
+![winget使用](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20201007_Snipaste_2020-10-07_19-20-51.png)
 
 
 

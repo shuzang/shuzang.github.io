@@ -13,21 +13,21 @@
 
 1999年白塔重建，由于误判白塔为辽代建筑，重建的塔为辽代风格。白塔全貌如图，当从街道路过远望白塔时，更能感受其“无垢光明”之意。
 
-![白塔](https://picped-1301226557.cos.ap-beijing.myqcloud.com/64920339-3f3fac00-d7e9-11e9-93e3-3a4373f501a9.jpg)
+![白塔](https://picped-1301226557.cos.ap-beijing.myqcloud.com/SH_20190915_64920339-3f3fac00-d7e9-11e9-93e3-3a4373f501a9.jpg)
 
 #### 弥陀寺
 
 围绕白塔修有白塔公园，在公园内，与白塔相邻，还有一座名为弥陀寺的寺庙，这也是到了白塔附近才发现。
 
-![白塔与弥陀寺全景](https://picped-1301226557.cos.ap-beijing.myqcloud.com/64920340-3fd84280-d7e9-11e9-9156-2b8e258dda82.jpg)
+![白塔与弥陀寺全景](https://picped-1301226557.cos.ap-beijing.myqcloud.com/SH_20190915_64920340-3fd84280-d7e9-11e9-9156-2b8e258dda82.jpg)
 
 弥陀寺是与白塔相伴的寺庙，至于是否一同诞生不得而知，但1905年却与白塔一同毁于炮火。1999年白塔复建完成，但弥陀寺直到2012年才得以重建。
 
 重建的弥陀寺颇为宏伟壮丽，寺门正门并不开，只开旁边的侧门，谢绝自带香火，只能从里面买（无语）。寺内各殿一应俱全，进门首先是天王殿，天王殿后是大雄宝殿，再往后是僧人休息处，两侧伽蓝、地藏、观音、祖师等等俱有。进门时大雄宝殿还有僧人诵经。
 
-![弥陀寺_寺门](https://picped-1301226557.cos.ap-beijing.myqcloud.com/%E5%BC%A5%E9%99%80%E5%AF%BA_2019(02).jpg)
+![弥陀寺_寺门](https://picped-1301226557.cos.ap-beijing.myqcloud.com/SH_20190915_%E5%BC%A5%E9%99%80%E5%AF%BA_2019(02).jpg)
 
-![弥陀寺_大雄宝殿](https://picped-1301226557.cos.ap-beijing.myqcloud.com/64920343-4070d900-d7e9-11e9-89fd-1f5fee1fc0f4.jpg)
+![弥陀寺_大雄宝殿](https://picped-1301226557.cos.ap-beijing.myqcloud.com/SH_20190915_64920343-4070d900-d7e9-11e9-89fd-1f5fee1fc0f4.jpg)
 
 #### 碧霞宫
 
@@ -35,8 +35,8 @@
 
 道观人烟稀少，交通不便，进入的道路也并不好，但这里却是全真龙门正宗道场。此观始建于清雍正三年，原址位于沈河区，道光年间翻修重建，文革时被毁，1996年在东陵区白塔异地重建。道院是明清建筑风格，主殿为元君殿，供奉东岳泰山圣母天仙碧霞元君。去之前查到的资料称还有帝君殿和护法殿，但因没进去，并没有看到。
 
-![碧霞宫](https://picped-1301226557.cos.ap-beijing.myqcloud.com/64920341-3fd84280-d7e9-11e9-8708-7cf49cc4680b.jpg)
+![碧霞宫](https://picped-1301226557.cos.ap-beijing.myqcloud.com/SH_20190915_64920341-3fd84280-d7e9-11e9-8708-7cf49cc4680b.jpg)
 
 宫前还有一座灵官殿（应该没有认错字），很像99版西游记动画孙悟空和二郎神大战时所变化的建筑，很是有趣。
 
-![灵官殿](https://picped-1301226557.cos.ap-beijing.myqcloud.com/%E7%A2%A7%E9%9C%9E%E5%AE%AB_2019(03).jpg)
+![灵官殿](https://picped-1301226557.cos.ap-beijing.myqcloud.com/SH_20190915_%E7%A2%A7%E9%9C%9E%E5%AE%AB_2019(03).jpg)

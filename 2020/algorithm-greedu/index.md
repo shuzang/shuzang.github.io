@@ -41,7 +41,7 @@ func Knapsack_greedy(n,M int, v,w,x []int) {
 
 如果想要证明该问题使用贪心算法是可行的，可以按如下思路：首先证明原问题的一个最优解是以贪心选择开始。然后假设i次贪心选择能 够得到一个最优解，那么证明i+1次贪心选择也能得到一个最优解。一个图解如下
 
-![贪心可用证明](https://picped-1301226557.cos.ap-beijing.myqcloud.com/%E8%B4%AA%E5%BF%83%E5%8F%AF%E7%94%A8%E8%AF%81%E6%98%8E.png)
+![贪心可用证明](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200501_%E8%B4%AA%E5%BF%83%E5%8F%AF%E7%94%A8%E8%AF%81%E6%98%8E.png)
 
 ## 2. 活动安排问题
 
@@ -58,7 +58,7 @@ func Knapsack_greedy(n,M int, v,w,x []int) {
 
 但直观上，每次选择具有最早结束时间的相容活动，使剩余 的可安排时间段极大化，以便安排尽可能多的相容活动。事实也是如此，我们用图来说明一个实例
 
-![活动安排问题贪心解决策略](https://picped-1301226557.cos.ap-beijing.myqcloud.com/%E6%B4%BB%E5%8A%A8%E5%AE%89%E6%8E%92%E9%97%AE%E9%A2%98%E8%B4%AA%E5%BF%83%E8%A7%A3%E5%86%B3%E7%AD%96%E7%95%A5.png)
+![活动安排问题贪心解决策略](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200501_%E6%B4%BB%E5%8A%A8%E5%AE%89%E6%8E%92%E9%97%AE%E9%A2%98%E8%B4%AA%E5%BF%83%E8%A7%A3%E5%86%B3%E7%AD%96%E7%95%A5.png)
 
 实现如下
 
