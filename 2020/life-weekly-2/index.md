@@ -197,16 +197,3 @@ Dunbar's number，也叫150定律（Rule Of 150），由牛津大学的人类学
 
 
 
-qcloud.com/ZK_20200110_U盘量产1.jpg)
-
-![果识](https://picped-1301226557.cos.ap-beijing.myqcloud.com/ZK_20200110_U盘量产2.jpg)
-
-
-
-
-
-
-
-
-
-
