@@ -3,6 +3,8 @@
 
 本周刊目的是记录生活，发现生活中的美好，当前为第十五期。
 
+<!--more-->
+
 ## 时讯
 
 1、[土耳其金融震荡](http://m.news.cctv.com/2021/03/23/ARTIsrl3zKaYVbTf1QSP6NxY210323.shtml) 03.22
