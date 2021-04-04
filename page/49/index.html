@@ -1,6 +1,338 @@
-<!doctype html><html lang=en><head><meta name=generator content="Hugo 0.63.2"><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Shuzang's Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><link rel=canonical href=https://shuzang.github.io/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><link rel=alternate href=/index.xml type=application/rss+xml title="Shuzang's Blog"><link rel=feed href=/index.xml type=application/rss+xml title="Shuzang's Blog"><meta name=twitter:card content="summary"><meta name=twitter:title content="Shuzang's Blog"><meta name=twitter:description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","url":"https:\/\/shuzang.github.io","author":{"@type":"Person","name":"shuzang"},"description":"书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊","image":"https:\/\/shuzang.github.io\/cover.png","thumbnailUrl":"https:\/\/shuzang.github.io\/logo.png","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","name":"Shuzang\x27s Blog"}</script><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css></head><body><script>window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><nav class=navbar><div class=navbar-container><div class="navbar-header animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=navbar-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><nav class=navbar-mobile><div class=navbar-container><div class=navbar-header><div class="navbar-header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=navbar-menu id=mobile-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><main class=main><div class=container><div class=page><div class=home-intro><div class=home-avatar><a href=/posts><img src=/images/avatar.png alt=avatar title=Home></a></div><h2 class=home-description><div id=rtp-3c0a4282539e1c3c149528c40a394747 hidden>随心所向，素履以往</div><div id=tp-3c0a4282539e1c3c149528c40a394747 class=typeit></div></h2><div class=home-social-links><a href=https://github.com/shuzang rel="me noopener noreffer" target=_blank><i class="fab fa-github-alt fa-fw" title=Github></i></a><a href=skype:live:844327696 rel="me noopener noreffer" target=_blank><i class="fab fa-skype fa-fw" title=Skype></i></a><a href=mailto:lylw1996@qq.com rel="me noopener noreffer"><i class="far fa-envelope fa-fw" target=_blank title=Email></i></a></div></div><article class=post itemscope itemtype=http://schema.org/Article><h1 class="post-title post-list-title" itemprop="name headline"><a href=https://shuzang.github.io/2020/algorithm-backtracking/>算法-回溯</a></h1><div class=post-meta><a class=author href=https://shuzang.github.io/about/ rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>shuzang
+<!doctype html><html lang=en><head><meta name=generator content="Hugo 0.63.2"><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><title>Shuzang's Blog</title><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta name=Description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><link rel=canonical href=https://shuzang.github.io/><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=manifest href=/site.webmanifest><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><meta name=msapplication-TileColor content="#da532c"><meta name=theme-color content="#ffffff"><link rel=alternate href=/index.xml type=application/rss+xml title="Shuzang's Blog"><link rel=feed href=/index.xml type=application/rss+xml title="Shuzang's Blog"><meta name=twitter:card content="summary"><meta name=twitter:title content="Shuzang's Blog"><meta name=twitter:description content="书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊"><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","url":"https:\/\/shuzang.github.io","author":{"@type":"Person","name":"shuzang"},"description":"书藏的个人博客，包括Golang、数据结构、算法的学习记录，各类生活技能的学习，每周五发布一期自己的生活周刊","image":"https:\/\/shuzang.github.io\/cover.png","thumbnailUrl":"https:\/\/shuzang.github.io\/logo.png","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","name":"Shuzang\x27s Blog"}</script><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/css/lib/fontawesome-free/all.min.css></head><body><script>window.isDark=(window.localStorage&&window.localStorage.getItem('theme'))==='dark';window.isDark&&document.body.classList.add('dark-theme');</script><div class=wrapper><nav class=navbar><div class=navbar-container><div class="navbar-header animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=navbar-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><nav class=navbar-mobile><div class=navbar-container><div class=navbar-header><div class="navbar-header-title animated bounceIn"><a href=https://shuzang.github.io>Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle><span></span><span></span><span></span></div></div><div class=navbar-menu id=mobile-menu><a class=menu-item href=https://shuzang.github.io/posts>Posts</a><a class=menu-item href=https://shuzang.github.io/tags>Tags</a><a class=menu-item href=https://shuzang.github.io/categories>Categories</a><a class=menu-item href=https://shuzang.github.io/about>About</a><a href=javascript:void(0); class=theme-switch><i class="fas fa-adjust fa-rotate-180 fa-fw" title="Switch Theme"></i></a></div></div></nav><main class=main><div class=container><div class=page><div class=home-intro><div class=home-avatar><a href=/posts><img src=/images/avatar.png alt=avatar title=Home></a></div><h2 class=home-description><div id=rtp-3c0a4282539e1c3c149528c40a394747 hidden>随心所向，素履以往</div><div id=tp-3c0a4282539e1c3c149528c40a394747 class=typeit></div></h2><div class=home-social-links><a href=https://github.com/shuzang rel="me noopener noreffer" target=_blank><i class="fab fa-github-alt fa-fw" title=Github></i></a><a href=skype:live:844327696 rel="me noopener noreffer" target=_blank><i class="fab fa-skype fa-fw" title=Skype></i></a><a href=mailto:lylw1996@qq.com rel="me noopener noreffer"><i class="far fa-envelope fa-fw" target=_blank title=Email></i></a></div></div><article class=post itemscope itemtype=http://schema.org/Article><h1 class="post-title post-list-title" itemprop="name headline"><a href=https://shuzang.github.io/2020/summary-of-smart-contract-knowledge-points/>智能合约知识点总结</a></h1><div class=post-meta><a class=author href=https://shuzang.github.io/about/ rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>shuzang
 </a>published on <time datetime=2020-05-04>2020-05-04</time>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i>
-<a href=https://shuzang.github.io/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/>爱编程爱技术的孩子</a></span></div><div class=post-content>在真实的世界中，很多问题是不存在快速解法的，只能穷尽搜索，因此一个高效的搜索技术非常重要。回溯（Backtracking）和分支限界（Bra</div><div class=post-footer><a href=https://shuzang.github.io/2020/algorithm-backtracking/>Read More</a><div class=post-tags><span class=tag>&nbsp;<a href=https://shuzang.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/><i class="fas fa-tag fa-fw"></i>&nbsp;数据结构与算法</a></span></div></div></article><article class=post itemscope itemtype=http://schema.org/Article><h1 class="post-title post-list-title" itemprop="name headline"><a href=https://shuzang.github.io/2020/algorithm-greedu/>算法-贪心</a></h1><div class=post-meta><a class=author href=https://shuzang.github.io/about/ rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>shuzang
-</a>published on <time datetime=2020-05-03>2020-05-03</time>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i>
-<a href=https://shuzang.github.io/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/>爱编程爱技术的孩子</a></span></div><div class=post-content><p>贪心是一种策略，是一种总是寻求当前最优的策略。因为贪心只关心局部的最优，因此不是总能得到全局的最优解，所以我们选择贪心解决问题时必须保证状态的独立性，即当前最优值只与当前状态有关，不会影响以后的状态。</p></div><div class=post-footer><a href=https://shuzang.github.io/2020/algorithm-greedu/>Read More</a><div class=post-tags><span class=tag>&nbsp;<a href=https://shuzang.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/><i class="fas fa-tag fa-fw"></i>&nbsp;数据结构与算法</a></span></div></div></article><ul class=pagination><li class=page-item><span class=page-link><a href=/>1</a></span></li><li class=page-item><span class=page-link aria-hidden=true>&mldr;</span></li><li class=page-item><span class=page-link><a href=/page/47/>47</a></span></li><li class=page-item><span class=page-link><a href=/page/48/>48</a></span></li><li class="page-item active"><span class=page-link><a href=/page/49/>49</a></span></li><li class=page-item><span class=page-link><a href=/page/50/>50</a></span></li><li class=page-item><span class=page-link><a href=/page/51/>51</a></span></li><li class=page-item><span class=page-link aria-hidden=true>&mldr;</span></li><li class=page-item><span class=page-link><a href=/page/146/>146</a></span></li></ul></div></div></main><footer class=footer><div class=copyright><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2021</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://shuzang.github.io/about/ target=_blank>shuzang</a> | </span>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> & <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt</a></div></div></footer></div><a href=# class=dynamic-to-top id=dynamic-to-top data-scroll><span>&nbsp;</span>
+<a href=https://shuzang.github.io/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/>研究生的区块链学习之路</a></span></div><div class=post-content><p>项目进行过程中知识点的总结</p><a class=post-dummy-target id=1-字符串比较></a><h2>1. 字符串比较</h2><p>翻译自：<a href=https://fravoll.github.io/solidity-patterns/string_equality_comparison.html target=_blank>Fravoll-String Equality Comparison</a></p><p>比较两个给定字符串是否相等，是 Solidity 编程中最常见的一种情况，但语言本身并没有提供内置函数用于字符串比较，本文介绍两种可用方法并分析 Gas 消耗情况。</p><a class=post-dummy-target id=11-stringutils-库></a><h3>1.1 StringUtils 库</h3><p>第一种方法是使用 Ethereum 基金会提供的 StringUtils 库，它对每个字符进行成对比较，如果有一个字符对不匹配，则返回false。这种办法可以返回正确的结果，对于短字符串和字符不同发生在字符串前面的情况仅消耗少量 Gas。但是对于相等的字符串和长字符串，这种方法的 Gas 消耗较高，因为必须做很多比较才能得到正确结果。因此，字符串比较的两个可衡量的因素是字符串平均长度和正确率。</p><a class=post-dummy-target id=12-哈希函数></a><h3>1.2 哈希函数</h3><p>作者提出使用哈希函数进行比较，同时检查所提供的字符串的长度，从一开始就剔除长度不匹配的字符串。其步骤如下</p><ol><li>检查两个字符串是否有相同长度，通过转换为 <code>bytes</code> 类型完成，因为 <code>bytes</code> 类型有内置长度函数。如果相同进入第2步，如果不相同返回结果；</li><li>使用 <code>keccak256()</code> 函数对两个字符串求哈希，然后比较计算得到的哈希值，从而确定是否相等。</li></ol><p>一个示例代码如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-solidity data-lang=solidity><span class=err>#</span> <span class=err>这</span><span class=err>段</span><span class=err>代</span><span class=err>码</span><span class=err>未</span><span class=err>经</span><span class=err>安</span><span class=err>全</span><span class=err>审</span><span class=err>计</span><span class=err>，</span><span class=err>使</span><span class=err>用</span><span class=err>有</span><span class=err>风</span><span class=err>险</span>
+<span class=kd>function</span> <span class=n>hashCompareWithLengthCheck</span><span class=p>(</span><span class=kt>string</span> <span class=n>a</span><span class=p>,</span> <span class=kt>string</span> <span class=n>b</span><span class=p>)</span> <span class=kr>internal</span> <span class=k>returns</span> <span class=p>(</span><span class=kt>bool</span><span class=p>)</span> <span class=p>{</span>
+    <span class=k>if</span><span class=p>(</span><span class=kt>bytes</span><span class=p>(</span><span class=n>a</span><span class=p>)</span><span class=p>.</span><span class=n>length</span> <span class=o>!=</span> <span class=kt>bytes</span><span class=p>(</span><span class=n>b</span><span class=p>)</span><span class=p>.</span><span class=n>length</span><span class=p>)</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=kc>false</span><span class=p>;</span>
+    <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=nf>keccak256</span><span class=p>(</span><span class=n>abi</span><span class=p>.</span><span class=n>encodePacket</span><span class=p>(</span><span class=n>a</span><span class=p>)</span><span class=p>)</span> <span class=o>==</span> <span class=nf>keccak256</span><span class=p>(</span><span class=n>abi</span><span class=p>.</span><span class=n>encodePacket</span><span class=p>(</span><span class=n>b</span><span class=p>)</span><span class=p>)</span><span class=p>;</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p><code>abi.encodePacket(...) returns (bytes)</code> 用于对给定参数执行<a href=https://solidity-cn.readthedocs.io/zh/develop/abi-spec.html#abi-packed-mode target=_blank>紧打包编码</a>，官方文档中不推荐使用 <code>keccak256(...)</code> 直接计算哈希，而是使用 <code>keccak256(abi.encodePacked(...))</code></p><a class=post-dummy-target id=13-gas-消耗分析></a><h3>1.3 Gas 消耗分析</h3><p>在 Remix 编写代码测试了三种不同情况的字符串比较的 Gas 消耗</p><ol><li>比较哈希</li><li>比较每个字符，同时比较字符串长度</li><li>比较哈希，同时比较字符串长度</li></ol><p>结果如下表所示，输入列为输入的待比较字符串，输出列的单位为 Wei</p><table><thead><tr><th align=left>Input A</th><th align=left>Input B</th><th align=right>Hash</th><th align=right>Character + Length</th><th align=right>Hash + Length</th></tr></thead><tbody><tr><td align=left>abcdefghijklmnopqrstuvwxyz</td><td align=left>abcdefghijklmnopqrstuvwxyz</td><td align=right>1225</td><td align=right>7062</td><td align=right>1261</td></tr><tr><td align=left>abcdefghijklmnopqrstuvwxy<strong>X</strong></td><td align=left>abcdefghijklmnopqrstuvwxyz</td><td align=right>1225</td><td align=right>7012</td><td align=right>1261</td></tr><tr><td align=left><strong>X</strong>bcdefghijklmnopqrstuvwxyz</td><td align=left>abcdefghijklmnopqrstuvwxyz</td><td align=right>1225</td><td align=right>912</td><td align=right>1261</td></tr><tr><td align=left>a<strong>X</strong>cdefghijklmnopqrstuvwxyz</td><td align=left>abcdefghijklmnopqrstuvwxyz</td><td align=right>1225</td><td align=right>1156</td><td align=right>1261</td></tr><tr><td align=left>ab<strong>X</strong>defghijklmnopqrstuvwxyz</td><td align=left>abcdefghijklmnopqrstuvwxyz</td><td align=right>1225</td><td align=right>1400</td><td align=right>1261</td></tr><tr><td align=left>abcdefghijkl</td><td align=left>abcdefghijklmnopqrstuvwxyz</td><td align=right>1225</td><td align=right>690</td><td align=right>707</td></tr><tr><td align=left>a</td><td align=left>a</td><td align=right>1225</td><td align=right>962</td><td align=right>1261</td></tr><tr><td align=left>ab</td><td align=left>ab</td><td align=right>1225</td><td align=right>1156</td><td align=right>1261</td></tr><tr><td align=left>abc</td><td align=left>abc</td><td align=right>1225</td><td align=right>1450</td><td align=right>1261</td></tr></tbody></table><p>可以看出，哈希+字符串长度 的比较方式 Gas 消耗更加稳定，这种方式比较高效。</p><a class=post-dummy-target id=2-可见性与getter函数></a><h2>2. 可见性与Getter函数</h2><p>转自：<a href=https://learnblockchain.cn/docs/solidity/contracts.html#getter target=_blank>Solidity 0.6.4 中文文档</a></p><p>Solidity 有两种函数调用：内部调用（Internal Function Calls）和外部调用（External Function Calls）。前者指直接或递归地调用合约内部函数，不会产生实际的 EVM 调用，因此也被称为「消息嗲用」，后者指从合约外部调用合约中的函数，会产生一个 EVM 调用。</p><a class=post-dummy-target id=21-可见性></a><h3>2.1 可见性</h3><p>因此，函数和状态变量有四种可见性。函数可以指定为 <code>external</code>，<code>public</code>，<code>internal</code> 或 <code>private</code>，对于状态变量， 默认是 <code>internal</code> 且不能设置为 <code>external</code>。</p><ul><li><code>external</code>：外部函数作为合约接口的一部分，意味着我们可以从其他合约和交易中调用。 一个外部函数 <code>f</code> 不能从内部调用（即 <code>f</code> 不起作用，但 <code>this.f()</code>可以）。 当收到大量数据的时候，外部函数有时候会更有效率，因为数据不会从calldata复制到内存.</li><li><code>public</code>：public 函数是合约接口的一部分，可以在内部或通过消息调用。对于 public 状态变量， 会自动生成一个 getter 函数（见下面）。</li><li><code>internal</code>：这些函数和状态变量只能是内部访问（即从当前合约内部或从它派生的合约访问），不使用 <code>this</code> 调用。</li><li><code>private</code>：private 函数和状态变量仅在当前定义它们的合约中使用，并且不能被派生合约使用。</li></ul><blockquote><p>合约中的所有内容对外部观察者都是可见的。设置一些 <code>private</code> 类型只能阻止其他合约访问和修改这些信息， 但是对于区块链外的整个世界它仍然是可见的。</p></blockquote><p>可见性标识符的定义位置，对于状态变量来说是在类型后面，对于函数是在参数列表和返回关键字中间，如下例</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-solidity data-lang=solidity><span class=kr>pragma solidity</span>  <span class=o>&gt;=</span><span class=mi>0</span><span class=p>.</span><span class=mi>4</span><span class=p>.</span><span class=mi>16</span> <span class=o>&lt;</span><span class=mi>0</span><span class=p>.</span><span class=mi>7</span><span class=p>.</span><span class=mi>0</span><span class=p>;</span>
+
+<span class=kd>contract</span> <span class=n>C</span> <span class=p>{</span>
+    <span class=kd>function</span> <span class=n>f</span><span class=p>(</span><span class=kt>uint</span> <span class=n>a</span><span class=p>)</span> <span class=kr>private</span> <span class=kr>pure</span> <span class=k>returns</span> <span class=p>(</span><span class=kt>uint</span> <span class=n>b</span><span class=p>)</span> <span class=p>{</span> <span class=k>return</span> <span class=n>a</span> <span class=o>+</span> <span class=mi>1</span><span class=p>;</span> <span class=p>}</span>
+    <span class=kd>function</span> <span class=n>setData</span><span class=p>(</span><span class=kt>uint</span> <span class=n>a</span><span class=p>)</span> <span class=kr>internal</span> <span class=p>{</span> <span class=n>data</span> <span class=o>=</span> <span class=n>a</span><span class=p>;</span> <span class=p>}</span>
+    <span class=kt>uint</span> <span class=kr>public</span> <span class=n>data</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>在下面的例子中，<code>D</code> 可以调用 <code>c.getData（）</code> 来获取状态存储中 <code>data</code> 的值，但不能调用 <code>f</code> 。 合约 <code>E</code> 继承自 <code>C</code> ，因此可以调用 <code>compute</code>。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-solidity data-lang=solidity><span class=kr>pragma solidity</span> <span class=o>&gt;=</span><span class=mi>0</span><span class=p>.</span><span class=mi>4</span><span class=p>.</span><span class=mi>0</span> <span class=o>&lt;</span><span class=mi>0</span><span class=p>.</span><span class=mi>7</span><span class=p>.</span><span class=mi>0</span><span class=p>;</span>
+
+<span class=kd>contract</span> <span class=n>C</span> <span class=p>{</span>
+    <span class=kt>uint</span> <span class=kr>private</span> <span class=n>data</span><span class=p>;</span>
+
+    <span class=kd>function</span> <span class=n>f</span><span class=p>(</span><span class=kt>uint</span> <span class=n>a</span><span class=p>)</span> <span class=kr>private</span> <span class=k>returns</span><span class=p>(</span><span class=kt>uint</span> <span class=n>b</span><span class=p>)</span> <span class=p>{</span> <span class=k>return</span> <span class=n>a</span> <span class=o>+</span> <span class=mi>1</span><span class=p>;</span> <span class=p>}</span>
+    <span class=kd>function</span> <span class=n>setData</span><span class=p>(</span><span class=kt>uint</span> <span class=n>a</span><span class=p>)</span> <span class=kr>public</span> <span class=p>{</span> <span class=n>data</span> <span class=o>=</span> <span class=n>a</span><span class=p>;</span> <span class=p>}</span>
+    <span class=kd>function</span> <span class=n>getData</span><span class=p>(</span><span class=p>)</span> <span class=kr>public</span> <span class=k>returns</span><span class=p>(</span><span class=kt>uint</span><span class=p>)</span> <span class=p>{</span> <span class=k>return</span> <span class=n>data</span><span class=p>;</span> <span class=p>}</span>
+    <span class=kd>function</span> <span class=n>compute</span><span class=p>(</span><span class=kt>uint</span> <span class=n>a</span><span class=p>,</span> <span class=kt>uint</span> <span class=n>b</span><span class=p>)</span> <span class=kr>internal</span> <span class=k>returns</span> <span class=p>(</span><span class=kt>uint</span><span class=p>)</span> <span class=p>{</span> <span class=k>return</span> <span class=n>a</span><span class=o>+</span><span class=n>b</span><span class=p>;</span> <span class=p>}</span>
+<span class=p>}</span>
+
+<span class=c1>// 下面代码编译错误
+</span><span class=c1></span><span class=kd>contract</span> <span class=n>D</span> <span class=p>{</span>
+    <span class=kd>function</span> <span class=n>readData</span><span class=p>(</span><span class=p>)</span> <span class=kr>public</span> <span class=p>{</span>
+        <span class=n>C</span> <span class=n>c</span> <span class=o>=</span> <span class=k>new</span> <span class=n>C</span><span class=p>(</span><span class=p>)</span><span class=p>;</span>
+        <span class=kt>uint</span> <span class=n>local</span> <span class=o>=</span> <span class=n>c</span><span class=p>.</span><span class=n>f</span><span class=p>(</span><span class=mi>7</span><span class=p>)</span><span class=p>;</span> <span class=c1>// 错误：成员 `f` 不可见
+</span><span class=c1></span>        <span class=n>c</span><span class=p>.</span><span class=n>setData</span><span class=p>(</span><span class=mi>3</span><span class=p>)</span><span class=p>;</span>
+        <span class=n>local</span> <span class=o>=</span> <span class=n>c</span><span class=p>.</span><span class=n>getData</span><span class=p>(</span><span class=p>)</span><span class=p>;</span>
+        <span class=n>local</span> <span class=o>=</span> <span class=n>c</span><span class=p>.</span><span class=n>compute</span><span class=p>(</span><span class=mi>3</span><span class=p>,</span> <span class=mi>5</span><span class=p>)</span><span class=p>;</span> <span class=c1>// 错误：成员 `compute` 不可见
+</span><span class=c1></span>    <span class=p>}</span>
+<span class=p>}</span>
+
+<span class=kd>contract</span> <span class=n>E</span> <span class=kr>is</span> <span class=n>C</span> <span class=p>{</span>
+    <span class=kd>function</span> <span class=n>g</span><span class=p>(</span><span class=p>)</span> <span class=kr>public</span> <span class=p>{</span>
+        <span class=n>C</span> <span class=n>c</span> <span class=o>=</span> <span class=k>new</span> <span class=n>C</span><span class=p>(</span><span class=p>)</span><span class=p>;</span>
+        <span class=kt>uint</span> <span class=n>val</span> <span class=o>=</span> <span class=n>compute</span><span class=p>(</span><span class=mi>3</span><span class=p>,</span> <span class=mi>5</span><span class=p>)</span><span class=p>;</span> <span class=c1>// 访问内部成员（从继承合约访问父合约成员）
+</span><span class=c1></span>    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><a class=post-dummy-target id=22-getter-函数></a><h3>2.2 Getter 函数</h3><p>编译器自动为所有 <strong>public</strong> 状态变量创建 getter 函数。对于下面给出的合约，编译器会生成一个名为 <code>data</code> 的函数， 该函数没有参数，返回值是一个 <code>uint</code> 类型，即状态变量 <code>data</code> 的值。 状态变量的初始化可以在声明时完成。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-solidity data-lang=solidity><span class=kr>pragma solidity</span>  <span class=o>&gt;=</span><span class=mi>0</span><span class=p>.</span><span class=mi>4</span><span class=p>.</span><span class=mi>0</span> <span class=o>&lt;</span><span class=mi>0</span><span class=p>.</span><span class=mi>7</span><span class=p>.</span><span class=mi>0</span><span class=p>;</span>
+
+<span class=kd>contract</span> <span class=n>C</span> <span class=p>{</span>
+    <span class=kt>uint</span> <span class=kr>public</span> <span class=n>data</span> <span class=o>=</span> <span class=mi>42</span><span class=p>;</span>
+<span class=p>}</span>
+
+<span class=kd>contract</span> <span class=n>Caller</span> <span class=p>{</span>
+    <span class=n>C</span> <span class=n>c</span> <span class=o>=</span> <span class=k>new</span> <span class=n>C</span><span class=p>(</span><span class=p>)</span><span class=p>;</span>
+    <span class=kd>function</span> <span class=n>f</span><span class=p>(</span><span class=p>)</span> <span class=kr>public</span> <span class=p>{</span>
+        <span class=kt>uint</span> <span class=n>local</span> <span class=o>=</span> <span class=n>c</span><span class=p>.</span><span class=n>data</span><span class=p>(</span><span class=p>)</span><span class=p>;</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>getter 函数具有外部（external）可见性。如果在内部访问 getter（即没有 <code>this.</code> ），它被认为一个状态变量。 如果使用外部访问（即用 <code>this.</code> ），它被认作为一个函数。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-solidity data-lang=solidity><span class=kr>pragma solidity</span> <span class=o>^</span><span class=mi>0</span><span class=p>.</span><span class=mi>4</span><span class=p>.</span><span class=mi>0</span> <span class=o>&lt;</span><span class=mi>0</span><span class=p>.</span><span class=mi>7</span><span class=p>.</span><span class=mi>0</span><span class=p>;</span>
+
+<span class=kd>contract</span> <span class=n>C</span> <span class=p>{</span>
+    <span class=kt>uint</span> <span class=kr>public</span> <span class=n>data</span><span class=p>;</span>
+    <span class=kd>function</span> <span class=n>x</span><span class=p>(</span><span class=p>)</span> <span class=kr>public</span> <span class=p>{</span>
+        <span class=n>data</span> <span class=o>=</span> <span class=mi>3</span><span class=p>;</span> <span class=c1>// 内部访问
+</span><span class=c1></span>        <span class=kt>uint</span> <span class=n>val</span> <span class=o>=</span> <span class=nb>this</span><span class=p>.</span><span class=n>data</span><span class=p>(</span><span class=p>)</span><span class=p>;</span> <span class=c1>// 外部访问
+</span><span class=c1></span>    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>如果你有一个数组类型的 <code>public</code> 状态变量，那么你只能通过生成的 getter 函数访问数组的单个元素。 这个机制以避免返回整个数组时的高成本gas。 可以使用如 <code>data(0)</code> 用于指定参数要返回的单个元素。 如果要在一次调用中返回整个数组，则需要写一个函数，例如：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-solidity data-lang=solidity><span class=kr>pragma solidity</span> <span class=o>&gt;=</span><span class=mi>0</span><span class=p>.</span><span class=mi>4</span><span class=p>.</span><span class=mi>0</span> <span class=o>&lt;</span><span class=mi>0</span><span class=p>.</span><span class=mi>7</span><span class=p>.</span><span class=mi>0</span><span class=p>;</span>
+
+<span class=kd>contract</span> <span class=n>arrayExample</span> <span class=p>{</span>
+  <span class=c1>// public state variable
+</span><span class=c1></span>  <span class=kt>uint</span><span class=p>[</span><span class=p>]</span> <span class=kr>public</span> <span class=n>myArray</span><span class=p>;</span>
+
+  <span class=c1>// 指定生成的Getter 函数
+</span><span class=c1></span>  <span class=cm>/*
+</span><span class=cm>  function myArray(uint i) public view returns (uint) {
+</span><span class=cm>      return myArray[i];
+</span><span class=cm>  }
+</span><span class=cm>  */</span>
+
+  <span class=c1>// 返回整个数组
+</span><span class=c1></span>  <span class=kd>function</span> <span class=n>getArray</span><span class=p>(</span><span class=p>)</span> <span class=kr>public</span> <span class=kr>view</span> <span class=k>returns</span> <span class=p>(</span><span class=kt>uint</span><span class=p>[</span><span class=p>]</span> <span class=kr>memory</span><span class=p>)</span> <span class=p>{</span>
+      <span class=k>return</span> <span class=n>myArray</span><span class=p>;</span>
+  <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>现在可以使用 <code>getArray()</code> 获得整个数组，而 <code>myArray(i)</code> 是返回单个元素。</p><p>下一个例子稍微复杂一些：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-solidity data-lang=solidity><span class=kr>pragma solidity</span> <span class=o>^</span><span class=mi>0</span><span class=p>.</span><span class=mi>4</span><span class=p>.</span><span class=mi>0</span> <span class=o>&lt;</span><span class=mi>0</span><span class=p>.</span><span class=mi>7</span><span class=p>.</span><span class=mi>0</span><span class=p>;</span>
+
+<span class=kd>contract</span> <span class=n>Complex</span> <span class=p>{</span>
+    <span class=kd>struct</span> <span class=n>Data</span> <span class=p>{</span>
+        <span class=kt>uint</span> <span class=n>a</span><span class=p>;</span>
+        <span class=kt>bytes3</span> <span class=n>b</span><span class=p>;</span>
+        <span class=kd>mapping</span> <span class=p>(</span><span class=kt>uint</span> <span class=o>=&gt;</span> <span class=kt>uint</span><span class=p>)</span> <span class=n>map</span><span class=p>;</span>
+    <span class=p>}</span>
+    <span class=kd>mapping</span> <span class=p>(</span><span class=kt>uint</span> <span class=o>=&gt;</span> <span class=kd>mapping</span><span class=p>(</span><span class=kt>bool</span> <span class=o>=&gt;</span> <span class=n>Data</span><span class=p>[</span><span class=p>]</span><span class=p>)</span><span class=p>)</span> <span class=kr>public</span> <span class=n>data</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>这将会生成以下形式的函数</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-solidity data-lang=solidity><span class=kd>function</span> <span class=n>data</span><span class=p>(</span><span class=kt>uint</span> <span class=n>arg1</span><span class=p>,</span> <span class=kt>bool</span> <span class=n>arg2</span><span class=p>,</span> <span class=kt>uint</span> <span class=n>arg3</span><span class=p>)</span> <span class=kr>public</span> <span class=k>returns</span> <span class=p>(</span><span class=kt>uint</span> <span class=n>a</span><span class=p>,</span> <span class=kt>bytes3</span> <span class=n>b</span><span class=p>)</span> <span class=p>{</span>
+    <span class=n>a</span> <span class=o>=</span> <span class=n>data</span><span class=p>[</span><span class=n>arg1</span><span class=p>]</span><span class=p>[</span><span class=n>arg2</span><span class=p>]</span><span class=p>[</span><span class=n>arg3</span><span class=p>]</span><span class=p>.</span><span class=n>a</span><span class=p>;</span>
+    <span class=n>b</span> <span class=o>=</span> <span class=n>data</span><span class=p>[</span><span class=n>arg1</span><span class=p>]</span><span class=p>[</span><span class=n>arg2</span><span class=p>]</span><span class=p>[</span><span class=n>arg3</span><span class=p>]</span><span class=p>.</span><span class=n>b</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>请注意，因为没有好的方法来提供映射的键，所以结构中的映射被省略。</p><a class=post-dummy-target id=3-合约间调用></a><h2>3. 合约间调用</h2><p>之前的实验合约间的调用没有成功，这次就仔细地研究一下合约间地调用机制。分为两种情况</p><ol><li>调用者和被调用者在一个sol文件中</li><li>调用者和被调用者在不同的sol文件中</li></ol><p>本文提到的合约调用方法的实质是抽象合约的使用。</p><a class=post-dummy-target id=31-同sol文件的智能合约调用></a><h3>3.1 同sol文件的智能合约调用</h3><p>下面的智能合约中，Main和Add两个合约定义在一个Main.sol文件中，可以同时编译，然后逐个部署。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=nx>pragma</span> <span class=nx>solidity</span> <span class=o>^</span><span class=mf>0.5</span><span class=mf>.0</span><span class=p>;</span>
+
+
+<span class=nx>contract</span> <span class=nx>Main</span> <span class=p>{</span>
+  <span class=nx>Add</span> <span class=nx>add</span><span class=p>;</span>
+  
+  <span class=nx>constructor</span><span class=p>(</span><span class=nx>address</span> <span class=nx>_m</span><span class=p>)</span> <span class=kr>public</span> <span class=p>{</span>
+     <span class=nx>add</span> <span class=o>=</span> <span class=nx>Add</span><span class=p>(</span><span class=nx>_m</span><span class=p>)</span><span class=p>;</span>
+  <span class=p>}</span>
+  
+  <span class=kd>function</span> <span class=nx>Addnumber</span><span class=p>(</span><span class=p>)</span> <span class=kr>public</span> <span class=nx>view</span> <span class=nx>returns</span> <span class=p>(</span><span class=nx>uint</span><span class=p>)</span> <span class=p>{</span>
+    <span class=k>return</span> <span class=nx>add</span><span class=p>.</span><span class=nx>add5</span><span class=p>(</span><span class=mi>10</span><span class=p>)</span><span class=p>;</span>
+  <span class=p>}</span>
+<span class=p>}</span>
+
+<span class=nx>contract</span> <span class=nx>Add</span> <span class=p>{</span>
+  <span class=kd>function</span> <span class=nx>add5</span><span class=p>(</span><span class=nx>uint</span> <span class=nx>s</span><span class=p>)</span> <span class=kr>public</span> <span class=nx>pure</span> <span class=nx>returns</span> <span class=p>(</span><span class=nx>uint</span><span class=p>)</span><span class=p>{</span>
+      <span class=k>return</span> <span class=mi>5</span><span class=o>+</span><span class=nx>s</span><span class=p>;</span>
+  <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>以使用Remix为例，点击编译按钮编译Main.sol文件，将会同时编译Main和Add两个合约。</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472178-e6294d00-025a-11ea-8b4b-41a53b471c18.png alt=编译 class=lazyload><figcaption class=image-caption>编译</figcaption></figure></p><p>然后首先部署Add合约，因为Main合约的部署需要Add的合约地址作为参数。切换到部署和运行选项卡，选择Add合约，点击<code>Deploy</code>，成功部署后，复制合约地址。</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472256-0e18b080-025b-11ea-9a24-e324c82cd7b5.png alt="deploy simple Add" class=lazyload><figcaption class=image-caption>deploy simple Add</figcaption></figure></p><p>然后重新选择Main合约，填入Add合约地址作为参数，点击部署按钮。</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472285-1a047280-025b-11ea-8bb5-a1fb5c65574e.png alt="deploy simple Main" class=lazyload><figcaption class=image-caption>deploy simple Main</figcaption></figure></p><p>测试合约间调用，由合约内容可知，Main合约中的Addnumber函数调用了Add合约的add5函数，传入参数为10，得到的结果应为15。展开左侧的<code>Deployed Contracts</code>，点击Addnumber进行调用，结果如下。</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472220-f5a89600-025a-11ea-9d2a-b39c8e39a810.png alt="call test" class=lazyload><figcaption class=image-caption>call test</figcaption></figure></p><a class=post-dummy-target id=32-不同sol文件的智能合约调用></a><h3>3.2 不同sol文件的智能合约调用</h3><p>这一次我们测试不同sol文件的智能合约调用，来一个复杂一点的，两个合约分别是Add.sol和Main.sol。</p><p>Add.sol使用了一个结构体来定义数值，并通过映射定义查找表来寻找这个值。文件中定义了两个函数，numRegister用来向表中添加数值，addValue用来将从表中查到的指定值+5返回。之所以用这个结构是因为我们的项目里用到了，这里来测试一下可不可行。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=nx>pragma</span> <span class=nx>solidity</span> <span class=o>^</span><span class=mf>0.5</span><span class=mf>.0</span><span class=p>;</span>
+
+<span class=nx>contract</span> <span class=nx>Add</span> <span class=p>{</span>
+    <span class=nx>struct</span> <span class=nx>Num</span><span class=p>{</span>
+        <span class=nx>uint</span> <span class=nx>value</span><span class=p>;</span>
+    <span class=p>}</span>
+    <span class=nx>mapping</span><span class=p>(</span><span class=nx>uint</span> <span class=p>=&gt;</span> <span class=nx>Num</span><span class=p>)</span> <span class=kr>public</span> <span class=nx>lookupTable</span><span class=p>;</span>
+    
+    <span class=kd>function</span> <span class=nx>numRegister</span><span class=p>(</span><span class=nx>uint</span> <span class=nx>key</span><span class=p>,</span> <span class=nx>uint</span> <span class=nx>_value</span><span class=p>)</span> <span class=kr>public</span> <span class=p>{</span>
+        <span class=nx>lookupTable</span><span class=p>[</span><span class=nx>key</span><span class=p>]</span><span class=p>.</span><span class=nx>value</span> <span class=o>=</span> <span class=nx>_value</span><span class=p>;</span>
+    <span class=p>}</span>
+    
+    <span class=kd>function</span> <span class=nx>addValue</span><span class=p>(</span><span class=nx>uint</span> <span class=nx>key</span><span class=p>)</span> <span class=kr>public</span> <span class=nx>view</span> <span class=nx>returns</span> <span class=p>(</span><span class=nx>uint</span><span class=p>)</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=nx>lookupTable</span><span class=p>[</span><span class=nx>key</span><span class=p>]</span><span class=p>.</span><span class=nx>value</span> <span class=o>+</span> <span class=mi>5</span><span class=p>;</span>
+    <span class=p>}</span>
+
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>Main.sol没有多大变化</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=nx>pragma</span> <span class=nx>solidity</span> <span class=o>^</span><span class=mf>0.5</span><span class=mf>.0</span><span class=p>;</span>
+
+<span class=nx>contract</span> <span class=nx>Main</span> <span class=p>{</span>
+  <span class=nx>Add</span> <span class=nx>add</span><span class=p>;</span>
+  
+  <span class=nx>constructor</span><span class=p>(</span><span class=nx>address</span> <span class=nx>_m</span><span class=p>)</span> <span class=kr>public</span> <span class=p>{</span>
+     <span class=nx>add</span> <span class=o>=</span> <span class=nx>Add</span><span class=p>(</span><span class=nx>_m</span><span class=p>)</span><span class=p>;</span>
+  <span class=p>}</span>
+  
+  <span class=kd>function</span> <span class=nx>Addnumber</span><span class=p>(</span><span class=p>)</span> <span class=kr>public</span> <span class=nx>view</span> <span class=nx>returns</span> <span class=p>(</span><span class=nx>uint</span><span class=p>)</span> <span class=p>{</span>
+    <span class=k>return</span> <span class=nx>add</span><span class=p>.</span><span class=nx>addValue</span><span class=p>(</span><span class=mi>5</span><span class=p>)</span><span class=p>;</span>
+  <span class=p>}</span>
+<span class=p>}</span>
+
+<span class=nx>contract</span> <span class=nx>Add</span> <span class=p>{</span>
+      <span class=kd>function</span> <span class=nx>addValue</span><span class=p>(</span><span class=nx>uint</span> <span class=nx>key</span><span class=p>)</span> <span class=kr>public</span> <span class=nx>view</span> <span class=nx>returns</span> <span class=p>(</span><span class=nx>uint</span><span class=p>)</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>仍然是先编译部署Add合约，部署后调用numRegister函数写入数值5，并调用addValue函数测试返回。</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472316-2d174280-025b-11ea-96a6-51af8dd4fd4c.png alt="deploy comlex Add" class=lazyload><figcaption class=image-caption>deploy comlex Add</figcaption></figure></p><p>接着编译部署Main合约，复制Add合约地址作为初始化参数，部署后调用Addnumber函数测试</p><p><figure><img src=/svg/loading.min.svg data-sizes=auto data-src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191108_68472331-399b9b00-025b-11ea-933f-8c03ff95c55a.png alt="deploy comlex Main" class=lazyload><figcaption class=image-caption>deploy comlex Main</figcaption></figure></p><a class=post-dummy-target id=33-总结></a><h3>3.3 总结</h3><p>合约内的调用方法是相同的，都要先实例化，然后传入被调合约地址，接着才能调用。而写在不同sol文件中时，需要额外声明被调合约的抽象合约，有些文章中说使用<code>call</code>，<code>callcode</code>或<code>delegatecall</code>，但并不建议，因为这三个函数都是非常底层的函数，破坏了类型的安全，只能作为最后的手段使用。</p><p>详细的解释参考了<a href=https://ethereum.stackexchange.com/questions/9733/calling-function-from-deployed-contract target=_blank>StackExchange-Calling function from deployed contract</a></p><a class=post-dummy-target id=4-函数修饰词pure和view></a><h2>4. 函数修饰词pure和view</h2><p>转自<a href=https://learnblockchain.cn/docs/solidity/contracts.html#view target=_blank>深入理解Solidity-函数</a></p><p>这两个函数修饰词的作用是告诉编译器函数是否会读取/修改状态，view 表示保证不修改状态，pure 表示保证不读取也不修改状态。Solidity v0.4.17 之前没有这两个修饰词，而是使用 constant 关键字，和 view 的含义相同，不过在 v0.5.0 之后被移除，现在只能使用这两个 view 和 pure。</p><a class=post-dummy-target id=41-view-视图函数></a><h3>4.1 view 视图函数</h3><p>Getter 方法会被自动标记为 <code>view</code>，除此之外，一个 view 修饰的例子如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-solidity data-lang=solidity><span class=kr>pragma solidity</span>  <span class=o>&gt;=</span><span class=mi>0</span><span class=p>.</span><span class=mi>5</span><span class=p>.</span><span class=mi>0</span> <span class=o>&lt;</span><span class=mi>0</span><span class=p>.</span><span class=mi>7</span><span class=p>.</span><span class=mi>0</span><span class=p>;</span>
+
+<span class=kd>contract</span> <span class=n>C</span> <span class=p>{</span>
+    <span class=kd>function</span> <span class=n>f</span><span class=p>(</span><span class=kt>uint</span> <span class=n>a</span><span class=p>,</span> <span class=kt>uint</span> <span class=n>b</span><span class=p>)</span> <span class=kr>public</span> <span class=kr>view</span> <span class=k>returns</span> <span class=p>(</span><span class=kt>uint</span><span class=p>)</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=n>a</span> <span class=o>*</span> <span class=p>(</span><span class=n>b</span> <span class=o>+</span> <span class=mi>42</span><span class=p>)</span> <span class=o>+</span> <span class=nb>now</span><span class=p>;</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>view 保证函数不修改状态，以下操作会被认为是修改状态</p><ol><li>修改状态变量。</li><li>产生事件。</li><li>创建其它合约。</li><li>使用 <code>selfdestruct</code>。</li><li>通过调用发送以太币。</li><li>调用任何没有标记为 <code>view</code> 或者 <code>pure</code> 的函数。</li><li>使用低级调用。</li><li>使用包含特定操作码的内联汇编。</li></ol><a class=post-dummy-target id=42-pure-纯函数></a><h3>4.2 pure 纯函数</h3><p>pure 保证不读取也不修改状态，不修改的定义上面已经提到，下面的操作被认为是读取状态</p><ol><li>读取状态变量。</li><li>访问 <code>address(this).balance</code> 或者 <code>.balance</code>。</li><li>访问 <code>block</code>，<code>tx</code>， <code>msg</code> 中任意成员 （除 <code>msg.sig</code> 和 <code>msg.data</code> 之外）。</li><li>调用任何未标记为 <code>pure</code> 的函数。</li><li>使用包含某些操作码的内联汇编。</li></ol><p>一个 pure 修饰的例子如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-solidity data-lang=solidity><span class=kr>pragma solidity</span> <span class=o>&gt;=</span><span class=mi>0</span><span class=p>.</span><span class=mi>5</span><span class=p>.</span><span class=mi>0</span> <span class=o>&lt;</span><span class=mi>0</span><span class=p>.</span><span class=mi>7</span><span class=p>.</span><span class=mi>0</span><span class=p>;</span>
+
+<span class=kd>contract</span> <span class=n>C</span> <span class=p>{</span>
+    <span class=kd>function</span> <span class=n>f</span><span class=p>(</span><span class=kt>uint</span> <span class=n>a</span><span class=p>,</span> <span class=kt>uint</span> <span class=n>b</span><span class=p>)</span> <span class=kr>public</span> <span class=kr>pure</span> <span class=k>returns</span> <span class=p>(</span><span class=kt>uint</span><span class=p>)</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=n>a</span> <span class=o>*</span> <span class=p>(</span><span class=n>b</span> <span class=o>+</span> <span class=mi>42</span><span class=p>)</span><span class=p>;</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><a class=post-dummy-target id=5-浮点数处理></a><h2>5. 浮点数处理</h2><p>首先声明，Solidity 中支持浮点数定义，但无法赋值和进行计算。文档中对其描述是「目前还不完全支持」，虽然这意味着以后可能会完全支持，但等不及了，下面记录几个可参考的资料。</p><ol><li>来自 <a href=https://ethereum.stackexchange.com/questions/83785/what-fixed-or-float-point-math-libraries-are-available-in-solidity target=_blank>ethereum stackexchange</a> 中的回答，介绍了一些可用的库；</li><li><a href=https://github.com/abdk-consulting/abdk-libraries-solidity/blob/master/ABDKMathQuad.md target=_blank>ABDK Math Quad</a>，包含两个合约库，一个支持定点数，一个支持浮点数；</li><li>Mikhail Vladimirov 的 <a href=https://medium.com/coinmonks/math-in-solidity-part-1-numbers-384c8377f26d target=_blank>Math in Solidity</a> 系列文章，介绍如何在 Solidity 中处理各种数学运算，写的非常棒。</li></ol><a class=post-dummy-target id=6-地址类型></a><h2>6. 地址类型</h2><p>在智能合约中显式传入地址类型时，可能会出现如下错误</p><blockquote><p>Address checksum</p><p>This looks like an address but has an invalid checksum. If this is not used as an address, please prepend &lsquo;00&rsquo;.</p></blockquote><p>关于该问题的一个讨论见 <a href=https://github.com/ethereum/EIPs/issues/55>https://github.com/ethereum/EIPs/issues/55</a></p><p>这是因为合约中现在使用地址类型必须做一个转换，不是简单的全部大写字母或小写字母，而是遵循一定的规则，这个规则见 <a href=https://github.com/ethereum/EIPs/blob/master/EIPS/eip-55.md target=_blank>ethereum/EIPs#55</a></p><p>但是网上提供的解决方案一般是使用JS库中的转换函数，在智能合约中无法直接解决，好在，web3提供了一个<a href=https://web3-tools.netlify.com/ target=_blank>在线API接口</a>，可以调用其<code>checkAddressChecksum</code>函数对地址进行转换，然后将转换后的结果直接用于合约代码。</p><a class=post-dummy-target id=7-gas-limit问题></a><h2>7. Gas limit问题</h2><p>在搭建的以太坊私链上进行智能合约部署时，出现了以下问题</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=nx>INFO</span> <span class=p>[</span><span class=mi>03</span><span class=o>-</span><span class=mi>21</span><span class=o>|</span><span class=mi>13</span><span class=o>:</span><span class=mi>50</span><span class=o>:</span><span class=mf>11.690</span><span class=p>]</span> <span class=nx>Served</span> <span class=nx>eth_sendTransaction</span>               <span class=nx>reqid</span><span class=o>=</span><span class=mi>24</span> <span class=nx>t</span><span class=o>=</span><span class=mf>684.186</span><span class=nx>µs</span>    <span class=nx>err</span><span class=o>=</span><span class=s2>&#34;exceeds block gas limit&#34;</span>
+<span class=nb>Error</span><span class=o>:</span> <span class=nx>exceeds</span> <span class=nx>block</span> <span class=nx>gas</span> <span class=nx>limit</span> <span class=kc>undefined</span>
+</code></pre></td></tr></table></div></div><p>出现该错误的原因如错误描述，是当前合约所需的gas超过了区块的最大gas。这可能与参数gasLimit有关。在创世区块的配置文件中，我们使用了默认的配置值，为<code>0x2fefd8</code>，转换为10进制即<code>3141592</code>。</p><p>注：<a href=http://tool.oschina.net/hexconvert/ target=_blank>在线转换工具</a></p></div><div class=post-footer><a href=https://shuzang.github.io/2020/summary-of-smart-contract-knowledge-points/>Read More</a><div class=post-tags><span class=tag>&nbsp;<a href=https://shuzang.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/><i class="fas fa-tag fa-fw"></i>&nbsp;区块链</a></span></div></div></article><article class=post itemscope itemtype=http://schema.org/Article><h1 class="post-title post-list-title" itemprop="name headline"><a href=https://shuzang.github.io/2020/algorithm-backtracking/>算法-回溯</a></h1><div class=post-meta><a class=author href=https://shuzang.github.io/about/ rel=author target=_blank><i class="fas fa-user-circle fa-fw"></i>shuzang
+</a>published on <time datetime=2020-05-04>2020-05-04</time>&nbsp;<span class=post-category>included in&nbsp;<i class="far fa-folder fa-fw"></i>
+<a href=https://shuzang.github.io/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/>爱编程爱技术的孩子</a></span></div><div class=post-content>在真实的世界中，很多问题是不存在快速解法的，只能穷尽搜索，因此一个高效的搜索技术非常重要。回溯（Backtracking）和分支限界（Bra</div><div class=post-footer><a href=https://shuzang.github.io/2020/algorithm-backtracking/>Read More</a><div class=post-tags><span class=tag>&nbsp;<a href=https://shuzang.github.io/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/><i class="fas fa-tag fa-fw"></i>&nbsp;数据结构与算法</a></span></div></div></article><ul class=pagination><li class=page-item><span class=page-link><a href=/>1</a></span></li><li class=page-item><span class=page-link aria-hidden=true>&mldr;</span></li><li class=page-item><span class=page-link><a href=/page/47/>47</a></span></li><li class=page-item><span class=page-link><a href=/page/48/>48</a></span></li><li class="page-item active"><span class=page-link><a href=/page/49/>49</a></span></li><li class=page-item><span class=page-link><a href=/page/50/>50</a></span></li><li class=page-item><span class=page-link><a href=/page/51/>51</a></span></li><li class=page-item><span class=page-link aria-hidden=true>&mldr;</span></li><li class=page-item><span class=page-link><a href=/page/146/>146</a></span></li></ul></div></div></main><footer class=footer><div class=copyright><div class=copyright-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2021</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://shuzang.github.io/about/ target=_blank>shuzang</a> | </span>Powered by <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreffer">Hugo</a> & <a href=https://github.com/dillonzq/LoveIt target=_blank rel="external nofollow noopener noreffer">LoveIt</a></div></div></footer></div><a href=# class=dynamic-to-top id=dynamic-to-top data-scroll><span>&nbsp;</span>
 </a><script src=/js/lib/jquery/jquery.slim.min.js></script><script src=/js/lib/lazysizes/lazysizes.min.js></script><script src=/js/lib/smooth-scroll/smooth-scroll.polyfills.min.js></script><script>window.scroll=new SmoothScroll('[data-scroll]',{speed:300,speedAsDuration:true});</script><script src=/js/lib/typeit/typeit.min.js></script><script>window.typeitArr=[["tp-3c0a4282539e1c3c149528c40a394747"]];</script><link rel=stylesheet href=/css/lib/katex/katex.min.css><script src=/js/lib/katex/katex.min.js></script><script defer src=/js/lib/katex/auto-render.min.js></script><link rel=stylesheet href=/css/lib/katex/copy-tex.min.css><script defer src=/js/lib/katex/copy-tex.min.js></script><script defer src=/js/lib/katex/mhchem.min.js></script><script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body,{delimiters:[{left:"$$",right:"$$",display:true},{left:"\\(",right:"\\)",display:false},{left:"\\[",right:"\\]",display:true},{left:"$",right:"$",display:false},]});});</script><script src=/js/blog.min.js></script></body></html>
