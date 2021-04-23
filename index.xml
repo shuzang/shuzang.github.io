@@ -1,22 +1,10 @@
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Shuzang's Blog | Shuzang's Blog</title><link>https://shuzang.github.io/</link><description>Shuzang's Blog | Shuzang's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 08 Apr 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://shuzang.github.io/" rel="self" type="application/rss+xml"/><item><title>Posts</title><link>https://shuzang.github.io/posts/</link><pubDate>Thu, 08 Apr 2021 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/posts/</guid><description/></item><item><title>About</title><link>https://shuzang.github.io/about/</link><pubDate>Tue, 09 Apr 2019 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/about/</guid><description>&lt;h2 id="关于网站">关于网站&lt;/h2>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Shuzang's Blog | Shuzang's Blog</title><link>https://shuzang.github.io/</link><description>Shuzang's Blog | Shuzang's Blog</description><generator>Hugo -- gohugo.io</generator><language>en</language><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Thu, 22 Apr 2021 09:06:00 +0800</lastBuildDate><atom:link href="https://shuzang.github.io/" rel="self" type="application/rss+xml"/><item><title>Posts</title><link>https://shuzang.github.io/posts/</link><pubDate>Thu, 22 Apr 2021 09:06:00 +0800</pubDate><guid>https://shuzang.github.io/posts/</guid><description/></item><item><title>About</title><link>https://shuzang.github.io/about/</link><pubDate>Tue, 09 Apr 2019 00:00:00 +0000</pubDate><guid>https://shuzang.github.io/about/</guid><description>&lt;h2 id="关于网站">关于网站&lt;/h2>
 &lt;p>&lt;strong>个人博客，欢迎交流&lt;/strong>&lt;/p>
 &lt;h2 id="关于我">关于我&lt;/h2>
 &lt;ul>
-&lt;li>
-&lt;p>研究生在读，研究方向为 IoT 和 blockchain&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>初入门径的 Gopher&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>喜欢效率和极简，喜欢看电影、读书、旅行和健身&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;del>网络小说沉迷者，B站视频沉迷者&lt;/del>（戒断中）&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>想在这短短的一生中体验这世间美好的一切&lt;/p>
-&lt;/li>
+&lt;li>研究生在读，研究方向为 IoT 和 blockchain&lt;/li>
+&lt;li>喜欢效率和极简，喜欢看电影、读书、旅行和健身&lt;/li>
+&lt;li>想在这短短的一生中体验这世间美好的一切&lt;/li>
 &lt;/ul>
 &lt;h2 id="关于版权">关于版权&lt;/h2>
 &lt;p>本站所有的原创文章均受 &lt;a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">创作共享 署名-非商业性 4.0 许可协议 / CC BY-NC 4.0&lt;/a> 保护。&lt;/p>

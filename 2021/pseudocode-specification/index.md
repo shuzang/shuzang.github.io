@@ -102,10 +102,27 @@ latex 书写伪代码主要有三种排版格式：algorithm+algorithmic、algor
 
 ![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20210118_示例伪代码2.png)
 
-
-
 注：当前算法选然后条件语句会带有下划线，主要是因为同时使用了 \ulem 包，产生了冲突，去掉该包即可
 
+当算法过长，超过一页时，由于algorithm2e 没有提供相应的拆分机制，需要自己进行处理，文档描述如下
 
+> Caution: algorithms cannot be cut
+
+自行拆分的方法是，在需要拆开的部分提前加入算法结束符，然后新建算法，示例如下，例子中省略了非必要的代码，但已足够说明如何使用，即只需要新开一个算法块，然后设定行号即可。
+
+```latex
+\begin{algorithm}
+  $\mathcal{E} \leftarrow \emptyset$\;
+\end{algorithm}
+
+\begin{algorithm}
+	  \setcounter{AlgoLine}{12}
+      $\mathcal{E} \leftarrow \emptyset$\;
+      $\mathcal{E} \leftarrow \emptyset$\;
+      $\mathcal{E} \leftarrow \emptyset$\;
+      $\mathcal{E} \leftarrow \emptyset$\;
+      $\mathcal{E} \leftarrow \emptyset$\;     
+\end{algorithm}
+```
 
 
