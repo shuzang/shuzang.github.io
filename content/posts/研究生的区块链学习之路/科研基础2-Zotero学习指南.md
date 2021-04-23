@@ -178,7 +178,13 @@ mklink /j C:\Users\lylw1\Zotero\storage F:\OneDrive\课题\论文库
 - `C:\Users\lylw1\Zotero\storage`是所有文件的原始路径
 - `F:\OneDrive\课题\论文库`是所有文件的新路径，位于 OndDrive 存储库中，新的文件夹名不必和原来的`storage`相同，可以任意命名。
 
-因为在个人所有电脑中 Zotero 数据文件夹的路径都相同，OneDrive文件夹的路径也相同，所以可以通用，如果不相同，只需要重新修改软链接即可。如果嫌弃这种方式比较麻烦，可以选择使用插件 [ZotFile](http://zotfile.com/)。
+如果想迁移到新的位置，按如下步骤执行
+
+1. 删除 C:\Users\lylw1\Zotero\storage 中的源文件夹
+2. 使用上述命令建立指向新位置的软链接
+3. 将 F:\OneDrive\课题\论文库 中的文件复制到新的目标文件夹中
+
+如果想要对软链接的目标文件夹更名，可以采用和迁移相同的方式，需要注意的是，一定要注意目标文件夹内数据的完整性，如果被破坏，那么链接将不再起作用。最后，如果嫌弃这种方式比较麻烦，可以选择使用插件 [ZotFile](http://zotfile.com/)。
 
 ### 4.2 插件系统
 
