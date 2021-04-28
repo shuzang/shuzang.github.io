@@ -4,7 +4,6 @@ date: 2020-11-11
 tags: [Hugo]
 categories: [爱编程爱技术的孩子]
 slug: Hugo develop themes 1-content management
-draft: true
 ---
 
 Hugo 用到最后，终究还是免不了走上自己修改甚至开发主题的道路，本篇首先介绍 Hugo 的内容如何管理。
