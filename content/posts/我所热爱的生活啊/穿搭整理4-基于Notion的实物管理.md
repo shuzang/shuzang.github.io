@@ -1,5 +1,5 @@
 ---
-title: 极简与数据化-基于Notion数据表格的实物管理思路
+title: 穿搭整理4-基于Notion的实物管理
 date: 2021-05-03
 tags: [效率]
 categories: [我所热爱的生活啊]
