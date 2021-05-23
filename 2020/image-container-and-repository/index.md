@@ -381,3 +381,7 @@ $ docker container prune
 通过 `docker search` 命令来查找官方仓库中的镜像，通过 `docker pull` 命令来将它下载到本地。
 
 也可以构建自己的私有仓库，但这里不做介绍。
+
+参考：[前言 - Docker —— 从入门到实践 (gitbook.io)](https://yeasy.gitbook.io/docker_practice/)
+
+

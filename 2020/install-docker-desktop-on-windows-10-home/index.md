@@ -1,4 +1,4 @@
-# Docker-Win10 Home版安装Docker Desktop on Windows
+# Docker-Win10 Home安装Docker
 
 
 Docker Desktop 是 Windows 安装 Docker 的推荐安装方式，然而系统需求是 Pro, Enterprise 或 Education 版本，Home 版不支持，因为没有 Hyper-V。
@@ -84,3 +84,7 @@ For more examples and ideas, visit:
 ```
 
 出现 `Hello from Docker!` 说明安装成功。
+
+参考：[Orientation and setup | Docker Documentation](https://docs.docker.com/get-started/)
+
+
