@@ -1,7 +1,7 @@
 ---
 title: Nginx说明
 date: 2020-07-17T18:50:00+08:00
-tags: [Nginx]
+tags: [计算机基础]
 categories: [爱编程爱技术的孩子]
 slug: Nginx learning 
 ---

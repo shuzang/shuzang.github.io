@@ -146,4 +146,7 @@ $ docker attach chitchat
 $ docker start chitchat
 ```
 
+本文参考：[使用Docker安装、运行mysql - 简书 (jianshu.com)](https://www.jianshu.com/p/d9b6bbc7fd77)
+
 不使用docker直接在win10中安装mysql参考[win10安装Mysql教程](https://www.cnblogs.com/xiaokang01/p/12092160.html)
+

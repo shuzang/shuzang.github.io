@@ -1,5 +1,5 @@
 ---
-title: Docker-Win10 Home版安装Docker Desktop on Windows
+title: Docker-Win10 Home安装Docker
 date: 2020-04-23
 tags: [linux]
 categories: [爱编程爱技术的孩子]
@@ -89,3 +89,6 @@ For more examples and ideas, visit:
 ```
 
 出现 `Hello from Docker!` 说明安装成功。
+
+参考：[Orientation and setup | Docker Documentation](https://docs.docker.com/get-started/)
+
