@@ -1,4 +1,4 @@
-这是 shuzang 的个人博客仓库，使用 [Hugo](https://gohugo.io/) 生成，主题使用 [LoveIt](https://github.com/dillonzq/LoveIt) （做了一定修改），源码和文章放在 `blog` 分支下，生成的页面利用 Github Action 推送到 master 分支，通过 Github Pages 展示页面。
+<!-- 这是 shuzang 的个人博客仓库，使用 [Hugo](https://gohugo.io/) 生成，主题使用 [LoveIt](https://github.com/dillonzq/LoveIt) （做了一定修改），源码和文章放在 `blog` 分支下，生成的页面利用 Github Action 推送到 master 分支，通过 Github Pages 展示页面。
 
 你可以通过以下步骤快速使用该仓库构建自己的博客
 
@@ -20,4 +20,4 @@
 5. 以正常的 git commit 方式提交修改，几分钟后即可利用第三步中修改后的 baseURL 在浏览器中查看自己的博客。
 
 我的博客地址为：[https://shuzang.github.io/](https://shuzang.github.io/)，你可以从此链接查看博客最终的效果。
-
+ -->
