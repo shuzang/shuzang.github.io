@@ -6,9 +6,11 @@ categories: [我所热爱的生活啊]
 slug: Keep bracelet B2 member version review
 ---
 
-入手渠道：Keep商城
+:shopping_cart: 入手渠道：Keep商城
 
-参考价格：108 元（手环独立售价 99 元 + 首月会员 9 元）
+:moneybag: 参考价格：108 元（手环独立售价 99 元 + 首月会员 9 元）
+
+----
 
 <!--more-->
 
