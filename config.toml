@@ -18,7 +18,7 @@ enableEmoji = true
 # whether to use robots.txt
 enableRobotsTXT = true
 # [UA-XXXXXXXX-X] google analytics code
-googleAnalytics = ""
+googleAnalytics = "UA-209130979-1"
 # copyright description used only for seo schema
 copyright = "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License."
 # date format
