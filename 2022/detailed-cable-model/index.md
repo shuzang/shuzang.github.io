@@ -1,7 +1,7 @@
 # 电缆型号详解
 
 
-入工作需要，收集整理和理解电缆的种类、型号和结构。
+应工作需要，收集整理和理解电缆的种类、型号和结构。
 
 
 
@@ -75,4 +75,5 @@
 
 - 额定电压1 kV及以下架空绝缘电缆：[国家标准|GB/T 12527-2008](http://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=84FC0F997DE5CDA17A063713A798017B)
 - 额定电压10kV架空绝缘电缆：[国家标准|GB/T 14049-2008](http://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=498F0E9BDCC9F878D7A6272E0AEC46AD)
+- 陈蕾. 电缆图表手册（第二版）[M]. 中国水利水电出版社. 2014-01.
 
