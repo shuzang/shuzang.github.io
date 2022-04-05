@@ -1,0 +1,198 @@
+<!doctype html><html lang=zh-cn dir=content/zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=content-security-policy content="upgrade-insecure-requests"><title>数据结构-链表 - 书藏的博客</title><meta name=keywords content="博客,程序员,区块链，思考,读书,笔记,生活,电影,旅游,"><meta name=author content="书藏"><meta property="og:title" content="数据结构-链表"><meta property="og:site_name" content="书藏的博客"><meta property="og:image" content="/img/author.jpg"><meta name=title content="数据结构-链表 - 书藏的博客"><meta name=description content="书藏的个人博客，记录学习的东西，以月刊记录生活"><link rel="shortcut icon" href=/img/favicon.ico><link rel=apple-touch-icon href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><link href=//cdn.bootcdn.net/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css rel=stylesheet type=text/css><link href=//cdn.bootcdn.net/ajax/libs/imageviewer/0.1.0/viewer.min.css rel=stylesheet><link href=/css/main.css rel=stylesheet type=text/css><link href=/css/syntax.css rel=stylesheet type=text/css><script async src="https://www.googletagmanager.com/gtag/js?id=UA-209130979-1"></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-209130979-1 ');</script></head><body itemscope itemtype=http://schema.org/WebPage lang=zh-hans><div class="container one-collumn sidebar-position-left page-home"><div class=headband></div><header id=header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle role=button style=opacity:1;top:0><span class=toggle-line></span><span class=toggle-line></span><span class=toggle-line></span></div></div><div class=site-meta><div class=multi-lang-switch><i class="fa fa-fw fa-language" style=margin-right:5px></i><a class=lang-link id=zh-cn href=#>中文</a></div><div class=custom-logo-site-title><a href=/ class=brand rel=start><span class=logo-line-before><i></i></span><span class=site-title>书藏的博客</span>
+<span class=logo-line-after><i></i></span></a></div><p class=site-subtitle>凡心所向，素履以往</p></div><div class=site-nav-right><div class="toggle popup-trigger" style=opacity:1;top:0><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul id=menu class=menu><li class=menu-item><a href=/ rel=section><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class=menu-item><a href=/post rel=section><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class=menu-item><a href=/about.html rel=section><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于我</a></li><li class=menu-item><a href=/404.html rel=section><i class="menu-item-icon fa fa-fw fa-heartbeat"></i><br>公益404</a></li><li class="menu-item menu-item-search"><a href=javascript:; class=popup-trigger><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class=site-search><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class=search-icon><i class="fa fa-search"></i></span><span class=popup-btn-close><i class="fa fa-times-circle"></i></span><div class=local-search-input-wrapper><input autocomplete=off placeholder=搜索关键字... spellcheck=false type=text id=local-search-input autocapitalize=none autocorrect=off></div></div><div id=local-search-result></div></div></div></nav></div></header><main id=main class=main><div class=main-inner><div class=content-wrap><div id=content class=content><section id=posts class=posts-expand><article class="post post-type-normal" itemscope itemtype=http://schema.org/Article><header class=post-header><h1 class=post-title itemprop="name headline"><a class=post-title-link href=https://shuzang.github.io/post/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/data-structure-linkedlist/ itemprop=url>数据结构-链表</a></h1><div class=post-meta><span class=post-time><i class="fa fa-calendar-o fa-fw"></i><span class=post-meta-item-text>时间：</span>
+<time itemprop=dateCreated datetime=2016-03-22T13:04:35+08:00 content="2020-02-20">2020-02-20</time></span>
+<span class=post-category>&nbsp; | &nbsp;
+<i class="fa fa-folder-o fa-fw"></i><span class=post-meta-item-text>分类：</span>
+<span itemprop=about itemscope itemtype=https://schema.org/Thing><a href=/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90 itemprop=url rel=index style=text-decoration:underline><span itemprop=name>爱编程爱技术的孩子</span></a>
+&nbsp;</span></span>
+<span>|
+<i class="fa fa-file-word-o fa-fw"></i><span class=post-meta-item-text>字数：</span>
+<span class=leancloud-world-count>2792 字</span></span>
+<span>|
+<i class="fa fa-eye fa-fw"></i><span class=post-meta-item-text>阅读：</span>
+<span class=leancloud-view-count>6分钟</span></span>
+<span id=/post/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/data-structure-linkedlist/ class=leancloud_visitors data-flag-title=数据结构-链表>|
+<i class="fa fa-binoculars fa-fw"></i><span class=post-meta-item-text>阅读次数：</span>
+<span class=leancloud-visitors-count></span></span></div></header><div class=post-body itemprop=articleBody><p>链表是一种最为基础的数据结构，由一系列结点组成，每个结点不仅包含值，还包含指向下一个结点（有时也包括上一个结点）的指针。相比于数组，在链表中访问指定的元素则需要$O(N)$的复杂度，但进行插入和删除操作只需要$O(1)$的复杂度</p><h2 id=1-单链表>1. 单链表</h2><p>一个单链表的例子如下，蓝色箭头显示链表中的结点是如何相连的</p><p><img src=https://aliyun-lc-upload.oss-cn-hangzhou.aliyuncs.com/aliyun-lc-upload/uploads/2018/08/05/screen-shot-2018-04-12-at-152754.png style=zoom:50%></p><p>关于结点的最常见的定义如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#080;font-style:italic>//单链表结点
+</span><span style=color:#080;font-style:italic></span><span style=color:#a2f;font-weight:700>type</span> node <span style=color:#a2f;font-weight:700>struct</span> {
+	val  <span style=color:#0b0;font-weight:700>int</span>   <span style=color:#080;font-style:italic>// 结点的值
+</span><span style=color:#080;font-style:italic></span>	next <span style=color:#666>*</span>node <span style=color:#080;font-style:italic>// 指向下一个结点的指针
+</span><span style=color:#080;font-style:italic></span>}
+</code></pre></div><p>多数情况下，我们使用头结点来表示整个链表，并将链表的长度存储其中。虽然增加了一个结点的存储，但带来的好处却是巨大的</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#080;font-style:italic>//头结点，也是单链表的起始
+</span><span style=color:#080;font-style:italic></span><span style=color:#a2f;font-weight:700>type</span> singlyLinkedList <span style=color:#a2f;font-weight:700>struct</span> {
+	length <span style=color:#0b0;font-weight:700>int</span>   <span style=color:#080;font-style:italic>// 链表长度
+</span><span style=color:#080;font-style:italic></span>	next   <span style=color:#666>*</span>node <span style=color:#080;font-style:italic>// 指向第一个结点的指针
+</span><span style=color:#080;font-style:italic></span>}
+</code></pre></div><p>定义了头结点的情况下，需要事先对链表进行初始化</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#080;font-style:italic>/* @description: 初始化链表(头结点)
+</span><span style=color:#080;font-style:italic>   @author: shuzang 2020-03-28
+</span><span style=color:#080;font-style:italic>   @param: 无
+</span><span style=color:#080;font-style:italic>   @return: _ *singleLinkedList 指向单链表(头结点)的指针
+</span><span style=color:#080;font-style:italic>*/</span>
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>constructor</span>() <span style=color:#666>*</span>singlyLinkedList {
+	<span style=color:#a2f;font-weight:700>return</span> <span style=color:#666>&amp;</span>singlyLinkedList{<span style=color:#666>0</span>, <span style=color:#a2f;font-weight:700>nil</span>}
+}
+</code></pre></div><h3 id=11-获取指定结点的值>1.1 获取指定结点的值</h3><p>本质是对链表的遍历，修改操作也是相同的算法，只是需要遍历到指定元素后进行修改即可，程序实现如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#080;font-style:italic>/* @description: 如果索引有效，获取链表中第 index 个结点的值
+</span><span style=color:#080;font-style:italic>   @author: shuzang 2020-03-28
+</span><span style=color:#080;font-style:italic>   @param: index int 要获取的元素位置
+</span><span style=color:#080;font-style:italic>   @return: _ int 获取元素的值; _ error 索引无效时返回错误
+</span><span style=color:#080;font-style:italic>*/</span>
+<span style=color:#a2f;font-weight:700>func</span> (list <span style=color:#666>*</span>singlyLinkedList) <span style=color:#00a000>Get</span>(index <span style=color:#0b0;font-weight:700>int</span>) (<span style=color:#0b0;font-weight:700>int</span>, <span style=color:#0b0;font-weight:700>error</span>) {
+	<span style=color:#a2f;font-weight:700>if</span> index &lt; <span style=color:#666>1</span> <span style=color:#666>||</span> index &gt; list.length {
+		<span style=color:#a2f;font-weight:700>return</span> <span style=color:#666>-</span><span style=color:#666>1</span>, errors.<span style=color:#00a000>New</span>(<span style=color:#b44>&#34;param - index is invalid&#34;</span>)
+	}
+	cur <span style=color:#666>:=</span> list.next
+	<span style=color:#a2f;font-weight:700>for</span> i <span style=color:#666>:=</span> <span style=color:#666>1</span>; i &lt; index; i<span style=color:#666>++</span> {
+		cur = cur.next
+	}
+	<span style=color:#a2f;font-weight:700>return</span> cur.val, <span style=color:#a2f;font-weight:700>nil</span>
+}
+</code></pre></div><h3 id=12-插入结点>1.2 插入结点</h3><p>如果我们想在 prev 结点后插入新结点，基本操作步骤如下</p><ol><li>初始化新结点 newNode</li><li>将新结点的 Next 指针指向 prev 结点的下一个结点</li><li>将 prev 结点的 Next 指针指向新结点</li></ol><p><img src=https://aliyun-lc-upload.oss-cn-hangzhou.aliyuncs.com/aliyun-lc-upload/uploads/2018/04/26/screen-shot-2018-04-25-at-163243.png style=zoom:50%></p><p>在开头插入结点和在结尾插入结点是两种特殊情况，前者需要考虑头结点的存在，后者需要遍历到链表结尾，我们不再详述。三种插入的程序实现如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#080;font-style:italic>/* @description: 在链表的第一个元素之前插入结点，插入后，新结点将成为链表的第一个结点
+</span><span style=color:#080;font-style:italic>   @author: shuzang	2020-03-28
+</span><span style=color:#080;font-style:italic>   @param: val	int	要添加的元素的值
+</span><span style=color:#080;font-style:italic>   @return: 无
+</span><span style=color:#080;font-style:italic>*/</span>
+<span style=color:#a2f;font-weight:700>func</span> (list <span style=color:#666>*</span>singlyLinkedList) <span style=color:#00a000>AddAtHead</span>(val <span style=color:#0b0;font-weight:700>int</span>) {
+	list.next = <span style=color:#666>&amp;</span>node{val, list.next}
+	list.length<span style=color:#666>++</span>
+}
+
+<span style=color:#080;font-style:italic>/* @description: 将新结点追加到链表的最后一个元素
+</span><span style=color:#080;font-style:italic>   @author: shuzang 2020-03-28
+</span><span style=color:#080;font-style:italic>   @param: val int 要添加的元素的值
+</span><span style=color:#080;font-style:italic>   @return: 无
+</span><span style=color:#080;font-style:italic>*/</span>
+<span style=color:#a2f;font-weight:700>func</span> (list <span style=color:#666>*</span>singlyLinkedList) <span style=color:#00a000>AddAtTail</span>(val <span style=color:#0b0;font-weight:700>int</span>) {
+	newNode <span style=color:#666>:=</span> <span style=color:#666>&amp;</span>node{val, <span style=color:#a2f;font-weight:700>nil</span>}
+
+	<span style=color:#a2f;font-weight:700>if</span> list.next <span style=color:#666>==</span> <span style=color:#a2f;font-weight:700>nil</span> {
+		list.next = newNode
+	} <span style=color:#a2f;font-weight:700>else</span> {
+		cur <span style=color:#666>:=</span> list.next
+		<span style=color:#a2f;font-weight:700>for</span> cur.next <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> {
+			cur = cur.next
+		}
+		cur.next = newNode
+	}
+
+	list.length<span style=color:#666>++</span>
+}
+
+<span style=color:#080;font-style:italic>/* @description: 在链表的第 index 个结点前添加结点，插入后新结点成为第 index 个结点，
+</span><span style=color:#080;font-style:italic>如果 index 大于链表长度，结点添加到链表末尾，如果 index 小于 1，则在头部插入结点
+</span><span style=color:#080;font-style:italic>   @author: shuzang 2020-03-28
+</span><span style=color:#080;font-style:italic>   @param: index int 要插入的位置，起始数字为 1; val int 要插入的元素的值
+</span><span style=color:#080;font-style:italic>   @return: 无
+</span><span style=color:#080;font-style:italic>*/</span>
+<span style=color:#a2f;font-weight:700>func</span> (list <span style=color:#666>*</span>singlyLinkedList) <span style=color:#00a000>AddAtIndex</span>(index, val <span style=color:#0b0;font-weight:700>int</span>) {
+	<span style=color:#a2f;font-weight:700>if</span> index &gt; list.length {
+		list.<span style=color:#00a000>AddAtTail</span>(val)
+	} <span style=color:#a2f;font-weight:700>else</span> <span style=color:#a2f;font-weight:700>if</span> index <span style=color:#666>&lt;=</span> <span style=color:#666>1</span> {
+		list.<span style=color:#00a000>AddAtHead</span>(val)
+	} <span style=color:#a2f;font-weight:700>else</span> {
+		cur <span style=color:#666>:=</span> list.next
+		<span style=color:#a2f;font-weight:700>for</span> i <span style=color:#666>:=</span> <span style=color:#666>1</span>; i &lt; index<span style=color:#666>-</span><span style=color:#666>1</span>; i<span style=color:#666>++</span> {
+			cur = cur.next
+		}
+		cur.next = <span style=color:#666>&amp;</span>node{val, cur.next}
+	}
+
+	list.length<span style=color:#666>++</span>
+}
+</code></pre></div><h3 id=13-删除结点>1.3 删除结点</h3><p>删除结点只需要将前一个结点的 Next 指针指向当前结点的下一个结点，需要注意的是我们只需要遍历到待插入结点的前一个结点即可</p><p><img src=https://aliyun-lc-upload.oss-cn-hangzhou.aliyuncs.com/aliyun-lc-upload/uploads/2018/04/26/screen-shot-2018-04-26-at-203640.png style=zoom:50%></p><p>程序实现如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#080;font-style:italic>/* @description: 如果索引有效，删除链表第 index 个位置的结点
+</span><span style=color:#080;font-style:italic>   @author: shuzang 2020-03-28
+</span><span style=color:#080;font-style:italic>   @param: index int 要删除的元素位置
+</span><span style=color:#080;font-style:italic>   @return: _ error 索引无效时返回错误
+</span><span style=color:#080;font-style:italic>*/</span>
+<span style=color:#a2f;font-weight:700>func</span> (list <span style=color:#666>*</span>singlyLinkedList) <span style=color:#00a000>DeleteAtIndex</span>(index <span style=color:#0b0;font-weight:700>int</span>) <span style=color:#0b0;font-weight:700>error</span> {
+	<span style=color:#a2f;font-weight:700>if</span> index &lt; <span style=color:#666>1</span> <span style=color:#666>||</span> index &gt; list.length {
+		<span style=color:#a2f;font-weight:700>return</span> errors.<span style=color:#00a000>New</span>(<span style=color:#b44>&#34;param - index is invalid&#34;</span>)
+	} <span style=color:#a2f;font-weight:700>else</span> <span style=color:#a2f;font-weight:700>if</span> index <span style=color:#666>==</span> <span style=color:#666>1</span> {
+		list.next = list.next.next
+	} <span style=color:#a2f;font-weight:700>else</span> {
+		cur <span style=color:#666>:=</span> list.next
+		<span style=color:#a2f;font-weight:700>for</span> i <span style=color:#666>:=</span> <span style=color:#666>1</span>; i &lt; index<span style=color:#666>-</span><span style=color:#666>1</span>; i<span style=color:#666>++</span> {
+			cur = cur.next
+		}
+		cur.next = cur.next.next
+	}
+
+	list.length<span style=color:#666>--</span>
+	<span style=color:#a2f;font-weight:700>return</span> <span style=color:#a2f;font-weight:700>nil</span>
+}
+</code></pre></div><h3 id=14-打印链表>1.4 打印链表</h3><p>一个工具函数，不是必要的，但是很常用，打印输出整个单链表</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#080;font-style:italic>/* @description: 工具函数，打印单链表
+</span><span style=color:#080;font-style:italic>   @author: shzuang 2020-03-28
+</span><span style=color:#080;font-style:italic>   @param: 无
+</span><span style=color:#080;font-style:italic>   @return: 无
+</span><span style=color:#080;font-style:italic>*/</span>
+<span style=color:#a2f;font-weight:700>func</span> (list <span style=color:#666>*</span>singlyLinkedList) <span style=color:#00a000>PrintList</span>() {
+	cur <span style=color:#666>:=</span> list.next
+	fmt.<span style=color:#00a000>Println</span>((<span style=color:#b44>&#34;当前单链表为: &#34;</span>))
+	<span style=color:#a2f;font-weight:700>for</span> ; cur.next <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span>; cur = cur.next {
+		fmt.<span style=color:#00a000>Printf</span>(<span style=color:#b44>&#34;%v-&gt;&#34;</span>, cur.val)
+	}
+	fmt.<span style=color:#00a000>Println</span>(cur.val)
+}
+</code></pre></div><h2 id=2-双指针技巧>2. 双指针技巧</h2><p>双指针是一种经典的链表操作技巧，对很多问题都有非常好的作用，下面通过几个经典问题进行介绍</p><h3 id=21-环形链表>2.1 环形链表</h3><p>关于环形链表的经典问法是：给定一个链表，判断链表中是否有环。更多扩展的问题包括：</p><ol><li>如果存在环，找出环的入口结点</li><li>如果存在环，求环中的结点个数</li><li>如果存在环，求链表长度</li></ol><p>这些问题都可以通过Floyd判环算法解决，算法的基本思想可以拿跑圈来举例说明：假设两个人在一条环形跑道上跑步，同时出发，但速度一个快一个慢，我们知道，如果一直跑下去，快的人总能追上慢的一方，此时快的一方多跑的路程一定是跑道长度的整数倍，即我们所说的「套圈了」</p><p>有人也拿龟兔赛跑举例，但思想是相同的。基于上述思想，Floyd提出了双指针算法（快指针和慢指针），算法分两个阶段。</p><p><strong>第一阶段</strong>可以用来判断是否有环。慢指针（龟）每次前进一步，快指针（兔）每次前进两步（两步或多步效果是等价的，只要一个比另一个快就行）。如果两者在链表头以外的某一点相遇（即相等）了，那么说明链表有环，否则，如果（快指针）到达了链表的结尾，那么说明没环。</p><p><img src=https://pic.leetcode-cn.com/99987d4e679fdfbcfd206a4429d9b076b46ad09bd2670f886703fb35ef130635-image.png style=zoom:50%></p><p><strong>第二阶段</strong>确定环的起点。假设链表起点到环的起点距离为$F$（这里我们提到的距离是结点个数），第一阶段相遇时的结点距离环的起点为$a$，环的周长为 $n = a + b$。那么第一阶段两者相遇时，慢指针移动的总距离为 $d = F + r_1 n + a$，由于快指针移动速度是慢指针的两倍，其移动的总距离为$2d = F + r_2 n + a$，其中$r_1$为慢指针第一次相遇时转过的圈数，$r_2$为快指针第一次相遇时转过的圈数。我们令两者相减（快减慢），那么得到 $d = (r_2 - r_1)n$，意为 $d$ 是环长度的倍数。</p><p>因此，我们将慢指针移动到链表的起点，快指针保持在第一次相遇的结点，然后两者同时开始移动，但这次两者每次都只移动一步。当慢指针前进了 $F$ 到达环的起点时，快指针距离链表起点 $d + F$，由于 $d$ 是环长度的倍数，这个距离可以看作快指针从链表起点出发，走到环的起点，然后绕环转了几圈，但此时停在了环的起点。即两个第二次的相遇点就是环的起点。</p><p>程序实现如下，需要注意的有两点</p><ol><li>调用 Next 字段前，检查结点是否为空</li><li>仔细考虑循环的结束条件</li></ol><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>detectCycle</span>(head <span style=color:#666>*</span>LinkedList) <span style=color:#666>*</span>Node {
+    slow, fast <span style=color:#666>:=</span> head.Next,head.Next
+    <span style=color:#080;font-style:italic>//第一阶段，循环退出条件为fast指针或fast.Next为nil，因为fast始终在slow前面，所以不需要判断slow
+</span><span style=color:#080;font-style:italic></span>    <span style=color:#a2f;font-weight:700>for</span> fast <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> <span style=color:#666>&amp;&amp;</span> fast.Next <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> {
+        slow = slow.Next
+        fast = fast.Next.Next
+        <span style=color:#a2f;font-weight:700>if</span> fast <span style=color:#666>==</span> slow {
+            slow = head
+            <span style=color:#a2f;font-weight:700>break</span>
+        }
+    }
+    <span style=color:#080;font-style:italic>//退出循环要么是到达相遇点，要么是没有环，没有环时返回nil
+</span><span style=color:#080;font-style:italic></span>    <span style=color:#a2f;font-weight:700>if</span> fast <span style=color:#666>==</span> <span style=color:#a2f;font-weight:700>nil</span> <span style=color:#666>||</span> fast.Next <span style=color:#666>==</span> <span style=color:#a2f;font-weight:700>nil</span> {
+        <span style=color:#a2f;font-weight:700>return</span> <span style=color:#a2f;font-weight:700>nil</span>
+    }
+    <span style=color:#080;font-style:italic>//第二阶段,每次移动一步直到相遇，slow指针已经调整完毕
+</span><span style=color:#080;font-style:italic></span>    <span style=color:#a2f;font-weight:700>for</span> fast <span style=color:#666>!=</span> slow {
+        slow = slow.Next
+        fast = fast.Next
+    }
+    <span style=color:#a2f;font-weight:700>return</span> fast <span style=color:#080;font-style:italic>//此时fast == slow，返回任一个都可以
+</span><span style=color:#080;font-style:italic></span>}
+</code></pre></div><p>得到环的起点后，快指针再跑一圈就可以得到环的长度，相应的，慢指针移回链表起点再走一遍然后和环的长度相加可以得到链表长度。</p><h3 id=22-相交链表>2.2 相交链表</h3><p>经典问法是：判断两个无环链表是否相交，如果相交，求相交的起始结点。如下图在 c1 结点相交。</p><p><img src=https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_statement.png style=zoom:67%></p><p>基本求解步骤如下</p><ol><li>创建两个指针 pA 和 pB，分别初始化为链表 <code>A</code> 和 <code>B</code> 的头结点。然后让它们向后逐结点遍历。</li><li>当 pA 到达链表的尾部时，将它重定位到链表 B 的头结点 (注意，是链表 B)；类似的，当 pB 到达链表的尾部时，将它重定位到链表 A 的头结点。</li><li>若在某一时刻 pA 和 pB 相遇，则该结点为相交结点。</li></ol><p>可以这样理解，除去相交部分（3个结点），A 有 2 个结点，B有 3 个结点。重定位后，A多走的距离正好是重定位前少走的距离，这样直到相交，两者都走了 2+3+3 个结点距离。</p><p>程序实现如下，正常情况两个链表不相交的条件是最后一个结点不相同，但是实际上如果任意一个链表为空或两者不相交，根据循环最后都会走到 nil，因此也会跳出循环，而且返回pA或pB的值 nil 也是我们想要的返回值，如果相交，同样直接返回pA或pB的值即可。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>getIntersectionNode</span>(headA, headB <span style=color:#666>*</span>LinkedList) <span style=color:#666>*</span>Node {
+    pA,pB <span style=color:#666>:=</span> headA.Next, headB.Next
+    <span style=color:#a2f;font-weight:700>for</span> pA <span style=color:#666>!=</span> pB {
+        <span style=color:#a2f;font-weight:700>if</span> pA <span style=color:#666>==</span> <span style=color:#a2f;font-weight:700>nil</span> {
+            pA = headB.Next
+        }<span style=color:#a2f;font-weight:700>else</span>{
+            pA = pA.Next
+        }
+        <span style=color:#a2f;font-weight:700>if</span> pB <span style=color:#666>==</span> <span style=color:#a2f;font-weight:700>nil</span> {
+            pB = headA.Next
+        }<span style=color:#a2f;font-weight:700>else</span>{
+            pB = pB.Next
+        }
+    }
+    <span style=color:#a2f;font-weight:700>return</span> pA
+}
+</code></pre></div><h2 id=其它资料>其它资料</h2><p><a href=https://xiaoneng.blog.csdn.net/article/details/104007259>Leetcode刷题总结之链表</a></p></div><footer class=post-footer><div class=post-tags><a href=/tags/%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e4%b8%8e%e7%ae%97%e6%b3%95 rel=tag title=数据结构与算法>#数据结构与算法#</a></div><div class=addthis_inline_share_toolbox></div><div class=post-nav><div class=article-copyright><div class=article-copyright-img><img src=/img/qq_qrcode.png width=129px height=129px><div style=text-align:center>QQ扫一扫交流</div></div><div class=article-copyright-info><p><span>声明：</span>数据结构-链表</p><p><span>链接：</span>https://shuzang.github.io/post/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/data-structure-linkedlist/</p><p><span>作者：</span>书藏</p><p><span>声明： </span>本博客文章除特别声明外，均采用 <a href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank style=text-decoration:underline>CC BY-NC-SA 3.0</a>许可协议，转载请注明出处！</p></div></div><div class=clear></div></div><div class=reward-qr-info><div>创作实属不易，如有帮助，那就打赏博主些许茶钱吧 ^_^</div><button id=rewardButton disable=enable onclick="var qr=document.getElementById('QR');if(qr.style.display==='none'){qr.style.display='block';}else{qr.style.display='none'}">
+<span>赏</span></button><div id=QR style=display:none><div id=wechat style=display:inline-block><img id=wechat_qr src=/img/wechat-pay.png alt="WeChat Pay"><p>微信打赏</p></div><div id=alipay style=display:inline-block><img id=alipay_qr src=/img/ali-pay.png alt=Alipay><p>支付宝打赏</p></div></div></div><div class=post-nav><div class="post-nav-next post-nav-item"><a href=https://shuzang.github.io/post/%E6%97%A5%E7%A8%8B%E5%8F%8A%E5%91%A8%E5%88%8A/life-weekly-8/ rel=next title="书藏的生活周刊第 8 期 (20200221)"><i class="fa fa-chevron-left"></i>书藏的生活周刊第 8 期 (20200221)</a></div><div class="post-nav-prev post-nav-item"><a href=https://shuzang.github.io/post/%E5%B9%B3%E6%97%A5%E9%87%8C%E7%9A%84%E7%99%BD%E6%97%A5%E6%A2%A6/how-to-do-if-no-enough-time/ rel=prev title=时间不够用怎么办>时间不够用怎么办
+<i class="fa fa-chevron-right"></i></a></div></div><div id=wcomments></div></footer></article></section></div></div><div class=sidebar-toggle><div class=sidebar-toggle-line-wrap><span class="sidebar-toggle-line sidebar-toggle-line-first"></span><span class="sidebar-toggle-line sidebar-toggle-line-middle"></span><span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id=sidebar class=sidebar><div class=sidebar-inner><section class="site-overview sidebar-panel sidebar-panel-active"><div class="site-author motion-element" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image src=/images/avatar.png alt=书藏><p class=site-author-name itemprop=name>书藏</p><p class="site-description motion-element" itemprop=description></p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href=/post/><span class=site-state-item-count>334</span>
+<span class=site-state-item-name>日志</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>7</span>
+<span class=site-state-item-name>分类</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>23</span>
+<span class=site-state-item-name>标签</span></a></div></nav><div class="links-of-author motion-element"><span class=links-of-author-item><a href=https://github.com/shuzang/ target=_blank title=GitHub><i class="fa fa-fw fa-github"></i>GitHub</a></span></div><div class="tagcloud-of-blogroll motion-element tagcloud-of-blogroll-inline"><div class=tagcloud-of-blogroll-title><i class="fa fa-fw fa-tags"></i>标签云</div><ul class=tagcloud-of-blogroll-list><li class=tagcloud-of-blogroll-item><a href=/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0>论文笔记</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E4%B9%A6%E8%97%8F%E7%9A%84%E7%94%9F%E6%B4%BB%E5%91%A8%E5%88%8A>书藏的生活周刊</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95>科研记录</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/go%E8%AF%AD%E6%B3%95>Go语法</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80>计算机基础</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E6%9D%82%E8%B0%88>杂谈</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E5%8C%BA%E5%9D%97%E9%93%BE>区块链</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95>数据结构与算法</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E7%94%9F%E6%B4%BB%E6%8A%80%E8%83%BD>生活技能</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/go%E5%AE%9E%E6%88%98>Go实战</a></li></ul></div></section></div></aside></div></main><footer id=footer class=footer><div class=footer-inner><div class=copyright><span class=copyright-year>&copy; 2010 - 2022</span>
+<span class=with-love><i class="fa fa-heart"></i></span><span class=copyright-author>书藏的博客</span></div><div class=powered-info><span class=powered-by>Powered by - <a class=powered-link href=//gohugo.io target=_blank title=hugo>Hugo v0.63.2</a></span>
+<span class=separator-line>/</span>
+<span class=theme-info>Theme by - <a class=powered-link href=//github.com/elkan1788/hugo-theme-next target=_blank>NexT</a></span></div><div class=vistor-info><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><span class=site-uv><i class="fa fa-user"></i><span class=busuanzi-value id=busuanzi_value_site_uv></span></span><span class=separator-line>/</span>
+<span class=site-pv><i class="fa fa-eye"></i><span class=busuanzi-value id=busuanzi_value_site_pv></span></span></div><div class=license-info><span class=storage-info>Storage by
+<a href=https://www.ucloud.cn/ style=font-weight:700 target=_blank>UCloud云存储</a></span>
+<span class=separator-line>/</span>
+<span class=license-num><a href target=_blank></a></span></div></div></footer><div class=back-to-top><i class="fa fa-arrow-up"></i><span id=scrollpercent><span>0</span>%</span></div></div><script type=text/javascript src=//cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.min.js></script><script type=text/javascript src=/js/search.js></script><script type=text/javascript src=/js/affix.js></script><script type=text/javascript src=/js/scrollspy.js></script><script type=text/javascript>function detectIE(){var ua=window.navigator.userAgent;var msie=ua.indexOf('MSIE ');var trident=ua.indexOf('Trident/');var edge=ua.indexOf('Edge/');if(msie>0||trident>0||edge>0){return-1;}
+return 1;}
+function getCntViewHeight(){var docHeight=$('#content').height(),winHeight=$(window).height(),cntViewHeight=(docHeight>winHeight)?(docHeight-winHeight):($(document).height()-winHeight);return cntViewHeight;}
+function getScrollbarWidth(){var $div=$('<div />').addClass('scrollbar-measure').prependTo('body');var div=$div[0];var scrollbarWidth=div.offsetWidth-div.clientWidth;$div.remove();return scrollbarWidth;}
+function registerBackTop(){var THRESHOLD=50;var $top=$('.back-to-top');$(window).on('scroll',function(){$top.toggleClass('back-to-top-on',window.pageYOffset>THRESHOLD);var scrollTop=$(window).scrollTop();var cntViewHeight=getCntViewHeight();var scrollPercent=(scrollTop)/(cntViewHeight);var scrollPercentRounded=Math.round(scrollPercent*100);var scrollPercentMaxed=(scrollPercentRounded>100)?100:scrollPercentRounded;$('#scrollpercent>span').html(scrollPercentMaxed);});$top.on('click',function(){$("html,body").animate({scrollTop:0,screenLeft:0,},800);});}
+function initScrollSpy(){var tocSelector='.post-toc';var $tocElement=$(tocSelector);var activeCurrentSelector='.active-current';$tocElement.on('activate.bs.scrollspy',function(){var $currentActiveElement=$(tocSelector+' .active').last();removeCurrentActiveClass();$currentActiveElement.addClass('active-current');}).on('clear.bs.scrollspy',removeCurrentActiveClass);$('body').scrollspy({target:tocSelector});function removeCurrentActiveClass(){$(tocSelector+' '+activeCurrentSelector).removeClass(activeCurrentSelector.substring(1));}}
+function initAffix(){var headerHeight=$('.header-inner').height();var footerOffset=parseInt($('.main').css('padding-bottom'),10);var sidebarTop=headerHeight+10;$('.sidebar-inner').affix({offset:{top:sidebarTop,bottom:footerOffset}});$(document).on('affixed.bs.affix',function(){updateTOCHeight(document.body.clientHeight-100);});}
+function initTOCDimension(){var updateTOCHeightTimer;$(window).on('resize',function(){updateTOCHeightTimer&&clearTimeout(updateTOCHeightTimer);updateTOCHeightTimer=setTimeout(function(){var tocWrapperHeight=document.body.clientHeight-100;updateTOCHeight(tocWrapperHeight);},0);});updateTOCHeight(document.body.clientHeight-100);var scrollbarWidth=getScrollbarWidth();$('.post-toc').css('width','calc(100% + '+scrollbarWidth+'px)');}
+function updateTOCHeight(height){height=height||'auto';$('.post-toc').css('max-height',height);}
+$(function(){var sidebarTop=$('.header-inner').height()+10;$('#sidebar').css({'margin-top':sidebarTop}).show();var sidebarMt=parseInt($('#sidebar').css('margin-top'));var sidebarInHeight=parseInt($('.sidebar-inner').css('height'));var sideHeight=sidebarMt+sidebarInHeight;var contentHeight=$('.content-wrap').height();if(contentHeight<sideHeight){$('.content-wrap').css('min-height',sideHeight);}
+$('.site-nav-toggle').on('click',function(){var $siteNav=$('.site-nav');var $toggleLine=$('.toggle');var ON_CLASS_NAME='site-nav-on';var CLOSE_CLASS_NAME='toggle-close';var isSiteNavOn=$siteNav.hasClass(ON_CLASS_NAME);var animateAction=isSiteNavOn?'slideUp':'slideDown';var animateCallback=isSiteNavOn?'removeClass':'addClass';$siteNav.stop()[animateAction]('normal',function(){$siteNav[animateCallback](ON_CLASS_NAME);$toggleLine[animateCallback](CLOSE_CLASS_NAME);});});registerBackTop();initScrollSpy();initAffix();initTOCDimension();$('.sidebar-nav-toc').click(function(){$(this).addClass('sidebar-nav-active');$(this).next().removeClass('sidebar-nav-active');$('.'+$(this).next().attr('data-target')).toggle(500);$('.'+$(this).attr('data-target')).toggle(500);});$('.sidebar-nav-overview').click(function(){$(this).addClass('sidebar-nav-active');$(this).prev().removeClass('sidebar-nav-active');$('.'+$(this).prev().attr('data-target')).toggle(500);$('.'+$(this).attr('data-target')).toggle(500);});});</script><script src=//cdn.bootcdn.net/ajax/libs/imageviewer/0.1.0/viewer.min.js></script><script type=text/javascript>$(function(){$('.post-body').viewer();});</script><script type=text/javascript>$(function(){if(detectIE()>0){$.getScript(document.location.protocol+'//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js',function(){new Waline({el:'#wcomments',visitor:true,avatar:'wavatar',avatarCDN:'https://sdn.geekzu.org/avatar/',avatarForce:!1,wordLimit:'200',placeholder:' 欢迎留下您的宝贵建议，请填写您的昵称和邮箱便于后续交流. ^_^ ',requiredFields:['nick','mail'],serverURL:"Your WalineSerURL",lang:"zh-cn"});});}else{$('#wcomments').html('抱歉，Waline插件不支持IE或Edge，建议使用Chrome浏览器。');}});</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script><script type=text/javascript src="//s7.addthis.com/js/300/addthis_widget.js#pubid=Your%20AddthisId"></script><script>(function(){var bp=document.createElement('script');var curProtocol=window.location.protocol.split(':')[0];if(curProtocol==='https'){bp.src='https://zz.bdstatic.com/linksubmit/push.js';}
+else{bp.src='http://push.zhanzhang.baidu.com/push.js';}
+var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(bp,s);})();</script></body></html>

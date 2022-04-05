@@ -1,0 +1,379 @@
+<!doctype html><html lang=zh-cn dir=content/zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=content-security-policy content="upgrade-insecure-requests"><title>研究记录14-重新实验及实验流程优化 - 书藏的博客</title><meta name=keywords content="博客,程序员,区块链，思考,读书,笔记,生活,电影,旅游,"><meta name=author content="书藏"><meta property="og:title" content="研究记录14-重新实验及实验流程优化"><meta property="og:site_name" content="书藏的博客"><meta property="og:image" content="/img/author.jpg"><meta name=title content="研究记录14-重新实验及实验流程优化 - 书藏的博客"><meta name=description content="书藏的个人博客，记录学习的东西，以月刊记录生活"><link rel="shortcut icon" href=/img/favicon.ico><link rel=apple-touch-icon href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><link href=//cdn.bootcdn.net/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css rel=stylesheet type=text/css><link href=//cdn.bootcdn.net/ajax/libs/imageviewer/0.1.0/viewer.min.css rel=stylesheet><link href=/css/main.css rel=stylesheet type=text/css><link href=/css/syntax.css rel=stylesheet type=text/css><script async src="https://www.googletagmanager.com/gtag/js?id=UA-209130979-1"></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-209130979-1 ');</script></head><body itemscope itemtype=http://schema.org/WebPage lang=zh-hans><div class="container one-collumn sidebar-position-left page-home"><div class=headband></div><header id=header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle role=button style=opacity:1;top:0><span class=toggle-line></span><span class=toggle-line></span><span class=toggle-line></span></div></div><div class=site-meta><div class=multi-lang-switch><i class="fa fa-fw fa-language" style=margin-right:5px></i><a class=lang-link id=zh-cn href=#>中文</a></div><div class=custom-logo-site-title><a href=/ class=brand rel=start><span class=logo-line-before><i></i></span><span class=site-title>书藏的博客</span>
+<span class=logo-line-after><i></i></span></a></div><p class=site-subtitle>凡心所向，素履以往</p></div><div class=site-nav-right><div class="toggle popup-trigger" style=opacity:1;top:0><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul id=menu class=menu><li class=menu-item><a href=/ rel=section><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class=menu-item><a href=/post rel=section><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class=menu-item><a href=/about.html rel=section><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于我</a></li><li class=menu-item><a href=/404.html rel=section><i class="menu-item-icon fa fa-fw fa-heartbeat"></i><br>公益404</a></li><li class="menu-item menu-item-search"><a href=javascript:; class=popup-trigger><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class=site-search><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class=search-icon><i class="fa fa-search"></i></span><span class=popup-btn-close><i class="fa fa-times-circle"></i></span><div class=local-search-input-wrapper><input autocomplete=off placeholder=搜索关键字... spellcheck=false type=text id=local-search-input autocapitalize=none autocorrect=off></div></div><div id=local-search-result></div></div></div></nav></div></header><main id=main class=main><div class=main-inner><div class=content-wrap><div id=content class=content><section id=posts class=posts-expand><article class="post post-type-normal" itemscope itemtype=http://schema.org/Article><header class=post-header><h1 class=post-title itemprop="name headline"><a class=post-title-link href=https://shuzang.github.io/post/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/experimental-process-optimization-and-performance-test/ itemprop=url>研究记录14-重新实验及实验流程优化</a></h1><div class=post-meta><span class=post-time><i class="fa fa-calendar-o fa-fw"></i><span class=post-meta-item-text>时间：</span>
+<time itemprop=dateCreated datetime=2016-03-22T13:04:35+08:00 content="2020-06-01">2020-06-01</time></span>
+<span class=post-category>&nbsp; | &nbsp;
+<i class="fa fa-folder-o fa-fw"></i><span class=post-meta-item-text>分类：</span>
+<span itemprop=about itemscope itemtype=https://schema.org/Thing><a href=/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF itemprop=url rel=index style=text-decoration:underline><span itemprop=name>研究生的区块链学习之路</span></a>
+&nbsp;</span></span>
+<span>|
+<i class="fa fa-file-word-o fa-fw"></i><span class=post-meta-item-text>字数：</span>
+<span class=leancloud-world-count>11232 字</span></span>
+<span>|
+<i class="fa fa-eye fa-fw"></i><span class=post-meta-item-text>阅读：</span>
+<span class=leancloud-view-count>23分钟</span></span>
+<span id=/post/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/experimental-process-optimization-and-performance-test/ class=leancloud_visitors data-flag-title=研究记录14-重新实验及实验流程优化>|
+<i class="fa fa-binoculars fa-fw"></i><span class=post-meta-item-text>阅读次数：</span>
+<span class=leancloud-visitors-count></span></span></div></header><div class=post-body itemprop=articleBody><p>我们对之前的实验流程做了进一步的优化，并且对添加恶意行为检测后的系统进行了进一步的性能测试。</p><h2 id=1-实验流程优化>1. 实验流程优化</h2><p>上一次实验我们搭建 Quorum 私链网络是采用从零开始的方式，从 genesis.json 文件开始，手动编辑配置文件、创建节点、最后组建网络，不仅耗费时间，而且一旦错误就要重新开始，浪费了大量无意义的精力。另外，我们还需要一个区块链浏览器可视化网络、区块、交易和合约的状态，与智能合约的交互也需要优化，虽然 Truffle 集成了合约的部署和测试工作，但依然存在一些不足，国内也无法使用 <code>truffle init</code> 命令。</p><p>针对以上问题，结合 Quorum 社区的最新进展，我们本次调整了实验方案所使用的工具和手段：</p><ol><li>使用 <a href=https://github.com/jpmorganchase/quorum-wizard>Quorum Wizard</a> 命令行工具快速建立 Quorum 网络；</li><li>使用 <a href=https://github.com/jpmorganchase/cakeshop>Cakeshop</a> 可视化区块链和智能合约状态；</li><li>使用 <a href=https://remix.ethereum.org/>Remix</a> + <a href=https://github.com/jpmorganchase/quorum-remix>Quorum Plugin for Remix</a> 的组合部署合约及与合约交互；</li></ol><p>最后，我们对一些注意事项进行说明：</p><ol><li>Quourm Wizard 建立网络有 Bash 、 Docker-compse 和 kubernete 三种可选方式，我们使用第一种，但会尝试一下第二种；</li><li>之前在树莓派中建立区块链账户表示物联网网络和设备，但树莓派放在了实验室，由于疫情原因无法拿到手，因此本次建立一个 7 节点的私链网络，挑选一个节点代表物联网网关，然后建立一个新的账户表示设备，从而进行实验。</li></ol><p>最后，确定本次方案时还有一些备选方案，比如 <a href=https://github.com/blk-io/epirus-free>Epirus-free</a> 也是一个可用的 Quorum 区块链浏览器，但结构比较简单，展示的参数也比较少，而且我们测试的时候迟迟无法加载出来数据，因此不选用。</p><p><a href=https://github.com/synechron-finlabs/quorum-maker>quorum-maker</a> 是一个一体化方案，可以快速建立基于 Docker 的 Quorum 网络，并提供一个区块链浏览器查看区块链和合约状态，各方面的功能都足够晚上，唯一的问题是对 IBFT 共识的支持还处在开发阶段，暂时不可用，因此我们只能选择上述多个工具组合的方法完成本次实验。</p><h3 id=11-环境准备>1.1 环境准备</h3><p>Win10 Home Edition 不支持 Docker，且实验中涉及的组件比较多，我们决定使用虚拟机来启动一个 Linux 环境。另外，方案中的几个工具对依赖的要求如下：</p><ol><li>Quorum Wizard：<ul><li>基于 Bash 建立网络：如果需要隐私管理器，需要 Java 环境</li><li>基于 Docker Compse：需要 Docker 和 docker-compose</li><li>基于 Kubernetes：需要 Docker、kubectl 和 minikube</li></ul></li><li>Cakeshop：需要 Java 8+ 及 Node.js</li><li>Geth 提供了接口供 Golang 使用来进行账户管理和合约监听，因为实验测试有可能用到，我们安装 Golang</li></ol><p>根据说明，我们开始准备实验环境</p><ol><li><p>安装 VMware Workstation 15 Pro，输入批量许可激活，建立 Ubuntu20.04 系统的虚拟机，分配内存 4G（有条件应为8G，这里是因为电脑配置比较低，一共只有8G，再多发生内存交换的概率比较大）、硬盘100GB。</p></li><li><p>进入 Ubuntu 20.04，更新系统，设置语言</p></li><li><p>安装git、golang、Java</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#080;font-style:italic># 安装git</span>
+$ sudo apt install -y git
+$ git version
+git version 2.25.1
+   
+<span style=color:#080;font-style:italic># 安装golang</span>
+$ sudo apt install -y golang
+$ go version
+go version go1.14.4 linux/amd64
+   
+<span style=color:#080;font-style:italic># 安装 JRE</span>
+$ sudo apt install default-jre
+$ java -version
+openjdk version <span style=color:#b44>&#34;11.0.7&#34;</span> 2020-04-14
+OpenJDK Runtime Environment <span style=color:#666>(</span>build 11.0.7+10-post-Ubuntu-3ubuntu1<span style=color:#666>)</span>
+OpenJDK 64-Bit Server VM <span style=color:#666>(</span>build 11.0.7+10-post-Ubuntu-3ubuntu1, mixed mode, sharing<span style=color:#666>)</span>
+   
+<span style=color:#080;font-style:italic># 安装JDK</span>
+$ sudo apt install default-jdk
+$ javac -version
+javac 11.0.7
+</code></pre></div></li><li><p>安装 Node 和 npm，由于直接安装后在使用 npm 全局安装包时会出现权限错误，因此使用 Node.js 版本管理工具 <a href=https://github.com/tj/n>n</a></p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ sudo apt install curl
+$ curl -L https://git.io/n-install | bash
+<span style=color:#080;font-style:italic># 重启终端</span>
+$ n lts
+   
+  installing : node-v12.18.0
+       mkdir : /home/shuzang/n/n/versions/node/12.18.0
+       fetch : https://nodejs.org/dist/v12.18.0/node-v12.18.0-linux-x64.tar.xz
+   installed : v12.18.0 <span style=color:#666>(</span>with npm 6.14.4<span style=color:#666>)</span>
+   
+<span style=color:#080;font-style:italic># 更新 npm 到最新，顺便测试全局安装</span>
+$ npm install -g npm@latest
+/home/shuzang/n/bin/npm -&gt; /home/shuzang/n/lib/node_modules/npm/bin/npm-cli.js
+/home/shuzang/n/bin/npx -&gt; /home/shuzang/n/lib/node_modules/npm/bin/npx-cli.js
++ npm@6.14.5
+updated <span style=color:#666>5</span> packages in 16.718s
+</code></pre></div></li><li><p>（可选）docker 和 docker-compose</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#080;font-style:italic># 安装 docker CE</span>
+$ curl -fsSL get.docker.com -o get-docker.sh
+$ sudo sh get-docker.sh --mirror Aliyun
+<span style=color:#080;font-style:italic># 启动 docker CE</span>
+$ sudo systemctl <span style=color:#a2f>enable</span> docker
+$ sudo systemctl start docker
+<span style=color:#080;font-style:italic># 建立 docker 用户组并将当前用户加入 docker 组，这样就不需要 root 权限了</span>
+$ sudo groupadd docker
+$ sudo usermod -aG docker <span style=color:#b8860b>$USER</span>
+<span style=color:#080;font-style:italic># 测试安装</span>
+$ docker run hello-world
+<span style=color:#080;font-style:italic># 安装 docker-compose</span>
+$ sudo curl -L https://github.com/docker/compose/releases/download/1.25.5/docker-compose-<span style=color:#b44>`</span>uname -s<span style=color:#b44>`</span>-<span style=color:#b44>`</span>uname -m<span style=color:#b44>`</span> &gt; /usr/local/bin/docker-compose
+$ sudo chmod +x /usr/local/bin/docker-compose
+</code></pre></div></li></ol><h3 id=12-建立测试网络>1.2 建立测试网络</h3><p>全局安装 quorum-wizard</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ npm install -g quorum-wizard
+</code></pre></div><p>运行向导，建立测试网络，<code>-v</code> 参数用于输出日志记录。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ quorum-wizard -v
+...
+Welcome to Quorum Wizard!
+
+This tool allows you to easily create bash, docker, and kubernetes files to star
+t up a quorum network.
+You can control consensus, privacy, network details and more <span style=color:#a2f;font-weight:700>for</span> a customized se
+tup.
+Additionally you can choose to deploy our chain explorer, Cakeshop, to easily vi
+ew and monitor your network.
+? 
+Welcome to Quorum Wizard!
+
+This tool allows you to easily create bash, docker, and kubernetes files to star
+t up a quorum network.
+You can control consensus, privacy, network details and more <span style=color:#a2f;font-weight:700>for</span> a customized se
+tup.
+Additionally you can choose to deploy our chain explorer, Cakeshop, to easily vi
+ew and monitor your network.
+? 
+Welcome to Quorum Wizard!
+
+This tool allows you to easily create bash, docker, and kubernetes files to star
+t up a quorum network.
+You can control consensus, privacy, network details and more <span style=color:#a2f;font-weight:700>for</span> a customized se
+tup.
+Additionally you can choose to deploy our chain explorer, Cakeshop, to easily vi
+ew and monitor your network.
+
+We have <span style=color:#666>3</span> options to <span style=color:#a2f>help</span> you start exploring Quorum:
+
+  1.  Quickstart - our <span style=color:#666>1</span> click option to create a <span style=color:#666>3</span> node raft network with tesse
+ra and cakeshop
+
+  2.  Simple Network - using pregenerated keys from quorum 7nodes example,
+      this option allows you to choose the number of nodes <span style=color:#666>(</span><span style=color:#666>7</span> max<span style=color:#666>)</span>, consensus me
+chanism, transaction manager, and the option to deploy cakeshop
+
+  3.  Custom Network - In addition to the options available in <span style=color:#080;font-style:italic>#2, this selectio</span>
+n allows <span style=color:#a2f;font-weight:700>for</span> further customization of your network.
+      Choose to generate keys, customize ports <span style=color:#a2f;font-weight:700>for</span> both bash and docker, or chan
+ge the network id
+
+Quorum Wizard will generate your startup files and everything required to bring 
+up your network.
+All you need to <span style=color:#a2f;font-weight:700>do</span> is go to the specified location and run ./start.sh
+
+ Simple Network
+? Would you like to generate bash scripts, a docker-compose file, or a kubernete
+s config to bring up your network? bash
+? Select your consensus mode - istanbul is a pbft inspired algorithm with transa
+ction finality <span style=color:#a2f;font-weight:700>while</span> raft provides faster blocktimes, transaction finality and o
+n-demand block creation istanbul
+? Input the number of nodes <span style=color:#666>(</span>2-7<span style=color:#666>)</span> you would like in your network - a minimum of 
+<span style=color:#666>4</span> is recommended <span style=color:#666>4</span>
+? Which version of Quorum would you like to use? Quorum 2.6.0
+? Choose a version of tessera <span style=color:#a2f;font-weight:700>if</span> you would like to use private transactions in y
+our network, otherwise choose <span style=color:#b44>&#34;none&#34;</span> Tessera 0.10.5
+? Do you want to run Cakeshop <span style=color:#666>(</span>our chain explorer<span style=color:#666>)</span> with your network? Yes
+? What would you like to call this network? 4-nodes-istanbul-tessera-bash
+...
+Building network directory...
+Generating network resources locally...
+Building qdata directory...
+Writing start script...
+Initializing quorum...
+Done
+--------------------------------------------------------------------------------
+
+Tessera Node <span style=color:#666>1</span> public key:
+BULeR8JyUWhiuuCMU/HLA0Q5pzkYT+cHII3ZKBey3Bo<span style=color:#666>=</span>
+
+Tessera Node <span style=color:#666>2</span> public key:
+QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc<span style=color:#666>=</span>
+
+Tessera Node <span style=color:#666>3</span> public key:
+1iTZde/ndBHvzhcl7V68x44Vx7pl8nwx9LqnM/AfJUg<span style=color:#666>=</span>
+
+Tessera Node <span style=color:#666>4</span> public key:
+<span style=color:#b8860b>oNspPPgszVUFw0qmGFfWwh1uxVUXgvBxleXORHj07g8</span><span style=color:#666>=</span>
+
+--------------------------------------------------------------------------------
+Quorum network created
+
+Run the following commands to start your network:
+
+<span style=color:#a2f>cd</span> network/4-nodes-istanbul-bash
+./start.sh
+
+A sample simpleStorage contract is provided to deploy to your network
+To use run ./runscript.sh public-contract.js from the network folder
+
+A private simpleStorage contract was created with privateFor <span style=color:#a2f>set</span> to use Node 2<span>&#39;</span>s public key: QfeDAys9MPDs2XHExtc84jKGHxZg/aj52DTh0vtA3Xc<span style=color:#666>=</span>
+To use run ./runscript private-contract.js from the network folder
+</code></pre></div><p>在向导执行页面选择了运行 Cakeshop 的情况下，不需要自己再去安装 Cakeshop，可以直接启动。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ <span style=color:#a2f>cd</span> network/4-nodes-istanbul-bash
+$ ./start.sh
+
+Starting Quorum network...
+
+Waiting <span style=color:#a2f;font-weight:700>until</span> all Tessera nodes are running...
+...
+All Tessera nodes started
+Starting Quorum nodes
+Starting Cakeshop
+Waiting <span style=color:#a2f;font-weight:700>until</span> Cakeshop is running...
+...
+Cakeshop started at http://localhost:8999
+Successfully started Quorum network.
+</code></pre></div><p>此时浏览器打开 http://localhost:8999 页面，可以看到网络情况</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20200601_%E7%BD%91%E7%BB%9C%E6%83%85%E5%86%B5.png alt=YJS_20200601_网络情况></p><h3 id=13-remix-部署和交互说明>1.3 Remix 部署和交互说明</h3><p>浏览器打开 <a href=https://remix.ethereum.org/>Remix IDE</a> （保证是 http 页面），点击左侧 Plugins（插件）标签页，搜索 <code>Quorum Network</code>，点击 <code>Activate</code> 激活插件。</p><p><img src=https://docs.goquorum.com/en/latest/RemixPlugin/images/quorum_network.png alt></p><p>在左侧标签栏寻找激活的插件，图标为 <img src=https://docs.goquorum.com/en/latest/RemixPlugin/images/tab_icon.png alt></p><p>我们上面运行的网络各节点的 url 分别为</p><table><thead><tr><th>节点</th><th>url</th></tr></thead><tbody><tr><td>Node1</td><td>Quorum RPC：http://localhost:22000<br>Tessera：http://localhost:9081</td></tr><tr><td>Node2</td><td>Quorum RPC：http://localhost:22001<br>Tessera：http://localhost:9082</td></tr><tr><td>Node3</td><td>Quorum RPC：http://localhost:22002<br>Tessera：http://localhost:9083</td></tr><tr><td>Node4</td><td>Quorum RPC：http://localhost:22003<br>Tessera：http://localhost:9084</td></tr></tbody></table><p>输入 Node1 的 Quroum RPC 和 Tessera 的 url，点击确认，得到如下的侧面板</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20200601_Quorum%E6%8F%92%E4%BB%B6.png alt=YJS_20200601_Quorum插件></p><p>从 Github 导入我们的合约</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20200601_%E5%AF%BC%E5%85%A5%E5%90%88%E7%BA%A6.png alt=YJS_20200601_导入合约></p><p>Quorum-Remix 插件使用 Remix 的 Solidity 编译器的结果，所以在 Remix 编译后的合约可以在Quorum插件的 <code>Compiled Contracts</code> 选项下找到，到时候输入参数点击部署即可，操作与 Remix 原本的 Deploy 选项卡完全一致。</p><p>最后，运行 <code>.stop.sh</code> 脚本可以停止所有的 quorum/geth 和 cakeshop 实例。</p><p>如果我们编写了交互用的 js 脚本，假设脚本名为 test.js，可以使用如下命令执行</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ ./runscript.sh test.js
+</code></pre></div><p>有输入参数的情况下，可以使用 Bash 、Python 或 Go 有选择的批量执行脚本。</p><p>值得注意到是，我们上述没有使用隐私管理器，但这是 Quorum 的一个最重要的特性。</p><h3 id=14-错误排查记录>1.4 错误排查记录</h3><p><strong>2020.06.08</strong></p><p>Remix 无法显示所有插件，因此无法使用 Quorum Network 插件连接 Quorum 网络，经排查，为网络原因，连接手机开的热点后即可看到所有插件，深层原因未知。</p><p><strong>2020.06.09</strong></p><p>合约编译返回错误 <code>Uncaught JavaScript exception: RangeError: Maximum call stack size exceeded.</code></p><p>调用栈溢出，猜测可能是虚拟机内存分配不足，在宿主机中使用 Remix 通过局域网 IP 地址连接</p><p>宿主机浏览器无法访问 http 连接，换用 Firefox 或者使用 Remix-IDE 桌面版本都无法访问</p><p>考虑到此时 Remix 与 后台 Quorum 网络拆分，尝试使用 WSL 子系统，并使用 npm 安装 remix-ide</p><p>WSL 对 npm 支持不友好，普通用户和 root 用户权限全部被拒绝，所有包都无法安装</p><p>尝试在 win10 本地使用 npm 安装 remix，依赖过多，安装无法完成</p><p>重新尝试解决 win10 系统下无法访问 http 网页的错误，关闭防火墙不起作用，恢复 hosts 文件起作用，经确认，无法访问 http 网页是因为 hosts 文件被修改</p><p>重新尝试虚拟机的 Ubuntu 系统编译智能合约，Chrome 浏览器失败，Firefox 浏览器成功，确认不是因为内存分配不足。</p><h2 id=2-性能测试>2. 性能测试</h2><p>根据上篇最后一小节的分析，性能测试分为三部分：隐私合约及交易测试，访问控制系统测试和恶意行为检测部分的测试。</p><p>性能测试的指标如下所述：</p><p><strong>访问控制系统</strong></p><ol><li><p>合约部署和重要操作的Gas 消耗：Gas 消耗可以通过 Remix 测试的时候获取，虽然对于 Quorum 而言，Gas 消耗并无太大意义，因为并不会真正消耗掉，而是会被返还，但对于大多数基于以太坊的方案来说，Gas 消耗意味着实际的金钱消耗。另一方面，Gas 消耗一定程度上能反映合约的体积。</p></li><li><p>一些重要的合约交互需要的时间：当然，首先我们应当确定，测量得到的时间中，是合约执行的时间占主要地位，还是区块链网络的同步时间占主要地位，只有前者得到的结果具有实际的意义。</p></li><li><p>属性及策略的增加对访问时间产生的影响。由于访问决策的逻辑，对策略的判断基本是遍历的方式，这意味着属性和策略的增加可能会使访问时间延长，我们应测量并讨论这一影响的后果及与其它方案的比较。</p></li><li><p>不同的方案对区块链造成的存储压力。由于方案设计的不同，区块链受到的存储压力不同。即，有些方案需要部署更多的合约，存储更多的数据，从而导致区块链的快速增长。我们需要测量完成同样多的访问不同方案的区块链增长速度，一个可度量的参数是单位时间增加的区块数。</p></li><li><p>不同方案的吞吐量。实际上，吞吐量更大程度上受区块链选择的影响，不过可以作为我们的一个测量方向。</p></li></ol><p><strong>恶意行为检测</strong></p><p>需要验证奖励、惩罚、容忍、报警四大功能。</p><p>惩罚就是阻塞时间到期之前不允许方案，是一个功能测试；奖励和容忍是一体的，由于奖励的存在，某些不太重要的恶意行为可以被容忍而不会触发惩罚；报警是触发恶意行为时及时向管理员反馈，只要持续检测合约发送的事件即可。</p><p>我们可以得到的数据值包括：某个行为发生的时间、行为描述、信誉值（包括奖励和惩罚两部分都可以知道）、做出惩罚的时间、惩罚计算出的阻塞时间大小。我们可以得到以下结果</p><ol><li>信誉值随时间的变化；</li><li>检测到恶意行为的概率（与容忍相关）；</li><li>阻塞时间的变化；</li><li>同样多的请求，恶意行为被阻止的百分比；</li></ol><p>恶意行为检测需要大量的输入，包括访问控制系统中各种不同类型的行为，各行为产生的时间等，但是，还有一些注意事项：</p><ol><li>实际环境中，不同的行为产生的概率可能不一致，例如更新操作多一点，而注册和删除操作少一点，访问操作最多等；</li><li>不同的行为间有先后关系，例如，更新、删除操作都必须在注册操作之后，访问操作也需要测量所依赖的属性已存在；</li><li>新增、更新或删除的属性或策略，可能会影响访问结果；</li><li>访问时间的随机性会决定「短时间频繁请求」这一恶意行为是否会产生；</li></ol><p>我们将输入参数定义为一个文件，文件包括两列，第一列是行为产生的时间（应当随机产生），第二列是行为类型，根据行为类型的不同调用不同的脚本，从而完成这一行为。</p><p>对上述注意事项的解决办法是：</p><ol><li>访问允许或拒绝依赖于已定义的属性和策略，这些属性和策略恒定不会被更新和删除，而所有新的新增、更新、删除操作是额外的；</li><li>如果某种行为产生时依赖的属性或策略不存在，比如更新时发现属性还未定义，那么跳过它执行下一个行为；</li><li>不同行为以等概率的方式随机生成；</li><li>我们以生成时间间隔的方式产生随机的时间；</li></ol><h3 id=21-隐私功能测试>2.1 隐私功能测试</h3><p>隐私合约及交易是 Quorum 自带的功能，本身不是我们实现的，因此测试只是验证该功能是否启用。合约的部署与交互使用了 Quorum for Remix 插件，该插件在 Remix 的插件列表中可以找到。测试用的合约如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js>pragma solidity <span style=color:#666>^</span><span style=color:#666>0.5</span><span style=color:#666>.4</span>;
+contract SimpleStorage {
+
+    uint storedData;
+
+    event Change(string message, uint newVal);
+
+    constructor(uint initVal) <span style=color:#a2f;font-weight:700>public</span> {
+        emit Change(<span style=color:#b44>&#34;initialized&#34;</span>, initVal);
+        storedData <span style=color:#666>=</span> initVal;
+    }
+
+    <span style=color:#a2f;font-weight:700>function</span> set(uint x) <span style=color:#a2f;font-weight:700>public</span> {
+        emit Change(<span style=color:#b44>&#34;set&#34;</span>, x);
+        storedData <span style=color:#666>=</span> x;
+    }
+
+    <span style=color:#a2f;font-weight:700>function</span> get() view <span style=color:#a2f;font-weight:700>public</span> returns (uint retVal) {
+        <span style=color:#a2f;font-weight:700>return</span> storedData;
+    }
+
+}
+</code></pre></div><p>我们令Node2 代表农场，Node3 代表超市，假设农场部署了一个私有存储合约，状态只能被超市查看。农场部署合约传入一个初始值 50，理论上，Node2 和 Node3 可以通过调用 get() 函数获取到该数据，其它的节点无法查看该数据。</p><p>因此我们分别进入 Node3（超市） 和 Node4 的 Geth console 进行验证，如下图所示，左侧是 Node3，可以查看合约状态并获取数据，右边是 Node4，无法查看合约状态，也无法获得数据。</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20200601_%E7%A7%81%E6%9C%89%E5%90%88%E7%BA%A6%E7%8A%B6%E6%80%81%E6%B5%8B%E8%AF%95.png alt=YJS_20200601_私有合约状态测试></p><p>从 Cakeshop 区块链浏览器可以更清楚地看到两种情况</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20200601_%E8%8A%82%E7%82%B93%E5%8F%AF%E4%BB%A5%E6%9F%A5%E7%9C%8B%E7%A7%81%E6%9C%89%E5%90%88%E7%BA%A6.png alt=YJS_20200601_节点3可以查看私有合约></p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20200601_%E8%8A%82%E7%82%B94%E6%97%A0%E6%B3%95%E6%9F%A5%E7%9C%8B%E7%A7%81%E6%9C%89%E5%90%88%E7%BA%A6.png alt=YJS_20200601_节点4无法查看私有合约></p><h3 id=22-访问控制时间测试>2.2 访问控制时间测试</h3><p>主要测试参数为完成一次访问控制的时间，期间我们要确认信誉系统的加入是否对访问控制时间有影响，以及不同的访问控制方案是否对时间有影响。</p><h4 id=221-测试准备>2.2.1 测试准备</h4><p>第一部分隐私功能测试时使用了 Quorum for Remix 插件，由于该插件在 Remix 中无法返回执行结果，在非隐私交易时不具备优势，因此访问控制系统时间测量的预准备工作，包括合约部署和交互，使用了 Remix 自己提供的 Deploy and Run 插件，主要利用 Web3 Provider 来连接 Quorum 网络进行操作。连接端口在 geth 启动时已默认打开，我们使用的三个节点对应的 Web3 端口如下</p><ul><li>Node1：22000</li><li>Node2：22001</li><li>Node3：22002</li></ul><p>另外，我们单独安装 Web3.js 并编写 JS 代码来进行访问控制</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#080;font-style:italic># 在用户根目录建立web3文件夹</span>
+$ mdkir web3
+$ <span style=color:#a2f>cd</span> web3
+<span style=color:#080;font-style:italic># 在web3文件夹中本地安装 web3 1.2.8 版本，之前的版本有些依赖不再维护，安装会出错</span>
+$ npm install web3@1.2.8
+</code></pre></div><p>为了获取足够样本进行分析，我们要进行大量的访问控制测试并获取每次的访问控制时间，先后使用的方案有三种，我们会阐述前两种方案不可行的原因</p><ol><li><p>在 JS 脚本中设立循环，使用 setInterval() 函数延时固定的时间发起访问控制，得到的结果中，初次访问控制的时间为 10ms 左右，其后迅速减少，在 1ms 和 2ms 左右浮动。查询后发现，Javascript 中 setInterval 函数的实质是每隔一段时间向任务队列中添加回调函数，开始执行的时间是不确定的，最后导致了时间统计的不确定性。</p></li><li><p>使用 Shell 脚本编写循环，在循环中调用 JS 代码，然后使用 sleep 函数设置延时，访问时间的获取是通过 Javascript Date 对象的 getTime 方法，在发起访问控制前获取了一次时间，在获得结果后获取了第二次时间，然后求其差值。最后得到的结果发现，访问控制时间受发起访问的时机影响，呈周期性波动，也受 CPU 占用率的影响，占用率越高时间越短，显然这一结果是不合理的。关于这一次尝试的结果，可以查看第 2.5 节。</p></li><li><p>使用 Linux time 命令获取执行时间，我们猜测周期性的出现是系统中其它进程的影响，为了排除它们的影响，我们使用了 Linux 的 time 命令。当测试一个程序或比较不同算法时，执行时间是非常重要的，一个好的算法应该是用时最短的。所有类UNIX系统都包含time命令，使用这个命令可以统计时间消耗。例如：</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#666>[</span>root@localhost ~<span style=color:#666>]</span><span style=color:#080;font-style:italic># time ls</span>
+anaconda-ks.cfg  install.log  install.log.syslog  satools  text
+   
+real    0m0.009s
+user    0m0.002s
+sys     0m0.007s
+</code></pre></div><p>输出的信息分别显示了该命令所花费的real时间、user时间和sys时间。</p><ul><li>real时间是指挂钟时间，也就是命令开始执行到结束的时间。这个短时间包括其他进程所占用的时间片，和进程被阻塞时所花费的时间。</li><li>user时间是指进程花费在用户模式中的CPU时间，这是唯一真正用于执行进程所花费的时间，其他进程和花费阻塞状态中的时间没有计算在内。</li><li>sys时间是指花费在内核模式中的CPU时间，代表在内核中执系统调用所花费的时间，这也是真正由进程使用的CPU时间。</li></ul><p>shell内建也有一个time命令，当运行time时候是调用的系统内建命令，应为系统内建的功能有限，所以需要时间其他功能需要使用time命令可执行二进制文件<code>/usr/bin/time</code>。所以我们使用 <code>/usr/bin/time</code> 获取执行访问控制的时间，然后计算 user 和 sys 的和，得到的结果就是访问控制实际执行所花费的 CPU时间。</p></li></ol><p>参考：<a href=https://man.linuxde.net/time>Linux time命令</a></p><p>我们首先建立 <code>xtime</code> 文件(无后缀)，将如下内容写入</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#080>#!/bin/sh
+</span><span style=color:#080></span>/usr/bin/time -f <span style=color:#b44>&#39;%Uu %Ss %er %P&#39;</span> <span style=color:#b44>&#34;</span><span style=color:#b8860b>$@</span><span style=color:#b44>&#34;</span>
+</code></pre></div><p><code>-f</code> 参数用于指定输出格式，<code>-f</code> 后面的几个参数说明如下</p><table><thead><tr><th align=left>参数</th><th align=left>描述</th></tr></thead><tbody><tr><td align=left>%e</td><td align=left>real时间</td></tr><tr><td align=left>%U</td><td align=left>user时间</td></tr><tr><td align=left>%S</td><td align=left>sys时间</td></tr><tr><td align=left>%P</td><td align=left>进程所获取的CPU时间百分百，这个值等于user+system时间除以总共的运行时间。</td></tr></tbody></table><p>然后建立 shell 脚本，命名为 runscript.sh，内容为</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-shell data-lang=shell><span style=color:#080>#!/bin/bash
+</span><span style=color:#080></span>
+<span style=color:#a2f;font-weight:700>for</span> <span style=color:#666>(</span><span style=color:#666>(</span><span style=color:#b8860b>i</span><span style=color:#666>=</span>1;i&lt;<span style=color:#666>=</span>500;i++<span style=color:#666>)</span><span style=color:#666>)</span>;  <span style=color:#a2f;font-weight:700>do</span>   
+  ./xtime node requester_legal.js
+  sleep <span style=color:#666>5</span>
+<span style=color:#a2f;font-weight:700>done</span> 
+</code></pre></div><p>其中，requester_legal.js 是完成访问控制的 JS 文件，接下来授予 xtime 和 runscript.sh 执行权限</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ chmod <span style=color:#666>777</span> xtime
+$ chmod <span style=color:#666>777</span> runscript.sh
+</code></pre></div><p>执行 Shell 脚本之前，我们需要先解锁发起访问的账户，由于我们会一次性进行 500 次测试，每次间隔 5 s，因此一次性将账户解锁 2500s 以上，这里我们设置 4000s。解锁相应账户的命令如下，第二个参数为密码，第三个参数为时间。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#666>&gt;</span> personal.unlockAccount(eth.accounts[<span style=color:#666>0</span>],<span style=color:#b44>&#34;&#34;</span>,<span style=color:#666>4000</span>)
+<span style=color:#666>&gt;</span> personal.unlockAccount(eth.accounts[<span style=color:#666>1</span>],<span style=color:#b44>&#34;&#34;</span>,<span style=color:#666>4000</span>)
+</code></pre></div><p>执行 runscript.sh 脚本即可开始测试</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ ./runscript
+0.55 0.08 5.02 12%
+0.54 0.07 4.96 12%
+0.54 0.11 5.00 13%
+0.55 0.09 5.02 12%
+...
+</code></pre></div><p>所有的时间会输出到终端，如上面的格式，第一列是用户态运行时间，第二列是内核态运行时间，第三列是实际运行时间，最后一列是进程所获取的CPU时间比例。</p><p>注1：设备发起访问控制时，应当首先获取目标设备绑定的访问控制合约地址，该地址可以根据设备账户在管理合约中查询得到，但这里我们为了测试方便，选择预定义，而不是每次去查询。</p><p>注2：所有的代码文件都放在 github 仓库中。</p><h4 id=222-无信誉系统>2.2.2 无信誉系统</h4><p>完整的方案中包含 MC（管理合约）、ACC（访问控制合约）和RC（信誉合约），现在，我们将 RC 从系统中移除，并删除 MC 和 ACC 中所有相关的调用。</p><p>JS 文件基本逻辑如下，可以看到，前面都是变量定义的过程，执行主体是访问控制函数，当获取到 receipt 时退出（返回的事件位于 receipt 中，可以输出确认一下，正式测试时为了输出结果的格式可以只用 receipt.status判断即可）。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#a2f;font-weight:700>var</span> Web3 <span style=color:#666>=</span> require(<span style=color:#b44>&#39;web3&#39;</span>);
+<span style=color:#a2f;font-weight:700>var</span> web3 <span style=color:#666>=</span> <span style=color:#a2f;font-weight:700>new</span> Web3(Web3.givenProvider <span style=color:#666>||</span> <span style=color:#b44>&#34;ws://localhost:23000&#34;</span>);
+
+<span style=color:#a2f;font-weight:700>var</span> accAbi <span style=color:#666>=</span> <span style=color:#b44>&#34;这里是合约ABI&#34;</span>
+<span style=color:#a2f;font-weight:700>var</span> accAddr <span style=color:#666>=</span> <span style=color:#b44>&#34;这里是合约地址&#34;</span>
+
+<span style=color:#a2f;font-weight:700>var</span> myACC <span style=color:#666>=</span> <span style=color:#a2f;font-weight:700>new</span> web3.eth.Contract(accAbi, accAddr);
+
+myACC.methods.accessControl(<span style=color:#b44>&#34;这里是传入的参数列表&#34;</span>).send({
+	from<span style=color:#666>:</span> <span style=color:#b44>&#34;这里是发起访问的账户地址&#34;</span>,
+	gas<span style=color:#666>:</span> <span style=color:#666>10000000</span>,
+	gasPrice<span style=color:#666>:</span> <span style=color:#666>0</span>
+}).then(<span style=color:#a2f;font-weight:700>function</span>(receipt){
+	<span style=color:#a2f;font-weight:700>if</span> (receipt.status) {
+	    console.log(receipt)
+        process.exit(<span style=color:#666>0</span>);        
+	}
+})
+</code></pre></div><p>合约部署时得到的结果如下</p><table><thead><tr><th>合约</th><th>Gas 消耗</th></tr></thead><tbody><tr><td>MC</td><td>1958457</td></tr><tr><td>ACC</td><td>4128313</td></tr></tbody></table><p>合约部署完毕后定义属性和策略，最后根据具体情况修改 JS 和 Shell 脚本，500 次访问时间的平均值为 0.62682s，最大值为 0.99s，最小值为 0.57s。</p><h4 id=223-恶意行为检测加入>2.2.3 恶意行为检测加入</h4><p>加入信誉合约 RC 后进行测试，部署合约、注册设备、定义属性和策略。三种合约部署的 Gas 消耗分别为</p><table><thead><tr><th>合约</th><th>Gas 消耗</th></tr></thead><tbody><tr><td>MC</td><td>2512367</td></tr><tr><td>ACC</td><td>4749983</td></tr><tr><td>RC</td><td>1170616</td></tr></tbody></table><p>注意，我们在访问控制合约初始化时设定了两次访问控制请求间隔应不少于 100s，否则会触发 Too frequent request 错误。这个设定会极大的延长我们测试的总时间，所以我们把这个时间间隔重新设定为 4s，这样 shell 脚本中的 sleep 5 就不会触发错误。</p><p>测试前解锁相应的账户</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-js data-lang=js><span style=color:#666>&gt;</span> personal.unlockAccount(eth.accounts[<span style=color:#666>0</span>],<span style=color:#b44>&#34;&#34;</span>,<span style=color:#666>3600</span>)
+<span style=color:#666>&gt;</span> personal.unlockAccount(eth.accounts[<span style=color:#666>1</span>],<span style=color:#b44>&#34;&#34;</span>,<span style=color:#666>3600</span>)
+</code></pre></div><p>500 次测试结果的平均值为 0.66736s，最大值为 2.71s，最小值为 0.55s。</p><h4 id=224-wang的方案>2.2.4 wang的方案</h4><p>在下面的论文中，wang 等利用智能合约对传统 ABAC 架构进行了实现，我们认为对比该方案和我们的方案具有较大的意义。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>P. Wang, Y. Yue, W. Sun, and J. Liu, 
+“An Attribute-Based Distributed Access Control for Blockchain-enabled IoT,” 
+in 2019 WiMob, Barcelona, Spain, Oct. 2019, pp. 1–6, doi: 10.1109/WiMOB.2019.8923232 .
+</code></pre></div><p>鉴于作者没有提供源码，我们按照论文的描述进行了复现，然后在我们当前的实验平台下测试其访问控制时间，500 次测试的平均值为 0.69348s，最大值为 1.96s，最小值为 0.6s。</p><p>我们对三种情况的时间总结如下表</p><table><thead><tr><th>单位/ms</th><th>无信誉系统</th><th>加入信誉系统</th><th>wang的方案</th></tr></thead><tbody><tr><td>平均值</td><td>626.82</td><td>667.36</td><td>693.48</td></tr><tr><td>最大</td><td>990</td><td>2710</td><td>1960</td></tr><tr><td>最小</td><td>570</td><td>550</td><td>600</td></tr></tbody></table><p>可以看到，信誉系统的加入使得访问控制的平均时间增加了约6%，主要是因为执行访问控制时需要和信誉合约进行交互。而 wang 的方案相比于加入信誉系统的方案平均时间增加了约 4%，相对于没有信誉系统的方案增加了约 11%。</p><p>三种方案的主要区别在于合约逻辑的不同，包括循环的执行、合约间的相互调用次数，尤其是 wang 的方案合约间相互调用比较多，所以平均时间要更多。</p><h4 id=225-意外>2.2.5 意外</h4><p>我们在使用 JavaScript Date对象测试时发现一个意外情况，访问时间会受发起访问的时机的影响，假设 t 为两次访问的间隔，那么区别如下</p><table><thead><tr><th></th><th>t % 5 == 0</th><th>t % 5 == 1</th><th>t % 5 == 2</th><th>t % 5 == 3</th><th>t % 5 == 4</th></tr></thead><tbody><tr><td>结果趋向</td><td>4500ms</td><td>3500ms</td><td>2500ms</td><td>6500ms</td><td>5500ms</td></tr></tbody></table><p>三种方案都会出现如上结果，事实上，访问时间不仅收发起访问控制的时机影响，为了排除后台进程占用对时机的影响，我们特地利用程序分别使 CPU 占用保持在 50%，80%和100%重新进行了测试，不同的CPU占用率下，访问时间也不同，具体如下</p><table><thead><tr><th></th><th>t % 5 == 0</th><th>t % 5 == 1</th><th>t % 5 == 2</th><th>t % 5 == 3</th><th>t % 5 == 4</th></tr></thead><tbody><tr><td>CPU占用20%</td><td>4500ms</td><td>3500ms</td><td>2500ms</td><td>6500ms</td><td>5500ms</td></tr><tr><td>CPU占用50%</td><td>4300ms</td><td>3300ms</td><td>2300ms</td><td>6300ms</td><td>5300ms</td></tr><tr><td>CPU占用80%</td><td>4100ms</td><td>3100ms</td><td>2100ms</td><td>6100ms</td><td>5100ms</td></tr><tr><td>CPU占用100%</td><td>3950ms</td><td></td><td></td><td></td><td></td></tr></tbody></table><p>最后，我们特定将 CPU 限制在了单核单线程，得到的结果没有区别。</p><ol><li>对合约的调用操作，分为不改变合约的状态和会改变合约的状态两种情况，这两种情况调用产生的时间消耗不同；</li><li>访问时间属于更改合约状态这种情况，此时，访问时间不因程序逻辑的变化而变化，意思是循环数量、合约间相互调用的数量，都不会对访问消耗时间产生影响；</li><li>访问通过和被拒绝属于合约逻辑问题，同样不对访问时间产生影响；</li><li>访问时间受网络情况影响，包括发起访问的时机和后台CPU的占用率；</li></ol><h4 id=226-其它>2.2.6 其它</h4><p>最后我们看一下更改合约状态的函数和不更改合约状态的函数执行时间是否有差别。我们写了两个关于存储的合约进行测试，合约内容如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>pragma solidity &gt;=0.4.22 &lt;0.7.0;
+
+/**
+ * @title Storage
+ * @dev Store &amp; retreive value in a variable
+ */
+contract Storage {
+    Helper public h;
+    uint256 num;
+    
+    constructor(address _h) public {
+        h = Helper(_h);
+    }
+    
+    function store(uint256 _num) public {
+        num = _num;
+    }
+    
+    function get() public view returns (uint256){
+        return num;
+    }
+    
+    function retreive() public view returns (uint256){
+        uint number;
+        for (uint i = 0; i &lt; 500; i++) {
+            uint t = h.getNumber();
+            number = number + t;
+        }
+        return number;
+    }
+}
+
+contract Helper {
+    function getNumber() public pure returns (uint256);
+}
+</code></pre></div><p>调用的 Helper 合约具体内容如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>pragma solidity &gt;=0.4.22 &lt;0.7.0;
+
+contract Helper {
+    function getNumber() public pure returns (uint256){
+        return 23;
+    }
+}
+</code></pre></div><p>我们调用 Storage 合约中的 store 函数查看对合约状态进行更改时的时间消耗，调用 get 函数查看不更改合约状态时的时间消耗，调用 retreive 函数查看多次调用其它合约时对时间的影响。得到的结果如下</p><h3 id=23-不同方案的存储占用分析>2.3 不同方案的存储占用分析</h3><p>由于不同访问控制方案的架构不同，随着物联网中用户、设备及访问请求数量的增加，区块链上存储的合约总大小增长速度不同，对区块链存储造成的压力不同。</p><p>下面是三种不同方案的合约字节码大小</p><table><thead><tr><th>方案</th><th>合约大小(bytecode 大小)</th></tr></thead><tbody><tr><td>BBRAC（我们的方案）</td><td>ABDKMathQuad.sol: 885 bytes<br>Management.sol: 77,960 bytes<br>Reputation.sol: 102,088 bytes<br>AccessControl.sol: 121,454 bytes</td></tr><tr><td>zhang</td><td>RC.sol: 7,735 bytes<br>JC.sol: 17,174 bytes<br>ACC.sol: 31,231 bytes</td></tr><tr><td>wang</td><td>Subject.sol: 23,760 bytes<br>Object.sol: 12,431 bytes<br>Policy.sol: 49,978 bytes<br>AccessControl.sol: 40,086 bytes</td></tr></tbody></table><p>合约的增长关系描述如下</p><ul><li>BBRAC：1 个 ABDKMathQuad.sol, 1 个 Management.sol, 1 个 Reputation.sol, n 个 AccessControl.sol，n 为设备数量；</li><li>zhang：1 个 RC.sol，1 个 JC.sol，n 个 ACC.sol，n 为 Subject-Object 数量；</li><li>wang：1 个 Subject.sol，1 个 Object.sol，1 个 AccessControl.sol，n 个 Policy.sol，n 为用户数量，每个用户可能拥有多个设备。</li></ul><p>我们假设设备数量为 n，每两个设备间均会发起访问请求，即有 $n^2$ 个 Subject-Object 对，每个设备归属于不同的用户，即用户数量也为 n（便于统一 x 轴），由此得到合约大小随设备数量增长的表达式（单位为 KB）：</p><ul><li>BBRAC：$y = 118.5n + 176.7$</li><li>zhang：$y = 30.5n^2 + 24.3$</li><li>wang：$y = 48.8n + 74.5$</li></ul><p>根据表达式绘制图表如下，可以看到，zhang 的方案中合约占用的存储空间随着设备增加在快速增长，5个设备以上存储占用就高于我们的方案，wang 的方案虽然比我们的存储占用增长速率低，但是在访问时间和和合法交易的通过率上有不足，这一点我们接下来介绍。</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20200601_%E5%90%88%E7%BA%A6%E5%A4%A7%E5%B0%8F%E9%9A%8F%E8%AE%BE%E5%A4%87%E6%95%B0%E9%87%8F%E7%9A%84%E5%8F%98%E5%8C%96%E6%9B%B2%E7%BA%BF.png alt=YJS_20200601_合约大小随设备数量的变化曲线></p><h2 id=3-恶意行为检测测试>3. 恶意行为检测测试</h2><p>如上篇所述，信誉系统的测试需要发起持续不断的合约调用，具体来说，就是在随机的时间调用随机的合约函数，从而验证奖励、惩罚、容忍、报警四大功能。</p><p>随机的时间间隔使用泊松分布生成，具体方法在 <a href=https://shuzang.github.io/generate-random-timings-for-a-poisson-process/>另一篇文章</a> 中介绍。在生成的随机时间点具体执行哪个合约调用，我们进行了如下考虑</p><p>首先，会影响信誉值的行为包括</p><table><thead><tr><th>事件</th><th>所属合约及函数</th><th>合法/恶意</th><th>事件编号</th></tr></thead><tbody><tr><td>Attribute add</td><td>MC:addAttribute</td><td>合法</td><td>1</td></tr><tr><td>Device manager update</td><td>MC:updateManager</td><td>合法</td><td>2</td></tr><tr><td>Device customed attribute update</td><td>MC:updateAttribute</td><td>合法</td><td>2</td></tr><tr><td>Device delete</td><td>MC:deleteDevice</td><td>合法</td><td>3</td></tr><tr><td>Attribute delete</td><td>MC:deleteAttribute</td><td>合法</td><td>3</td></tr><tr><td>Resource attribute add</td><td>addResourceAttr</td><td>合法</td><td>1</td></tr><tr><td>Policy add</td><td>ACC:addpolicy</td><td>合法</td><td>1</td></tr><tr><td>Device manager update</td><td>ACC:updateManager</td><td>合法</td><td>2</td></tr><tr><td>Resource attribute update</td><td>ACC:updateResourceAttr</td><td>合法</td><td>2</td></tr><tr><td>Resource attribute delete</td><td>ACC:deleteResourceAttr</td><td>合法</td><td>3</td></tr><tr><td>Policy delete</td><td>ACC:deletePolicy</td><td>合法</td><td>3</td></tr><tr><td>Policy item delete</td><td>ACC:deletePolicyItem</td><td>合法</td><td>3</td></tr><tr><td>Access authorized</td><td>ACC:accessControl</td><td>合法</td><td>4</td></tr><tr><td>Blocked end time not reached</td><td>ACC:accessControl</td><td>恶意</td><td>0</td></tr><tr><td>Policy check failed</td><td>ACC:accessControl</td><td>恶意</td><td>0</td></tr><tr><td>Too frequent access</td><td>ACC:accessControl</td><td>恶意</td><td>1</td></tr><tr><td>Both above two</td><td>ACC:accessControl</td><td>恶意</td><td>1</td></tr></tbody></table><ol><li><p>以上影响信誉值的行为间是有先后关系的，比如，update、delete 都必须在 add 之后完成，access control 发起的条件是相关的属性和策略已定义等。如果我们完全随机的产生事件，很可能某些行为无法执行。</p><p>解决办法：忽略行为间的先后关系，因为如果存在显式的先后关系，一定会被我们定义的 require 机制给阻止，不会导致系统出错。</p></li><li><p>当确定了具体的行为，调用时如何传入参数。因为属性和策略的增删改一定会影响访问控制的结果，这样的话，访问成功还是失败完全不受我们控制。</p><p>解决办法：去除会影响结果的行为，因为同一类行为对信誉值的影响是相同的，所以每种行为我们只需要保留一个就可以。比如，合法行为中，Attribute add、Resource attribute add、Policy add 三者等价，我们只保留 Attribute add 一个行为，产生的所有 add 类行为都转换为对 addAttribute 一个函数的调用。最后我们保留下来的行为包括</p><table><thead><tr><th>事件</th><th>所属合约及函数</th><th>合法/恶意</th><th>事件编号</th></tr></thead><tbody><tr><td>Attribute add</td><td>MC:addAttribute</td><td>合法</td><td>1</td></tr><tr><td>Device customed attribute update</td><td>MC:updateAttribute</td><td>合法</td><td>2</td></tr><tr><td>Attribute delete</td><td>MC:deleteAttribute</td><td>合法</td><td>3</td></tr><tr><td>Access authorized</td><td>ACC:accessControl</td><td>合法</td><td>4</td></tr><tr><td>Policy check failed</td><td>ACC:accessControl</td><td>恶意</td><td>0</td></tr><tr><td>Too frequent access</td><td>ACC:accessControl</td><td>恶意</td><td>1</td></tr></tbody></table><p>为了排除仅剩的这些行为间的相互影响，我们规定，access control 将依赖于已定义好的属性和策略，新添加/更改/删除属性不会对访问结果产生影响。</p></li><li><p>每一种行为出现的概率可能是不一致的。比如，update 出现的次数可能多一点，add 和 delete 会少一点，access control 发起的频率可能是最高的。但是，在这里，6种不同的行为我们都以同样的概率来考虑，我们用 0-5 一共 6 个整数表示 6 种不同的事件，然后随机生成这个范围内的一个整数，从而确定某一时刻要调用的函数。</p></li></ol><p>使用一个文本文件存放输入参数，第一列是随机时间，第二列是随机事件，利用 Bash 读取每一行，然后在具体的时间调用指定的 JS 脚本完成这一过程。记录的结果包括从信誉合约检测到的各种值。</p><h2 id=附录-随机时间生成>附录 随机时间生成</h2><p>我们要进行的仿真是在随机的时间执行随机的事件，这个时间就叫做事件到达时间。根据已有知识，随机的事件到达时间应该符合泊松分布，事件到达时间的间隔符合指数分布，实现时通常采用生成到达时间间隔的方式。这里的实现翻译了文章 <a href=https://preshing.com/20111007/how-to-generate-random-timings-for-a-poisson-process/>How to Generate Random Timings for a Poisson Process</a>，使用的语言是 Go。</p><p>事件的发生是随机的，但是从总体上看，事件以平均的速率发生，这就是泊松过程。举个例子，USGS 预计每年全世界大约发生 13000 场 4 级以上的地震，这些地震发生的时间是随机的，但一定在 13000 场左右。</p><p>统计学中有大量的函数和方程用于建模泊松过程，这篇文章介绍了一种其中一种函数，并给出了一个实现程序。</p><h3 id=1-指数分布>1. 指数分布</h3><p>如果每年 13000 场地震，那么平均 40 分钟一场地震，所以定义变量 $\lambda = \frac{1}{40}$，称为速率参数，这是一个频率的衡量：单位时间（地震的例子里是分钟）发生事件（地震）的平均速率。</p><p>因此，接下来的问题是，下一分钟发生地震的概率是多少？下一个十分钟呢？这里有一个众所周知的函数，称为 指数分布的累积分布函数（cumulative distribution function for the exponential distribution），该函数看起来如下：
+$$
+F(x) = 1 - e^{-\lambda x}
+$$</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20200601_exponential-curve.png alt></p><p>其含义是，随之时间的流逝，在世界上某个地方发生地震的可能性不断增大，这里「指数」的含义是指数衰减，随着时间流逝，不发生地震的可能性逐渐趋近于0，相应的，发生至少一场地震的可能性也趋向于1。</p><p>插入一些值，我们发现：</p><ul><li>下一分钟发生地震的可能性为 $F(1) \approx 0.0247$，该值无限接近于 $\frac{1}{40}$，这个我们预设的地震频率，但不相等；</li><li>下一个十分钟发生地震的可能性为 $F(10) \approx 0.221$</li></ul><p>特别的，下一个 40 分钟发生地震的可能性为 $F(40) \approx 0.632$，因此，40分钟的间隔内很可能发生地震，但不绝对。</p><h3 id=2-编写仿真>2. 编写仿真</h3><p>现在，假设我们要模拟游戏引擎或其他某种程序中地震的发生。首先，我们需要弄清楚每次地震的开始时间。</p><p>一种方法是循环，每隔 X 分钟之后，在 0 到 1 之间采样一个随机浮点值。如果该数字小于 $F(X)$，则开始地震。X 可以是一个小数值，因此可以每分钟采样几次，甚至每秒采样几次。只要随机数生成器是统一的并且提供足够的数值精度，这一个方法就会很好用。但是，如果打算以 $λ=\frac{1}{40}$ 每秒进行 60 次采样，随机数生成器需要至少18位精度，标准 C运行时库并不总是提供这一精度。</p><p>另一种方法是回避整个采样策略，只需编写一个函数即可确定下一次地震的确切时间。此函数应返回随机数，但不是大多数生成器生成的统一类型的随机数，而是以遵循指数分布的方式生成随机数。</p><p>Donald Knuth 在 「The Art of Computer Programming」一书的 3.4.1(D) 一节描述了一种生成这种值的方法，只需在 y 轴上选择介于 0 和 1 之间的均匀分布的随机点，然后在 x 轴上找到相应的时间值即可。例如，如果我们从下图 y 轴选择 0.2 点，那么到下一次地震的时间将是 64.38 分钟。</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20200601_inverse-lookup.png alt></p><p>由于指数函数的反函数是 ln，写这个程序很简单，其中 U 是 0 到 1 之间的随机值：</p><h3 id=3-实现>3. 实现</h3><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> main
+
+<span style=color:#a2f;font-weight:700>import</span> (
+	<span style=color:#b44>&#34;fmt&#34;</span>
+	<span style=color:#b44>&#34;math&#34;</span>
+	<span style=color:#b44>&#34;math/rand&#34;</span>
+	<span style=color:#b44>&#34;time&#34;</span>
+)
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>main</span>() {
+	rand.<span style=color:#00a000>Seed</span>(time.<span style=color:#00a000>Now</span>().<span style=color:#00a000>UnixNano</span>())
+	<span style=color:#a2f;font-weight:700>for</span> i <span style=color:#666>:=</span> <span style=color:#666>0</span>; i &lt; <span style=color:#666>5</span>; i<span style=color:#666>++</span> {
+		fmt.<span style=color:#00a000>Println</span>(<span style=color:#00a000>nextTime</span>(<span style=color:#666>1</span> <span style=color:#666>/</span> <span style=color:#666>40.0</span>))
+	}
+
+}
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>nextTime</span>(rateParameter <span style=color:#0b0;font-weight:700>float64</span>) <span style=color:#0b0;font-weight:700>float64</span> {
+	<span style=color:#a2f;font-weight:700>return</span> <span style=color:#666>-</span>math.<span style=color:#00a000>Log</span>(<span style=color:#666>1.0</span><span style=color:#666>-</span>rand.<span style=color:#00a000>Float64</span>()) <span style=color:#666>/</span> rateParameter
+}
+<span style=color:#080;font-style:italic>// Output:
+</span><span style=color:#080;font-style:italic></span><span style=color:#666>3.645968256349058</span>
+<span style=color:#666>21.416099701223878</span>
+<span style=color:#666>27.140451644356354</span>
+<span style=color:#666>132.53700107810388</span>
+<span style=color:#666>10.94869965544849</span>
+</code></pre></div><p>经测试，该函数返回的平均时间确实为40</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> main
+
+<span style=color:#a2f;font-weight:700>import</span> (
+	<span style=color:#b44>&#34;fmt&#34;</span>
+	<span style=color:#b44>&#34;testing&#34;</span>
+)
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>TestNextTime</span>(t <span style=color:#666>*</span>testing.T) {
+	<span style=color:#a2f;font-weight:700>var</span> sum <span style=color:#0b0;font-weight:700>float64</span>
+	<span style=color:#a2f;font-weight:700>for</span> k <span style=color:#666>:=</span> <span style=color:#666>0</span>; k &lt; <span style=color:#666>10</span>; k<span style=color:#666>++</span> {
+		<span style=color:#a2f;font-weight:700>for</span> i <span style=color:#666>:=</span> <span style=color:#666>0</span>; i &lt; <span style=color:#666>1000000</span>; i<span style=color:#666>++</span> {
+			sum <span style=color:#666>+=</span> <span style=color:#00a000>nextTime</span>(<span style=color:#666>1</span> <span style=color:#666>/</span> <span style=color:#666>40.0</span>)
+		}
+		fmt.<span style=color:#00a000>Println</span>(sum <span style=color:#666>/</span> <span style=color:#666>1000000</span>)
+		sum = <span style=color:#666>0</span>
+	}
+}
+<span style=color:#080;font-style:italic>// Output:
+</span><span style=color:#080;font-style:italic></span><span style=color:#666>==</span>= RUN   TestNextTime
+<span style=color:#666>39.936436485414866</span>
+<span style=color:#666>40.073299195147676</span>
+<span style=color:#666>40.02405410596529</span>
+<span style=color:#666>39.984823394877324</span>
+<span style=color:#666>39.970452381128254</span>
+<span style=color:#666>40.05045384327815</span>
+<span style=color:#666>39.94419161580051</span>
+<span style=color:#666>40.038542654941246</span>
+<span style=color:#666>39.983753932119754</span>
+<span style=color:#666>40.029867240804506</span>
+<span style=color:#666>--</span><span style=color:#666>-</span> PASS: <span style=color:#00a000>TestNextTime</span> (<span style=color:#666>0.42</span>s)
+PASS
+ok  	github.com<span style=color:#666>/</span>shuzang<span style=color:#666>/</span>test	<span style=color:#666>0.652</span>s
+</code></pre></div><p>实际上，Go 在 math/rand 库中本身就提供了一个生成符合指数分布的随机数的函数，叫做 <code>rand.ExpFloat64()</code>。实现的算法使用的是 Marsaglia 和 Tsang 在 2000 年发布的论文 <a href=https://www.jstatsoft.org/v05/i08/paper>The Ziggurat Method for Generating Random Variables</a></p><h3 id=4-其它仿真器>4. 其它仿真器</h3><p><a href=http://akeranen.github.io/the-one/>The One</a> 是一个 opportunistic Network Environment simulator，可以设置一个仿真的 IoT 网络，参数包括网络中设备数目、带宽、通信到达时间等，使用不同的模型生成随机的运动和通信，并将过程可视化。</p></div><footer class=post-footer><div class=post-tags><a href=/tags/%e7%a7%91%e7%a0%94%e8%ae%b0%e5%bd%95 rel=tag title=科研记录>#科研记录#</a></div><div class=addthis_inline_share_toolbox></div><div class=post-nav><div class=article-copyright><div class=article-copyright-img><img src=/img/qq_qrcode.png width=129px height=129px><div style=text-align:center>QQ扫一扫交流</div></div><div class=article-copyright-info><p><span>声明：</span>研究记录14-重新实验及实验流程优化</p><p><span>链接：</span>https://shuzang.github.io/post/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/experimental-process-optimization-and-performance-test/</p><p><span>作者：</span>书藏</p><p><span>声明： </span>本博客文章除特别声明外，均采用 <a href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank style=text-decoration:underline>CC BY-NC-SA 3.0</a>许可协议，转载请注明出处！</p></div></div><div class=clear></div></div><div class=reward-qr-info><div>创作实属不易，如有帮助，那就打赏博主些许茶钱吧 ^_^</div><button id=rewardButton disable=enable onclick="var qr=document.getElementById('QR');if(qr.style.display==='none'){qr.style.display='block';}else{qr.style.display='none'}">
+<span>赏</span></button><div id=QR style=display:none><div id=wechat style=display:inline-block><img id=wechat_qr src=/img/wechat-pay.png alt="WeChat Pay"><p>微信打赏</p></div><div id=alipay style=display:inline-block><img id=alipay_qr src=/img/ali-pay.png alt=Alipay><p>支付宝打赏</p></div></div></div><div class=post-nav><div class="post-nav-next post-nav-item"><a href=https://shuzang.github.io/post/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/golang-set-and-use-cookie/ rel=next title=Golang设置与使用cookie><i class="fa fa-chevron-left"></i>Golang设置与使用cookie</a></div><div class="post-nav-prev post-nav-item"><a href=https://shuzang.github.io/post/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/golang-template/ rel=prev title=Golang模板>Golang模板
+<i class="fa fa-chevron-right"></i></a></div></div><div id=wcomments></div></footer></article></section></div></div><div class=sidebar-toggle><div class=sidebar-toggle-line-wrap><span class="sidebar-toggle-line sidebar-toggle-line-first"></span><span class="sidebar-toggle-line sidebar-toggle-line-middle"></span><span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id=sidebar class=sidebar><div class=sidebar-inner><section class="site-overview sidebar-panel sidebar-panel-active"><div class="site-author motion-element" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image src=/images/avatar.png alt=书藏><p class=site-author-name itemprop=name>书藏</p><p class="site-description motion-element" itemprop=description></p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href=/post/><span class=site-state-item-count>334</span>
+<span class=site-state-item-name>日志</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>7</span>
+<span class=site-state-item-name>分类</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>23</span>
+<span class=site-state-item-name>标签</span></a></div></nav><div class="links-of-author motion-element"><span class=links-of-author-item><a href=https://github.com/shuzang/ target=_blank title=GitHub><i class="fa fa-fw fa-github"></i>GitHub</a></span></div><div class="tagcloud-of-blogroll motion-element tagcloud-of-blogroll-inline"><div class=tagcloud-of-blogroll-title><i class="fa fa-fw fa-tags"></i>标签云</div><ul class=tagcloud-of-blogroll-list><li class=tagcloud-of-blogroll-item><a href=/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0>论文笔记</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E4%B9%A6%E8%97%8F%E7%9A%84%E7%94%9F%E6%B4%BB%E5%91%A8%E5%88%8A>书藏的生活周刊</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95>科研记录</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/go%E8%AF%AD%E6%B3%95>Go语法</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80>计算机基础</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E6%9D%82%E8%B0%88>杂谈</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E5%8C%BA%E5%9D%97%E9%93%BE>区块链</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95>数据结构与算法</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E7%94%9F%E6%B4%BB%E6%8A%80%E8%83%BD>生活技能</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/go%E5%AE%9E%E6%88%98>Go实战</a></li></ul></div></section></div></aside></div></main><footer id=footer class=footer><div class=footer-inner><div class=copyright><span class=copyright-year>&copy; 2010 - 2022</span>
+<span class=with-love><i class="fa fa-heart"></i></span><span class=copyright-author>书藏的博客</span></div><div class=powered-info><span class=powered-by>Powered by - <a class=powered-link href=//gohugo.io target=_blank title=hugo>Hugo v0.63.2</a></span>
+<span class=separator-line>/</span>
+<span class=theme-info>Theme by - <a class=powered-link href=//github.com/elkan1788/hugo-theme-next target=_blank>NexT</a></span></div><div class=vistor-info><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><span class=site-uv><i class="fa fa-user"></i><span class=busuanzi-value id=busuanzi_value_site_uv></span></span><span class=separator-line>/</span>
+<span class=site-pv><i class="fa fa-eye"></i><span class=busuanzi-value id=busuanzi_value_site_pv></span></span></div><div class=license-info><span class=storage-info>Storage by
+<a href=https://www.ucloud.cn/ style=font-weight:700 target=_blank>UCloud云存储</a></span>
+<span class=separator-line>/</span>
+<span class=license-num><a href target=_blank></a></span></div></div></footer><div class=back-to-top><i class="fa fa-arrow-up"></i><span id=scrollpercent><span>0</span>%</span></div></div><script type=text/javascript src=//cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.min.js></script><script type=text/javascript src=/js/search.js></script><script type=text/javascript src=/js/affix.js></script><script type=text/javascript src=/js/scrollspy.js></script><script type=text/javascript>function detectIE(){var ua=window.navigator.userAgent;var msie=ua.indexOf('MSIE ');var trident=ua.indexOf('Trident/');var edge=ua.indexOf('Edge/');if(msie>0||trident>0||edge>0){return-1;}
+return 1;}
+function getCntViewHeight(){var docHeight=$('#content').height(),winHeight=$(window).height(),cntViewHeight=(docHeight>winHeight)?(docHeight-winHeight):($(document).height()-winHeight);return cntViewHeight;}
+function getScrollbarWidth(){var $div=$('<div />').addClass('scrollbar-measure').prependTo('body');var div=$div[0];var scrollbarWidth=div.offsetWidth-div.clientWidth;$div.remove();return scrollbarWidth;}
+function registerBackTop(){var THRESHOLD=50;var $top=$('.back-to-top');$(window).on('scroll',function(){$top.toggleClass('back-to-top-on',window.pageYOffset>THRESHOLD);var scrollTop=$(window).scrollTop();var cntViewHeight=getCntViewHeight();var scrollPercent=(scrollTop)/(cntViewHeight);var scrollPercentRounded=Math.round(scrollPercent*100);var scrollPercentMaxed=(scrollPercentRounded>100)?100:scrollPercentRounded;$('#scrollpercent>span').html(scrollPercentMaxed);});$top.on('click',function(){$("html,body").animate({scrollTop:0,screenLeft:0,},800);});}
+function initScrollSpy(){var tocSelector='.post-toc';var $tocElement=$(tocSelector);var activeCurrentSelector='.active-current';$tocElement.on('activate.bs.scrollspy',function(){var $currentActiveElement=$(tocSelector+' .active').last();removeCurrentActiveClass();$currentActiveElement.addClass('active-current');}).on('clear.bs.scrollspy',removeCurrentActiveClass);$('body').scrollspy({target:tocSelector});function removeCurrentActiveClass(){$(tocSelector+' '+activeCurrentSelector).removeClass(activeCurrentSelector.substring(1));}}
+function initAffix(){var headerHeight=$('.header-inner').height();var footerOffset=parseInt($('.main').css('padding-bottom'),10);var sidebarTop=headerHeight+10;$('.sidebar-inner').affix({offset:{top:sidebarTop,bottom:footerOffset}});$(document).on('affixed.bs.affix',function(){updateTOCHeight(document.body.clientHeight-100);});}
+function initTOCDimension(){var updateTOCHeightTimer;$(window).on('resize',function(){updateTOCHeightTimer&&clearTimeout(updateTOCHeightTimer);updateTOCHeightTimer=setTimeout(function(){var tocWrapperHeight=document.body.clientHeight-100;updateTOCHeight(tocWrapperHeight);},0);});updateTOCHeight(document.body.clientHeight-100);var scrollbarWidth=getScrollbarWidth();$('.post-toc').css('width','calc(100% + '+scrollbarWidth+'px)');}
+function updateTOCHeight(height){height=height||'auto';$('.post-toc').css('max-height',height);}
+$(function(){var sidebarTop=$('.header-inner').height()+10;$('#sidebar').css({'margin-top':sidebarTop}).show();var sidebarMt=parseInt($('#sidebar').css('margin-top'));var sidebarInHeight=parseInt($('.sidebar-inner').css('height'));var sideHeight=sidebarMt+sidebarInHeight;var contentHeight=$('.content-wrap').height();if(contentHeight<sideHeight){$('.content-wrap').css('min-height',sideHeight);}
+$('.site-nav-toggle').on('click',function(){var $siteNav=$('.site-nav');var $toggleLine=$('.toggle');var ON_CLASS_NAME='site-nav-on';var CLOSE_CLASS_NAME='toggle-close';var isSiteNavOn=$siteNav.hasClass(ON_CLASS_NAME);var animateAction=isSiteNavOn?'slideUp':'slideDown';var animateCallback=isSiteNavOn?'removeClass':'addClass';$siteNav.stop()[animateAction]('normal',function(){$siteNav[animateCallback](ON_CLASS_NAME);$toggleLine[animateCallback](CLOSE_CLASS_NAME);});});registerBackTop();initScrollSpy();initAffix();initTOCDimension();$('.sidebar-nav-toc').click(function(){$(this).addClass('sidebar-nav-active');$(this).next().removeClass('sidebar-nav-active');$('.'+$(this).next().attr('data-target')).toggle(500);$('.'+$(this).attr('data-target')).toggle(500);});$('.sidebar-nav-overview').click(function(){$(this).addClass('sidebar-nav-active');$(this).prev().removeClass('sidebar-nav-active');$('.'+$(this).prev().attr('data-target')).toggle(500);$('.'+$(this).attr('data-target')).toggle(500);});});</script><script src=//cdn.bootcdn.net/ajax/libs/imageviewer/0.1.0/viewer.min.js></script><script type=text/javascript>$(function(){$('.post-body').viewer();});</script><script type=text/javascript>$(function(){if(detectIE()>0){$.getScript(document.location.protocol+'//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js',function(){new Waline({el:'#wcomments',visitor:true,avatar:'wavatar',avatarCDN:'https://sdn.geekzu.org/avatar/',avatarForce:!1,wordLimit:'200',placeholder:' 欢迎留下您的宝贵建议，请填写您的昵称和邮箱便于后续交流. ^_^ ',requiredFields:['nick','mail'],serverURL:"Your WalineSerURL",lang:"zh-cn"});});}else{$('#wcomments').html('抱歉，Waline插件不支持IE或Edge，建议使用Chrome浏览器。');}});</script><script type=text/javascript src="//s7.addthis.com/js/300/addthis_widget.js#pubid=Your%20AddthisId"></script><script>(function(){var bp=document.createElement('script');var curProtocol=window.location.protocol.split(':')[0];if(curProtocol==='https'){bp.src='https://zz.bdstatic.com/linksubmit/push.js';}
+else{bp.src='http://push.zhanzhang.baidu.com/push.js';}
+var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(bp,s);})();</script></body></html>

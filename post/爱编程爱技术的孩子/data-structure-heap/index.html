@@ -1,0 +1,253 @@
+<!doctype html><html lang=zh-cn dir=content/zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=content-security-policy content="upgrade-insecure-requests"><title>数据结构-堆 - 书藏的博客</title><meta name=keywords content="博客,程序员,区块链，思考,读书,笔记,生活,电影,旅游,"><meta name=author content="书藏"><meta property="og:title" content="数据结构-堆"><meta property="og:site_name" content="书藏的博客"><meta property="og:image" content="/img/author.jpg"><meta name=title content="数据结构-堆 - 书藏的博客"><meta name=description content="书藏的个人博客，记录学习的东西，以月刊记录生活"><link rel="shortcut icon" href=/img/favicon.ico><link rel=apple-touch-icon href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><link href=//cdn.bootcdn.net/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css rel=stylesheet type=text/css><link href=//cdn.bootcdn.net/ajax/libs/imageviewer/0.1.0/viewer.min.css rel=stylesheet><link href=/css/main.css rel=stylesheet type=text/css><link href=/css/syntax.css rel=stylesheet type=text/css><script async src="https://www.googletagmanager.com/gtag/js?id=UA-209130979-1"></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-209130979-1 ');</script></head><body itemscope itemtype=http://schema.org/WebPage lang=zh-hans><div class="container one-collumn sidebar-position-left page-home"><div class=headband></div><header id=header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle role=button style=opacity:1;top:0><span class=toggle-line></span><span class=toggle-line></span><span class=toggle-line></span></div></div><div class=site-meta><div class=multi-lang-switch><i class="fa fa-fw fa-language" style=margin-right:5px></i><a class=lang-link id=zh-cn href=#>中文</a></div><div class=custom-logo-site-title><a href=/ class=brand rel=start><span class=logo-line-before><i></i></span><span class=site-title>书藏的博客</span>
+<span class=logo-line-after><i></i></span></a></div><p class=site-subtitle>凡心所向，素履以往</p></div><div class=site-nav-right><div class="toggle popup-trigger" style=opacity:1;top:0><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul id=menu class=menu><li class=menu-item><a href=/ rel=section><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class=menu-item><a href=/post rel=section><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class=menu-item><a href=/about.html rel=section><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于我</a></li><li class=menu-item><a href=/404.html rel=section><i class="menu-item-icon fa fa-fw fa-heartbeat"></i><br>公益404</a></li><li class="menu-item menu-item-search"><a href=javascript:; class=popup-trigger><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class=site-search><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class=search-icon><i class="fa fa-search"></i></span><span class=popup-btn-close><i class="fa fa-times-circle"></i></span><div class=local-search-input-wrapper><input autocomplete=off placeholder=搜索关键字... spellcheck=false type=text id=local-search-input autocapitalize=none autocorrect=off></div></div><div id=local-search-result></div></div></div></nav></div></header><main id=main class=main><div class=main-inner><div class=content-wrap><div id=content class=content><section id=posts class=posts-expand><article class="post post-type-normal" itemscope itemtype=http://schema.org/Article><header class=post-header><h1 class=post-title itemprop="name headline"><a class=post-title-link href=https://shuzang.github.io/post/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/data-structure-heap/ itemprop=url>数据结构-堆</a></h1><div class=post-meta><span class=post-time><i class="fa fa-calendar-o fa-fw"></i><span class=post-meta-item-text>时间：</span>
+<time itemprop=dateCreated datetime=2016-03-22T13:04:35+08:00 content="2020-03-11">2020-03-11</time></span>
+<span class=post-category>&nbsp; | &nbsp;
+<i class="fa fa-folder-o fa-fw"></i><span class=post-meta-item-text>分类：</span>
+<span itemprop=about itemscope itemtype=https://schema.org/Thing><a href=/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90 itemprop=url rel=index style=text-decoration:underline><span itemprop=name>爱编程爱技术的孩子</span></a>
+&nbsp;</span></span>
+<span>|
+<i class="fa fa-file-word-o fa-fw"></i><span class=post-meta-item-text>字数：</span>
+<span class=leancloud-world-count>2322 字</span></span>
+<span>|
+<i class="fa fa-eye fa-fw"></i><span class=post-meta-item-text>阅读：</span>
+<span class=leancloud-view-count>5分钟</span></span>
+<span id=/post/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/data-structure-heap/ class=leancloud_visitors data-flag-title=数据结构-堆>|
+<i class="fa fa-binoculars fa-fw"></i><span class=post-meta-item-text>阅读次数：</span>
+<span class=leancloud-visitors-count></span></span></div></header><div class=post-body itemprop=articleBody><p>普通的队列是一种先进先出的数据结构，在此基础上，还有一种叫做 <strong>优先队列</strong> 的结构。顾名思义，优先队列就是具有优先级的队列，其中，元素被赋予优先级，具有最高优先级的元素将最先被访问。</p><p>优先级队列的一个典型使用场景是计算机的进程调度，在进程调度算法中有一种称为优先级法，就是使用优先队列这种结构。优先队列可以使用（有序）数组或（有序）链表实现，但最常用的实现方法是 <strong>堆</strong>。</p><p>注：这里的堆不是堆栈</p><h2 id=1-什么是堆>1. 什么是堆</h2><p>堆是一棵树，其中每个节点的值都大于等于/小于等于其子孙节点的值。每个节点的值都大于等于其子孙节点值的堆叫做大顶堆，否则叫做小顶堆。</p><p>习惯上，不加限定提到「堆」时往往指二叉堆。二叉堆是一棵用数组表示的完全二叉树，它满足堆的性质：</p><ol><li>每个结点中存有一个元素（或者说一个权值）</li><li>任一结点的权值是其子树所有结点的最大值（或最小值）</li></ol><p>下面是大顶堆和小顶堆的一个例子</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200311_8EHOyj.png alt=大顶堆与小顶堆示例></p><p>二叉堆和二叉搜索树虽然乍一看有相似之处，但它们的区别很大：</p><ol><li>结点顺序。在二叉搜索树中，左子树中的节点必须比当前节点小，右子树中的节点必须比当前节点大，但最大堆中不论左右子树，节点都必须比当前节点小或者大；</li><li>平衡：二叉搜索树必须在平衡状态下，大部分操作复杂度才能达到O(log n)，而二叉堆一定是平衡的，构建树的方式决定了它的复杂度。</li><li>搜索：二叉树搜索很快，堆则不一定，因为堆的主要任务不是搜索，而是及时获取最大或最小结点。</li><li>二叉搜索树必须是严格的大小关系，堆可以有等于。</li></ol><h2 id=2-堆的基本操作>2. 堆的基本操作</h2><p>堆的最基本操作是插入和删除，除此之外，给定一组值快速构建堆也是常见的问题。在Go中，我们将堆定义为一个切片，为了便于操作，下标从1开始</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>var</span> heap = <span style=color:#a2f>make</span>([]<span style=color:#0b0;font-weight:700>int</span>, <span style=color:#666>1</span>)
+</code></pre></div><p><strong>注：下面的例子均以最大堆为例</strong></p><h3 id=21-堆的插入>2.1 堆的插入</h3><p>插入操作是指向二插堆中插入一个元素，其基本流程如下</p><ol><li>将插入的元素放在数组的最后一个元素</li><li>如果新插入的结点的值大于它父亲节点的值，就与之交换，重复此过程直到不满足或者到根。这一过程叫做<strong>向上调整</strong></li></ol><p>一个例子如下</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200311_8EbZ01.png alt=堆的插入></p><p>程序实现如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>Insert</span>(heap []<span style=color:#0b0;font-weight:700>int</span>], key <span style=color:#0b0;font-weight:700>int</span>) {
+    heap = <span style=color:#a2f>append</span>(heap, key)
+    child = <span style=color:#a2f>len</span>(heap)<span style=color:#666>-</span><span style=color:#666>1</span>
+    <span style=color:#a2f;font-weight:700>for</span> {
+        parent <span style=color:#666>:=</span> (child<span style=color:#666>-</span><span style=color:#666>1</span>)<span style=color:#666>/</span><span style=color:#666>2</span>
+        <span style=color:#a2f;font-weight:700>if</span> parent &lt; <span style=color:#666>0</span> <span style=color:#666>||</span> heap[parent] <span style=color:#666>&gt;=</span> heap[child] {
+            <span style=color:#a2f;font-weight:700>break</span>
+        }
+        heap[parent],heap[child] = heap[child],heap[parent]
+        child = parent
+    }
+}
+</code></pre></div><h3 id=22-堆的删除>2.2 堆的删除</h3><p>删除操作指删除堆中最大的元素，即删除根结点。其基本流程如下</p><ol><li>读取根结点（最大值）元素</li><li>交换根结点和最后一个结点，然后删除最后一个结点</li><li>在新的根结点的儿子中，找一个最大的，与该结点交换，重复此过程直到底层。这一过程叫做<strong>向下调整</strong></li></ol><p>一个例子如下</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200311_8EbGnA.png alt=堆的删除></p><p>程序实现如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>Delete</span>(heap []<span style=color:#0b0;font-weight:700>int</span>) <span style=color:#0b0;font-weight:700>int</span> {
+    <span style=color:#a2f;font-weight:700>var</span> parent, child <span style=color:#0b0;font-weight:700>int</span>
+    Max,t <span style=color:#666>:=</span> heap[<span style=color:#666>0</span>],<span style=color:#a2f>len</span>(heap)<span style=color:#666>-</span><span style=color:#666>1</span>
+    heap[<span style=color:#666>0</span>], heap[t] = heap[t], heap[<span style=color:#666>0</span>]
+    heap = heap[:t]
+    <span style=color:#a2f;font-weight:700>for</span> parent = <span style=color:#666>0</span>; parent<span style=color:#666>*</span><span style=color:#666>2</span> <span style=color:#666>+</span><span style=color:#666>1</span> &lt; <span style=color:#a2f>len</span>(heap); parent = child {
+        child = parent <span style=color:#666>*</span> <span style=color:#666>2</span> <span style=color:#666>+</span> <span style=color:#666>1</span>
+        <span style=color:#a2f;font-weight:700>if</span> child <span style=color:#666>+</span> <span style=color:#666>1</span> &lt; <span style=color:#a2f>len</span>(heap) <span style=color:#666>&amp;&amp;</span> heap[child<span style=color:#666>+</span><span style=color:#666>1</span>] &gt; heap[child] {
+            child<span style=color:#666>++</span>
+        }
+        <span style=color:#a2f;font-weight:700>if</span> heap[child] <span style=color:#666>&lt;=</span> heap[parent] {
+            <span style=color:#a2f;font-weight:700>break</span>
+        }
+        heap[child], heap[parent] = heap[parent], heap[child]        
+    } 
+    <span style=color:#a2f;font-weight:700>return</span> Max
+}
+</code></pre></div><h3 id=23-堆的建立>2.3 堆的建立</h3><p>通过将一组元素逐个插入到一个初始为空的堆，可以建立一个最大堆，但这种方法的复杂度为$O(n log_2n)$。实际上，这里存在一种可以在线性时间内$O(log_2n)$建立堆的方法，流程如下</p><ol><li>将 N 个元素按输入顺序构造切片，使其满足完全二叉树的特性</li><li>从倒数第一个非叶子结点起，逐个往前按照<strong>向下调整</strong>的思路调整各结点位置，使其满足堆的特性</li></ol><p>一个例子如下</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200311_8Ebah8.png alt=堆的建立></p><p>程序实现如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#080;font-style:italic>//假设传入的数组已经按顺序填好元素
+</span><span style=color:#080;font-style:italic></span><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>build</span>(heap []<span style=color:#0b0;font-weight:700>int</span>) {
+    <span style=color:#a2f;font-weight:700>for</span> i <span style=color:#666>:=</span> (<span style=color:#a2f>len</span>(heap)<span style=color:#666>-</span><span style=color:#666>2</span>)<span style=color:#666>/</span><span style=color:#666>2</span>; i <span style=color:#666>&gt;=</span> <span style=color:#666>0</span>; i<span style=color:#666>--</span> {
+        <span style=color:#a2f;font-weight:700>for</span> parent = i; parent <span style=color:#666>*</span> <span style=color:#666>2</span> <span style=color:#666>+</span> <span style=color:#666>1</span>&lt; <span style=color:#a2f>len</span>(heap); parent = child {
+           child = parent <span style=color:#666>*</span> <span style=color:#666>2</span> <span style=color:#666>+</span> <span style=color:#666>1</span>
+           <span style=color:#a2f;font-weight:700>if</span> child <span style=color:#666>+</span> <span style=color:#666>1</span> &lt; <span style=color:#a2f>len</span>(heap) <span style=color:#666>&amp;&amp;</span> heap[child<span style=color:#666>+</span><span style=color:#666>1</span>] &gt; heap[child] {
+               child<span style=color:#666>++</span>
+           }
+           <span style=color:#a2f;font-weight:700>if</span> heap[child] <span style=color:#666>&lt;=</span> heap[parent] {
+               <span style=color:#a2f;font-weight:700>break</span>
+           }
+           heap[child], heap[parent] = heap[parent], heap[child]        
+       }        
+    } 
+}
+</code></pre></div><h2 id=3-实现优化>3. 实现优化</h2><p>实际上我们注意到，关于堆的操作，最重要的有两个，一个是向上调整，用于插入，一个是向下调整，用于删除和建立堆。我们将这两个操作提取出来</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#080;font-style:italic>// 向上调整
+</span><span style=color:#080;font-style:italic></span><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>up</span>(heap []<span style=color:#0b0;font-weight:700>int</span>) {
+    child <span style=color:#666>:=</span> <span style=color:#a2f>len</span>(stones)<span style=color:#666>-</span><span style=color:#666>1</span>
+    <span style=color:#a2f;font-weight:700>for</span> {
+        parent <span style=color:#666>:=</span> (child<span style=color:#666>-</span><span style=color:#666>1</span>) <span style=color:#666>/</span> <span style=color:#666>2</span>
+        <span style=color:#a2f;font-weight:700>if</span> parent &lt; <span style=color:#666>0</span> <span style=color:#666>||</span> heap[parent] <span style=color:#666>&gt;=</span> heap[child] {
+            <span style=color:#a2f;font-weight:700>break</span>
+        }
+        heap[parent],heap[child] = heap[child],heap[parent]
+        child = parent
+    }
+}
+
+<span style=color:#080;font-style:italic>// 向下调整
+</span><span style=color:#080;font-style:italic></span><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>down</span>(heap []<span style=color:#0b0;font-weight:700>int</span>, i <span style=color:#0b0;font-weight:700>int</span>) {
+    <span style=color:#a2f;font-weight:700>var</span> parent,child <span style=color:#0b0;font-weight:700>int</span>
+    <span style=color:#a2f;font-weight:700>for</span> parent <span style=color:#666>:=</span> i; parent <span style=color:#666>*</span> <span style=color:#666>2</span> <span style=color:#666>+</span> <span style=color:#666>1</span> &lt; <span style=color:#a2f>len</span>(heap); parent = child {
+        child = parent <span style=color:#666>*</span> <span style=color:#666>2</span> <span style=color:#666>+</span> <span style=color:#666>1</span>
+        <span style=color:#a2f;font-weight:700>if</span> child <span style=color:#666>+</span> <span style=color:#666>1</span> &lt; <span style=color:#a2f>len</span>(heap) <span style=color:#666>&amp;&amp;</span> heap[child<span style=color:#666>+</span><span style=color:#666>1</span>] &gt; heap[child] {
+            child<span style=color:#666>++</span>
+        }
+        <span style=color:#a2f;font-weight:700>if</span> heap[child] <span style=color:#666>&lt;=</span> heap[parent] {
+            <span style=color:#a2f;font-weight:700>break</span>
+        }
+        heap[child],heap[parent] = heap[parent],heap[child]
+    }
+}
+</code></pre></div><p>这样，插入、删除和建堆函数可以简化为</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#080;font-style:italic>// 插入
+</span><span style=color:#080;font-style:italic></span><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>Insert</span>(heap []<span style=color:#0b0;font-weight:700>int</span>], key <span style=color:#0b0;font-weight:700>int</span>) {
+    heap = <span style=color:#a2f>append</span>(heap, key)
+    <span style=color:#00a000>up</span>(heap)
+}
+
+<span style=color:#080;font-style:italic>// 删除
+</span><span style=color:#080;font-style:italic></span><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>Delete</span>(heap []<span style=color:#0b0;font-weight:700>int</span>) <span style=color:#0b0;font-weight:700>int</span> {
+    Max <span style=color:#666>:=</span> heap[<span style=color:#666>0</span>]
+    heap[<span style=color:#666>0</span>]= heap[<span style=color:#a2f>len</span>(heap)<span style=color:#666>-</span><span style=color:#666>1</span>]
+    heap = heap[:<span style=color:#a2f>len</span>(heap)<span style=color:#666>-</span><span style=color:#666>1</span>]
+    <span style=color:#00a000>down</span>(heap, <span style=color:#666>0</span>) 
+    <span style=color:#a2f;font-weight:700>return</span> Max
+}
+
+<span style=color:#080;font-style:italic>// 建堆
+</span><span style=color:#080;font-style:italic></span><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>build</span>(heap []<span style=color:#0b0;font-weight:700>int</span>) {
+    <span style=color:#a2f;font-weight:700>for</span> i <span style=color:#666>:=</span> (<span style=color:#a2f>len</span>(heap)<span style=color:#666>-</span><span style=color:#666>2</span>)<span style=color:#666>/</span><span style=color:#666>2</span>; i <span style=color:#666>&gt;=</span> <span style=color:#666>0</span>; i<span style=color:#666>--</span> {
+        <span style=color:#00a000>down</span>(heap,i)       
+    } 
+}
+</code></pre></div><p>Go 的标准库也提供了堆的相关实现，位于 container/heap 包中，该包提供了对任意类型（实现了heap.Interface接口）的堆操作。</p><p>heap 包默认使用最小堆，但在正式应用前需实现如下接口</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>type</span> Interface <span style=color:#a2f;font-weight:700>interface</span> {
+    sort.Interface
+    <span style=color:#00a000>Push</span>(x <span style=color:#a2f;font-weight:700>interface</span>{}) <span style=color:#080;font-style:italic>// 向末尾添加元素
+</span><span style=color:#080;font-style:italic></span>    <span style=color:#00a000>Pop</span>() <span style=color:#a2f;font-weight:700>interface</span>{}   <span style=color:#080;font-style:italic>// 从末尾删除元素
+</span><span style=color:#080;font-style:italic></span>}
+</code></pre></div><p>该接口的示例实现如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#080;font-style:italic>// An IntHeap is a min-heap of ints.
+</span><span style=color:#080;font-style:italic></span><span style=color:#a2f;font-weight:700>type</span> IntHeap []<span style=color:#0b0;font-weight:700>int</span>
+<span style=color:#a2f;font-weight:700>func</span> (h IntHeap) <span style=color:#00a000>Len</span>() <span style=color:#0b0;font-weight:700>int</span>           { <span style=color:#a2f;font-weight:700>return</span> <span style=color:#a2f>len</span>(h) }
+<span style=color:#a2f;font-weight:700>func</span> (h IntHeap) <span style=color:#00a000>Less</span>(i, j <span style=color:#0b0;font-weight:700>int</span>) <span style=color:#0b0;font-weight:700>bool</span> { <span style=color:#a2f;font-weight:700>return</span> h[i] &lt; h[j] }
+<span style=color:#a2f;font-weight:700>func</span> (h IntHeap) <span style=color:#00a000>Swap</span>(i, j <span style=color:#0b0;font-weight:700>int</span>)      { h[i], h[j] = h[j], h[i] }
+<span style=color:#a2f;font-weight:700>func</span> (h <span style=color:#666>*</span>IntHeap) <span style=color:#00a000>Push</span>(x <span style=color:#a2f;font-weight:700>interface</span>{}) {
+    <span style=color:#080;font-style:italic>// Push and Pop use pointer receivers because they modify the slice&#39;s length,
+</span><span style=color:#080;font-style:italic></span>    <span style=color:#080;font-style:italic>// not just its contents.
+</span><span style=color:#080;font-style:italic></span>    <span style=color:#666>*</span>h = <span style=color:#a2f>append</span>(<span style=color:#666>*</span>h, x.(<span style=color:#0b0;font-weight:700>int</span>))
+}
+<span style=color:#a2f;font-weight:700>func</span> (h <span style=color:#666>*</span>IntHeap) <span style=color:#00a000>Pop</span>() <span style=color:#a2f;font-weight:700>interface</span>{} {
+    old <span style=color:#666>:=</span> <span style=color:#666>*</span>h
+    n <span style=color:#666>:=</span> <span style=color:#a2f>len</span>(old)
+    x <span style=color:#666>:=</span> old[n<span style=color:#666>-</span><span style=color:#666>1</span>]
+    <span style=color:#666>*</span>h = old[<span style=color:#666>0</span> : n<span style=color:#666>-</span><span style=color:#666>1</span>]
+    <span style=color:#a2f;font-weight:700>return</span> x
+}
+</code></pre></div><p>实现了该接口后，就可以利用 Init 函数初始化一个堆，利用 Push 插入和利用 Pop 删除。相关的函数原型如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>Init</span>(h Interface)
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>Push</span>(h Interface, x <span style=color:#a2f;font-weight:700>interface</span>{})
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>Pop</span>(h Interface) <span style=color:#a2f;font-weight:700>interface</span>{}
+</code></pre></div><p>使用这些方法的一个示例如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#080;font-style:italic>// This example inserts several ints into an IntHeap, checks the minimum,
+</span><span style=color:#080;font-style:italic></span><span style=color:#080;font-style:italic>// and removes them in order of priority.
+</span><span style=color:#080;font-style:italic></span><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>Example_intHeap</span>() {
+    h <span style=color:#666>:=</span> <span style=color:#666>&amp;</span>IntHeap{<span style=color:#666>2</span>, <span style=color:#666>1</span>, <span style=color:#666>5</span>}
+    heap.<span style=color:#00a000>Init</span>(h)
+    heap.<span style=color:#00a000>Push</span>(h, <span style=color:#666>3</span>)
+    fmt.<span style=color:#00a000>Printf</span>(<span style=color:#b44>&#34;minimum: %d\n&#34;</span>, (<span style=color:#666>*</span>h)[<span style=color:#666>0</span>])
+    <span style=color:#a2f;font-weight:700>for</span> h.<span style=color:#00a000>Len</span>() &gt; <span style=color:#666>0</span> {
+        fmt.<span style=color:#00a000>Printf</span>(<span style=color:#b44>&#34;%d &#34;</span>, heap.<span style=color:#00a000>Pop</span>(h))
+    }
+    <span style=color:#080;font-style:italic>// Output:
+</span><span style=color:#080;font-style:italic></span>    <span style=color:#080;font-style:italic>// minimum: 1
+</span><span style=color:#080;font-style:italic></span>    <span style=color:#080;font-style:italic>// 1 2 3 5
+</span><span style=color:#080;font-style:italic></span>}
+</code></pre></div><h2 id=4-优先队列>4. 优先队列</h2><p>如我们开头所说，堆用来实现优先队列，下面给出一个利用标准库实现优先队列的例子</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#080;font-style:italic>// This example demonstrates a priority queue built using the heap interface.
+</span><span style=color:#080;font-style:italic></span><span style=color:#a2f;font-weight:700>package</span> heap_test
+<span style=color:#a2f;font-weight:700>import</span> (
+    <span style=color:#b44>&#34;container/heap&#34;</span>
+    <span style=color:#b44>&#34;fmt&#34;</span>
+)
+<span style=color:#080;font-style:italic>// An Item is something we manage in a priority queue.
+</span><span style=color:#080;font-style:italic></span><span style=color:#a2f;font-weight:700>type</span> Item <span style=color:#a2f;font-weight:700>struct</span> {
+    value    <span style=color:#0b0;font-weight:700>string</span> <span style=color:#080;font-style:italic>// The value of the item; arbitrary.
+</span><span style=color:#080;font-style:italic></span>    priority <span style=color:#0b0;font-weight:700>int</span>    <span style=color:#080;font-style:italic>// The priority of the item in the queue.
+</span><span style=color:#080;font-style:italic></span>    <span style=color:#080;font-style:italic>// The index is needed by update and is maintained by the heap.Interface methods.
+</span><span style=color:#080;font-style:italic></span>    index <span style=color:#0b0;font-weight:700>int</span> <span style=color:#080;font-style:italic>// The index of the item in the heap.
+</span><span style=color:#080;font-style:italic></span>}
+<span style=color:#080;font-style:italic>// A PriorityQueue implements heap.Interface and holds Items.
+</span><span style=color:#080;font-style:italic></span><span style=color:#a2f;font-weight:700>type</span> PriorityQueue []<span style=color:#666>*</span>Item
+<span style=color:#a2f;font-weight:700>func</span> (pq PriorityQueue) <span style=color:#00a000>Len</span>() <span style=color:#0b0;font-weight:700>int</span> { <span style=color:#a2f;font-weight:700>return</span> <span style=color:#a2f>len</span>(pq) }
+<span style=color:#a2f;font-weight:700>func</span> (pq PriorityQueue) <span style=color:#00a000>Less</span>(i, j <span style=color:#0b0;font-weight:700>int</span>) <span style=color:#0b0;font-weight:700>bool</span> {
+    <span style=color:#080;font-style:italic>// We want Pop to give us the highest, not lowest, priority so we use greater than here.
+</span><span style=color:#080;font-style:italic></span>    <span style=color:#a2f;font-weight:700>return</span> pq[i].priority &gt; pq[j].priority
+}
+<span style=color:#a2f;font-weight:700>func</span> (pq PriorityQueue) <span style=color:#00a000>Swap</span>(i, j <span style=color:#0b0;font-weight:700>int</span>) {
+    pq[i], pq[j] = pq[j], pq[i]
+    pq[i].index = i
+    pq[j].index = j
+}
+<span style=color:#a2f;font-weight:700>func</span> (pq <span style=color:#666>*</span>PriorityQueue) <span style=color:#00a000>Push</span>(x <span style=color:#a2f;font-weight:700>interface</span>{}) {
+    n <span style=color:#666>:=</span> <span style=color:#a2f>len</span>(<span style=color:#666>*</span>pq)
+    item <span style=color:#666>:=</span> x.(<span style=color:#666>*</span>Item)
+    item.index = n
+    <span style=color:#666>*</span>pq = <span style=color:#a2f>append</span>(<span style=color:#666>*</span>pq, item)
+}
+<span style=color:#a2f;font-weight:700>func</span> (pq <span style=color:#666>*</span>PriorityQueue) <span style=color:#00a000>Pop</span>() <span style=color:#a2f;font-weight:700>interface</span>{} {
+    old <span style=color:#666>:=</span> <span style=color:#666>*</span>pq
+    n <span style=color:#666>:=</span> <span style=color:#a2f>len</span>(old)
+    item <span style=color:#666>:=</span> old[n<span style=color:#666>-</span><span style=color:#666>1</span>]
+    item.index = <span style=color:#666>-</span><span style=color:#666>1</span> <span style=color:#080;font-style:italic>// for safety
+</span><span style=color:#080;font-style:italic></span>    <span style=color:#666>*</span>pq = old[<span style=color:#666>0</span> : n<span style=color:#666>-</span><span style=color:#666>1</span>]
+    <span style=color:#a2f;font-weight:700>return</span> item
+}
+<span style=color:#080;font-style:italic>// update modifies the priority and value of an Item in the queue.
+</span><span style=color:#080;font-style:italic></span><span style=color:#a2f;font-weight:700>func</span> (pq <span style=color:#666>*</span>PriorityQueue) <span style=color:#00a000>update</span>(item <span style=color:#666>*</span>Item, value <span style=color:#0b0;font-weight:700>string</span>, priority <span style=color:#0b0;font-weight:700>int</span>) {
+    item.value = value
+    item.priority = priority
+    heap.<span style=color:#00a000>Fix</span>(pq, item.index)
+}
+<span style=color:#080;font-style:italic>// This example creates a PriorityQueue with some items, adds and manipulates an item,
+</span><span style=color:#080;font-style:italic></span><span style=color:#080;font-style:italic>// and then removes the items in priority order.
+</span><span style=color:#080;font-style:italic></span><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>Example_priorityQueue</span>() {
+    <span style=color:#080;font-style:italic>// Some items and their priorities.
+</span><span style=color:#080;font-style:italic></span>    items <span style=color:#666>:=</span> <span style=color:#a2f;font-weight:700>map</span>[<span style=color:#0b0;font-weight:700>string</span>]<span style=color:#0b0;font-weight:700>int</span>{
+        <span style=color:#b44>&#34;banana&#34;</span>: <span style=color:#666>3</span>, <span style=color:#b44>&#34;apple&#34;</span>: <span style=color:#666>2</span>, <span style=color:#b44>&#34;pear&#34;</span>: <span style=color:#666>4</span>,
+    }
+    <span style=color:#080;font-style:italic>// Create a priority queue, put the items in it, and
+</span><span style=color:#080;font-style:italic></span>    <span style=color:#080;font-style:italic>// establish the priority queue (heap) invariants.
+</span><span style=color:#080;font-style:italic></span>    pq <span style=color:#666>:=</span> <span style=color:#a2f>make</span>(PriorityQueue, <span style=color:#a2f>len</span>(items))
+    i <span style=color:#666>:=</span> <span style=color:#666>0</span>
+    <span style=color:#a2f;font-weight:700>for</span> value, priority <span style=color:#666>:=</span> <span style=color:#a2f;font-weight:700>range</span> items {
+        pq[i] = <span style=color:#666>&amp;</span>Item{
+            value:    value,
+            priority: priority,
+            index:    i,
+        }
+        i<span style=color:#666>++</span>
+    }
+    heap.<span style=color:#00a000>Init</span>(<span style=color:#666>&amp;</span>pq)
+    <span style=color:#080;font-style:italic>// Insert a new item and then modify its priority.
+</span><span style=color:#080;font-style:italic></span>    item <span style=color:#666>:=</span> <span style=color:#666>&amp;</span>Item{
+        value:    <span style=color:#b44>&#34;orange&#34;</span>,
+        priority: <span style=color:#666>1</span>,
+    }
+    heap.<span style=color:#00a000>Push</span>(<span style=color:#666>&amp;</span>pq, item)
+    pq.<span style=color:#00a000>update</span>(item, item.value, <span style=color:#666>5</span>)
+    <span style=color:#080;font-style:italic>// Take the items out; they arrive in decreasing priority order.
+</span><span style=color:#080;font-style:italic></span>    <span style=color:#a2f;font-weight:700>for</span> pq.<span style=color:#00a000>Len</span>() &gt; <span style=color:#666>0</span> {
+        item <span style=color:#666>:=</span> heap.<span style=color:#00a000>Pop</span>(<span style=color:#666>&amp;</span>pq).(<span style=color:#666>*</span>Item)
+        fmt.<span style=color:#00a000>Printf</span>(<span style=color:#b44>&#34;%.2d:%s &#34;</span>, item.priority, item.value)
+    }
+    <span style=color:#080;font-style:italic>// Output:
+</span><span style=color:#080;font-style:italic></span>    <span style=color:#080;font-style:italic>// 05:orange 04:pear 03:banana 02:apple
+</span><span style=color:#080;font-style:italic></span>}
+</code></pre></div><h2 id=参考>参考</h2><p>[1] <a href=https://ieevee.com/tech/2018/01/29/go-heap.html>Golang: 详解container/heap</a></p><p>[2] <a href="https://www.bilibili.com/video/av43521866?p=51">B站-浙江大学数据结构课程</a></p></div><footer class=post-footer><div class=post-tags><a href=/tags/%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e4%b8%8e%e7%ae%97%e6%b3%95 rel=tag title=数据结构与算法>#数据结构与算法#</a></div><div class=addthis_inline_share_toolbox></div><div class=post-nav><div class=article-copyright><div class=article-copyright-img><img src=/img/qq_qrcode.png width=129px height=129px><div style=text-align:center>QQ扫一扫交流</div></div><div class=article-copyright-info><p><span>声明：</span>数据结构-堆</p><p><span>链接：</span>https://shuzang.github.io/post/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/data-structure-heap/</p><p><span>作者：</span>书藏</p><p><span>声明： </span>本博客文章除特别声明外，均采用 <a href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank style=text-decoration:underline>CC BY-NC-SA 3.0</a>许可协议，转载请注明出处！</p></div></div><div class=clear></div></div><div class=reward-qr-info><div>创作实属不易，如有帮助，那就打赏博主些许茶钱吧 ^_^</div><button id=rewardButton disable=enable onclick="var qr=document.getElementById('QR');if(qr.style.display==='none'){qr.style.display='block';}else{qr.style.display='none'}">
+<span>赏</span></button><div id=QR style=display:none><div id=wechat style=display:inline-block><img id=wechat_qr src=/img/wechat-pay.png alt="WeChat Pay"><p>微信打赏</p></div><div id=alipay style=display:inline-block><img id=alipay_qr src=/img/ali-pay.png alt=Alipay><p>支付宝打赏</p></div></div></div><div class=post-nav><div class="post-nav-next post-nav-item"><a href=https://shuzang.github.io/post/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/what-can-blockchain-do-during-the-covid-19/ rel=next title=面对疫情区块链可以做些什么><i class="fa fa-chevron-left"></i>面对疫情区块链可以做些什么</a></div><div class="post-nav-prev post-nav-item"><a href=https://shuzang.github.io/post/%E6%97%A5%E7%A8%8B%E5%8F%8A%E5%91%A8%E5%88%8A/life-weekly-10/ rel=prev title="书藏的生活周刊第 10 期 (20200306)">书藏的生活周刊第 10 期 (20200306)
+<i class="fa fa-chevron-right"></i></a></div></div><div id=wcomments></div></footer></article></section></div></div><div class=sidebar-toggle><div class=sidebar-toggle-line-wrap><span class="sidebar-toggle-line sidebar-toggle-line-first"></span><span class="sidebar-toggle-line sidebar-toggle-line-middle"></span><span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id=sidebar class=sidebar><div class=sidebar-inner><section class="site-overview sidebar-panel sidebar-panel-active"><div class="site-author motion-element" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image src=/images/avatar.png alt=书藏><p class=site-author-name itemprop=name>书藏</p><p class="site-description motion-element" itemprop=description></p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href=/post/><span class=site-state-item-count>334</span>
+<span class=site-state-item-name>日志</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>7</span>
+<span class=site-state-item-name>分类</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>23</span>
+<span class=site-state-item-name>标签</span></a></div></nav><div class="links-of-author motion-element"><span class=links-of-author-item><a href=https://github.com/shuzang/ target=_blank title=GitHub><i class="fa fa-fw fa-github"></i>GitHub</a></span></div><div class="tagcloud-of-blogroll motion-element tagcloud-of-blogroll-inline"><div class=tagcloud-of-blogroll-title><i class="fa fa-fw fa-tags"></i>标签云</div><ul class=tagcloud-of-blogroll-list><li class=tagcloud-of-blogroll-item><a href=/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0>论文笔记</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E4%B9%A6%E8%97%8F%E7%9A%84%E7%94%9F%E6%B4%BB%E5%91%A8%E5%88%8A>书藏的生活周刊</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95>科研记录</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/go%E8%AF%AD%E6%B3%95>Go语法</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80>计算机基础</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E6%9D%82%E8%B0%88>杂谈</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E5%8C%BA%E5%9D%97%E9%93%BE>区块链</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95>数据结构与算法</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E7%94%9F%E6%B4%BB%E6%8A%80%E8%83%BD>生活技能</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/go%E5%AE%9E%E6%88%98>Go实战</a></li></ul></div></section></div></aside></div></main><footer id=footer class=footer><div class=footer-inner><div class=copyright><span class=copyright-year>&copy; 2010 - 2022</span>
+<span class=with-love><i class="fa fa-heart"></i></span><span class=copyright-author>书藏的博客</span></div><div class=powered-info><span class=powered-by>Powered by - <a class=powered-link href=//gohugo.io target=_blank title=hugo>Hugo v0.63.2</a></span>
+<span class=separator-line>/</span>
+<span class=theme-info>Theme by - <a class=powered-link href=//github.com/elkan1788/hugo-theme-next target=_blank>NexT</a></span></div><div class=vistor-info><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><span class=site-uv><i class="fa fa-user"></i><span class=busuanzi-value id=busuanzi_value_site_uv></span></span><span class=separator-line>/</span>
+<span class=site-pv><i class="fa fa-eye"></i><span class=busuanzi-value id=busuanzi_value_site_pv></span></span></div><div class=license-info><span class=storage-info>Storage by
+<a href=https://www.ucloud.cn/ style=font-weight:700 target=_blank>UCloud云存储</a></span>
+<span class=separator-line>/</span>
+<span class=license-num><a href target=_blank></a></span></div></div></footer><div class=back-to-top><i class="fa fa-arrow-up"></i><span id=scrollpercent><span>0</span>%</span></div></div><script type=text/javascript src=//cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.min.js></script><script type=text/javascript src=/js/search.js></script><script type=text/javascript src=/js/affix.js></script><script type=text/javascript src=/js/scrollspy.js></script><script type=text/javascript>function detectIE(){var ua=window.navigator.userAgent;var msie=ua.indexOf('MSIE ');var trident=ua.indexOf('Trident/');var edge=ua.indexOf('Edge/');if(msie>0||trident>0||edge>0){return-1;}
+return 1;}
+function getCntViewHeight(){var docHeight=$('#content').height(),winHeight=$(window).height(),cntViewHeight=(docHeight>winHeight)?(docHeight-winHeight):($(document).height()-winHeight);return cntViewHeight;}
+function getScrollbarWidth(){var $div=$('<div />').addClass('scrollbar-measure').prependTo('body');var div=$div[0];var scrollbarWidth=div.offsetWidth-div.clientWidth;$div.remove();return scrollbarWidth;}
+function registerBackTop(){var THRESHOLD=50;var $top=$('.back-to-top');$(window).on('scroll',function(){$top.toggleClass('back-to-top-on',window.pageYOffset>THRESHOLD);var scrollTop=$(window).scrollTop();var cntViewHeight=getCntViewHeight();var scrollPercent=(scrollTop)/(cntViewHeight);var scrollPercentRounded=Math.round(scrollPercent*100);var scrollPercentMaxed=(scrollPercentRounded>100)?100:scrollPercentRounded;$('#scrollpercent>span').html(scrollPercentMaxed);});$top.on('click',function(){$("html,body").animate({scrollTop:0,screenLeft:0,},800);});}
+function initScrollSpy(){var tocSelector='.post-toc';var $tocElement=$(tocSelector);var activeCurrentSelector='.active-current';$tocElement.on('activate.bs.scrollspy',function(){var $currentActiveElement=$(tocSelector+' .active').last();removeCurrentActiveClass();$currentActiveElement.addClass('active-current');}).on('clear.bs.scrollspy',removeCurrentActiveClass);$('body').scrollspy({target:tocSelector});function removeCurrentActiveClass(){$(tocSelector+' '+activeCurrentSelector).removeClass(activeCurrentSelector.substring(1));}}
+function initAffix(){var headerHeight=$('.header-inner').height();var footerOffset=parseInt($('.main').css('padding-bottom'),10);var sidebarTop=headerHeight+10;$('.sidebar-inner').affix({offset:{top:sidebarTop,bottom:footerOffset}});$(document).on('affixed.bs.affix',function(){updateTOCHeight(document.body.clientHeight-100);});}
+function initTOCDimension(){var updateTOCHeightTimer;$(window).on('resize',function(){updateTOCHeightTimer&&clearTimeout(updateTOCHeightTimer);updateTOCHeightTimer=setTimeout(function(){var tocWrapperHeight=document.body.clientHeight-100;updateTOCHeight(tocWrapperHeight);},0);});updateTOCHeight(document.body.clientHeight-100);var scrollbarWidth=getScrollbarWidth();$('.post-toc').css('width','calc(100% + '+scrollbarWidth+'px)');}
+function updateTOCHeight(height){height=height||'auto';$('.post-toc').css('max-height',height);}
+$(function(){var sidebarTop=$('.header-inner').height()+10;$('#sidebar').css({'margin-top':sidebarTop}).show();var sidebarMt=parseInt($('#sidebar').css('margin-top'));var sidebarInHeight=parseInt($('.sidebar-inner').css('height'));var sideHeight=sidebarMt+sidebarInHeight;var contentHeight=$('.content-wrap').height();if(contentHeight<sideHeight){$('.content-wrap').css('min-height',sideHeight);}
+$('.site-nav-toggle').on('click',function(){var $siteNav=$('.site-nav');var $toggleLine=$('.toggle');var ON_CLASS_NAME='site-nav-on';var CLOSE_CLASS_NAME='toggle-close';var isSiteNavOn=$siteNav.hasClass(ON_CLASS_NAME);var animateAction=isSiteNavOn?'slideUp':'slideDown';var animateCallback=isSiteNavOn?'removeClass':'addClass';$siteNav.stop()[animateAction]('normal',function(){$siteNav[animateCallback](ON_CLASS_NAME);$toggleLine[animateCallback](CLOSE_CLASS_NAME);});});registerBackTop();initScrollSpy();initAffix();initTOCDimension();$('.sidebar-nav-toc').click(function(){$(this).addClass('sidebar-nav-active');$(this).next().removeClass('sidebar-nav-active');$('.'+$(this).next().attr('data-target')).toggle(500);$('.'+$(this).attr('data-target')).toggle(500);});$('.sidebar-nav-overview').click(function(){$(this).addClass('sidebar-nav-active');$(this).prev().removeClass('sidebar-nav-active');$('.'+$(this).prev().attr('data-target')).toggle(500);$('.'+$(this).attr('data-target')).toggle(500);});});</script><script src=//cdn.bootcdn.net/ajax/libs/imageviewer/0.1.0/viewer.min.js></script><script type=text/javascript>$(function(){$('.post-body').viewer();});</script><script type=text/javascript>$(function(){if(detectIE()>0){$.getScript(document.location.protocol+'//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js',function(){new Waline({el:'#wcomments',visitor:true,avatar:'wavatar',avatarCDN:'https://sdn.geekzu.org/avatar/',avatarForce:!1,wordLimit:'200',placeholder:' 欢迎留下您的宝贵建议，请填写您的昵称和邮箱便于后续交流. ^_^ ',requiredFields:['nick','mail'],serverURL:"Your WalineSerURL",lang:"zh-cn"});});}else{$('#wcomments').html('抱歉，Waline插件不支持IE或Edge，建议使用Chrome浏览器。');}});</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script><script type=text/javascript src="//s7.addthis.com/js/300/addthis_widget.js#pubid=Your%20AddthisId"></script><script>(function(){var bp=document.createElement('script');var curProtocol=window.location.protocol.split(':')[0];if(curProtocol==='https'){bp.src='https://zz.bdstatic.com/linksubmit/push.js';}
+else{bp.src='http://push.zhanzhang.baidu.com/push.js';}
+var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(bp,s);})();</script></body></html>

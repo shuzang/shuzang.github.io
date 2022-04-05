@@ -1,0 +1,175 @@
+<!doctype html><html lang=zh-cn dir=content/zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=content-security-policy content="upgrade-insecure-requests"><title>基于Go语言开发在线论坛8-消息、视图和日期时间本地化 - 书藏的博客</title><meta name=keywords content="博客,程序员,区块链，思考,读书,笔记,生活,电影,旅游,"><meta name=author content="书藏"><meta property="og:title" content="基于Go语言开发在线论坛8-消息、视图和日期时间本地化"><meta property="og:site_name" content="书藏的博客"><meta property="og:image" content="/img/author.jpg"><meta name=title content="基于Go语言开发在线论坛8-消息、视图和日期时间本地化 - 书藏的博客"><meta name=description content="书藏的个人博客，记录学习的东西，以月刊记录生活"><link rel="shortcut icon" href=/img/favicon.ico><link rel=apple-touch-icon href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><link href=//cdn.bootcdn.net/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css rel=stylesheet type=text/css><link href=//cdn.bootcdn.net/ajax/libs/imageviewer/0.1.0/viewer.min.css rel=stylesheet><link href=/css/main.css rel=stylesheet type=text/css><link href=/css/syntax.css rel=stylesheet type=text/css><script async src="https://www.googletagmanager.com/gtag/js?id=UA-209130979-1"></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-209130979-1 ');</script></head><body itemscope itemtype=http://schema.org/WebPage lang=zh-hans><div class="container one-collumn sidebar-position-left page-home"><div class=headband></div><header id=header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle role=button style=opacity:1;top:0><span class=toggle-line></span><span class=toggle-line></span><span class=toggle-line></span></div></div><div class=site-meta><div class=multi-lang-switch><i class="fa fa-fw fa-language" style=margin-right:5px></i><a class=lang-link id=zh-cn href=#>中文</a></div><div class=custom-logo-site-title><a href=/ class=brand rel=start><span class=logo-line-before><i></i></span><span class=site-title>书藏的博客</span>
+<span class=logo-line-after><i></i></span></a></div><p class=site-subtitle>凡心所向，素履以往</p></div><div class=site-nav-right><div class="toggle popup-trigger" style=opacity:1;top:0><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul id=menu class=menu><li class=menu-item><a href=/ rel=section><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class=menu-item><a href=/post rel=section><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class=menu-item><a href=/about.html rel=section><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于我</a></li><li class=menu-item><a href=/404.html rel=section><i class="menu-item-icon fa fa-fw fa-heartbeat"></i><br>公益404</a></li><li class="menu-item menu-item-search"><a href=javascript:; class=popup-trigger><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class=site-search><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class=search-icon><i class="fa fa-search"></i></span><span class=popup-btn-close><i class="fa fa-times-circle"></i></span><div class=local-search-input-wrapper><input autocomplete=off placeholder=搜索关键字... spellcheck=false type=text id=local-search-input autocapitalize=none autocorrect=off></div></div><div id=local-search-result></div></div></div></nav></div></header><main id=main class=main><div class=main-inner><div class=content-wrap><div id=content class=content><section id=posts class=posts-expand><article class="post post-type-normal" itemscope itemtype=http://schema.org/Article><header class=post-header><h1 class=post-title itemprop="name headline"><a class=post-title-link href=https://shuzang.github.io/post/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/development-of-online-forum-based-on-golang-8-message-view-and-date-time-localizationsingleton-mode/ itemprop=url>基于Go语言开发在线论坛8-消息、视图和日期时间本地化</a></h1><div class=post-meta><span class=post-time><i class="fa fa-calendar-o fa-fw"></i><span class=post-meta-item-text>时间：</span>
+<time itemprop=dateCreated datetime=2016-03-22T13:04:35+08:00 content="2020-06-07">2020-06-07</time></span>
+<span class=post-category>&nbsp; | &nbsp;
+<i class="fa fa-folder-o fa-fw"></i><span class=post-meta-item-text>分类：</span>
+<span itemprop=about itemscope itemtype=https://schema.org/Thing><a href=/categories/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF itemprop=url rel=index style=text-decoration:underline><span itemprop=name>Golang学习之路</span></a>
+&nbsp;</span></span>
+<span>|
+<i class="fa fa-file-word-o fa-fw"></i><span class=post-meta-item-text>字数：</span>
+<span class=leancloud-world-count>2192 字</span></span>
+<span>|
+<i class="fa fa-eye fa-fw"></i><span class=post-meta-item-text>阅读：</span>
+<span class=leancloud-view-count>5分钟</span></span>
+<span id=/post/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/development-of-online-forum-based-on-golang-8-message-view-and-date-time-localizationsingleton-mode/ class=leancloud_visitors data-flag-title=基于Go语言开发在线论坛8-消息、视图和日期时间本地化>|
+<i class="fa fa-binoculars fa-fw"></i><span class=post-meta-item-text>阅读次数：</span>
+<span class=leancloud-visitors-count></span></span></div></header><div class=post-body itemprop=articleBody><p>由于之前所有页面和消息文本都是英文的，而我们开发的应用基本都是面向中文用户的，所以需要对项目进行本地化，因此本篇介绍如何在 Go Web 应用中进行国际化和本地化编程，由于项目比较简单，只介绍消息提示、视图模板和日期格式的本地化。</p><h2 id=1-消息本地化>1. 消息本地化</h2><h3 id=11-安装-go-i18n-扩展包>1.1 安装 go-i18n 扩展包</h3><p>首先来看消息提示文本，消息提示文本通常包括表单验证消息、应用异常消息、接口响应消息等后端接口返回的消息字符串片段，关于这一块的本地化，可以借助 Go 官方自带的 <code>golang.org/x/text</code> 扩展包实现，这个扩展包扩展性好，但是上手起来有点复杂，因此我们使用的是一款更容易上手的第三方扩展包 —— <a href=https://github.com/nicksnyder/go-i18n>go-i18n</a>。</p><p>在使用这个扩展包之前，先在项目根目录下运行如下命令下载相关的扩展包：</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>go get -u github.com/nicksnyder/go-i18n/v2/i18n
+go get -u github.com/nicksnyder/go-i18n/v2/goi18n
+</code></pre></div><p>下载完成后，我们可以运行 <code>goi18n -help</code> 确保 <code>goi18n</code> 命令可执行</p><h3 id=12-通过-go-i18n-自动生成翻译文件>1.2 通过 go-i18n 自动生成翻译文件</h3><p>接下来，我们来编写消息文本模板用于生成翻译文件。在这个项目中，只有一个消息提示文本，那就是访问的群组不存在时返回的 <code>Cannot read thread</code>，因此，我们在项目根目录下创建 <code>messages.go</code>，并基于 <code>go-i18n</code> 提供的类型编写消息模板如下：</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> main
+
+<span style=color:#a2f;font-weight:700>import</span> <span style=color:#b44>&#34;github.com/nicksnyder/go-i18n/v2/i18n&#34;</span>
+
+<span style=color:#a2f;font-weight:700>var</span> messages = []i18n.Message{
+    {
+        ID: <span style=color:#b44>&#34;thread_not_found&#34;</span>,
+        Description: <span style=color:#b44>&#34;Thread not exists in db&#34;</span>,
+        Other: <span style=color:#b44>&#34;Cannot read thread&#34;</span>,
+    },
+}
+</code></pre></div><p>其中 <code>ID</code> 是消息文本的唯一标识，<code>Other</code> 则是对应的翻译字符串（默认是英文），然后基于 <code>goi18n</code> 命令自动生成翻译文件到 <code>locales</code> 目录（执行前先创建 <code>locales</code> 目录）：</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>mkdir locales
+goi18n extract <span style=color:#666>-</span>outdir=locales <span style=color:#666>-</span>format=json messages.<span style=color:#a2f;font-weight:700>go</span>
+</code></pre></div><p>这样，就会在 <code>locales</code> 目录下生成可以被 <code>go-i18n</code> 包识别并解析的 JSON 格式翻译文件 <code>active.en.json</code>：</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20200607_Snipaste_2020-06-07_20-37-07.png alt></p><h3 id=13-编写中文版本翻译文件>1.3 编写中文版本翻译文件</h3><p>然后，要进行本地化编程，可以在同级目录下创建并编辑 <code>active.zh.json</code> 用于存放消息文本的中文翻译：</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20200607_Snipaste_2020-06-07_20-38-01.png alt></p><h3 id=14-本地化配置初始化>1.4 本地化配置初始化</h3><p>回到在在线论坛项目，打开配置文件 <code>config.json</code>，新增本地化目录和语言配置：</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>{
+  <span style=color:#b44>&#34;App&#34;</span>: {
+    <span style=color:#666>...</span>
+    <span style=color:#b44>&#34;Locale&#34;</span>: <span style=color:#b44>&#34;locales&#34;</span>,
+    <span style=color:#b44>&#34;Language&#34;</span>: <span style=color:#b44>&#34;zh&#34;</span>
+  },
+  <span style=color:#666>...</span>
+}
+</code></pre></div><p>然后在 <code>config/config.go</code> 中新增与之映射的结构体字段，以及对应的初始化设置：</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> config
+
+<span style=color:#a2f;font-weight:700>import</span> (
+    <span style=color:#b44>&#34;encoding/json&#34;</span>
+    <span style=color:#b44>&#34;github.com/nicksnyder/go-i18n/v2/i18n&#34;</span>
+    <span style=color:#b44>&#34;golang.org/x/text/language&#34;</span>
+    <span style=color:#b44>&#34;log&#34;</span>
+    <span style=color:#b44>&#34;os&#34;</span>
+    <span style=color:#b44>&#34;sync&#34;</span>
+)
+
+<span style=color:#a2f;font-weight:700>type</span> App <span style=color:#a2f;font-weight:700>struct</span> {
+    <span style=color:#666>...</span>
+    Locale       <span style=color:#0b0;font-weight:700>string</span>
+    Language     <span style=color:#0b0;font-weight:700>string</span>
+}
+
+<span style=color:#666>...</span>
+
+<span style=color:#a2f;font-weight:700>type</span> Configuration <span style=color:#a2f;font-weight:700>struct</span> {
+    App App
+    Db  Database
+    LocaleBundle <span style=color:#666>*</span>i18n.Bundle
+}
+
+<span style=color:#a2f;font-weight:700>var</span> config <span style=color:#666>*</span>Configuration
+<span style=color:#a2f;font-weight:700>var</span> once sync.Once
+
+<span style=color:#080;font-style:italic>// 通过单例模式初始化全局配置
+</span><span style=color:#080;font-style:italic></span><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>LoadConfig</span>() <span style=color:#666>*</span>Configuration {
+    once.<span style=color:#00a000>Do</span>(<span style=color:#a2f;font-weight:700>func</span>() {
+        file, err <span style=color:#666>:=</span> os.<span style=color:#00a000>Open</span>(<span style=color:#b44>&#34;config.json&#34;</span>)
+        <span style=color:#a2f;font-weight:700>if</span> err <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> {
+            log.<span style=color:#00a000>Fatalln</span>(<span style=color:#b44>&#34;Cannot open config file&#34;</span>, err)
+        }
+        decoder <span style=color:#666>:=</span> json.<span style=color:#00a000>NewDecoder</span>(file)
+        config = <span style=color:#666>&amp;</span>Configuration{}
+        err = decoder.<span style=color:#00a000>Decode</span>(config)
+        <span style=color:#a2f;font-weight:700>if</span> err <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> {
+            log.<span style=color:#00a000>Fatalln</span>(<span style=color:#b44>&#34;Cannot get configuration from file&#34;</span>, err)
+        }
+        <span style=color:#080;font-style:italic>// 本地化初始设置
+</span><span style=color:#080;font-style:italic></span>        bundle <span style=color:#666>:=</span> i18n.<span style=color:#00a000>NewBundle</span>(language.English)
+        bundle.<span style=color:#00a000>RegisterUnmarshalFunc</span>(<span style=color:#b44>&#34;json&#34;</span>, json.Unmarshal)
+        bundle.<span style=color:#00a000>MustLoadMessageFile</span>(config.App.Locale <span style=color:#666>+</span> <span style=color:#b44>&#34;/active.en.json&#34;</span>)
+        bundle.<span style=color:#00a000>MustLoadMessageFile</span>(config.App.Locale <span style=color:#666>+</span> <span style=color:#b44>&#34;/active.&#34;</span> <span style=color:#666>+</span> config.App.Language <span style=color:#666>+</span> <span style=color:#b44>&#34;.json&#34;</span>)
+        config.LocaleBundle = bundle
+    })
+    <span style=color:#a2f;font-weight:700>return</span> config
+}
+</code></pre></div><p>注意我们在 <code>App</code> 结构体中新增了一个 <code>*i18n.Bundle</code> 类型的 <code>LocaleBundle</code> 字段，用于存放全局本地化 Bundle 实例，并且在 <code>LoadConfig()</code> 方法中以单例模式初始化该实例。</p><h3 id=15-在处理器方法中返回本地化消息>1.5 在处理器方法中返回本地化消息</h3><p>接下来，我们打开 <code>handlers/helper.go</code>，在 <code>init</code> 方法中初始化 Localizer 以便被所有处理器方法使用：</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> handlers
+
+<span style=color:#a2f;font-weight:700>import</span> (
+    <span style=color:#666>...</span>
+    <span style=color:#b44>&#34;github.com/nicksnyder/go-i18n/v2/i18n&#34;</span>
+    . <span style=color:#b44>&#34;github.com/xueyuanjun/chitchat/config&#34;</span>
+)
+
+<span style=color:#a2f;font-weight:700>var</span> logger <span style=color:#666>*</span>log.Logger
+<span style=color:#a2f;font-weight:700>var</span> config <span style=color:#666>*</span>Configuration
+<span style=color:#a2f;font-weight:700>var</span> localizer <span style=color:#666>*</span>i18n.Localizer
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>init</span>()  {
+    <span style=color:#080;font-style:italic>// 获取全局配置实例
+</span><span style=color:#080;font-style:italic></span>    config = <span style=color:#00a000>LoadConfig</span>()
+    <span style=color:#080;font-style:italic>// 获取本地化实例
+</span><span style=color:#080;font-style:italic></span>    localizer = i18n.<span style=color:#00a000>NewLocalizer</span>(config.LocaleBundle, config.App.Language)
+    <span style=color:#666>...</span>
+}
+
+<span style=color:#666>...</span>
+</code></pre></div><p>最后在 <code>handlers/thread.go</code> 和 <code>handlers/post.go</code> 中调用 <code>errorMessage</code> 辅助函数的地方调用 Localizer 提供的方法对消息文本进行翻译并返回给用户：</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>if</span> err <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> {
+    msg <span style=color:#666>:=</span> localizer.<span style=color:#00a000>MustLocalize</span>(<span style=color:#666>&amp;</span>i18n.LocalizeConfig{
+        MessageID: <span style=color:#b44>&#34;thread_not_found&#34;</span>,
+    })
+    <span style=color:#00a000>errorMessage</span>(writer, request, msg)
+} <span style=color:#a2f;font-weight:700>else</span> {
+    <span style=color:#666>...</span>
+}
+</code></pre></div><h3 id=16-测试消息本地化>1.6 测试消息本地化</h3><p>重新启动应用，如果试图访问一个不存在的群组页面，就会返回如下中文提示信息：</p><p><img src=https://qcdn.xueyuanjun.com/storage/uploads/images/gallery/2020-04/image-15869249174748.jpg alt>说明我们的本地化翻译生效了，当然这里只是使用了 <code>go-i18n</code> 提供的最基本的功能，想要了解更多使用示例，可以参考如下链接：</p><ul><li><a href=https://github.com/nicksnyder/go-i18n>官方文档</a></li><li><a href=https://zyfdegh.github.io/post/201809-translation-go-i18n/>借助 go-i18n 更简单地实现全球化</a></li></ul><h2 id=2-视图本地化>2. 视图本地化</h2><p>所谓视图本地化指的是静态 HTML 视图模板的本地化，这里就不再适合使用消息文本翻译的方式实现了，最简单的方式就是为每个语言创建独立的视图模板进行本地化，然后在应用代码中通过读取全局配置、用户手动选择、客户端参数（比如 HTML 请求头中的 <code>Accept-Language</code> 字段）、或者域名信息来判断加载那种本地化视图模板，为了简化演示流程，这里我们使用全局配置的方式，也就是我们上面配置文件中设置的 <code>Language</code> 字段。</p><h3 id=21-创建本地化视图模板>2.1 创建本地化视图模板</h3><p>首先，我们在 <code>views</code> 目录下新增 <code>en</code> 和 <code>zh</code> 两个子目录，分别用于存放英文视图模板和中文视图模板，然后将原有视图文件移动到 <code>en</code> 目录下，并且在 <code>zh</code> 目录下创建每个视图模板的中文版本，以首页 <code>index.html</code> 为例，对应的中文版本如下：</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Snipaste_2020-06-07_20-40-32.png alt></p><p>其他中文视图模板也是类似，将其中的英文文本统一翻译成中文即可。</p><h3 id=22-通过配置加载本地化视图>2.2 通过配置加载本地化视图</h3><p>打开 <code>handlers/helper.go</code>，在 <code>generateHTML</code> 方法中通过读取全局配置加载对应的本地化视图模板：</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>generateHTML</span>(writer http.ResponseWriter, data <span style=color:#a2f;font-weight:700>interface</span>{}, filenames <span style=color:#666>...</span><span style=color:#0b0;font-weight:700>string</span>) {
+    <span style=color:#a2f;font-weight:700>var</span> files []<span style=color:#0b0;font-weight:700>string</span>
+    <span style=color:#a2f;font-weight:700>for</span> _, file <span style=color:#666>:=</span> <span style=color:#a2f;font-weight:700>range</span> filenames {
+        files = <span style=color:#a2f>append</span>(files, fmt.<span style=color:#00a000>Sprintf</span>(<span style=color:#b44>&#34;views/%s/%s.html&#34;</span>, config.App.Language, file))
+    }
+    
+    templates <span style=color:#666>:=</span> template.<span style=color:#00a000>Must</span>(template.<span style=color:#00a000>ParseFiles</span>(files<span style=color:#666>...</span>))
+    templates.<span style=color:#00a000>ExecuteTemplate</span>(writer, <span style=color:#b44>&#34;layout&#34;</span>, data)
+}
+</code></pre></div><p>非常简单，不再赘述。</p><blockquote><p>注：同时移除 <code>parseTemplateFiles</code> 方法，并将调用该方法的地方调整为调用 <code>generateHTML</code> 以避免维护两个地方。</p></blockquote><h3 id=23-测试视图本地化>2.3 测试视图本地化</h3><p>重启应用，访问首页，即可看到页面视图已经都是中文显示了：</p><p><img src=https://qcdn.xueyuanjun.com/storage/uploads/images/gallery/2020-04/image-15869255064861.jpg alt></p><p><img src=https://qcdn.xueyuanjun.com/storage/uploads/images/gallery/2020-04/image-15869255266935.jpg alt></p><p><img src=https://qcdn.xueyuanjun.com/storage/uploads/images/gallery/2020-04/image-15869256552424.jpg alt></p><p><img src=https://qcdn.xueyuanjun.com/storage/uploads/images/gallery/2020-04/image-15869256718104.jpg alt></p><h2 id=3-日期时间本地化>3. 日期时间本地化</h2><p>看起来都已经 OK 了，不过还有个小问题，那就是日期时间显示还是英文风格的，对应的实现代码在 <code>models/thread.go</code> 中：</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> (thread <span style=color:#666>*</span>Thread) <span style=color:#00a000>CreatedAtDate</span>() <span style=color:#0b0;font-weight:700>string</span> {
+    <span style=color:#a2f;font-weight:700>return</span> thread.CreatedAt.<span style=color:#00a000>Format</span>(<span style=color:#b44>&#34;Jan 2, 2006 at 3:04pm&#34;</span>)
+}
+</code></pre></div><p>我们当然可以直接修改这里来实现类似 <code>2006-01-02 15:04:05</code> 的日期时间格式（该时间节点是 Go 语言元年），不过，学院君这里换一种复杂一点的实现，以便顺手介绍下如何在 Go 视图模板中通过管道模式调用自定义函数。</p><h3 id=31-将自定义函数应用到视图模板>3.1 将自定义函数应用到视图模板</h3><p>打开 <code>handlers/helper.go</code>，新增一个格式化日期时间的函数 <code>formatDate</code>，然后在 <code>generateHTML</code> 方法中将这个函数通过 <code>template.FuncMap</code> 组装后再通过 <code>Funcs</code> 方法应用到视图模板中，这样，就可以在所有视图模板中通过 <code>fdate</code> 别名来调用 <code>formatDate</code> 函数了：</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#080;font-style:italic>// 生成 HTML 模板
+</span><span style=color:#080;font-style:italic></span><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>generateHTML</span>(writer http.ResponseWriter, data <span style=color:#a2f;font-weight:700>interface</span>{}, filenames <span style=color:#666>...</span><span style=color:#0b0;font-weight:700>string</span>) {
+    <span style=color:#a2f;font-weight:700>var</span> files []<span style=color:#0b0;font-weight:700>string</span>
+    <span style=color:#a2f;font-weight:700>for</span> _, file <span style=color:#666>:=</span> <span style=color:#a2f;font-weight:700>range</span> filenames {
+        files = <span style=color:#a2f>append</span>(files, fmt.<span style=color:#00a000>Sprintf</span>(<span style=color:#b44>&#34;views/%s/%s.html&#34;</span>, config.App.Language, file))
+    }
+    funcMap <span style=color:#666>:=</span> template.FuncMap{<span style=color:#b44>&#34;fdate&#34;</span>: formatDate}
+    t <span style=color:#666>:=</span> template.<span style=color:#00a000>New</span>(<span style=color:#b44>&#34;layout&#34;</span>).<span style=color:#00a000>Funcs</span>(funcMap)
+    templates <span style=color:#666>:=</span> template.<span style=color:#00a000>Must</span>(t.<span style=color:#00a000>ParseFiles</span>(files<span style=color:#666>...</span>))
+    templates.<span style=color:#00a000>ExecuteTemplate</span>(writer, <span style=color:#b44>&#34;layout&#34;</span>, data)
+}
+
+<span style=color:#666>...</span>
+
+<span style=color:#080;font-style:italic>// 日期格式化辅助函数
+</span><span style=color:#080;font-style:italic></span><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>formatDate</span>(t time.Time) <span style=color:#0b0;font-weight:700>string</span> {
+    datetime <span style=color:#666>:=</span> <span style=color:#b44>&#34;2006-01-02 15:04:05&#34;</span>
+    <span style=color:#a2f;font-weight:700>return</span> t.<span style=color:#00a000>Format</span>(datetime)
+}
+</code></pre></div><h3 id=32-调用自定义函数格式化本地日期时间>3.2 调用自定义函数格式化本地日期时间</h3><p>然后我们在所有视图文件中将群组创建日期渲染调整为如下方式，即通过管道连接符的方式将 <code>.CreatedAt</code> 变量作为参数传入 <code>fdate</code> 并输出返回值：</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>{{ .CreatedAt | fdate }}
+</code></pre></div><p>注意这里一定要使用 <code>.CreatedAt</code>，这个变量才是 <code>time.Time</code> 类型，而 <code>.CreatedAtDate</code> 是字符串类型。</p><p>再次重新启动应用，访问首页和群组详情页就可以看到格式化后的本地日期时间格式了：</p><p><img src=https://qcdn.xueyuanjun.com/storage/uploads/images/gallery/2020-04/image-15869318235491.jpg alt></p><p><img src=https://qcdn.xueyuanjun.com/storage/uploads/images/gallery/2020-04/image-15869318394657.jpg alt></p></div><footer class=post-footer><div class=post-tags><a href=/tags/go%e5%ae%9e%e6%88%98 rel=tag title=Go实战>#Go实战#</a></div><div class=addthis_inline_share_toolbox></div><div class=post-nav><div class=article-copyright><div class=article-copyright-img><img src=/img/qq_qrcode.png width=129px height=129px><div style=text-align:center>QQ扫一扫交流</div></div><div class=article-copyright-info><p><span>声明：</span>基于Go语言开发在线论坛8-消息、视图和日期时间本地化</p><p><span>链接：</span>https://shuzang.github.io/post/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/development-of-online-forum-based-on-golang-8-message-view-and-date-time-localizationsingleton-mode/</p><p><span>作者：</span>书藏</p><p><span>声明： </span>本博客文章除特别声明外，均采用 <a href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank style=text-decoration:underline>CC BY-NC-SA 3.0</a>许可协议，转载请注明出处！</p></div></div><div class=clear></div></div><div class=reward-qr-info><div>创作实属不易，如有帮助，那就打赏博主些许茶钱吧 ^_^</div><button id=rewardButton disable=enable onclick="var qr=document.getElementById('QR');if(qr.style.display==='none'){qr.style.display='block';}else{qr.style.display='none'}">
+<span>赏</span></button><div id=QR style=display:none><div id=wechat style=display:inline-block><img id=wechat_qr src=/img/wechat-pay.png alt="WeChat Pay"><p>微信打赏</p></div><div id=alipay style=display:inline-block><img id=alipay_qr src=/img/ali-pay.png alt=Alipay><p>支付宝打赏</p></div></div></div><div class=post-nav><div class="post-nav-next post-nav-item"><a href=https://shuzang.github.io/post/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/development-of-online-forum-based-on-golang-9-deploy-go-web-application/ rel=next title="基于Go语言开发在线论坛9-部署Go Web应用"><i class="fa fa-chevron-left"></i>基于Go语言开发在线论坛9-部署Go Web应用</a></div><div class="post-nav-prev post-nav-item"><a href=https://shuzang.github.io/post/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/development-of-online-forum-based-on-golang-7-get-global-configuration-through-singleton-mode/ rel=prev title=基于Go语言开发在线论坛7-通过单例模式获取全局配置>基于Go语言开发在线论坛7-通过单例模式获取全局配置
+<i class="fa fa-chevron-right"></i></a></div></div><div id=wcomments></div></footer></article></section></div></div><div class=sidebar-toggle><div class=sidebar-toggle-line-wrap><span class="sidebar-toggle-line sidebar-toggle-line-first"></span><span class="sidebar-toggle-line sidebar-toggle-line-middle"></span><span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id=sidebar class=sidebar><div class=sidebar-inner><section class="site-overview sidebar-panel sidebar-panel-active"><div class="site-author motion-element" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image src=/images/avatar.png alt=书藏><p class=site-author-name itemprop=name>书藏</p><p class="site-description motion-element" itemprop=description></p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href=/post/><span class=site-state-item-count>334</span>
+<span class=site-state-item-name>日志</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>7</span>
+<span class=site-state-item-name>分类</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>23</span>
+<span class=site-state-item-name>标签</span></a></div></nav><div class="links-of-author motion-element"><span class=links-of-author-item><a href=https://github.com/shuzang/ target=_blank title=GitHub><i class="fa fa-fw fa-github"></i>GitHub</a></span></div><div class="tagcloud-of-blogroll motion-element tagcloud-of-blogroll-inline"><div class=tagcloud-of-blogroll-title><i class="fa fa-fw fa-tags"></i>标签云</div><ul class=tagcloud-of-blogroll-list><li class=tagcloud-of-blogroll-item><a href=/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0>论文笔记</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E4%B9%A6%E8%97%8F%E7%9A%84%E7%94%9F%E6%B4%BB%E5%91%A8%E5%88%8A>书藏的生活周刊</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95>科研记录</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/go%E8%AF%AD%E6%B3%95>Go语法</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80>计算机基础</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E6%9D%82%E8%B0%88>杂谈</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E5%8C%BA%E5%9D%97%E9%93%BE>区块链</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95>数据结构与算法</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E7%94%9F%E6%B4%BB%E6%8A%80%E8%83%BD>生活技能</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/go%E5%AE%9E%E6%88%98>Go实战</a></li></ul></div></section></div></aside></div></main><footer id=footer class=footer><div class=footer-inner><div class=copyright><span class=copyright-year>&copy; 2010 - 2022</span>
+<span class=with-love><i class="fa fa-heart"></i></span><span class=copyright-author>书藏的博客</span></div><div class=powered-info><span class=powered-by>Powered by - <a class=powered-link href=//gohugo.io target=_blank title=hugo>Hugo v0.63.2</a></span>
+<span class=separator-line>/</span>
+<span class=theme-info>Theme by - <a class=powered-link href=//github.com/elkan1788/hugo-theme-next target=_blank>NexT</a></span></div><div class=vistor-info><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><span class=site-uv><i class="fa fa-user"></i><span class=busuanzi-value id=busuanzi_value_site_uv></span></span><span class=separator-line>/</span>
+<span class=site-pv><i class="fa fa-eye"></i><span class=busuanzi-value id=busuanzi_value_site_pv></span></span></div><div class=license-info><span class=storage-info>Storage by
+<a href=https://www.ucloud.cn/ style=font-weight:700 target=_blank>UCloud云存储</a></span>
+<span class=separator-line>/</span>
+<span class=license-num><a href target=_blank></a></span></div></div></footer><div class=back-to-top><i class="fa fa-arrow-up"></i><span id=scrollpercent><span>0</span>%</span></div></div><script type=text/javascript src=//cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.min.js></script><script type=text/javascript src=/js/search.js></script><script type=text/javascript src=/js/affix.js></script><script type=text/javascript src=/js/scrollspy.js></script><script type=text/javascript>function detectIE(){var ua=window.navigator.userAgent;var msie=ua.indexOf('MSIE ');var trident=ua.indexOf('Trident/');var edge=ua.indexOf('Edge/');if(msie>0||trident>0||edge>0){return-1;}
+return 1;}
+function getCntViewHeight(){var docHeight=$('#content').height(),winHeight=$(window).height(),cntViewHeight=(docHeight>winHeight)?(docHeight-winHeight):($(document).height()-winHeight);return cntViewHeight;}
+function getScrollbarWidth(){var $div=$('<div />').addClass('scrollbar-measure').prependTo('body');var div=$div[0];var scrollbarWidth=div.offsetWidth-div.clientWidth;$div.remove();return scrollbarWidth;}
+function registerBackTop(){var THRESHOLD=50;var $top=$('.back-to-top');$(window).on('scroll',function(){$top.toggleClass('back-to-top-on',window.pageYOffset>THRESHOLD);var scrollTop=$(window).scrollTop();var cntViewHeight=getCntViewHeight();var scrollPercent=(scrollTop)/(cntViewHeight);var scrollPercentRounded=Math.round(scrollPercent*100);var scrollPercentMaxed=(scrollPercentRounded>100)?100:scrollPercentRounded;$('#scrollpercent>span').html(scrollPercentMaxed);});$top.on('click',function(){$("html,body").animate({scrollTop:0,screenLeft:0,},800);});}
+function initScrollSpy(){var tocSelector='.post-toc';var $tocElement=$(tocSelector);var activeCurrentSelector='.active-current';$tocElement.on('activate.bs.scrollspy',function(){var $currentActiveElement=$(tocSelector+' .active').last();removeCurrentActiveClass();$currentActiveElement.addClass('active-current');}).on('clear.bs.scrollspy',removeCurrentActiveClass);$('body').scrollspy({target:tocSelector});function removeCurrentActiveClass(){$(tocSelector+' '+activeCurrentSelector).removeClass(activeCurrentSelector.substring(1));}}
+function initAffix(){var headerHeight=$('.header-inner').height();var footerOffset=parseInt($('.main').css('padding-bottom'),10);var sidebarTop=headerHeight+10;$('.sidebar-inner').affix({offset:{top:sidebarTop,bottom:footerOffset}});$(document).on('affixed.bs.affix',function(){updateTOCHeight(document.body.clientHeight-100);});}
+function initTOCDimension(){var updateTOCHeightTimer;$(window).on('resize',function(){updateTOCHeightTimer&&clearTimeout(updateTOCHeightTimer);updateTOCHeightTimer=setTimeout(function(){var tocWrapperHeight=document.body.clientHeight-100;updateTOCHeight(tocWrapperHeight);},0);});updateTOCHeight(document.body.clientHeight-100);var scrollbarWidth=getScrollbarWidth();$('.post-toc').css('width','calc(100% + '+scrollbarWidth+'px)');}
+function updateTOCHeight(height){height=height||'auto';$('.post-toc').css('max-height',height);}
+$(function(){var sidebarTop=$('.header-inner').height()+10;$('#sidebar').css({'margin-top':sidebarTop}).show();var sidebarMt=parseInt($('#sidebar').css('margin-top'));var sidebarInHeight=parseInt($('.sidebar-inner').css('height'));var sideHeight=sidebarMt+sidebarInHeight;var contentHeight=$('.content-wrap').height();if(contentHeight<sideHeight){$('.content-wrap').css('min-height',sideHeight);}
+$('.site-nav-toggle').on('click',function(){var $siteNav=$('.site-nav');var $toggleLine=$('.toggle');var ON_CLASS_NAME='site-nav-on';var CLOSE_CLASS_NAME='toggle-close';var isSiteNavOn=$siteNav.hasClass(ON_CLASS_NAME);var animateAction=isSiteNavOn?'slideUp':'slideDown';var animateCallback=isSiteNavOn?'removeClass':'addClass';$siteNav.stop()[animateAction]('normal',function(){$siteNav[animateCallback](ON_CLASS_NAME);$toggleLine[animateCallback](CLOSE_CLASS_NAME);});});registerBackTop();initScrollSpy();initAffix();initTOCDimension();$('.sidebar-nav-toc').click(function(){$(this).addClass('sidebar-nav-active');$(this).next().removeClass('sidebar-nav-active');$('.'+$(this).next().attr('data-target')).toggle(500);$('.'+$(this).attr('data-target')).toggle(500);});$('.sidebar-nav-overview').click(function(){$(this).addClass('sidebar-nav-active');$(this).prev().removeClass('sidebar-nav-active');$('.'+$(this).prev().attr('data-target')).toggle(500);$('.'+$(this).attr('data-target')).toggle(500);});});</script><script src=//cdn.bootcdn.net/ajax/libs/imageviewer/0.1.0/viewer.min.js></script><script type=text/javascript>$(function(){$('.post-body').viewer();});</script><script type=text/javascript>$(function(){if(detectIE()>0){$.getScript(document.location.protocol+'//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js',function(){new Waline({el:'#wcomments',visitor:true,avatar:'wavatar',avatarCDN:'https://sdn.geekzu.org/avatar/',avatarForce:!1,wordLimit:'200',placeholder:' 欢迎留下您的宝贵建议，请填写您的昵称和邮箱便于后续交流. ^_^ ',requiredFields:['nick','mail'],serverURL:"Your WalineSerURL",lang:"zh-cn"});});}else{$('#wcomments').html('抱歉，Waline插件不支持IE或Edge，建议使用Chrome浏览器。');}});</script><script type=text/javascript src="//s7.addthis.com/js/300/addthis_widget.js#pubid=Your%20AddthisId"></script><script>(function(){var bp=document.createElement('script');var curProtocol=window.location.protocol.split(':')[0];if(curProtocol==='https'){bp.src='https://zz.bdstatic.com/linksubmit/push.js';}
+else{bp.src='http://push.zhanzhang.baidu.com/push.js';}
+var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(bp,s);})();</script></body></html>

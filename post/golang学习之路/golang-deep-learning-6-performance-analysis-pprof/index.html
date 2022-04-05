@@ -1,0 +1,396 @@
+<!doctype html><html lang=zh-cn dir=content/zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=content-security-policy content="upgrade-insecure-requests"><title>Golang深入学习6-使用pprof进行性能分析 - 书藏的博客</title><meta name=keywords content="博客,程序员,区块链，思考,读书,笔记,生活,电影,旅游,"><meta name=author content="书藏"><meta property="og:title" content="Golang深入学习6-使用pprof进行性能分析"><meta property="og:site_name" content="书藏的博客"><meta property="og:image" content="/img/author.jpg"><meta name=title content="Golang深入学习6-使用pprof进行性能分析 - 书藏的博客"><meta name=description content="书藏的个人博客，记录学习的东西，以月刊记录生活"><link rel="shortcut icon" href=/img/favicon.ico><link rel=apple-touch-icon href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><link href=//cdn.bootcdn.net/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css rel=stylesheet type=text/css><link href=//cdn.bootcdn.net/ajax/libs/imageviewer/0.1.0/viewer.min.css rel=stylesheet><link href=/css/main.css rel=stylesheet type=text/css><link href=/css/syntax.css rel=stylesheet type=text/css><script async src="https://www.googletagmanager.com/gtag/js?id=UA-209130979-1"></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-209130979-1 ');</script></head><body itemscope itemtype=http://schema.org/WebPage lang=zh-hans><div class="container one-collumn sidebar-position-left page-home"><div class=headband></div><header id=header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle role=button style=opacity:1;top:0><span class=toggle-line></span><span class=toggle-line></span><span class=toggle-line></span></div></div><div class=site-meta><div class=multi-lang-switch><i class="fa fa-fw fa-language" style=margin-right:5px></i><a class=lang-link id=zh-cn href=#>中文</a></div><div class=custom-logo-site-title><a href=/ class=brand rel=start><span class=logo-line-before><i></i></span><span class=site-title>书藏的博客</span>
+<span class=logo-line-after><i></i></span></a></div><p class=site-subtitle>凡心所向，素履以往</p></div><div class=site-nav-right><div class="toggle popup-trigger" style=opacity:1;top:0><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul id=menu class=menu><li class=menu-item><a href=/ rel=section><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class=menu-item><a href=/post rel=section><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class=menu-item><a href=/about.html rel=section><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于我</a></li><li class=menu-item><a href=/404.html rel=section><i class="menu-item-icon fa fa-fw fa-heartbeat"></i><br>公益404</a></li><li class="menu-item menu-item-search"><a href=javascript:; class=popup-trigger><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class=site-search><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class=search-icon><i class="fa fa-search"></i></span><span class=popup-btn-close><i class="fa fa-times-circle"></i></span><div class=local-search-input-wrapper><input autocomplete=off placeholder=搜索关键字... spellcheck=false type=text id=local-search-input autocapitalize=none autocorrect=off></div></div><div id=local-search-result></div></div></div></nav></div></header><main id=main class=main><div class=main-inner><div class=content-wrap><div id=content class=content><section id=posts class=posts-expand><article class="post post-type-normal" itemscope itemtype=http://schema.org/Article><header class=post-header><h1 class=post-title itemprop="name headline"><a class=post-title-link href=https://shuzang.github.io/post/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/golang-deep-learning-6-performance-analysis-pprof/ itemprop=url>Golang深入学习6-使用pprof进行性能分析</a></h1><div class=post-meta><span class=post-time><i class="fa fa-calendar-o fa-fw"></i><span class=post-meta-item-text>时间：</span>
+<time itemprop=dateCreated datetime=2016-03-22T13:04:35+08:00 content="2020-07-27">2020-07-27</time></span>
+<span class=post-category>&nbsp; | &nbsp;
+<i class="fa fa-folder-o fa-fw"></i><span class=post-meta-item-text>分类：</span>
+<span itemprop=about itemscope itemtype=https://schema.org/Thing><a href=/categories/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF itemprop=url rel=index style=text-decoration:underline><span itemprop=name>Golang学习之路</span></a>
+&nbsp;</span></span>
+<span>|
+<i class="fa fa-file-word-o fa-fw"></i><span class=post-meta-item-text>字数：</span>
+<span class=leancloud-world-count>4325 字</span></span>
+<span>|
+<i class="fa fa-eye fa-fw"></i><span class=post-meta-item-text>阅读：</span>
+<span class=leancloud-view-count>9分钟</span></span>
+<span id=/post/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/golang-deep-learning-6-performance-analysis-pprof/ class=leancloud_visitors data-flag-title=Golang深入学习6-使用pprof进行性能分析>|
+<i class="fa fa-binoculars fa-fw"></i><span class=post-meta-item-text>阅读次数：</span>
+<span class=leancloud-visitors-count></span></span></div></header><div class=post-body itemprop=articleBody><p>pprof 用来做 Go 程序的性能监控，让我们知道在什么地方耗费了多少 CPU、memory。</p><p>pprof 关注的方面有：</p><ul><li>CPU profile：报告程序的 CPU 使用情况，按照一定频率去采集应用程序在 CPU 和寄存器上面的数据</li><li>Memory Profile（Heap Profile）：报告程序的内存使用情况</li><li>Block Profiling：报告 goroutines 不在运行状态的情况，可以用来分析和查找死锁等性能瓶颈</li><li>Goroutine Profiling：报告 goroutines 的使用情况，有哪些 goroutine，它们的调用关系是怎样的</li></ul><h2 id=1-引入>1. 引入</h2><p>pprof 可以从以下两个包中引入：</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>import</span> <span style=color:#b44>&#34;net/http/pprof&#34;</span>
+<span style=color:#a2f;font-weight:700>import</span> <span style=color:#b44>&#34;runtime/pprof&#34;</span>
+</code></pre></div><p>其中 net/http/pprof 底层使用 runtime/pprof 包，只是进行了一下封装，并在 http 端口上暴露出来。</p><p>如果我们的服务是一直运行的，如 web 应用，通过简单的导入 <code>import _ "net/http/pprof"</code>，就可以在运行 web 应用后在浏览器 http://localhost:port/debug/pprof 直接看到当前 web 服务的状态，包括 CPU 占用情况和内存使用情况等。</p><p>如果我们的程序不是 web 应用，而是一个服务进程，那么可以导入 <code>net/http/pprof</code> 包，然后主动开启一个 Goroutine 在端口进行监听</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>go</span> <span style=color:#a2f;font-weight:700>func</span>() {
+        log.<span style=color:#00a000>Println</span>(http.<span style=color:#00a000>ListenAndServe</span>(<span style=color:#b44>&#34;localhost:6060&#34;</span>, <span style=color:#a2f;font-weight:700>nil</span>))
+}()
+</code></pre></div><p>如果我们的程序只是简单的 Go 程序，那么只能使用 <code>runtime/pprof</code> 包，具体做法是在代码中加入下面这段程序，然后在运行时（go run 或 go build等命令）加入 &ndash;cpuprofile 参数，比如 <code>go run demo.go --cpuprofile=demo.prof</code></p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>var</span> cpuprofile = flag.<span style=color:#00a000>String</span>(<span style=color:#b44>&#34;cpuprofile&#34;</span>, <span style=color:#b44>&#34;&#34;</span>, <span style=color:#b44>&#34;write cpu profile to file&#34;</span>)
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>main</span>() {
+    flag.<span style=color:#00a000>Parse</span>()
+    <span style=color:#a2f;font-weight:700>if</span> <span style=color:#666>*</span>cpuprofile <span style=color:#666>!=</span> <span style=color:#b44>&#34;&#34;</span> {
+        f, err <span style=color:#666>:=</span> os.<span style=color:#00a000>Create</span>(<span style=color:#666>*</span>cpuprofile)
+        <span style=color:#a2f;font-weight:700>if</span> err <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> {
+            log.<span style=color:#00a000>Fatal</span>(err)
+        }
+        pprof.<span style=color:#00a000>StartCPUProfile</span>(f)
+        <span style=color:#a2f;font-weight:700>defer</span> pprof.<span style=color:#00a000>StopCPUProfile</span>()
+    }
+    <span style=color:#666>...</span>
+</code></pre></div><p>命令执行完后当前目录会生成 demo.prof 文件，其中记录了 CPU 运行的信息，下一步就可以利用该文件查看相关的信息，使用 go tool pprof 命令来执行，如果要进行可视化，需要安装 <a href=http://www.graphviz.org/>graphviz</a></p><p>win10 下可以使用 chocolatye 或 winget 安装，如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell>&gt; choco install graphviz
+<span style=color:#080;font-style:italic># 或</span>
+&gt; winget install graphviz
+</code></pre></div><h2 id=2-分析普通程序>2. 分析普通程序</h2><p>主要参考的文章是 Go Post 中的 <a href=https://blog.go-zh.org/profiling-go-programs>Profiling Go Programs</a></p><p>测试代码来自于 <a href=https://github.com/rsc/benchgraffiti/tree/master/havlak>https://github.com/rsc/benchgraffiti/tree/master/havlak</a></p><p>我们使用 go mod 建立了一个测试项目文件夹，第一次使用测试代码中的 havlak1.go 文件，将该文件复制到测试项目根目录。由于其中已经引入了 <code>runtime/pprof</code> 包并包含了如下代码，我们不需要做修改，执行执行</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>var</span> cpuprofile = flag.<span style=color:#00a000>String</span>(<span style=color:#b44>&#34;cpuprofile&#34;</span>, <span style=color:#b44>&#34;&#34;</span>, <span style=color:#b44>&#34;write cpu profile to file&#34;</span>)
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>main</span>() {
+    flag.<span style=color:#00a000>Parse</span>()
+    <span style=color:#a2f;font-weight:700>if</span> <span style=color:#666>*</span>cpuprofile <span style=color:#666>!=</span> <span style=color:#b44>&#34;&#34;</span> {
+        f, err <span style=color:#666>:=</span> os.<span style=color:#00a000>Create</span>(<span style=color:#666>*</span>cpuprofile)
+        <span style=color:#a2f;font-weight:700>if</span> err <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> {
+            log.<span style=color:#00a000>Fatal</span>(err)
+        }
+        pprof.<span style=color:#00a000>StartCPUProfile</span>(f)
+        <span style=color:#a2f;font-weight:700>defer</span> pprof.<span style=color:#00a000>StopCPUProfile</span>()
+    }
+    <span style=color:#666>...</span>
+</code></pre></div><p>执行时加入 &ndash;cpuprofile=havlak1.prof 参数</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ go build havlak1.go
+
+$ ./havlak1 --cpuprofile<span style=color:#666>=</span>havlak1.prof
+<span style=color:#080;font-style:italic># of loops: 76000 (including 1 artificial root node)</span>
+
+$ ls
+go.mod  havlak1.exe  havlak1.go  havlak1.prof
+</code></pre></div><p>然后运行 <code>go tool pprof</code> 命令与 profile 交互</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ go tool pprof havlak1.exe havlak1.prof
+File: havlak1.exe
+Type: cpu
+Time: Jul 25, <span style=color:#666>2020</span> at 7:23pm <span style=color:#666>(</span>CST<span style=color:#666>)</span>
+Duration: 21.52s, Total <span style=color:#b8860b>samples</span> <span style=color:#666>=</span> 34.77s <span style=color:#666>(</span>161.56%<span style=color:#666>)</span>
+Entering interactive mode <span style=color:#666>(</span><span style=color:#a2f>type</span> <span style=color:#b44>&#34;help&#34;</span> <span style=color:#a2f;font-weight:700>for</span> commands, <span style=color:#b44>&#34;o&#34;</span> <span style=color:#a2f;font-weight:700>for</span> options<span style=color:#666>)</span>
+<span style=color:#666>(</span>pprof<span style=color:#666>)</span>
+</code></pre></div><p>最主要的命令是 <code>topN</code> ，用来输出最耗 CPU 的前N个调用</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>(pprof) top10
+Showing nodes accounting <span style=color:#a2f;font-weight:700>for</span> <span style=color:#666>21340</span>ms, <span style=color:#666>61.37</span><span style=color:#666>%</span> of <span style=color:#666>34770</span>ms total
+Dropped <span style=color:#666>168</span> <span style=color:#00a000>nodes</span> (cum <span style=color:#666>&lt;=</span> <span style=color:#666>173.85</span>ms)
+Showing top <span style=color:#666>10</span> nodes out of <span style=color:#666>89</span>
+      flat  flat<span style=color:#666>%</span>   sum<span style=color:#666>%</span>        cum   cum<span style=color:#666>%</span>
+    <span style=color:#666>5340</span>ms <span style=color:#666>15.36</span><span style=color:#666>%</span> <span style=color:#666>15.36</span><span style=color:#666>%</span>    <span style=color:#666>12320</span>ms <span style=color:#666>35.43</span><span style=color:#666>%</span>  runtime.scanobject
+    <span style=color:#666>3190</span>ms  <span style=color:#666>9.17</span><span style=color:#666>%</span> <span style=color:#666>24.53</span><span style=color:#666>%</span>     <span style=color:#666>3650</span>ms <span style=color:#666>10.50</span><span style=color:#666>%</span>  runtime.mapaccess1_fast64
+    <span style=color:#666>2650</span>ms  <span style=color:#666>7.62</span><span style=color:#666>%</span> <span style=color:#666>32.15</span><span style=color:#666>%</span>    <span style=color:#666>16670</span>ms <span style=color:#666>47.94</span><span style=color:#666>%</span>  main.FindLoops
+    <span style=color:#666>2240</span>ms  <span style=color:#666>6.44</span><span style=color:#666>%</span> <span style=color:#666>38.60</span><span style=color:#666>%</span>     <span style=color:#666>3320</span>ms  <span style=color:#666>9.55</span><span style=color:#666>%</span>  runtime.findObject
+    <span style=color:#666>1800</span>ms  <span style=color:#666>5.18</span><span style=color:#666>%</span> <span style=color:#666>43.77</span><span style=color:#666>%</span>     <span style=color:#666>2920</span>ms  <span style=color:#666>8.40</span><span style=color:#666>%</span>  runtime.greyobject
+    <span style=color:#666>1490</span>ms  <span style=color:#666>4.29</span><span style=color:#666>%</span> <span style=color:#666>48.06</span><span style=color:#666>%</span>     <span style=color:#666>6540</span>ms <span style=color:#666>18.81</span><span style=color:#666>%</span>  runtime.mallocgc
+    <span style=color:#666>1480</span>ms  <span style=color:#666>4.26</span><span style=color:#666>%</span> <span style=color:#666>52.32</span><span style=color:#666>%</span>     <span style=color:#666>4230</span>ms <span style=color:#666>12.17</span><span style=color:#666>%</span>  main.DFS
+    <span style=color:#666>1230</span>ms  <span style=color:#666>3.54</span><span style=color:#666>%</span> <span style=color:#666>55.85</span><span style=color:#666>%</span>     <span style=color:#666>3510</span>ms <span style=color:#666>10.09</span><span style=color:#666>%</span>  runtime.mapassign_fast64ptr
+    <span style=color:#666>1000</span>ms  <span style=color:#666>2.88</span><span style=color:#666>%</span> <span style=color:#666>58.73</span><span style=color:#666>%</span>     <span style=color:#666>1450</span>ms  <span style=color:#666>4.17</span><span style=color:#666>%</span>  runtime.heapBitsSetType
+     <span style=color:#666>920</span>ms  <span style=color:#666>2.65</span><span style=color:#666>%</span> <span style=color:#666>61.37</span><span style=color:#666>%</span>     <span style=color:#666>1050</span>ms  <span style=color:#666>3.02</span><span style=color:#666>%</span>  runtime.<span style=color:#00a000>spanOf</span> (inline)
+(pprof)
+</code></pre></div><ul><li>flat、flat% 表示函数在 CPU上运行的时间及百分比</li><li>sum% 表示列表中自己包括前面的函数CPU使用比例的累积，比如第三行 main.FindLoops 显示的 32.15% 其实就等于前面三个调用的比例之和 15.36% + 9.17% + 7.62% = 32.15%</li><li>cum、cum% 表示该函数及其子函数运行所占的时间总和及比例总和，应该大于等于自己执行所占的时间和比例，也就是最前面两列</li></ul><p>添加 -cum 参数可以按照 cum 来排序</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>(pprof) top5 <span style=color:#666>-</span>cum
+Showing nodes accounting <span style=color:#a2f;font-weight:700>for</span> <span style=color:#666>2.67</span>s, <span style=color:#666>7.68</span><span style=color:#666>%</span> of <span style=color:#666>34.77</span>s total
+Dropped <span style=color:#666>168</span> <span style=color:#00a000>nodes</span> (cum <span style=color:#666>&lt;=</span> <span style=color:#666>0.17</span>s)
+Showing top <span style=color:#666>5</span> nodes out of <span style=color:#666>89</span>
+      flat  flat<span style=color:#666>%</span>   sum<span style=color:#666>%</span>        cum   cum<span style=color:#666>%</span>
+         <span style=color:#666>0</span>     <span style=color:#666>0</span><span style=color:#666>%</span>     <span style=color:#666>0</span><span style=color:#666>%</span>     <span style=color:#666>16.79</span>s <span style=color:#666>48.29</span><span style=color:#666>%</span>  main.main
+         <span style=color:#666>0</span>     <span style=color:#666>0</span><span style=color:#666>%</span>     <span style=color:#666>0</span><span style=color:#666>%</span>     <span style=color:#666>16.79</span>s <span style=color:#666>48.29</span><span style=color:#666>%</span>  runtime.main
+         <span style=color:#666>0</span>     <span style=color:#666>0</span><span style=color:#666>%</span>     <span style=color:#666>0</span><span style=color:#666>%</span>     <span style=color:#666>16.67</span>s <span style=color:#666>47.94</span><span style=color:#666>%</span>  main.<span style=color:#00a000>FindHavlakLoops</span> (inline)
+     <span style=color:#666>2.65</span>s  <span style=color:#666>7.62</span><span style=color:#666>%</span>  <span style=color:#666>7.62</span><span style=color:#666>%</span>     <span style=color:#666>16.67</span>s <span style=color:#666>47.94</span><span style=color:#666>%</span>  main.FindLoops
+     <span style=color:#666>0.02</span>s <span style=color:#666>0.058</span><span style=color:#666>%</span>  <span style=color:#666>7.68</span><span style=color:#666>%</span>     <span style=color:#666>15.16</span>s <span style=color:#666>43.60</span><span style=color:#666>%</span>  runtime.<span style=color:#00a000>systemstack</span>
+(pprof)
+</code></pre></div><p>实际上 main.FindLoops 和 main.main 的总和应当为 100%，但是 pprof 不会统计所有的调用，递归调用层次过深的一些执行会被忽略。</p><p>另外，使用 <code>web</code> 命令可以生成调用关系图，是一个 svg 文件，可视化的方式可以帮助我们更好的理解，该命令需要 graphviz 工具的支持，这也是为什么前面要安装它</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#666>(</span>pprof<span style=color:#666>)</span> web
+</code></pre></div><p>执行该命令后图片会自动打开</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20200727_pprof002.png alt></p><p>图片中每个方框都代表一个函数，方框的大小根据 CPU 占用比例确定，箭头表示调用关系，从上到下调用层次逐渐加深，表示调用的线条上出现的数字表示调用次数，递归调用自身会有一个自己指向自己的箭头。</p><p>从图中看到 mapaccess 占用比例较大，我们可以只显示与它相关的调用，从而使图片逻辑更清晰。可以看到 mapaccess1 主要由 main.FindLoops 和 main.DFS 调用。</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20200727_pprof003.png alt></p><p>我们还可以通过指定函数进入某个函数的细节，DFS逻辑比较简单，以它为例</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#666>(</span>pprof<span style=color:#666>)</span> web DFS
+</code></pre></div><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20200727_pprof004.png alt></p><p>也可以使用命令</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#666>(</span>pprof<span style=color:#666>)</span> list DFS
+Total: 34.77s
+<span style=color:#b8860b>ROUTINE</span> <span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span> main.DFS in F:<span style=color:#b62;font-weight:700>\G</span>o-web<span style=color:#b62;font-weight:700>\h</span>avlak1.go
+     1.48s      8.38s <span style=color:#666>(</span>flat, cum<span style=color:#666>)</span> 24.10% of Total
+         .          .    233:   <span style=color:#a2f;font-weight:700>return</span> <span style=color:#a2f>false</span>
+         .          .    234:<span style=color:#666>}</span>
+         .          .    235:
+         .          .    236:// DFS - Depth-First-Search and node numbering.
+         .          .    237://
+      30ms       30ms    238:func DFS<span style=color:#666>(</span>currentNode *BasicBlock, nodes <span style=color:#666>[</span><span style=color:#666>]</span>*UnionFindNode, number map<span style=color:#666>[</span>*BasicBlock<span style=color:#666>]</span>int, last <span style=color:#666>[</span><span style=color:#666>]</span>int, current int<span style=color:#666>)</span> int <span style=color:#666>{</span>
+      20ms      240ms    239:   nodes<span style=color:#666>[</span>current<span style=color:#666>]</span>.Init<span style=color:#666>(</span>currentNode, current<span style=color:#666>)</span>
+      20ms      340ms    240:   number<span style=color:#666>[</span>currentNode<span style=color:#666>]</span> <span style=color:#666>=</span> current
+         .          .    241:
+         .          .    242:   lastid :<span style=color:#666>=</span> current
+     1.02s      1.02s    243:   <span style=color:#a2f;font-weight:700>for</span> _, target :<span style=color:#666>=</span> range currentNode.OutEdges <span style=color:#666>{</span>
+     190ms      1.73s    244:           <span style=color:#a2f;font-weight:700>if</span> number<span style=color:#666>[</span>target<span style=color:#666>]</span> <span style=color:#666>=</span><span style=color:#666>=</span> unvisited <span style=color:#666>{</span>
+      80ms      4.23s    245:                   <span style=color:#b8860b>lastid</span> <span style=color:#666>=</span> DFS<span style=color:#666>(</span>target, nodes, number, last, lastid+1<span style=color:#666>)</span>
+         .          .    246:           <span style=color:#666>}</span>
+         .          .    247:   <span style=color:#666>}</span>
+      80ms      750ms    248:   last<span style=color:#666>[</span>number<span style=color:#666>[</span>currentNode<span style=color:#666>]</span><span style=color:#666>]</span> <span style=color:#666>=</span> lastid
+      40ms       40ms    249:   <span style=color:#a2f;font-weight:700>return</span> lastid
+         .          .    250:<span style=color:#666>}</span>
+         .          .    251:
+         .          .    252:// FindLoops
+         .          .    253://
+         .          .    254:// Find loops and build loop forest using Havlak<span>&#39;</span>s algorithm, which
+<span style=color:#666>(</span>pprof<span style=color:#666>)</span>
+</code></pre></div><p>前两列分别是 flat 和 cum，也就是该行执行占用的时间和该行及该行调用的函数执行占用的总时间，第三列是源码行数。所以我们看到第 245 行由于出现了 DFS 这个递归函数，总占用时间为 4.23s，是最多的。除了该行之外，占用最多的就是第239、240、248三行，主要原因是映射的使用占用了大量时间，所以我们在使用中应尽可能使用数组和切片，而减少使用映射。</p><h2 id=2-时间与存储优化>2. 时间与存储优化</h2><p>将 DFS 函数参数中的 number 由映射更改为切片，可以将运行时间减少两倍，我们使用测试文件列表中的 havlak2.go，执行同样的测试过程可以验证这一点，原先的 DFS cum 是 4230ms，现在已经只有 830ms。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ go build havlak2.go
+
+$ ./havlak2 --cpuprofile<span style=color:#666>=</span>havlak2.prof
+<span style=color:#080;font-style:italic># of loops: 76000 (including 1 artificial root node)</span>
+
+$ go tool pprof havlak2.exe havlak2.prof
+File: havlak2.exe
+Type: cpu
+Time: Jul 25, <span style=color:#666>2020</span> at 8:51pm <span style=color:#666>(</span>CST<span style=color:#666>)</span>
+Duration: 12.36s, Total <span style=color:#b8860b>samples</span> <span style=color:#666>=</span> 22.91s <span style=color:#666>(</span>185.34%<span style=color:#666>)</span>
+Entering interactive mode <span style=color:#666>(</span><span style=color:#a2f>type</span> <span style=color:#b44>&#34;help&#34;</span> <span style=color:#a2f;font-weight:700>for</span> commands, <span style=color:#b44>&#34;o&#34;</span> <span style=color:#a2f;font-weight:700>for</span> options<span style=color:#666>)</span>
+<span style=color:#666>(</span>pprof<span style=color:#666>)</span> top10
+Showing nodes accounting <span style=color:#a2f;font-weight:700>for</span> 14360ms, 62.68% of 22910ms total
+Dropped <span style=color:#666>132</span> nodes <span style=color:#666>(</span>cum &lt;<span style=color:#666>=</span> 114.55ms<span style=color:#666>)</span>
+Showing top <span style=color:#666>10</span> nodes out of <span style=color:#666>85</span>
+      flat  flat%   sum%        cum   cum%
+    4130ms 18.03% 18.03%     9810ms 42.82%  runtime.scanobject
+    1850ms  8.08% 26.10%     2570ms 11.22%  runtime.findObject
+    1800ms  7.86% 33.96%    11070ms 48.32%  main.FindLoops
+    1530ms  6.68% 40.64%     2510ms 10.96%  runtime.greyobject
+    1450ms  6.33% 46.97%     5940ms 25.93%  runtime.mallocgc
+     950ms  4.15% 51.11%     1290ms  5.63%  runtime.heapBitsSetType
+     680ms  2.97% 54.08%      830ms  3.62%  main.DFS
+     670ms  2.92% 57.01%      670ms  2.92%  runtime.memclrNoHeapPointers
+     670ms  2.92% 59.93%      670ms  2.92%  runtime.nextFreeFast
+     630ms  2.75% 62.68%      630ms  2.75%  runtime.arenaIndex <span style=color:#666>(</span>partial-inline<span style=color:#666>)</span> 
+</code></pre></div><p>附： <a href=https://github.com/rsc/benchgraffiti/commit/58ac27bcac3ffb553c29d0b3fb64745c91c95948>diff between havlak1 and havlak2</a></p><p>现在，DFS 不再是时间瓶颈，取而代之的是内存分配与垃圾回收，上面的结果中 runtime.mallocgc 占了一大部分。为了找出为什么垃圾回收时间占用这么多，我们来分析内存占用，这时候使用 memprofile ，不再是 cpuprofile。首先在主函数中替换如下部分</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>var</span> memprofile = flag.<span style=color:#00a000>String</span>(<span style=color:#b44>&#34;memprofile&#34;</span>, <span style=color:#b44>&#34;&#34;</span>, <span style=color:#b44>&#34;write memory profile to this file&#34;</span>)
+<span style=color:#666>...</span>
+
+    <span style=color:#00a000>FindHavlakLoops</span>(cfgraph, lsgraph)
+    <span style=color:#a2f;font-weight:700>if</span> <span style=color:#666>*</span>memprofile <span style=color:#666>!=</span> <span style=color:#b44>&#34;&#34;</span> {
+        f, err <span style=color:#666>:=</span> os.<span style=color:#00a000>Create</span>(<span style=color:#666>*</span>memprofile)
+        <span style=color:#a2f;font-weight:700>if</span> err <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> {
+            log.<span style=color:#00a000>Fatal</span>(err)
+        }
+        pprof.<span style=color:#00a000>WriteHeapProfile</span>(f)
+        f.<span style=color:#00a000>Close</span>()
+        <span style=color:#a2f;font-weight:700>return</span>
+    }
+</code></pre></div><p>然后使用 &ndash;memprofile 标志编译源码，此时使用测试文件列表中的 havlak3</p><p>附：<a href=https://github.com/rsc/benchgraffiti/commit/b78dac106bea1eb3be6bb3ca5dba57c130268232>diff from havlak2</a></p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ go build havlak3.go
+
+$ ./havlak3 --memprofile<span style=color:#666>=</span>havlak3.mprof
+
+$ go tool pprof havlak3.exe havlak3.mprof
+$ go tool pprof havlak3.exe havlak3.mprof
+File: havlak3.exe
+Type: inuse_space
+Time: Jul 25, <span style=color:#666>2020</span> at 9:07pm <span style=color:#666>(</span>CST<span style=color:#666>)</span>
+Entering interactive mode <span style=color:#666>(</span><span style=color:#a2f>type</span> <span style=color:#b44>&#34;help&#34;</span> <span style=color:#a2f;font-weight:700>for</span> commands, <span style=color:#b44>&#34;o&#34;</span> <span style=color:#a2f;font-weight:700>for</span> options<span style=color:#666>)</span>
+<span style=color:#666>(</span>pprof<span style=color:#666>)</span> top5
+Showing nodes accounting <span style=color:#a2f;font-weight:700>for</span> 53.39MB, 100% of 53.39MB total
+Showing top <span style=color:#666>5</span> nodes out of <span style=color:#666>13</span>
+      flat  flat%   sum%        cum   cum%
+   33.10MB 62.00% 62.00%    33.10MB 62.00%  main.FindLoops
+   11.50MB 21.54% 83.54%    11.50MB 21.54%  main.NewBasicBlock <span style=color:#666>(</span>inline<span style=color:#666>)</span>
+    4.50MB  8.43% 91.96%     4.50MB  8.43%  main.<span style=color:#666>(</span>*BasicBlock<span style=color:#666>)</span>.AddInEdge
+    2.29MB  4.29% 96.25%    13.79MB 25.83%  main.<span style=color:#666>(</span>*CFG<span style=color:#666>)</span>.CreateNode
+       2MB  3.75%   100%        2MB  3.75%  main.<span style=color:#666>(</span>*BasicBlock<span style=color:#666>)</span>.AddOutEdge
+<span style=color:#666>(</span>pprof<span style=color:#666>)</span>
+</code></pre></div><p>flat 和 cum 已经从时间占用变成了存储占用，可以看到 main.FindLoops 占用最多，达到了 62.00%，使用 <code>list</code> 命令查看具体情况</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#666>(</span>pprof<span style=color:#666>)</span> list FindLoops
+Total: 53.39MB
+<span style=color:#b8860b>ROUTINE</span> <span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span> main.FindLoops in F:<span style=color:#b62;font-weight:700>\G</span>o-web<span style=color:#b62;font-weight:700>\h</span>avlak3.go
+   33.10MB    33.10MB <span style=color:#666>(</span>flat, cum<span style=color:#666>)</span> 62.00% of Total
+         .          .    261:           <span style=color:#a2f;font-weight:700>return</span>
+         .          .    262:   <span style=color:#666>}</span>
+         .          .    263:
+         .          .    264:   size :<span style=color:#666>=</span> cfgraph.NumNodes<span style=color:#666>(</span><span style=color:#666>)</span>
+         .          .    265:
+    1.97MB     1.97MB    266:   nonBackPreds :<span style=color:#666>=</span> make<span style=color:#666>(</span><span style=color:#666>[</span><span style=color:#666>]</span>map<span style=color:#666>[</span>int<span style=color:#666>]</span>bool, size<span style=color:#666>)</span>
+    5.77MB     5.77MB    267:   backPreds :<span style=color:#666>=</span> make<span style=color:#666>(</span><span style=color:#666>[</span><span style=color:#666>]</span><span style=color:#666>[</span><span style=color:#666>]</span>int, size<span style=color:#666>)</span>
+         .          .    268:
+    1.97MB     1.97MB    269:   number :<span style=color:#666>=</span> make<span style=color:#666>(</span><span style=color:#666>[</span><span style=color:#666>]</span>int, size<span style=color:#666>)</span>
+    1.97MB     1.97MB    270:   header :<span style=color:#666>=</span> make<span style=color:#666>(</span><span style=color:#666>[</span><span style=color:#666>]</span>int, size, size<span style=color:#666>)</span>
+    1.97MB     1.97MB    271:   types :<span style=color:#666>=</span> make<span style=color:#666>(</span><span style=color:#666>[</span><span style=color:#666>]</span>int, size, size<span style=color:#666>)</span>
+    1.97MB     1.97MB    272:   last :<span style=color:#666>=</span> make<span style=color:#666>(</span><span style=color:#666>[</span><span style=color:#666>]</span>int, size, size<span style=color:#666>)</span>
+    1.97MB     1.97MB    273:   nodes :<span style=color:#666>=</span> make<span style=color:#666>(</span><span style=color:#666>[</span><span style=color:#666>]</span>*UnionFindNode, size, size<span style=color:#666>)</span>        
+         .          .    274:
+         .          .    275:   <span style=color:#a2f;font-weight:700>for</span> i :<span style=color:#666>=</span> 0; i &lt; size; i++ <span style=color:#666>{</span>
+      11MB       11MB    276:           nodes<span style=color:#666>[</span>i<span style=color:#666>]</span> <span style=color:#666>=</span> new<span style=color:#666>(</span>UnionFindNode<span style=color:#666>)</span>
+         .          .    277:   <span style=color:#666>}</span>
+         .          .    278:
+         .          .    279:   // Step a:
+         .          .    280:   //   - initialize all nodes as unvisited.
+         .          .    281:   //   - depth-first traversal and numbering.        
+         .          .    282:   //   - unreached BB<span>&#39;</span>s are marked as dead.
+         .          .    283:   //
+         .          .    284:   <span style=color:#a2f;font-weight:700>for</span> i, bb :<span style=color:#666>=</span> range cfgraph.Blocks <span style=color:#666>{</span>
+         .          .    285:           number<span style=color:#666>[</span>bb.Name<span style=color:#666>]</span> <span style=color:#666>=</span> unvisited
+    4.50MB     4.50MB    286:           nonBackPreds<span style=color:#666>[</span>i<span style=color:#666>]</span> <span style=color:#666>=</span> make<span style=color:#666>(</span>map<span style=color:#666>[</span>int<span style=color:#666>]</span>bool<span style=color:#666>)</span>       
+         .          .    287:   <span style=color:#666>}</span>
+         .          .    288:
+         .          .    289:   DFS<span style=color:#666>(</span>cfgraph.Start, nodes, number, last, 0<span style=color:#666>)</span>
+         .          .    290:
+         .          .    291:   // Step b:
+<span style=color:#666>(</span>pprof<span style=color:#666>)</span>
+</code></pre></div><p>瓶颈依然在于 UnionFindNode 结构体的初始化和映射。</p><p>另外，如果我们执行 <code>go tool pprof</code> 加入 <code>--inuse_objects</code> ，看到的不是内存使用而是调用计数</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ go tool pprof --inuse_objects havlak3.exe havlak3.mprof
+File: havlak3.exe
+Type: inuse_objects
+Time: Jul 25, <span style=color:#666>2020</span> at 9:07pm <span style=color:#666>(</span>CST<span style=color:#666>)</span>
+Entering interactive mode <span style=color:#666>(</span><span style=color:#a2f>type</span> <span style=color:#b44>&#34;help&#34;</span> <span style=color:#a2f;font-weight:700>for</span> commands, <span style=color:#b44>&#34;o&#34;</span> <span style=color:#a2f;font-weight:700>for</span> options<span style=color:#666>)</span>
+<span style=color:#666>(</span>pprof<span style=color:#666>)</span> list FindLoops
+Total: <span style=color:#666>1171490</span>
+<span style=color:#b8860b>ROUTINE</span> <span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span> main.FindLoops in F:<span style=color:#b62;font-weight:700>\G</span>o-web<span style=color:#b62;font-weight:700>\h</span>avlak3.go
+    <span style=color:#666>458774</span>     <span style=color:#666>458774</span> <span style=color:#666>(</span>flat, cum<span style=color:#666>)</span> 39.16% of Total
+         .          .    261:           <span style=color:#a2f;font-weight:700>return</span>
+         .          .    262:   <span style=color:#666>}</span>
+         .          .    263:
+         .          .    264:   size :<span style=color:#666>=</span> cfgraph.NumNodes<span style=color:#666>(</span><span style=color:#666>)</span>
+         .          .    265:
+         <span style=color:#666>1</span>          <span style=color:#666>1</span>    266:   nonBackPreds :<span style=color:#666>=</span> make<span style=color:#666>(</span><span style=color:#666>[</span><span style=color:#666>]</span>map<span style=color:#666>[</span>int<span style=color:#666>]</span>bool, size<span style=color:#666>)</span>
+         <span style=color:#666>1</span>          <span style=color:#666>1</span>    267:   backPreds :<span style=color:#666>=</span> make<span style=color:#666>(</span><span style=color:#666>[</span><span style=color:#666>]</span><span style=color:#666>[</span><span style=color:#666>]</span>int, size<span style=color:#666>)</span>
+         .          .    268:
+         <span style=color:#666>1</span>          <span style=color:#666>1</span>    269:   number :<span style=color:#666>=</span> make<span style=color:#666>(</span><span style=color:#666>[</span><span style=color:#666>]</span>int, size<span style=color:#666>)</span>
+         <span style=color:#666>1</span>          <span style=color:#666>1</span>    270:   header :<span style=color:#666>=</span> make<span style=color:#666>(</span><span style=color:#666>[</span><span style=color:#666>]</span>int, size, size<span style=color:#666>)</span>
+         <span style=color:#666>1</span>          <span style=color:#666>1</span>    271:   types :<span style=color:#666>=</span> make<span style=color:#666>(</span><span style=color:#666>[</span><span style=color:#666>]</span>int, size, size<span style=color:#666>)</span>
+         <span style=color:#666>1</span>          <span style=color:#666>1</span>    272:   last :<span style=color:#666>=</span> make<span style=color:#666>(</span><span style=color:#666>[</span><span style=color:#666>]</span>int, size, size<span style=color:#666>)</span>
+         <span style=color:#666>1</span>          <span style=color:#666>1</span>    273:   nodes :<span style=color:#666>=</span> make<span style=color:#666>(</span><span style=color:#666>[</span><span style=color:#666>]</span>*UnionFindNode, size, size<span style=color:#666>)</span>
+         .          .    274:
+         .          .    275:   <span style=color:#a2f;font-weight:700>for</span> i :<span style=color:#666>=</span> 0; i &lt; size; i++ <span style=color:#666>{</span>
+    <span style=color:#666>360459</span>     <span style=color:#666>360459</span>    276:           nodes<span style=color:#666>[</span>i<span style=color:#666>]</span> <span style=color:#666>=</span> new<span style=color:#666>(</span>UnionFindNode<span style=color:#666>)</span>
+         .          .    277:   <span style=color:#666>}</span>
+         .          .    278:
+         .          .    279:   // Step a:
+         .          .    280:   //   - initialize all nodes as unvisited.
+         .          .    281:   //   - depth-first traversal and numbering.
+         .          .    282:   //   - unreached BB<span>&#39;</span>s are marked as dead.
+         .          .    283:   //
+         .          .    284:   <span style=color:#a2f;font-weight:700>for</span> i, bb :<span style=color:#666>=</span> range cfgraph.Blocks <span style=color:#666>{</span>
+         .          .    285:           number<span style=color:#666>[</span>bb.Name<span style=color:#666>]</span> <span style=color:#666>=</span> unvisited
+     <span style=color:#666>98308</span>      <span style=color:#666>98308</span>    286:           nonBackPreds<span style=color:#666>[</span>i<span style=color:#666>]</span> <span style=color:#666>=</span> make<span style=color:#666>(</span>map<span style=color:#666>[</span>int<span style=color:#666>]</span>bool<span style=color:#666>)</span>
+         .          .    287:   <span style=color:#666>}</span>
+         .          .    288:
+         .          .    289:   DFS<span style=color:#666>(</span>cfgraph.Start, nodes, number, last, 0<span style=color:#666>)</span>
+         .          .    290:
+         .          .    291:   // Step b:
+<span style=color:#666>(</span>pprof<span style=color:#666>)</span>
+</code></pre></div><p>这里依然是解决映射使用带来的影响，主要方式是将映射换成切片，这里使用测试文件列表中的 havlak4，可以看到总耗时又少了一点点。</p><p>附：<a href=https://github.com/rsc/benchgraffiti/commit/245d899f7b1a33b0c8148a4cd147cb3de5228c8a>diff from havlak3</a></p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ go build havlak4.go
+
+$ ./havlak4 --cpuprofile<span style=color:#666>=</span>havlak4.prof
+<span style=color:#080;font-style:italic># of loops: 76000 (including 1 artificial root node)</span>
+
+$ go tool pprof havlak4.exe havlak4.prof
+File: havlak4.exe
+Type: cpu
+Time: Jul 25, <span style=color:#666>2020</span> at 9:25pm <span style=color:#666>(</span>CST<span style=color:#666>)</span>
+Duration: 7.35s, Total <span style=color:#b8860b>samples</span> <span style=color:#666>=</span> 13.03s <span style=color:#666>(</span>177.21%<span style=color:#666>)</span>
+Entering interactive mode <span style=color:#666>(</span><span style=color:#a2f>type</span> <span style=color:#b44>&#34;help&#34;</span> <span style=color:#a2f;font-weight:700>for</span> commands, <span style=color:#b44>&#34;o&#34;</span> <span style=color:#a2f;font-weight:700>for</span> options<span style=color:#666>)</span>
+<span style=color:#666>(</span>pprof<span style=color:#666>)</span> top10
+Showing nodes accounting <span style=color:#a2f;font-weight:700>for</span> 8930ms, 68.53% of 13030ms total
+Dropped <span style=color:#666>104</span> nodes <span style=color:#666>(</span>cum &lt;<span style=color:#666>=</span> 65.15ms<span style=color:#666>)</span>
+Showing top <span style=color:#666>10</span> nodes out of <span style=color:#666>84</span>
+      flat  flat%   sum%        cum   cum%
+    2660ms 20.41% 20.41%     6190ms 47.51%  runtime.scanobject
+    1450ms 11.13% 31.54%     5860ms 44.97%  main.FindLoops
+    1110ms  8.52% 40.06%     1590ms 12.20%  runtime.findObject
+     900ms  6.91% 46.97%     1580ms 12.13%  runtime.greyobject
+     810ms  6.22% 53.18%     3300ms 25.33%  runtime.mallocgc
+     620ms  4.76% 57.94%      820ms  6.29%  main.DFS
+     390ms  2.99% 60.94%      500ms  3.84%  runtime.heapBitsSetType
+     380ms  2.92% 63.85%      510ms  3.91%  runtime.spanOf <span style=color:#666>(</span>inline<span style=color:#666>)</span>
+     310ms  2.38% 66.23%      310ms  2.38%  runtime.arenaIndex <span style=color:#666>(</span>partial-inline<span style=color:#666>)</span>    
+     300ms  2.30% 68.53%      300ms  2.30%  runtime.memclrNoHeapPointers
+<span style=color:#666>(</span>pprof<span style=color:#666>)</span> 
+</code></pre></div><p>现在，垃圾回收（runtime.mallocgc）占用 53.18%，我们来查看对它的调用</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/pprof005.png alt></p><p>因为时间占比比较小的调用很多，看不出什么，我们可以在 <code>go tool pprof</code> 中添加 <code>--nodefraction=0.1</code> 参数过滤占用低于 10% 的调用。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ go tool pprof --nodefraction<span style=color:#666>=</span>0.1 havlak4.exe havlak4.prof
+File: havlak4.exe
+Type: cpu
+Time: Jul 25, <span style=color:#666>2020</span> at 9:25pm <span style=color:#666>(</span>CST<span style=color:#666>)</span>
+Duration: 7.35s, Total <span style=color:#b8860b>samples</span> <span style=color:#666>=</span> 13.03s <span style=color:#666>(</span>177.21%<span style=color:#666>)</span>
+Entering interactive mode <span style=color:#666>(</span><span style=color:#a2f>type</span> <span style=color:#b44>&#34;help&#34;</span> <span style=color:#a2f;font-weight:700>for</span> commands, <span style=color:#b44>&#34;o&#34;</span> <span style=color:#a2f;font-weight:700>for</span> options<span style=color:#666>)</span>
+<span style=color:#666>(</span>pprof<span style=color:#666>)</span> web mallocgc
+</code></pre></div><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20200727_pprof006.png alt></p><p>这就非常清楚了，FindLoops 是最主要的占用，然后我们查看它</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash><span style=color:#666>(</span>pprof<span style=color:#666>)</span> list FindLoops
+Total: 13.03s
+<span style=color:#b8860b>ROUTINE</span> <span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span><span style=color:#666>=</span> main.FindLoops in F:<span style=color:#b62;font-weight:700>\G</span>o-web<span style=color:#b62;font-weight:700>\h</span>avlak4.go
+     1.45s      5.86s <span style=color:#666>(</span>flat, cum<span style=color:#666>)</span> 44.97% of Total
+         .          .    270:           <span style=color:#a2f;font-weight:700>return</span>
+         .          .    271:   <span style=color:#666>}</span>
+         .          .    272:
+         .          .    273:   size :<span style=color:#666>=</span> cfgraph.NumNodes<span style=color:#666>(</span><span style=color:#666>)</span>
+         .          .    274:
+         .       90ms    275:   nonBackPreds :<span style=color:#666>=</span> make<span style=color:#666>(</span><span style=color:#666>[</span><span style=color:#666>]</span><span style=color:#666>[</span><span style=color:#666>]</span>int, size<span style=color:#666>)</span>
+         .      210ms    276:   backPreds :<span style=color:#666>=</span> make<span style=color:#666>(</span><span style=color:#666>[</span><span style=color:#666>]</span><span style=color:#666>[</span><span style=color:#666>]</span>int, size<span style=color:#666>)</span>
+         .          .    277:
+         .      250ms    278:   number :<span style=color:#666>=</span> make<span style=color:#666>(</span><span style=color:#666>[</span><span style=color:#666>]</span>int, size<span style=color:#666>)</span>
+         .      140ms    279:   header :<span style=color:#666>=</span> make<span style=color:#666>(</span><span style=color:#666>[</span><span style=color:#666>]</span>int, size, size<span style=color:#666>)</span>
+         .       80ms    280:   types :<span style=color:#666>=</span> make<span style=color:#666>(</span><span style=color:#666>[</span><span style=color:#666>]</span>int, size, size<span style=color:#666>)</span>
+         .       60ms    281:   last :<span style=color:#666>=</span> make<span style=color:#666>(</span><span style=color:#666>[</span><span style=color:#666>]</span>int, size, size<span style=color:#666>)</span>
+         .       70ms    282:   nodes :<span style=color:#666>=</span> make<span style=color:#666>(</span><span style=color:#666>[</span><span style=color:#666>]</span>*UnionFindNode, size, size<span style=color:#666>)</span>        
+         .          .    283:
+         .          .    284:   <span style=color:#a2f;font-weight:700>for</span> i :<span style=color:#666>=</span> 0; i &lt; size; i++ <span style=color:#666>{</span>
+      10ms      590ms    285:           nodes<span style=color:#666>[</span>i<span style=color:#666>]</span> <span style=color:#666>=</span> new<span style=color:#666>(</span>UnionFindNode<span style=color:#666>)</span>
+         .          .    286:   <span style=color:#666>}</span>
+         .          .    287:
+...
+</code></pre></div><p>每次 FindLoops 被调用，都会进行一系列的初始化工作，为了处理这些内存分配，垃圾回收器的占用才会那么高。所以我们要意识到，语言自带垃圾回收不意味着不需要再关心内存分配问题，这里解决该问题的方法是使用缓存，以便每次不需要重新分配和回收内存。</p><p>添加一个全局的结构 cache</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>var</span> cache <span style=color:#a2f;font-weight:700>struct</span> {
+    size <span style=color:#0b0;font-weight:700>int</span>
+    nonBackPreds [][]<span style=color:#0b0;font-weight:700>int</span>
+    backPreds [][]<span style=color:#0b0;font-weight:700>int</span>
+    number []<span style=color:#0b0;font-weight:700>int</span>
+    header []<span style=color:#0b0;font-weight:700>int</span>
+    types []<span style=color:#0b0;font-weight:700>int</span>
+    last []<span style=color:#0b0;font-weight:700>int</span>
+    nodes []<span style=color:#666>*</span>UnionFindNode
+}
+</code></pre></div><p>然后在 FindLoops 中每次访问它而不是重新分配（这种方式并不是一种很好的方式，但是确实能在此程序中提升时间）</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>if</span> cache.size &lt; size {
+    cache.size = size
+    cache.nonBackPreds = <span style=color:#a2f>make</span>([][]<span style=color:#0b0;font-weight:700>int</span>, size)
+    cache.backPreds = <span style=color:#a2f>make</span>([][]<span style=color:#0b0;font-weight:700>int</span>, size)
+    cache.number = <span style=color:#a2f>make</span>([]<span style=color:#0b0;font-weight:700>int</span>, size)
+    cache.header = <span style=color:#a2f>make</span>([]<span style=color:#0b0;font-weight:700>int</span>, size)
+    cache.types = <span style=color:#a2f>make</span>([]<span style=color:#0b0;font-weight:700>int</span>, size)
+    cache.last = <span style=color:#a2f>make</span>([]<span style=color:#0b0;font-weight:700>int</span>, size)
+    cache.nodes = <span style=color:#a2f>make</span>([]<span style=color:#666>*</span>UnionFindNode, size)
+    <span style=color:#a2f;font-weight:700>for</span> i <span style=color:#666>:=</span> <span style=color:#a2f;font-weight:700>range</span> cache.nodes {
+        cache.nodes[i] = <span style=color:#a2f>new</span>(UnionFindNode)
+    }
+}
+
+nonBackPreds <span style=color:#666>:=</span> cache.nonBackPreds[:size]
+<span style=color:#a2f;font-weight:700>for</span> i <span style=color:#666>:=</span> <span style=color:#a2f;font-weight:700>range</span> nonBackPreds {
+    nonBackPreds[i] = nonBackPreds[i][:<span style=color:#666>0</span>]
+}
+backPreds <span style=color:#666>:=</span> cache.backPreds[:size]
+<span style=color:#a2f;font-weight:700>for</span> i <span style=color:#666>:=</span> <span style=color:#a2f;font-weight:700>range</span> nonBackPreds {
+    backPreds[i] = backPreds[i][:<span style=color:#666>0</span>]
+}
+number <span style=color:#666>:=</span> cache.number[:size]
+header <span style=color:#666>:=</span> cache.header[:size]
+types <span style=color:#666>:=</span> cache.types[:size]
+last <span style=color:#666>:=</span> cache.last[:size]
+nodes <span style=color:#666>:=</span> cache.nodes[:size]
+</code></pre></div><p>这一更改实现在了 havlak5 中，我们从测试文件列表中找到该文件并使用，发现时间占用已经减少到了 10s 以下</p><p>附：<a href=https://github.com/rsc/benchgraffiti/commit/2d41d6d16286b8146a3f697dd4074deac60d12a4>diff from havlak4</a></p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ go build havlak5.go
+
+$ ./havlak5.exe --cpuprofile<span style=color:#666>=</span>havlak5.prof
+<span style=color:#080;font-style:italic># of loops: 76000 (including 1 artificial root node)</span>
+
+$ go tool pprof havlak5.exe havlak5.prof
+File: havlak5.exe
+Type: cpu
+Time: Jul 25, <span style=color:#666>2020</span> at 9:46pm <span style=color:#666>(</span>CST<span style=color:#666>)</span>
+Duration: 4.89s, Total <span style=color:#b8860b>samples</span> <span style=color:#666>=</span> 7.34s <span style=color:#666>(</span>150.01%<span style=color:#666>)</span>
+Entering interactive mode <span style=color:#666>(</span><span style=color:#a2f>type</span> <span style=color:#b44>&#34;help&#34;</span> <span style=color:#a2f;font-weight:700>for</span> commands, <span style=color:#b44>&#34;o&#34;</span> <span style=color:#a2f;font-weight:700>for</span> options<span style=color:#666>)</span>
+<span style=color:#666>(</span>pprof<span style=color:#666>)</span>
+</code></pre></div><p>还有很多的工作可以进行从而使程序更快，但都不需要 pprof 的协助，最终的版本 havlak6 可以减少到 2.29s 和 351M存储占用。</p><p>当然，最简单的方式是使用 go test 工具，Go 提供的测试机制可以很容易的提供 CPU 和存储的占用分析。</p><h2 id=3-分析网络程序>3. 分析网络程序</h2><p>就像我们一开始说的，分析一个网络程序更加的简单，只需要导入 <code>net/http/pprof</code> 包即可，不需要在程序中使用，只需要添加这一条导入语句。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>import</span> _ <span style=color:#b44>&#34;net/http/pprof&#34;</span>
+</code></pre></div><p>导入该包会添加一些 /debug/pprof/ URL 下面的一些处理器函数，之后简单的运行 go tool pprof 然后添加服务器 URL就会实时的检查配置文件。</p><p>以我们之前写的一个文件上传下载应用为例，端口使用 8090，添加导入语句后，打开浏览器 http://localhost:8090/debug/pprof/，显示如下</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20200727_Snipaste_2020-07-25_22-01-39.png alt></p><p>或者在命令行使用 <code>go tool pprof</code> 命令</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>go tool pprof http://localhost:8090/debug/pprof/profile   <span style=color:#080;font-style:italic># 30-second CPU profile</span>
+go tool pprof http://localhost:8090/debug/pprof/heap      <span style=color:#080;font-style:italic># heap profile</span>
+go tool pprof http://localhost:8090/debug/pprof/block     <span style=color:#080;font-style:italic># goroutine blocking profile</span>
+</code></pre></div><p>进入 pprof 命令行界面后就和前面的使用没有区别了，这几个文件简单介绍如下</p><ul><li><code>/debug/pprof/profile</code>：访问这个链接会自动进行 CPU profiling，持续 30s，并生成一个文件供下载</li><li><code>/debug/pprof/heap</code>： Memory Profiling 的路径，访问这个链接会得到一个内存 Profiling 结果的文件</li><li><code>/debug/pprof/block</code>：block Profiling 的路径</li></ul><p>最后，上面的导入形式是基于我们使用默认的 http.DefaultServeMux 的情况，如果使用了其它的包，比如 Mux，需要手动添加路由规则</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>r.<span style=color:#00a000>HandleFunc</span>(<span style=color:#b44>&#34;/debug/pprof/&#34;</span>, pprof.Index)
+r.<span style=color:#00a000>HandleFunc</span>(<span style=color:#b44>&#34;/debug/pprof/cmdline&#34;</span>, pprof.Cmdline)
+r.<span style=color:#00a000>HandleFunc</span>(<span style=color:#b44>&#34;/debug/pprof/profile&#34;</span>, pprof.Profile)
+r.<span style=color:#00a000>HandleFunc</span>(<span style=color:#b44>&#34;/debug/pprof/symbol&#34;</span>, pprof.Symbol)
+r.<span style=color:#00a000>HandleFunc</span>(<span style=color:#b44>&#34;/debug/pprof/trace&#34;</span>, pprof.Trace)
+</code></pre></div><p>之后的使用就没有区别了。</p></div><footer class=post-footer><div class=post-tags><a href=/tags/go%e8%af%ad%e6%b3%95 rel=tag title=Go语法>#Go语法#</a></div><div class=addthis_inline_share_toolbox></div><div class=post-nav><div class=article-copyright><div class=article-copyright-img><img src=/img/qq_qrcode.png width=129px height=129px><div style=text-align:center>QQ扫一扫交流</div></div><div class=article-copyright-info><p><span>声明：</span>Golang深入学习6-使用pprof进行性能分析</p><p><span>链接：</span>https://shuzang.github.io/post/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/golang-deep-learning-6-performance-analysis-pprof/</p><p><span>作者：</span>书藏</p><p><span>声明： </span>本博客文章除特别声明外，均采用 <a href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank style=text-decoration:underline>CC BY-NC-SA 3.0</a>许可协议，转载请注明出处！</p></div></div><div class=clear></div></div><div class=reward-qr-info><div>创作实属不易，如有帮助，那就打赏博主些许茶钱吧 ^_^</div><button id=rewardButton disable=enable onclick="var qr=document.getElementById('QR');if(qr.style.display==='none'){qr.style.display='block';}else{qr.style.display='none'}">
+<span>赏</span></button><div id=QR style=display:none><div id=wechat style=display:inline-block><img id=wechat_qr src=/img/wechat-pay.png alt="WeChat Pay"><p>微信打赏</p></div><div id=alipay style=display:inline-block><img id=alipay_qr src=/img/ali-pay.png alt=Alipay><p>支付宝打赏</p></div></div></div><div class=post-nav><div class="post-nav-next post-nav-item"><a href=https://shuzang.github.io/post/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/golang-deep-learning-7-scheduler-and-garbage-collection/ rel=next title=Golang深入学习7-调度器与垃圾回收><i class="fa fa-chevron-left"></i>Golang深入学习7-调度器与垃圾回收</a></div><div class="post-nav-prev post-nav-item"><a href=https://shuzang.github.io/post/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/golang-deep-learning-5-debug-with-dlv/ rel=prev title=Golang深入学习5-使用dlv调试程序>Golang深入学习5-使用dlv调试程序
+<i class="fa fa-chevron-right"></i></a></div></div><div id=wcomments></div></footer></article></section></div></div><div class=sidebar-toggle><div class=sidebar-toggle-line-wrap><span class="sidebar-toggle-line sidebar-toggle-line-first"></span><span class="sidebar-toggle-line sidebar-toggle-line-middle"></span><span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id=sidebar class=sidebar><div class=sidebar-inner><section class="site-overview sidebar-panel sidebar-panel-active"><div class="site-author motion-element" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image src=/images/avatar.png alt=书藏><p class=site-author-name itemprop=name>书藏</p><p class="site-description motion-element" itemprop=description></p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href=/post/><span class=site-state-item-count>334</span>
+<span class=site-state-item-name>日志</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>7</span>
+<span class=site-state-item-name>分类</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>23</span>
+<span class=site-state-item-name>标签</span></a></div></nav><div class="links-of-author motion-element"><span class=links-of-author-item><a href=https://github.com/shuzang/ target=_blank title=GitHub><i class="fa fa-fw fa-github"></i>GitHub</a></span></div><div class="tagcloud-of-blogroll motion-element tagcloud-of-blogroll-inline"><div class=tagcloud-of-blogroll-title><i class="fa fa-fw fa-tags"></i>标签云</div><ul class=tagcloud-of-blogroll-list><li class=tagcloud-of-blogroll-item><a href=/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0>论文笔记</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E4%B9%A6%E8%97%8F%E7%9A%84%E7%94%9F%E6%B4%BB%E5%91%A8%E5%88%8A>书藏的生活周刊</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95>科研记录</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/go%E8%AF%AD%E6%B3%95>Go语法</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80>计算机基础</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E6%9D%82%E8%B0%88>杂谈</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E5%8C%BA%E5%9D%97%E9%93%BE>区块链</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95>数据结构与算法</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E7%94%9F%E6%B4%BB%E6%8A%80%E8%83%BD>生活技能</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/go%E5%AE%9E%E6%88%98>Go实战</a></li></ul></div></section></div></aside></div></main><footer id=footer class=footer><div class=footer-inner><div class=copyright><span class=copyright-year>&copy; 2010 - 2022</span>
+<span class=with-love><i class="fa fa-heart"></i></span><span class=copyright-author>书藏的博客</span></div><div class=powered-info><span class=powered-by>Powered by - <a class=powered-link href=//gohugo.io target=_blank title=hugo>Hugo v0.63.2</a></span>
+<span class=separator-line>/</span>
+<span class=theme-info>Theme by - <a class=powered-link href=//github.com/elkan1788/hugo-theme-next target=_blank>NexT</a></span></div><div class=vistor-info><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><span class=site-uv><i class="fa fa-user"></i><span class=busuanzi-value id=busuanzi_value_site_uv></span></span><span class=separator-line>/</span>
+<span class=site-pv><i class="fa fa-eye"></i><span class=busuanzi-value id=busuanzi_value_site_pv></span></span></div><div class=license-info><span class=storage-info>Storage by
+<a href=https://www.ucloud.cn/ style=font-weight:700 target=_blank>UCloud云存储</a></span>
+<span class=separator-line>/</span>
+<span class=license-num><a href target=_blank></a></span></div></div></footer><div class=back-to-top><i class="fa fa-arrow-up"></i><span id=scrollpercent><span>0</span>%</span></div></div><script type=text/javascript src=//cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.min.js></script><script type=text/javascript src=/js/search.js></script><script type=text/javascript src=/js/affix.js></script><script type=text/javascript src=/js/scrollspy.js></script><script type=text/javascript>function detectIE(){var ua=window.navigator.userAgent;var msie=ua.indexOf('MSIE ');var trident=ua.indexOf('Trident/');var edge=ua.indexOf('Edge/');if(msie>0||trident>0||edge>0){return-1;}
+return 1;}
+function getCntViewHeight(){var docHeight=$('#content').height(),winHeight=$(window).height(),cntViewHeight=(docHeight>winHeight)?(docHeight-winHeight):($(document).height()-winHeight);return cntViewHeight;}
+function getScrollbarWidth(){var $div=$('<div />').addClass('scrollbar-measure').prependTo('body');var div=$div[0];var scrollbarWidth=div.offsetWidth-div.clientWidth;$div.remove();return scrollbarWidth;}
+function registerBackTop(){var THRESHOLD=50;var $top=$('.back-to-top');$(window).on('scroll',function(){$top.toggleClass('back-to-top-on',window.pageYOffset>THRESHOLD);var scrollTop=$(window).scrollTop();var cntViewHeight=getCntViewHeight();var scrollPercent=(scrollTop)/(cntViewHeight);var scrollPercentRounded=Math.round(scrollPercent*100);var scrollPercentMaxed=(scrollPercentRounded>100)?100:scrollPercentRounded;$('#scrollpercent>span').html(scrollPercentMaxed);});$top.on('click',function(){$("html,body").animate({scrollTop:0,screenLeft:0,},800);});}
+function initScrollSpy(){var tocSelector='.post-toc';var $tocElement=$(tocSelector);var activeCurrentSelector='.active-current';$tocElement.on('activate.bs.scrollspy',function(){var $currentActiveElement=$(tocSelector+' .active').last();removeCurrentActiveClass();$currentActiveElement.addClass('active-current');}).on('clear.bs.scrollspy',removeCurrentActiveClass);$('body').scrollspy({target:tocSelector});function removeCurrentActiveClass(){$(tocSelector+' '+activeCurrentSelector).removeClass(activeCurrentSelector.substring(1));}}
+function initAffix(){var headerHeight=$('.header-inner').height();var footerOffset=parseInt($('.main').css('padding-bottom'),10);var sidebarTop=headerHeight+10;$('.sidebar-inner').affix({offset:{top:sidebarTop,bottom:footerOffset}});$(document).on('affixed.bs.affix',function(){updateTOCHeight(document.body.clientHeight-100);});}
+function initTOCDimension(){var updateTOCHeightTimer;$(window).on('resize',function(){updateTOCHeightTimer&&clearTimeout(updateTOCHeightTimer);updateTOCHeightTimer=setTimeout(function(){var tocWrapperHeight=document.body.clientHeight-100;updateTOCHeight(tocWrapperHeight);},0);});updateTOCHeight(document.body.clientHeight-100);var scrollbarWidth=getScrollbarWidth();$('.post-toc').css('width','calc(100% + '+scrollbarWidth+'px)');}
+function updateTOCHeight(height){height=height||'auto';$('.post-toc').css('max-height',height);}
+$(function(){var sidebarTop=$('.header-inner').height()+10;$('#sidebar').css({'margin-top':sidebarTop}).show();var sidebarMt=parseInt($('#sidebar').css('margin-top'));var sidebarInHeight=parseInt($('.sidebar-inner').css('height'));var sideHeight=sidebarMt+sidebarInHeight;var contentHeight=$('.content-wrap').height();if(contentHeight<sideHeight){$('.content-wrap').css('min-height',sideHeight);}
+$('.site-nav-toggle').on('click',function(){var $siteNav=$('.site-nav');var $toggleLine=$('.toggle');var ON_CLASS_NAME='site-nav-on';var CLOSE_CLASS_NAME='toggle-close';var isSiteNavOn=$siteNav.hasClass(ON_CLASS_NAME);var animateAction=isSiteNavOn?'slideUp':'slideDown';var animateCallback=isSiteNavOn?'removeClass':'addClass';$siteNav.stop()[animateAction]('normal',function(){$siteNav[animateCallback](ON_CLASS_NAME);$toggleLine[animateCallback](CLOSE_CLASS_NAME);});});registerBackTop();initScrollSpy();initAffix();initTOCDimension();$('.sidebar-nav-toc').click(function(){$(this).addClass('sidebar-nav-active');$(this).next().removeClass('sidebar-nav-active');$('.'+$(this).next().attr('data-target')).toggle(500);$('.'+$(this).attr('data-target')).toggle(500);});$('.sidebar-nav-overview').click(function(){$(this).addClass('sidebar-nav-active');$(this).prev().removeClass('sidebar-nav-active');$('.'+$(this).prev().attr('data-target')).toggle(500);$('.'+$(this).attr('data-target')).toggle(500);});});</script><script src=//cdn.bootcdn.net/ajax/libs/imageviewer/0.1.0/viewer.min.js></script><script type=text/javascript>$(function(){$('.post-body').viewer();});</script><script type=text/javascript>$(function(){if(detectIE()>0){$.getScript(document.location.protocol+'//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js',function(){new Waline({el:'#wcomments',visitor:true,avatar:'wavatar',avatarCDN:'https://sdn.geekzu.org/avatar/',avatarForce:!1,wordLimit:'200',placeholder:' 欢迎留下您的宝贵建议，请填写您的昵称和邮箱便于后续交流. ^_^ ',requiredFields:['nick','mail'],serverURL:"Your WalineSerURL",lang:"zh-cn"});});}else{$('#wcomments').html('抱歉，Waline插件不支持IE或Edge，建议使用Chrome浏览器。');}});</script><script type=text/javascript src="//s7.addthis.com/js/300/addthis_widget.js#pubid=Your%20AddthisId"></script><script>(function(){var bp=document.createElement('script');var curProtocol=window.location.protocol.split(':')[0];if(curProtocol==='https'){bp.src='https://zz.bdstatic.com/linksubmit/push.js';}
+else{bp.src='http://push.zhanzhang.baidu.com/push.js';}
+var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(bp,s);})();</script></body></html>

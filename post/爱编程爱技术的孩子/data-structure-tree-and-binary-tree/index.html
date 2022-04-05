@@ -1,0 +1,374 @@
+<!doctype html><html lang=zh-cn dir=content/zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=content-security-policy content="upgrade-insecure-requests"><title>数据结构-二叉树 - 书藏的博客</title><meta name=keywords content="博客,程序员,区块链，思考,读书,笔记,生活,电影,旅游,"><meta name=author content="书藏"><meta property="og:title" content="数据结构-二叉树"><meta property="og:site_name" content="书藏的博客"><meta property="og:image" content="/img/author.jpg"><meta name=title content="数据结构-二叉树 - 书藏的博客"><meta name=description content="书藏的个人博客，记录学习的东西，以月刊记录生活"><link rel="shortcut icon" href=/img/favicon.ico><link rel=apple-touch-icon href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><link href=//cdn.bootcdn.net/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css rel=stylesheet type=text/css><link href=//cdn.bootcdn.net/ajax/libs/imageviewer/0.1.0/viewer.min.css rel=stylesheet><link href=/css/main.css rel=stylesheet type=text/css><link href=/css/syntax.css rel=stylesheet type=text/css><script async src="https://www.googletagmanager.com/gtag/js?id=UA-209130979-1"></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-209130979-1 ');</script></head><body itemscope itemtype=http://schema.org/WebPage lang=zh-hans><div class="container one-collumn sidebar-position-left page-home"><div class=headband></div><header id=header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle role=button style=opacity:1;top:0><span class=toggle-line></span><span class=toggle-line></span><span class=toggle-line></span></div></div><div class=site-meta><div class=multi-lang-switch><i class="fa fa-fw fa-language" style=margin-right:5px></i><a class=lang-link id=zh-cn href=#>中文</a></div><div class=custom-logo-site-title><a href=/ class=brand rel=start><span class=logo-line-before><i></i></span><span class=site-title>书藏的博客</span>
+<span class=logo-line-after><i></i></span></a></div><p class=site-subtitle>凡心所向，素履以往</p></div><div class=site-nav-right><div class="toggle popup-trigger" style=opacity:1;top:0><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul id=menu class=menu><li class=menu-item><a href=/ rel=section><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class=menu-item><a href=/post rel=section><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class=menu-item><a href=/about.html rel=section><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于我</a></li><li class=menu-item><a href=/404.html rel=section><i class="menu-item-icon fa fa-fw fa-heartbeat"></i><br>公益404</a></li><li class="menu-item menu-item-search"><a href=javascript:; class=popup-trigger><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class=site-search><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class=search-icon><i class="fa fa-search"></i></span><span class=popup-btn-close><i class="fa fa-times-circle"></i></span><div class=local-search-input-wrapper><input autocomplete=off placeholder=搜索关键字... spellcheck=false type=text id=local-search-input autocapitalize=none autocorrect=off></div></div><div id=local-search-result></div></div></div></nav></div></header><main id=main class=main><div class=main-inner><div class=content-wrap><div id=content class=content><section id=posts class=posts-expand><article class="post post-type-normal" itemscope itemtype=http://schema.org/Article><header class=post-header><h1 class=post-title itemprop="name headline"><a class=post-title-link href=https://shuzang.github.io/post/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/data-structure-tree-and-binary-tree/ itemprop=url>数据结构-二叉树</a></h1><div class=post-meta><span class=post-time><i class="fa fa-calendar-o fa-fw"></i><span class=post-meta-item-text>时间：</span>
+<time itemprop=dateCreated datetime=2016-03-22T13:04:35+08:00 content="2020-02-24">2020-02-24</time></span>
+<span class=post-category>&nbsp; | &nbsp;
+<i class="fa fa-folder-o fa-fw"></i><span class=post-meta-item-text>分类：</span>
+<span itemprop=about itemscope itemtype=https://schema.org/Thing><a href=/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90 itemprop=url rel=index style=text-decoration:underline><span itemprop=name>爱编程爱技术的孩子</span></a>
+&nbsp;</span></span>
+<span>|
+<i class="fa fa-file-word-o fa-fw"></i><span class=post-meta-item-text>字数：</span>
+<span class=leancloud-world-count>4559 字</span></span>
+<span>|
+<i class="fa fa-eye fa-fw"></i><span class=post-meta-item-text>阅读：</span>
+<span class=leancloud-view-count>10分钟</span></span>
+<span id=/post/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/data-structure-tree-and-binary-tree/ class=leancloud_visitors data-flag-title=数据结构-二叉树>|
+<i class="fa fa-binoculars fa-fw"></i><span class=post-meta-item-text>阅读次数：</span>
+<span class=leancloud-visitors-count></span></span></div></header><div class=post-body itemprop=articleBody><p>树是反映事物之间层次关系的一种结构，比如家谱树、硬盘目录结构树等。</p><p>使用树的原因是这种层次结构在管理上有更高的效率，以查找为例，顺序查找的时间复杂度是O(n)，而二分查找的时间复杂度是O(log<sub>2</sub>n)，可以看到查找效率得到了很大的提高，这是因为二分查找本质上是对一颗树的查找。</p><h2 id=1-树>1. 树</h2><h3 id=11-定义>1.1 定义</h3><p>树（Tree）是由 n（n$\geq$0）个结点构成的有限集合，当 n=0 时，称为空树，而对于任一颗非空树（n>0），它具有如下性质：</p><ul><li>树中有一个称为「根（Root)」的特殊结点，用 r 表示</li><li>其余结点可分为 m(m>0) 个互不相交的有限集 T<sub>1</sub>, T<sub>2</sub>, &mldr; , T<sub>m</sub>，其中每个集合本身又是一棵树，称为原来树的「子树（SubTree）」</li></ul><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200224_1vLDeO.png alt=树的定义></p><p>在判断是否是一颗树的时候，有以下注意点：</p><ul><li>子树是不相交的；</li><li>除根节点外，每个节点有且仅有一个父节点；</li><li>一颗 N 个结点的树有 N-1 条边</li></ul><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200224_1vLRSI.png alt=一些非树的例子></p><h3 id=12-术语>1.2 术语</h3><p>与树相关的一些术语如下表所示</p><table><thead><tr><th>术语</th><th>英文</th><th>描述</th></tr></thead><tbody><tr><td>结点的度</td><td>Degree</td><td>结点的子树个数</td></tr><tr><td>树的度</td><td></td><td>树的所有结点中最大的度数</td></tr><tr><td>叶结点</td><td>Leaf</td><td>度为0的结点</td></tr><tr><td>父结点</td><td>Parent</td><td>有子树的结点是其子树的根结点的父节点</td></tr><tr><td>子结点</td><td>Child</td><td>若A结点是B结点的父结点，则称B结点是A结点的子结点；<br>子结点也称孩子结点</td></tr><tr><td>兄弟结点</td><td>Sibling</td><td>具有同一父结点的各结点彼此是兄弟结点</td></tr><tr><td>路径</td><td>Path</td><td>从结点n<sub>1</sub>到n<sub>k</sub>的路径为一 个结点序列n<sub>1</sub> , n<sub>2</sub> , … , n<sub>k</sub> , n<sub>i</sub>是 n<sub>i+1</sub>的父结点</td></tr><tr><td>路径长度</td><td></td><td>路径所包含边的个数为路径的长度。</td></tr><tr><td>祖先结点</td><td>Ancestor</td><td>沿树根到某一结点路径上的所有结点都是这个结点的祖先结点</td></tr><tr><td>子孙结点</td><td>Descendant</td><td>某一结点的子树中的所有结点是这个结点的子孙</td></tr><tr><td>结点的层次<br>(结点的深度)</td><td>Level</td><td>规定根结点在1层，其它任一结点的层数是其父结点的层数加1</td></tr><tr><td>树的深度</td><td>Depth</td><td>树中所有结点中的最大层次是这棵树的深度</td></tr><tr><td>结点的高度</td><td>Height</td><td>结点的深度从上往下数，而结点的高度从下往上数</td></tr></tbody></table><p>以定义中的树T解释如下图</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200224_1vLhOf.png alt=术语解释></p><h3 id=13-表示方法>1.3 表示方法</h3><p>树的表示使用儿子兄弟表示法，如下图所示，可以在合理表示的同时最大限度节省存储空间</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200224_1vLHYj.png alt=儿子兄弟表示法></p><p>上图经过旋转，就可以形成一颗二叉树，因此，对数的处理就变成对二叉树的处理过程</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200224_1vLOlq.png alt=旋转成为二叉树></p><h2 id=2-二叉树>2. 二叉树</h2><h3 id=21-定义>2.1 定义</h3><p>二叉树T：一个有穷的结点集合，可以为空。不为空时，是由根结点和称为其左子树T<sub>L</sub>和右子树T<sub>R</sub>的两个不相交的二叉树组成。</p><p>二叉树有如下五种基本形态</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200224_1vLxmT.png alt=二叉树的五种基本形态></p><p>同时，这里还有几种特殊的二叉树</p><ol><li><p>斜二叉树（Skewed Binary Tree)</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200224_1vOFpR.png alt=斜二叉树></p></li><li><p>完美二叉树（Perfect Binary Tree），也称作满二叉树（Full Binary Tree）</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/1vOZnK.png alt=满二叉树></p></li><li><p>完全二叉树（Complete Binary Tree）：有n个结点的二叉树，对树中结点按从上到下、从左到右顺序进行编号，编号为i（1≤ i ≤ n）结点与满二叉树中编号为i结点在二叉树中位置相同</p></li></ol><p>二叉树有几个重要性质</p><ol><li><p>一个二叉树第 i 层的最大结点数为：$2^{i-1}, i\ge1$</p></li><li><p>深度为 k 的二叉树有最大结点总数为：$2^k-1, k\ge1$</p></li><li><p>对任何非空二叉树T，若n<sub>0</sub>表示叶结点的个数，n<sub>2</sub>是度为2的非叶结点个数，那么两者满足关系$n_0=n_2+1$，推导过程如下：</p><blockquote><p>设$n_0$为叶结点的个数，$n_1$是度为1的结点个数，$n_2$为度为2的结点个数</p><p>按照边的数量建立等式
+$$
+n_0 + n_1 + n_2 -1 = 0 \times n_0 + 1 \times n_1 + 2 \times n_2
+$$
+移项可得结果 $n_0=n_2+1$</p></blockquote></li></ol><p>现在对二叉树的抽象数据类型进行定义</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>类型名称：二叉树
+数据对象集：一个有穷的结点集合。若不为空，则由根结点和其左、右二叉子树组成
+操作集：BT∈BinTree, Item∈ElementType，重要操作有：
+   1. Boolen IsEmpty(BinTree BT)：判断BT是否为空；
+   2. void Traversal(BinTree BT)：遍历，按某顺序访问每个结点；
+   3. BinTree CreatBinTree()：创建一个二叉树。
+</code></pre></div><p>常用的遍历方法有：</p><ul><li>void PreOrderTraversal( BinTree BT )：先序遍历—根、左子树、右子树</li><li>void InOrderTraversal( BinTree BT )：中序遍历—左子树、根、右子树</li><li>void PostOrderTraversal( BinTree BT )：后序遍历—左子树、右子树、根</li><li>void LevelOrderTraversal( BinTree BT )：层次遍历—从上到下、从左到右</li></ul><h3 id=22-存储结构>2.2 存储结构</h3><h4 id=数组>数组</h4><p>完全二叉树可以按照从上到下、从左到右的顺序进行存储，如下图所示，一个n个结点的完全二叉树的结点序号有如下规则：</p><ol><li>非根结点（序号i>1）的父结点的序号$i/2$；</li><li>结点（序号为i）的左孩子结点的序号是$2i$，需要满足$2i \le n$，否则没有左孩子；</li><li>结点（序号为i）的右孩子结点的序号是$2i+1$，需要满足$2i+1 \le n$，否则没有右孩子。</li></ol><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200224_1vO3ct.png alt=数组结构存储></p><p>一般的二叉树也可以采用这种结构，只要按照完全二叉树的形式将空结点在数组中对应的值置空即可，但会造成空间的浪费&mldr;</p><h4 id=链表>链表</h4><p>链表是最常用的表示一般二叉树的方法。一个简单表示如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>type</span> TreeNode <span style=color:#a2f;font-weight:700>struct</span>{
+    Data ElementType
+    Left <span style=color:#666>*</span>TreeNode
+    Right <span style=color:#666>*</span>TreeNode
+}
+</code></pre></div><p>以一个简单的二叉树为例，基本的结点结构和完整的二叉树链表如下所示</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200224_1vOyuV.png alt=链表结构存储></p><h3 id=23-遍历>2.3 遍历</h3><h4 id=先序遍历>先序遍历</h4><p>先序遍历的过程为：</p><ol><li>访问根结点；</li><li>先序遍历其左子树；</li><li>先序遍历其右子树；</li></ol><p>对应的程序实现如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-Go data-lang=Go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>PreOrderTraverse</span>(root <span style=color:#666>*</span>TreeNode) {
+    <span style=color:#a2f;font-weight:700>if</span> root <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> {
+        <span style=color:#00a000>visit</span>(root.Data)
+        <span style=color:#00a000>PreOrderTraverse</span>(root.Left)
+        <span style=color:#00a000>PreOrderTraverse</span>(root.Right)
+    }
+}
+</code></pre></div><p>上述程序使用了递归的方法，也可以使用非递归的方法，基本的思路是使用堆栈。</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200224_1vXQVU.png alt=先序遍历></p><p>如上图所示，在树的遍历过程中，每个结点被遇到三次，在第一次遇到时，我们将结点入栈，在最后一次离开时，我们将结点出栈。先序遍历就是在第一次遇到结点(入栈)时访问结点，因此程序如下：</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>PreOrderTraversal</span>(root <span style=color:#666>*</span>TreeNode)
+	stack <span style=color:#666>:=</span> <span style=color:#00a000>CreatStack</span>()
+	<span style=color:#a2f;font-weight:700>for</span> root <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> <span style=color:#666>||</span> stack.<span style=color:#00a000>Len</span>() <span style=color:#666>!=</span> <span style=color:#666>0</span> {
+		<span style=color:#a2f;font-weight:700>for</span> root <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> {
+			stack.<span style=color:#00a000>PushBack</span>(root)
+			<span style=color:#00a000>visit</span>(root.Data)
+			 root = root.Left
+		}
+		<span style=color:#a2f;font-weight:700>if</span> stack.<span style=color:#00a000>Len</span>() <span style=color:#666>!=</span> <span style=color:#666>0</span> {
+			root = stack.<span style=color:#00a000>Remove</span>(stack.<span style=color:#00a000>Back</span>()).(<span style=color:#666>*</span>TreeNode)
+			root = root.Right
+		}
+	}
+}
+</code></pre></div><h4 id=中序遍历>中序遍历</h4><p>中序遍历的过程为：</p><ol><li>中序遍历其左子树</li><li>访问根结点</li><li>中序遍历其右子树</li></ol><p>对应的程序实现如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>InOrderTraverse</span>(root <span style=color:#666>*</span>Treenode) {
+    <span style=color:#a2f;font-weight:700>if</span> root <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> {  
+        <span style=color:#00a000>InOrderTraverse</span>(root.Left)
+        <span style=color:#00a000>visit</span>(root.Data)
+        <span style=color:#00a000>InOrderTraverse</span>(root.Right)
+    }
+}
+</code></pre></div><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200224_1vX0aD.png alt=中序遍历></p><p>中序遍历也可以使用非递归的方法实现。实际上，前序、中序和后序走的路线是相同的，唯一的区别是访问结点的时机不同，在中序遍历中，是在第二次遇到结点时访问结点，如上图所示，因此中序非递归遍历的程序如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>InOrderTraversal</span>(root <span style=color:#666>*</span>TreeNode)
+	stack <span style=color:#666>:=</span> <span style=color:#00a000>CreatStack</span>()
+	<span style=color:#a2f;font-weight:700>for</span> root <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> <span style=color:#666>||</span> stack.<span style=color:#00a000>Len</span>() <span style=color:#666>!=</span> <span style=color:#666>0</span> {
+		<span style=color:#a2f;font-weight:700>for</span> root <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> {
+			stack.<span style=color:#00a000>PushBack</span>(root)
+			root = root.Left
+		}
+		<span style=color:#a2f;font-weight:700>if</span> stack.<span style=color:#00a000>Len</span>() <span style=color:#666>!=</span> <span style=color:#666>0</span> {
+			root = stack.<span style=color:#00a000>Remove</span>(stack.<span style=color:#00a000>Back</span>()).(<span style=color:#666>*</span>TreeNode)
+			<span style=color:#00a000>visit</span>(root.Data)
+			root = root.Right
+		}
+	}
+}
+</code></pre></div><p>中序遍历的特殊之处在于，对于二叉搜索树，通过中序遍历可以得到一个递增的有序序列。</p><h4 id=后序遍历>后序遍历</h4><p>后序遍历的过程为：</p><ol><li>后序遍历其左子树</li><li>后序遍历其右子树</li><li>访问根结点</li></ol><p>对应的程序实现如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>PostOrderTraverse</span>(root <span style=color:#666>*</span>TreeNode) {
+	<span style=color:#a2f;font-weight:700>if</span> root <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> {  
+		<span style=color:#00a000>PostOrderTraverse</span>(root.Left)
+		<span style=color:#00a000>PostOrderTraverse</span>(root.Right)
+		<span style=color:#00a000>visit</span>(root.Data)
+	}
+}
+</code></pre></div><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200224_1vXrPH.png alt=后序遍历></p><p>后序遍历是在第三次遇到结点时访问结点，它的非递归实现要复杂一点，需要增加一个栈标记到达结点的次序</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>PostOrderTraversal</span>(BinTree BT) {
+    stack <span style=color:#666>:=</span> <span style=color:#00a000>Creatstack</span>()
+    tag <span style=color:#666>:=</span> <span style=color:#a2f>make</span>(<span style=color:#a2f;font-weight:700>map</span>[<span style=color:#666>*</span>TreeNode]<span style=color:#0b0;font-weight:700>bool</span>)
+    <span style=color:#a2f;font-weight:700>for</span> root <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> <span style=color:#666>||</span> stack.<span style=color:#00a000>Len</span>() <span style=color:#666>!=</span> <span style=color:#666>0</span> {
+        <span style=color:#a2f;font-weight:700>for</span> root <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> {
+            stack.<span style=color:#00a000>PushBack</span>(root)
+            root = root.Left
+        }
+        <span style=color:#a2f;font-weight:700>if</span> stack.<span style=color:#00a000>Len</span>() <span style=color:#666>!=</span> <span style=color:#666>0</span> {
+            root = stack.<span style=color:#00a000>Back</span>().Value.(<span style=color:#666>*</span>TreeNode)
+            <span style=color:#a2f;font-weight:700>if</span> !tag[root] {
+                tag[root] = <span style=color:#a2f;font-weight:700>true</span>
+                root = root.Right
+            } <span style=color:#a2f;font-weight:700>else</span> {
+                root = stack.<span style=color:#00a000>Remove</span>(stack.<span style=color:#00a000>Back</span>()).(<span style=color:#666>*</span>TreeNode)
+                <span style=color:#00a000>visit</span>(root.Data)
+                root = <span style=color:#a2f;font-weight:700>nil</span>
+            }
+        }
+    }
+}
+</code></pre></div><h4 id=层次遍历>层次遍历</h4><p>二叉树遍历的核心问题是二维结构的线性化，层次遍历的思想是利用队列，首先将根结点入队，然后开始执行循环：</p><ol><li>从队列中取出一个元素</li><li>访问该元素所指结点</li><li>若该元素所指结点的左右孩子结点非空，则将其左右孩子的指针顺序入队</li></ol><p>程序实现如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>LevelOrderTraversal</span>(root <span style=color:#666>*</span>TreeNode) {
+    <span style=color:#a2f;font-weight:700>if</span> root <span style=color:#666>==</span> <span style=color:#a2f;font-weight:700>nil</span> {
+        <span style=color:#a2f;font-weight:700>return</span>
+    }
+    queue <span style=color:#666>:=</span> <span style=color:#00a000>CreatQueue</span>()
+    queue.<span style=color:#00a000>PushBack</span>(root)
+    <span style=color:#a2f;font-weight:700>for</span> queue.<span style=color:#00a000>Len</span>() <span style=color:#666>!=</span> <span style=color:#666>0</span> {
+        root = queue.<span style=color:#00a000>Remove</span>(queue.<span style=color:#00a000>Front</span>()).(<span style=color:#666>*</span>TreeNode)
+        <span style=color:#00a000>visit</span>(root.Data)
+        <span style=color:#a2f;font-weight:700>if</span> root.Left <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> {
+            queue.<span style=color:#00a000>PushBack</span>(root.Left)
+        }
+        <span style=color:#a2f;font-weight:700>if</span> root.Right <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> {
+            queue.<span style=color:#00a000>PushBack</span>(root.Right)
+        }
+    }
+}
+</code></pre></div><p>树的层序遍历其实就是对树执行广度优先搜索。</p><p>注：<strong>还有一种遍历方法叫做 莫里斯（Morris）遍历，可以将空间复杂度降到 O(1)</strong></p><h2 id=3-运用递归求解问题>3. 运用递归求解问题</h2><p>树本身就是通过递归定义的，因此很多与树相关的问题都可以通过递归来解决。每个递归层次中，我们只关注当前节点的问题，子节点通过递归调用函数来解决。</p><p>递归的思路共有两种：自顶向下和自底向上。<strong>自顶向下</strong>指的是先对当前节点值进行处理，然后将处理结果通过递归调用函数传递给子节点。<strong>自底向上</strong>则指在每个递归层次首先调用递归函数处理子节点，然后根据返回值和当前节点的值得到答案。</p><p>下面以一些最常见的题目来说明如何用递归法求解二叉树问题，使用的二叉树节点的定义如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go> <span style=color:#a2f;font-weight:700>type</span> TreeNode <span style=color:#a2f;font-weight:700>struct</span> {
+     Val <span style=color:#0b0;font-weight:700>int</span>
+     Left <span style=color:#666>*</span>TreeNode
+ }
+</code></pre></div><h3 id=31-二叉树的深度>3.1 二叉树的深度</h3><p>输入一棵二叉树的根节点，求该树的深度。树的深度是指从根节点到最远叶节点的最长路径的节点数。</p><p>自顶向下的方法中，基本思想是，如果我们知道当前节点深度，那么子节点的深度就是当前节点深度加1，在递归调用时，将当前节点深度作为参数，这样所有节点都可以知道自己的深度，我们只需要在遇到叶节点时更新树的深度即可。初始条件定义为根结点深度=1.</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>var</span> answer <span style=color:#0b0;font-weight:700>int</span>
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>maxDepth</span>(root <span style=color:#666>*</span>TreeNode, depth <span style=color:#0b0;font-weight:700>int</span>) {
+    <span style=color:#a2f;font-weight:700>if</span> root <span style=color:#666>==</span> <span style=color:#a2f;font-weight:700>nil</span> {
+        <span style=color:#a2f;font-weight:700>return</span>
+    }
+    <span style=color:#a2f;font-weight:700>if</span> root.Left <span style=color:#666>==</span> <span style=color:#a2f;font-weight:700>nil</span> <span style=color:#666>&amp;&amp;</span> root.Right <span style=color:#666>==</span> <span style=color:#a2f;font-weight:700>nil</span> {
+        <span style=color:#a2f;font-weight:700>if</span> depth &gt; answer {
+            answer = depth
+        }
+    }
+    <span style=color:#00a000>maxDepth</span>(root.Left, depth <span style=color:#666>+</span> <span style=color:#666>1</span>)
+    <span style=color:#00a000>maxDepth</span>(root.Right, depth <span style=color:#666>+</span> <span style=color:#666>1</span>)
+}
+</code></pre></div><p>自底向上的方法中，当前节点的最大深度就等于以左节点为根的子树和以右节点为根的子树的深度最大值+1</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>maxDepth</span>(root <span style=color:#666>*</span>TreeNode) <span style=color:#0b0;font-weight:700>int</span> {
+    <span style=color:#a2f;font-weight:700>if</span> root <span style=color:#666>==</span> <span style=color:#a2f;font-weight:700>nil</span> {
+        <span style=color:#a2f;font-weight:700>return</span> <span style=color:#666>0</span>
+    }
+    HL <span style=color:#666>:=</span> <span style=color:#00a000>maxDepth</span>(root.Left)
+    HR <span style=color:#666>:=</span> <span style=color:#00a000>maxDepth</span>(root.Right)
+    <span style=color:#a2f;font-weight:700>if</span> HL &gt; HR {
+        <span style=color:#a2f;font-weight:700>return</span> HL <span style=color:#666>+</span> <span style=color:#666>1</span>
+    }<span style=color:#a2f;font-weight:700>else</span>{
+        <span style=color:#a2f;font-weight:700>return</span> HR <span style=color:#666>+</span> <span style=color:#666>1</span>
+    }
+}
+</code></pre></div><p>与深度相对的，有时候也会求解二叉树的最小深度，最小深度是从根节点到最近叶子节点的最短路径上的节点数量。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>minDepth</span>(root <span style=color:#666>*</span>TreeNode) <span style=color:#0b0;font-weight:700>int</span> {
+    <span style=color:#a2f;font-weight:700>if</span> root <span style=color:#666>==</span> <span style=color:#a2f;font-weight:700>nil</span> {
+        <span style=color:#a2f;font-weight:700>return</span> <span style=color:#666>0</span>
+    }
+    <span style=color:#a2f;font-weight:700>if</span> root.Left <span style=color:#666>==</span> <span style=color:#a2f;font-weight:700>nil</span> <span style=color:#666>&amp;&amp;</span> root.Right <span style=color:#666>==</span> <span style=color:#a2f;font-weight:700>nil</span> {
+        <span style=color:#a2f;font-weight:700>return</span> <span style=color:#666>1</span>
+    }
+    HL <span style=color:#666>:=</span> <span style=color:#00a000>minDepth</span>(root.Left)
+    HR <span style=color:#666>:=</span> <span style=color:#00a000>minDepth</span>(root.Right)
+    <span style=color:#a2f;font-weight:700>if</span> root.Left <span style=color:#666>==</span> <span style=color:#a2f;font-weight:700>nil</span> {
+        <span style=color:#a2f;font-weight:700>return</span> HR <span style=color:#666>+</span> <span style=color:#666>1</span>
+    }<span style=color:#a2f;font-weight:700>else</span> <span style=color:#a2f;font-weight:700>if</span> root.Right <span style=color:#666>==</span> <span style=color:#a2f;font-weight:700>nil</span> {
+        <span style=color:#a2f;font-weight:700>return</span> HL <span style=color:#666>+</span> <span style=color:#666>1</span>
+    }<span style=color:#a2f;font-weight:700>else</span>{
+        <span style=color:#a2f;font-weight:700>if</span> HL &lt; HR {
+            <span style=color:#a2f;font-weight:700>return</span> HL <span style=color:#666>+</span> <span style=color:#666>1</span>
+        }<span style=color:#a2f;font-weight:700>else</span>{
+            <span style=color:#a2f;font-weight:700>return</span> HR <span style=color:#666>+</span> <span style=color:#666>1</span>
+        }        
+    }
+}
+</code></pre></div><h3 id=32-对称二叉树>3.2 对称二叉树</h3><p>给定一个二叉树，检查它是否是镜像对称的。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>isSymmetric</span>(root <span style=color:#666>*</span>TreeNode) <span style=color:#0b0;font-weight:700>bool</span> {
+    <span style=color:#a2f;font-weight:700>return</span> <span style=color:#00a000>isMirror</span>(root, root)
+}
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>isMirror</span>(l,r <span style=color:#666>*</span>TreeNode) <span style=color:#0b0;font-weight:700>bool</span> {
+    <span style=color:#a2f;font-weight:700>if</span> l <span style=color:#666>==</span> <span style=color:#a2f;font-weight:700>nil</span> <span style=color:#666>&amp;&amp;</span> r <span style=color:#666>==</span><span style=color:#a2f;font-weight:700>nil</span> {
+        <span style=color:#a2f;font-weight:700>return</span> <span style=color:#a2f;font-weight:700>true</span>
+    }
+    <span style=color:#a2f;font-weight:700>if</span> l <span style=color:#666>==</span> <span style=color:#a2f;font-weight:700>nil</span> <span style=color:#666>||</span> r <span style=color:#666>==</span> <span style=color:#a2f;font-weight:700>nil</span> {
+        <span style=color:#a2f;font-weight:700>return</span> <span style=color:#a2f;font-weight:700>false</span>
+    }
+    <span style=color:#a2f;font-weight:700>if</span> l.Val <span style=color:#666>!=</span> r.Val {
+        <span style=color:#a2f;font-weight:700>return</span> <span style=color:#a2f;font-weight:700>false</span>
+    } 
+    <span style=color:#a2f;font-weight:700>return</span> <span style=color:#00a000>isMirror</span>(l.Left, r.Right) <span style=color:#666>&amp;&amp;</span> <span style=color:#00a000>isMirror</span>(l.Right, r.Left)
+}
+</code></pre></div><h3 id=33-路径总和>3.3 路径总和</h3><p>给定一个二叉树和一个目标和，判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和。</p><p>示例: 给定如下二叉树，以及目标和 sum = 22，</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>              <span style=color:#666>5</span>
+             <span style=color:#666>/</span> \
+            <span style=color:#666>4</span>   <span style=color:#666>8</span>
+           <span style=color:#666>/</span>   <span style=color:#666>/</span> \
+          <span style=color:#666>11</span>  <span style=color:#666>13</span>  <span style=color:#666>4</span>
+         <span style=color:#666>/</span>  <span>\</span>      \
+        <span style=color:#666>7</span>    <span style=color:#666>2</span>      <span style=color:#666>1</span>
+</code></pre></div><p>返回 <code>true</code>, 因为存在目标和为 22 的根节点到叶子节点的路径 <code>5->4->11->2</code>。</p><p>递归的思路非常简单</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>hasPathSum</span>(root <span style=color:#666>*</span>TreeNode, sum <span style=color:#0b0;font-weight:700>int</span>) <span style=color:#0b0;font-weight:700>bool</span> {
+    <span style=color:#a2f;font-weight:700>if</span> root <span style=color:#666>==</span> <span style=color:#a2f;font-weight:700>nil</span> {
+        <span style=color:#a2f;font-weight:700>return</span> <span style=color:#a2f;font-weight:700>false</span>
+    }
+    sum <span style=color:#666>-=</span> root.Val
+    <span style=color:#a2f;font-weight:700>if</span> root.Left <span style=color:#666>==</span> <span style=color:#a2f;font-weight:700>nil</span> <span style=color:#666>&amp;&amp;</span> root.Right <span style=color:#666>==</span> <span style=color:#a2f;font-weight:700>nil</span> {
+        <span style=color:#a2f;font-weight:700>return</span> sum <span style=color:#666>==</span> <span style=color:#666>0</span>
+    }
+    <span style=color:#a2f;font-weight:700>return</span> <span style=color:#00a000>hasPathSum</span>(root.Left,sum) <span style=color:#666>||</span> <span style=color:#00a000>hasPathSum</span>(root.Right,sum)
+}
+</code></pre></div><p>迭代的解题思路是利用遍历，不断更新目标和并与当前节点比较。所有的遍历方式都可用，下面是 BFS 的示例。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>hasPathSum</span>(root <span style=color:#666>*</span>TreeNode, sum <span style=color:#0b0;font-weight:700>int</span>) <span style=color:#0b0;font-weight:700>bool</span> {
+    <span style=color:#a2f;font-weight:700>if</span> root <span style=color:#666>==</span> <span style=color:#a2f;font-weight:700>nil</span> {
+        <span style=color:#a2f;font-weight:700>return</span> <span style=color:#a2f;font-weight:700>false</span>
+    }
+    queue <span style=color:#666>:=</span> list.<span style=color:#00a000>New</span>()
+    queue.<span style=color:#00a000>PushBack</span>(root)
+    <span style=color:#a2f;font-weight:700>for</span> queue.<span style=color:#00a000>Len</span>() <span style=color:#666>!=</span> <span style=color:#666>0</span> {
+        root = queue.<span style=color:#00a000>Remove</span>(queue.<span style=color:#00a000>Front</span>()).(<span style=color:#666>*</span>TreeNode)
+        <span style=color:#a2f;font-weight:700>if</span> root.Left <span style=color:#666>==</span> <span style=color:#a2f;font-weight:700>nil</span> <span style=color:#666>&amp;&amp;</span> root.Right <span style=color:#666>==</span> <span style=color:#a2f;font-weight:700>nil</span> {
+            <span style=color:#a2f;font-weight:700>if</span> root.Val <span style=color:#666>==</span> sum {
+                <span style=color:#a2f;font-weight:700>return</span> <span style=color:#a2f;font-weight:700>true</span>
+            }
+        }
+        <span style=color:#a2f;font-weight:700>if</span> root.Left <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> {
+            root.Left.Val <span style=color:#666>+=</span> root.Val
+            queue.<span style=color:#00a000>PushBack</span>(root.Left)
+        }
+        <span style=color:#a2f;font-weight:700>if</span> root.Right <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> {
+            root.Right.Val <span style=color:#666>+=</span> root.Val
+            queue.<span style=color:#00a000>PushBack</span>(root.Right)
+        }
+    }
+    <span style=color:#a2f;font-weight:700>return</span> <span style=color:#a2f;font-weight:700>false</span>
+}
+</code></pre></div><p>如果需要记录路径，可以使用如下方案</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>pathSum</span>(root <span style=color:#666>*</span>TreeNode, sum <span style=color:#0b0;font-weight:700>int</span>) [][]<span style=color:#0b0;font-weight:700>int</span> {
+    <span style=color:#a2f;font-weight:700>var</span> ret [][]<span style=color:#0b0;font-weight:700>int</span>
+    <span style=color:#a2f;font-weight:700>var</span> path []<span style=color:#0b0;font-weight:700>int</span>
+    
+    <span style=color:#a2f;font-weight:700>return</span> <span style=color:#00a000>dfs</span>(root,path,ret,sum)
+}
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>dfs</span>(root <span style=color:#666>*</span>TreeNode,path []<span style=color:#0b0;font-weight:700>int</span>,ret [][]<span style=color:#0b0;font-weight:700>int</span>,sum <span style=color:#0b0;font-weight:700>int</span>) [][]<span style=color:#0b0;font-weight:700>int</span>{
+        <span style=color:#a2f;font-weight:700>if</span> root <span style=color:#666>==</span> <span style=color:#a2f;font-weight:700>nil</span> {
+            <span style=color:#a2f;font-weight:700>return</span> ret
+        }
+        sum <span style=color:#666>-=</span> root.Val
+        path = <span style=color:#a2f>append</span>(path,root.Val)
+        
+        <span style=color:#a2f;font-weight:700>if</span> root.Left <span style=color:#666>==</span> <span style=color:#a2f;font-weight:700>nil</span> <span style=color:#666>&amp;&amp;</span> root.Right <span style=color:#666>==</span> <span style=color:#a2f;font-weight:700>nil</span> {
+            <span style=color:#a2f;font-weight:700>if</span> sum <span style=color:#666>==</span> <span style=color:#666>0</span> {
+                slice <span style=color:#666>:=</span> <span style=color:#a2f>make</span>([]<span style=color:#0b0;font-weight:700>int</span>,<span style=color:#a2f>len</span>(path))
+	            <span style=color:#a2f>copy</span>(slice,path)
+                ret = <span style=color:#a2f>append</span>(ret,slice)
+            }
+            <span style=color:#a2f;font-weight:700>return</span> ret
+        }       
+        <span style=color:#a2f;font-weight:700>if</span> root.Left <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> {
+            ret = <span style=color:#00a000>dfs</span>(root.Left,path,ret,sum)
+        }
+        <span style=color:#a2f;font-weight:700>if</span> root.Right <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> {
+            ret = <span style=color:#00a000>dfs</span>(root.Right,path,ret,sum)
+        }
+        <span style=color:#a2f;font-weight:700>return</span> ret
+}
+</code></pre></div><h2 id=4-其它常见题型>4. 其它常见题型</h2><h3 id=41-翻转二叉树>4.1 翻转二叉树</h3><p>对一棵二叉树进行镜像翻转，比如输入为</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>     <span style=color:#666>4</span>
+   <span style=color:#666>/</span>   \
+  <span style=color:#666>2</span>     <span style=color:#666>7</span>
+ <span style=color:#666>/</span> <span>\</span>   <span style=color:#666>/</span> \
+<span style=color:#666>1</span>   <span style=color:#666>3</span> <span style=color:#666>6</span>   <span style=color:#666>9</span>
+</code></pre></div><p>那么翻转后的输出为</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>     <span style=color:#666>4</span>
+   <span style=color:#666>/</span>   \
+  <span style=color:#666>7</span>     <span style=color:#666>2</span>
+ <span style=color:#666>/</span> <span>\</span>   <span style=color:#666>/</span> \
+<span style=color:#666>9</span>   <span style=color:#666>6</span> <span style=color:#666>3</span>   <span style=color:#666>1</span>
+</code></pre></div><p>递归的理解是翻转后的树是将左子树和右子树分别翻转后再进行翻转，写出来的程序有点像后序遍历</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>invertTree</span>(root <span style=color:#666>*</span>TreeNode) <span style=color:#666>*</span>TreeNode {
+    <span style=color:#a2f;font-weight:700>if</span> root <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> {
+        root.Left = <span style=color:#00a000>invertTree</span>(root.Left)
+        root.Right = <span style=color:#00a000>invertTree</span>(root.Right)
+        root.Left, root.Right = root.Right, root.Left
+    }
+    <span style=color:#a2f;font-weight:700>return</span> root
+}    
+</code></pre></div><p>第三条翻转语句也可以放在左右子树翻转之前，即先对当前结点的左右子树翻转，再分别翻转左右子树。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>invertTree</span>(root <span style=color:#666>*</span>TreeNode) <span style=color:#666>*</span>TreeNode {
+    <span style=color:#a2f;font-weight:700>if</span> root <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> {
+        root.Left, root.Right = root.Right, root.Left
+        root.Left = <span style=color:#00a000>invertTree</span>(root.Left)
+        root.Right = <span style=color:#00a000>invertTree</span>(root.Right)
+    }
+    <span style=color:#a2f;font-weight:700>return</span> root
+} 
+</code></pre></div><h3 id=42-二叉树的锯齿形层次遍历>4.2 二叉树的锯齿形层次遍历</h3><p>给定一个二叉树，返回其节点值的锯齿形层次遍历。（即先从左往右，再从右往左进行下一层遍历，以此类推，层与层之间交替进行）。例如：给定二叉树 <code>[3,9,20,null,null,15,7]</code>,</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>   <span style=color:#666>3</span>
+  <span style=color:#666>/</span> \
+ <span style=color:#666>9</span>  <span style=color:#666>20</span>
+   <span style=color:#666>/</span>  \
+  <span style=color:#666>15</span>   <span style=color:#666>7</span>
+</code></pre></div><p>返回锯齿形层次遍历如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>[
+  [<span style=color:#666>3</span>],
+  [<span style=color:#666>20</span>,<span style=color:#666>9</span>],
+  [<span style=color:#666>15</span>,<span style=color:#666>7</span>]
+]
+</code></pre></div><p>与层次遍历的想法基本相同，只是添加了一个层次判断，在奇数层按原来的方法构造切片，在偶数层反向构造切片。由于Go的特性，这种方法很容易实现。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>zigzagLevelOrder</span>(root <span style=color:#666>*</span>TreeNode) [][]<span style=color:#0b0;font-weight:700>int</span> {
+    <span style=color:#a2f;font-weight:700>if</span> root <span style=color:#666>==</span> <span style=color:#a2f;font-weight:700>nil</span> {
+        <span style=color:#a2f;font-weight:700>return</span> <span style=color:#a2f;font-weight:700>nil</span>
+    }
+    result <span style=color:#666>:=</span> [][]<span style=color:#0b0;font-weight:700>int</span>{}
+    queue <span style=color:#666>:=</span> list.<span style=color:#00a000>New</span>()
+    queue.<span style=color:#00a000>PushBack</span>(root)
+    <span style=color:#a2f;font-weight:700>for</span> tmp <span style=color:#666>:=</span> <span style=color:#666>1</span>; queue.<span style=color:#00a000>Len</span>() <span style=color:#666>!=</span> <span style=color:#666>0</span>; tmp<span style=color:#666>++</span> {
+        level <span style=color:#666>:=</span> []<span style=color:#0b0;font-weight:700>int</span>{}
+        currentLevel <span style=color:#666>:=</span> queue.<span style=color:#00a000>Len</span>()
+        <span style=color:#a2f;font-weight:700>for</span> i <span style=color:#666>:=</span> <span style=color:#666>0</span>; i &lt; currentLevel; i<span style=color:#666>++</span> {
+            root <span style=color:#666>:=</span> queue.<span style=color:#00a000>Remove</span>(queue.<span style=color:#00a000>Front</span>()).(<span style=color:#666>*</span>TreeNode) 
+            <span style=color:#a2f;font-weight:700>if</span> tmp <span style=color:#666>%</span> <span style=color:#666>2</span> <span style=color:#666>==</span> <span style=color:#666>1</span> {
+                level = <span style=color:#a2f>append</span>(level, root.Val)                 
+            }<span style=color:#a2f;font-weight:700>else</span>{
+                level = <span style=color:#a2f>append</span>([]<span style=color:#0b0;font-weight:700>int</span>{root.Val},level<span style=color:#666>...</span>)
+            }            
+            <span style=color:#a2f;font-weight:700>if</span> root.Left <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> {
+                queue.<span style=color:#00a000>PushBack</span>(root.Left)
+            }
+            <span style=color:#a2f;font-weight:700>if</span> root.Right <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> {
+                queue.<span style=color:#00a000>PushBack</span>(root.Right)
+            }
+        }
+        result = <span style=color:#a2f>append</span>(result, level)
+    }
+    <span style=color:#a2f;font-weight:700>return</span> result
+}
+</code></pre></div><h3 id=43-由树的两种遍历序列还原二叉树>4.3 由树的两种遍历序列还原二叉树</h3><p>假设树中没有重复元素，根据两种遍历序列构造出原来的二叉树。需要注意的是，两种遍历序列中必须有中序遍历，也就是说，只给出先序和后序是无法确定棵二叉树的。</p><p>首先介绍如何根据先序和中序遍历确定一棵二叉树，步骤如下</p><ol><li>根据先序遍历序列的第一个结点确定根结点</li><li>根据根结点在中序遍历序列中分割出左右两个子序列</li><li>对左子树和右子树分别递归使用相同的方法继续分解</li></ol><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>buildTree</span>(preorder []<span style=color:#0b0;font-weight:700>int</span>, inorder []<span style=color:#0b0;font-weight:700>int</span>) <span style=color:#666>*</span>TreeNode {
+        <span style=color:#a2f;font-weight:700>if</span> <span style=color:#a2f>len</span>(inorder) <span style=color:#666>==</span> <span style=color:#666>0</span>{
+            <span style=color:#a2f;font-weight:700>return</span> <span style=color:#a2f;font-weight:700>nil</span>
+        }
+        idx <span style=color:#666>:=</span> <span style=color:#666>-</span><span style=color:#666>1</span>
+        <span style=color:#a2f;font-weight:700>for</span> i,v<span style=color:#666>:=</span><span style=color:#a2f;font-weight:700>range</span> inorder{
+            <span style=color:#a2f;font-weight:700>if</span> v <span style=color:#666>==</span> preorder[<span style=color:#666>0</span>]{
+                idx = i
+            }
+        }
+        root <span style=color:#666>:=</span> <span style=color:#666>&amp;</span>TreeNode{Val:preorder[<span style=color:#666>0</span>]}
+        root.Left = <span style=color:#00a000>buildTree</span>(preorder[<span style=color:#666>1</span>:idx<span style=color:#666>+</span><span style=color:#666>1</span>],inorder[:idx])
+        root.Right = <span style=color:#00a000>buildTree</span>(preorder[idx<span style=color:#666>+</span><span style=color:#666>1</span>:],inorder[idx<span style=color:#666>+</span><span style=color:#666>1</span>:])
+        <span style=color:#a2f;font-weight:700>return</span> root
+}
+</code></pre></div><p>后序遍历的思想类似</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>buildTree</span>(inorder []<span style=color:#0b0;font-weight:700>int</span>, postorder []<span style=color:#0b0;font-weight:700>int</span>) <span style=color:#666>*</span>TreeNode {
+    <span style=color:#a2f;font-weight:700>if</span> <span style=color:#a2f>len</span>(inorder) <span style=color:#666>==</span> <span style=color:#666>0</span> {
+        <span style=color:#a2f;font-weight:700>return</span> <span style=color:#a2f;font-weight:700>nil</span>
+    }
+    idx <span style=color:#666>:=</span> <span style=color:#666>-</span><span style=color:#666>1</span>
+    <span style=color:#a2f;font-weight:700>for</span> i,v <span style=color:#666>:=</span> <span style=color:#a2f;font-weight:700>range</span> inorder {
+        <span style=color:#a2f;font-weight:700>if</span> v <span style=color:#666>==</span> postorder[<span style=color:#a2f>len</span>(postorder)<span style=color:#666>-</span><span style=color:#666>1</span>] {
+            idx = i
+        }
+    }
+    root <span style=color:#666>:=</span> <span style=color:#666>&amp;</span>TreeNode{Val:postorder[<span style=color:#a2f>len</span>(postorder)<span style=color:#666>-</span><span style=color:#666>1</span>]}
+    root.Left = <span style=color:#00a000>buildTree</span>(inorder[:idx], postorder[:idx])
+    root.Right = <span style=color:#00a000>buildTree</span>(inorder[idx<span style=color:#666>+</span><span style=color:#666>1</span>:], postorder[idx:<span style=color:#a2f>len</span>(postorder)<span style=color:#666>-</span><span style=color:#666>1</span>])
+    <span style=color:#a2f;font-weight:700>return</span> root
+}
+</code></pre></div><h2 id=参考资料>参考资料</h2><p>[1] <a href="https://www.icourse163.org/course/ZJU-93001?tid=1450069451">中国大学MOOC平台-浙江大学数据结构</a></p><p>[2] <a href=https://www.bilibili.com/video/av43521866>bilibili-浙江大学数据结构</a></p></div><footer class=post-footer><div class=post-tags><a href=/tags/%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e4%b8%8e%e7%ae%97%e6%b3%95 rel=tag title=数据结构与算法>#数据结构与算法#</a></div><div class=addthis_inline_share_toolbox></div><div class=post-nav><div class=article-copyright><div class=article-copyright-img><img src=/img/qq_qrcode.png width=129px height=129px><div style=text-align:center>QQ扫一扫交流</div></div><div class=article-copyright-info><p><span>声明：</span>数据结构-二叉树</p><p><span>链接：</span>https://shuzang.github.io/post/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/data-structure-tree-and-binary-tree/</p><p><span>作者：</span>书藏</p><p><span>声明： </span>本博客文章除特别声明外，均采用 <a href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank style=text-decoration:underline>CC BY-NC-SA 3.0</a>许可协议，转载请注明出处！</p></div></div><div class=clear></div></div><div class=reward-qr-info><div>创作实属不易，如有帮助，那就打赏博主些许茶钱吧 ^_^</div><button id=rewardButton disable=enable onclick="var qr=document.getElementById('QR');if(qr.style.display==='none'){qr.style.display='block';}else{qr.style.display='none'}">
+<span>赏</span></button><div id=QR style=display:none><div id=wechat style=display:inline-block><img id=wechat_qr src=/img/wechat-pay.png alt="WeChat Pay"><p>微信打赏</p></div><div id=alipay style=display:inline-block><img id=alipay_qr src=/img/ali-pay.png alt=Alipay><p>支付宝打赏</p></div></div></div><div class=post-nav><div class="post-nav-next post-nav-item"><a href=https://shuzang.github.io/post/%E6%97%A5%E7%A8%8B%E5%8F%8A%E5%91%A8%E5%88%8A/life-weekly-9/ rel=next title="书藏的生活周刊第 9 期 (20200228)"><i class="fa fa-chevron-left"></i>书藏的生活周刊第 9 期 (20200228)</a></div><div class="post-nav-prev post-nav-item"><a href=https://shuzang.github.io/post/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/data-structure-queue-and-stack/ rel=prev title=数据结构-队列与栈>数据结构-队列与栈
+<i class="fa fa-chevron-right"></i></a></div></div><div id=wcomments></div></footer></article></section></div></div><div class=sidebar-toggle><div class=sidebar-toggle-line-wrap><span class="sidebar-toggle-line sidebar-toggle-line-first"></span><span class="sidebar-toggle-line sidebar-toggle-line-middle"></span><span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id=sidebar class=sidebar><div class=sidebar-inner><section class="site-overview sidebar-panel sidebar-panel-active"><div class="site-author motion-element" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image src=/images/avatar.png alt=书藏><p class=site-author-name itemprop=name>书藏</p><p class="site-description motion-element" itemprop=description></p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href=/post/><span class=site-state-item-count>334</span>
+<span class=site-state-item-name>日志</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>7</span>
+<span class=site-state-item-name>分类</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>23</span>
+<span class=site-state-item-name>标签</span></a></div></nav><div class="links-of-author motion-element"><span class=links-of-author-item><a href=https://github.com/shuzang/ target=_blank title=GitHub><i class="fa fa-fw fa-github"></i>GitHub</a></span></div><div class="tagcloud-of-blogroll motion-element tagcloud-of-blogroll-inline"><div class=tagcloud-of-blogroll-title><i class="fa fa-fw fa-tags"></i>标签云</div><ul class=tagcloud-of-blogroll-list><li class=tagcloud-of-blogroll-item><a href=/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0>论文笔记</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E4%B9%A6%E8%97%8F%E7%9A%84%E7%94%9F%E6%B4%BB%E5%91%A8%E5%88%8A>书藏的生活周刊</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95>科研记录</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/go%E8%AF%AD%E6%B3%95>Go语法</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80>计算机基础</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E6%9D%82%E8%B0%88>杂谈</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E5%8C%BA%E5%9D%97%E9%93%BE>区块链</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95>数据结构与算法</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E7%94%9F%E6%B4%BB%E6%8A%80%E8%83%BD>生活技能</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/go%E5%AE%9E%E6%88%98>Go实战</a></li></ul></div></section></div></aside></div></main><footer id=footer class=footer><div class=footer-inner><div class=copyright><span class=copyright-year>&copy; 2010 - 2022</span>
+<span class=with-love><i class="fa fa-heart"></i></span><span class=copyright-author>书藏的博客</span></div><div class=powered-info><span class=powered-by>Powered by - <a class=powered-link href=//gohugo.io target=_blank title=hugo>Hugo v0.63.2</a></span>
+<span class=separator-line>/</span>
+<span class=theme-info>Theme by - <a class=powered-link href=//github.com/elkan1788/hugo-theme-next target=_blank>NexT</a></span></div><div class=vistor-info><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><span class=site-uv><i class="fa fa-user"></i><span class=busuanzi-value id=busuanzi_value_site_uv></span></span><span class=separator-line>/</span>
+<span class=site-pv><i class="fa fa-eye"></i><span class=busuanzi-value id=busuanzi_value_site_pv></span></span></div><div class=license-info><span class=storage-info>Storage by
+<a href=https://www.ucloud.cn/ style=font-weight:700 target=_blank>UCloud云存储</a></span>
+<span class=separator-line>/</span>
+<span class=license-num><a href target=_blank></a></span></div></div></footer><div class=back-to-top><i class="fa fa-arrow-up"></i><span id=scrollpercent><span>0</span>%</span></div></div><script type=text/javascript src=//cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.min.js></script><script type=text/javascript src=/js/search.js></script><script type=text/javascript src=/js/affix.js></script><script type=text/javascript src=/js/scrollspy.js></script><script type=text/javascript>function detectIE(){var ua=window.navigator.userAgent;var msie=ua.indexOf('MSIE ');var trident=ua.indexOf('Trident/');var edge=ua.indexOf('Edge/');if(msie>0||trident>0||edge>0){return-1;}
+return 1;}
+function getCntViewHeight(){var docHeight=$('#content').height(),winHeight=$(window).height(),cntViewHeight=(docHeight>winHeight)?(docHeight-winHeight):($(document).height()-winHeight);return cntViewHeight;}
+function getScrollbarWidth(){var $div=$('<div />').addClass('scrollbar-measure').prependTo('body');var div=$div[0];var scrollbarWidth=div.offsetWidth-div.clientWidth;$div.remove();return scrollbarWidth;}
+function registerBackTop(){var THRESHOLD=50;var $top=$('.back-to-top');$(window).on('scroll',function(){$top.toggleClass('back-to-top-on',window.pageYOffset>THRESHOLD);var scrollTop=$(window).scrollTop();var cntViewHeight=getCntViewHeight();var scrollPercent=(scrollTop)/(cntViewHeight);var scrollPercentRounded=Math.round(scrollPercent*100);var scrollPercentMaxed=(scrollPercentRounded>100)?100:scrollPercentRounded;$('#scrollpercent>span').html(scrollPercentMaxed);});$top.on('click',function(){$("html,body").animate({scrollTop:0,screenLeft:0,},800);});}
+function initScrollSpy(){var tocSelector='.post-toc';var $tocElement=$(tocSelector);var activeCurrentSelector='.active-current';$tocElement.on('activate.bs.scrollspy',function(){var $currentActiveElement=$(tocSelector+' .active').last();removeCurrentActiveClass();$currentActiveElement.addClass('active-current');}).on('clear.bs.scrollspy',removeCurrentActiveClass);$('body').scrollspy({target:tocSelector});function removeCurrentActiveClass(){$(tocSelector+' '+activeCurrentSelector).removeClass(activeCurrentSelector.substring(1));}}
+function initAffix(){var headerHeight=$('.header-inner').height();var footerOffset=parseInt($('.main').css('padding-bottom'),10);var sidebarTop=headerHeight+10;$('.sidebar-inner').affix({offset:{top:sidebarTop,bottom:footerOffset}});$(document).on('affixed.bs.affix',function(){updateTOCHeight(document.body.clientHeight-100);});}
+function initTOCDimension(){var updateTOCHeightTimer;$(window).on('resize',function(){updateTOCHeightTimer&&clearTimeout(updateTOCHeightTimer);updateTOCHeightTimer=setTimeout(function(){var tocWrapperHeight=document.body.clientHeight-100;updateTOCHeight(tocWrapperHeight);},0);});updateTOCHeight(document.body.clientHeight-100);var scrollbarWidth=getScrollbarWidth();$('.post-toc').css('width','calc(100% + '+scrollbarWidth+'px)');}
+function updateTOCHeight(height){height=height||'auto';$('.post-toc').css('max-height',height);}
+$(function(){var sidebarTop=$('.header-inner').height()+10;$('#sidebar').css({'margin-top':sidebarTop}).show();var sidebarMt=parseInt($('#sidebar').css('margin-top'));var sidebarInHeight=parseInt($('.sidebar-inner').css('height'));var sideHeight=sidebarMt+sidebarInHeight;var contentHeight=$('.content-wrap').height();if(contentHeight<sideHeight){$('.content-wrap').css('min-height',sideHeight);}
+$('.site-nav-toggle').on('click',function(){var $siteNav=$('.site-nav');var $toggleLine=$('.toggle');var ON_CLASS_NAME='site-nav-on';var CLOSE_CLASS_NAME='toggle-close';var isSiteNavOn=$siteNav.hasClass(ON_CLASS_NAME);var animateAction=isSiteNavOn?'slideUp':'slideDown';var animateCallback=isSiteNavOn?'removeClass':'addClass';$siteNav.stop()[animateAction]('normal',function(){$siteNav[animateCallback](ON_CLASS_NAME);$toggleLine[animateCallback](CLOSE_CLASS_NAME);});});registerBackTop();initScrollSpy();initAffix();initTOCDimension();$('.sidebar-nav-toc').click(function(){$(this).addClass('sidebar-nav-active');$(this).next().removeClass('sidebar-nav-active');$('.'+$(this).next().attr('data-target')).toggle(500);$('.'+$(this).attr('data-target')).toggle(500);});$('.sidebar-nav-overview').click(function(){$(this).addClass('sidebar-nav-active');$(this).prev().removeClass('sidebar-nav-active');$('.'+$(this).prev().attr('data-target')).toggle(500);$('.'+$(this).attr('data-target')).toggle(500);});});</script><script src=//cdn.bootcdn.net/ajax/libs/imageviewer/0.1.0/viewer.min.js></script><script type=text/javascript>$(function(){$('.post-body').viewer();});</script><script type=text/javascript>$(function(){if(detectIE()>0){$.getScript(document.location.protocol+'//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js',function(){new Waline({el:'#wcomments',visitor:true,avatar:'wavatar',avatarCDN:'https://sdn.geekzu.org/avatar/',avatarForce:!1,wordLimit:'200',placeholder:' 欢迎留下您的宝贵建议，请填写您的昵称和邮箱便于后续交流. ^_^ ',requiredFields:['nick','mail'],serverURL:"Your WalineSerURL",lang:"zh-cn"});});}else{$('#wcomments').html('抱歉，Waline插件不支持IE或Edge，建议使用Chrome浏览器。');}});</script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_SVG"></script><script type=text/javascript src="//s7.addthis.com/js/300/addthis_widget.js#pubid=Your%20AddthisId"></script><script>(function(){var bp=document.createElement('script');var curProtocol=window.location.protocol.split(':')[0];if(curProtocol==='https'){bp.src='https://zz.bdstatic.com/linksubmit/push.js';}
+else{bp.src='http://push.zhanzhang.baidu.com/push.js';}
+var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(bp,s);})();</script></body></html>

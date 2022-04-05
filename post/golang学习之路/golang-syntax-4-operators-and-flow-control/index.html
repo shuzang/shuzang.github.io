@@ -1,0 +1,203 @@
+<!doctype html><html lang=zh-cn dir=content/zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=content-security-policy content="upgrade-insecure-requests"><title>Golang语法基础4-运算符与流程控制 - 书藏的博客</title><meta name=keywords content="博客,程序员,区块链，思考,读书,笔记,生活,电影,旅游,"><meta name=author content="书藏"><meta property="og:title" content="Golang语法基础4-运算符与流程控制"><meta property="og:site_name" content="书藏的博客"><meta property="og:image" content="/img/author.jpg"><meta name=title content="Golang语法基础4-运算符与流程控制 - 书藏的博客"><meta name=description content="书藏的个人博客，记录学习的东西，以月刊记录生活"><link rel="shortcut icon" href=/img/favicon.ico><link rel=apple-touch-icon href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><link href=//cdn.bootcdn.net/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css rel=stylesheet type=text/css><link href=//cdn.bootcdn.net/ajax/libs/imageviewer/0.1.0/viewer.min.css rel=stylesheet><link href=/css/main.css rel=stylesheet type=text/css><link href=/css/syntax.css rel=stylesheet type=text/css><script async src="https://www.googletagmanager.com/gtag/js?id=UA-209130979-1"></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-209130979-1 ');</script></head><body itemscope itemtype=http://schema.org/WebPage lang=zh-hans><div class="container one-collumn sidebar-position-left page-home"><div class=headband></div><header id=header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle role=button style=opacity:1;top:0><span class=toggle-line></span><span class=toggle-line></span><span class=toggle-line></span></div></div><div class=site-meta><div class=multi-lang-switch><i class="fa fa-fw fa-language" style=margin-right:5px></i><a class=lang-link id=zh-cn href=#>中文</a></div><div class=custom-logo-site-title><a href=/ class=brand rel=start><span class=logo-line-before><i></i></span><span class=site-title>书藏的博客</span>
+<span class=logo-line-after><i></i></span></a></div><p class=site-subtitle>凡心所向，素履以往</p></div><div class=site-nav-right><div class="toggle popup-trigger" style=opacity:1;top:0><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul id=menu class=menu><li class=menu-item><a href=/ rel=section><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class=menu-item><a href=/post rel=section><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class=menu-item><a href=/about.html rel=section><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于我</a></li><li class=menu-item><a href=/404.html rel=section><i class="menu-item-icon fa fa-fw fa-heartbeat"></i><br>公益404</a></li><li class="menu-item menu-item-search"><a href=javascript:; class=popup-trigger><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class=site-search><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class=search-icon><i class="fa fa-search"></i></span><span class=popup-btn-close><i class="fa fa-times-circle"></i></span><div class=local-search-input-wrapper><input autocomplete=off placeholder=搜索关键字... spellcheck=false type=text id=local-search-input autocapitalize=none autocorrect=off></div></div><div id=local-search-result></div></div></div></nav></div></header><main id=main class=main><div class=main-inner><div class=content-wrap><div id=content class=content><section id=posts class=posts-expand><article class="post post-type-normal" itemscope itemtype=http://schema.org/Article><header class=post-header><h1 class=post-title itemprop="name headline"><a class=post-title-link href=https://shuzang.github.io/post/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/golang-syntax-4-operators-and-flow-control/ itemprop=url>Golang语法基础4-运算符与流程控制</a></h1><div class=post-meta><span class=post-time><i class="fa fa-calendar-o fa-fw"></i><span class=post-meta-item-text>时间：</span>
+<time itemprop=dateCreated datetime=2016-03-22T13:04:35+08:00 content="2019-10-29">2019-10-29</time></span>
+<span class=post-category>&nbsp; | &nbsp;
+<i class="fa fa-folder-o fa-fw"></i><span class=post-meta-item-text>分类：</span>
+<span itemprop=about itemscope itemtype=https://schema.org/Thing><a href=/categories/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF itemprop=url rel=index style=text-decoration:underline><span itemprop=name>Golang学习之路</span></a>
+&nbsp;</span></span>
+<span>|
+<i class="fa fa-file-word-o fa-fw"></i><span class=post-meta-item-text>字数：</span>
+<span class=leancloud-world-count>2881 字</span></span>
+<span>|
+<i class="fa fa-eye fa-fw"></i><span class=post-meta-item-text>阅读：</span>
+<span class=leancloud-view-count>6分钟</span></span>
+<span id=/post/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/golang-syntax-4-operators-and-flow-control/ class=leancloud_visitors data-flag-title=Golang语法基础4-运算符与流程控制>|
+<i class="fa fa-binoculars fa-fw"></i><span class=post-meta-item-text>阅读次数：</span>
+<span class=leancloud-visitors-count></span></span></div></header><div class=post-body itemprop=articleBody><p>本文介绍 Golang 中的运算符和流程控制</p><h2 id=1-运算符>1. 运算符</h2><p>Go语言的运算符有6种，如下表所示</p><table><thead><tr><th>运算符类型</th><th>运算符</th></tr></thead><tbody><tr><td>算术运算符</td><td>+，-，*，/，%，++，&ndash;</td></tr><tr><td>关系运算符</td><td>==，!=，>，&lt;，>=，&lt;=</td></tr><tr><td>逻辑运算符</td><td>&&，||，!</td></tr><tr><td>位运算符</td><td>&，|，^，&#171;，&#187;，&^</td></tr><tr><td>赋值运算符</td><td>=，+=，-=，*=，/=，%=，&#171;=，&#187;=，&=，^=，!=</td></tr><tr><td>其它运算符</td><td>&，*</td></tr></tbody></table><p>基本的运算规则都与C语言相同，一些注意事项列举如下</p><p>算术运算符中自增自减运算符只能作为语句使用，不能用于表达式</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>a<span style=color:#666>++</span> <span style=color:#080;font-style:italic>// 允许
+</span><span style=color:#080;font-style:italic></span>a<span style=color:#666>--</span> <span style=color:#080;font-style:italic>// 允许
+</span><span style=color:#080;font-style:italic></span>a = a<span style=color:#666>++</span> <span style=color:#080;font-style:italic>//不允许，编译错误
+</span><span style=color:#080;font-style:italic></span>a[i] = b[i<span style=color:#666>++</span>] <span style=color:#080;font-style:italic>//不允许，编译错误
+</span></code></pre></div><p>整数除以0会导致编译错误，如果编译时未检出会导致程序崩溃。浮点数除以0.0会返回无穷大，用<code>+Inf</code>表示</p><p>逻辑运算符具有短路效果</p><p>位运算符是对整数在内存中的二进制位进行操作的，假定A = 60，B = 13，则</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>A = <span style=color:#666>0011</span> <span style=color:#666>1100</span>
+B = <span style=color:#666>0000</span> <span style=color:#666>1101</span>
+
+A<span style=color:#666>&amp;</span>B = <span style=color:#666>0000</span> <span style=color:#666>1100</span> <span style=color:#080;font-style:italic>// 结果为12
+</span><span style=color:#080;font-style:italic></span>A|B = <span style=color:#666>0011</span> <span style=color:#666>1101</span> <span style=color:#080;font-style:italic>// 结果为61
+</span><span style=color:#080;font-style:italic></span>A^B = <span style=color:#666>0011</span> <span style=color:#666>0001</span> <span style=color:#080;font-style:italic>// 结果为49
+</span><span style=color:#080;font-style:italic></span>A<span style=color:#666>&lt;&lt;</span><span style=color:#666>2</span> = <span style=color:#666>1111</span> <span style=color:#666>0000</span> <span style=color:#080;font-style:italic>// 结果为240
+</span><span style=color:#080;font-style:italic></span>A<span style=color:#666>&gt;&gt;</span><span style=color:#666>2</span> = <span style=color:#666>0000</span> <span style=color:#666>1111</span> <span style=color:#080;font-style:italic>// 结果为15
+</span></code></pre></div><p>其它运算符中的<code>&</code>是取地址符，<code>*</code>是指针变量</p><p>运算符的优先级是不同的，下表从上往下代表优先级从高到低</p><table><thead><tr><th>优先级</th><th>运算符</th></tr></thead><tbody><tr><td>7</td><td>^ ，!</td></tr><tr><td>6</td><td>* ，/ ，% ，&#171; ，&#187;， &， &^</td></tr><tr><td>5</td><td>+， -， | ，^</td></tr><tr><td>4</td><td>==， !=， &lt; ，&lt;= ，>=， ></td></tr><tr><td>3</td><td>&lt;-</td></tr><tr><td>2</td><td>&&</td></tr><tr><td>1</td><td>||</td></tr></tbody></table><p>二元运算符的运算方向均是从左到右，必要时可以使用括号提升优先级或更清楚地表达。</p><h2 id=2-控制结构>2. 控制结构</h2><p>除去顺序结构外，Go语言提供的基本流程控制结构包括</p><ul><li>条件结构<ul><li>if-else 结构</li><li>switch 结构</li><li>select 结构，用于channel的选择（协程与通道部分）</li></ul></li><li>循环结构<ul><li>for</li><li>for-range</li></ul></li></ul><p>同时，Go还提供了关键字<code>break</code>、<code>continue</code>和<code>goto</code>用来辅助进行流程控制，以及<code>return</code>语句提前结束执行。</p><p>注1：在这些结构中，Go都省略了条件语句两侧的小括号，使视觉上更加简洁。</p><p>注2：除<code>case</code>关键字后的语句，即使代码块只有一行，大括号也不可省略</p><p>注3：左大括号必须和关键字在同一行，对多分支结构中的<code>else</code>关键字，右大括号也要和它在一行。这两条规则是编译器的强制规定。</p><h3 id=21-if-else-结构>2.1 if-else 结构</h3><p>if-else 结构的基本形态与C语言相同。可以省略<code>else</code>关键字变成单分支结构，也可以添加<code>else if</code>变成多分支，但为了代码简洁，过多的分支最好换用switch结构实现。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>if</span> condition1 {
+    <span style=color:#080;font-style:italic>// do something
+</span><span style=color:#080;font-style:italic></span>} <span style=color:#a2f;font-weight:700>else</span> {
+    <span style=color:#080;font-style:italic>// do something else
+</span><span style=color:#080;font-style:italic></span>}
+</code></pre></div><p>当双分支结构在代码块的末尾时，通常会将else中原本的代码块迁移出来放在最后，如</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>if</span> condition {
+    <span style=color:#a2f;font-weight:700>return</span> <span style=color:#a2f;font-weight:700>true</span>
+}
+<span style=color:#a2f;font-weight:700>return</span> <span style=color:#a2f;font-weight:700>false</span>
+</code></pre></div><p>Go中 if 还可以在条件语句前添加一个初始化语句，以分号分隔</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>if</span> initialization; condition {
+	<span style=color:#080;font-style:italic>// do something
+</span><span style=color:#080;font-style:italic></span>}
+</code></pre></div><p>例如</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>if</span> val <span style=color:#666>:=</span> <span style=color:#666>10</span>; val &gt; max {
+	<span style=color:#080;font-style:italic>// do something
+</span><span style=color:#080;font-style:italic></span>}
+</code></pre></div><p>但需要注意的时，使用简短方式 <code>:=</code> 声明和初始化的变量作用域只限于 if 结构的代码块内，属于局部变量。</p><p>由于Go语言并行赋值的特性，if 语句经常用于测试多返回值函数的错误。返回某个值以及true表示成功，返回零值（或nil）以及false表示失败</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>if</span> value, ok <span style=color:#666>:=</span> <span style=color:#00a000>readData</span>(); ok {
+<span>…</span>
+}
+</code></pre></div><p>当不使用true或false时，也可以使用一个error类型的变量来代替作为第二个返回值，成功执行，error的值为nil，失败返回的值会包含相应的错误信息。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>var</span> err <span style=color:#0b0;font-weight:700>error</span>
+<span style=color:#a2f;font-weight:700>if</span> err <span style=color:#666>:=</span> file.<span style=color:#00a000>Chmod</span>(<span style=color:#666>0664</span>); err <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> {
+	fmt.<span style=color:#00a000>Println</span>(err)
+	<span style=color:#a2f;font-weight:700>return</span> err
+}
+</code></pre></div><h3 id=22-switch-结构>2.2 switch 结构</h3><p>switch结构的基本形态依然同C语言相同</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>switch</span> var1 {
+	<span style=color:#a2f;font-weight:700>case</span> val1:
+		<span style=color:#666>...</span>
+	<span style=color:#a2f;font-weight:700>case</span> val2:
+		<span style=color:#666>...</span>
+	<span style=color:#a2f;font-weight:700>default</span>:
+		<span style=color:#666>...</span>
+}
+</code></pre></div><p>不同的是，Go中switch语句接受任意形式的表达式，如上例中var1可以是任何类型，而val1和val2可以是同类型的任意值，不局限于数值。</p><p>可以同时测试多个可能符合条件的值，使用逗号分隔，例如<code>case val1, val2, val3</code></p><p>每个<code>case</code>分支都是唯一的，从上到下逐一测试，一旦成功匹配到某个分支，执行完对应的代码块后会<strong>自动退出</strong>整个 switch 结构，而不需要使用<code>break</code>结束。因此，程序不会自动的去执行剩下的case分支的代码，如果想继续执行，需要使用fallthrough关键字</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>switch</span> i {
+	<span style=color:#a2f;font-weight:700>case</span> <span style=color:#666>0</span>: <span style=color:#a2f;font-weight:700>fallthrough</span>
+	<span style=color:#a2f;font-weight:700>case</span> <span style=color:#666>1</span>:
+		<span style=color:#00a000>f</span>() <span style=color:#080;font-style:italic>// 当 i == 0 时函数也会被调用
+</span><span style=color:#080;font-style:italic></span>}
+</code></pre></div><p>case语句后不需要用大括号包围代码块，default分支可以出现在任何顺序，但最好放在最后</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> main
+
+<span style=color:#a2f;font-weight:700>import</span> <span style=color:#b44>&#34;fmt&#34;</span>
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>main</span>() {
+	<span style=color:#a2f;font-weight:700>var</span> num1 <span style=color:#0b0;font-weight:700>int</span> = <span style=color:#666>100</span>
+
+	<span style=color:#a2f;font-weight:700>switch</span> num1 {
+        <span style=color:#a2f;font-weight:700>case</span> <span style=color:#666>98</span>, <span style=color:#666>99</span>:
+            fmt.<span style=color:#00a000>Println</span>(<span style=color:#b44>&#34;It&#39;s equal to 98&#34;</span>)
+        <span style=color:#a2f;font-weight:700>case</span> <span style=color:#666>100</span>: 
+            fmt.<span style=color:#00a000>Println</span>(<span style=color:#b44>&#34;It&#39;s equal to 100&#34;</span>)
+        <span style=color:#a2f;font-weight:700>default</span>:
+            fmt.<span style=color:#00a000>Println</span>(<span style=color:#b44>&#34;It&#39;s not equal to 98 or 100&#34;</span>)
+	}
+}
+<span style=color:#080;font-style:italic>//Output:
+</span><span style=color:#080;font-style:italic></span><span style=color:#080;font-style:italic>//It&#39;s equal to 100
+</span></code></pre></div><p>switch可以不提供条件语句，然后在每个case分支测试不同条件，可以替换分支比较多的if-else结构，简化代码</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>switch</span> {
+	<span style=color:#a2f;font-weight:700>case</span> i &lt; <span style=color:#666>0</span>:
+		<span style=color:#00a000>f1</span>()
+	<span style=color:#a2f;font-weight:700>case</span> i <span style=color:#666>==</span> <span style=color:#666>0</span>:
+		<span style=color:#00a000>f2</span>()
+	<span style=color:#a2f;font-weight:700>case</span> i &gt; <span style=color:#666>0</span>:
+		<span style=color:#00a000>f3</span>()
+    <span style=color:#a2f;font-weight:700>default</span>:
+    	<span style=color:#666>...</span>
+}
+</code></pre></div><p>switch的条件语句还可以是初始化语句</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>switch</span> a, b <span style=color:#666>:=</span> x[i], y[j] {
+	<span style=color:#a2f;font-weight:700>case</span> a &lt; b: t = <span style=color:#666>-</span><span style=color:#666>1</span>
+	<span style=color:#a2f;font-weight:700>case</span> a <span style=color:#666>==</span> b: t = <span style=color:#666>0</span>
+	<span style=color:#a2f;font-weight:700>case</span> a &gt; b: t = <span style=color:#666>1</span>
+}
+</code></pre></div><h3 id=23-for-结构>2.3 for 结构</h3><p>Go中只有for用于循环结构，没有C中的while或do while，基本形态如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>for</span> 初始化语句; 条件语句; 修饰语句 {
+    <span style=color:#666>...</span>
+}
+</code></pre></div><p>同样，for 关键字后的三个语句不需要小括号，左大括号需和关键字在同一行</p><p>可以只保留条件语句，这种情况下可以去掉所有分号，大致等同于其它语言的while循环</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> main
+
+<span style=color:#a2f;font-weight:700>import</span> <span style=color:#b44>&#34;fmt&#34;</span>
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>main</span>() {
+	<span style=color:#a2f;font-weight:700>var</span> i <span style=color:#0b0;font-weight:700>int</span> = <span style=color:#666>5</span>
+
+	<span style=color:#a2f;font-weight:700>for</span> i <span style=color:#666>&gt;=</span> <span style=color:#666>0</span> {
+		i = i <span style=color:#666>-</span> <span style=color:#666>1</span>
+		fmt.<span style=color:#00a000>Printf</span>(<span style=color:#b44>&#34;The variable i is now: %d\n&#34;</span>, i)
+	}
+}
+</code></pre></div><p>或者省略条件语句，但必须在循环体中存在条件判断以确保在某个时候退出循环，退出可以使用<code>break</code>或<code>return</code></p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>for</span> i <span style=color:#666>:=</span> <span style=color:#666>0</span>; ; i<span style=color:#666>++</span> {
+    <span style=color:#666>...</span>
+}
+</code></pre></div><p>或者三条语句全部省略，但同样需要在循环体中添加退出条件</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>for</span> {
+    <span style=color:#666>...</span>
+}
+</code></pre></div><h3 id=24-for-range-结构>2.4 for-range 结构</h3><p>这是 Go 中特有的迭代结构，可以迭代数组、切片、map、字符串等任意一个集合，一般形式为</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>for</span> k, v <span style=color:#666>:=</span> <span style=color:#a2f;font-weight:700>range</span> set {
+    <span style=color:#666>...</span>
+}
+</code></pre></div><p>k 为索引，每次递增，v 为索引对应的值的拷贝。值得注意的是，由于 v 只是值的拷贝，任何对它的修改都不会影响集合中原来的值，除非索引是指针。</p><p>如果不需要索引，可以使用匿名变量<code>_</code>忽略它</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>for</span> _, v <span style=color:#666>:=</span> <span style=color:#a2f;font-weight:700>range</span> set{
+    <span style=color:#666>...</span>
+}
+</code></pre></div><p>但如果只需要索引而不需要值，可以直接省略不写</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>for</span> k <span style=color:#666>:=</span> <span style=color:#a2f;font-weight:700>range</span> set {
+    <span style=color:#666>...</span>
+}
+<span style=color:#080;font-style:italic>// Output: 0 1 2 ...
+</span></code></pre></div><p>字符串通过for-range结构获取的元素是rune类型</p><h2 id=3-辅助关键字>3. 辅助关键字</h2><p><code>break</code>用来跳出循环，在for循环中跳出一层循环，在switch或select语句中，跳过整段代码块</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>for</span> i<span style=color:#666>:=</span><span style=color:#666>0</span>; i&lt;<span style=color:#666>3</span>; i<span style=color:#666>++</span> {
+    <span style=color:#a2f;font-weight:700>for</span> j<span style=color:#666>:=</span><span style=color:#666>0</span>; j&lt;<span style=color:#666>10</span>; j<span style=color:#666>++</span> {
+        <span style=color:#a2f;font-weight:700>if</span> j&gt;<span style=color:#666>5</span> {
+            <span style=color:#a2f;font-weight:700>break</span>   
+        }
+        <span style=color:#a2f>print</span>(j)
+    }
+    <span style=color:#a2f>print</span>(<span style=color:#b44>&#34;  &#34;</span>)
+}
+<span style=color:#080;font-style:italic>//Output:
+</span><span style=color:#080;font-style:italic></span><span style=color:#080;font-style:italic>//012345 012345 012345
+</span></code></pre></div><p><code>continue</code>用来忽略剩余的循环体直接进入下一次循环，只存在于for循环中</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>for</span> i <span style=color:#666>:=</span> <span style=color:#666>0</span>; i &lt; <span style=color:#666>10</span>; i<span style=color:#666>++</span> {
+    <span style=color:#a2f;font-weight:700>if</span> i <span style=color:#666>==</span> <span style=color:#666>5</span> {
+        <span style=color:#a2f;font-weight:700>continue</span>
+    }
+    <span style=color:#a2f>print</span>(i)
+    <span style=color:#a2f>print</span>(<span style=color:#b44>&#34; &#34;</span>)
+}
+<span style=color:#080;font-style:italic>//Output:
+</span><span style=color:#080;font-style:italic></span><span style=color:#080;font-style:italic>//0 1 2 3 4 6 7 8 9
+</span></code></pre></div><p>for、switch 或 select 语句都可以配合标签（label）形式的标识符使用，即某一行第一个以冒号（<code>:</code>）结尾的单词，下例中continue语句指向LABEL1，当执行到该语句时，就会跳转到LABEL1标签的位置起继续执行，不过此时注意循环体内的变量并不会被释放，当j==4循环跳出后，i会自动变成下一个循环的值，不会陷入无限循环。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> main
+
+<span style=color:#a2f;font-weight:700>import</span> <span style=color:#b44>&#34;fmt&#34;</span>
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>main</span>() {
+
+LABEL1:
+	<span style=color:#a2f;font-weight:700>for</span> i <span style=color:#666>:=</span> <span style=color:#666>0</span>; i <span style=color:#666>&lt;=</span> <span style=color:#666>5</span>; i<span style=color:#666>++</span> {
+		<span style=color:#a2f;font-weight:700>for</span> j <span style=color:#666>:=</span> <span style=color:#666>0</span>; j <span style=color:#666>&lt;=</span> <span style=color:#666>5</span>; j<span style=color:#666>++</span> {
+			<span style=color:#a2f;font-weight:700>if</span> j <span style=color:#666>==</span> <span style=color:#666>4</span> {
+				<span style=color:#a2f;font-weight:700>continue</span> LABEL1
+			}
+			fmt.<span style=color:#00a000>Printf</span>(<span style=color:#b44>&#34;i is: %d, and j is: %d\n&#34;</span>, i, j)
+		}
+	}
+
+}
+</code></pre></div><p>标签的名称和一般的标识符相同，都是大小写敏感的，但为了可读性，一般全部使用大写字母。同变量相同，标签定义未使用也会导致编译错误。</p><p><code>goto</code>关键字是配合标签使用的，但这种用法并不被推荐，因为很可能导致糟糕的代码结构，一如当年的PASCAL</p><p>逆序的标签虽然可能导致错误，但正序的标签(标签位于goto语句之后)则可以正常使用，但标签和goto之间不能有新定义变量的语句，否则会导致编译失败</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#080;font-style:italic>// compile error goto2.go:8: goto TARGET jumps over declaration of b at goto2.go:8
+</span><span style=color:#080;font-style:italic></span><span style=color:#a2f;font-weight:700>package</span> main
+
+<span style=color:#a2f;font-weight:700>import</span> <span style=color:#b44>&#34;fmt&#34;</span>
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>main</span>() {
+		a <span style=color:#666>:=</span> <span style=color:#666>1</span>
+		<span style=color:#a2f;font-weight:700>goto</span> TARGET <span style=color:#080;font-style:italic>// compile error
+</span><span style=color:#080;font-style:italic></span>		b <span style=color:#666>:=</span> <span style=color:#666>9</span>
+	TARGET:  
+		b <span style=color:#666>+=</span> a
+		fmt.<span style=color:#00a000>Printf</span>(<span style=color:#b44>&#34;a is %v *** b is %v&#34;</span>, a, b)
+}
+</code></pre></div></div><footer class=post-footer><div class=post-tags><a href=/tags/go%e8%af%ad%e6%b3%95 rel=tag title=Go语法>#Go语法#</a></div><div class=addthis_inline_share_toolbox></div><div class=post-nav><div class=article-copyright><div class=article-copyright-img><img src=/img/qq_qrcode.png width=129px height=129px><div style=text-align:center>QQ扫一扫交流</div></div><div class=article-copyright-info><p><span>声明：</span>Golang语法基础4-运算符与流程控制</p><p><span>链接：</span>https://shuzang.github.io/post/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/golang-syntax-4-operators-and-flow-control/</p><p><span>作者：</span>书藏</p><p><span>声明： </span>本博客文章除特别声明外，均采用 <a href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank style=text-decoration:underline>CC BY-NC-SA 3.0</a>许可协议，转载请注明出处！</p></div></div><div class=clear></div></div><div class=reward-qr-info><div>创作实属不易，如有帮助，那就打赏博主些许茶钱吧 ^_^</div><button id=rewardButton disable=enable onclick="var qr=document.getElementById('QR');if(qr.style.display==='none'){qr.style.display='block';}else{qr.style.display='none'}">
+<span>赏</span></button><div id=QR style=display:none><div id=wechat style=display:inline-block><img id=wechat_qr src=/img/wechat-pay.png alt="WeChat Pay"><p>微信打赏</p></div><div id=alipay style=display:inline-block><img id=alipay_qr src=/img/ali-pay.png alt=Alipay><p>支付宝打赏</p></div></div></div><div class=post-nav><div class="post-nav-next post-nav-item"><a href=https://shuzang.github.io/post/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/summary-of-problems-and-optimization-considerations-about-prototype-system/ rel=next title=研究记录8-原始论文问题总结及优化考虑><i class="fa fa-chevron-left"></i>研究记录8-原始论文问题总结及优化考虑</a></div><div class="post-nav-prev post-nav-item"><a href=https://shuzang.github.io/post/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/ibft-consensus/ rel=prev title=区块链学习6-IBFT共识>区块链学习6-IBFT共识
+<i class="fa fa-chevron-right"></i></a></div></div><div id=wcomments></div></footer></article></section></div></div><div class=sidebar-toggle><div class=sidebar-toggle-line-wrap><span class="sidebar-toggle-line sidebar-toggle-line-first"></span><span class="sidebar-toggle-line sidebar-toggle-line-middle"></span><span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id=sidebar class=sidebar><div class=sidebar-inner><section class="site-overview sidebar-panel sidebar-panel-active"><div class="site-author motion-element" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image src=/images/avatar.png alt=书藏><p class=site-author-name itemprop=name>书藏</p><p class="site-description motion-element" itemprop=description></p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href=/post/><span class=site-state-item-count>334</span>
+<span class=site-state-item-name>日志</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>7</span>
+<span class=site-state-item-name>分类</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>23</span>
+<span class=site-state-item-name>标签</span></a></div></nav><div class="links-of-author motion-element"><span class=links-of-author-item><a href=https://github.com/shuzang/ target=_blank title=GitHub><i class="fa fa-fw fa-github"></i>GitHub</a></span></div><div class="tagcloud-of-blogroll motion-element tagcloud-of-blogroll-inline"><div class=tagcloud-of-blogroll-title><i class="fa fa-fw fa-tags"></i>标签云</div><ul class=tagcloud-of-blogroll-list><li class=tagcloud-of-blogroll-item><a href=/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0>论文笔记</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E4%B9%A6%E8%97%8F%E7%9A%84%E7%94%9F%E6%B4%BB%E5%91%A8%E5%88%8A>书藏的生活周刊</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95>科研记录</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/go%E8%AF%AD%E6%B3%95>Go语法</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80>计算机基础</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E6%9D%82%E8%B0%88>杂谈</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E5%8C%BA%E5%9D%97%E9%93%BE>区块链</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95>数据结构与算法</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E7%94%9F%E6%B4%BB%E6%8A%80%E8%83%BD>生活技能</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/go%E5%AE%9E%E6%88%98>Go实战</a></li></ul></div></section></div></aside></div></main><footer id=footer class=footer><div class=footer-inner><div class=copyright><span class=copyright-year>&copy; 2010 - 2022</span>
+<span class=with-love><i class="fa fa-heart"></i></span><span class=copyright-author>书藏的博客</span></div><div class=powered-info><span class=powered-by>Powered by - <a class=powered-link href=//gohugo.io target=_blank title=hugo>Hugo v0.63.2</a></span>
+<span class=separator-line>/</span>
+<span class=theme-info>Theme by - <a class=powered-link href=//github.com/elkan1788/hugo-theme-next target=_blank>NexT</a></span></div><div class=vistor-info><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><span class=site-uv><i class="fa fa-user"></i><span class=busuanzi-value id=busuanzi_value_site_uv></span></span><span class=separator-line>/</span>
+<span class=site-pv><i class="fa fa-eye"></i><span class=busuanzi-value id=busuanzi_value_site_pv></span></span></div><div class=license-info><span class=storage-info>Storage by
+<a href=https://www.ucloud.cn/ style=font-weight:700 target=_blank>UCloud云存储</a></span>
+<span class=separator-line>/</span>
+<span class=license-num><a href target=_blank></a></span></div></div></footer><div class=back-to-top><i class="fa fa-arrow-up"></i><span id=scrollpercent><span>0</span>%</span></div></div><script type=text/javascript src=//cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.min.js></script><script type=text/javascript src=/js/search.js></script><script type=text/javascript src=/js/affix.js></script><script type=text/javascript src=/js/scrollspy.js></script><script type=text/javascript>function detectIE(){var ua=window.navigator.userAgent;var msie=ua.indexOf('MSIE ');var trident=ua.indexOf('Trident/');var edge=ua.indexOf('Edge/');if(msie>0||trident>0||edge>0){return-1;}
+return 1;}
+function getCntViewHeight(){var docHeight=$('#content').height(),winHeight=$(window).height(),cntViewHeight=(docHeight>winHeight)?(docHeight-winHeight):($(document).height()-winHeight);return cntViewHeight;}
+function getScrollbarWidth(){var $div=$('<div />').addClass('scrollbar-measure').prependTo('body');var div=$div[0];var scrollbarWidth=div.offsetWidth-div.clientWidth;$div.remove();return scrollbarWidth;}
+function registerBackTop(){var THRESHOLD=50;var $top=$('.back-to-top');$(window).on('scroll',function(){$top.toggleClass('back-to-top-on',window.pageYOffset>THRESHOLD);var scrollTop=$(window).scrollTop();var cntViewHeight=getCntViewHeight();var scrollPercent=(scrollTop)/(cntViewHeight);var scrollPercentRounded=Math.round(scrollPercent*100);var scrollPercentMaxed=(scrollPercentRounded>100)?100:scrollPercentRounded;$('#scrollpercent>span').html(scrollPercentMaxed);});$top.on('click',function(){$("html,body").animate({scrollTop:0,screenLeft:0,},800);});}
+function initScrollSpy(){var tocSelector='.post-toc';var $tocElement=$(tocSelector);var activeCurrentSelector='.active-current';$tocElement.on('activate.bs.scrollspy',function(){var $currentActiveElement=$(tocSelector+' .active').last();removeCurrentActiveClass();$currentActiveElement.addClass('active-current');}).on('clear.bs.scrollspy',removeCurrentActiveClass);$('body').scrollspy({target:tocSelector});function removeCurrentActiveClass(){$(tocSelector+' '+activeCurrentSelector).removeClass(activeCurrentSelector.substring(1));}}
+function initAffix(){var headerHeight=$('.header-inner').height();var footerOffset=parseInt($('.main').css('padding-bottom'),10);var sidebarTop=headerHeight+10;$('.sidebar-inner').affix({offset:{top:sidebarTop,bottom:footerOffset}});$(document).on('affixed.bs.affix',function(){updateTOCHeight(document.body.clientHeight-100);});}
+function initTOCDimension(){var updateTOCHeightTimer;$(window).on('resize',function(){updateTOCHeightTimer&&clearTimeout(updateTOCHeightTimer);updateTOCHeightTimer=setTimeout(function(){var tocWrapperHeight=document.body.clientHeight-100;updateTOCHeight(tocWrapperHeight);},0);});updateTOCHeight(document.body.clientHeight-100);var scrollbarWidth=getScrollbarWidth();$('.post-toc').css('width','calc(100% + '+scrollbarWidth+'px)');}
+function updateTOCHeight(height){height=height||'auto';$('.post-toc').css('max-height',height);}
+$(function(){var sidebarTop=$('.header-inner').height()+10;$('#sidebar').css({'margin-top':sidebarTop}).show();var sidebarMt=parseInt($('#sidebar').css('margin-top'));var sidebarInHeight=parseInt($('.sidebar-inner').css('height'));var sideHeight=sidebarMt+sidebarInHeight;var contentHeight=$('.content-wrap').height();if(contentHeight<sideHeight){$('.content-wrap').css('min-height',sideHeight);}
+$('.site-nav-toggle').on('click',function(){var $siteNav=$('.site-nav');var $toggleLine=$('.toggle');var ON_CLASS_NAME='site-nav-on';var CLOSE_CLASS_NAME='toggle-close';var isSiteNavOn=$siteNav.hasClass(ON_CLASS_NAME);var animateAction=isSiteNavOn?'slideUp':'slideDown';var animateCallback=isSiteNavOn?'removeClass':'addClass';$siteNav.stop()[animateAction]('normal',function(){$siteNav[animateCallback](ON_CLASS_NAME);$toggleLine[animateCallback](CLOSE_CLASS_NAME);});});registerBackTop();initScrollSpy();initAffix();initTOCDimension();$('.sidebar-nav-toc').click(function(){$(this).addClass('sidebar-nav-active');$(this).next().removeClass('sidebar-nav-active');$('.'+$(this).next().attr('data-target')).toggle(500);$('.'+$(this).attr('data-target')).toggle(500);});$('.sidebar-nav-overview').click(function(){$(this).addClass('sidebar-nav-active');$(this).prev().removeClass('sidebar-nav-active');$('.'+$(this).prev().attr('data-target')).toggle(500);$('.'+$(this).attr('data-target')).toggle(500);});});</script><script src=//cdn.bootcdn.net/ajax/libs/imageviewer/0.1.0/viewer.min.js></script><script type=text/javascript>$(function(){$('.post-body').viewer();});</script><script type=text/javascript>$(function(){if(detectIE()>0){$.getScript(document.location.protocol+'//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js',function(){new Waline({el:'#wcomments',visitor:true,avatar:'wavatar',avatarCDN:'https://sdn.geekzu.org/avatar/',avatarForce:!1,wordLimit:'200',placeholder:' 欢迎留下您的宝贵建议，请填写您的昵称和邮箱便于后续交流. ^_^ ',requiredFields:['nick','mail'],serverURL:"Your WalineSerURL",lang:"zh-cn"});});}else{$('#wcomments').html('抱歉，Waline插件不支持IE或Edge，建议使用Chrome浏览器。');}});</script><script type=text/javascript src="//s7.addthis.com/js/300/addthis_widget.js#pubid=Your%20AddthisId"></script><script>(function(){var bp=document.createElement('script');var curProtocol=window.location.protocol.split(':')[0];if(curProtocol==='https'){bp.src='https://zz.bdstatic.com/linksubmit/push.js';}
+else{bp.src='http://push.zhanzhang.baidu.com/push.js';}
+var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(bp,s);})();</script></body></html>

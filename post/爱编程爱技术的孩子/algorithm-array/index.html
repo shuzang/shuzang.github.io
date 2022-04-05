@@ -1,0 +1,133 @@
+<!doctype html><html lang=zh-cn dir=content/zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=content-security-policy content="upgrade-insecure-requests"><title>算法-数组类问题 - 书藏的博客</title><meta name=keywords content="博客,程序员,区块链，思考,读书,笔记,生活,电影,旅游,"><meta name=author content="书藏"><meta property="og:title" content="算法-数组类问题"><meta property="og:site_name" content="书藏的博客"><meta property="og:image" content="/img/author.jpg"><meta name=title content="算法-数组类问题 - 书藏的博客"><meta name=description content="书藏的个人博客，记录学习的东西，以月刊记录生活"><link rel="shortcut icon" href=/img/favicon.ico><link rel=apple-touch-icon href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><link href=//cdn.bootcdn.net/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css rel=stylesheet type=text/css><link href=//cdn.bootcdn.net/ajax/libs/imageviewer/0.1.0/viewer.min.css rel=stylesheet><link href=/css/main.css rel=stylesheet type=text/css><link href=/css/syntax.css rel=stylesheet type=text/css><script async src="https://www.googletagmanager.com/gtag/js?id=UA-209130979-1"></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-209130979-1 ');</script></head><body itemscope itemtype=http://schema.org/WebPage lang=zh-hans><div class="container one-collumn sidebar-position-left page-home"><div class=headband></div><header id=header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle role=button style=opacity:1;top:0><span class=toggle-line></span><span class=toggle-line></span><span class=toggle-line></span></div></div><div class=site-meta><div class=multi-lang-switch><i class="fa fa-fw fa-language" style=margin-right:5px></i><a class=lang-link id=zh-cn href=#>中文</a></div><div class=custom-logo-site-title><a href=/ class=brand rel=start><span class=logo-line-before><i></i></span><span class=site-title>书藏的博客</span>
+<span class=logo-line-after><i></i></span></a></div><p class=site-subtitle>凡心所向，素履以往</p></div><div class=site-nav-right><div class="toggle popup-trigger" style=opacity:1;top:0><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul id=menu class=menu><li class=menu-item><a href=/ rel=section><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class=menu-item><a href=/post rel=section><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class=menu-item><a href=/about.html rel=section><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于我</a></li><li class=menu-item><a href=/404.html rel=section><i class="menu-item-icon fa fa-fw fa-heartbeat"></i><br>公益404</a></li><li class="menu-item menu-item-search"><a href=javascript:; class=popup-trigger><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class=site-search><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class=search-icon><i class="fa fa-search"></i></span><span class=popup-btn-close><i class="fa fa-times-circle"></i></span><div class=local-search-input-wrapper><input autocomplete=off placeholder=搜索关键字... spellcheck=false type=text id=local-search-input autocapitalize=none autocorrect=off></div></div><div id=local-search-result></div></div></div></nav></div></header><main id=main class=main><div class=main-inner><div class=content-wrap><div id=content class=content><section id=posts class=posts-expand><article class="post post-type-normal" itemscope itemtype=http://schema.org/Article><header class=post-header><h1 class=post-title itemprop="name headline"><a class=post-title-link href=https://shuzang.github.io/post/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/algorithm-array/ itemprop=url>算法-数组类问题</a></h1><div class=post-meta><span class=post-time><i class="fa fa-calendar-o fa-fw"></i><span class=post-meta-item-text>时间：</span>
+<time itemprop=dateCreated datetime=2016-03-22T13:04:35+08:00 content="2020-03-20">2020-03-20</time></span>
+<span class=post-category>&nbsp; | &nbsp;
+<i class="fa fa-folder-o fa-fw"></i><span class=post-meta-item-text>分类：</span>
+<span itemprop=about itemscope itemtype=https://schema.org/Thing><a href=/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90 itemprop=url rel=index style=text-decoration:underline><span itemprop=name>爱编程爱技术的孩子</span></a>
+&nbsp;</span></span>
+<span>|
+<i class="fa fa-file-word-o fa-fw"></i><span class=post-meta-item-text>字数：</span>
+<span class=leancloud-world-count>1431 字</span></span>
+<span>|
+<i class="fa fa-eye fa-fw"></i><span class=post-meta-item-text>阅读：</span>
+<span class=leancloud-view-count>3分钟</span></span>
+<span id=/post/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/algorithm-array/ class=leancloud_visitors data-flag-title=算法-数组类问题>|
+<i class="fa fa-binoculars fa-fw"></i><span class=post-meta-item-text>阅读次数：</span>
+<span class=leancloud-visitors-count></span></span></div></header><div class=post-body itemprop=articleBody><p>数组的访问时间为 $O(1)$，这是它最大的优势，但限于数组固定的大小，平常使用最多的是动态数组。在 Golang 中，其实就是[切片]^(slice)，动态数组的初始化、访问、修改、迭代、添加、删除等都是 Golang 语法的内容，这里不再介绍。事实上，一维数组的大部分问题都很好解决，我们在本文中仅介绍二维数组的一些典型问题，更多维的数组思路是相似，而且由于其复杂性，实际上很少出现。</p><h2 id=1-方向转换>1. 方向转换</h2><p>下面是一个叫做「对角线遍历」的例子，在这个例子中，我们可以理解如何在二维数组中转换前进方向，这是一个很有用的技巧。</p><p>螺旋矩阵是指一个呈螺旋状的矩阵，它的数字由第一行开始到右边不断变大，向下变大，向左变大，向上变大，如此循环。给定m和n，返回一个大小为m*n的螺旋矩阵</p><p><strong>示例：</strong></p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>input:
+3 3
+Output:
+1 2 3
+8 9 4
+7 6 5
+</code></pre></div><p><strong>思路：</strong></p><ol><li>每一步走完，判断是否超出矩阵范围，若超出，计算向哪个方向转，无论是否转向，计算下一步所在位置的x,y坐标</li><li>螺旋矩阵的转向顺序是固定的，为<code>右->下->左->上</code></li></ol><p><strong>代码：</strong></p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>spiralArray</span>(m, n <span style=color:#0b0;font-weight:700>int</span>) {
+	<span style=color:#a2f;font-weight:700>var</span> result [][]<span style=color:#0b0;font-weight:700>int</span>
+	<span style=color:#a2f;font-weight:700>for</span> i <span style=color:#666>:=</span> <span style=color:#666>0</span>; i &lt; m; i<span style=color:#666>++</span> {
+		result = <span style=color:#a2f>append</span>(result, <span style=color:#a2f>make</span>([]<span style=color:#0b0;font-weight:700>int</span>, n))
+	}
+    <span style=color:#080;font-style:italic>//x,y为当前坐标，d为方向
+</span><span style=color:#080;font-style:italic></span>	x, y, d <span style=color:#666>:=</span> <span style=color:#666>0</span>, <span style=color:#666>0</span>, <span style=color:#666>0</span>
+    <span style=color:#080;font-style:italic>//以“右-&gt;下-&gt;左-&gt;上”顺序循环，dx,dy是每一种转向的坐标变化方式
+</span><span style=color:#080;font-style:italic></span>	dx <span style=color:#666>:=</span> []<span style=color:#0b0;font-weight:700>int</span>{<span style=color:#666>0</span>, <span style=color:#666>1</span>, <span style=color:#666>0</span>, <span style=color:#666>-</span><span style=color:#666>1</span>}
+	dy <span style=color:#666>:=</span> []<span style=color:#0b0;font-weight:700>int</span>{<span style=color:#666>1</span>, <span style=color:#666>0</span>, <span style=color:#666>-</span><span style=color:#666>1</span>, <span style=color:#666>0</span>}
+	<span style=color:#a2f;font-weight:700>for</span> t <span style=color:#666>:=</span> <span style=color:#666>0</span>; t &lt; m<span style=color:#666>*</span>n; t<span style=color:#666>++</span> {
+		result[x][y] = t
+		nx, ny <span style=color:#666>:=</span> x<span style=color:#666>+</span>dx[d], y<span style=color:#666>+</span>dy[d] <span style=color:#080;font-style:italic>//计算下一个坐标
+</span><span style=color:#080;font-style:italic></span>		<span style=color:#a2f;font-weight:700>if</span> nx &lt; <span style=color:#666>0</span> <span style=color:#666>||</span> nx <span style=color:#666>&gt;=</span> m <span style=color:#666>||</span> ny &lt; <span style=color:#666>0</span> <span style=color:#666>||</span> ny <span style=color:#666>&gt;=</span> n <span style=color:#666>||</span> result[nx][ny] <span style=color:#666>!=</span> <span style=color:#666>0</span> {
+			d = (d <span style=color:#666>+</span> <span style=color:#666>1</span>) <span style=color:#666>%</span> <span style=color:#666>4</span> <span style=color:#080;font-style:italic>//下一个坐标有问题，采用下一种转向方式
+</span><span style=color:#080;font-style:italic></span>			nx = x <span style=color:#666>+</span> dx[d]
+			ny = y <span style=color:#666>+</span> dy[d]
+		}
+		x = nx
+		y = ny
+	}
+	w <span style=color:#666>:=</span> bufio.<span style=color:#00a000>NewWriter</span>(os.Stdout)
+	<span style=color:#a2f;font-weight:700>for</span> i <span style=color:#666>:=</span> <span style=color:#666>0</span>; i &lt; m; i<span style=color:#666>++</span> {
+		<span style=color:#a2f;font-weight:700>for</span> j <span style=color:#666>:=</span> <span style=color:#666>0</span>; j &lt; n; j<span style=color:#666>++</span> {
+			w.<span style=color:#00a000>WriteString</span>(fmt.<span style=color:#00a000>Sprintf</span>(<span style=color:#b44>&#34;%d&#34;</span>, result[i][j]))
+			<span style=color:#a2f;font-weight:700>if</span> j <span style=color:#666>!=</span> n<span style=color:#666>-</span><span style=color:#666>1</span> {
+				w.<span style=color:#00a000>WriteString</span>(fmt.<span style=color:#00a000>Sprintf</span>(<span style=color:#b44>&#34; &#34;</span>))
+			}
+		}
+		w.<span style=color:#00a000>WriteString</span>(fmt.<span style=color:#00a000>Sprintf</span>(<span style=color:#b44>&#34;\n&#34;</span>))
+	}
+	w.<span style=color:#00a000>Flush</span>()
+}
+</code></pre></div><h2 id=2-对撞指针>2. 对撞指针</h2><p>对撞指针是数组类问题另一个常用的技巧，其含义是：将指针 i 和 j 分别指向数组第一个元素和最后一个元素，然后指针 i 不断向前，指针 j 不断递减，直到 i == j（终止条件是可以根据题目变化的）。</p><p>下面我们以两数之和为例给出一个对撞指针使用的示范。题目描述如下：</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-fallback data-lang=fallback>给定一个已按照升序排列的有序数组，找到两个数使得它们相加之和等于目标数。函数应该返回这两个下标值 index1 和 index2，其中 index1 必须小于 index2。
+
+说明：
+- 返回的下标值（index1 和 index2）不是从零开始的。
+- 你可以假设每个输入只对应唯一的答案，而且你不可以重复使用相同的元素
+
+示例
+输入: numbers = [2, 7, 11, 15], target = 9
+输出: [1,2]
+解释: 2 与 7 之和等于目标数 9 。因此 index1 = 1, index2 = 2 。
+</code></pre></div><p>普通的办法需要两层循环，时间复杂度是$O(n^2)$，利用对撞指针，我们可以将复杂度降低到 $O(n)$</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>twoSum</span>(numbers []<span style=color:#0b0;font-weight:700>int</span>, target <span style=color:#0b0;font-weight:700>int</span>) []<span style=color:#0b0;font-weight:700>int</span> {
+    i,j <span style=color:#666>:=</span> <span style=color:#666>0</span>,<span style=color:#a2f>len</span>(numbers)<span style=color:#666>-</span><span style=color:#666>1</span>
+    <span style=color:#a2f;font-weight:700>for</span> i &lt; j {
+        <span style=color:#a2f;font-weight:700>if</span> numbers[i] <span style=color:#666>+</span> numbers[j] &gt; target {
+            j<span style=color:#666>--</span>
+        }<span style=color:#a2f;font-weight:700>else</span> <span style=color:#a2f;font-weight:700>if</span> numbers[i] <span style=color:#666>+</span> numbers[j] &lt; target {
+            i<span style=color:#666>++</span>
+        }<span style=color:#a2f;font-weight:700>else</span>{
+            <span style=color:#a2f;font-weight:700>return</span> []<span style=color:#0b0;font-weight:700>int</span>{i<span style=color:#666>+</span><span style=color:#666>1</span>,j<span style=color:#666>+</span><span style=color:#666>1</span>}
+        }
+    }
+    <span style=color:#a2f;font-weight:700>return</span> <span style=color:#a2f;font-weight:700>nil</span>
+}
+</code></pre></div><h2 id=3-滑动窗口>3. 滑动窗口</h2><p>对撞指针是两个指针向中间靠拢，滑动窗口是两个指针向同一侧移动，如果还记得计算机网络的内容，这里就非常容易理解。滑动窗口同样可以将时间复杂度控制在 $O(n)$ 级别。</p><p>我们以「长度最小的子数组」为例给出一个滑动窗口解题的例子，题目描述如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>给定一个含有 n 个正整数的数组和一个正整数 s <span>，</span>找出该数组中满足其和 <span>≥</span> s 的长度最小的子数组<span>，</span>并返回其长度<span>。</span>如果不存在符合条件的子数组<span>，</span>返回 <span style=color:#666>0</span><span>。</span>
+
+示例
+输入<span>：</span>s = <span style=color:#666>7</span>, nums = [<span style=color:#666>2</span>,<span style=color:#666>3</span>,<span style=color:#666>1</span>,<span style=color:#666>2</span>,<span style=color:#666>4</span>,<span style=color:#666>3</span>]
+输出<span>：</span><span style=color:#666>2</span>
+解释<span>：</span>子数组 [<span style=color:#666>4</span>,<span style=color:#666>3</span>] 是该条件下的长度最小的子数组<span>。</span>
+</code></pre></div><p>暴力法的复杂度显然是 $O(n^2)$，我们尝试用滑动窗口求解</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>minSubArrayLen</span>(s <span style=color:#0b0;font-weight:700>int</span>, nums []<span style=color:#0b0;font-weight:700>int</span>) <span style=color:#0b0;font-weight:700>int</span> {
+    n <span style=color:#666>:=</span> <span style=color:#a2f>len</span>(nums)
+   
+    i,j <span style=color:#666>:=</span> <span style=color:#666>0</span>,<span style=color:#666>0</span>
+    sum <span style=color:#666>:=</span> <span style=color:#666>0</span>
+    min <span style=color:#666>:=</span> n<span style=color:#666>+</span><span style=color:#666>1</span>
+    
+    <span style=color:#a2f;font-weight:700>for</span> i &lt; n {
+        <span style=color:#a2f;font-weight:700>if</span> j &lt; n <span style=color:#666>&amp;&amp;</span> sum &lt; s {
+            sum <span style=color:#666>+=</span> nums[j]
+            j<span style=color:#666>++</span>
+        }<span style=color:#a2f;font-weight:700>else</span>{
+            sum <span style=color:#666>-=</span> nums[i]
+            i<span style=color:#666>++</span>
+        }
+        <span style=color:#a2f;font-weight:700>if</span> sum <span style=color:#666>&gt;=</span> s <span style=color:#666>&amp;&amp;</span> j<span style=color:#666>-</span>i &lt; min {
+            min = j<span style=color:#666>-</span>i
+        }
+    }
+    <span style=color:#a2f;font-weight:700>if</span> min <span style=color:#666>==</span> n<span style=color:#666>+</span><span style=color:#666>1</span> {
+        <span style=color:#a2f;font-weight:700>return</span> <span style=color:#666>0</span>
+    }
+    <span style=color:#a2f;font-weight:700>return</span> min
+}
+</code></pre></div><p>滑动窗口最重要的是确定何时移动两个指针，当然，边界和初始值也非常重要。</p><p>当然，总体来看的话，其实后面两种方法都属于双指针的技巧。</p></div><footer class=post-footer><div class=post-tags><a href=/tags/%e6%95%b0%e6%8d%ae%e7%bb%93%e6%9e%84%e4%b8%8e%e7%ae%97%e6%b3%95 rel=tag title=数据结构与算法>#数据结构与算法#</a></div><div class=addthis_inline_share_toolbox></div><div class=post-nav><div class=article-copyright><div class=article-copyright-img><img src=/img/qq_qrcode.png width=129px height=129px><div style=text-align:center>QQ扫一扫交流</div></div><div class=article-copyright-info><p><span>声明：</span>算法-数组类问题</p><p><span>链接：</span>https://shuzang.github.io/post/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/algorithm-array/</p><p><span>作者：</span>书藏</p><p><span>声明： </span>本博客文章除特别声明外，均采用 <a href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank style=text-decoration:underline>CC BY-NC-SA 3.0</a>许可协议，转载请注明出处！</p></div></div><div class=clear></div></div><div class=reward-qr-info><div>创作实属不易，如有帮助，那就打赏博主些许茶钱吧 ^_^</div><button id=rewardButton disable=enable onclick="var qr=document.getElementById('QR');if(qr.style.display==='none'){qr.style.display='block';}else{qr.style.display='none'}">
+<span>赏</span></button><div id=QR style=display:none><div id=wechat style=display:inline-block><img id=wechat_qr src=/img/wechat-pay.png alt="WeChat Pay"><p>微信打赏</p></div><div id=alipay style=display:inline-block><img id=alipay_qr src=/img/ali-pay.png alt=Alipay><p>支付宝打赏</p></div></div></div><div class=post-nav><div class="post-nav-next post-nav-item"><a href=https://shuzang.github.io/post/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/algorithm-search/ rel=next title=算法-搜索><i class="fa fa-chevron-left"></i>算法-搜索</a></div><div class="post-nav-prev post-nav-item"><a href=https://shuzang.github.io/post/%E5%B9%B3%E6%97%A5%E9%87%8C%E7%9A%84%E7%99%BD%E6%97%A5%E6%A2%A6/%E6%96%87%E6%91%98-%E8%A7%A6%E5%8A%A8%E4%BA%BA%E5%BF%83%E7%9A%84%E5%8F%A5%E5%AD%90/ rel=prev title=触动人心的句子>触动人心的句子
+<i class="fa fa-chevron-right"></i></a></div></div><div id=wcomments></div></footer></article></section></div></div><div class=sidebar-toggle><div class=sidebar-toggle-line-wrap><span class="sidebar-toggle-line sidebar-toggle-line-first"></span><span class="sidebar-toggle-line sidebar-toggle-line-middle"></span><span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id=sidebar class=sidebar><div class=sidebar-inner><section class="site-overview sidebar-panel sidebar-panel-active"><div class="site-author motion-element" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image src=/images/avatar.png alt=书藏><p class=site-author-name itemprop=name>书藏</p><p class="site-description motion-element" itemprop=description></p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href=/post/><span class=site-state-item-count>334</span>
+<span class=site-state-item-name>日志</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>7</span>
+<span class=site-state-item-name>分类</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>23</span>
+<span class=site-state-item-name>标签</span></a></div></nav><div class="links-of-author motion-element"><span class=links-of-author-item><a href=https://github.com/shuzang/ target=_blank title=GitHub><i class="fa fa-fw fa-github"></i>GitHub</a></span></div><div class="tagcloud-of-blogroll motion-element tagcloud-of-blogroll-inline"><div class=tagcloud-of-blogroll-title><i class="fa fa-fw fa-tags"></i>标签云</div><ul class=tagcloud-of-blogroll-list><li class=tagcloud-of-blogroll-item><a href=/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0>论文笔记</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E4%B9%A6%E8%97%8F%E7%9A%84%E7%94%9F%E6%B4%BB%E5%91%A8%E5%88%8A>书藏的生活周刊</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95>科研记录</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/go%E8%AF%AD%E6%B3%95>Go语法</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80>计算机基础</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E6%9D%82%E8%B0%88>杂谈</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E5%8C%BA%E5%9D%97%E9%93%BE>区块链</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95>数据结构与算法</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E7%94%9F%E6%B4%BB%E6%8A%80%E8%83%BD>生活技能</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/go%E5%AE%9E%E6%88%98>Go实战</a></li></ul></div></section></div></aside></div></main><footer id=footer class=footer><div class=footer-inner><div class=copyright><span class=copyright-year>&copy; 2010 - 2022</span>
+<span class=with-love><i class="fa fa-heart"></i></span><span class=copyright-author>书藏的博客</span></div><div class=powered-info><span class=powered-by>Powered by - <a class=powered-link href=//gohugo.io target=_blank title=hugo>Hugo v0.63.2</a></span>
+<span class=separator-line>/</span>
+<span class=theme-info>Theme by - <a class=powered-link href=//github.com/elkan1788/hugo-theme-next target=_blank>NexT</a></span></div><div class=vistor-info><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><span class=site-uv><i class="fa fa-user"></i><span class=busuanzi-value id=busuanzi_value_site_uv></span></span><span class=separator-line>/</span>
+<span class=site-pv><i class="fa fa-eye"></i><span class=busuanzi-value id=busuanzi_value_site_pv></span></span></div><div class=license-info><span class=storage-info>Storage by
+<a href=https://www.ucloud.cn/ style=font-weight:700 target=_blank>UCloud云存储</a></span>
+<span class=separator-line>/</span>
+<span class=license-num><a href target=_blank></a></span></div></div></footer><div class=back-to-top><i class="fa fa-arrow-up"></i><span id=scrollpercent><span>0</span>%</span></div></div><script type=text/javascript src=//cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.min.js></script><script type=text/javascript src=/js/search.js></script><script type=text/javascript src=/js/affix.js></script><script type=text/javascript src=/js/scrollspy.js></script><script type=text/javascript>function detectIE(){var ua=window.navigator.userAgent;var msie=ua.indexOf('MSIE ');var trident=ua.indexOf('Trident/');var edge=ua.indexOf('Edge/');if(msie>0||trident>0||edge>0){return-1;}
+return 1;}
+function getCntViewHeight(){var docHeight=$('#content').height(),winHeight=$(window).height(),cntViewHeight=(docHeight>winHeight)?(docHeight-winHeight):($(document).height()-winHeight);return cntViewHeight;}
+function getScrollbarWidth(){var $div=$('<div />').addClass('scrollbar-measure').prependTo('body');var div=$div[0];var scrollbarWidth=div.offsetWidth-div.clientWidth;$div.remove();return scrollbarWidth;}
+function registerBackTop(){var THRESHOLD=50;var $top=$('.back-to-top');$(window).on('scroll',function(){$top.toggleClass('back-to-top-on',window.pageYOffset>THRESHOLD);var scrollTop=$(window).scrollTop();var cntViewHeight=getCntViewHeight();var scrollPercent=(scrollTop)/(cntViewHeight);var scrollPercentRounded=Math.round(scrollPercent*100);var scrollPercentMaxed=(scrollPercentRounded>100)?100:scrollPercentRounded;$('#scrollpercent>span').html(scrollPercentMaxed);});$top.on('click',function(){$("html,body").animate({scrollTop:0,screenLeft:0,},800);});}
+function initScrollSpy(){var tocSelector='.post-toc';var $tocElement=$(tocSelector);var activeCurrentSelector='.active-current';$tocElement.on('activate.bs.scrollspy',function(){var $currentActiveElement=$(tocSelector+' .active').last();removeCurrentActiveClass();$currentActiveElement.addClass('active-current');}).on('clear.bs.scrollspy',removeCurrentActiveClass);$('body').scrollspy({target:tocSelector});function removeCurrentActiveClass(){$(tocSelector+' '+activeCurrentSelector).removeClass(activeCurrentSelector.substring(1));}}
+function initAffix(){var headerHeight=$('.header-inner').height();var footerOffset=parseInt($('.main').css('padding-bottom'),10);var sidebarTop=headerHeight+10;$('.sidebar-inner').affix({offset:{top:sidebarTop,bottom:footerOffset}});$(document).on('affixed.bs.affix',function(){updateTOCHeight(document.body.clientHeight-100);});}
+function initTOCDimension(){var updateTOCHeightTimer;$(window).on('resize',function(){updateTOCHeightTimer&&clearTimeout(updateTOCHeightTimer);updateTOCHeightTimer=setTimeout(function(){var tocWrapperHeight=document.body.clientHeight-100;updateTOCHeight(tocWrapperHeight);},0);});updateTOCHeight(document.body.clientHeight-100);var scrollbarWidth=getScrollbarWidth();$('.post-toc').css('width','calc(100% + '+scrollbarWidth+'px)');}
+function updateTOCHeight(height){height=height||'auto';$('.post-toc').css('max-height',height);}
+$(function(){var sidebarTop=$('.header-inner').height()+10;$('#sidebar').css({'margin-top':sidebarTop}).show();var sidebarMt=parseInt($('#sidebar').css('margin-top'));var sidebarInHeight=parseInt($('.sidebar-inner').css('height'));var sideHeight=sidebarMt+sidebarInHeight;var contentHeight=$('.content-wrap').height();if(contentHeight<sideHeight){$('.content-wrap').css('min-height',sideHeight);}
+$('.site-nav-toggle').on('click',function(){var $siteNav=$('.site-nav');var $toggleLine=$('.toggle');var ON_CLASS_NAME='site-nav-on';var CLOSE_CLASS_NAME='toggle-close';var isSiteNavOn=$siteNav.hasClass(ON_CLASS_NAME);var animateAction=isSiteNavOn?'slideUp':'slideDown';var animateCallback=isSiteNavOn?'removeClass':'addClass';$siteNav.stop()[animateAction]('normal',function(){$siteNav[animateCallback](ON_CLASS_NAME);$toggleLine[animateCallback](CLOSE_CLASS_NAME);});});registerBackTop();initScrollSpy();initAffix();initTOCDimension();$('.sidebar-nav-toc').click(function(){$(this).addClass('sidebar-nav-active');$(this).next().removeClass('sidebar-nav-active');$('.'+$(this).next().attr('data-target')).toggle(500);$('.'+$(this).attr('data-target')).toggle(500);});$('.sidebar-nav-overview').click(function(){$(this).addClass('sidebar-nav-active');$(this).prev().removeClass('sidebar-nav-active');$('.'+$(this).prev().attr('data-target')).toggle(500);$('.'+$(this).attr('data-target')).toggle(500);});});</script><script src=//cdn.bootcdn.net/ajax/libs/imageviewer/0.1.0/viewer.min.js></script><script type=text/javascript>$(function(){$('.post-body').viewer();});</script><script type=text/javascript>$(function(){if(detectIE()>0){$.getScript(document.location.protocol+'//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js',function(){new Waline({el:'#wcomments',visitor:true,avatar:'wavatar',avatarCDN:'https://sdn.geekzu.org/avatar/',avatarForce:!1,wordLimit:'200',placeholder:' 欢迎留下您的宝贵建议，请填写您的昵称和邮箱便于后续交流. ^_^ ',requiredFields:['nick','mail'],serverURL:"Your WalineSerURL",lang:"zh-cn"});});}else{$('#wcomments').html('抱歉，Waline插件不支持IE或Edge，建议使用Chrome浏览器。');}});</script><script type=text/javascript src="//s7.addthis.com/js/300/addthis_widget.js#pubid=Your%20AddthisId"></script><script>(function(){var bp=document.createElement('script');var curProtocol=window.location.protocol.split(':')[0];if(curProtocol==='https'){bp.src='https://zz.bdstatic.com/linksubmit/push.js';}
+else{bp.src='http://push.zhanzhang.baidu.com/push.js';}
+var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(bp,s);})();</script></body></html>
