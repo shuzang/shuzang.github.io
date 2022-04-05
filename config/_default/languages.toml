@@ -1,0 +1,11 @@
+[zh-CN]
+  title = "书藏的博客"
+  languageName = "中文"
+  weight = 1
+  contentdir = "content/zh-CN"
+
+[en]
+  title = "Shuzang's Blog"
+  languageName = "English"
+  weight = 2
+  contentdir = "content/en"

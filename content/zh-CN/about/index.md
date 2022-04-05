@@ -1,7 +1,8 @@
 ---
-title: "About"
+title: 关于我
 date: 2019-04-09
-music: true
+url: "about.html"
+type: about
 ---
 
 
@@ -12,8 +13,7 @@ music: true
 
 ## 关于我
 
-- ~~研究生在读，研究方向为 IoT 和 blockchain~~
-- 毕业等待就职中
+- 国企咸鱼一枚
 - 喜欢效率和极简，喜欢看电影、读书、旅行和健身
 - 想在这短短的一生中体验这世间美好的一切
 

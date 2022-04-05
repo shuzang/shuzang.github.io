@@ -364,10 +364,6 @@ https://www.bilibili.com/video/av47027633
 {{</* bilibili av=47027633 */>}}
 ```
 
-呈现的输出效果如下:
-
-{{< bilibili av=47027633 >}}
-
 如果视频包含多个部分, 则除了视频的 `av` ID之外, 还需要 `p`, 默认值为 `1`, 例如:
 
 ```code
@@ -404,10 +400,6 @@ https://www.bilibili.com/video/av36570401?p=3
 {{</* music url="https://rainymood.com/audio1110/0.m4a" name=rainymood artist=rainymood cover="https://rainymood.com/i/badge.jpg" */>}}
 ```
 
-呈现的输出效果如下:
-
-{{< music url="https://rainymood.com/audio1110/0.m4a" name=rainymood artist=rainymood cover="https://rainymood.com/i/badge.jpg" >}}
-
 ##### 音乐平台 URL 的自动识别 
 
 `music` shortcode 有一个命名参数来使用音乐平台 URL 的自动识别:
@@ -421,10 +413,6 @@ https://www.bilibili.com/video/av36570401?p=3
 或者
 {{</* music "https://music.163.com/#/playlist?id=60198" */>}}
 ```
-
-呈现的输出效果如下:
-
-{{< music auto="https://music.163.com/#/playlist?id=60198" >}}
 
 ##### 自定义音乐平台, 类型和 ID 
 
@@ -443,10 +431,6 @@ https://www.bilibili.com/video/av36570401?p=3
 或者
 {{</* music netease song 1868553 */>}}
 ```
-
-呈现的输出效果如下:
-
-{{< music netease song 1868553 >}}
 
 ##### 其它参数 
 
@@ -485,12 +469,6 @@ https://www.bilibili.com/video/av36570401?p=3
 这一个带有基于 [TypeIt](https://typeitjs.com/) 的 **打字动画** 的 *段落*...
 {{</* /typeit */>}}
 ```
-
-呈现的输出效果如下:
-
-{{< typeit >}}
-这一个带有基于 [TypeIt](https://typeitjs.com/) 的 **打字动画** 的 *段落*...
-{{< /typeit >}}
 
 ## 6. 写作工具
 

@@ -1,0 +1,43 @@
+Description = "书藏的个人博客，记录学习的东西，以月刊记录生活"
+Keywords =  "博客, 程序员, 区块链，思考, 读书, 笔记, 生活, 电影, 旅游, "
+Subtitle = "凡心所向，素履以往"
+AuthorImg = "/images/avatar.png"
+AuthorName = "书藏"
+Introduce = ""
+DateFormat = "2006-01-02"
+YearFormat = "2006年"
+MonthFormat = "01-02"
+
+ArticleDecContent = "本博客文章除特别声明外，均采用 <a href='https://creativecommons.org/licenses/by-nc-sa/4.0/' target='_blank' style='text-decoration: underline;'>CC BY-NC-SA 3.0</a>许可协议，转载请注明出处！"
+
+[Footer]
+ StorageLink = "https://www.ucloud.cn/"
+ StorageName = "UCloud云存储"
+#  ICPLink = "http://beian.miit.gov.cn"
+#  ICPNo = "粤ICP备18047355号"
+
+[[Socials]]
+  Name = "GitHub"
+  Icon = "github"
+  URL = "https://github.com/shuzang/"
+
+#[[Socials]]
+#  Name = "知乎"
+#  Icon = "globe"
+#  URL = "https://www.zhihu.com/people/fan-meng-xing-chen-1"
+
+#[[Links]]
+#  Name = "Nutz"
+#  Permalink = "https://nutzam.com/"
+
+#[[Links]]
+#  Name = "JFinal"
+#  Permalink = "https://jfinal.com/"
+
+#[[Links]]
+#  Name = "Wendal"
+#  Permalink = "http://wendal.net/"
+
+#[[Links]]
+#  Name = "廖雪峰"
+#  Permalink = "https://www.liaoxuefeng.com/"
