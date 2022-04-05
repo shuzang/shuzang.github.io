@@ -25,6 +25,8 @@ hasCJKLanguage = true
 
 timeout = 100000
 ignoreErrors = ["error-remote-getjson"]
+[permalinks]
+  post = '/:year/:month/:slug/'
 
 [sitemap]
   filename = "sitemap.xml"
