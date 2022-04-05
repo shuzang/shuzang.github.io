@@ -1,0 +1,371 @@
+<!doctype html><html lang=zh-cn dir=content/zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=content-security-policy content="upgrade-insecure-requests"><title>Golang语法基础2-命令、包与模块 - 书藏的博客</title><meta name=keywords content="博客,程序员,区块链，思考,读书,笔记,生活,电影,旅游,"><meta name=author content="书藏"><meta property="og:title" content="Golang语法基础2-命令、包与模块"><meta property="og:site_name" content="书藏的博客"><meta property="og:image" content="/img/avatar.png"><meta name=title content="Golang语法基础2-命令、包与模块 - 书藏的博客"><meta name=description content="书藏的个人博客，记录学习的东西，以月刊记录生活"><link rel="shortcut icon" href=/img/favicon.ico><link rel=apple-touch-icon href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><link href=//cdn.bootcdn.net/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css rel=stylesheet type=text/css><link href=//cdn.bootcdn.net/ajax/libs/imageviewer/0.1.0/viewer.min.css rel=stylesheet><link href=/css/main.css rel=stylesheet type=text/css><link href=/css/syntax.css rel=stylesheet type=text/css><script async src="https://www.googletagmanager.com/gtag/js?id=UA-209130979-1"></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-209130979-1 ');</script></head><body itemscope itemtype=http://schema.org/WebPage lang=zh-hans><div class="container one-collumn sidebar-position-left page-home"><div class=headband></div><header id=header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle role=button style=opacity:1;top:0><span class=toggle-line></span><span class=toggle-line></span><span class=toggle-line></span></div></div><div class=site-meta><div class=multi-lang-switch><i class="fa fa-fw fa-language" style=margin-right:5px></i><a class=lang-link id=zh-cn href=#>中文</a></div><div class=custom-logo-site-title><a href=/ class=brand rel=start><span class=logo-line-before><i></i></span><span class=site-title>书藏的博客</span>
+<span class=logo-line-after><i></i></span></a></div><p class=site-subtitle>凡心所向，素履以往</p></div><div class=site-nav-right><div class="toggle popup-trigger" style=opacity:1;top:0><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul id=menu class=menu><li class=menu-item><a href=/ rel=section><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class=menu-item><a href=/post rel=section><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class=menu-item><a href=/about.html rel=section><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于我</a></li><li class=menu-item><a href=/404.html rel=section><i class="menu-item-icon fa fa-fw fa-heartbeat"></i><br>公益404</a></li><li class="menu-item menu-item-search"><a href=javascript:; class=popup-trigger><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class=site-search><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class=search-icon><i class="fa fa-search"></i></span><span class=popup-btn-close><i class="fa fa-times-circle"></i></span><div class=local-search-input-wrapper><input autocomplete=off placeholder=搜索关键字... spellcheck=false type=text id=local-search-input autocapitalize=none autocorrect=off></div></div><div id=local-search-result></div></div></div></nav></div></header><main id=main class=main><div class=main-inner><div class=content-wrap><div id=content class=content><section id=posts class=posts-expand><article class="post post-type-normal" itemscope itemtype=http://schema.org/Article><header class=post-header><h1 class=post-title itemprop="name headline"><a class=post-title-link href=https://shuzang.github.io/2019/09/golang-basic-grammer-2-command-package-module/ itemprop=url>Golang语法基础2-命令、包与模块</a></h1><div class=post-meta><span class=post-time><i class="fa fa-calendar-o fa-fw"></i><span class=post-meta-item-text>时间：</span>
+<time itemprop=dateCreated datetime=2016-03-22T13:04:35+08:00 content="2019-09-19">2019-09-19</time></span>
+<span class=post-category>&nbsp; | &nbsp;
+<i class="fa fa-folder-o fa-fw"></i><span class=post-meta-item-text>分类：</span>
+<span itemprop=about itemscope itemtype=https://schema.org/Thing><a href=/categories/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF itemprop=url rel=index style=text-decoration:underline><span itemprop=name>Golang学习之路</span></a>
+&nbsp;</span></span>
+<span>|
+<i class="fa fa-file-word-o fa-fw"></i><span class=post-meta-item-text>字数：</span>
+<span class=leancloud-world-count>6621 字</span></span>
+<span>|
+<i class="fa fa-eye fa-fw"></i><span class=post-meta-item-text>阅读：</span>
+<span class=leancloud-view-count>14分钟</span></span>
+<span id=/2019/09/golang-basic-grammer-2-command-package-module/ class=leancloud_visitors data-flag-title=Golang语法基础2-命令、包与模块>|
+<i class="fa fa-binoculars fa-fw"></i><span class=post-meta-item-text>阅读次数：</span>
+<span class=leancloud-visitors-count></span></span></div></header><div class=post-body itemprop=articleBody><p>本篇介绍Go中的基础命令，包和模块。</p><h2 id=1-命令>1. 命令</h2><p>Go 在安装后自带一个命令行工具，名为 <code>go</code>，用来下载、编译、安装、测试 Go 的包和源文件，关于 Go CLI 的发展历史和设计理念，可以查看 <a href=https://golang.google.cn/doc/articles/go_command.html>About the go command</a>，这里只介绍如何使用这些命令。</p><p>Go 命令的用法如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>go &lt;command&gt; <span style=color:#666>[</span>arguments<span style=color:#666>]</span>
+</code></pre></div><p>可用命令如下，使用 <code>go help &lt;command></code> 可获取对应命令的帮助信息</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>bug         start a bug report
+build       compile packages and dependencies
+clean       remove object files and cached files
+doc         show documentation <span style=color:#a2f;font-weight:700>for</span> package or symbol
+env         print Go environment information
+fix         update packages to use new APIs
+fmt         gofmt <span style=color:#666>(</span>reformat<span style=color:#666>)</span> package sources
+generate    generate Go files by processing <span style=color:#a2f>source</span>
+get         add dependencies to current module and install them
+install     compile and install packages and dependencies
+list        list packages or modules
+mod         module maintenance
+run         compile and run Go program
+<span style=color:#a2f>test</span>        <span style=color:#a2f>test</span> packages
+tool        run specified go tool
+version     print Go version
+vet         report likely mistakes in packages
+</code></pre></div><p>其它的一些帮助主题如下，使用 <code>go help &lt;topic></code> 可以查看相关主题的说明</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>buildmode   build modes
+c           calling between Go and C
+cache       build and <span style=color:#a2f>test</span> caching
+environment environment variables
+filetype    file types
+go.mod      the go.mod file
+gopath      GOPATH environment variable
+gopath-get  legacy GOPATH go get
+goproxy     module proxy protocol
+importpath  import path syntax
+modules     modules, module versions, and more
+module-get  module-aware go get
+module-auth module authentication using go.sum
+module-private module configuration <span style=color:#a2f;font-weight:700>for</span> non-public modules
+packages    package lists and patterns
+testflag    testing flags
+testfunc    testing functions
+</code></pre></div><p>我们之前已经接触过几种命令，包括查看环境变量的 <code>go env</code>，查看go版本的 <code>go version</code>，用于编译和安装的<code>go install</code>和<code>go build</code>，已经对它们有了一定的了解，下面详细解释所有的命令，明确它们的作用，弄清楚它们的区别。</p><h3 id=11-command>1.1 command</h3><p>当前命令一共17个，使用<code> go help &lt;command></code>可以查看这些命令的详细说明</p><h4 id=go-build>go build</h4><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>go build <span style=color:#666>[</span>-o output<span style=color:#666>]</span> <span style=color:#666>[</span>-i<span style=color:#666>]</span> <span style=color:#666>[</span>build flags<span style=color:#666>]</span> <span style=color:#666>[</span>packages<span style=color:#666>]</span>
+</code></pre></div><p><code>go build</code> 编译导入的包和依赖，但会忽略掉以 <code>_test.go</code> 结尾的文件，因为这些文件是用来测试的。</p><p>编译<code>main</code>包时，输出的可执行文件会放到<strong>当前</strong>目录下，可执行文件的后缀取决于操作系统，只有在windows下后缀才会是<code>.exe</code>，而可执行文件的名字同编译的go文件名相同，如ed.go会编译成ed.exe。</p><p>编译多个包或单个非<code>main</code>包时，编译器不会输出可执行文件，仅仅作为这些包是否可编译的一个检查。</p><p>以 hello world 程序为例，编译后的 hello.exe 文件位于项目根目录下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ go build github.com/shuzang/hello
+$ ls
+go.mod  go.sum  gotest.exe  main.go
+</code></pre></div><p>加入 <code>-o</code> 参数可以指定输出文件，<code>-i</code>则在编译后自动执行安装过程（默认只会编译不会安装）</p><h4 id=go-install>go install</h4><p><code>go install</code> 命令在编译的基础上增添了安装这一步，<code>安装</code> 的基本含义是将生成的可执行文件放到指定的目录，默认为 GOBIN 环境变量指定的目录，即 <code>$GOPATH/bin</code>。仍以<code>hello</code>为例，如下命令执行后，<code>hello.exe</code>文件将位于<code>$GOPATH/bin</code>目录下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell>&gt; go install github.com/shuzang/hello
+</code></pre></div><h4 id=go-get>go get</h4><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>go get <span style=color:#666>[</span>-d<span style=color:#666>]</span> <span style=color:#666>[</span>-t<span style=color:#666>]</span> <span style=color:#666>[</span>-u<span style=color:#666>]</span> <span style=color:#666>[</span>-v<span style=color:#666>]</span> <span style=color:#666>[</span>-insecure<span style=color:#666>]</span> <span style=color:#666>[</span>build flags<span style=color:#666>]</span> <span style=color:#666>[</span>packages<span style=color:#666>]</span>
+</code></pre></div><p><code>go get</code> 相比 <code>go install</code> 又多了一步：解析与添加依赖到当前包。完成这一步后自动编译和安装它们。</p><p><code>go get</code> 下载的默认路径是 <code>GOPATH/pkg/mod</code> ，默认下载最新版本，但版本的选择规则比较复杂，可以查看命令说明。下面是一个使用实例</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell>&gt; go get -v github.com/google/codesearch/index
+github.com/google/codesearch (download)
+github.com/google/codesearch/sparse
+github.com/google/codesearch/index
+</code></pre></div><p><code>-v</code>参数输出下载安装的详细过程，并输出debug信息，其它的一些可选参数说明如下</p><ul><li><code>-d</code>只下载不安装</li><li><code>-fix</code>在对下载的包解析依赖项或编译前先运行修复工具</li><li><code>-t</code>下载为指定的包生成测试需要的包</li><li><code>-u</code>用于更新已有的包和依赖</li></ul><h4 id=go-run>go run</h4><p>以上三个命令虽然都包含编译过程，但也到此为止，在生成可执行文件后将不再做任何操作，需要自己来执行。<code>go run</code>命令则在编译后直接执行运行操作，以<code>hello</code>为例</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell>&gt; go run github.com/shuzang/hello
+Hello, Go!
+</code></pre></div><h4 id=go-version>go version</h4><p><code>go version</code>在没有参数时，会打印自身的版本信息</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell>&gt; go version
+go version go1.13.4 windows/amd64
+</code></pre></div><p>但是<code>go version</code>后也可以跟一个目录，这时会递归的查找该目录下的可执行文件，并打印它们的版本信息，以<code>bin</code>目录为例</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell><span style=color:#a2f>PS </span>C:\Users\lylw1\go&gt; go version bin
+bin\cobra.exe<span>:</span> go1.13.4
+bin\dlv.exe<span>:</span> go1.13.4
+bin\go-outline.exe<span>:</span> go1.13.4
+bin\go-symbols.exe<span>:</span> go1.13.4
+bin\gocode-gomod.exe<span>:</span> go1.13.4
+bin\gocode.exe<span>:</span> go1.13.4
+bin\godef.exe<span>:</span> go1.13.4
+bin\golint.exe<span>:</span> go1.13.4
+bin\gopkgs.exe<span>:</span> go1.13.4
+bin\gorename.exe<span>:</span> go1.13.4
+bin\goreturns.exe<span>:</span> go1.13.4
+bin\guru.exe<span>:</span> go1.13.4
+bin\hello.exe<span>:</span> go1.13.4
+</code></pre></div><p>添加<code>-m</code>参数会打印包导入的模块信息，添加<code>-v</code>参数会将无法识别的文件信息也打印出来，以<code>stringutil</code>为例</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell>&gt; go version -v src/github.com/shuzang/stringutil
+src\github.com\shuzang\stringutil\reverse.go<span>:</span> not executable file
+</code></pre></div><h4 id=go-env>go env</h4><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>go env <span style=color:#666>[</span>-json<span style=color:#666>]</span> <span style=color:#666>[</span>-u<span style=color:#666>]</span> <span style=color:#666>[</span>-w<span style=color:#666>]</span> <span style=color:#666>[</span>var ...<span style=color:#666>]</span>
+</code></pre></div><p><code>go env</code>的基本作用是打印go的环境变量信息，添加<code>-json</code>参数可以以 JSON 的格式打印，但没有默认的脚本形式可读性高。添加 <code>-w</code> 参数可以设置某个环境变量的值，比如</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell>&gt; go env -w GOPATH=d:\go
+</code></pre></div><p>与之相反，重置某个环境变量为默认值可以使用<code>-u</code>参数</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-powershell data-lang=powershell>&gt; go env -u GOPATH
+</code></pre></div><h4 id=其它>其它</h4><p>其它的命令使用频率没有上面几个高，因此只简单介绍其作用，用的时候再去查用法即可，<code>go test</code>和<code>go mod</code>两个命令以后单独介绍。</p><ul><li><code>go bug</code>，作用是打开默认浏览器并启动新的 Bug 报告，该报告包含有用的系统信息。</li><li><code>go clean</code>，移除源码包中编译生成的文件</li><li><code>go doc</code>，显示包或符号的文档</li><li><code>go fix</code>，用来更新老版本的代码到新版本</li><li><code>go fmt</code>，go的代码有严格的格式要求，该命令用来做格式化，但一般IDE都会帮忙做这件事</li><li><code>go generate</code>，通过处理源码生成go文件</li><li><code>go list</code>，列出当前安装的包或模块</li><li><code>go mod</code>，模块维持</li><li><code>go test</code>，自动读取源码目录下名为<code>*_test.go</code>的文件进行测试</li><li><code>go tool</code>，运行指定的go工具，后面跟的参数是其它命令</li><li><code>go vet</code>，用于检查Go语言源码中的静态错误</li></ul><h3 id=12-topic>1.2 topic</h3><p>topic有15个，本质是对Go中的一些概念作解释，所以它实际上是一些文档说明，使用<code>go help &lt;topic></code>查看，这些topic包括</p><ul><li>buildmode：构建模式的描述</li><li>c：Go和c的相互调用</li><li>cache：构建和测试缓存</li><li>environment：环境变量</li><li>filetype：文件类型</li><li>go.mod：go.mod文件</li><li>gopath：GOPATH环境变量</li><li>gopath-get：</li><li>goproxy：模块代理协议</li><li>importpath：导入路径语法</li><li>modules：模块，模块版本等</li><li>modules-get：</li><li>packages：包列表的描述</li><li>testflag：测试符号描述</li><li>testfunc：测试函数描述</li></ul><h2 id=2-包>2. 包</h2><p>包是Go语言代码组织和代码编译的一个基本结构，一个包可能由一个或多个<code>.go</code>文件组成，而一个或多个包可以构成完整的项目(仓库)。</p><h3 id=21-包名>2.1 包名</h3><p>每个Go源文件(<code>.go</code>文件)都必须在非注释的首行声明属于哪个包</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> name
+</code></pre></div><p><code>name</code>就是包名，包名的命名遵循命名规范，而且不得使用大写字母。每个Go应用程序都必须包含一个<code>main</code>包</p><p>一个Go程序通过<code>import</code>关键字将一组包衔接在一起，如</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>import</span> <span style=color:#b44>&#34;fmt&#34;</span>
+</code></pre></div><p>包名需要用双引号包围，多个包可以使用多个<code>import</code>语句，也可以使用一个小括号全部放在一起，如</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>import</span> (
+   <span style=color:#b44>&#34;fmt&#34;</span>
+   <span style=color:#b44>&#34;os&#34;</span>
+    <span style=color:#b44>&#34;crypto/rot13&#34;</span>
+    <span style=color:#b44>&#34;github.com/shuzang/hello&#34;</span>
+)
+</code></pre></div><p>包名也是导入路径的最后一个字段，比如<code>crypto/rot13</code>，其包名为<code>rot13</code>；<code>github.com/shuzang/hello</code>，其包名为<code>hello</code></p><p>没有必要刻意使用不同的包名，只要导入路径保持唯一即可</p><h3 id=22-标准库>2.2 标准库</h3><p>像 <code>fmt</code>、<code>os</code> 等这样具有常用功能的内置包在 Go 语言中有 150 个以上，它们被称为标准库，大部分内置于Go本身，位于<code>C:\Go\pkg\windows_amd64</code>，即<code>$GOROOT/pkg/$GOOS__$GOARCH</code>目录下，不需要额外的下载、安装和编译，详细列表和说明可以在 <a href=https://golang.google.cn/pkg/>Go Packages</a> 查看，这里简单介绍一些常用包的基本功能</p><ul><li><code>unsafe</code>: 包含了一些打破 Go 语言“类型安全”的命令，一般的程序中不会被使用，可用在 C/C++ 程序的调用中</li><li>系统操作类<ul><li><code>os</code>: 提供给我们一个平台无关性的操作系统功能接口，采用类Unix设计，隐藏了不同操作系统间差异，让不同的文件系统和操作系统对象表现一致</li><li><code>os/exec</code>: 提供我们运行外部操作系统命令和程序的方式</li><li><code>syscall</code>: 底层的外部包，提供了操作系统底层调用的基本接口</li></ul></li><li><code>archive/tar</code> 和 <code>/zip-compress</code>：压缩(解压缩)文件功能。</li><li>输入输出类<ul><li><code>fmt</code>: 提供了格式化输入输出功能</li><li><code>io</code>: 提供了基本输入输出功能，大多数是围绕系统功能的封装</li><li><code>bufio</code>: 缓冲输入输出功能的封装</li><li><code>path/filepath</code>: 用来操作在当前系统中的目标文件名路径</li><li><code>flag</code>: 对命令行参数的操作　</li></ul></li><li>字符串操作类<ul><li><code>strings</code>: 提供对字符串的操作</li><li><code>strconv</code>: 提供将字符串转换为基础类型的功能</li><li><code>unicode</code>: 为 unicode 型的字符串提供特殊的功能</li><li><code>regexp</code>: 正则表达式功能</li><li><code>bytes</code>: 提供对字符型分片的操作</li><li><code>index/suffixarray</code>: 子字符串快速查询</li></ul></li><li>数学<ul><li><code>math</code>: 基本的数学函数</li><li><code>math/cmath</code>: 对复数的操作</li><li><code>math/rand</code>: 伪随机数生成</li><li><code>sort</code>: 为数组排序和自定义集合</li><li><code>math/big</code>: 大数的实现和计算</li></ul></li><li>数据结构<ul><li><code>list</code>: 双链表</li><li><code>ring</code>: 环形链表</li></ul></li><li>时间<ul><li><code>time</code>: 日期和时间的基本操作</li><li><code>log</code>: 记录程序运行时产生的日志,我们将在后面的章节使用它</li></ul></li><li>编/解码<ul><li><code>encoding/json</code>: 读取并解码和写入并编码 JSON 数据</li><li><code>encoding/xml</code>:简单的 XML1.0 解析器</li><li><code>text/template</code>:生成像 HTML 一样的数据与文本混合的数据驱动模板</li></ul></li><li>网络<ul><li><code>net</code>: 网络数据的基本操作。</li><li><code>http</code>: 提供了一个可扩展的 HTTP 服务器和基础客户端，解析 HTTP 请求和回复。</li><li><code>html</code>: HTML5 解析器</li></ul></li><li><code>runtime</code>: Go 程序运行时的交互操作，例如垃圾回收和协程创建。</li><li><code>reflect</code>: 实现通过程序运行时反射，让程序操作任意类型的变量。</li></ul><p>Go的生态远不止这些标准库，社区里存在大量的第三方包或项目，在开发自己的项目时，最好先查找下是否有已存在的第三方包或可用的库。 <a href=https://gowalker.org/>Go Walker</a> 支持根据包名在海量数据中查询。</p><h3 id=23-导入包>2.3 导入包</h3><p>导入包的基本格式如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>import</span> <span style=color:#b44>&#34;包的路径或 URL 地址&#34;</span> 
+</code></pre></div><p>”包的路径“指可以是以下这种形式</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>import</span> <span style=color:#b44>&#34;./pack1/pack1&#34;</span>
+</code></pre></div><p>而URL地址指的是下载的外部安装包</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>import</span> <span>&#34;</span>github.com<span style=color:#666>/</span>org1<span style=color:#666>/</span>pack1<span>”</span>
+</code></pre></div><p>导入时可以对包进行重命名，比如</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>import</span> packx <span>&#34;</span>github.com<span style=color:#666>/</span>org1<span style=color:#666>/</span>pack1<span>”</span>
+</code></pre></div><p>也可以重命名为两种特殊符号：<code>.</code>和<code>_</code>，前者可以在使用时省略包名，直接使用对外部可见的函数和变量，后者则只执行其中的init函数和初始化其全局变量，无法调用函数</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>import</span> . <span style=color:#b44>&#34;./pack1&#34;</span>
+<span style=color:#a2f;font-weight:700>import</span> _ <span style=color:#b44>&#34;./pack1/pack1&#34;</span>
+</code></pre></div><h3 id=24-使用脚本编译或安装>2.4 使用脚本编译或安装</h3><p>在 Linux/OS X 下可以用 Makefile 脚本 实现自动检测机器架构并调用正确的编译器和链接器</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>include <span>$</span>(GOROOT)<span style=color:#666>/</span>src<span style=color:#666>/</span>Make.inc
+TARG=pack1
+GOFILES=\
+ 	pack1.<span style=color:#a2f;font-weight:700>go</span>\
+ 	pack1b.<span style=color:#a2f;font-weight:700>go</span>\
+include <span>$</span>(GOROOT)<span style=color:#666>/</span>src<span style=color:#666>/</span>Make.pkg
+</code></pre></div><p>通过 <code>chmod 777 ./Makefile</code>确保它的可执行性，然后在终端使用make工具</p><h2 id=3-模块>3. 模块</h2><p>自 Go 1.11 起，开始支持使用 Go Module 进行包管理，这里参考 Go Blog 中的 <a href=https://blog.golang.org/using-go-modules>Using Go Modules</a> 一文对其进行介绍。</p><p>模块(module)通过项目根目录下<code>go.mod</code>文件起作用，项目中使用的所有包的集合都在该文件中定义。<code>go.mod</code>文件定义了模块路径，用于项目中包的导入路径。以 delve 的<code>go.mod</code>文件为例</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>module github.com<span style=color:#666>/</span><span style=color:#a2f;font-weight:700>go</span><span style=color:#666>-</span>delve<span style=color:#666>/</span>delve
+
+<span style=color:#a2f;font-weight:700>go</span> <span style=color:#666>1.10</span>
+
+<span style=color:#00a000>require</span> (
+	github.com<span style=color:#666>/</span>cosiner<span style=color:#666>/</span>argv v0<span style=color:#666>.0</span><span style=color:#666>.0</span><span style=color:#666>-</span><span style=color:#666>20170225145430</span><span style=color:#666>-</span><span style=color:#666>13</span>bacc38a0a5
+	github.com<span style=color:#666>/</span>cpuguy83<span style=color:#666>/</span><span style=color:#a2f;font-weight:700>go</span><span style=color:#666>-</span>md2man v1<span style=color:#666>.0</span><span style=color:#666>.8</span> <span style=color:#080;font-style:italic>// indirect
+</span><span style=color:#080;font-style:italic></span>	github.com<span style=color:#666>/</span>inconshreveable<span style=color:#666>/</span>mousetrap v1<span style=color:#666>.0</span><span style=color:#666>.0</span> <span style=color:#080;font-style:italic>// indirect
+</span><span style=color:#080;font-style:italic></span>	github.com<span style=color:#666>/</span>kr<span style=color:#666>/</span>pretty v0<span style=color:#666>.1</span><span style=color:#666>.0</span> <span style=color:#080;font-style:italic>// indirect
+</span><span style=color:#080;font-style:italic></span>	github.com<span style=color:#666>/</span>mattn<span style=color:#666>/</span><span style=color:#a2f;font-weight:700>go</span><span style=color:#666>-</span>colorable v0<span style=color:#666>.0</span><span style=color:#666>.0</span><span style=color:#666>-</span><span style=color:#666>20170327083344</span><span style=color:#666>-</span>ded68f7a9561
+	github.com<span style=color:#666>/</span>mattn<span style=color:#666>/</span><span style=color:#a2f;font-weight:700>go</span><span style=color:#666>-</span>isatty v0<span style=color:#666>.0</span><span style=color:#666>.3</span>
+	github.com<span style=color:#666>/</span>onsi<span style=color:#666>/</span>ginkgo v1<span style=color:#666>.8</span><span style=color:#666>.0</span> <span style=color:#080;font-style:italic>// indirect
+</span><span style=color:#080;font-style:italic></span>	github.com<span style=color:#666>/</span>onsi<span style=color:#666>/</span>gomega v1<span style=color:#666>.5</span><span style=color:#666>.0</span> <span style=color:#080;font-style:italic>// indirect
+</span><span style=color:#080;font-style:italic></span>	github.com<span style=color:#666>/</span>peterh<span style=color:#666>/</span>liner v0<span style=color:#666>.0</span><span style=color:#666>.0</span><span style=color:#666>-</span><span style=color:#666>20170317030525</span><span style=color:#666>-</span><span style=color:#666>88609521</span>dc4b
+	github.com<span style=color:#666>/</span>pkg<span style=color:#666>/</span>profile v0<span style=color:#666>.0</span><span style=color:#666>.0</span><span style=color:#666>-</span><span style=color:#666>20170413231811</span><span style=color:#666>-</span><span style=color:#666>06</span>b906832ed0
+	github.com<span style=color:#666>/</span>russross<span style=color:#666>/</span>blackfriday v0<span style=color:#666>.0</span><span style=color:#666>.0</span><span style=color:#666>-</span><span style=color:#666>20180428102519</span><span style=color:#666>-</span><span style=color:#666>11635</span>eb403ff <span style=color:#080;font-style:italic>// indirect
+</span><span style=color:#080;font-style:italic></span>	github.com<span style=color:#666>/</span>sirupsen<span style=color:#666>/</span>logrus v0<span style=color:#666>.0</span><span style=color:#666>.0</span><span style=color:#666>-</span><span style=color:#666>20180523074243</span><span style=color:#666>-</span>ea8897e79973
+	github.com<span style=color:#666>/</span>spf13<span style=color:#666>/</span>cobra v0<span style=color:#666>.0</span><span style=color:#666>.0</span><span style=color:#666>-</span><span style=color:#666>20170417170307</span><span style=color:#666>-</span>b6cb39589372
+	github.com<span style=color:#666>/</span>spf13<span style=color:#666>/</span>pflag v0<span style=color:#666>.0</span><span style=color:#666>.0</span><span style=color:#666>-</span><span style=color:#666>20170417173400</span><span style=color:#666>-</span><span style=color:#666>9e4</span>c21054fa1 <span style=color:#080;font-style:italic>// indirect
+</span><span style=color:#080;font-style:italic></span>	github.com<span style=color:#666>/</span>stretchr<span style=color:#666>/</span>testify v1<span style=color:#666>.3</span><span style=color:#666>.0</span> <span style=color:#080;font-style:italic>// indirect
+</span><span style=color:#080;font-style:italic></span>	<span style=color:#a2f;font-weight:700>go</span>.starlark.net v0<span style=color:#666>.0</span><span style=color:#666>.0</span><span style=color:#666>-</span><span style=color:#666>20190702223751</span><span style=color:#666>-</span><span style=color:#666>32</span>f345186213
+	golang.org<span style=color:#666>/</span>x<span style=color:#666>/</span>arch v0<span style=color:#666>.0</span><span style=color:#666>.0</span><span style=color:#666>-</span><span style=color:#666>20171004143515</span><span style=color:#666>-</span><span style=color:#666>077</span>ac972c2e4
+	golang.org<span style=color:#666>/</span>x<span style=color:#666>/</span>crypto v0<span style=color:#666>.0</span><span style=color:#666>.0</span><span style=color:#666>-</span><span style=color:#666>20180614174826</span><span style=color:#666>-</span>fd5f17ee7299 <span style=color:#080;font-style:italic>// indirect
+</span><span style=color:#080;font-style:italic></span>	golang.org<span style=color:#666>/</span>x<span style=color:#666>/</span>sys v0<span style=color:#666>.0</span><span style=color:#666>.0</span><span style=color:#666>-</span><span style=color:#666>20190626221950</span><span style=color:#666>-</span><span style=color:#666>04</span>f50cda93cb
+	golang.org<span style=color:#666>/</span>x<span style=color:#666>/</span>tools v0<span style=color:#666>.0</span><span style=color:#666>.0</span><span style=color:#666>-</span><span style=color:#666>20181120060634</span><span style=color:#666>-</span>fc4f04983f62
+	gopkg.in<span style=color:#666>/</span>airbrake<span style=color:#666>/</span>gobrake.v2 v2<span style=color:#666>.0</span><span style=color:#666>.9</span> <span style=color:#080;font-style:italic>// indirect
+</span><span style=color:#080;font-style:italic></span>	gopkg.in<span style=color:#666>/</span>check.v1 v1<span style=color:#666>.0</span><span style=color:#666>.0</span><span style=color:#666>-</span><span style=color:#666>20180628173108</span><span style=color:#666>-</span><span style=color:#666>788</span>fd7840127 <span style=color:#080;font-style:italic>// indirect
+</span><span style=color:#080;font-style:italic></span>	gopkg.in<span style=color:#666>/</span>gemnasium<span style=color:#666>/</span>logrus<span style=color:#666>-</span>airbrake<span style=color:#666>-</span>hook.v2 v2<span style=color:#666>.1</span><span style=color:#666>.2</span> <span style=color:#080;font-style:italic>// indirect
+</span><span style=color:#080;font-style:italic></span>	gopkg.in<span style=color:#666>/</span>yaml.v2 v2<span style=color:#666>.2</span><span style=color:#666>.1</span>
+)
+</code></pre></div><p>注意，使用模块进行包管理独立于原来的使用 gopath 进行包管理，可以在任意位置建立项目。如果<code>go.mod</code>文件放在<code>$GOPATH/src</code>，即原来的统一工作区，是不起作用的，会被旧的GOPATH模式屏蔽。自 Go 1.13 开始，module 模式已经成为了 Go 开发的默认模式。</p><h3 id=31-创建新模块>3.1 创建新模块</h3><p>在<code>$GOPATH/src</code>外的任意位置创建项目目录，<code>cd</code>进入该目录，创建<code>hello.go</code>文件</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> hello
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>Hello</span>() <span style=color:#0b0;font-weight:700>string</span> {
+    <span style=color:#a2f;font-weight:700>return</span> <span style=color:#b44>&#34;Hello, world.&#34;</span>
+}
+</code></pre></div><p>为它写一个测试文件<code>hello_test.go</code></p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> hello
+
+<span style=color:#a2f;font-weight:700>import</span> <span style=color:#b44>&#34;testing&#34;</span>
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>TestHello</span>(t <span style=color:#666>*</span>testing.T) {
+    want <span style=color:#666>:=</span> <span style=color:#b44>&#34;Hello, world.&#34;</span>
+    <span style=color:#a2f;font-weight:700>if</span> got <span style=color:#666>:=</span> <span style=color:#00a000>Hello</span>(); got <span style=color:#666>!=</span> want {
+        t.<span style=color:#00a000>Errorf</span>(<span style=color:#b44>&#34;Hello() = %q, want %q&#34;</span>, got, want)
+    }
+}
+</code></pre></div><p>现在，项目中有了一个包，因为项目目录位于<code>F:/hello</code>，执行<code>go test</code>的结果如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ go <span style=color:#a2f>test</span>
+PASS
+ok      _/F_/hello 0.240s
+</code></pre></div><p>因为我们在 <code>$GOPATH</code> 外进行的测试，而且现在还没有<code>go.mod</code>文件，所以Go命令不知道导入路径，只能根据目录名生成一个导入路径。现在我们来创建<code>go.mod</code>文件并再次执行<code>go test</code>命令</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ go mod init example.com/hello
+go: creating new go.mod: module example.com/hello
+$ go <span style=color:#a2f>test</span>
+PASS
+ok      example.com/hello       0.214s
+</code></pre></div><p><code>go mod init</code>命令用于创建<code>go.mod</code>文件，初始化Go模块，其内容如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ <span style=color:#a2f>pwd</span>
+/f/hello
+$ ls
+go.mod  hello.go  hello_test.go
+$ cat go.mod
+module example.com/hello
+
+go 1.13
+</code></pre></div><p><code>go.mod</code>文件位于项目根目录，其中的模块路径也只显示到项目根目录，子目录中包的导入路径由模块路径+子目录路径组成。我们在当前项目目录下创建<code>world</code>子目录，其导入路径将会是<code>example.com/hello/world</code></p><h3 id=32-添加依赖>3.2 添加依赖</h3><p>使用Go模块的首要目的是提升别的开发者使用我们编写的代码的体验。编辑<code>hello.go</code>文件，导入<code>rsc.io/quote</code>，然后用它来实施<code>Hello</code></p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> hello
+
+<span style=color:#a2f;font-weight:700>import</span> <span style=color:#b44>&#34;rsc.io/quote&#34;</span>
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>Hello</span>() <span style=color:#0b0;font-weight:700>string</span> {
+    <span style=color:#a2f;font-weight:700>return</span> quote.<span style=color:#00a000>Hello</span>()
+}
+</code></pre></div><p>现在运行<code>go test</code></p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ go <span style=color:#a2f>test</span>
+go: finding rsc.io/quote v1.5.2
+go: downloading rsc.io/quote v1.5.2
+go: extracting rsc.io/quote v1.5.2
+go: finding rsc.io/sampler v1.3.0
+go: finding golang.org/x/text v0.0.0-20170915032832-14c0d48ead0c
+go: downloading rsc.io/sampler v1.3.0
+go: extracting rsc.io/sampler v1.3.0
+go: downloading golang.org/x/text v0.0.0-20170915032832-14c0d48ead0c
+go: extracting golang.org/x/text v0.0.0-20170915032832-14c0d48ead0c
+PASS
+ok      example.com/hello    0.023s
+</code></pre></div><p>Go使用<code>go.mod</code>文件中列举的依赖模块版本来解析导入的包，但是当在<code>go.mod</code>文件中找不到这个包是，就会自动的查找包含这个包的模块的最新版本，然后添加到<code>go.mod</code>文件。上例中自动下载了模块<code>rsc.io/quote v1.5.2</code>，还下载了它依赖的两个其它模块：<code>rsc.io/sampler</code>和<code>golang.org/x/text</code>。不过只有直接依赖会被记录到<code>go.mod</code>文件</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ cat go.mod
+module example.com/hello
+
+go 1.13
+
+require rsc.io/quote v1.5.2
+</code></pre></div><p>下载的包位于<code>$GOPATH/pkg/mod</code>，再次运行<code>go test</code>命令，就不会重新下载了，因为已经存在。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ go <span style=color:#a2f>test</span>
+PASS
+ok      example.com/hello    0.020s
+</code></pre></div><p>需要注意的是，尽管使用模块使得添加包管理简单轻松，但并非没有代价，当前代码的安全性、正确性和许可等都依赖于导入的模块，关于这个问题的详细描述可以查看 <a href=https://research.swtch.com/deps>Our Software Dependency Problem</a>.</p><p>如上所述，添加一个直接依赖通常会引入一些间接的依赖，使用<code>go list -m all</code>可以列举当前模块和它们所有的依赖。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ go list -m all
+example.com/hello
+golang.org/x/text v0.0.0-20170915032832-14c0d48ead0c
+rsc.io/quote v1.5.2
+rsc.io/sampler v1.3.0
+</code></pre></div><p>在<code>go list</code>的输出中，当前模块是主模块，总是位于第一行，其它的模块按模块路径顺序显示。</p><p><code>go.mod</code>文件外，Go还维持一个名为<code>go.sum</code>的文件，包含特定模块版本内容的加密哈希。Go使用该文件确保将来下载该模块时内容与第一次下载的内容相同，从而保证所依赖的模块没有被恶意或非恶意的更改。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ ls
+go.mod  go.sum  hello.go  hello_test.go
+$ cat go.sum
+golang.org/x/text v0.0.0-20170915032832-14c0d48ead0c h1:qgOY6WgZO...
+golang.org/x/text v0.0.0-20170915032832-14c0d48ead0c/go.mod h1:Nq...
+rsc.io/quote v1.5.2 h1:w5fcysjrx7yqtD/aO+QwRjYZOKnaM9Uh2b40tElTs3...
+rsc.io/quote v1.5.2/go.mod h1:LzX7hefJvL54yjefDEDHNONDjII0t9xZLPX...
+rsc.io/sampler v1.3.0 h1:7uVkIFmeBqHfdjD+gZwtXXI+RODJ2Wc4O7MPEh/Q...
+rsc.io/sampler v1.3.0/go.mod h1:T1hPZKmBbMNahiBKFy5HrXp6adAjACjK9...
+</code></pre></div><p><code>go.mod</code>和<code>go.sum</code>文件都应该包含到版本控制系统中，也就是说随着源代码文件一起提交到远程仓库。</p><h3 id=33-更新依赖>3.3 更新依赖</h3><p>Go模块使用的版本号分三部分：主版本号(major)，次版本号(minor)和修订版本号(patch)。例如，<code>v0.1.2</code>，主版本号是<code>0</code>，次版本号是<code>1</code>，修订版本号是<code>2</code>。首先以一个次版本号的更新举例说明</p><p>前面<code>go list -m all</code>的输出中我们可以看到<code>golang.org/x/text</code>使用的不是标准的版本号，我们可以使用<code>go get</code>命令将其更新</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ go get golang.org/x/text
+go: finding golang.org/x/text v0.3.0
+go: downloading golang.org/x/text v0.3.0
+go: extracting golang.org/x/text v0.3.0
+$ go <span style=color:#a2f>test</span>
+PASS
+ok      example.com/hello    0.013s
+</code></pre></div><p>现在再次列举所有的模块以及查看<code>go.mod</code>文件</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ go list -m all
+example.com/hello
+golang.org/x/text v0.3.0
+rsc.io/quote v1.5.2
+rsc.io/sampler v1.3.0
+$ cat go.mod
+module example.com/hello
+
+go 1.12
+
+require <span style=color:#666>(</span>
+    golang.org/x/text v0.3.0 // indirect
+    rsc.io/quote v1.5.2
+<span style=color:#666>)</span>
+</code></pre></div><p>可以看到两者中<code>golang.org/x/text</code>都已经更新到了最新的版本号<code>v0.3.0</code>，注释中的<code>indirect</code>说明这个依赖不是直接被引用的，只是被其它的模块间接引用。</p><p>现在我们更新<code>rsc.io/sampler</code>的次版本号</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ go get rsc.io/sampler
+go: finding rsc.io/sampler v1.99.99
+go: downloading rsc.io/sampler v1.99.99
+go: extracting rsc.io/sampler v1.99.99
+$ go <span style=color:#a2f>test</span>
+--- FAIL: TestHello <span style=color:#666>(</span>0.00s<span style=color:#666>)</span>
+    hello_test.go:8: Hello<span style=color:#666>(</span><span style=color:#666>)</span> <span style=color:#666>=</span> <span style=color:#b44>&#34;99 bottles of beer on the wall, 99 bottles of beer, ...&#34;</span>, want <span style=color:#b44>&#34;Hello, world.&#34;</span>
+FAIL
+<span style=color:#a2f>exit</span> status <span style=color:#666>1</span>
+FAIL    example.com/hello    0.014s
+</code></pre></div><p>测试失败说明版本不匹配，列举所有可用版本</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ go list -m -versions rsc.io/sampler
+rsc.io/sampler v1.0.0 v1.2.0 v1.2.1 v1.3.0 v1.3.1 v1.99.99
+</code></pre></div><p>之前使用的是v1.3.0，v1.99.99也被证明无法使用，因此换用v1.3.1</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ go get rsc.io/sampler@v1.3.1
+go: finding rsc.io/sampler v1.3.1
+go: downloading rsc.io/sampler v1.3.1
+go: extracting rsc.io/sampler v1.3.1
+$ go <span style=color:#a2f>test</span>
+PASS
+ok      example.com/hello    0.022s
+</code></pre></div><p>通过<code>@</code>来指定具体的版本号，<code>go get</code>的参数实际上应该带有版本号，不明确指定会使用默认的<code>@latest</code>，从而使用最新版本。</p><h3 id=34-在主版本号上添加依赖>3.4 在主版本号上添加依赖</h3><p>主版本号的更新是不同的，会看作一个独立的依赖。在<code>hello.go</code>中添加一个新的函数<code>Proverb()</code>，它使用了<code>rsc.io/quote</code>的<code>v3</code>版本，导入格式为<code>rsc.io/quote/v3</code></p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> hello
+
+<span style=color:#a2f;font-weight:700>import</span> (
+    <span style=color:#b44>&#34;rsc.io/quote&#34;</span>
+    quoteV3 <span style=color:#b44>&#34;rsc.io/quote/v3&#34;</span>
+)
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>Hello</span>() <span style=color:#0b0;font-weight:700>string</span> {
+    <span style=color:#a2f;font-weight:700>return</span> quote.<span style=color:#00a000>Hello</span>()
+}
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>Proverb</span>() <span style=color:#0b0;font-weight:700>string</span> {
+    <span style=color:#a2f;font-weight:700>return</span> quoteV3.<span style=color:#00a000>Concurrency</span>()
+}
+</code></pre></div><p>然后为其添加测试函数</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>TestProverb</span>(t <span style=color:#666>*</span>testing.T) {
+    want <span style=color:#666>:=</span> <span style=color:#b44>&#34;Concurrency is not parallelism.&#34;</span>
+    <span style=color:#a2f;font-weight:700>if</span> got <span style=color:#666>:=</span> <span style=color:#00a000>Proverb</span>(); got <span style=color:#666>!=</span> want {
+        t.<span style=color:#00a000>Errorf</span>(<span style=color:#b44>&#34;Proverb() = %q, want %q&#34;</span>, got, want)
+    }
+}
+</code></pre></div><p>测试结果如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ go <span style=color:#a2f>test</span>
+go: finding rsc.io/quote/v3 v3.1.0
+go: downloading rsc.io/quote/v3 v3.1.0
+go: extracting rsc.io/quote/v3 v3.1.0
+PASS
+ok      example.com/hello    0.024s
+</code></pre></div><p>现在我们的模块同时依赖于<code>rsc.io/quote</code>和<code>rsc.io/quote/v3</code></p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ go list -m rsc.io/q...
+rsc.io/quote v1.5.2
+rsc.io/quote/v3 v3.1.0
+</code></pre></div><p>Go模块的每个主版本号(v1, v2, and so on)都使用一个不同的模块路径，从<code>v2</code>开始，路径必须以主版本号结尾，比如<code>rsc.io/quote</code>的<code>v3</code>版本模块路径为<code>rsc.io/quote/v3</code>，这种惯例称作 <a href=https://research.swtch.com/vgo-import>semantic import versioning</a> ，给不兼容的包提供了不同的名字。相反，同一个主版本号，如<code>v1.6.0</code>应该向前兼容，和<code>rsc.io/quote</code>使用同一个名字，在同一个项目中，每个主版本号Go只允许出现一种，比如<code>v1.5.2</code>和<code>v1.6.0</code>不能同时存在，但不同的主版本号可以同时存在，这是为了使程序可以逐步过渡到新的版本。</p><h3 id=35-更新依赖到新的主版本号>3.5 更新依赖到新的主版本号</h3><p>比如从<code>rsc.io/quote</code>迁移到<code>rsc.io/quote/v3</code>，由于大版本更新，某些不兼容的API可能被删除、重命名或做其它的更改，阅读文档，我们可以发现<code>HelloV3</code>相对于<code>Hello</code>做了如下改动</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ go doc rsc.io/quote/v3
+package quote // import <span style=color:#b44>&#34;rsc.io/quote&#34;</span>
+
+Package quote collects pithy sayings.
+
+func Concurrency<span style=color:#666>(</span><span style=color:#666>)</span> string
+func GlassV3<span style=color:#666>(</span><span style=color:#666>)</span> string
+func GoV3<span style=color:#666>(</span><span style=color:#666>)</span> string
+func HelloV3<span style=color:#666>(</span><span style=color:#666>)</span> string
+func OptV3<span style=color:#666>(</span><span style=color:#666>)</span> string
+</code></pre></div><p>检查并更新我们的源码</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> hello
+
+<span style=color:#a2f;font-weight:700>import</span> quoteV3 <span style=color:#b44>&#34;rsc.io/quote/v3&#34;</span>
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>Hello</span>() <span style=color:#0b0;font-weight:700>string</span> {
+    <span style=color:#a2f;font-weight:700>return</span> quoteV3.<span style=color:#00a000>HelloV3</span>()
+}
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>Proverb</span>() <span style=color:#0b0;font-weight:700>string</span> {
+    <span style=color:#a2f;font-weight:700>return</span> quoteV3.<span style=color:#00a000>Concurrency</span>()
+}
+</code></pre></div><p>由于没有冲突，这里导入的包不再需要重命名，因此可以继续简化</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> hello
+
+<span style=color:#a2f;font-weight:700>import</span> <span style=color:#b44>&#34;rsc.io/quote/v3&#34;</span>
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>Hello</span>() <span style=color:#0b0;font-weight:700>string</span> {
+    <span style=color:#a2f;font-weight:700>return</span> quote.<span style=color:#00a000>HelloV3</span>()
+}
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>Proverb</span>() <span style=color:#0b0;font-weight:700>string</span> {
+    <span style=color:#a2f;font-weight:700>return</span> quote.<span style=color:#00a000>Concurrency</span>()
+}
+</code></pre></div><p>运行测试</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ go <span style=color:#a2f>test</span>
+PASS
+ok      example.com/hello       0.014s
+</code></pre></div><h3 id=36-移除不使用的依赖>3.6 移除不使用的依赖</h3><p>我们已经不再使用<code>rsc.io/quote</code>，但它依然存在于<code>go list -m all</code>的输出和<code>go.mod</code>文件中</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ go list -m all
+example.com/hello
+golang.org/x/text v0.3.0
+rsc.io/quote v1.5.2
+rsc.io/quote/v3 v3.1.0
+rsc.io/sampler v1.3.1
+$ cat go.mod
+module example.com/hello
+
+go 1.12
+
+require <span style=color:#666>(</span>
+    golang.org/x/text v0.3.0 // indirect
+    rsc.io/quote v1.5.2
+    rsc.io/quote/v3 v3.0.0
+    rsc.io/sampler v1.3.1 // indirect
+<span style=color:#666>)</span>
+</code></pre></div><p>这是因为编译单个包时无法自动检测是否可以安全的移除某个包，只能通过手动执行<code>go mod tidy</code>命令清理不再使用的依赖</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ go mod tidy
+$ go list -m all
+example.com/hello
+golang.org/x/text v0.3.0
+rsc.io/quote/v3 v3.1.0
+rsc.io/sampler v1.3.1
+$ cat go.mod
+module example.com/hello
+
+go 1.12
+
+require <span style=color:#666>(</span>
+    golang.org/x/text v0.3.0 // indirect
+    rsc.io/quote/v3 v3.1.0
+    rsc.io/sampler v1.3.1 // indirect
+<span style=color:#666>)</span>
+
+$ go <span style=color:#a2f>test</span>
+PASS
+ok      example.com/hello    0.020s
+$
+</code></pre></div><p>最后是关于发布自己的模块版本的注意，参考两篇文章</p><ul><li><a href=https://blog.golang.org/publishing-go-modules>Publishing Go Modules</a></li><li><a href=https://blog.golang.org/v2-go-modules>Go Modules: v2 and Beyond</a></li></ul></div><footer class=post-footer><div class=post-tags><a href=/tags/go%e8%af%ad%e6%b3%95 rel=tag title=Go语法>#Go语法#</a></div><div class=addthis_inline_share_toolbox></div><div class=post-nav><div class=article-copyright><div class=article-copyright-info><p><span>声明：</span>Golang语法基础2-命令、包与模块</p><p><span>链接：</span>https://shuzang.github.io/2019/09/golang-basic-grammer-2-command-package-module/</p><p><span>作者：</span>书藏</p><p><span>声明： </span>本博客文章除特别声明外，均采用 <a href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank style=text-decoration:underline>CC BY-NC-SA 3.0</a>许可协议，转载请注明出处！</p></div></div><div class=clear></div></div><div class=reward-qr-info><div>创作实属不易，如有帮助，那就打赏博主些许茶钱吧 ^_^</div><button id=rewardButton disable=enable onclick="var qr=document.getElementById('QR');if(qr.style.display==='none'){qr.style.display='block';}else{qr.style.display='none'}">
+<span>赏</span></button><div id=QR style=display:none><div id=wechat style=display:inline-block><img id=wechat_qr src=/img/wechat-pay.png alt="WeChat Pay"><p>微信打赏</p></div><div id=alipay style=display:inline-block><img id=alipay_qr src=/img/ali-pay.png alt=Alipay><p>支付宝打赏</p></div></div></div><div class=post-nav><div class="post-nav-next post-nav-item"><a href=https://shuzang.github.io/2019/09/%E5%BA%9F%E5%90%8D%E7%94%B0%E5%9B%AD%E5%B0%8F%E8%AF%B4/ rel=next title=废名田园小说><i class="fa fa-chevron-left"></i>废名田园小说</a></div><div class="post-nav-prev post-nav-item"><a href=https://shuzang.github.io/2019/09/%E8%80%81%E8%88%8D%E5%B9%BD%E9%BB%98%E5%B0%8F%E8%AF%B4/ rel=prev title=老舍幽默小说>老舍幽默小说
+<i class="fa fa-chevron-right"></i></a></div></div><div id=wcomments></div></footer></article></section></div></div><div class=sidebar-toggle><div class=sidebar-toggle-line-wrap><span class="sidebar-toggle-line sidebar-toggle-line-first"></span><span class="sidebar-toggle-line sidebar-toggle-line-middle"></span><span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id=sidebar class=sidebar><div class=sidebar-inner><section class="site-overview sidebar-panel sidebar-panel-active"><div class="site-author motion-element" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image src=/images/avatar.png alt=书藏><p class=site-author-name itemprop=name>书藏</p><p class="site-description motion-element" itemprop=description></p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href=/post/><span class=site-state-item-count>334</span>
+<span class=site-state-item-name>日志</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>7</span>
+<span class=site-state-item-name>分类</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>23</span>
+<span class=site-state-item-name>标签</span></a></div></nav><div class="links-of-author motion-element"><span class=links-of-author-item><a href=https://github.com/shuzang/ target=_blank title=GitHub><i class="fa fa-fw fa-github"></i>GitHub</a></span></div><div class="tagcloud-of-blogroll motion-element tagcloud-of-blogroll-inline"><div class=tagcloud-of-blogroll-title><i class="fa fa-fw fa-tags"></i>标签云</div><ul class=tagcloud-of-blogroll-list><li class=tagcloud-of-blogroll-item><a href=/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0>论文笔记</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E4%B9%A6%E8%97%8F%E7%9A%84%E7%94%9F%E6%B4%BB%E5%91%A8%E5%88%8A>书藏的生活周刊</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95>科研记录</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/go%E8%AF%AD%E6%B3%95>Go语法</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80>计算机基础</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E6%9D%82%E8%B0%88>杂谈</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E5%8C%BA%E5%9D%97%E9%93%BE>区块链</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95>数据结构与算法</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E7%94%9F%E6%B4%BB%E6%8A%80%E8%83%BD>生活技能</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/go%E5%AE%9E%E6%88%98>Go实战</a></li></ul></div></section></div></aside></div></main><footer id=footer class=footer><div class=footer-inner><div class=copyright><span class=copyright-year>&copy; 2018 - 2022</span>
+<span class=with-love><i class="fa fa-heart"></i></span><span class=copyright-author>书藏的博客</span></div><div class=powered-info><span class=powered-by>Powered by - <a class=powered-link href=//gohugo.io target=_blank title=hugo>Hugo v0.63.2</a></span>
+<span class=separator-line>/</span>
+<span class=theme-info>Theme by - <a class=powered-link href=//github.com/elkan1788/hugo-theme-next target=_blank>NexT</a></span></div><div class=vistor-info><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><span class=site-uv><i class="fa fa-user"></i><span class=busuanzi-value id=busuanzi_value_site_uv></span></span><span class=separator-line>/</span>
+<span class=site-pv><i class="fa fa-eye"></i><span class=busuanzi-value id=busuanzi_value_site_pv></span></span></div></div></footer><div class=back-to-top><i class="fa fa-arrow-up"></i><span id=scrollpercent><span>0</span>%</span></div></div><script type=text/javascript src=//cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.min.js></script><script type=text/javascript src=/js/search.js></script><script type=text/javascript src=/js/affix.js></script><script type=text/javascript src=/js/scrollspy.js></script><script type=text/javascript>function detectIE(){var ua=window.navigator.userAgent;var msie=ua.indexOf('MSIE ');var trident=ua.indexOf('Trident/');var edge=ua.indexOf('Edge/');if(msie>0||trident>0||edge>0){return-1;}
+return 1;}
+function getCntViewHeight(){var docHeight=$('#content').height(),winHeight=$(window).height(),cntViewHeight=(docHeight>winHeight)?(docHeight-winHeight):($(document).height()-winHeight);return cntViewHeight;}
+function getScrollbarWidth(){var $div=$('<div />').addClass('scrollbar-measure').prependTo('body');var div=$div[0];var scrollbarWidth=div.offsetWidth-div.clientWidth;$div.remove();return scrollbarWidth;}
+function registerBackTop(){var THRESHOLD=50;var $top=$('.back-to-top');$(window).on('scroll',function(){$top.toggleClass('back-to-top-on',window.pageYOffset>THRESHOLD);var scrollTop=$(window).scrollTop();var cntViewHeight=getCntViewHeight();var scrollPercent=(scrollTop)/(cntViewHeight);var scrollPercentRounded=Math.round(scrollPercent*100);var scrollPercentMaxed=(scrollPercentRounded>100)?100:scrollPercentRounded;$('#scrollpercent>span').html(scrollPercentMaxed);});$top.on('click',function(){$("html,body").animate({scrollTop:0,screenLeft:0,},800);});}
+function initScrollSpy(){var tocSelector='.post-toc';var $tocElement=$(tocSelector);var activeCurrentSelector='.active-current';$tocElement.on('activate.bs.scrollspy',function(){var $currentActiveElement=$(tocSelector+' .active').last();removeCurrentActiveClass();$currentActiveElement.addClass('active-current');}).on('clear.bs.scrollspy',removeCurrentActiveClass);$('body').scrollspy({target:tocSelector});function removeCurrentActiveClass(){$(tocSelector+' '+activeCurrentSelector).removeClass(activeCurrentSelector.substring(1));}}
+function initAffix(){var headerHeight=$('.header-inner').height();var footerOffset=parseInt($('.main').css('padding-bottom'),10);var sidebarTop=headerHeight+10;$('.sidebar-inner').affix({offset:{top:sidebarTop,bottom:footerOffset}});$(document).on('affixed.bs.affix',function(){updateTOCHeight(document.body.clientHeight-100);});}
+function initTOCDimension(){var updateTOCHeightTimer;$(window).on('resize',function(){updateTOCHeightTimer&&clearTimeout(updateTOCHeightTimer);updateTOCHeightTimer=setTimeout(function(){var tocWrapperHeight=document.body.clientHeight-100;updateTOCHeight(tocWrapperHeight);},0);});updateTOCHeight(document.body.clientHeight-100);var scrollbarWidth=getScrollbarWidth();$('.post-toc').css('width','calc(100% + '+scrollbarWidth+'px)');}
+function updateTOCHeight(height){height=height||'auto';$('.post-toc').css('max-height',height);}
+$(function(){var sidebarTop=$('.header-inner').height()+10;$('#sidebar').css({'margin-top':sidebarTop}).show();var sidebarMt=parseInt($('#sidebar').css('margin-top'));var sidebarInHeight=parseInt($('.sidebar-inner').css('height'));var sideHeight=sidebarMt+sidebarInHeight;var contentHeight=$('.content-wrap').height();if(contentHeight<sideHeight){$('.content-wrap').css('min-height',sideHeight);}
+$('.site-nav-toggle').on('click',function(){var $siteNav=$('.site-nav');var $toggleLine=$('.toggle');var ON_CLASS_NAME='site-nav-on';var CLOSE_CLASS_NAME='toggle-close';var isSiteNavOn=$siteNav.hasClass(ON_CLASS_NAME);var animateAction=isSiteNavOn?'slideUp':'slideDown';var animateCallback=isSiteNavOn?'removeClass':'addClass';$siteNav.stop()[animateAction]('normal',function(){$siteNav[animateCallback](ON_CLASS_NAME);$toggleLine[animateCallback](CLOSE_CLASS_NAME);});});registerBackTop();initScrollSpy();initAffix();initTOCDimension();$('.sidebar-nav-toc').click(function(){$(this).addClass('sidebar-nav-active');$(this).next().removeClass('sidebar-nav-active');$('.'+$(this).next().attr('data-target')).toggle(500);$('.'+$(this).attr('data-target')).toggle(500);});$('.sidebar-nav-overview').click(function(){$(this).addClass('sidebar-nav-active');$(this).prev().removeClass('sidebar-nav-active');$('.'+$(this).prev().attr('data-target')).toggle(500);$('.'+$(this).attr('data-target')).toggle(500);});});</script><script src=//cdn.bootcdn.net/ajax/libs/imageviewer/0.1.0/viewer.min.js></script><script type=text/javascript>$(function(){$('.post-body').viewer();});</script><script type=text/javascript>$(function(){if(detectIE()>0){$.getScript(document.location.protocol+'//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js',function(){new Waline({el:'#wcomments',visitor:true,avatar:'wavatar',avatarCDN:'https://sdn.geekzu.org/avatar/',avatarForce:!1,wordLimit:'200',placeholder:' 欢迎留下您的宝贵建议，请填写您的昵称和邮箱便于后续交流. ^_^ ',requiredFields:['nick','mail'],serverURL:"Your WalineSerURL",lang:"zh-cn"});});}else{$('#wcomments').html('抱歉，Waline插件不支持IE或Edge，建议使用Chrome浏览器。');}});</script><script type=text/javascript src="//s7.addthis.com/js/300/addthis_widget.js#pubid=Your%20AddthisId"></script><script>(function(){var bp=document.createElement('script');var curProtocol=window.location.protocol.split(':')[0];if(curProtocol==='https'){bp.src='https://zz.bdstatic.com/linksubmit/push.js';}
+else{bp.src='http://push.zhanzhang.baidu.com/push.js';}
+var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(bp,s);})();</script></body></html>

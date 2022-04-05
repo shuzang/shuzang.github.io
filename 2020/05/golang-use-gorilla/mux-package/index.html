@@ -1,0 +1,206 @@
+<!doctype html><html lang=zh-cn dir=content/zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=content-security-policy content="upgrade-insecure-requests"><title>Golang使用gorilla、mux包 - 书藏的博客</title><meta name=keywords content="博客,程序员,区块链，思考,读书,笔记,生活,电影,旅游,"><meta name=author content="书藏"><meta property="og:title" content="Golang使用gorilla、mux包"><meta property="og:site_name" content="书藏的博客"><meta property="og:image" content="/img/avatar.png"><meta name=title content="Golang使用gorilla、mux包 - 书藏的博客"><meta name=description content="书藏的个人博客，记录学习的东西，以月刊记录生活"><link rel="shortcut icon" href=/img/favicon.ico><link rel=apple-touch-icon href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><link href=//cdn.bootcdn.net/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css rel=stylesheet type=text/css><link href=//cdn.bootcdn.net/ajax/libs/imageviewer/0.1.0/viewer.min.css rel=stylesheet><link href=/css/main.css rel=stylesheet type=text/css><link href=/css/syntax.css rel=stylesheet type=text/css><script async src="https://www.googletagmanager.com/gtag/js?id=UA-209130979-1"></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-209130979-1 ');</script></head><body itemscope itemtype=http://schema.org/WebPage lang=zh-hans><div class="container one-collumn sidebar-position-left page-home"><div class=headband></div><header id=header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle role=button style=opacity:1;top:0><span class=toggle-line></span><span class=toggle-line></span><span class=toggle-line></span></div></div><div class=site-meta><div class=multi-lang-switch><i class="fa fa-fw fa-language" style=margin-right:5px></i><a class=lang-link id=zh-cn href=#>中文</a></div><div class=custom-logo-site-title><a href=/ class=brand rel=start><span class=logo-line-before><i></i></span><span class=site-title>书藏的博客</span>
+<span class=logo-line-after><i></i></span></a></div><p class=site-subtitle>凡心所向，素履以往</p></div><div class=site-nav-right><div class="toggle popup-trigger" style=opacity:1;top:0><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul id=menu class=menu><li class=menu-item><a href=/ rel=section><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class=menu-item><a href=/post rel=section><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class=menu-item><a href=/about.html rel=section><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于我</a></li><li class=menu-item><a href=/404.html rel=section><i class="menu-item-icon fa fa-fw fa-heartbeat"></i><br>公益404</a></li><li class="menu-item menu-item-search"><a href=javascript:; class=popup-trigger><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class=site-search><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class=search-icon><i class="fa fa-search"></i></span><span class=popup-btn-close><i class="fa fa-times-circle"></i></span><div class=local-search-input-wrapper><input autocomplete=off placeholder=搜索关键字... spellcheck=false type=text id=local-search-input autocapitalize=none autocorrect=off></div></div><div id=local-search-result></div></div></div></nav></div></header><main id=main class=main><div class=main-inner><div class=content-wrap><div id=content class=content><section id=posts class=posts-expand><article class="post post-type-normal" itemscope itemtype=http://schema.org/Article><header class=post-header><h1 class=post-title itemprop="name headline"><a class=post-title-link href=https://shuzang.github.io/2020/05/golang-use-gorilla/mux-package/ itemprop=url>Golang使用gorilla、mux包</a></h1><div class=post-meta><span class=post-time><i class="fa fa-calendar-o fa-fw"></i><span class=post-meta-item-text>时间：</span>
+<time itemprop=dateCreated datetime=2016-03-22T13:04:35+08:00 content="2020-05-29">2020-05-29</time></span>
+<span class=post-category>&nbsp; | &nbsp;
+<i class="fa fa-folder-o fa-fw"></i><span class=post-meta-item-text>分类：</span>
+<span itemprop=about itemscope itemtype=https://schema.org/Thing><a href=/categories/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF itemprop=url rel=index style=text-decoration:underline><span itemprop=name>Golang学习之路</span></a>
+&nbsp;</span></span>
+<span>|
+<i class="fa fa-file-word-o fa-fw"></i><span class=post-meta-item-text>字数：</span>
+<span class=leancloud-world-count>2391 字</span></span>
+<span>|
+<i class="fa fa-eye fa-fw"></i><span class=post-meta-item-text>阅读：</span>
+<span class=leancloud-view-count>5分钟</span></span>
+<span id=/2020/05/golang-use-gorilla/mux-package/ class=leancloud_visitors data-flag-title=Golang使用gorilla、mux包>|
+<i class="fa fa-binoculars fa-fw"></i><span class=post-meta-item-text>阅读次数：</span>
+<span class=leancloud-visitors-count></span></span></div></header><div class=post-body itemprop=articleBody><p>本文介绍 <a href=https://github.com/gorilla/mux>gorilla/mux</a> 包的使用。</p><p>我们已知 Go 标准库 net/http 提供的默认路由是 DefaultServeMux，虽然简单易上手，但存在很多不足，比如</p><ul><li>不支持参数设定，例如 <code>/user/:uid</code> 这种泛类型匹配；</li><li>对 REST 风格接口支持不友好，无法限制访问路由的方法；</li><li>对于拥有很多路由规则的应用，编写大量路由规则非常繁琐。</li></ul><p>为此，我们可以使用第三方库 <code>gorilla/mux</code> 提供的更加强大的路由处理器（<code>mux</code> 代表 <code>HTTP request multiplexer</code>，即 HTTP 请求多路复用器），和 <code>http.ServeMux</code> 实现原理一样，<code>gorilla/mux</code> 提供的路由器实现类 <code>mux.Router</code> 也会匹配用户请求与系统注册的路由规则，然后将用户请求转发过去。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>type</span> Router <span style=color:#a2f;font-weight:700>struct</span> {
+	<span style=color:#080;font-style:italic>// Configurable Handler to be used when no route matches.
+</span><span style=color:#080;font-style:italic></span>	NotFoundHandler http.Handler
+	<span style=color:#080;font-style:italic>// Configurable Handler to be used when the request method does not match the route.
+</span><span style=color:#080;font-style:italic></span>	MethodNotAllowedHandler http.Handler
+	<span style=color:#080;font-style:italic>// Routes to be matched, in order.
+</span><span style=color:#080;font-style:italic></span>	routes []<span style=color:#666>*</span>Route
+	<span style=color:#080;font-style:italic>// Routes by name for URL building.
+</span><span style=color:#080;font-style:italic></span>	namedRoutes <span style=color:#a2f;font-weight:700>map</span>[<span style=color:#0b0;font-weight:700>string</span>]<span style=color:#666>*</span>Route
+	<span style=color:#080;font-style:italic>// If true, do not clear the request context after handling the request.
+</span><span style=color:#080;font-style:italic></span>	<span style=color:#080;font-style:italic>// Deprecated: No effect, since the context is stored on the request itself.
+</span><span style=color:#080;font-style:italic></span>	KeepContext <span style=color:#0b0;font-weight:700>bool</span>
+	<span style=color:#080;font-style:italic>// Slice of middlewares to be called after a match is found
+</span><span style=color:#080;font-style:italic></span>	middlewares []middleware
+	<span style=color:#080;font-style:italic>// configuration shared with `Route`
+</span><span style=color:#080;font-style:italic></span>	routeConf
+}
+</code></pre></div><p><code>mux.Router</code> 主要具备以下特性：</p><ul><li>实现了 <code>http.Handler</code> 接口，所以和 <code>http.ServeMux</code> 完全兼容；</li><li>可以基于 URL 主机、路径、前缀、scheme、请求头、请求参数、请求方法进行路由匹配；</li><li>URL 主机、路径、查询字符串支持可选的正则匹配；</li><li>支持构建或反转已注册的 URL 主机，以便维护对资源的引用；</li><li>支持路由嵌套，以便不同路由可以共享通用条件，比如主机、路径前缀等。</li></ul><h2 id=1-使用入门>1. 使用入门</h2><p>运行如下命令进行安装</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-bash data-lang=bash>$ go get -u github.com/gorilla/mux
+</code></pre></div><p>一个简单的示例如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>main</span>() {
+    r <span style=color:#666>:=</span> mux.<span style=color:#00a000>NewRouter</span>()
+    r.<span style=color:#00a000>HandleFunc</span>(<span style=color:#b44>&#34;/&#34;</span>, HomeHandler)
+    r.<span style=color:#00a000>HandleFunc</span>(<span style=color:#b44>&#34;/products&#34;</span>, ProductsHandler)
+    r.<span style=color:#00a000>HandleFunc</span>(<span style=color:#b44>&#34;/articles&#34;</span>, ArticlesHandler)
+    http.<span style=color:#00a000>ListenAndServe</span>(<span style=color:#b44>&#34;:8080&#34;</span>, r)
+}
+</code></pre></div><p><code>main</code> 函数中的第一行显式初始化了 <code>mux.Router</code> 作为路由器，然后在这个路由器中注册路由规则，最后将这个路由器传入 <code>http.ListenAndServe</code> 方法，整个调用过程和之前并无二致，因为<code>mux.Router</code> 也实现了 <code>Handler</code> 接口。</p><p>路径中可以包含变量。变量的定义形式为 <code>{name}</code> 或 <code>{name:pattern}</code>，只能是小写字母，不支持其它字符，同时，name 可以是正则表达式，如下面的例子所示</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>r <span style=color:#666>:=</span> mux.<span style=color:#00a000>NewRouter</span>()
+r.<span style=color:#00a000>HandleFunc</span>(<span style=color:#b44>&#34;/products/{key}&#34;</span>, ProductHandler)
+r.<span style=color:#00a000>HandleFunc</span>(<span style=color:#b44>&#34;/articles/{category}/&#34;</span>, ArticlesCategoryHandler)
+r.<span style=color:#00a000>HandleFunc</span>(<span style=color:#b44>&#34;/articles/{category}/{id:[0-9]+}&#34;</span>, ArticleHandler)
+</code></pre></div><p>相应地，在闭包处理函数中，我们使用 <code>mux.Vars()</code> 解析路由参数：</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>ArticlesCategoryHandler</span>(w http.ResponseWriter, r <span style=color:#666>*</span>http.Request) {
+    vars <span style=color:#666>:=</span> mux.<span style=color:#00a000>Vars</span>(r)
+    w.<span style=color:#00a000>WriteHeader</span>(http.StatusOK)
+    fmt.<span style=color:#00a000>Fprintf</span>(w, <span style=color:#b44>&#34;Category: %v\n&#34;</span>, vars[<span style=color:#b44>&#34;category&#34;</span>])
+}
+</code></pre></div><h2 id=2-路由代码拆分>2. 路由代码拆分</h2><p>比较简单的情况下，所有的路由、处理器都放在应用入口文件中，一般是 main.go，但如果项目比较大，甚至仅仅是博客这种级别的项目，就要处理文章、用户、图片等众多资源，所以我们需要针对这种情况进行一定的优化。</p><p>优化的办法就是将路由器与控制器分离，为了使代码结构更加清晰明了，我们把服务器、路由器、路由定义、处理器方法全都拆分开。</p><h3 id=21-路由器>2.1 路由器</h3><p>我们在项目根目录下新建 <code>routes</code> 目录用来存放路由定义及实现。</p><p>首先在 <code>routes</code> 目录下创建 <code>routes.go</code> 存放路由定义，文件内容如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> routes
+
+<span style=color:#a2f;font-weight:700>import</span> <span style=color:#b44>&#34;net/http&#34;</span>
+
+<span style=color:#080;font-style:italic>// 定义一个 WebRoute 结构体用于存放单个路由
+</span><span style=color:#080;font-style:italic></span><span style=color:#a2f;font-weight:700>type</span> WebRoute <span style=color:#a2f;font-weight:700>struct</span> {
+    Name        <span style=color:#0b0;font-weight:700>string</span>
+    Method      <span style=color:#0b0;font-weight:700>string</span>
+    Pattern     <span style=color:#0b0;font-weight:700>string</span>
+    HandlerFunc http.HandlerFunc
+}
+
+<span style=color:#080;font-style:italic>// 声明 WebRoutes 切片存放所有 Web 路由
+</span><span style=color:#080;font-style:italic></span><span style=color:#a2f;font-weight:700>type</span> WebRoutes []WebRoute
+
+<span style=color:#080;font-style:italic>// 定义所有 Web 路由
+</span><span style=color:#080;font-style:italic></span><span style=color:#a2f;font-weight:700>var</span> webRoutes = WebRoutes{
+    
+}
+</code></pre></div><p>在这里，我们定义了一个 <code>WebRoute</code> 结构体来表示单个路由，其中包含了路由名称、请求方法、匹配字符串模式、以及对应的处理器方法，路由器可以根据这些配置请求请求分发。</p><p>然后定义了一个 <code>WebRoutes</code> 切片来存放所有 <code>WebRoute</code> 类型的路由，最后初始化这个切片为空，表示还没有定义任何路由。</p><p>接下来，在 <code>routes</code> 目录下创建 <code>router.go</code> 用来编写路由器实现</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> routes
+
+<span style=color:#a2f;font-weight:700>import</span> <span style=color:#b44>&#34;github.com/gorilla/mux&#34;</span>
+
+<span style=color:#080;font-style:italic>// 返回一个 mux.Router 类型指针，从而可以当作处理器使用
+</span><span style=color:#080;font-style:italic></span><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>NewRouter</span>() <span style=color:#666>*</span>mux.Router {
+
+    <span style=color:#080;font-style:italic>// 创建 mux.Router 路由器示例
+</span><span style=color:#080;font-style:italic></span>    router <span style=color:#666>:=</span> mux.<span style=color:#00a000>NewRouter</span>().<span style=color:#00a000>StrictSlash</span>(<span style=color:#a2f;font-weight:700>true</span>)
+
+    <span style=color:#080;font-style:italic>// 遍历 web.go 中定义的所有 webRoutes
+</span><span style=color:#080;font-style:italic></span>    <span style=color:#a2f;font-weight:700>for</span> _, route <span style=color:#666>:=</span> <span style=color:#a2f;font-weight:700>range</span> webRoutes {
+        <span style=color:#080;font-style:italic>// 将每个 web 路由应用到路由器
+</span><span style=color:#080;font-style:italic></span>        router.<span style=color:#00a000>Methods</span>(route.Method).
+            <span style=color:#00a000>Path</span>(route.Pattern).
+            <span style=color:#00a000>Name</span>(route.Name).
+            <span style=color:#00a000>Handler</span>(route.HandlerFunc)
+    }
+
+    <span style=color:#a2f;font-weight:700>return</span> router
+}
+</code></pre></div><p>StrictSlash 定义斜杠尾随行为，意思是，传入 true 时，如果路由路径是 <code>/path</code> 这种形式，将重定向到 <code>/path/</code> ，反之亦然。传入 false 时，不会重定向，这两种情况不会看作一种。</p><p>Methods，Path，Name，Handler分别用来限定请求方法、匹配字符串模式、路由名和处理器方法。通过这种方式，我们将 routes.go 中定义的所有 Web 路由都应用到了使用 mux.NewRouter 创建的路由器，以便可以处理用户请求的路由匹配和分发。</p><h3 id=22-服务器>2.2 服务器</h3><p>在入口文件 main.go 中使用如下方法启动服务器</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> main
+
+<span style=color:#a2f;font-weight:700>import</span> (
+     . <span style=color:#b44>&#34;github.com/shuzang/projectname/routes&#34;</span>
+    <span style=color:#b44>&#34;log&#34;</span>
+    <span style=color:#b44>&#34;net/http&#34;</span>
+)
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>main</span>()  {
+    <span style=color:#00a000>startWebServer</span>(<span style=color:#b44>&#34;8080&#34;</span>)
+}
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>startWebServer</span>(port <span style=color:#0b0;font-weight:700>string</span>)  {
+    r <span style=color:#666>:=</span> <span style=color:#00a000>NewRouter</span>()
+    http.<span style=color:#00a000>Handle</span>(<span style=color:#b44>&#34;/&#34;</span>, r)
+
+    log.<span style=color:#00a000>Println</span>(<span style=color:#b44>&#34;Starting HTTP service at &#34;</span> <span style=color:#666>+</span> port)
+    err <span style=color:#666>:=</span> http.<span style=color:#00a000>ListenAndServe</span>(<span style=color:#b44>&#34;:&#34;</span><span style=color:#666>+</span>port, <span style=color:#a2f;font-weight:700>nil</span>) <span style=color:#080;font-style:italic>// Goroutine will block here
+</span><span style=color:#080;font-style:italic></span>
+    <span style=color:#a2f;font-weight:700>if</span> err <span style=color:#666>!=</span> <span style=color:#a2f;font-weight:700>nil</span> {
+        log.<span style=color:#00a000>Println</span>(<span style=color:#b44>&#34;An error occured starting HTTP listener at port &#34;</span> <span style=color:#666>+</span> port)
+        log.<span style=color:#00a000>Println</span>(<span style=color:#b44>&#34;Error: &#34;</span> <span style=color:#666>+</span> err.<span style=color:#00a000>Error</span>())
+    }
+}
+</code></pre></div><p>我们将 Web 服务器启动逻辑封装到 <code>startWebServer</code> 方法中实现，该方法需要传入端口参数。在具体实现时，我们调用了 <code>routes/router.go</code> 中定义的 <code>NewRouter</code> 方法，将其返回值作为处理器传入 <code>http.Handle</code> 方法，最后调用 <code>http.ListenAndServe</code> 启动 Web 服务器并监听传入的端口号。</p><p>最后在 <code>main</code> 方法中调用 <code>startWebServer</code> 方法即可。</p><h3 id=23-处理器>2.3 处理器</h3><p>上层代码写完后，现在定义处理器方法。在项目根目录下新建 <code>handlers</code> 目录存放处理器方法，这里举 2 个示例，分别定义在 <code>common.go</code> 和 <code>user.go</code> 两个文件中，用来处理通用请求和用户资源。</p><p>首先在 <code>common.go</code> 中编写首页请求处理器方法</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> handlers
+
+<span style=color:#a2f;font-weight:700>import</span> (
+    <span style=color:#b44>&#34;io&#34;</span>
+    <span style=color:#b44>&#34;net/http&#34;</span>
+)
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>Home</span>(w http.ResponseWriter, r <span style=color:#666>*</span>http.Request)  {
+    io.<span style=color:#00a000>WriteString</span>(w, <span style=color:#b44>&#34;Welcome to my site&#34;</span>)
+}
+</code></pre></div><p>然后在 <code>user.go</code> 中定义获取指定用户对应处理器方法</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> handlers
+
+<span style=color:#a2f;font-weight:700>import</span> (
+    <span style=color:#b44>&#34;github.com/gorilla/mux&#34;</span>
+    <span style=color:#b44>&#34;io&#34;</span>
+    <span style=color:#b44>&#34;net/http&#34;</span>
+)
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>GetUser</span>(w http.ResponseWriter, r <span style=color:#666>*</span>http.Request)  {
+    <span style=color:#080;font-style:italic>// Get user from DB by id...
+</span><span style=color:#080;font-style:italic></span>    params <span style=color:#666>:=</span> mux.<span style=color:#00a000>Vars</span>(r)
+    id <span style=color:#666>:=</span> params[<span style=color:#b44>&#34;id&#34;</span>]
+    io.<span style=color:#00a000>WriteString</span>(w, <span style=color:#b44>&#34;Return user info with id = &#34;</span> <span style=color:#666>+</span> id)
+}
+</code></pre></div><p>这时要记得，<code>routes/routes.go</code> 中的路由切片还是空的，用实现的处理器填充它</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>var</span> webRoutes = WebRoutes{
+    WebRoute{
+        <span style=color:#b44>&#34;Home&#34;</span>,
+        <span style=color:#b44>&#34;GET&#34;</span>,
+        <span style=color:#b44>&#34;/&#34;</span>,
+        handlers.Home,
+    },
+    WebRoute{
+        <span style=color:#b44>&#34;User&#34;</span>,
+        <span style=color:#b44>&#34;GET&#34;</span>,
+        <span style=color:#b44>&#34;/user/{id}&#34;</span>,
+        handlers.GetUser,
+    },
+}
+</code></pre></div><h2 id=3-路由匹配规则>3. 路由匹配规则</h2><p>第一部分的路由匹配规则只是简单介绍，实际上，gorilla/mux 实现的匹配规则非常强大。</p><h3 id=31-常用匹配规则>3.1 常用匹配规则</h3><p><strong>限定请求方法</strong></p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>r.<span style=color:#00a000>HandleFunc</span>(<span style=color:#b44>&#34;/books/{title}&#34;</span>, CreateBook).<span style=color:#00a000>Methods</span>(<span style=color:#b44>&#34;POST&#34;</span>)
+r.<span style=color:#00a000>HandleFunc</span>(<span style=color:#b44>&#34;/books/{title}&#34;</span>, ReadBook).<span style=color:#00a000>Methods</span>(<span style=color:#b44>&#34;GET&#34;</span>)
+r.<span style=color:#00a000>HandleFunc</span>(<span style=color:#b44>&#34;/books/{title}&#34;</span>, UpdateBook).<span style=color:#00a000>Methods</span>(<span style=color:#b44>&#34;PUT&#34;</span>)
+r.<span style=color:#00a000>HandleFunc</span>(<span style=color:#b44>&#34;/books/{title}&#34;</span>, DeleteBook).<span style=color:#00a000>Methods</span>(<span style=color:#b44>&#34;DELETE&#34;</span>)
+</code></pre></div><p><strong>限定主机名或子域名</strong></p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>r.<span style=color:#00a000>HandleFunc</span>(<span style=color:#b44>&#34;/books/{title}&#34;</span>, BookHandler).<span style=color:#00a000>Host</span>(<span style=color:#b44>&#34;www.mybookstore.com&#34;</span>)
+</code></pre></div><p><strong>限定 Scheme</strong></p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>r.<span style=color:#00a000>HandleFunc</span>(<span style=color:#b44>&#34;/secure&#34;</span>, SecureHandler).<span style=color:#00a000>Schemes</span>(<span style=color:#b44>&#34;https&#34;</span>)
+r.<span style=color:#00a000>HandleFunc</span>(<span style=color:#b44>&#34;/insecure&#34;</span>, InsecureHandler).<span style=color:#00a000>Schemes</span>(<span style=color:#b44>&#34;http&#34;</span>)
+</code></pre></div><p><strong>限定前缀和子路由</strong></p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>bookrouter <span style=color:#666>:=</span> r.<span style=color:#00a000>PathPrefix</span>(<span style=color:#b44>&#34;/books&#34;</span>).<span style=color:#00a000>Subrouter</span>()
+bookrouter.<span style=color:#00a000>HandleFunc</span>(<span style=color:#b44>&#34;/&#34;</span>, AllBooks)
+bookrouter.<span style=color:#00a000>HandleFunc</span>(<span style=color:#b44>&#34;/{title}&#34;</span>, GetBook)
+</code></pre></div><p><strong>限定请求参数</strong></p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>r.<span style=color:#00a000>HandleFunc</span>(<span style=color:#b44>&#34;/request/header&#34;</span>, <span style=color:#a2f;font-weight:700>func</span>(w http.ResponseWriter, r <span style=color:#666>*</span>http.Request) {
+    header <span style=color:#666>:=</span> <span style=color:#b44>&#34;X-Requested-With&#34;</span>
+    fmt.<span style=color:#00a000>Fprintf</span>(w, <span style=color:#b44>&#34;包含指定请求头[%s=%s]&#34;</span>, header, r.Header[header])
+}).<span style=color:#00a000>Headers</span>(<span style=color:#b44>&#34;X-Requested-With&#34;</span>, <span style=color:#b44>&#34;XMLHttpRequest&#34;</span>)
+</code></pre></div><h3 id=32-自定义匹配规则>3.2 自定义匹配规则</h3><p><code>gorilla/mux</code> 路由支持通过 <code>MatcherFunc</code> 方法自定义路由匹配规则，在该方法中，可以获取到请求实例 <code>request</code>，这样我们就可以拿到所有的用户请求信息，并对其进行判断，符合我们预期的请求才能匹配并访问该方法应用到的路由。</p><p>比如下面这个示例，我们限定只有来自 <code>https://baidu.com</code> 域名的请求才可以匹配到 <code>/custom/matcher</code> 路由</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>r.<span style=color:#00a000>HandleFunc</span>(<span style=color:#b44>&#34;/custom/matcher&#34;</span>, <span style=color:#a2f;font-weight:700>func</span>(w http.ResponseWriter, r <span style=color:#666>*</span>http.Request) {
+    fmt.<span style=color:#00a000>Fprintf</span>(w, <span style=color:#b44>&#34;请求来自指定域名: %s&#34;</span>, r.<span style=color:#00a000>Referer</span>())
+}).<span style=color:#00a000>MatcherFunc</span>(<span style=color:#a2f;font-weight:700>func</span>(request <span style=color:#666>*</span>http.Request, match <span style=color:#666>*</span>mux.RouteMatch) <span style=color:#0b0;font-weight:700>bool</span> {
+    <span style=color:#a2f;font-weight:700>return</span> request.<span style=color:#00a000>Referer</span>() <span style=color:#666>==</span> <span style=color:#b44>&#34;https://baidu.com&#34;</span>
+})
+</code></pre></div><h3 id=33-路由命名>3.3 路由命名</h3><p>通过 <code>Name</code> 方法在路由规则中指定</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>postRouter <span style=color:#666>:=</span> r.<span style=color:#00a000>PathPrefix</span>(<span style=color:#b44>&#34;/posts&#34;</span>).<span style=color:#00a000>Subrouter</span>()
+postRouter.<span style=color:#00a000>HandleFunc</span>(<span style=color:#b44>&#34;/&#34;</span>, listPosts).<span style=color:#00a000>Methods</span>(<span style=color:#b44>&#34;GET&#34;</span>).<span style=color:#00a000>Name</span>(<span style=color:#b44>&#34;posts.index&#34;</span>)
+postRouter.<span style=color:#00a000>HandleFunc</span>(<span style=color:#b44>&#34;/create&#34;</span>, createPost).<span style=color:#00a000>Methods</span>(<span style=color:#b44>&#34;POST&#34;</span>).<span style=color:#00a000>Name</span>(<span style=color:#b44>&#34;posts.create&#34;</span>)
+</code></pre></div><h2 id=4-路由中间件>4. 路由中间件</h2><h2 id=5-处理静态资源响应>5. 处理静态资源响应</h2><p>使用默认<code>http</code>包处理静态资源的方法如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>fs <span style=color:#666>:=</span> http.<span style=color:#00a000>FileServer</span>(http.<span style=color:#00a000>Dir</span>(<span style=color:#b44>&#34;assets/&#34;</span>))
+http.<span style=color:#00a000>Handle</span>(<span style=color:#b44>&#34;/static/&#34;</span>, http.<span style=color:#00a000>StripPrefix</span>(<span style=color:#b44>&#34;/static/&#34;</span>, fs))
+</code></pre></div><p>使用 gorilla/mux 时，处理方法很相似</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>r <span style=color:#666>:=</span> <span style=color:#00a000>NewRouter</span>() <span style=color:#080;font-style:italic>// 通过 router.go 中定义的路由器来分发请求
+</span><span style=color:#080;font-style:italic></span>
+assets <span style=color:#666>:=</span> http.<span style=color:#00a000>FileServer</span>(http.<span style=color:#00a000>Dir</span>(<span style=color:#b44>&#34;public&#34;</span>))
+r.<span style=color:#00a000>PathPrefix</span>(<span style=color:#b44>&#34;/static/&#34;</span>).<span style=color:#00a000>Handler</span>(http.<span style=color:#00a000>StripPrefix</span>(<span style=color:#b44>&#34;/static/&#34;</span>, assets))
+
+http.<span style=color:#00a000>Handle</span>(<span style=color:#b44>&#34;/&#34;</span>, r) <span style=color:#080;font-style:italic>// 应用路由器到 HTTP 服务器
+</span><span style=color:#080;font-style:italic></span>
+<span style=color:#666>...</span>
+</code></pre></div><p>虽然 <code>gorilla/mux</code> 路由器提供了对静态资源的支持，但是通常我们还是会基于 Nginx 来处理静态资源，然后将动态请求转发给 Go HTTP 服务器，因为 Nginx 作为一款强大的反向代理服务器，并发处理静态资源的能力非常强悍，没必要自己去处理这块逻辑。</p></div><footer class=post-footer><div class=post-tags><a href=/tags/go%e5%ae%9e%e6%88%98 rel=tag title=Go实战>#Go实战#</a></div><div class=addthis_inline_share_toolbox></div><div class=post-nav><div class=article-copyright><div class=article-copyright-info><p><span>声明：</span>Golang使用gorilla、mux包</p><p><span>链接：</span>https://shuzang.github.io/2020/05/golang-use-gorilla/mux-package/</p><p><span>作者：</span>书藏</p><p><span>声明： </span>本博客文章除特别声明外，均采用 <a href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank style=text-decoration:underline>CC BY-NC-SA 3.0</a>许可协议，转载请注明出处！</p></div></div><div class=clear></div></div><div class=reward-qr-info><div>创作实属不易，如有帮助，那就打赏博主些许茶钱吧 ^_^</div><button id=rewardButton disable=enable onclick="var qr=document.getElementById('QR');if(qr.style.display==='none'){qr.style.display='block';}else{qr.style.display='none'}">
+<span>赏</span></button><div id=QR style=display:none><div id=wechat style=display:inline-block><img id=wechat_qr src=/img/wechat-pay.png alt="WeChat Pay"><p>微信打赏</p></div><div id=alipay style=display:inline-block><img id=alipay_qr src=/img/ali-pay.png alt=Alipay><p>支付宝打赏</p></div></div></div><div class=post-nav><div class="post-nav-next post-nav-item"><a href=https://shuzang.github.io/2020/05/golang-template/ rel=next title=Golang模板><i class="fa fa-chevron-left"></i>Golang模板</a></div><div class="post-nav-prev post-nav-item"><a href=https://shuzang.github.io/2020/05/golang-start-http-server/ rel=prev title=Golang启动HTTP服务器>Golang启动HTTP服务器
+<i class="fa fa-chevron-right"></i></a></div></div><div id=wcomments></div></footer></article></section></div></div><div class=sidebar-toggle><div class=sidebar-toggle-line-wrap><span class="sidebar-toggle-line sidebar-toggle-line-first"></span><span class="sidebar-toggle-line sidebar-toggle-line-middle"></span><span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id=sidebar class=sidebar><div class=sidebar-inner><section class="site-overview sidebar-panel sidebar-panel-active"><div class="site-author motion-element" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image src=/images/avatar.png alt=书藏><p class=site-author-name itemprop=name>书藏</p><p class="site-description motion-element" itemprop=description></p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href=/post/><span class=site-state-item-count>334</span>
+<span class=site-state-item-name>日志</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>7</span>
+<span class=site-state-item-name>分类</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>23</span>
+<span class=site-state-item-name>标签</span></a></div></nav><div class="links-of-author motion-element"><span class=links-of-author-item><a href=https://github.com/shuzang/ target=_blank title=GitHub><i class="fa fa-fw fa-github"></i>GitHub</a></span></div><div class="tagcloud-of-blogroll motion-element tagcloud-of-blogroll-inline"><div class=tagcloud-of-blogroll-title><i class="fa fa-fw fa-tags"></i>标签云</div><ul class=tagcloud-of-blogroll-list><li class=tagcloud-of-blogroll-item><a href=/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0>论文笔记</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E4%B9%A6%E8%97%8F%E7%9A%84%E7%94%9F%E6%B4%BB%E5%91%A8%E5%88%8A>书藏的生活周刊</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95>科研记录</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/go%E8%AF%AD%E6%B3%95>Go语法</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80>计算机基础</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E6%9D%82%E8%B0%88>杂谈</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E5%8C%BA%E5%9D%97%E9%93%BE>区块链</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95>数据结构与算法</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E7%94%9F%E6%B4%BB%E6%8A%80%E8%83%BD>生活技能</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/go%E5%AE%9E%E6%88%98>Go实战</a></li></ul></div></section></div></aside></div></main><footer id=footer class=footer><div class=footer-inner><div class=copyright><span class=copyright-year>&copy; 2018 - 2022</span>
+<span class=with-love><i class="fa fa-heart"></i></span><span class=copyright-author>书藏的博客</span></div><div class=powered-info><span class=powered-by>Powered by - <a class=powered-link href=//gohugo.io target=_blank title=hugo>Hugo v0.63.2</a></span>
+<span class=separator-line>/</span>
+<span class=theme-info>Theme by - <a class=powered-link href=//github.com/elkan1788/hugo-theme-next target=_blank>NexT</a></span></div><div class=vistor-info><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><span class=site-uv><i class="fa fa-user"></i><span class=busuanzi-value id=busuanzi_value_site_uv></span></span><span class=separator-line>/</span>
+<span class=site-pv><i class="fa fa-eye"></i><span class=busuanzi-value id=busuanzi_value_site_pv></span></span></div></div></footer><div class=back-to-top><i class="fa fa-arrow-up"></i><span id=scrollpercent><span>0</span>%</span></div></div><script type=text/javascript src=//cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.min.js></script><script type=text/javascript src=/js/search.js></script><script type=text/javascript src=/js/affix.js></script><script type=text/javascript src=/js/scrollspy.js></script><script type=text/javascript>function detectIE(){var ua=window.navigator.userAgent;var msie=ua.indexOf('MSIE ');var trident=ua.indexOf('Trident/');var edge=ua.indexOf('Edge/');if(msie>0||trident>0||edge>0){return-1;}
+return 1;}
+function getCntViewHeight(){var docHeight=$('#content').height(),winHeight=$(window).height(),cntViewHeight=(docHeight>winHeight)?(docHeight-winHeight):($(document).height()-winHeight);return cntViewHeight;}
+function getScrollbarWidth(){var $div=$('<div />').addClass('scrollbar-measure').prependTo('body');var div=$div[0];var scrollbarWidth=div.offsetWidth-div.clientWidth;$div.remove();return scrollbarWidth;}
+function registerBackTop(){var THRESHOLD=50;var $top=$('.back-to-top');$(window).on('scroll',function(){$top.toggleClass('back-to-top-on',window.pageYOffset>THRESHOLD);var scrollTop=$(window).scrollTop();var cntViewHeight=getCntViewHeight();var scrollPercent=(scrollTop)/(cntViewHeight);var scrollPercentRounded=Math.round(scrollPercent*100);var scrollPercentMaxed=(scrollPercentRounded>100)?100:scrollPercentRounded;$('#scrollpercent>span').html(scrollPercentMaxed);});$top.on('click',function(){$("html,body").animate({scrollTop:0,screenLeft:0,},800);});}
+function initScrollSpy(){var tocSelector='.post-toc';var $tocElement=$(tocSelector);var activeCurrentSelector='.active-current';$tocElement.on('activate.bs.scrollspy',function(){var $currentActiveElement=$(tocSelector+' .active').last();removeCurrentActiveClass();$currentActiveElement.addClass('active-current');}).on('clear.bs.scrollspy',removeCurrentActiveClass);$('body').scrollspy({target:tocSelector});function removeCurrentActiveClass(){$(tocSelector+' '+activeCurrentSelector).removeClass(activeCurrentSelector.substring(1));}}
+function initAffix(){var headerHeight=$('.header-inner').height();var footerOffset=parseInt($('.main').css('padding-bottom'),10);var sidebarTop=headerHeight+10;$('.sidebar-inner').affix({offset:{top:sidebarTop,bottom:footerOffset}});$(document).on('affixed.bs.affix',function(){updateTOCHeight(document.body.clientHeight-100);});}
+function initTOCDimension(){var updateTOCHeightTimer;$(window).on('resize',function(){updateTOCHeightTimer&&clearTimeout(updateTOCHeightTimer);updateTOCHeightTimer=setTimeout(function(){var tocWrapperHeight=document.body.clientHeight-100;updateTOCHeight(tocWrapperHeight);},0);});updateTOCHeight(document.body.clientHeight-100);var scrollbarWidth=getScrollbarWidth();$('.post-toc').css('width','calc(100% + '+scrollbarWidth+'px)');}
+function updateTOCHeight(height){height=height||'auto';$('.post-toc').css('max-height',height);}
+$(function(){var sidebarTop=$('.header-inner').height()+10;$('#sidebar').css({'margin-top':sidebarTop}).show();var sidebarMt=parseInt($('#sidebar').css('margin-top'));var sidebarInHeight=parseInt($('.sidebar-inner').css('height'));var sideHeight=sidebarMt+sidebarInHeight;var contentHeight=$('.content-wrap').height();if(contentHeight<sideHeight){$('.content-wrap').css('min-height',sideHeight);}
+$('.site-nav-toggle').on('click',function(){var $siteNav=$('.site-nav');var $toggleLine=$('.toggle');var ON_CLASS_NAME='site-nav-on';var CLOSE_CLASS_NAME='toggle-close';var isSiteNavOn=$siteNav.hasClass(ON_CLASS_NAME);var animateAction=isSiteNavOn?'slideUp':'slideDown';var animateCallback=isSiteNavOn?'removeClass':'addClass';$siteNav.stop()[animateAction]('normal',function(){$siteNav[animateCallback](ON_CLASS_NAME);$toggleLine[animateCallback](CLOSE_CLASS_NAME);});});registerBackTop();initScrollSpy();initAffix();initTOCDimension();$('.sidebar-nav-toc').click(function(){$(this).addClass('sidebar-nav-active');$(this).next().removeClass('sidebar-nav-active');$('.'+$(this).next().attr('data-target')).toggle(500);$('.'+$(this).attr('data-target')).toggle(500);});$('.sidebar-nav-overview').click(function(){$(this).addClass('sidebar-nav-active');$(this).prev().removeClass('sidebar-nav-active');$('.'+$(this).prev().attr('data-target')).toggle(500);$('.'+$(this).attr('data-target')).toggle(500);});});</script><script src=//cdn.bootcdn.net/ajax/libs/imageviewer/0.1.0/viewer.min.js></script><script type=text/javascript>$(function(){$('.post-body').viewer();});</script><script type=text/javascript>$(function(){if(detectIE()>0){$.getScript(document.location.protocol+'//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js',function(){new Waline({el:'#wcomments',visitor:true,avatar:'wavatar',avatarCDN:'https://sdn.geekzu.org/avatar/',avatarForce:!1,wordLimit:'200',placeholder:' 欢迎留下您的宝贵建议，请填写您的昵称和邮箱便于后续交流. ^_^ ',requiredFields:['nick','mail'],serverURL:"Your WalineSerURL",lang:"zh-cn"});});}else{$('#wcomments').html('抱歉，Waline插件不支持IE或Edge，建议使用Chrome浏览器。');}});</script><script type=text/javascript src="//s7.addthis.com/js/300/addthis_widget.js#pubid=Your%20AddthisId"></script><script>(function(){var bp=document.createElement('script');var curProtocol=window.location.protocol.split(':')[0];if(curProtocol==='https'){bp.src='https://zz.bdstatic.com/linksubmit/push.js';}
+else{bp.src='http://push.zhanzhang.baidu.com/push.js';}
+var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(bp,s);})();</script></body></html>

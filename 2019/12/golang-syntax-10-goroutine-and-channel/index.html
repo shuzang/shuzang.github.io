@@ -1,0 +1,436 @@
+<!doctype html><html lang=zh-cn dir=content/zh-cn><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="IE=edge,chrome=1"><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=1"><meta http-equiv=content-security-policy content="upgrade-insecure-requests"><title>Golang语法基础10-协程与通道 - 书藏的博客</title><meta name=keywords content="博客,程序员,区块链，思考,读书,笔记,生活,电影,旅游,"><meta name=author content="书藏"><meta property="og:title" content="Golang语法基础10-协程与通道"><meta property="og:site_name" content="书藏的博客"><meta property="og:image" content="/img/avatar.png"><meta name=title content="Golang语法基础10-协程与通道 - 书藏的博客"><meta name=description content="书藏的个人博客，记录学习的东西，以月刊记录生活"><link rel="shortcut icon" href=/img/favicon.ico><link rel=apple-touch-icon href=/img/apple-touch-icon.png><link rel=apple-touch-icon-precomposed href=/img/apple-touch-icon.png><link href=//cdn.bootcdn.net/ajax/libs/font-awesome/4.6.2/css/font-awesome.min.css rel=stylesheet type=text/css><link href=//cdn.bootcdn.net/ajax/libs/imageviewer/0.1.0/viewer.min.css rel=stylesheet><link href=/css/main.css rel=stylesheet type=text/css><link href=/css/syntax.css rel=stylesheet type=text/css><script async src="https://www.googletagmanager.com/gtag/js?id=UA-209130979-1"></script><script type=text/javascript>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());gtag('config','UA-209130979-1 ');</script></head><body itemscope itemtype=http://schema.org/WebPage lang=zh-hans><div class="container one-collumn sidebar-position-left page-home"><div class=headband></div><header id=header class=header itemscope itemtype=http://schema.org/WPHeader><div class=header-inner><div class=site-brand-container><div class=site-nav-toggle><div class=toggle role=button style=opacity:1;top:0><span class=toggle-line></span><span class=toggle-line></span><span class=toggle-line></span></div></div><div class=site-meta><div class=multi-lang-switch><i class="fa fa-fw fa-language" style=margin-right:5px></i><a class=lang-link id=zh-cn href=#>中文</a></div><div class=custom-logo-site-title><a href=/ class=brand rel=start><span class=logo-line-before><i></i></span><span class=site-title>书藏的博客</span>
+<span class=logo-line-after><i></i></span></a></div><p class=site-subtitle>凡心所向，素履以往</p></div><div class=site-nav-right><div class="toggle popup-trigger" style=opacity:1;top:0><i class="fa fa-search fa-fw fa-lg"></i></div></div></div><nav class=site-nav><ul id=menu class=menu><li class=menu-item><a href=/ rel=section><i class="menu-item-icon fa fa-fw fa-home"></i><br>首页</a></li><li class=menu-item><a href=/post rel=section><i class="menu-item-icon fa fa-fw fa-archive"></i><br>归档</a></li><li class=menu-item><a href=/about.html rel=section><i class="menu-item-icon fa fa-fw fa-user"></i><br>关于我</a></li><li class=menu-item><a href=/404.html rel=section><i class="menu-item-icon fa fa-fw fa-heartbeat"></i><br>公益404</a></li><li class="menu-item menu-item-search"><a href=javascript:; class=popup-trigger><i class="menu-item-icon fa fa-search fa-fw"></i><br>搜索</a></li></ul><div class=site-search><div class="popup search-popup local-search-popup"><div class="local-search-header clearfix"><span class=search-icon><i class="fa fa-search"></i></span><span class=popup-btn-close><i class="fa fa-times-circle"></i></span><div class=local-search-input-wrapper><input autocomplete=off placeholder=搜索关键字... spellcheck=false type=text id=local-search-input autocapitalize=none autocorrect=off></div></div><div id=local-search-result></div></div></div></nav></div></header><main id=main class=main><div class=main-inner><div class=content-wrap><div id=content class=content><section id=posts class=posts-expand><article class="post post-type-normal" itemscope itemtype=http://schema.org/Article><header class=post-header><h1 class=post-title itemprop="name headline"><a class=post-title-link href=https://shuzang.github.io/2019/12/golang-syntax-10-goroutine-and-channel/ itemprop=url>Golang语法基础10-协程与通道</a></h1><div class=post-meta><span class=post-time><i class="fa fa-calendar-o fa-fw"></i><span class=post-meta-item-text>时间：</span>
+<time itemprop=dateCreated datetime=2016-03-22T13:04:35+08:00 content="2019-12-16">2019-12-16</time></span>
+<span class=post-category>&nbsp; | &nbsp;
+<i class="fa fa-folder-o fa-fw"></i><span class=post-meta-item-text>分类：</span>
+<span itemprop=about itemscope itemtype=https://schema.org/Thing><a href=/categories/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF itemprop=url rel=index style=text-decoration:underline><span itemprop=name>Golang学习之路</span></a>
+&nbsp;</span></span>
+<span>|
+<i class="fa fa-file-word-o fa-fw"></i><span class=post-meta-item-text>字数：</span>
+<span class=leancloud-world-count>5423 字</span></span>
+<span>|
+<i class="fa fa-eye fa-fw"></i><span class=post-meta-item-text>阅读：</span>
+<span class=leancloud-view-count>11分钟</span></span>
+<span id=/2019/12/golang-syntax-10-goroutine-and-channel/ class=leancloud_visitors data-flag-title=Golang语法基础10-协程与通道>|
+<i class="fa fa-binoculars fa-fw"></i><span class=post-meta-item-text>阅读次数：</span>
+<span class=leancloud-visitors-count></span></span></div></header><div class=post-body itemprop=articleBody><p>首先来回顾在操作系统中学过的一些概念。进程(processes)是程序执行的基本单位，运行在一个独立的内存地址空间中；一个进程由多个线程(threads)组成，线程的存在是为了能够同时执行多个任务，最大化利用时间，防止产生等待，线程间是共享内存地址空间的。从windows资源管理器看这一点能看的很明白，如下，每个应用程序是一个进程，Typora程序下有两个线程在同时运行。</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20191216_3EkjsJ.png alt=进程与线程></p><p>并发是建立在多线程之上的概念，将CPU的执行时间划分为许多很小的间隔，多个线程不断地切换执行，从上层看起来就像在同时执行一样，但本质上依然是线性的。并行则是程序在某个特定的事件同时运行在多个CPU上，多核处理器为并行提供了可能。因此，并发也可能是并行的。</p><p>操作系统课程中一个最主要的问题就是多线程对共享内存空间的访问，我们学到的解决方式是通过加互斥锁来实现，但在设计实现上是一个复杂的过程，非常容易出错，鉴于操作系统考试的惨痛经历，现在完全不想回忆。Go中的标准库<code>sync</code>中有一些工具可以用来实现互斥锁的相关操作，但它显然没有Go自身支持的Goroutines高效。</p><h2 id=1-goroutines>1. Goroutines</h2><p>Go原生支持并发，依靠的是协程(goroutine)和通道(channel)两个概念。goroutines的概念是为了和processes、threads、coroutines等概念区别。其中coroutines也叫做协程，而且这才是常规意义下的协程，goroutines只在Go中有效。</p><p>coroutines是比线程更轻的一个概念，只使用很少的内存和资源。它对栈进行分隔，从而动态地增加或缩减内存的使用，栈的管理也是自动的，在协程退出后自动释放空间。协程可以运行在多个线程间，也可以运行在线程内，它的创建廉价到可以在同一地址空间存在100000个。这一概念也存在于其它语言(C#, Java等)中，它与goroutines的区别在于：</p><ul><li>Go协程意味着并行(或者可以以并行的方式部署)，协程一般不是</li><li>Go协程通过通道来通信，协程则通过让出与恢复操作来通信</li></ul><p>理论上，Go协程比协程更加强大。</p><p>以一个简单模型来描述goroutine：它是一个和其它协程在同一地址空间并发执行的函数。通过在函数或方法名前加上<code>go</code>关键字来创建和运行一个协程，运行结束后安静的退出(没有任何返回值)。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>go</span> list.<span style=color:#00a000>Sort</span>() <span style=color:#080;font-style:italic>//并行的运行list.Sort，不等待
+</span></code></pre></div><p>Go程序中必须含有的<code>main()</code>函数可以看作一个协程，尽管它没有通过<code>go</code>关键字启动，在程序初始化的过程中(<code>init()</code>函数运行)，goroutine也可以运行。</p><p>单纯的结束协程的概念是不够具体的，协程需要和通道来配合</p><h2 id=2-channel>2. Channel</h2><p>并发编程的困难之处在于实现对共享变量的正确访问，互斥量的方式是复杂的，Go鼓励采用一种不同的方法，即在通道(channel)上传递共享值，如同Unix管道一般，通道用于发送类型化的数据，在任何给定的时间，只有一个协程可以对通道中的数据进行访问，从而完成协程间的通信，也避开了所有由共享内存导致的陷阱。这种通过通道进行通信的方式保证同步性的同时，数据的所有权也因此被传递。</p><p>这一设计理念最终简化为一句话：<strong>不要通过共享内存来通信，而通过通信来共享内存</strong>。</p><h3 id=21-声明与初始化>2.1 声明与初始化</h3><p>声明通道的基本形式如下，未初始化的通道值为nil</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>var</span> identifier <span style=color:#a2f;font-weight:700>chan</span> datatype
+</code></pre></div><p>通道只能传输一种类型的数据，比如<code>chan int</code>或<code>chan string</code>，可以是任意类型，包括空接口<code>interface{}</code>和通道自己</p><p>和map相同，通道也是引用类型，因此使用<code>make</code>进行初始化，可以指定第二个参数用来指定缓冲区的大小，即通道可容纳的数据个数，这一个值默认是0，意思是无缓冲，无缓冲的通道将通信、值的交换、同步三者结合，保证两个协程的计算处于已知状态。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>var</span> ci <span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>string</span>
+ci = <span style=color:#a2f>make</span>(<span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>string</span>)			<span style=color:#080;font-style:italic>// unbuffered channel of integers
+</span><span style=color:#080;font-style:italic></span>
+cj <span style=color:#666>:=</span> <span style=color:#a2f>make</span>(<span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>int</span>, <span style=color:#666>0</span>)         <span style=color:#080;font-style:italic>// unbuffered channel of integers
+</span><span style=color:#080;font-style:italic></span>cs <span style=color:#666>:=</span> <span style=color:#a2f>make</span>(<span style=color:#a2f;font-weight:700>chan</span> <span style=color:#666>*</span>os.File, <span style=color:#666>100</span>)  <span style=color:#080;font-style:italic>// buffered channel of pointers to Files
+</span></code></pre></div><h3 id=22-通信操作符->2.2 通信操作符&lt;-</h3><p>这一操作符直观的表示数据的传输：信息按照箭头方向流动。</p><p>流向通道(发送)用<code>ch &lt;- int1</code>表示，意为利用通道ch发送变量int1</p><p>从通道流出(接收)用<code>int2 = &lt;- ch</code>表示，意为变量int2从通道ch接收数据，如果int2没有声明过，可以使用<code>int2 := &lt;- ch</code></p><p><code>&lt;- ch</code>则用于表示丢弃当前值，获取通道的下一个值，可以用来验证，如</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>if</span> <span style=color:#666>&lt;-</span> ch <span style=color:#666>!=</span> <span style=color:#666>1000</span> {
+    <span style=color:#666>...</span>
+}
+</code></pre></div><p>为了可读性通道的命名通常以 <code>ch</code> 开头或者包含 <code>chan</code>。通道的发送和接收都是原子操作，总是互不干扰的完成。下面的示例展示了通信操作符的使用。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> main
+
+<span style=color:#a2f;font-weight:700>import</span> (
+	<span style=color:#b44>&#34;fmt&#34;</span>
+	<span style=color:#b44>&#34;time&#34;</span>
+)
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>main</span>() {
+	ch <span style=color:#666>:=</span> <span style=color:#a2f>make</span>(<span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>string</span>)
+
+	<span style=color:#a2f;font-weight:700>go</span> <span style=color:#00a000>sendData</span>(ch)
+	<span style=color:#a2f;font-weight:700>go</span> <span style=color:#00a000>getData</span>(ch)
+
+	time.<span style=color:#00a000>Sleep</span>(<span style=color:#666>1e9</span>)
+}
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>sendData</span>(ch <span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>string</span>) {
+	ch <span style=color:#666>&lt;-</span> <span style=color:#b44>&#34;Washington&#34;</span>
+	ch <span style=color:#666>&lt;-</span> <span style=color:#b44>&#34;Tripoli&#34;</span>
+	ch <span style=color:#666>&lt;-</span> <span style=color:#b44>&#34;London&#34;</span>
+	ch <span style=color:#666>&lt;-</span> <span style=color:#b44>&#34;Beijing&#34;</span>
+	ch <span style=color:#666>&lt;-</span> <span style=color:#b44>&#34;Tokyo&#34;</span>
+}
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>getData</span>(ch <span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>string</span>) {
+	<span style=color:#a2f;font-weight:700>var</span> input <span style=color:#0b0;font-weight:700>string</span>
+	<span style=color:#080;font-style:italic>// time.Sleep(2e9)
+</span><span style=color:#080;font-style:italic></span>	<span style=color:#a2f;font-weight:700>for</span> {
+		input = <span style=color:#666>&lt;-</span>ch
+		fmt.<span style=color:#00a000>Printf</span>(<span style=color:#b44>&#34;%s &#34;</span>, input)
+	}
+}
+<span style=color:#080;font-style:italic>//Output:
+</span><span style=color:#080;font-style:italic></span>Washington Tripoli London Beijing tokyo
+</code></pre></div><p>如果2个协程需要通信，必须给它们同一个通道作为参数。上例中 <code>main()</code> 函数中启动了两个协程：<code>sendData()</code> 通过通道 ch 发送了 5 个字符串，<code>getData()</code> 按顺序接收它们并打印出来。 一些同步的细节如下：</p><ul><li>main() 等待了 1 秒让两个协程完成，如果不这样(注释掉<code>time.Sleep(1e9)</code>)，sendData() 就没有机会输出。</li><li>getData() 使用了无限循环：它随着 sendData() 的发送完成和 ch 变空也结束了。</li><li>如果我们移除一个或所有 <code>go</code> 关键字，程序无法运行，Go 运行时会抛出 panic。这是因为运行时(runtime)会检查所有的协程是否在等待什么东西(从通道读取或写入某个通道)，这意味着陷入死锁，程序无法继续执行。</li></ul><p>通道的发送和接收顺序是无法预知的，如果使用打印状态来输出，由于两者间的时间延迟，打印的顺序和真实发生的顺序是不同的。</p><h3 id=23-通道阻塞>2.3 通道阻塞</h3><p>前面提到默认情况下通信是同步且无缓冲的，因此通道的发送/接收操作在对方准备好之前是阻塞的。</p><ol><li>对于同一个通道，发送操作（协程或者函数中的），在接收者准备好之前是阻塞的：如果ch中的数据无人接收，就无法再给通道传入其他数据</li><li>对于同一个通道，接收操作在发送者可用之前是阻塞的（协程或函数中的）</li></ol><p>下例中的协程在无限循环中不断地给通道发送数据，但由于没有接收者，只输出了数字0</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> main
+
+<span style=color:#a2f;font-weight:700>import</span> <span style=color:#b44>&#34;fmt&#34;</span>
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>main</span>() {
+	ch1 <span style=color:#666>:=</span> <span style=color:#a2f>make</span>(<span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>int</span>)
+	<span style=color:#a2f;font-weight:700>go</span> <span style=color:#00a000>pump</span>(ch1)       <span style=color:#080;font-style:italic>// pump hangs
+</span><span style=color:#080;font-style:italic></span>	fmt.<span style=color:#00a000>Println</span>(<span style=color:#666>&lt;-</span>ch1) <span style=color:#080;font-style:italic>// prints only 0
+</span><span style=color:#080;font-style:italic></span>}
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>pump</span>(ch <span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>int</span>) {
+	<span style=color:#a2f;font-weight:700>for</span> i <span style=color:#666>:=</span> <span style=color:#666>0</span>; ; i<span style=color:#666>++</span> {
+		ch <span style=color:#666>&lt;-</span> i
+	}
+}
+<span style=color:#080;font-style:italic>//Output:0
+</span></code></pre></div><p>定义一个新的协程用来接收通道值可以持续输出</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> main
+
+<span style=color:#a2f;font-weight:700>import</span> <span style=color:#b44>&#34;fmt&#34;</span>
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>main</span>() {
+	ch1 <span style=color:#666>:=</span> <span style=color:#a2f>make</span>(<span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>int</span>)
+	<span style=color:#a2f;font-weight:700>go</span> <span style=color:#00a000>pump</span>(ch1)
+	<span style=color:#a2f;font-weight:700>go</span> <span style=color:#00a000>suck</span>(ch1)
+	time.<span style=color:#00a000>Sleep</span>(<span style=color:#666>1e9</span>)
+}
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>pump</span>(ch <span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>int</span>) {
+	<span style=color:#a2f;font-weight:700>for</span> i <span style=color:#666>:=</span> <span style=color:#666>0</span>; ; i<span style=color:#666>++</span> {
+		ch <span style=color:#666>&lt;-</span> i
+	}
+}
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>suck</span>(ch <span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>int</span>) {
+	<span style=color:#a2f;font-weight:700>for</span> {
+		fmt.<span style=color:#00a000>Println</span>(<span style=color:#666>&lt;-</span>ch)
+	}
+}
+</code></pre></div><h3 id=24-信号量模式>2.4 信号量模式</h3><p>信号量模式的意思是利用通道阻塞特性，等待所有计算完成后才让程序退出，用于并行执行函数或for循环，加快程序执行速度，一个例子瑞小安</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>type</span> Empty <span style=color:#a2f;font-weight:700>interface</span> {}
+<span style=color:#a2f;font-weight:700>var</span> empty Empty
+<span style=color:#666>...</span>
+data <span style=color:#666>:=</span> <span style=color:#a2f>make</span>([]<span style=color:#0b0;font-weight:700>float64</span>, N)
+res <span style=color:#666>:=</span> <span style=color:#a2f>make</span>([]<span style=color:#0b0;font-weight:700>float64</span>, N)
+sem <span style=color:#666>:=</span> <span style=color:#a2f>make</span>(<span style=color:#a2f;font-weight:700>chan</span> Empty, N)
+<span style=color:#666>...</span>
+<span style=color:#a2f;font-weight:700>for</span> i, xi <span style=color:#666>:=</span> <span style=color:#a2f;font-weight:700>range</span> data {
+	<span style=color:#a2f;font-weight:700>go</span> <span style=color:#a2f;font-weight:700>func</span> (i <span style=color:#0b0;font-weight:700>int</span>, xi <span style=color:#0b0;font-weight:700>float64</span>) {
+		res[i] = <span style=color:#00a000>doSomething</span>(i, xi)
+		sem <span style=color:#666>&lt;-</span> empty
+	} (i, xi)
+}
+<span style=color:#080;font-style:italic>// wait for goroutines to finish
+</span><span style=color:#080;font-style:italic></span><span style=color:#a2f;font-weight:700>for</span> i <span style=color:#666>:=</span> <span style=color:#666>0</span>; i &lt; N; i<span style=color:#666>++</span> { <span style=color:#666>&lt;-</span>sem }
+</code></pre></div><h3 id=25-通道工厂>2.5 通道工厂</h3><p>编程时常用一种通道工厂的模式，即不将通道作为参数传递给协程，而是用函数来生成一个通道并返回</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> main
+
+<span style=color:#a2f;font-weight:700>import</span> (
+	<span style=color:#b44>&#34;fmt&#34;</span>
+	<span style=color:#b44>&#34;time&#34;</span>
+)
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>main</span>() {
+	stream <span style=color:#666>:=</span> <span style=color:#00a000>pump</span>()
+	<span style=color:#a2f;font-weight:700>go</span> <span style=color:#00a000>suck</span>(stream)
+	time.<span style=color:#00a000>Sleep</span>(<span style=color:#666>1e9</span>)
+}
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>pump</span>() <span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>int</span> {
+	ch <span style=color:#666>:=</span> <span style=color:#a2f>make</span>(<span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>int</span>)
+	<span style=color:#a2f;font-weight:700>go</span> <span style=color:#a2f;font-weight:700>func</span>() {
+		<span style=color:#a2f;font-weight:700>for</span> i <span style=color:#666>:=</span> <span style=color:#666>0</span>; ; i<span style=color:#666>++</span> {
+			ch <span style=color:#666>&lt;-</span> i
+		}
+	}()
+	<span style=color:#a2f;font-weight:700>return</span> ch
+}
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>suck</span>(ch <span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>int</span>) {
+	<span style=color:#a2f;font-weight:700>for</span> {
+		fmt.<span style=color:#00a000>Println</span>(<span style=color:#666>&lt;-</span>ch)
+	}
+}
+</code></pre></div><h3 id=26-给通道使用for循环>2.6 给通道使用for循环</h3><p><code>for</code> 循环的 <code>range</code> 语句可以用在通道 <code>ch</code> 上，便可以从通道中获取值，像这样：</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>for</span> v <span style=color:#666>:=</span> <span style=color:#a2f;font-weight:700>range</span> ch {
+	fmt.<span style=color:#00a000>Printf</span>(<span style=color:#b44>&#34;The value is %v\n&#34;</span>, v)
+}
+</code></pre></div><p>这样的使用依然必须和通道的写入和关闭相配合， 不能单独存在</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> main
+
+<span style=color:#a2f;font-weight:700>import</span> (
+	<span style=color:#b44>&#34;fmt&#34;</span>
+	<span style=color:#b44>&#34;time&#34;</span>
+)
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>main</span>() {
+	<span style=color:#00a000>suck</span>(<span style=color:#00a000>pump</span>())
+	time.<span style=color:#00a000>Sleep</span>(<span style=color:#666>1e9</span>)
+}
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>pump</span>() <span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>int</span> {
+	ch <span style=color:#666>:=</span> <span style=color:#a2f>make</span>(<span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>int</span>)
+	<span style=color:#a2f;font-weight:700>go</span> <span style=color:#a2f;font-weight:700>func</span>() {
+		<span style=color:#a2f;font-weight:700>for</span> i <span style=color:#666>:=</span> <span style=color:#666>0</span>; ; i<span style=color:#666>++</span> {
+			ch <span style=color:#666>&lt;-</span> i
+		}
+	}()
+	<span style=color:#a2f;font-weight:700>return</span> ch
+}
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>suck</span>(ch <span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>int</span>) {
+	<span style=color:#a2f;font-weight:700>go</span> <span style=color:#a2f;font-weight:700>func</span>() {
+		<span style=color:#a2f;font-weight:700>for</span> v <span style=color:#666>:=</span> <span style=color:#a2f;font-weight:700>range</span> ch {
+			fmt.<span style=color:#00a000>Println</span>(v)
+		}
+	}()
+}
+</code></pre></div><h3 id=27-关闭通道>2.7 关闭通道</h3><p>通道可以被显式的关闭，不过只有发送者才需要关闭通道，接收者永远不需要。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>ch <span style=color:#666>:=</span> <span style=color:#a2f>make</span>(<span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>float64</span>)
+<span style=color:#a2f;font-weight:700>defer</span> <span style=color:#a2f>close</span>(ch)
+</code></pre></div><p>测试通道是否关闭则可以使用ok操作符</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go>v, ok <span style=color:#666>:=</span> <span style=color:#666>&lt;-</span>ch   <span style=color:#080;font-style:italic>// ok is true if v received value
+</span></code></pre></div><p>一个完整的例子如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> main
+
+<span style=color:#a2f;font-weight:700>import</span> <span style=color:#b44>&#34;fmt&#34;</span>
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>main</span>() {
+	ch <span style=color:#666>:=</span> <span style=color:#a2f>make</span>(<span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>string</span>)
+	<span style=color:#a2f;font-weight:700>go</span> <span style=color:#00a000>sendData</span>(ch)
+	<span style=color:#00a000>getData</span>(ch)
+}
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>sendData</span>(ch <span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>string</span>) {
+	ch <span style=color:#666>&lt;-</span> <span style=color:#b44>&#34;Washington&#34;</span>
+	ch <span style=color:#666>&lt;-</span> <span style=color:#b44>&#34;Tripoli&#34;</span>
+	ch <span style=color:#666>&lt;-</span> <span style=color:#b44>&#34;London&#34;</span>
+	ch <span style=color:#666>&lt;-</span> <span style=color:#b44>&#34;Beijing&#34;</span>
+	ch <span style=color:#666>&lt;-</span> <span style=color:#b44>&#34;Tokio&#34;</span>
+	<span style=color:#a2f>close</span>(ch)
+}
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>getData</span>(ch <span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>string</span>) {
+	<span style=color:#a2f;font-weight:700>for</span> {
+		input, open <span style=color:#666>:=</span> <span style=color:#666>&lt;-</span>ch
+		<span style=color:#a2f;font-weight:700>if</span> !open {
+			<span style=color:#a2f;font-weight:700>break</span>
+		}
+		fmt.<span style=color:#00a000>Printf</span>(<span style=color:#b44>&#34;%s &#34;</span>, input)
+	}
+}
+</code></pre></div><p>但是使用for-range读取通道是更好的办法，因为这会自动检测通道是否关闭</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>for</span> input <span style=color:#666>:=</span> <span style=color:#a2f;font-weight:700>range</span> ch {
+  	<span style=color:#00a000>process</span>(input)
+}
+</code></pre></div><h2 id=3-select>3. Select</h2><p>从不同的并发执行的协程中获取值可以通过关键字<code>select</code>来完成，它和<code>switch</code>控制语句非常相似，其行为像是“你准备好了吗”的轮询机制；<code>select</code>监听进入通道的数据，也可以是用通道发送值的时候。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>select</span> {
+<span style=color:#a2f;font-weight:700>case</span> u<span style=color:#666>:=</span> <span style=color:#666>&lt;-</span> ch1:
+        <span style=color:#666>...</span>
+<span style=color:#a2f;font-weight:700>case</span> v<span style=color:#666>:=</span> <span style=color:#666>&lt;-</span> ch2:
+        <span style=color:#666>...</span>
+        <span style=color:#666>...</span>
+<span style=color:#a2f;font-weight:700>default</span>: <span style=color:#080;font-style:italic>// no value ready to be received
+</span><span style=color:#080;font-style:italic></span>        <span style=color:#666>...</span>
+}
+</code></pre></div><p><code>select</code> 做的事情是：选择处理列出的多个通信情况中的一个。</p><ul><li>如果都阻塞了，会等待直到其中一个可以处理</li><li>如果多个可以处理，随机选择一个</li><li>如果没有通道操作可以处理并且写了 <code>default</code> 语句，它就会执行：<code>default</code> 永远是可运行的（这就是准备好了，可以执行）。</li></ul><p>使用<code>default</code>可以保证发送不被阻塞，但没有<code>default</code>的监听模式也可能被使用，通过<code>break</code>语句退出循环。一个完整的例子如下</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> main
+
+<span style=color:#a2f;font-weight:700>import</span> (
+	<span style=color:#b44>&#34;fmt&#34;</span>
+	<span style=color:#b44>&#34;time&#34;</span>
+)
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>main</span>() {
+	ch1 <span style=color:#666>:=</span> <span style=color:#a2f>make</span>(<span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>int</span>)
+	ch2 <span style=color:#666>:=</span> <span style=color:#a2f>make</span>(<span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>int</span>)
+
+	<span style=color:#a2f;font-weight:700>go</span> <span style=color:#00a000>pump1</span>(ch1)
+	<span style=color:#a2f;font-weight:700>go</span> <span style=color:#00a000>pump2</span>(ch2)
+	<span style=color:#a2f;font-weight:700>go</span> <span style=color:#00a000>suck</span>(ch1, ch2)
+
+	time.<span style=color:#00a000>Sleep</span>(<span style=color:#666>1e9</span>)
+}
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>pump1</span>(ch <span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>int</span>) {
+	<span style=color:#a2f;font-weight:700>for</span> i <span style=color:#666>:=</span> <span style=color:#666>0</span>; ; i<span style=color:#666>++</span> {
+		ch <span style=color:#666>&lt;-</span> i <span style=color:#666>*</span> <span style=color:#666>2</span>
+	}
+}
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>pump2</span>(ch <span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>int</span>) {
+	<span style=color:#a2f;font-weight:700>for</span> i <span style=color:#666>:=</span> <span style=color:#666>0</span>; ; i<span style=color:#666>++</span> {
+		ch <span style=color:#666>&lt;-</span> i <span style=color:#666>+</span> <span style=color:#666>5</span>
+	}
+}
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>suck</span>(ch1, ch2 <span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>int</span>) {
+	<span style=color:#a2f;font-weight:700>for</span> {
+		<span style=color:#a2f;font-weight:700>select</span> {
+		<span style=color:#a2f;font-weight:700>case</span> v <span style=color:#666>:=</span> <span style=color:#666>&lt;-</span>ch1:
+			fmt.<span style=color:#00a000>Printf</span>(<span style=color:#b44>&#34;Received on channel 1: %d\n&#34;</span>, v)
+		<span style=color:#a2f;font-weight:700>case</span> v <span style=color:#666>:=</span> <span style=color:#666>&lt;-</span>ch2:
+			fmt.<span style=color:#00a000>Printf</span>(<span style=color:#b44>&#34;Received on channel 2: %d\n&#34;</span>, v)
+		}
+	}
+}
+</code></pre></div><p>有 2 个通道 <code>ch1</code> 和 <code>ch2</code>，三个协程 <code>pump1()</code>、<code>pump2()</code> 和 <code>suck()</code>。在无限循环中，<code>ch1</code> 和 <code>ch2</code> 通过 <code>pump1()</code> 和 <code>pump2()</code> 填充整数；<code>suck()</code> 也在无限循环中轮询输入，通过 <code>select</code> 语句获取 <code>ch1</code> 和 <code>ch2</code> 的整数并输出。选择哪一个 case 取决于哪一个通道收到了信息。程序在 main 执行 1 秒后结束。</p><h2 id=4-应用>4. 应用</h2><h3 id=41-惰性生成器>4.1 惰性生成器</h3><p>生成器是指当被调用时返回一个序列中下一个值的函数，例如：</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#00a000>generateInteger</span>() =&gt; <span style=color:#666>0</span>
+<span style=color:#00a000>generateInteger</span>() =&gt; <span style=color:#666>1</span>
+<span style=color:#00a000>generateInteger</span>() =&gt; <span style=color:#666>2</span>
+<span style=color:#666>...</span>.
+</code></pre></div><p>生成器每次返回的是序列中下一个值而非整个序列；这种特性也称之为惰性求值：只在你需要时进行求值，同时保留相关变量资源（内存和cpu）：这是一项在需要时对表达式进行求值的技术。例如，生成一个无限数量的偶数序列：要产生这样一个序列并且在一个一个的使用可能会很困难，而且内存会溢出！但是一个含有通道和go协程的函数能轻易实现这个需求。</p><p>下例中实现了一个使用 int 型通道来实现的生成器。通道被命名为<code>yield</code>和<code>resume</code>，这些词经常在协程代码中使用。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> main
+
+<span style=color:#a2f;font-weight:700>import</span> (
+    <span style=color:#b44>&#34;fmt&#34;</span>
+)
+
+<span style=color:#a2f;font-weight:700>var</span> resume <span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>int</span>
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>integers</span>() <span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>int</span> {
+    yield <span style=color:#666>:=</span> <span style=color:#a2f>make</span>(<span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>int</span>)
+    count <span style=color:#666>:=</span> <span style=color:#666>0</span>
+    <span style=color:#a2f;font-weight:700>go</span> <span style=color:#a2f;font-weight:700>func</span>() {
+        <span style=color:#a2f;font-weight:700>for</span> {
+            yield <span style=color:#666>&lt;-</span> count
+            count<span style=color:#666>++</span>
+        }
+    }()
+    <span style=color:#a2f;font-weight:700>return</span> yield
+}
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>generateInteger</span>() <span style=color:#0b0;font-weight:700>int</span> {
+    <span style=color:#a2f;font-weight:700>return</span> <span style=color:#666>&lt;-</span>resume
+}
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>main</span>() {
+    resume = <span style=color:#00a000>integers</span>()
+    fmt.<span style=color:#00a000>Println</span>(<span style=color:#00a000>generateInteger</span>())  <span style=color:#080;font-style:italic>//=&gt; 0
+</span><span style=color:#080;font-style:italic></span>    fmt.<span style=color:#00a000>Println</span>(<span style=color:#00a000>generateInteger</span>())  <span style=color:#080;font-style:italic>//=&gt; 1
+</span><span style=color:#080;font-style:italic></span>    fmt.<span style=color:#00a000>Println</span>(<span style=color:#00a000>generateInteger</span>())  <span style=color:#080;font-style:italic>//=&gt; 2    
+</span><span style=color:#080;font-style:italic></span>}
+</code></pre></div><h3 id=42-futures-模式>4.2 Futures 模式</h3><p>所谓Futures就是指：有时候在你使用某一个值之前需要先对其进行计算。这种情况下，你就可以在另一个处理器上进行该值的计算，到使用时，该值就已经计算完毕了。</p><p>Futures模式通过闭包和通道可以很容易实现，类似于生成器，不同地方在于Futures需要返回一个值。</p><p>一个例子： 假设我们有一个矩阵类型，我们需要计算两个矩阵A和B乘积的逆，首先我们通过函数<code>Inverse(M)</code>分别对其进行求逆运算，再将结果相乘。如下函数<code>InverseProduct()</code>实现了如上过程：</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>InverseProduct</span>(a Matrix, b Matrix) {
+    a_inv <span style=color:#666>:=</span> <span style=color:#00a000>Inverse</span>(a)
+    b_inv <span style=color:#666>:=</span> <span style=color:#00a000>Inverse</span>(b)
+    <span style=color:#a2f;font-weight:700>return</span> <span style=color:#00a000>Product</span>(a_inv, b_inv)
+}
+</code></pre></div><p>在这里例子中，a和b的求逆句子的过程可以同时进行，因此换用并行计算方式如下：</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>InverseProduct</span>(a Matrix, b Matrix) {
+    a_inv_future <span style=color:#666>:=</span> <span style=color:#00a000>InverseFuture</span>(a)   <span style=color:#080;font-style:italic>// start as a goroutine
+</span><span style=color:#080;font-style:italic></span>    b_inv_future <span style=color:#666>:=</span> <span style=color:#00a000>InverseFuture</span>(b)   <span style=color:#080;font-style:italic>// start as a goroutine
+</span><span style=color:#080;font-style:italic></span>    a_inv <span style=color:#666>:=</span> <span style=color:#666>&lt;-</span>a_inv_future
+    b_inv <span style=color:#666>:=</span> <span style=color:#666>&lt;-</span>b_inv_future
+    <span style=color:#a2f;font-weight:700>return</span> <span style=color:#00a000>Product</span>(a_inv, b_inv)
+}
+</code></pre></div><p><code>InverseFuture</code>函数以<code>goroutine</code>的形式起了一个闭包，该闭包会将矩阵求逆结果放入到future通道中：</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>InverseFuture</span>(a Matrix) <span style=color:#a2f;font-weight:700>chan</span> Matrix {
+    future <span style=color:#666>:=</span> <span style=color:#a2f>make</span>(<span style=color:#a2f;font-weight:700>chan</span> Matrix)
+    <span style=color:#a2f;font-weight:700>go</span> <span style=color:#a2f;font-weight:700>func</span>() {
+        future <span style=color:#666>&lt;-</span> <span style=color:#00a000>Inverse</span>(a)
+    }()
+    <span style=color:#a2f;font-weight:700>return</span> future
+}
+</code></pre></div><p>对计算密集型的场景，使用Futures模式是很有意义的</p><h3 id=43-cs模式>4.3 C/S模式</h3><p>客户端/服务器(C/S)模式是goroutines和channels最常见的应用。</p><p>客户端(Client)可以是运行在任意设备上的任意程序，它会按需发送请求(request)至服务器。服务器(Server)接收到这个请求后开始相应的工作，然后再将响应(response)返回给客户端。典型情况下一般是多个客户端（即多个请求）对应一个（或少量）服务器。例如我们日常使用的浏览器客户端，其功能就是向服务器请求网页。而Web服务器则会向浏览器响应网页数据。</p><p>使用Go的服务器通常会在协程中执行向客户端的响应，故而会对每一个客户端请求启动一个协程。一个常用的操作方法是客户端请求自身中包含一个通道，而服务器则向这个通道发送响应。</p><p>下面是请求<code>Request</code>的结构，响应暗含在请求的结构里面</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>type</span> Request <span style=color:#a2f;font-weight:700>struct</span> {
+    a, b      <span style=color:#0b0;font-weight:700>int</span>    
+    replyc    <span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>int</span> <span style=color:#080;font-style:italic>// reply channel inside the Request
+</span><span style=color:#080;font-style:italic></span>}
+</code></pre></div><p>服务器无限循环从<code>chan *Request</code>接收请求，为了避免某个请求长时间操作造成堵塞，为每个请求启动一个协程，然后启动<code>run()</code>函数处理该请求，处理后的值送到<code>chan *Reply</code>通道。</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>server</span>(op binOp, service <span style=color:#a2f;font-weight:700>chan</span> <span style=color:#666>*</span>Request) {
+    <span style=color:#a2f;font-weight:700>for</span> {
+        req <span style=color:#666>:=</span> <span style=color:#666>&lt;-</span>service; <span style=color:#080;font-style:italic>// requests arrive here  
+</span><span style=color:#080;font-style:italic></span>        <span style=color:#080;font-style:italic>// start goroutine for request:        
+</span><span style=color:#080;font-style:italic></span>        <span style=color:#a2f;font-weight:700>go</span> <span style=color:#00a000>run</span>(op, req);  <span style=color:#080;font-style:italic>// don’t wait for op to complete    
+</span><span style=color:#080;font-style:italic></span>    }
+}
+<span style=color:#a2f;font-weight:700>type</span> binOp <span style=color:#a2f;font-weight:700>func</span>(a, b <span style=color:#0b0;font-weight:700>int</span>) <span style=color:#0b0;font-weight:700>int</span>
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>run</span>(op binOp, req <span style=color:#666>*</span>Request) {
+    req.replyc <span style=color:#666>&lt;-</span> <span style=color:#00a000>op</span>(req.a, req.b)
+}
+</code></pre></div><p>但以上过程仅仅是对客户端的请求是并发处理的，实际上，server本身也是以协程方式启动的</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>startServer</span>(op binOp) <span style=color:#a2f;font-weight:700>chan</span> <span style=color:#666>*</span>Request {
+    reqChan <span style=color:#666>:=</span> <span style=color:#a2f>make</span>(<span style=color:#a2f;font-weight:700>chan</span> <span style=color:#666>*</span>Request);
+    <span style=color:#a2f;font-weight:700>go</span> <span style=color:#00a000>server</span>(op, reqChan);
+    <span style=color:#a2f;font-weight:700>return</span> reqChan;
+}
+</code></pre></div><p>startServer会在<code>main</code>函数中被调用，下面是<code>main</code>函数调用示例，一共发送了100个请求到服务器进行处理， 只有它们全部被送达后我们才会按相反的顺序检查响应：</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>main</span>() {
+    adder <span style=color:#666>:=</span> <span style=color:#00a000>startServer</span>(<span style=color:#a2f;font-weight:700>func</span>(a, b <span style=color:#0b0;font-weight:700>int</span>) <span style=color:#0b0;font-weight:700>int</span> { <span style=color:#a2f;font-weight:700>return</span> a <span style=color:#666>+</span> b })
+    <span style=color:#a2f;font-weight:700>const</span> N = <span style=color:#666>100</span>
+    <span style=color:#a2f;font-weight:700>var</span> reqs [N]Request
+    <span style=color:#a2f;font-weight:700>for</span> i <span style=color:#666>:=</span> <span style=color:#666>0</span>; i &lt; N; i<span style=color:#666>++</span> {
+        req <span style=color:#666>:=</span> <span style=color:#666>&amp;</span>reqs[i]
+        req.a = i
+        req.b = i <span style=color:#666>+</span> N
+        req.replyc = <span style=color:#a2f>make</span>(<span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>int</span>)
+        adder <span style=color:#666>&lt;-</span> req  <span style=color:#080;font-style:italic>// adder is a channel of requests
+</span><span style=color:#080;font-style:italic></span>    }
+    <span style=color:#080;font-style:italic>// checks:
+</span><span style=color:#080;font-style:italic></span>    <span style=color:#a2f;font-weight:700>for</span> i <span style=color:#666>:=</span> N <span style=color:#666>-</span> <span style=color:#666>1</span>; i <span style=color:#666>&gt;=</span> <span style=color:#666>0</span>; i<span style=color:#666>--</span> {
+        <span style=color:#080;font-style:italic>// doesn’t matter what order
+</span><span style=color:#080;font-style:italic></span>        <span style=color:#a2f;font-weight:700>if</span> <span style=color:#666>&lt;-</span>reqs[i].replyc <span style=color:#666>!=</span> N<span style=color:#666>+</span><span style=color:#666>2</span><span style=color:#666>*</span>i {
+            fmt.<span style=color:#00a000>Println</span>(<span>“</span>fail at<span>”</span>, i)
+        } <span style=color:#a2f;font-weight:700>else</span> {
+            fmt.<span style=color:#00a000>Println</span>(<span>“</span>Request <span>“</span>, i, <span>“</span>is ok!<span>”</span>)
+        }
+    }
+    fmt.<span style=color:#00a000>Println</span>(<span>“</span>done<span>”</span>)
+}
+<span style=color:#080;font-style:italic>//Output:
+</span><span style=color:#080;font-style:italic></span>Request <span style=color:#666>99</span> is ok!
+Request <span style=color:#666>98</span> is ok!
+<span style=color:#666>...</span>
+Request <span style=color:#666>1</span> is ok!
+Request <span style=color:#666>0</span> is ok!
+done
+</code></pre></div><p>完整的程序如下，因为<code>server</code>在<code>main</code>函数返回后是被强制结束的，下面还针对这一点做出改进，方法是提供一个退出通道给server</p><div class=highlight><pre style=background-color:#f8f8f8;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-go data-lang=go><span style=color:#a2f;font-weight:700>package</span> main
+
+<span style=color:#a2f;font-weight:700>import</span> <span style=color:#b44>&#34;fmt&#34;</span>
+
+<span style=color:#a2f;font-weight:700>type</span> Request <span style=color:#a2f;font-weight:700>struct</span> {
+	a, b   <span style=color:#0b0;font-weight:700>int</span>
+	replyc <span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>int</span> <span style=color:#080;font-style:italic>// reply channel inside the Request
+</span><span style=color:#080;font-style:italic></span>}
+
+<span style=color:#a2f;font-weight:700>type</span> binOp <span style=color:#a2f;font-weight:700>func</span>(a, b <span style=color:#0b0;font-weight:700>int</span>) <span style=color:#0b0;font-weight:700>int</span>
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>run</span>(op binOp, req <span style=color:#666>*</span>Request) {
+	req.replyc <span style=color:#666>&lt;-</span> <span style=color:#00a000>op</span>(req.a, req.b)
+}
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>server</span>(op binOp, service <span style=color:#a2f;font-weight:700>chan</span> <span style=color:#666>*</span>Request, quit <span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>bool</span>) {
+	<span style=color:#a2f;font-weight:700>for</span> {
+		<span style=color:#a2f;font-weight:700>select</span> {
+		<span style=color:#a2f;font-weight:700>case</span> req <span style=color:#666>:=</span> <span style=color:#666>&lt;-</span>service:
+			<span style=color:#a2f;font-weight:700>go</span> <span style=color:#00a000>run</span>(op, req)
+		<span style=color:#a2f;font-weight:700>case</span> <span style=color:#666>&lt;-</span>quit:
+			<span style=color:#a2f;font-weight:700>return</span>
+		}
+	}
+}
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>startServer</span>(op binOp) (service <span style=color:#a2f;font-weight:700>chan</span> <span style=color:#666>*</span>Request, quit <span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>bool</span>) {
+	service = <span style=color:#a2f>make</span>(<span style=color:#a2f;font-weight:700>chan</span> <span style=color:#666>*</span>Request)
+	quit = <span style=color:#a2f>make</span>(<span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>bool</span>)
+	<span style=color:#a2f;font-weight:700>go</span> <span style=color:#00a000>server</span>(op, service, quit)
+	<span style=color:#a2f;font-weight:700>return</span> service, quit
+}
+
+<span style=color:#a2f;font-weight:700>func</span> <span style=color:#00a000>main</span>() {
+	adder, quit <span style=color:#666>:=</span> <span style=color:#00a000>startServer</span>(<span style=color:#a2f;font-weight:700>func</span>(a, b <span style=color:#0b0;font-weight:700>int</span>) <span style=color:#0b0;font-weight:700>int</span> { <span style=color:#a2f;font-weight:700>return</span> a <span style=color:#666>+</span> b })
+	<span style=color:#a2f;font-weight:700>const</span> N = <span style=color:#666>100</span>
+	<span style=color:#a2f;font-weight:700>var</span> reqs [N]Request
+	<span style=color:#a2f;font-weight:700>for</span> i <span style=color:#666>:=</span> <span style=color:#666>0</span>; i &lt; N; i<span style=color:#666>++</span> {
+		req <span style=color:#666>:=</span> <span style=color:#666>&amp;</span>reqs[i]
+		req.a = i
+		req.b = i <span style=color:#666>+</span> N
+		req.replyc = <span style=color:#a2f>make</span>(<span style=color:#a2f;font-weight:700>chan</span> <span style=color:#0b0;font-weight:700>int</span>)
+		adder <span style=color:#666>&lt;-</span> req
+	}
+	<span style=color:#080;font-style:italic>// checks:
+</span><span style=color:#080;font-style:italic></span>	<span style=color:#a2f;font-weight:700>for</span> i <span style=color:#666>:=</span> N <span style=color:#666>-</span> <span style=color:#666>1</span>; i <span style=color:#666>&gt;=</span> <span style=color:#666>0</span>; i<span style=color:#666>--</span> { <span style=color:#080;font-style:italic>// doesn&#39;t matter what order
+</span><span style=color:#080;font-style:italic></span>		<span style=color:#a2f;font-weight:700>if</span> <span style=color:#666>&lt;-</span>reqs[i].replyc <span style=color:#666>!=</span> N<span style=color:#666>+</span><span style=color:#666>2</span><span style=color:#666>*</span>i {
+			fmt.<span style=color:#00a000>Println</span>(<span style=color:#b44>&#34;fail at&#34;</span>, i)
+		} <span style=color:#a2f;font-weight:700>else</span> {
+			fmt.<span style=color:#00a000>Println</span>(<span style=color:#b44>&#34;Request &#34;</span>, i, <span style=color:#b44>&#34; is ok!&#34;</span>)
+		}
+	}
+	quit <span style=color:#666>&lt;-</span> <span style=color:#a2f;font-weight:700>true</span>
+	fmt.<span style=color:#00a000>Println</span>(<span style=color:#b44>&#34;done&#34;</span>)
+}
+</code></pre></div></div><footer class=post-footer><div class=post-tags><a href=/tags/go%e8%af%ad%e6%b3%95 rel=tag title=Go语法>#Go语法#</a></div><div class=addthis_inline_share_toolbox></div><div class=post-nav><div class=article-copyright><div class=article-copyright-info><p><span>声明：</span>Golang语法基础10-协程与通道</p><p><span>链接：</span>https://shuzang.github.io/2019/12/golang-syntax-10-goroutine-and-channel/</p><p><span>作者：</span>书藏</p><p><span>声明： </span>本博客文章除特别声明外，均采用 <a href=https://creativecommons.org/licenses/by-nc-sa/4.0/ target=_blank style=text-decoration:underline>CC BY-NC-SA 3.0</a>许可协议，转载请注明出处！</p></div></div><div class=clear></div></div><div class=reward-qr-info><div>创作实属不易，如有帮助，那就打赏博主些许茶钱吧 ^_^</div><button id=rewardButton disable=enable onclick="var qr=document.getElementById('QR');if(qr.style.display==='none'){qr.style.display='block';}else{qr.style.display='none'}">
+<span>赏</span></button><div id=QR style=display:none><div id=wechat style=display:inline-block><img id=wechat_qr src=/img/wechat-pay.png alt="WeChat Pay"><p>微信打赏</p></div><div id=alipay style=display:inline-block><img id=alipay_qr src=/img/ali-pay.png alt=Alipay><p>支付宝打赏</p></div></div></div><div class=post-nav><div class="post-nav-next post-nav-item"><a href=https://shuzang.github.io/2019/12/linux%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/ rel=next title=linux系统时间同步><i class="fa fa-chevron-left"></i>linux系统时间同步</a></div><div class="post-nav-prev post-nav-item"><a href=https://shuzang.github.io/2019/12/life-skills-9-maintenance-storage-and-disposal-of-used-clothes/ rel=prev title=穿搭整理3-保养、收纳及旧衣处理>穿搭整理3-保养、收纳及旧衣处理
+<i class="fa fa-chevron-right"></i></a></div></div><div id=wcomments></div></footer></article></section></div></div><div class=sidebar-toggle><div class=sidebar-toggle-line-wrap><span class="sidebar-toggle-line sidebar-toggle-line-first"></span><span class="sidebar-toggle-line sidebar-toggle-line-middle"></span><span class="sidebar-toggle-line sidebar-toggle-line-last"></span></div></div><aside id=sidebar class=sidebar><div class=sidebar-inner><section class="site-overview sidebar-panel sidebar-panel-active"><div class="site-author motion-element" itemprop=author itemscope itemtype=http://schema.org/Person><img class=site-author-image itemprop=image src=/images/avatar.png alt=书藏><p class=site-author-name itemprop=name>书藏</p><p class="site-description motion-element" itemprop=description></p></div><nav class="site-state motion-element"><div class="site-state-item site-state-posts"><a href=/post/><span class=site-state-item-count>334</span>
+<span class=site-state-item-name>日志</span></a></div><div class="site-state-item site-state-categories"><a href=/categories/><span class=site-state-item-count>7</span>
+<span class=site-state-item-name>分类</span></a></div><div class="site-state-item site-state-tags"><a href=/tags/><span class=site-state-item-count>23</span>
+<span class=site-state-item-name>标签</span></a></div></nav><div class="links-of-author motion-element"><span class=links-of-author-item><a href=https://github.com/shuzang/ target=_blank title=GitHub><i class="fa fa-fw fa-github"></i>GitHub</a></span></div><div class="tagcloud-of-blogroll motion-element tagcloud-of-blogroll-inline"><div class=tagcloud-of-blogroll-title><i class="fa fa-fw fa-tags"></i>标签云</div><ul class=tagcloud-of-blogroll-list><li class=tagcloud-of-blogroll-item><a href=/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0>论文笔记</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E4%B9%A6%E8%97%8F%E7%9A%84%E7%94%9F%E6%B4%BB%E5%91%A8%E5%88%8A>书藏的生活周刊</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95>科研记录</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/go%E8%AF%AD%E6%B3%95>Go语法</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80>计算机基础</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E6%9D%82%E8%B0%88>杂谈</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E5%8C%BA%E5%9D%97%E9%93%BE>区块链</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95>数据结构与算法</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/%E7%94%9F%E6%B4%BB%E6%8A%80%E8%83%BD>生活技能</a></li><li class=tagcloud-of-blogroll-item><a href=/tags/go%E5%AE%9E%E6%88%98>Go实战</a></li></ul></div></section></div></aside></div></main><footer id=footer class=footer><div class=footer-inner><div class=copyright><span class=copyright-year>&copy; 2018 - 2022</span>
+<span class=with-love><i class="fa fa-heart"></i></span><span class=copyright-author>书藏的博客</span></div><div class=powered-info><span class=powered-by>Powered by - <a class=powered-link href=//gohugo.io target=_blank title=hugo>Hugo v0.63.2</a></span>
+<span class=separator-line>/</span>
+<span class=theme-info>Theme by - <a class=powered-link href=//github.com/elkan1788/hugo-theme-next target=_blank>NexT</a></span></div><div class=vistor-info><script async src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js></script><span class=site-uv><i class="fa fa-user"></i><span class=busuanzi-value id=busuanzi_value_site_uv></span></span><span class=separator-line>/</span>
+<span class=site-pv><i class="fa fa-eye"></i><span class=busuanzi-value id=busuanzi_value_site_pv></span></span></div></div></footer><div class=back-to-top><i class="fa fa-arrow-up"></i><span id=scrollpercent><span>0</span>%</span></div></div><script type=text/javascript src=//cdn.bootcdn.net/ajax/libs/jquery/2.1.4/jquery.min.js></script><script type=text/javascript src=/js/search.js></script><script type=text/javascript src=/js/affix.js></script><script type=text/javascript src=/js/scrollspy.js></script><script type=text/javascript>function detectIE(){var ua=window.navigator.userAgent;var msie=ua.indexOf('MSIE ');var trident=ua.indexOf('Trident/');var edge=ua.indexOf('Edge/');if(msie>0||trident>0||edge>0){return-1;}
+return 1;}
+function getCntViewHeight(){var docHeight=$('#content').height(),winHeight=$(window).height(),cntViewHeight=(docHeight>winHeight)?(docHeight-winHeight):($(document).height()-winHeight);return cntViewHeight;}
+function getScrollbarWidth(){var $div=$('<div />').addClass('scrollbar-measure').prependTo('body');var div=$div[0];var scrollbarWidth=div.offsetWidth-div.clientWidth;$div.remove();return scrollbarWidth;}
+function registerBackTop(){var THRESHOLD=50;var $top=$('.back-to-top');$(window).on('scroll',function(){$top.toggleClass('back-to-top-on',window.pageYOffset>THRESHOLD);var scrollTop=$(window).scrollTop();var cntViewHeight=getCntViewHeight();var scrollPercent=(scrollTop)/(cntViewHeight);var scrollPercentRounded=Math.round(scrollPercent*100);var scrollPercentMaxed=(scrollPercentRounded>100)?100:scrollPercentRounded;$('#scrollpercent>span').html(scrollPercentMaxed);});$top.on('click',function(){$("html,body").animate({scrollTop:0,screenLeft:0,},800);});}
+function initScrollSpy(){var tocSelector='.post-toc';var $tocElement=$(tocSelector);var activeCurrentSelector='.active-current';$tocElement.on('activate.bs.scrollspy',function(){var $currentActiveElement=$(tocSelector+' .active').last();removeCurrentActiveClass();$currentActiveElement.addClass('active-current');}).on('clear.bs.scrollspy',removeCurrentActiveClass);$('body').scrollspy({target:tocSelector});function removeCurrentActiveClass(){$(tocSelector+' '+activeCurrentSelector).removeClass(activeCurrentSelector.substring(1));}}
+function initAffix(){var headerHeight=$('.header-inner').height();var footerOffset=parseInt($('.main').css('padding-bottom'),10);var sidebarTop=headerHeight+10;$('.sidebar-inner').affix({offset:{top:sidebarTop,bottom:footerOffset}});$(document).on('affixed.bs.affix',function(){updateTOCHeight(document.body.clientHeight-100);});}
+function initTOCDimension(){var updateTOCHeightTimer;$(window).on('resize',function(){updateTOCHeightTimer&&clearTimeout(updateTOCHeightTimer);updateTOCHeightTimer=setTimeout(function(){var tocWrapperHeight=document.body.clientHeight-100;updateTOCHeight(tocWrapperHeight);},0);});updateTOCHeight(document.body.clientHeight-100);var scrollbarWidth=getScrollbarWidth();$('.post-toc').css('width','calc(100% + '+scrollbarWidth+'px)');}
+function updateTOCHeight(height){height=height||'auto';$('.post-toc').css('max-height',height);}
+$(function(){var sidebarTop=$('.header-inner').height()+10;$('#sidebar').css({'margin-top':sidebarTop}).show();var sidebarMt=parseInt($('#sidebar').css('margin-top'));var sidebarInHeight=parseInt($('.sidebar-inner').css('height'));var sideHeight=sidebarMt+sidebarInHeight;var contentHeight=$('.content-wrap').height();if(contentHeight<sideHeight){$('.content-wrap').css('min-height',sideHeight);}
+$('.site-nav-toggle').on('click',function(){var $siteNav=$('.site-nav');var $toggleLine=$('.toggle');var ON_CLASS_NAME='site-nav-on';var CLOSE_CLASS_NAME='toggle-close';var isSiteNavOn=$siteNav.hasClass(ON_CLASS_NAME);var animateAction=isSiteNavOn?'slideUp':'slideDown';var animateCallback=isSiteNavOn?'removeClass':'addClass';$siteNav.stop()[animateAction]('normal',function(){$siteNav[animateCallback](ON_CLASS_NAME);$toggleLine[animateCallback](CLOSE_CLASS_NAME);});});registerBackTop();initScrollSpy();initAffix();initTOCDimension();$('.sidebar-nav-toc').click(function(){$(this).addClass('sidebar-nav-active');$(this).next().removeClass('sidebar-nav-active');$('.'+$(this).next().attr('data-target')).toggle(500);$('.'+$(this).attr('data-target')).toggle(500);});$('.sidebar-nav-overview').click(function(){$(this).addClass('sidebar-nav-active');$(this).prev().removeClass('sidebar-nav-active');$('.'+$(this).prev().attr('data-target')).toggle(500);$('.'+$(this).attr('data-target')).toggle(500);});});</script><script src=//cdn.bootcdn.net/ajax/libs/imageviewer/0.1.0/viewer.min.js></script><script type=text/javascript>$(function(){$('.post-body').viewer();});</script><script type=text/javascript>$(function(){if(detectIE()>0){$.getScript(document.location.protocol+'//cdn.jsdelivr.net/npm/@waline/client/dist/Waline.min.js',function(){new Waline({el:'#wcomments',visitor:true,avatar:'wavatar',avatarCDN:'https://sdn.geekzu.org/avatar/',avatarForce:!1,wordLimit:'200',placeholder:' 欢迎留下您的宝贵建议，请填写您的昵称和邮箱便于后续交流. ^_^ ',requiredFields:['nick','mail'],serverURL:"Your WalineSerURL",lang:"zh-cn"});});}else{$('#wcomments').html('抱歉，Waline插件不支持IE或Edge，建议使用Chrome浏览器。');}});</script><script type=text/javascript src="//s7.addthis.com/js/300/addthis_widget.js#pubid=Your%20AddthisId"></script><script>(function(){var bp=document.createElement('script');var curProtocol=window.location.protocol.split(':')[0];if(curProtocol==='https'){bp.src='https://zz.bdstatic.com/linksubmit/push.js';}
+else{bp.src='http://push.zhanzhang.baidu.com/push.js';}
+var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(bp,s);})();</script></body></html>
