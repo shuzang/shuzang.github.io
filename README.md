@@ -1,4 +1,4 @@
-这是 shuzang 的个人博客仓库，使用 [Hugo](https://gohugo.io/) 生成，主题使用 [LoveIt](https://github.com/dillonzq/LoveIt) （做了一定修改），源码和文章放在 `blog` 分支下，生成的页面利用 Github Action 推送到 master 分支，通过 Github Pages 展示页面。
+这是 shuzang 的个人博客仓库，使用 [Hugo](https://gohugo.io/) 生成，主题使用 [Next]([elkan1788/hugo-theme-next: Hugo's site theme. (github.com)](https://github.com/elkan1788/hugo-theme-next)) （做了一定修改），源码和文章放在 `blog` 分支下，生成的页面利用 Github Action 推送到 master 分支，通过 Github Pages 展示页面。
 
 你可以通过以下步骤快速使用该仓库构建自己的博客
 
