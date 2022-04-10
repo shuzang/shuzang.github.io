@@ -2,6 +2,7 @@
 title: Golang语法基础5-字符串操作与输入输出
 date: 2019-11-11
 tags: [Go语法]
+toc: true
 categories: [Golang学习之路]
 slug: Golang syntax 5-string input and output
 ---

@@ -4,6 +4,7 @@ author: xueyuanjun
 date: 2020-06-05T11:41:00+08:00 
 lastmod: 2020-06-05
 tags: [Go实战]
+toc: true
 categories: [Golang学习之路]
 slug: Development of online forum based on golang 5-Create thread and post 
 ---

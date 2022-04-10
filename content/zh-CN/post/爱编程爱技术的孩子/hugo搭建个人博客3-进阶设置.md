@@ -3,9 +3,8 @@ title: hugo搭建个人博客3-进阶设置
 date: 2019-07-12
 lastmod: 2020-04-05
 tags: [Hugo]
+toc: true
 categories: [爱编程爱技术的孩子]
-
-autoCollapseToc: false
 slug: Hugo blog-advanced setup
 ---
 
@@ -98,6 +97,7 @@ title: Golang语法基础100问
 date: 2019-12-23
 slug: "100 question of Golang basic syntax"
 tags: [Golang]
+toc: true
 categories: [爱编程爱技术的孩子]
 ```
 

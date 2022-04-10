@@ -2,6 +2,7 @@
 title: EdgeChain An Edge-IoT Framework and Prototype
 date: 2019-10-15
 tags: [论文笔记]
+toc: true
 categories: [研究生的区块链学习之路] 
 ---
 

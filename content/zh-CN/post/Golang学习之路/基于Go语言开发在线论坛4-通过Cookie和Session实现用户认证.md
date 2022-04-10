@@ -4,6 +4,7 @@ author: xueyuanjun
 date: 2020-06-04T11:01:00+08:00 
 lastmod: 2020-06-04
 tags: [Go实战]
+toc: true
 categories: [Golang学习之路]
 slug: Development of online forum based on golang 4-User authentication 
 ---

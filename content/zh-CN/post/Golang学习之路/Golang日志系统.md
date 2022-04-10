@@ -3,6 +3,7 @@ title: Golang日志系统
 date: 2020-06-07T09:48:00+08:00
 lastmod: 2020-06-07
 tags: [Go实战]
+toc: true
 categories: [Golang学习之路]
 slug: Golang log system 
 ---

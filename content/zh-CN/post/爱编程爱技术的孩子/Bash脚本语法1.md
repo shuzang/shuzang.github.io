@@ -3,6 +3,7 @@ title: Bash脚本语法1
 date: 2020-08-18T11:37:00+08:00
 lastmod: 2020-08-18
 tags: [linux]
+toc: true
 categories: [爱编程爱技术的孩子]
 slug: Bash script grammer 1 
 ---

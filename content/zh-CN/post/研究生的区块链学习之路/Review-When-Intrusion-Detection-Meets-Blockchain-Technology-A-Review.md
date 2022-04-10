@@ -2,6 +2,7 @@
 title: When Intrusion Detection Meets Blockchain Technology A Review
 date: 2019-10-03
 tags: [论文笔记]
+toc: true
 categories: [研究生的区块链学习之路] 
 ---
 

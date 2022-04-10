@@ -2,6 +2,7 @@
 title: Mysql学习2-数据库操作
 date: 2020-05-24T09:17:00+08:00
 tags: [计算机基础]
+toc: true
 categories: [爱编程爱技术的孩子]
 slug: mysql learning 2 data definition language 
 ---

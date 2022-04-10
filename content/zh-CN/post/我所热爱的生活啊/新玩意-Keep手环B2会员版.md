@@ -2,6 +2,7 @@
 title: Keep手环B2会员版
 date: 2021-04-26
 tags: [好物评测]
+toc: true
 categories: [我所热爱的生活啊]
 slug: Keep bracelet B2 member version review
 ---

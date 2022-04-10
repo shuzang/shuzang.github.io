@@ -3,6 +3,7 @@ title: 系统移植3-Android系统移植
 date: 2018-04-11
 lastmod: 2020-04-27
 tags: [linux]
+toc: true
 categories: [爱编程爱技术的孩子]
 slug: Android system migration 
 ---

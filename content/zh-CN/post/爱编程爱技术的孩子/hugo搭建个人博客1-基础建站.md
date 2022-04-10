@@ -3,9 +3,8 @@ title: hugo搭建个人博客1-基础建站
 date: 2019-04-26T10:45:00+08:00
 lastmod: 2020-10-31
 tags: [Hugo]
+toc: true
 categories: [爱编程爱技术的孩子]
-
-autoCollapseToc: false
 slug: Hugo blog-build personal blog
 ---
 
@@ -383,6 +382,7 @@ series = ["Hugo 101"]
 title: Markdown说明
 date: 2020-04-05
 tags: ["Markdown"]
+toc: true
 categories: ["爱编程爱技术的孩子"]
 ---
 

@@ -2,6 +2,7 @@
 title: Mysql学习3-数据类型和存储引擎
 date: 2020-05-24T10:32:00+08:00
 tags: [计算机基础]
+toc: true
 categories: [爱编程爱技术的孩子]
 slug: mysql learning 3 data type and storage engine 
 ---

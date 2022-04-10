@@ -3,6 +3,7 @@ title: 研究记录6-Quorum区块链实验平台搭建
 date: 2019-10-02
 lastmod: 2020-11-24
 tags: [科研记录]
+toc: true
 categories: [研究生的区块链学习之路]
 slug: build Quorum private blockchain network 
 ---

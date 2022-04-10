@@ -2,6 +2,7 @@
 title: 穿搭整理4-基于Notion的实物管理
 date: 2021-05-03
 tags: [生活技能]
+toc: true
 categories: [我所热爱的生活啊]
 slug: Minimalism and Data-Notion-Based Management Ideas
 ---

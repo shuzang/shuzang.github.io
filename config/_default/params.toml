@@ -1,6 +1,8 @@
 [TagsCloud]
   Enable = true
   Limit = 10
+[autoCollapseToc]
+  Enable = true
 
 [Share]
   Enable = true

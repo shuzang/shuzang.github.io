@@ -21,10 +21,10 @@ ArticleDecContent = "本博客文章除特别声明外，均采用 <a href='http
   Icon = "github"
   URL = "https://github.com/shuzang/"
 
-#[[Socials]]
-#  Name = "知乎"
-#  Icon = "globe"
-#  URL = "https://www.zhihu.com/people/fan-meng-xing-chen-1"
+[[Socials]]
+ Name = "豆瓣"
+ Icon = "film"
+ URL = "https://www.douban.com/people/159916010/?_i=9150521DKS5bK1"
 
 #[[Links]]
 #  Name = "Nutz"

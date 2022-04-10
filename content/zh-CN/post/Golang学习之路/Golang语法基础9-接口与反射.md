@@ -3,6 +3,7 @@ title: Golang语法基础9-接口与反射
 date: 2019-11-26
 lastmod: 2020-06-15
 tags: [Go语法]
+toc: true
 categories: [Golang学习之路]
 slug: Golang syntax 9-interface and reflect 
 ---

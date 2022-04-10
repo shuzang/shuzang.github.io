@@ -3,6 +3,7 @@ title: Golang使用gorilla、mux包
 date: 2020-05-29T13:38:00+08:00
 lastmod: 2020-05-29
 tags: [Go实战]
+toc: true
 categories: [Golang学习之路]
 slug: Golang use gorilla/mux package
 ---

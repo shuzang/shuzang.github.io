@@ -3,6 +3,7 @@ title: Golang语法基础3-常量变量与基本数据类型
 date: 2019-10-22
 lastmod: 2020-07-02
 tags: [Go语法]
+toc: true
 categories: [Golang学习之路]
 slug: Golang syntax 3-Constants, Variables and Elementary types
 ---

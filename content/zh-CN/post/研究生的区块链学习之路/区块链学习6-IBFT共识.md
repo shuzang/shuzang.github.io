@@ -3,6 +3,7 @@ title: 区块链学习6-IBFT共识
 date: 2019-10-29
 lastmod: 2020-11-11s
 tags: [区块链]
+toc: true
 categories: [研究生的区块链学习之路] 
 slug: IBFT consensus
 ---

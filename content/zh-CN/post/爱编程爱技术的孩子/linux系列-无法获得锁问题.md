@@ -2,8 +2,8 @@
 title: Ubuntu中无法获得锁相关问题的解决方案
 date: 2020-01-03
 tags: [linux]
-categories: [爱编程爱技术的孩子]
 toc: true
+categories: [爱编程爱技术的孩子]
 ---
 
 Ubuntu环境下，Unable to acquire the lock这类问题时有发生，本文对该问题的解决方案做一个总结

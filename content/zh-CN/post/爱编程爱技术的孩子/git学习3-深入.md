@@ -3,6 +3,7 @@ title: Git深入-子模块, 徽章, 开源协议
 date: 2019-09-30
 lastmod: 2020-10-07
 tags: [git]
+toc: true
 categories: [爱编程爱技术的孩子]
 slug: Git learning deep into 
 ---

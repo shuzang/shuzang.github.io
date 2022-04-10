@@ -1,6 +1,7 @@
 ---
 title: JavaScript学习1-概览
 date: 2020-05-22T11:50:00+08:00
+toc: true
 categories: [爱编程爱技术的孩子]
 slug: JavaScript learning 1 overview
 ---

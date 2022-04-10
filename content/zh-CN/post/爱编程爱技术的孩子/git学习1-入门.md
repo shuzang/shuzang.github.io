@@ -3,6 +3,7 @@ title: Git入门-基本概念, 基本原理, 安装使用
 date: 2018-04-20T19:06:20+08:00 
 lastmod: 2020-10-08
 tags: [git]
+toc: true
 categories: [爱编程爱技术的孩子]
 slug: Git learning Getting started 
 ---

@@ -3,10 +3,10 @@ title: hugo搭建个人博客2-文章写作
 date: 2019-05-15
 lastmod: 2020-02-17
 tags: [Hugo]
+toc: true
 categories: [爱编程爱技术的孩子]
 
 math: true
-autoCollapseToc: true
 slug: Hugo blog-article write 
 ---
 
@@ -43,6 +43,7 @@ description: ""
 license: ""
 
 tags: []
+toc: true
 categories: []
 hiddenFromHomePage: false
 
@@ -107,6 +108,7 @@ comment: true
 
 ```yaml
 tags: [博客写作]
+toc: true
 categories: [爱编程爱技术的孩子]
 ```
 

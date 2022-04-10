@@ -3,6 +3,7 @@ title: Git提高-分支管理, 多人协作, 标签管理, gitignore, commit信�
 date: 2018-04-22T10:21:16+08:00
 lastmod: 2020-10-07
 tags: [git]
+toc: true
 categories: [爱编程爱技术的孩子]
 slug: Git learning improvement 
 ---
