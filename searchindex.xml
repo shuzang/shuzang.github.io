@@ -9046,7 +9046,7 @@ hasCJKLanguage = true 2. 开启评论 使用gitalk，首先在GitHub 上创建�
 首先修改站点配置文件config.toml中的Permalinks字段如下
 [Permalinks] posts = "/:year/:month/:slug/" 初始状态该字段值为posts = "/:year/:month/:filename/"，使用文件名作为URL，但是文件名作为管理和查找的手段，使用英文较为不便，而文章标题为了便于阅读，也不方便命名为英文，只能使用额外的slug字段。
 之后在每篇文章头部的配置信息中添加slug字段即可，一个例子如下
-title: Golang语法基础100问 date: 2019-12-23 slug: "100 question of Golang basic syntax" tags: [Golang] categories: [爱编程爱技术的孩子] 这篇文章最后的URL将会是http://shuzang.github.io/2019/12/100-question-of-golang-basic-syntax/
+title: Golang语法基础100问 date: 2019-12-23 slug: "100 question of Golang basic syntax" tags: [Golang] toc: true categories: [爱编程爱技术的孩子] 这篇文章最后的URL将会是http://shuzang.github.io/2019/12/100-question-of-golang-basic-syntax/
 5. 图片插入 博客维护所面临的一个重要问题就是图床，一开始使用Github作为图床，后来迁移到Github issue，再后来因为图片经常加载不出来，迁移到了路过图床，不过用别的图床总归不放心，图片不多的情况下，最终决定将所有图片放到本地，操作步骤如下
 首先，对于Hugo来说，所有的静态文件都应该位于根目录的static目录下，比如，我在该目录下存放了 example.img 图片，那么在文章中就可以用以下方式引用图片
 ![](/example.img) 这是因为静态文件的查找规则就是以 static 为根目录，所以图片从这里寻找。为了保证清晰的文件结构，便于之后寻找图片，我们采用如下规则存放图片：一篇文章的所有图片放在以文章名命名的一个文件夹中，该文件夹放在static/images目录下。如本文文件名为「hugo搭建个人博客3-进阶设置」，则本文所有图片放在 static/images/hugo搭建个人博客3-进阶设置目录下，在文章中插入图片时，使用的路径为
@@ -9315,10 +9315,10 @@ Conclusions 工业4.0是一种通过使用一些最新技术改变工厂运作�
 Hugo支持的文章格式为.md，即用markdown语言编辑的文章。所有的文章都放在content/posts目录下，支持级联目录，即在posts目录下按分类建立多个子文件夹放置文章，比如本博客的文章按分类放在四个子文件夹下。
 $ ls posts 爱编程爱技术的孩子/ 我所热爱的生活啊/ 平日里的白日梦/ 研究生的区块链学习之路/ 下面是三条方便清晰管理和生成文章的目录结构建议:
 保持博客文章存放在 content/posts 目录, 例如: content/posts/我的第一篇文章.md 保持简单的静态页面存放在 content 目录, 例如: content/about.md 保持图片之类的媒体资源存放在 static 目录, 例如: static/images/screenshot.png 1. 前置参数 Hugo 允许在文章内容前面添加 yaml, toml 或者 json 格式的前置参数，LoveIt 默认文章模板提供的前置参数有
----title:"我的第一篇文章"subtitle:""date:2020-03-04T15:58:26+08:00lastmod:2020-03-04T15:58:26+08:00draft:trueauthor:""authorLink:""description:""license:""tags:[]categories:[]hiddenFromHomePage:falsefeatured_image:""featured_image_preview:""toc:falseautoCollapseToc:truemath:truemapbox:accessToken:""lightStyle:""darkStyle:""navigation:truegeolocate:truescale:truefullscreen:truelightgallery:truelinkToMarkdown:trueshare:enable:truecomment:true--- title: 文章标题. subtitle: 文章副标题. date: 这篇文章创建的日期时间. 它通常是从文章的前置参数中的 date 字段获取的, 但是也可以在 网站配置 中设置. lastmod: 上次修改内容的日期时间. draft: 如果设为 true, 除非 hugo 命令使用了 --buildDrafts/-D 参数, 这篇文章不会被渲染. author: 文章作者. authorLink: 文章作者的链接. description: 文章内容的描述. license: 这篇文章特殊的许可. tags: 文章的标签. categories: 文章所属的类别. hiddenFromHomePage: 如果设为 true, 这篇文章将不会显示在主页上, 但是此行为可以在 网站配置 中设置的. featuredImage: 文章的特色图片. featuredImagePreview: 用在主页预览的文章特色图片. toc: 如果设为 true, 这篇文章会显示右侧目录. autoCollapseToc: 如果设为 true, 文章目录会自动折叠. math: 如果设为 true, 将自动渲染文章中的数学公式. mapbox: 和 网站配置 中的 params.mapbox 对象相同. lightgallery: 如果设为 true, 文章中的图片将可以按照画廊形式呈现. linkToMarkdown: 如果设为 true, 内容的页脚将显示指向原始 Markdown 文件的链接. share: 和 网站配置 中的 params.share 对象相同. comment: 如果设为 true, 将启用评论系统. 2. 标签与分类 标签和分类字段是归档文章最常用的两种形式。为了更好的使用，我们需要弄清楚它们的区别。以生活与健身的韦恩图为例1，饮食与睡眠同时属于这两个分类，当出现这类型文章时，就可以添加标签来管理。
+---title:"我的第一篇文章"subtitle:""date:2020-03-04T15:58:26+08:00lastmod:2020-03-04T15:58:26+08:00draft:trueauthor:""authorLink:""description:""license:""tags:[]toc:truecategories:[]hiddenFromHomePage:falsefeatured_image:""featured_image_preview:""toc:falseautoCollapseToc:truemath:truemapbox:accessToken:""lightStyle:""darkStyle:""navigation:truegeolocate:truescale:truefullscreen:truelightgallery:truelinkToMarkdown:trueshare:enable:truecomment:true--- title: 文章标题. subtitle: 文章副标题. date: 这篇文章创建的日期时间. 它通常是从文章的前置参数中的 date 字段获取的, 但是也可以在 网站配置 中设置. lastmod: 上次修改内容的日期时间. draft: 如果设为 true, 除非 hugo 命令使用了 --buildDrafts/-D 参数, 这篇文章不会被渲染. author: 文章作者. authorLink: 文章作者的链接. description: 文章内容的描述. license: 这篇文章特殊的许可. tags: 文章的标签. categories: 文章所属的类别. hiddenFromHomePage: 如果设为 true, 这篇文章将不会显示在主页上, 但是此行为可以在 网站配置 中设置的. featuredImage: 文章的特色图片. featuredImagePreview: 用在主页预览的文章特色图片. toc: 如果设为 true, 这篇文章会显示右侧目录. autoCollapseToc: 如果设为 true, 文章目录会自动折叠. math: 如果设为 true, 将自动渲染文章中的数学公式. mapbox: 和 网站配置 中的 params.mapbox 对象相同. lightgallery: 如果设为 true, 文章中的图片将可以按照画廊形式呈现. linkToMarkdown: 如果设为 true, 内容的页脚将显示指向原始 Markdown 文件的链接. share: 和 网站配置 中的 params.share 对象相同. comment: 如果设为 true, 将启用评论系统. 2. 标签与分类 标签和分类字段是归档文章最常用的两种形式。为了更好的使用，我们需要弄清楚它们的区别。以生活与健身的韦恩图为例1，饮食与睡眠同时属于这两个分类，当出现这类型文章时，就可以添加标签来管理。
 博客文章的存储方式决定了它无法拥有太多的分类，因此，树形逐级检索的方法不适用这种情况，我们应当在将博客分为几个大类的同时，使用标签来管理和检索文章，当同样也要注意不应滥用标签，否则会带来视觉上的混乱和管理的不便。
 在每篇文章的元数据(Front-Matter字段)中添加categories字段作为文章分类，添加tags字段作为文章标签，比如本文：
-tags:[博客写作]categories:[爱编程爱技术的孩子]标签可以有多个，以逗号分隔，不过即使只有一个标签，外面的中括号也不能省略。
+tags:[博客写作]toc:truecategories:[爱编程爱技术的孩子]标签可以有多个，以逗号分隔，不过即使只有一个标签，外面的中括号也不能省略。
 3. 排版风格规范 本节内容参考少数派写作排版指南2
 3.1 空格 行文时在中文与英文、中文与数字、英文与数字之间增加空格。例如：
 推荐：苹果公司在 2015 年 9 月 9 日发布了 iPhone 6s。 不推荐：苹果公司在2015年9月9日发布了iPhone 6s。 一段文字中有超链接的部分，在超链接的前后使用空格。例如：
@@ -9542,7 +9542,7 @@ android-chrome-192x192.png android-chrome-512x512.png apple-touch-icon.png brows
 以上所有配置完成后，博客网站首页如下
 5. 文章发布 在content目录下创建 posts文件夹，写作的文章全部放到该目录下，在每篇文章开头添加元数据字段，可以是YAML或TOML格式，示例如下
 title = "Getting Started with Hugo" description = "" type = ["posts","post"] tags = [ "go", "golang", "hugo", "development", ] date = "2014-04-02" categories = [ "Development", "golang", ] series = ["Hugo 101"] [ author ] name = "Hugo Authors" 下面是一篇示例文章
---- title: Markdown说明 date: 2020-04-05 tags: ["Markdown"] categories: ["爱编程爱技术的孩子"] --- Markdown由Aaron Swartz和John Gruber共同设计 - Aaron Swartz的博客：[http://www.aaronsw.com/](http://www.aaronsw.com/) - John Gruber的博客： [https://daringfireball.net/ ](https://daringfireball.net/ ) 作者中的Aaron Swartz是天才程序员，著名社交网站[Reddit](http://www.reddit.com/)的联合创始人，14岁参与RSS 1.0规格标准的制订，致力于网络信息开放。在2011年7月19日，因被指控从MIT和JSTOR下载480万篇学术论文并以免费形式上传于网络被捕，2013年1月自杀身亡，年仅26岁。 文章保持后将仓库新增内容推送到远程，几分钟后即可在 https://shuzang.github.io 看的这篇文章
+--- title: Markdown说明 date: 2020-04-05 tags: ["Markdown"] toc: true categories: ["爱编程爱技术的孩子"] --- Markdown由Aaron Swartz和John Gruber共同设计 - Aaron Swartz的博客：[http://www.aaronsw.com/](http://www.aaronsw.com/) - John Gruber的博客： [https://daringfireball.net/ ](https://daringfireball.net/ ) 作者中的Aaron Swartz是天才程序员，著名社交网站[Reddit](http://www.reddit.com/)的联合创始人，14岁参与RSS 1.0规格标准的制订，致力于网络信息开放。在2011年7月19日，因被指控从MIT和JSTOR下载480万篇学术论文并以免费形式上传于网络被捕，2013年1月自杀身亡，年仅26岁。 文章保持后将仓库新增内容推送到远程，几分钟后即可在 https://shuzang.github.io 看的这篇文章
 6. 主题迁移 随着使用时间的增加，逐渐意识到某些功能的必不可少，比如目录、数学公式支持等。KeepIt 主题已经停止了更新，好在在KeepIt的基础上重构设计的 LoveIt 主题，解决了大部分我关心的问题。这里借此介绍如何更换主题。
 首先删除原来的主题子模块
 $ git submodule deinit themes/LoveIt $ git rm themes/LoveIt 然后添加新的主题作为子模块并重新配置 config.toml 文件
@@ -11728,7 +11728,7 @@ $ hexo new page tag $ hexo new page category $ hexo new page about 进入source/
 豆瓣电影和图书页面 为站点添加豆瓣电影和图书页面，使用模块hexo-douban完成，首先根目录下执行下列命令安装该模块
 $ npm install hexo-douban --save 在站点配置文件中添加以下内容，不需要游戏页面，所以注释掉了
 douban:user:# 个人豆瓣IDbuiltin:falsebook:title:'我的书单'quote:'唯有书籍慰藉心灵'movie:title:'我的电影'quote:'电影拯救孤独'# game:# title: 'This is my game title'# quote: 'This is my game quote'timeout:10000在主题配置文件中新增电影和书籍页面的入口，注意顺序，要放在About字段前，因为这决定了菜单栏的显示顺序
-# navigatior itemsnav:Posts:/archivesCategories:/categoryTags:/tagBooks:/bookMovies:/movieAbout:/about然后在根目录下执行下列命令生成电影和图书页面
+# navigatior itemsnav:Posts:/archivestoc:truecategories:/categoryTags:/tagBooks:/bookMovies:/movieAbout:/about然后在根目录下执行下列命令生成电影和图书页面
 $ hexo douban 可选参数
 -b | &ndash;books: 只生成豆瓣读书页面 -m | &ndash;movies: 只生成豆瓣电影页面 执行命令后，插件会根据用户提供的 ID 爬取豆瓣中的数据信息并在 public 目录下生成对应的页面，当服务器启动或部署后会将页面显示在对应的菜单路由下。
 需要隔一定周期执行一次hexo douban命令，虽然在站点配置中设置了 douban.builtin: true会在每次部署时自动执行hexo douban命令，但这是没有必要的，因为该命令爬取页面的时间比较长，会大幅增加编译打包时间，而我们豆瓣的图书和电影数据变动则并不频繁。
