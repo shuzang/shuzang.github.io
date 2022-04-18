@@ -90,7 +90,6 @@ title: Golang语法基础100问
 date: 2019-12-23
 slug: "100 question of Golang basic syntax"
 tags: [Golang]
-toc: true
 categories: [爱编程爱技术的孩子]
 ```
 

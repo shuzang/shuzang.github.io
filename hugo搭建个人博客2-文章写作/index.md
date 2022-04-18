@@ -34,7 +34,6 @@ description: ""
 license: ""
 
 tags: []
-toc: true
 categories: []
 hiddenFromHomePage: false
 
@@ -42,8 +41,7 @@ featured_image: ""
 featured_image_preview: ""
 
 toc: false
-autoCollapseToc: true
-math: true
+autoCollapsemath: true
 mapbox:
     accessToken: ""
     lightStyle: ""
@@ -99,7 +97,6 @@ comment: true
 
 ```yaml
 tags: [博客写作]
-toc: true
 categories: [爱编程爱技术的孩子]
 ```
 

@@ -249,8 +249,7 @@ douban:
 # navigatior items
 nav:
   Posts: /archives
-  toc: true
-categories: /category
+  categories: /category
   Tags: /tag
   Books: /book
   Movies: /movie  
