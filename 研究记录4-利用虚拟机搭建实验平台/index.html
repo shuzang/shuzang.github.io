@@ -1,0 +1,1010 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>研究记录4-利用虚拟机搭建实验平台(失败) - Shuzang's Blog</title><meta name=Description content="书藏的个人博客，记录学习，记录生活"><meta property="og:title" content="研究记录4-利用虚拟机搭建实验平台(失败)"><meta property="og:description" content="先声明结论：最后由于网络原因没有成功，这种在多台电脑中安装虚拟机来联网的方式是存在一定问题的，其次，本篇所述的搭建方法过于繁琐，稍有不慎需要"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.github.io/%E7%A0%94%E7%A9%B6%E8%AE%B0%E5%BD%954-%E5%88%A9%E7%94%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%90%AD%E5%BB%BA%E5%AE%9E%E9%AA%8C%E5%B9%B3%E5%8F%B0/"><meta property="og:image" content="https://shuzang.github.io/logo.png"><meta property="article:published_time" content="2019-09-13T00:00:00+00:00"><meta property="article:modified_time" content="2020-11-24T00:00:00+00:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://shuzang.github.io/logo.png"><meta name=twitter:title content="研究记录4-利用虚拟机搭建实验平台(失败)"><meta name=twitter:description content="先声明结论：最后由于网络原因没有成功，这种在多台电脑中安装虚拟机来联网的方式是存在一定问题的，其次，本篇所述的搭建方法过于繁琐，稍有不慎需要"><meta name=application-name content="Shuzang's Blog"><meta name=apple-mobile-web-app-title content="Shuzang's Blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://shuzang.github.io/%E7%A0%94%E7%A9%B6%E8%AE%B0%E5%BD%954-%E5%88%A9%E7%94%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%90%AD%E5%BB%BA%E5%AE%9E%E9%AA%8C%E5%B9%B3%E5%8F%B0/><link rel=prev href=https://shuzang.github.io/linux%E7%B3%BB%E5%88%97-vmware%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/><link rel=next href=https://shuzang.github.io/golang%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%801-%E8%83%8C%E6%99%AF%E4%B8%8E%E5%88%9D%E6%8E%A2/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"研究记录4-利用虚拟机搭建实验平台(失败)","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/%E7%A0%94%E7%A9%B6%E8%AE%B0%E5%BD%954-%E5%88%A9%E7%94%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%90%AD%E5%BB%BA%E5%AE%9E%E9%AA%8C%E5%B9%B3%E5%8F%B0\/"},"image":["https:\/\/shuzang.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"科研记录","wordcount":9217,"url":"https:\/\/shuzang.github.io\/%E7%A0%94%E7%A9%B6%E8%AE%B0%E5%BD%954-%E5%88%A9%E7%94%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%90%AD%E5%BB%BA%E5%AE%9E%E9%AA%8C%E5%B9%B3%E5%8F%B0\/","datePublished":"2019-09-13T00:00:00+00:00","dateModified":"2020-11-24T00:00:00+00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/shuzang.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"Shuzang"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Shuzang's Blog"><span class=header-title-pre><i class="far fa-kiss-wink-heart fa-fw"></i></span>LoveIt</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/tags/>标签 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/>关于 </a><a class=menu-item href=https://github.com/shuzang title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item language" title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
+<select class=language-select id=language-select-desktop onchange="location=this.value;"><option value=/%E7%A0%94%E7%A9%B6%E8%AE%B0%E5%BD%954-%E5%88%A9%E7%94%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%90%AD%E5%BB%BA%E5%AE%9E%E9%AA%8C%E5%B9%B3%E5%8F%B0/ selected>简体中文</option></select>
+</a><span class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Shuzang's Blog"><span class=header-title-pre><i class="far fa-kiss-wink-heart fa-fw"></i></span>LoveIt</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/posts/>所有文章</a><a class=menu-item href=/tags/>标签</a><a class=menu-item href=/categories/>分类</a><a class=menu-item href=/about/>关于</a><a class=menu-item href=https://github.com/shuzang title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i></a><a href=javascript:void(0); class=menu-item title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
+<select class=language-select onchange="location=this.value;"><option value=/%E7%A0%94%E7%A9%B6%E8%AE%B0%E5%BD%954-%E5%88%A9%E7%94%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%90%AD%E5%BB%BA%E5%AE%9E%E9%AA%8C%E5%B9%B3%E5%8F%B0/ selected>简体中文</option></select></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">研究记录4-利用虚拟机搭建实验平台(失败)</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>Shuzang</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/><i class="far fa-folder fa-fw"></i>研究生的区块链学习之路</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2019-09-13>2019-09-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 9217 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 19 分钟&nbsp;<span id=/%E7%A0%94%E7%A9%B6%E8%AE%B0%E5%BD%954-%E5%88%A9%E7%94%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%90%AD%E5%BB%BA%E5%AE%9E%E9%AA%8C%E5%B9%B3%E5%8F%B0/ class=leancloud_visitors data-flag-title=研究记录4-利用虚拟机搭建实验平台(失败)>
+<i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+</span>&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#一-前言>一. 前言</a></li><li><a href=#二-计算机环境配置>二. 计算机环境配置</a><ul><li><a href=#1-设备和操作系统选择>1. 设备和操作系统选择</a></li><li><a href=#2-静态ip分配>2. 静态ip分配</a></li><li><a href=#3-操作系统设置>3. 操作系统设置</a></li><li><a href=#4-区块链环境配置>4. 区块链环境配置</a></li></ul></li><li><a href=#三-树莓派启动及环境配置>三. 树莓派启动及环境配置</a><ul><li><a href=#1-树莓派启动>1. 树莓派启动</a></li><li><a href=#2-树莓派基本配置>2. 树莓派基本配置</a></li></ul></li><li><a href=#四-私链网络搭建及测试运行>四. 私链网络搭建及测试运行</a></li><li><a href=#五-总结>五. 总结</a></li><li><a href=#附录-树莓派安装-quourm-节点>附录 树莓派安装 quourm 节点</a><ul><li><a href=#交叉编译20190909>交叉编译（2019.09.09）</a></li><li><a href=#ubuntu-mate0910-am>Ubuntu mate（09.10 am）</a></li><li><a href=#raspbian下自编译quorum0910-pm>Raspbian下自编译quorum(09.10 pm)</a></li><li><a href=#istantul-tool0911-am>istantul-tool(09.11 am)</a></li><li><a href=#运行geth文件0911-am>运行geth文件（09.11 am）</a></li></ul></li></ul></nav></div></div><div class=content id=content><p>先声明结论：最后由于网络原因没有成功，这种在多台电脑中安装虚拟机来联网的方式是存在一定问题的，其次，本篇所述的搭建方法过于繁琐，稍有不慎需要全部从头再来，在后面的实验中我们使用了简化的搭建流程。</p><h2 id=一-前言>一. 前言</h2><p>为了设计一个对物联网的访问控制方案，首先利用两台树莓派和两台计算机搭建完成了一个 Quorum 区块链实验平台，并采用了 Istanbul-BFT 共识算法，但未启用隐私管理器。之后将在该实验平台上部署编写的访问控制合约。实验平台的网络拓扑如下：</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20190913_%e5%88%a9%e7%94%a8%e8%b7%af%e7%94%b1%e5%99%a8%e5%bb%ba%e7%ab%8b%e5%b1%80%e5%9f%9f%e7%bd%91.png data-srcset="https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20190913_%e5%88%a9%e7%94%a8%e8%b7%af%e7%94%b1%e5%99%a8%e5%bb%ba%e7%ab%8b%e5%b1%80%e5%9f%9f%e7%bd%91.png, https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20190913_%e5%88%a9%e7%94%a8%e8%b7%af%e7%94%b1%e5%99%a8%e5%bb%ba%e7%ab%8b%e5%b1%80%e5%9f%9f%e7%bd%91.png 1.5x, https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20190913_%e5%88%a9%e7%94%a8%e8%b7%af%e7%94%b1%e5%99%a8%e5%bb%ba%e7%ab%8b%e5%b1%80%e5%9f%9f%e7%bd%91.png 2x" data-sizes=auto alt=https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20190913_利用路由器建立局域网.png title=利用路由器建立局域网></p><p>IBFT 共识允许的最小节点数量为 4，所以设置了 4 个节点，其中，两台电脑作为管理者或者用户的角色，能比较容易的和区块链交互，因为传感器和执行器本身没有足够的能力运行区块链节点，两台树莓派作为 IoT 设备的网关，我们所验证的是其中一台树莓派管理的设备向另一台树莓派管理的设备发起的访问。这里要注意两点：</p><ol><li>系统中不止设备对设备的访问，一定还包括用户通过 PC 或移动设备对 IoT 设备的访问；</li><li>使用树莓派的原因是尽量模拟实际的环境，但事实上，树莓派依然与实际环境相差巨大，更多的是验证当前方案在资源受限的网关设备上运行的可能性及对设备造成的运行压力。</li></ol><p>下面介绍平台的搭建过程，主要分为以下几步</p><ol><li>计算机环境配置</li><li>树莓派启动和环境配置</li><li>Quorum 私链网络搭建和测试运行</li></ol><h2 id=二-计算机环境配置>二. 计算机环境配置</h2><h3 id=1-设备和操作系统选择>1. 设备和操作系统选择</h3><p>实验平台共使用了两台计算机和两台树莓派。设备和操作系统的详细信息如下：</p><table><thead><tr><th>设备</th><th>CPU</th><th>操作系统</th><th>内存</th><th>硬盘</th></tr></thead><tbody><tr><td>清华同方</td><td>Intel Core i5-4460, 3.2GHz</td><td>Ubuntu 18.04 LTS(虚拟机)</td><td>2GB</td><td>50GB</td></tr><tr><td>华硕A550</td><td>Intel Core i5-4200, 2.8GHz</td><td>Ubuntu 18.04 LTS(虚拟机)</td><td>2GB</td><td>50GB</td></tr><tr><td>Raspberry Pi 3 Model B Plus</td><td>quad-core ARM Cortex A53, 1.4GHz</td><td>Raspbian Buster</td><td>1GB</td><td>32GB(microSD card)</td></tr><tr><td>Raspberry Pi 3 Model B</td><td>quad-core ARM Cortex A53, 1.2GHz</td><td>Raspbian Buster</td><td>1GB</td><td>16GB(microSD card)</td></tr></tbody></table><h3 id=2-静态ip分配>2. 静态ip分配</h3><p>两台计算机的操作环境是在虚拟机上完成的，涉及到网络相关操作，这里事先对各设备进行静态ip的分配</p><table><thead><tr><th>设备</th><th>主机名</th><th>IP地址</th><th>操作系统</th></tr></thead><tbody><tr><td>清华同方（PC）</td><td>NodeA</td><td>192.168.191.2</td><td>Ubuntu 18.04 LTS</td></tr><tr><td>华硕（Laptop)</td><td>NodeB</td><td>192.168.191.3</td><td>Ubuntu 18.04 LTS</td></tr><tr><td>Pi 3B+</td><td>NodeC</td><td>192.168.191.4</td><td>Raspbian Buster</td></tr><tr><td>Pi 3B</td><td>NodeD</td><td>192.168.191.5</td><td>Raspbian Buster</td></tr></tbody></table><p>注：以下以 PC 为例进行相关配置，Laptop 配置操作基本相同。</p><h3 id=3-操作系统设置>3. 操作系统设置</h3><p>在 VM ware 中安装 Ubuntu 18.04 虚拟机，安装完成后完成如下基础配置操作：</p><p><strong>(1) 更新源和系统</strong></p><p>根据自己需要选择是否更换软件源，此处我使用了原生的源</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo apt-get update
+$ sudo apt-get upgrade
+</code></pre></td></tr></table></div></div><p><strong>(2) 调整系统时间</strong></p><p>查看系统时区是否正确</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ timedatectl
+                      Local time: 五 2019-09-13 11:07:13 +08
+                  Universal time: 五 2019-09-13 03:07:13 UTC
+                        RTC time: 五 2019-09-13 03:07:13
+                       Time zone: Asia/Ulaanbaatar <span class=o>(</span>+08, +0800<span class=o>)</span>
+       System clock synchronized: yes
+systemd-timesyncd.service active: yes
+                 RTC in <span class=nb>local</span> TZ: no
+</code></pre></td></tr></table></div></div><p>若不正确，使用下列命令设置时区，时区根据自己所处位置调整</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ timedatectl set-timezone Asia/Shanghai
+</code></pre></td></tr></table></div></div><p><strong>(3) 设置主机名</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo hostnamectl set-hostname NodeA
+</code></pre></td></tr></table></div></div><p>重启终端查看新的主机名</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ hostnamectl
+   Static hostname: NodeA
+         Icon name: computer-vm
+           Chassis: vm
+        Machine ID: d16107a02250422baa2e04fb10c98558
+           Boot ID: ea8fbdb520774a52a205281b4034f8b0
+    Virtualization: vmware
+  Operating System: Ubuntu 18.04.3 LTS
+            Kernel: Linux 4.15.0-20-generic
+      Architecture: x86-64
+</code></pre></td></tr></table></div></div><p><strong>(4) 设置静态ip</strong></p><p>安装 <code>net-tools</code> 工具</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo apt-get install net-tools
+</code></pre></td></tr></table></div></div><p>设置虚拟机网络为桥接模式，桥接到无线网卡。在<code>/etc/netplan</code>目录下创建配置文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo nano /etc/netplan/02_config.yaml
+</code></pre></td></tr></table></div></div><p>在配置文件中添加如下信息</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-yaml data-lang=yaml><span class=k>network</span><span class=p>:</span><span class=w>
+</span><span class=w></span><span class=w> </span><span class=k>version</span><span class=p>:</span><span class=w> </span><span class=m>2</span><span class=w>
+</span><span class=w> </span><span class=k>renderer</span><span class=p>:</span><span class=w> </span>networkd<span class=w>
+</span><span class=w> </span><span class=k>ethernets</span><span class=p>:</span><span class=w>
+</span><span class=w></span><span class=w>   </span><span class=k>ens33</span><span class=p>:</span><span class=w>
+</span><span class=w></span><span class=w>     </span><span class=k>addresses</span><span class=p>:</span><span class=w>
+</span><span class=w></span><span class=w>       </span>- <span class=m>192.168</span><span class=m>.191</span><span class=m>.2</span>/<span class=m>24</span><span class=w>
+</span><span class=w>     </span><span class=k>gateway4</span><span class=p>:</span><span class=w> </span><span class=m>192.168</span><span class=m>.191</span><span class=m>.1</span><span class=w>
+</span><span class=w>     </span><span class=k>nameservers</span><span class=p>:</span><span class=w>
+</span><span class=w></span><span class=w>         </span><span class=k>search</span><span class=p>:</span><span class=w> </span><span class=p>[</span>mydomain<span class=p>,</span><span class=w> </span>otherdomain<span class=p>]</span><span class=w>
+</span><span class=w>         </span><span class=k>addresses</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=m>1.1</span><span class=m>.1</span><span class=m>.1</span><span class=p>,</span><span class=w> </span><span class=m>8.8</span><span class=m>.8</span><span class=m>.8</span><span class=p>]</span><span class=w>
+</span></code></pre></td></tr></table></div></div><p><code>ens33</code>是网卡名，<code>addresses</code>下的内容为自定义的静态ip，<code>gateway4</code>为网关地址。保存退出，使用<code>netplan</code>启用设置，并查询更改后的ip地址</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo netplan apply
+$ ifconfig
+ens33: <span class=nv>flags</span><span class=o>=</span>4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu <span class=m>1500</span>
+        inet 192.168.191.2  netmask 255.255.255.0  broadcast 192.168.191.255
+        inet6 fe80::94ff:42f8:57d5:a20f  prefixlen <span class=m>64</span>  scopeid 0x20&lt;link&gt;
+        ether 00:0c:29:09:08:33  txqueuelen <span class=m>1000</span>  <span class=o>(</span>以太网<span class=o>)</span>
+        RX packets <span class=m>155321</span>  bytes <span class=m>207407688</span> <span class=o>(</span>207.4 MB<span class=o>)</span>
+        RX errors <span class=m>0</span>  dropped <span class=m>0</span>  overruns <span class=m>0</span>  frame <span class=m>0</span>
+        TX packets <span class=m>76320</span>  bytes <span class=m>4839627</span> <span class=o>(</span>4.8 MB<span class=o>)</span>
+        TX errors <span class=m>0</span>  dropped <span class=m>0</span> overruns <span class=m>0</span>  carrier <span class=m>0</span>  collisions <span class=m>0</span>
+lo: ...
+</code></pre></td></tr></table></div></div><p><strong>(5) 重新安装VMware tools</strong></p><p>只有安装 VMware tools 之后，虚拟机界面才会自动调整全屏，并且能在虚拟机和主机之间互传文件。</p><h3 id=4-区块链环境配置>4. 区块链环境配置</h3><p>使用的是 Quorum 区块链，共识是 Istanbul BFT。</p><p><strong>(1) 安装golang</strong></p><p>获取与安装 go1.13</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ wget https://dl.google.com/go/go1.13.linux-amd64.tar.gz
+$ sudo tar -xzf go1.13.linux-amd64.tar.gz -C /usr/local
+$ rm go1.13.linux-amd64.tar.gz
+</code></pre></td></tr></table></div></div><p>设置环境变量</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo nano /etc/profile
+<span class=c1># 在打开的文件末尾添加下列语句</span>
+<span class=nb>export</span> <span class=nv>PATH</span><span class=o>=</span><span class=nv>$PATH</span>:/usr/local/go/bin
+</code></pre></td></tr></table></div></div><p>更新的环境变量在下一次登录之前不会生效，但可以通过下面的命令使其直接生效</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ <span class=nb>source</span> /etc/profile
+<span class=c1># 查看生效后的环境变量设置</span>
+$ go version
+go version go1.13 linux/amd64
+</code></pre></td></tr></table></div></div><p>注：真正生效必须重启系统</p><p><strong>(2) 安装geth for quorum</strong></p><p>获取编译后的二进制包</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ wget https://bintray.com/quorumengineering/quorum/download_file?file_path<span class=o>=</span>v2.2.5/geth_v2.2.5_linux_amd64.tar.gz
+</code></pre></td></tr></table></div></div><p>解压缩并安装</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo tar -xzf download_file?file_path<span class=o>=</span>v2.2.5%2Fgeth_v2.2.5_linux_amd64.tar.gz -C /usr/local/bin
+$ rm download_file?file_path<span class=o>=</span>v2.2.5%2Fgeth_v2.2.5_linux_amd64.tar.gz
+</code></pre></td></tr></table></div></div><p>测试安装</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ geth version
+WARN <span class=o>[</span>09-13<span class=p>|</span>16:03:38.966<span class=o>]</span> Sanitizing cache to Go<span class=err>&#39;</span>s GC limits       <span class=nv>provided</span><span class=o>=</span><span class=m>1024</span> <span class=nv>updated</span><span class=o>=</span><span class=m>655</span>
+Geth
+Version: 1.8.18-stable
+Git Commit: c894c2d70eacf30740d03b53ed2fb39e42641295
+Quorum Version: 2.2.5
+Architecture: amd64
+Protocol Versions: <span class=o>[</span><span class=m>63</span> 62<span class=o>]</span>
+Network Id: <span class=m>1337</span>
+Go Version: go1.11.12
+Operating System: linux
+<span class=nv>GOPATH</span><span class=o>=</span>
+<span class=nv>GOROOT</span><span class=o>=</span>/home/travis/.gimme/versions/go1.11.12.linux.amd64
+</code></pre></td></tr></table></div></div><p><strong>(3) 获取并编译istanbul-tools</strong></p><p>istanbul-tools 用来初始化 istanbul-BFT 共识网络及进行网络测试</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo apt-get install git
+$ mkdir istanbul <span class=o>&amp;&amp;</span> <span class=nb>cd</span> istanbul
+$ git clone https://github.com/jpmorganchase/istanbul-tools.git
+$ <span class=nb>cd</span> istanbul-tools
+</code></pre></td></tr></table></div></div><p>执行编译</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo apt-get install -y build-essential
+$ make
+</code></pre></td></tr></table></div></div><p>编译后的文件位于/build/bin目录下，执行测试</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ ./build/bin/istanbul istanbul --version
+istanbul version v1.0.1
+</code></pre></td></tr></table></div></div><h2 id=三-树莓派启动及环境配置>三. 树莓派启动及环境配置</h2><p>以Pi 3B+为例，Pi3B 配置操作基本相同</p><h3 id=1-树莓派启动>1. 树莓派启动</h3><p>将 Raspbian Buster 镜像写入准备好的SD卡，重新加载在电脑中的SD卡会出现boot盘，同时也是树莓派的<code>/boot</code>目录。在boot盘根目录新建名为<code>ssh</code>的文件，开启SSH连接。同时新建<code>wpa_supplicant.conf</code>文件，编辑其内容如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev
+update_config=1
+country=CN
+ 
+network={
+    ssid=&#34;WiFi名&#34;
+    psk=&#34;密码&#34;
+    priority=10
+}
+</code></pre></td></tr></table></div></div><p>将其中的ssid和psk更改为自己无线网络的网络名和密码。将配置好的SD卡卸载并插入树莓派，通电启动。使用Advanced IP Scanner扫描无线网络的网段，获取树莓派ip，本实验无线网络网段为192.168.191.1-254。</p><p>使用扫描到的ip通过Putty利用SSH协议进行登录。</p><h3 id=2-树莓派基本配置>2. 树莓派基本配置</h3><p><strong>(1) 更新源及系统</strong></p><p>编辑/etc/apt/sources.list文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>sudo nano /etc/apt/sources.list
+</code></pre></td></tr></table></div></div><p>注释掉原来的源，将源更新为：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>deb http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi
+deb-src http://mirrors.tuna.tsinghua.edu.cn/raspbian/raspbian/ buster main contrib non-free rpi
+</code></pre></td></tr></table></div></div><p>保存退出，编辑/etc/apt/sources.list.d/raspi.list文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>sudo nano /etc/apt/sources.list.d/raspi.list
+</code></pre></td></tr></table></div></div><p>将源更新为：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>deb http://mirror.tuna.tsinghua.edu.cn/raspberrypi/ buster main ui
+deb-src http://mirror.tuna.tsinghua.edu.cn/raspberrypi/ buster main ui
+</code></pre></td></tr></table></div></div><p>更新源文件列表，更新软件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo apt-get update
+$ sudo apt-get upgrade
+</code></pre></td></tr></table></div></div><p><strong>(2) 安装xrdp供远程连接</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo apt-get install xrdp
+</code></pre></td></tr></table></div></div><p><strong>(3) 开启ftp供文件传输</strong></p><p>安装vsftpd</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo apt-get install vsftpd
+</code></pre></td></tr></table></div></div><p>编辑配置文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo nano /etc/vsftpd.conf
+</code></pre></td></tr></table></div></div><p>启用对树莓派的写入权限</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># Uncomment this to enable any form of FTP</span> 
+write command.write_enable<span class=o>=</span>YES
+</code></pre></td></tr></table></div></div><p>保存退出，启用vsftpd</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo service vsftpd start
+</code></pre></td></tr></table></div></div><p><strong>(4) 修改pi账户密码，时区和主机名</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo raspi-config
+</code></pre></td></tr></table></div></div><p>选择第一项<code>Change User Password</code>，键入新密码并确定，</p><p>选择第四项<code>Localisation Options</code>，选择<code>Change Timezone</code>，将时区更改为<code>Asia/Shanghai</code></p><p>全部设置完成后选择<code>Finish</code>退出，终端将看到如下输出</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>Current default <span class=nb>time</span> zone: <span class=s1>&#39;Asia/Shanghai&#39;</span>
+Local <span class=nb>time</span> is now:      Fri Sep <span class=m>13</span> 18:40:56 CST 2019.
+Universal Time is now:  Fri Sep <span class=m>13</span> 10:40:56 UTC 2019.
+
+New password:
+Retype new password:
+passwd: password updated successfully
+OK
+</code></pre></td></tr></table></div></div><p>设置主机名</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo hostnamectl set-hostname NodeC
+</code></pre></td></tr></table></div></div><p>编辑/etc/hosts文件，将127.0.1.1对应的raspberry更改为NodeC</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>127.0.0.1       localhost
+::1             localhost ip6-localhost ip6-loopback
+ff02::1         ip6-allnodes
+ff02::2         ip6-allrouters
+
+127.0.1.1       NodeC
+</code></pre></td></tr></table></div></div><p>退出终端并使用新密码重新登录，主机名将更改为NodeC。注意此时用户名仍为pi。</p><p><strong>(5) 设置静态ip</strong></p><p>编辑<code>/etc/dhcpcd.conf</code>文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo nano /etc/dhcpcd.conf
+</code></pre></td></tr></table></div></div><p>在末尾添加如下内容</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>interface wlan0
+ 
+static ip_address=192.168.191.4/24
+static routers=192.168.191.1
+static domain_name_servers=192.168.191.1
+</code></pre></td></tr></table></div></div><p>重启并以新的ip登录树莓派。</p><p>(6) 获取并安装geth</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ git clone -b gethonly https://github.com/shuzang/quorum-raspbian.git
+$ <span class=nb>cd</span> quorum-raspbian
+$ sudo cp geth /usr/local/bin
+$ sudo chmod +x /usr/local/bin/geth
+</code></pre></td></tr></table></div></div><p>测试安装是否成功</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ geth version
+WARN <span class=o>[</span>09-13<span class=p>|</span>19:51:40.051<span class=o>]</span> Sanitizing cache to Go<span class=err>&#39;</span>s GC limits       <span class=nv>provided</span><span class=o>=</span><span class=m>1024</span> <span class=nv>updated</span><span class=o>=</span><span class=m>308</span>
+Geth
+Version: 1.8.18-stable
+Quorum Version: 2.2.5
+Architecture: arm
+Protocol Versions: <span class=o>[</span><span class=m>63</span> 62<span class=o>]</span>
+Network Id: <span class=m>1337</span>
+Go Version: go1.11.6
+Operating System: linux
+<span class=nv>GOPATH</span><span class=o>=</span>
+<span class=nv>GOROOT</span><span class=o>=</span>/usr/lib/go-1.11
+
+</code></pre></td></tr></table></div></div><h2 id=四-私链网络搭建及测试运行>四. 私链网络搭建及测试运行</h2><p>各节点数据和相关文件的前期生成都在NodeA中由istanbul-tools工具完成。切换到NodeA节点的PC，在istanbul目录下创建四个节点的工作目录</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ <span class=nb>cd</span> ~/istanbul
+$ mkdir NodeA NodeB NodeC NodeD
+</code></pre></td></tr></table></div></div><p>进入领导节点（这里是NodeA）目录，使用istanbul-tools工具为四个节点生成安装玩家，该命令会为所有的初始验证者节点生成 <code>static-nodes.json</code>, <code>genesis.json</code>和 nodekeys三种文件。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ <span class=nb>cd</span> NodeA
+$ ../istanbul-tools/build/bin/istanbul setup --num <span class=m>4</span> --nodes --quorum --save --verbose
+</code></pre></td></tr></table></div></div><p>将输出生成的文件信息</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-json data-lang=json><span class=err>v</span><span class=err>a</span><span class=err>l</span><span class=err>i</span><span class=err>d</span><span class=err>a</span><span class=err>t</span><span class=err>o</span><span class=err>r</span><span class=err>s</span>
+<span class=p>{</span>
+	<span class=nt>&#34;Address&#34;</span><span class=p>:</span> <span class=s2>&#34;0x93c20b1ffa9bf8738bf194d5203e3d2e2a48428d&#34;</span><span class=p>,</span>
+	<span class=nt>&#34;Nodekey&#34;</span><span class=p>:</span> <span class=s2>&#34;6f17ec19de39281ea72a6d91d1e780bf5a0e35602f0e844e82dcc9d6a9ba7716&#34;</span><span class=p>,</span>
+	<span class=nt>&#34;NodeInfo&#34;</span><span class=p>:</span> <span class=s2>&#34;enode://faa50654f681a890c28be2faeef9211afaf1563c08ddb8990f6b39c561e002ea687707be68c16363f65c0755f785cb16e3b7be84e5e4eb260b0d4a6f6f83ef87@0.0.0.0:30303?discport=0&#34;</span>
+<span class=p>}</span>
+<span class=p>{</span>
+	<span class=nt>&#34;Address&#34;</span><span class=p>:</span> <span class=s2>&#34;0xff75bd429c43de6719c2983c1e991b0279909559&#34;</span><span class=p>,</span>
+	<span class=nt>&#34;Nodekey&#34;</span><span class=p>:</span> <span class=s2>&#34;b7c11c512d33e3c1de97abd8a690cdbcfac9c6802a43a6ff850b244d90258908&#34;</span><span class=p>,</span>
+	<span class=nt>&#34;NodeInfo&#34;</span><span class=p>:</span> <span class=s2>&#34;enode://c286de4e89f4f209a6b32284b31829251ccb23bf5ab3bbe57ba08754392635ae755848dd6c4f367c7d92284e54e4b9f0d1a896924309380eb947e3b8c6641392@0.0.0.0:30303?discport=0&#34;</span>
+<span class=p>}</span>
+<span class=p>{</span>
+	<span class=nt>&#34;Address&#34;</span><span class=p>:</span> <span class=s2>&#34;0xf22670e572a42729a2c10fb26f57bba46cbc3a42&#34;</span><span class=p>,</span>
+	<span class=nt>&#34;Nodekey&#34;</span><span class=p>:</span> <span class=s2>&#34;9b3740640431f0d6543f730308509fb9bc35307f826b1dd838b6812a6067f477&#34;</span><span class=p>,</span>
+	<span class=nt>&#34;NodeInfo&#34;</span><span class=p>:</span> <span class=s2>&#34;enode://cb50baa67204df2246b143e2982e40a89b2924e5c19e2834876c34042f0a81a2e2604ab210d19a048762f5355258d9840932ba868227857d928495d398c04af0@0.0.0.0:30303?discport=0&#34;</span>
+<span class=p>}</span>
+<span class=p>{</span>
+	<span class=nt>&#34;Address&#34;</span><span class=p>:</span> <span class=s2>&#34;0x350686ae7615e87a046fc4261fe58fda3872aa65&#34;</span><span class=p>,</span>
+	<span class=nt>&#34;Nodekey&#34;</span><span class=p>:</span> <span class=s2>&#34;b6fd16bc88c8f96430b9ec0c4f6991c0f958e70026fce1abc959b295774f4e94&#34;</span><span class=p>,</span>
+	<span class=nt>&#34;NodeInfo&#34;</span><span class=p>:</span> <span class=s2>&#34;enode://214dce3278a2b45fb0bf2a1d53c24eb213c5cbb08307e842feab0202cad4f685c5c62a4197d29318f07eb813bf4189db05096b551849039bf81fb74f0211320f@0.0.0.0:30303?discport=0&#34;</span>
+<span class=p>}</span>
+
+
+
+<span class=err>s</span><span class=err>t</span><span class=err>a</span><span class=err>t</span><span class=err>i</span><span class=err>c</span><span class=err>-</span><span class=err>n</span><span class=err>o</span><span class=err>d</span><span class=err>e</span><span class=err>s</span><span class=err>.</span><span class=err>j</span><span class=err>s</span><span class=err>o</span><span class=err>n</span>
+<span class=p>[</span>
+	<span class=s2>&#34;enode://faa50654f681a890c28be2faeef9211afaf1563c08ddb8990f6b39c561e002ea687707be68c16363f65c0755f785cb16e3b7be84e5e4eb260b0d4a6f6f83ef87@0.0.0.0:30303?discport=0&#34;</span><span class=p>,</span>
+	<span class=s2>&#34;enode://c286de4e89f4f209a6b32284b31829251ccb23bf5ab3bbe57ba08754392635ae755848dd6c4f367c7d92284e54e4b9f0d1a896924309380eb947e3b8c6641392@0.0.0.0:30303?discport=0&#34;</span><span class=p>,</span>
+	<span class=s2>&#34;enode://cb50baa67204df2246b143e2982e40a89b2924e5c19e2834876c34042f0a81a2e2604ab210d19a048762f5355258d9840932ba868227857d928495d398c04af0@0.0.0.0:30303?discport=0&#34;</span><span class=p>,</span>
+	<span class=s2>&#34;enode://214dce3278a2b45fb0bf2a1d53c24eb213c5cbb08307e842feab0202cad4f685c5c62a4197d29318f07eb813bf4189db05096b551849039bf81fb74f0211320f@0.0.0.0:30303?discport=0&#34;</span>
+<span class=p>]</span>
+
+
+
+<span class=err>g</span><span class=err>e</span><span class=err>n</span><span class=err>e</span><span class=err>s</span><span class=err>i</span><span class=err>s</span><span class=err>.</span><span class=err>j</span><span class=err>s</span><span class=err>o</span><span class=err>n</span>
+<span class=p>{</span>
+    <span class=nt>&#34;config&#34;</span><span class=p>:</span> <span class=p>{</span>
+        <span class=nt>&#34;chainId&#34;</span><span class=p>:</span> <span class=mi>10</span><span class=p>,</span>
+        <span class=nt>&#34;homesteadBlock&#34;</span><span class=p>:</span> <span class=mi>0</span><span class=p>,</span>
+        <span class=nt>&#34;eip150Block&#34;</span><span class=p>:</span> <span class=mi>0</span><span class=p>,</span>
+        <span class=nt>&#34;eip150Hash&#34;</span><span class=p>:</span> <span class=s2>&#34;0x0000000000000000000000000000000000000000000000000000000000000000&#34;</span><span class=p>,</span>
+        <span class=nt>&#34;eip155Block&#34;</span><span class=p>:</span> <span class=mi>0</span><span class=p>,</span>
+        <span class=nt>&#34;eip158Block&#34;</span><span class=p>:</span> <span class=mi>0</span><span class=p>,</span>
+        <span class=nt>&#34;byzantiumBlock&#34;</span><span class=p>:</span> <span class=mi>0</span><span class=p>,</span>
+        <span class=nt>&#34;constantinopleBlock&#34;</span><span class=p>:</span> <span class=mi>0</span><span class=p>,</span>
+        <span class=nt>&#34;istanbul&#34;</span><span class=p>:</span> <span class=p>{</span>
+            <span class=nt>&#34;epoch&#34;</span><span class=p>:</span> <span class=mi>30000</span><span class=p>,</span>
+            <span class=nt>&#34;policy&#34;</span><span class=p>:</span> <span class=mi>0</span>
+        <span class=p>}</span><span class=p>,</span>
+        <span class=nt>&#34;txnSizeLimit&#34;</span><span class=p>:</span> <span class=mi>64</span><span class=p>,</span>
+        <span class=nt>&#34;isQuorum&#34;</span><span class=p>:</span> <span class=kc>true</span>
+    <span class=p>}</span><span class=p>,</span>
+    <span class=nt>&#34;nonce&#34;</span><span class=p>:</span> <span class=s2>&#34;0x0&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;timestamp&#34;</span><span class=p>:</span> <span class=s2>&#34;0x5d7c4ae8&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;extraData&#34;</span><span class=p>:</span> <span class=s2>&#34;0x0000000000000000000000000000000000000000000000000000000000000000f89af8549493c20b1ffa9bf8738bf194d5203e3d2e2a48428d94ff75bd429c43de6719c2983c1e991b027990955994f22670e572a42729a2c10fb26f57bba46cbc3a4294350686ae7615e87a046fc4261fe58fda3872aa65b8410000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c0&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;gasLimit&#34;</span><span class=p>:</span> <span class=s2>&#34;0xe0000000&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;difficulty&#34;</span><span class=p>:</span> <span class=s2>&#34;0x1&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;mixHash&#34;</span><span class=p>:</span> <span class=s2>&#34;0x63746963616c2062797a616e74696e65206661756c7420746f6c6572616e6365&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;coinbase&#34;</span><span class=p>:</span> <span class=s2>&#34;0x0000000000000000000000000000000000000000&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;alloc&#34;</span><span class=p>:</span> <span class=p>{</span>
+        <span class=nt>&#34;350686ae7615e87a046fc4261fe58fda3872aa65&#34;</span><span class=p>:</span> <span class=p>{</span>
+            <span class=nt>&#34;balance&#34;</span><span class=p>:</span> <span class=s2>&#34;0x446c3b15f9926687d2c40534fdb564000000000000&#34;</span>
+        <span class=p>}</span><span class=p>,</span>
+        <span class=nt>&#34;93c20b1ffa9bf8738bf194d5203e3d2e2a48428d&#34;</span><span class=p>:</span> <span class=p>{</span>
+            <span class=nt>&#34;balance&#34;</span><span class=p>:</span> <span class=s2>&#34;0x446c3b15f9926687d2c40534fdb564000000000000&#34;</span>
+        <span class=p>}</span><span class=p>,</span>
+        <span class=nt>&#34;f22670e572a42729a2c10fb26f57bba46cbc3a42&#34;</span><span class=p>:</span> <span class=p>{</span>
+            <span class=nt>&#34;balance&#34;</span><span class=p>:</span> <span class=s2>&#34;0x446c3b15f9926687d2c40534fdb564000000000000&#34;</span>
+        <span class=p>}</span><span class=p>,</span>
+        <span class=nt>&#34;ff75bd429c43de6719c2983c1e991b0279909559&#34;</span><span class=p>:</span> <span class=p>{</span>
+            <span class=nt>&#34;balance&#34;</span><span class=p>:</span> <span class=s2>&#34;0x446c3b15f9926687d2c40534fdb564000000000000&#34;</span>
+        <span class=p>}</span>
+    <span class=p>}</span><span class=p>,</span>
+    <span class=nt>&#34;number&#34;</span><span class=p>:</span> <span class=s2>&#34;0x0&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;gasUsed&#34;</span><span class=p>:</span> <span class=s2>&#34;0x0&#34;</span><span class=p>,</span>
+    <span class=nt>&#34;parentHash&#34;</span><span class=p>:</span> <span class=s2>&#34;0x0000000000000000000000000000000000000000000000000000000000000000&#34;</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>查看生成的文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ ls -l
+total <span class=m>24</span>
+drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>14</span> 10:05 <span class=m>0</span>
+drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>14</span> 10:05 <span class=m>1</span>
+drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>14</span> 10:05 <span class=m>2</span>
+drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>14</span> 10:05 <span class=m>3</span>
+-rwxr-xr-x <span class=m>1</span> shuzang shuzang <span class=m>1792</span> Sep <span class=m>14</span> 10:05 genesis.json
+-rwxr-xr-x <span class=m>1</span> shuzang shuzang  <span class=m>666</span> Sep <span class=m>14</span> 10:05 static-nodes.json
+</code></pre></td></tr></table></div></div><p>使用预定的IP(端口号不改，使用默认的30303即可）为所有验证者节点更新 <code>static-nodes.json</code> 文件。 在 <code>static-nodes.json</code>中，每个节点占据一行，第几行即代表第几个节点。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ cat static-nodes.json
+....更新ip如下
+<span class=o>[</span>	<span class=s2>&#34;enode://faa50654f681a890c28be2faeef9211afaf1563c08ddb8990f6b39c561e002ea687707be68c16363f65c0755f785cb16e3b7be84e5e4eb260b0d4a6f6f83ef87@192.168.191.2:30303?discport=0&#34;</span>,
+	<span class=s2>&#34;enode://c286de4e89f4f209a6b32284b31829251ccb23bf5ab3bbe57ba08754392635ae755848dd6c4f367c7d92284e54e4b9f0d1a896924309380eb947e3b8c6641392@192.168.191.3:30303?discport=0&#34;</span>,
+	<span class=s2>&#34;enode://cb50baa67204df2246b143e2982e40a89b2924e5c19e2834876c34042f0a81a2e2604ab210d19a048762f5355258d9840932ba868227857d928495d398c04af0@192.168.191.4:30303?discport=0&#34;</span>,
+	<span class=s2>&#34;enode://214dce3278a2b45fb0bf2a1d53c24eb213c5cbb08307e842feab0202cad4f685c5c62a4197d29318f07eb813bf4189db05096b551849039bf81fb74f0211320f@192.168.191.5:30303?discport=0&#34;</span>
+<span class=o>]</span>
+</code></pre></td></tr></table></div></div><p>在每个节点的工作目录创建名为<code>data</code>的数据目录，在<code>data</code>目录创建<code>geth</code>目录</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ <span class=nb>cd</span> ..
+$ mkdir -p NodeA/data/geth
+$ mkdir -p NodeB/data/geth
+$ mkdir -p NodeC/data/geth
+$ mkdir -p NodeD/data/geth
+</code></pre></td></tr></table></div></div><p>在四个节点的工作目录中分别为各自节点生成初始账户，账户地址会显示在终端，记住为每个节点账户所设的密码</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ geth --datadir NodeA/data account new
+WARN <span class=o>[</span>09-14<span class=p>|</span>10:18:26.738<span class=o>]</span> Sanitizing cache to Go<span class=s1>&#39;s GC limits       provided=1024 updated=655
+</span><span class=s1>INFO [09-14|10:18:26.748] Maximum peer count                       ETH=25 LES=0 total=25
+</span><span class=s1>Your new account is locked with a password. Please give a password. Do not forget this password.
+</span><span class=s1>Passphrase: 
+</span><span class=s1>Repeat passphrase: 
+</span><span class=s1>Address: {b619ead9d3d72b675a471b3d8ff67673de8ae7f4}
+</span><span class=s1>$ geth --datadir NodeB/data account new
+</span><span class=s1>WARN [09-14|10:18:41.953] Sanitizing cache to Go&#39;</span>s GC limits       <span class=nv>provided</span><span class=o>=</span><span class=m>1024</span> <span class=nv>updated</span><span class=o>=</span><span class=m>655</span>
+INFO <span class=o>[</span>09-14<span class=p>|</span>10:18:41.954<span class=o>]</span> Maximum peer count                       <span class=nv>ETH</span><span class=o>=</span><span class=m>25</span> <span class=nv>LES</span><span class=o>=</span><span class=m>0</span> <span class=nv>total</span><span class=o>=</span><span class=m>25</span>
+Your new account is locked with a password. Please give a password. Do not forget this password.
+Passphrase: 
+Repeat passphrase: 
+Address: <span class=o>{</span>4cd5ae20dba37c96717f328dc6c02e1c1927be1c<span class=o>}</span>
+$ geth --datadir NodeC/data account new
+WARN <span class=o>[</span>09-14<span class=p>|</span>10:18:56.231<span class=o>]</span> Sanitizing cache to Go<span class=s1>&#39;s GC limits       provided=1024 updated=655
+</span><span class=s1>INFO [09-14|10:18:56.232] Maximum peer count                       ETH=25 LES=0 total=25
+</span><span class=s1>Your new account is locked with a password. Please give a password. Do not forget this password.
+</span><span class=s1>Passphrase: 
+</span><span class=s1>Repeat passphrase: 
+</span><span class=s1>Address: {461d9bc69d4a32cb599310843bf5bf88342cc03c}
+</span><span class=s1>$ geth --datadir NodeD/data account new
+</span><span class=s1>WARN [09-14|10:19:09.591] Sanitizing cache to Go&#39;</span>s GC limits       <span class=nv>provided</span><span class=o>=</span><span class=m>1024</span> <span class=nv>updated</span><span class=o>=</span><span class=m>655</span>
+INFO <span class=o>[</span>09-14<span class=p>|</span>10:19:09.592<span class=o>]</span> Maximum peer count                       <span class=nv>ETH</span><span class=o>=</span><span class=m>25</span> <span class=nv>LES</span><span class=o>=</span><span class=m>0</span> <span class=nv>total</span><span class=o>=</span><span class=m>25</span>
+Your new account is locked with a password. Please give a password. Do not forget this password.
+Passphrase: 
+Repeat passphrase: 
+Address: <span class=o>{</span>51ef0c6536e69e2ea46f5ec5e150da423305c63d<span class=o>}</span>
+</code></pre></td></tr></table></div></div><p>为了添加账户到初始区块，使用上述产生的账户地址更新<code>genesis.json</code>文件的<code>alloc</code>字段内容。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ cat NodeA/genesis.json
+<span class=o>{</span>
+    <span class=s2>&#34;config&#34;</span>: <span class=o>{</span>
+        <span class=s2>&#34;chainId&#34;</span>: 10,
+        <span class=s2>&#34;homesteadBlock&#34;</span>: 0,
+        <span class=s2>&#34;eip150Block&#34;</span>: 0,
+        <span class=s2>&#34;eip150Hash&#34;</span>: <span class=s2>&#34;0x0000000000000000000000000000000000000000000000000000000000000000&#34;</span>,
+        <span class=s2>&#34;eip155Block&#34;</span>: 0,
+        <span class=s2>&#34;eip158Block&#34;</span>: 0,
+        <span class=s2>&#34;byzantiumBlock&#34;</span>: 0,
+        <span class=s2>&#34;constantinopleBlock&#34;</span>: 0,
+        <span class=s2>&#34;istanbul&#34;</span>: <span class=o>{</span>
+            <span class=s2>&#34;epoch&#34;</span>: 30000,
+            <span class=s2>&#34;policy&#34;</span>: <span class=m>0</span>
+        <span class=o>}</span>,
+        <span class=s2>&#34;txnSizeLimit&#34;</span>: 64,
+        <span class=s2>&#34;isQuorum&#34;</span>: <span class=nb>true</span>
+    <span class=o>}</span>,
+    <span class=s2>&#34;nonce&#34;</span>: <span class=s2>&#34;0x0&#34;</span>,
+    <span class=s2>&#34;timestamp&#34;</span>: <span class=s2>&#34;0x5d7c4ae8&#34;</span>,
+    <span class=s2>&#34;extraData&#34;</span>: <span class=s2>&#34;0x0000000000000000000000000000000000000000000000000000000000000000f89af8549493c20b1ffa9bf8738bf194d5203e3d2e2a48428d94ff75bd429c43de6719c2983c1e991b027990955994f22670e572a42729a2c10fb26f57bba46cbc3a4294350686ae7615e87a046fc4261fe58fda3872aa65b8410000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000c0&#34;</span>,
+    <span class=s2>&#34;gasLimit&#34;</span>: <span class=s2>&#34;0xe0000000&#34;</span>,
+    <span class=s2>&#34;difficulty&#34;</span>: <span class=s2>&#34;0x1&#34;</span>,
+    <span class=s2>&#34;mixHash&#34;</span>: <span class=s2>&#34;0x63746963616c2062797a616e74696e65206661756c7420746f6c6572616e6365&#34;</span>,
+    <span class=s2>&#34;coinbase&#34;</span>: <span class=s2>&#34;0x0000000000000000000000000000000000000000&#34;</span>,
+    <span class=s2>&#34;alloc&#34;</span>: <span class=o>{</span>
+        <span class=s2>&#34;b619ead9d3d72b675a471b3d8ff67673de8ae7f4&#34;</span>: <span class=o>{</span>
+            <span class=s2>&#34;balance&#34;</span>: <span class=s2>&#34;0x446c3b15f9926687d2c40534fdb564000000000000&#34;</span>
+        <span class=o>}</span>,
+        <span class=s2>&#34;4cd5ae20dba37c96717f328dc6c02e1c1927be1c&#34;</span>: <span class=o>{</span>
+            <span class=s2>&#34;balance&#34;</span>: <span class=s2>&#34;0x446c3b15f9926687d2c40534fdb564000000000000&#34;</span>
+        <span class=o>}</span>,
+        <span class=s2>&#34;461d9bc69d4a32cb599310843bf5bf88342cc03c&#34;</span>: <span class=o>{</span>
+            <span class=s2>&#34;balance&#34;</span>: <span class=s2>&#34;0x446c3b15f9926687d2c40534fdb564000000000000&#34;</span>
+        <span class=o>}</span>,
+        <span class=s2>&#34;51ef0c6536e69e2ea46f5ec5e150da423305c63d&#34;</span>: <span class=o>{</span>
+            <span class=s2>&#34;balance&#34;</span>: <span class=s2>&#34;0x446c3b15f9926687d2c40534fdb564000000000000&#34;</span>
+        <span class=o>}</span>
+    <span class=o>}</span>,
+    <span class=s2>&#34;number&#34;</span>: <span class=s2>&#34;0x0&#34;</span>,
+    <span class=s2>&#34;gasUsed&#34;</span>: <span class=s2>&#34;0x0&#34;</span>,
+    <span class=s2>&#34;parentHash&#34;</span>: <span class=s2>&#34;0x0000000000000000000000000000000000000000000000000000000000000000&#34;</span>
+<span class=o>}</span>
+</code></pre></td></tr></table></div></div><p>将之前步骤中产生的初始化文件移动到相应节点的工作目录。这些文件现在位于领导节点的工作目录。<code>genesis.json</code>放到每个节点的工作目录, <code>static-nodes.json</code>放到每个节点的<code>data</code>目录。<code>X/nodekey</code>放到对应节点的<code>data/geth</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ cp NodeA/genesis.json NodeB
+$ cp NodeA/genesis.json NodeC
+$ cp NodeA/genesis.json NodeD
+$ cp NodeA/static-nodes.json NodeA/data/
+$ cp NodeA/static-nodes.json NodeB/data/
+$ cp NodeA/static-nodes.json NodeC/data/
+$ cp NodeA/static-nodes.json NodeD/data/
+$ cp NodeA/0/nodekey NodeA/data/geth
+$ cp NodeA/1/nodekey NodeB/data/geth
+$ cp NodeA/2/nodekey NodeC/data/geth
+$ cp NodeA/3/nodekey NodeD/data/geth
+</code></pre></td></tr></table></div></div><p>将NodeB，NodeC，NodeD文件夹使用ftp文件传输协议分别移动到对应的三个设备的用户主目录下，使用的软件是FileZilla。</p><p>分别在各自设备的迁移过去的Node文件夹根目录执行节点初始化工作</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># 在NodeA设备</span>
+$ <span class=nb>cd</span> NodeA
+$ geth --datadir data init genesis.json
+WARN <span class=o>[</span>09-14<span class=p>|</span>10:42:06.033<span class=o>]</span> Sanitizing cache to Go<span class=s1>&#39;s GC limits       provided=1024 updated=655
+</span><span class=s1>INFO [09-14|10:42:06.049] Maximum peer count                       ETH=25 LES=0 total=25
+</span><span class=s1>INFO [09-14|10:42:06.056] Allocated cache and file handles         database=/home/shuzang/istanbul/NodeA/data/geth/chaindata cache=16 handles=16
+</span><span class=s1>INFO [09-14|10:42:06.079] Writing custom genesis block 
+</span><span class=s1>INFO [09-14|10:42:06.088] Persisted trie from memory database      nodes=5 size=819.00B time=224.043µs gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+</span><span class=s1>INFO [09-14|10:42:06.088] Successfully wrote genesis state         database=chaindata                                        hash=7d00b6…27b2d4
+</span><span class=s1>INFO [09-14|10:42:06.088] Allocated cache and file handles         database=/home/shuzang/istanbul/NodeA/data/geth/lightchaindata cache=16 handles=16
+</span><span class=s1>INFO [09-14|10:42:06.091] Writing custom genesis block 
+</span><span class=s1>INFO [09-14|10:42:06.091] Persisted trie from memory database      nodes=5 size=819.00B time=48.242µs  gcnodes=0 gcsize=0.00B gctime=0s livenodes=1 livesize=0.00B
+</span><span class=s1>INFO [09-14|10:42:06.091] Successfully wrote genesis state         database=lightchaindata                                        hash=7d00b6…27b2d4
+</span><span class=s1>
+</span><span class=s1># 在NodeB设备
+</span><span class=s1>$ cd ~/NodeB
+</span><span class=s1>$ geth --datadir data init genesis.json
+</span><span class=s1>
+</span><span class=s1>
+</span><span class=s1># 在NodeC设备
+</span><span class=s1>$ cd ~/NodeC
+</span><span class=s1>$ geth --datadir data init genesis.json
+</span><span class=s1>WARN [09-14|10:44:13.570] Sanitizing cache to Go&#39;</span>s GC limits       <span class=nv>provided</span><span class=o>=</span><span class=m>1024</span> <span class=nv>updated</span><span class=o>=</span><span class=m>308</span>
+INFO <span class=o>[</span>09-14<span class=p>|</span>10:44:13.594<span class=o>]</span> Maximum peer count                       <span class=nv>ETH</span><span class=o>=</span><span class=m>25</span> <span class=nv>LES</span><span class=o>=</span><span class=m>0</span> <span class=nv>total</span><span class=o>=</span><span class=m>25</span>
+INFO <span class=o>[</span>09-14<span class=p>|</span>10:44:13.607<span class=o>]</span> Allocated cache and file handles         <span class=nv>database</span><span class=o>=</span>/home/pi/NodeC/data/geth/chaindata <span class=nv>cache</span><span class=o>=</span><span class=m>16</span> <span class=nv>handles</span><span class=o>=</span><span class=m>16</span>
+INFO <span class=o>[</span>09-14<span class=p>|</span>10:44:13.659<span class=o>]</span> Writing custom genesis block
+INFO <span class=o>[</span>09-14<span class=p>|</span>10:44:13.663<span class=o>]</span> Persisted trie from memory database      <span class=nv>nodes</span><span class=o>=</span><span class=m>5</span> <span class=nv>size</span><span class=o>=</span>819.00B <span class=nv>time</span><span class=o>=</span>679.667µs <span class=nv>gcnodes</span><span class=o>=</span><span class=m>0</span> <span class=nv>gcsize</span><span class=o>=</span>0.00B <span class=nv>gctime</span><span class=o>=</span>0s <span class=nv>livenodes</span><span class=o>=</span><span class=m>1</span> <span class=nv>livesize</span><span class=o>=</span>0.00B
+INFO <span class=o>[</span>09-14<span class=p>|</span>10:44:13.666<span class=o>]</span> Successfully wrote genesis state         <span class=nv>database</span><span class=o>=</span>chaindata                          <span class=nv>hash</span><span class=o>=</span>7d00b6…27b2d4
+INFO <span class=o>[</span>09-14<span class=p>|</span>10:44:13.666<span class=o>]</span> Allocated cache and file handles         <span class=nv>database</span><span class=o>=</span>/home/pi/NodeC/data/geth/lightchaindata <span class=nv>cache</span><span class=o>=</span><span class=m>16</span> <span class=nv>handles</span><span class=o>=</span><span class=m>16</span>
+INFO <span class=o>[</span>09-14<span class=p>|</span>10:44:13.694<span class=o>]</span> Writing custom genesis block
+INFO <span class=o>[</span>09-14<span class=p>|</span>10:44:13.697<span class=o>]</span> Persisted trie from memory database      <span class=nv>nodes</span><span class=o>=</span><span class=m>5</span> <span class=nv>size</span><span class=o>=</span>819.00B <span class=nv>time</span><span class=o>=</span>573.516µs <span class=nv>gcnodes</span><span class=o>=</span><span class=m>0</span> <span class=nv>gcsize</span><span class=o>=</span>0.00B <span class=nv>gctime</span><span class=o>=</span>0s <span class=nv>livenodes</span><span class=o>=</span><span class=m>1</span> <span class=nv>livesize</span><span class=o>=</span>0.00B
+INFO <span class=o>[</span>09-14<span class=p>|</span>10:44:13.699<span class=o>]</span> Successfully wrote genesis state         <span class=nv>database</span><span class=o>=</span>lightchaindata                          <span class=nv>hash</span><span class=o>=</span>7d00b6…27b2d4
+
+<span class=c1># 在NodeD设备</span>
+$ <span class=nb>cd</span> ~/NodeD
+$ geth --datadir data init genesis.json
+WARN <span class=o>[</span>09-14<span class=p>|</span>10:45:59.139<span class=o>]</span> Sanitizing cache to Go<span class=err>&#39;</span>s GC limits       <span class=nv>provided</span><span class=o>=</span><span class=m>1024</span> <span class=nv>updated</span><span class=o>=</span><span class=m>308</span>
+INFO <span class=o>[</span>09-14<span class=p>|</span>10:45:59.155<span class=o>]</span> Maximum peer count                       <span class=nv>ETH</span><span class=o>=</span><span class=m>25</span> <span class=nv>LES</span><span class=o>=</span><span class=m>0</span> <span class=nv>total</span><span class=o>=</span><span class=m>25</span>
+INFO <span class=o>[</span>09-14<span class=p>|</span>10:45:59.166<span class=o>]</span> Allocated cache and file handles         <span class=nv>database</span><span class=o>=</span>/home/pi/NodeD/data/geth/chaindata <span class=nv>cache</span><span class=o>=</span><span class=m>16</span> <span class=nv>handles</span><span class=o>=</span><span class=m>16</span>
+INFO <span class=o>[</span>09-14<span class=p>|</span>10:45:59.215<span class=o>]</span> Writing custom genesis block 
+INFO <span class=o>[</span>09-14<span class=p>|</span>10:45:59.234<span class=o>]</span> Persisted trie from memory database      <span class=nv>nodes</span><span class=o>=</span><span class=m>5</span> <span class=nv>size</span><span class=o>=</span>819.00B <span class=nv>time</span><span class=o>=</span>16.193125ms <span class=nv>gcnodes</span><span class=o>=</span><span class=m>0</span> <span class=nv>gcsize</span><span class=o>=</span>0.00B <span class=nv>gctime</span><span class=o>=</span>0s <span class=nv>livenodes</span><span class=o>=</span><span class=m>1</span> <span class=nv>livesize</span><span class=o>=</span>0.00B
+INFO <span class=o>[</span>09-14<span class=p>|</span>10:45:59.239<span class=o>]</span> Successfully wrote genesis state         <span class=nv>database</span><span class=o>=</span>chaindata                          <span class=nv>hash</span><span class=o>=</span>7d00b6…27b2d4
+INFO <span class=o>[</span>09-14<span class=p>|</span>10:45:59.240<span class=o>]</span> Allocated cache and file handles         <span class=nv>database</span><span class=o>=</span>/home/pi/NodeD/data/geth/lightchaindata <span class=nv>cache</span><span class=o>=</span><span class=m>16</span> <span class=nv>handles</span><span class=o>=</span><span class=m>16</span>
+INFO <span class=o>[</span>09-14<span class=p>|</span>10:45:59.265<span class=o>]</span> Writing custom genesis block 
+INFO <span class=o>[</span>09-14<span class=p>|</span>10:45:59.269<span class=o>]</span> Persisted trie from memory database      <span class=nv>nodes</span><span class=o>=</span><span class=m>5</span> <span class=nv>size</span><span class=o>=</span>819.00B <span class=nv>time</span><span class=o>=</span>596.146µs   <span class=nv>gcnodes</span><span class=o>=</span><span class=m>0</span> <span class=nv>gcsize</span><span class=o>=</span>0.00B <span class=nv>gctime</span><span class=o>=</span>0s <span class=nv>livenodes</span><span class=o>=</span><span class=m>1</span> <span class=nv>livesize</span><span class=o>=</span>0.00B
+INFO <span class=o>[</span>09-14<span class=p>|</span>10:45:59.271<span class=o>]</span> Successfully wrote genesis state         <span class=nv>database</span><span class=o>=</span>lightchaindata                          <span class=nv>hash</span><span class=o>=</span>7d00b6…27b2d4
+</code></pre></td></tr></table></div></div><p><strong>以下步骤在四个设备上都要执行</strong></p><p>在各自设备Node目录下创建start.sh脚本用于启动节点，脚本基本内容如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-sh data-lang=sh><span class=cp>#!/bin/bash
+</span><span class=cp></span><span class=nv>PRIVATE_CONFIG</span><span class=o>=</span>ignore nohup geth --datadir data --nodiscover --istanbul.blockperiod <span class=m>5</span> --syncmode full --mine --minerthreads <span class=m>1</span> --verbosity <span class=m>5</span> --networkid <span class=m>10</span> --rpc --rpcaddr 0.0.0.0 --rpcapi admin,db,eth,debug,miner,net,shh,txpool,personal,web3,quorum,istanbul --ws --wsorigins<span class=o>=</span><span class=s2>&#34;*&#34;</span> --wsaddr 0.0.0.0 --emitcheckpoints --port <span class=m>30303</span> 2&gt;&gt;node.log <span class=p>&amp;</span>
+</code></pre></td></tr></table></div></div><p>查找是否有残留启动的geth进程，若有，杀掉该进程</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>See <span class=k>if</span> the any geth nodes are running.
+$ ps <span class=p>|</span> grep geth
+Kill geth processes
+$ killall -INT geth
+</code></pre></td></tr></table></div></div><p>授予start.sh脚本执行权限，执行该脚本</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>.... 跳转到脚本所在目录
+$ chmod +x start.sh
+$ ./start.sh
+</code></pre></td></tr></table></div></div><p>执行完后查找geth进程是否启动，并执行<code>geth attach</code>命令接入geth控制台</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ ps <span class=p>|</span> grep geth
+ <span class=m>16877</span> pts/0    00:00:01 geth
+</code></pre></td></tr></table></div></div><p>接下来可在任一设备的节点目录下使用<code>geth attach</code>命令接入geth控制台执行操作</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ geth attach data/geth.ipc
+WARN <span class=o>[</span>09-14<span class=p>|</span>11:00:13.142<span class=o>]</span> Sanitizing cache to Go<span class=err>&#39;</span>s GC limits       <span class=nv>provided</span><span class=o>=</span><span class=m>1024</span> <span class=nv>updated</span><span class=o>=</span><span class=m>655</span>
+Welcome to the Geth JavaScript console!
+
+instance: Geth/v1.8.18-stable-c894c2d7<span class=o>(</span>quorum-v2.2.5<span class=o>)</span>/linux-amd64/go1.11.12
+coinbase: 0x93c20b1ffa9bf8738bf194d5203e3d2e2a48428d
+at block: <span class=m>0</span> <span class=o>(</span>Sat, <span class=m>14</span> Sep <span class=m>2019</span> 10:05:28 CST<span class=o>)</span>
+ datadir: /home/shuzang/istanbul/NodeA/data
+ modules: admin:1.0 debug:1.0 eth:1.0 istanbul:1.0 miner:1.0 net:1.0 personal:1.0 rpc:1.0 txpool:1.0 web3:1.0
+
+&gt; 
+</code></pre></td></tr></table></div></div><p>在NodeA的geth控制台使用<code>admin.peers</code>命令查看已连接节点，可以看到NodeC和NodeD都已接入。NodeB设备此时未启动，所以没有接入。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-json data-lang=json><span class=err>&gt;</span> <span class=err>a</span><span class=err>d</span><span class=err>m</span><span class=err>i</span><span class=err>n</span><span class=err>.</span><span class=err>p</span><span class=err>e</span><span class=err>e</span><span class=err>r</span><span class=err>s</span>
+<span class=p>[</span><span class=p>{</span>
+    <span class=err>c</span><span class=err>a</span><span class=err>p</span><span class=err>s</span><span class=err>:</span> <span class=err>[</span><span class=nt>&#34;istanbul/64&#34;</span><span class=err>]</span><span class=p>,</span>
+    <span class=err>e</span><span class=err>n</span><span class=err>o</span><span class=err>d</span><span class=err>e</span><span class=err>:</span> <span class=nt>&#34;enode://214dce3278a2b45fb0bf2a1d53c24eb213c5cbb08307e842feab0202cad4f685c5c62a4197d29318f07eb813bf4189db05096b551849039bf81fb74f0211320f@192.168.191.5:45822&#34;</span><span class=p>,</span>
+    <span class=err>i</span><span class=err>d</span><span class=err>:</span> <span class=nt>&#34;5e62fd3b39e5ae259d604f90350686ae7615e87a046fc4261fe58fda3872aa65&#34;</span><span class=p>,</span>
+    <span class=err>n</span><span class=err>a</span><span class=err>m</span><span class=err>e</span><span class=err>:</span> <span class=nt>&#34;Geth/v1.8.18-stable(quorum-v2.2.5)/linux-arm/go1.11.6&#34;</span><span class=p>,</span>
+    <span class=err>n</span><span class=err>e</span><span class=err>t</span><span class=err>w</span><span class=err>o</span><span class=err>r</span><span class=err>k</span><span class=err>:</span> <span class=err>{</span>
+      <span class=err>i</span><span class=err>n</span><span class=err>b</span><span class=err>o</span><span class=err>u</span><span class=err>n</span><span class=err>d</span><span class=err>:</span> <span class=err>t</span><span class=err>r</span><span class=err>u</span><span class=err>e</span><span class=err>,</span>
+      <span class=err>l</span><span class=err>o</span><span class=err>c</span><span class=err>a</span><span class=err>l</span><span class=err>A</span><span class=err>d</span><span class=err>d</span><span class=err>r</span><span class=err>e</span><span class=err>s</span><span class=err>s</span><span class=err>:</span> <span class=nt>&#34;192.168.191.2:30303&#34;</span><span class=p>,</span>
+      <span class=err>r</span><span class=err>e</span><span class=err>m</span><span class=err>o</span><span class=err>t</span><span class=err>e</span><span class=err>A</span><span class=err>d</span><span class=err>d</span><span class=err>r</span><span class=err>e</span><span class=err>s</span><span class=err>s</span><span class=err>:</span> <span class=nt>&#34;192.168.191.5:45822&#34;</span><span class=p>,</span>
+      <span class=err>s</span><span class=err>t</span><span class=err>a</span><span class=err>t</span><span class=err>i</span><span class=err>c</span><span class=err>:</span> <span class=err>f</span><span class=err>a</span><span class=err>l</span><span class=err>s</span><span class=err>e</span><span class=err>,</span>
+      <span class=err>t</span><span class=err>r</span><span class=err>u</span><span class=err>s</span><span class=err>t</span><span class=err>e</span><span class=err>d</span><span class=err>:</span> <span class=err>f</span><span class=err>a</span><span class=err>l</span><span class=err>s</span><span class=err>e</span>
+    <span class=p>}</span><span class=p>,</span>
+    <span class=err>p</span><span class=err>r</span><span class=err>o</span><span class=err>t</span><span class=err>o</span><span class=err>c</span><span class=err>o</span><span class=err>l</span><span class=err>s</span><span class=err>:</span> <span class=p>{</span>
+      <span class=err>i</span><span class=err>s</span><span class=err>t</span><span class=err>a</span><span class=err>n</span><span class=err>b</span><span class=err>u</span><span class=err>l</span><span class=err>:</span> <span class=err>{</span>
+        <span class=err>d</span><span class=err>i</span><span class=err>f</span><span class=err>f</span><span class=err>i</span><span class=err>c</span><span class=err>u</span><span class=err>l</span><span class=err>t</span><span class=err>y</span><span class=err>:</span> <span class=err>1</span><span class=err>,</span>
+        <span class=err>h</span><span class=err>e</span><span class=err>a</span><span class=err>d</span><span class=err>:</span> <span class=nt>&#34;0x7d00b604f84c3962821cecbf007d8cf0c3e185d6c3b12a901ec4d996d927b2d4&#34;</span><span class=p>,</span>
+        <span class=err>v</span><span class=err>e</span><span class=err>r</span><span class=err>s</span><span class=err>i</span><span class=err>o</span><span class=err>n</span><span class=err>:</span> <span class=err>6</span><span class=err>4</span>
+      <span class=p>}</span>
+    <span class=err>}</span>
+<span class=err>}</span><span class=p>,</span> <span class=p>{</span>
+    <span class=err>c</span><span class=err>a</span><span class=err>p</span><span class=err>s</span><span class=err>:</span> <span class=err>[</span><span class=nt>&#34;istanbul/64&#34;</span><span class=err>]</span><span class=p>,</span>
+    <span class=err>e</span><span class=err>n</span><span class=err>o</span><span class=err>d</span><span class=err>e</span><span class=err>:</span> <span class=nt>&#34;enode://cb50baa67204df2246b143e2982e40a89b2924e5c19e2834876c34042f0a81a2e2604ab210d19a048762f5355258d9840932ba868227857d928495d398c04af0@192.168.191.4:47390&#34;</span><span class=p>,</span>
+    <span class=err>i</span><span class=err>d</span><span class=err>:</span> <span class=nt>&#34;c31b4abe77e8a91a1a03d06ff22670e572a42729a2c10fb26f57bba46cbc3a42&#34;</span><span class=p>,</span>
+    <span class=err>n</span><span class=err>a</span><span class=err>m</span><span class=err>e</span><span class=err>:</span> <span class=nt>&#34;Geth/v1.8.18-stable(quorum-v2.2.5)/linux-arm/go1.11.6&#34;</span><span class=p>,</span>
+    <span class=err>n</span><span class=err>e</span><span class=err>t</span><span class=err>w</span><span class=err>o</span><span class=err>r</span><span class=err>k</span><span class=err>:</span> <span class=err>{</span>
+      <span class=err>i</span><span class=err>n</span><span class=err>b</span><span class=err>o</span><span class=err>u</span><span class=err>n</span><span class=err>d</span><span class=err>:</span> <span class=err>t</span><span class=err>r</span><span class=err>u</span><span class=err>e</span><span class=err>,</span>
+      <span class=err>l</span><span class=err>o</span><span class=err>c</span><span class=err>a</span><span class=err>l</span><span class=err>A</span><span class=err>d</span><span class=err>d</span><span class=err>r</span><span class=err>e</span><span class=err>s</span><span class=err>s</span><span class=err>:</span> <span class=nt>&#34;192.168.191.2:30303&#34;</span><span class=p>,</span>
+      <span class=err>r</span><span class=err>e</span><span class=err>m</span><span class=err>o</span><span class=err>t</span><span class=err>e</span><span class=err>A</span><span class=err>d</span><span class=err>d</span><span class=err>r</span><span class=err>e</span><span class=err>s</span><span class=err>s</span><span class=err>:</span> <span class=nt>&#34;192.168.191.4:47390&#34;</span><span class=p>,</span>
+      <span class=err>s</span><span class=err>t</span><span class=err>a</span><span class=err>t</span><span class=err>i</span><span class=err>c</span><span class=err>:</span> <span class=err>f</span><span class=err>a</span><span class=err>l</span><span class=err>s</span><span class=err>e</span><span class=err>,</span>
+      <span class=err>t</span><span class=err>r</span><span class=err>u</span><span class=err>s</span><span class=err>t</span><span class=err>e</span><span class=err>d</span><span class=err>:</span> <span class=err>f</span><span class=err>a</span><span class=err>l</span><span class=err>s</span><span class=err>e</span>
+    <span class=p>}</span><span class=p>,</span>
+    <span class=err>p</span><span class=err>r</span><span class=err>o</span><span class=err>t</span><span class=err>o</span><span class=err>c</span><span class=err>o</span><span class=err>l</span><span class=err>s</span><span class=err>:</span> <span class=p>{</span>
+      <span class=err>i</span><span class=err>s</span><span class=err>t</span><span class=err>a</span><span class=err>n</span><span class=err>b</span><span class=err>u</span><span class=err>l</span><span class=err>:</span> <span class=err>{</span>
+        <span class=err>d</span><span class=err>i</span><span class=err>f</span><span class=err>f</span><span class=err>i</span><span class=err>c</span><span class=err>u</span><span class=err>l</span><span class=err>t</span><span class=err>y</span><span class=err>:</span> <span class=err>1</span><span class=err>,</span>
+        <span class=err>h</span><span class=err>e</span><span class=err>a</span><span class=err>d</span><span class=err>:</span> <span class=nt>&#34;0x7d00b604f84c3962821cecbf007d8cf0c3e185d6c3b12a901ec4d996d927b2d4&#34;</span><span class=p>,</span>
+        <span class=err>v</span><span class=err>e</span><span class=err>r</span><span class=err>s</span><span class=err>i</span><span class=err>o</span><span class=err>n</span><span class=err>:</span> <span class=err>6</span><span class=err>4</span>
+      <span class=p>}</span>
+    <span class=err>}</span>
+<span class=err>}</span><span class=p>]</span>
+</code></pre></td></tr></table></div></div><p>至此私链网络搭建完毕，之后交易和合约部署都可通过geth控制台进行</p><h2 id=五-总结>五. 总结</h2><p>由于网络质量问题，区块链共识无法正常运行，合约部署无法完成。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>INFO <span class=o>[</span>09-14<span class=p>|</span>10:56:00.419<span class=o>]</span> Commit new mining work                   <span class=nv>number</span><span class=o>=</span><span class=m>1</span> <span class=nv>sealhash</span><span class=o>=</span>1305ae…019d90 <span class=nv>uncles</span><span class=o>=</span><span class=m>0</span> <span class=nv>txs</span><span class=o>=</span><span class=m>0</span> <span class=nv>gas</span><span class=o>=</span><span class=m>0</span> <span class=nv>fees</span><span class=o>=</span><span class=m>0</span> <span class=nv>elapsed</span><span class=o>=</span>556.954µs
+TRACE<span class=o>[</span>09-14<span class=p>|</span>10:56:00.420<span class=o>]</span> Dial error                               <span class=nv>task</span><span class=o>=</span><span class=s2>&#34;staticdial 5e62fd3b39e5ae25 192.168.191.5:30303&#34;</span> <span class=nv>err</span><span class=o>=</span><span class=s2>&#34;dial tcp 192.168.191.5:30303: connect: connection refused&#34;</span>
+DEBUG<span class=o>[</span>09-14<span class=p>|</span>10:56:00.421<span class=o>]</span> Can<span class=err>&#39;</span>t resolve node                       <span class=nv>id</span><span class=o>=</span>0x8e6a40         <span class=nv>err</span><span class=o>=</span><span class=s2>&#34;discovery is disabled&#34;</span>
+TRACE<span class=o>[</span>09-14<span class=p>|</span>10:56:00.421<span class=o>]</span> Dial task <span class=k>done</span>                           <span class=nv>task</span><span class=o>=</span><span class=s2>&#34;staticdial 5e62fd3b39e5ae25 192.168.191.5:30303&#34;</span>
+TRACE<span class=o>[</span>09-14<span class=p>|</span>10:56:00.420<span class=o>]</span> handleRequest                            <span class=nv>address</span><span class=o>=</span>0x93C20b1ffA9BF8738BF194d5203e3D2E2A48428d <span class=nv>state</span><span class=o>=</span><span class=s2>&#34;Accept request&#34;</span> <span class=nv>seq</span><span class=o>=</span><span class=m>1</span> <span class=nv>number</span><span class=o>=</span><span class=m>1</span> <span class=nv>hash</span><span class=o>=</span>23cc4d…b11876
+TRACE<span class=o>[</span>09-14<span class=p>|</span>10:56:00.422<span class=o>]</span> Dial error                               <span class=nv>task</span><span class=o>=</span><span class=s2>&#34;staticdial c31b4abe77e8a91a 192.168.191.4:30303&#34;</span> <span class=nv>err</span><span class=o>=</span><span class=s2>&#34;dial tcp 192.168.191.4:30303: connect: connection refused&#34;</span>
+</code></pre></td></tr></table></div></div><p>主要原因估计是PC上的节点装在了虚拟机里，虚拟机又使用桥接模式，导致最后丢包率和延迟都比较高。</p><p><a href=https://www.ywlib.com/archives/109.html target=_blank rel="noopener noreffer">解决Hyper-V内虚拟机网络延迟高的问题(ping延时大)</a></p><h2 id=附录-树莓派安装-quourm-节点>附录 树莓派安装 quourm 节点</h2><p>在熟悉了树莓派并和虚拟机顺利组网以后，首要面临的事情就是在树莓派中安装quorum节点，由于暂时不使用隐私保护功能，不安装隐私管理器<code>Tessera</code>或<code>Constellation</code>。需要安装的只包括：</p><ul><li>quorum的客户端geth</li><li>Istanbul BFT共识配置工具istanbul-tool</li></ul><h3 id=交叉编译20190909>交叉编译（2019.09.09）</h3><p><a href=https://github.com/jpmorganchase/quorum target=_blank rel="noopener noreffer">quorum项目</a>没有提供可用于arm架构的二进制包，只能自己编译。然而，在树莓派中直接进行编译存在两个问题</p><ol><li>会占用很多不必要的空间，quorum项目文件编译后大小在360M以上</li><li>编译istanbul-tool依赖于golang的某些包，需要访问google，很多ip无法访问。</li></ol><p>因此，最终选择了在PC中进行交叉编译，幸运的是，由于quorum的源项目ethereum可以交叉编译，quorum继承了交叉编译的功能。文档仍然需要看<a href=https://github.com/ethereum/go-ethereum/wiki/Cross-compiling-Ethereum target=_blank rel="noopener noreffer">Cross compiling Ethereum</a>。交叉编译依赖于名为<code>xgo</code>的包，而这个包依赖于Docker和Go，因此，交叉编译之前需要先安装它们。</p><p><em>注：交叉编译在Ubuntu18.04系统下进行。</em></p><p>安装golang</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo snap install go --classic
+$ go version
+</code></pre></td></tr></table></div></div><p><a href=https://docs.docker.com/install/linux/docker-ce/ubuntu/ target=_blank rel="noopener noreffer">安装docker(使用脚本)</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ curl -fsSL https://get.docker.com -o get-docker.sh
+$ sudo sh get-docker.sh
+
+&lt;output truncated&gt;
+<span class=c1># 想在非root用户下运行，需要将用户添加到docker group。执行如下命令</span>
+$ sudo usermod -aG docker your-user
+</code></pre></td></tr></table></div></div><p>下载quorum</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ git clone https://github.com/jpmorganchase/quorum.git
+</code></pre></td></tr></table></div></div><p>执行交叉编译</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ <span class=nb>cd</span> quorum
+$ make geth-linux-arm-7
+$ <span class=nb>cd</span> build/bin
+<span class=c1># 在该目录下可以找到编译后的geth文件</span>
+</code></pre></td></tr></table></div></div><p>心态爆炸，交叉编译后的geth在树莓派中无法执行，Ubuntu18.04下原本编译完直接放到/usr/local/bin下面即可使用，raspbian中当我放到同样的目录下不起作用，也不知道是交叉编译失败了还是raspbian系统不支持。考虑到raspbian基于Debian，现在不知道Debian应该把可执行文件放在哪里，网上找了很久没找到相关资料。(交叉编译其实可以，直接跳到文章最后可看到方法)</p><h3 id=ubuntu-mate0910-am>Ubuntu mate（09.10 am）</h3><p>quorum的issue中有个项目组的<a href=https://github.com/jpmorganchase/quorum/issues/661 target=_blank rel="noopener noreffer">回答</a>，其中说quorum运行在树莓派中是肯定可以的，这一点终于可以放心，还推荐用Ubuntu，那就试试。</p><blockquote><p>“Yes. Whilst I haven&rsquo;t tried it, I&rsquo;m aware that folks have done this and you can find articles on the internet describing how to do it for Ethereum (Quorum will be the same). My suggestion would be to install Ubuntu on the Rasberry and follow the normal steps for building Quorum.”</p></blockquote><p><a href=https://www.raspberrypi.org/downloads/ target=_blank rel="noopener noreffer">树莓派官网</a>提供的Ubuntu可用镜像有三种：Ubuntu Mate，Ubuntu Core，Ubuntu Server。看到Ubuntu Mate的种种特性，我动心了，看起来好像是专门定制的。</p><p><a href=https://ubuntu-mate.org/raspberry-pi/ target=_blank rel="noopener noreffer">Ubuntu Mate说明及下载</a>，选择的镜像是</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>Raspberry Pi(recommended)
+For aarch32(ARMv7)computers,like:
+- Raspberry Pi Model B 2
+- Raspberry Pi Model B 3
+- Raspberry Pi Model B 3+
+</code></pre></td></tr></table></div></div><p>下载，镜像写入，根目录预先建立<code>ssh</code>和<code>wpa_supplicant.conf</code>文件，插入树莓派，启动运行，扫描不到ip，看起来WiFi没法自动联网。通过网线接到PC上共享网络，ssh访问被拒，接到路由器上一样不行。找资料，关于Ubuntu mate的资料比较少，最终在<a href=https://ubuntu-mate.org/raspberry-pi/ target=_blank rel="noopener noreffer">官方下载页-Additional feature</a>找到一个对特性的说明，称Ubuntu mate没有像raspbian的pi账户一样预定义的用户账户，所有的配置需要在第一次启动时手动完成，ssh预先也没有安装，需要启动后自己安装<code>openssh-server</code>并启用。完了，彻底崩溃，本来没有用户账户就无法登录，连ssh都没有，第一次必须得用屏幕了。屏幕，我没有。。。</p><p>考虑到笔记本电脑上有个HDMI接口，买线总比买屏幕便宜，跑到商店买了根双头HDMI线。回来一试，没用，网上说是因为笔记本的HDMI只能输出信号，没法输入，因此不能作为HDMI屏幕使用。转眼又看到了VGA接口，这个怎么样，结果一查，HDMI转VGA也没用，笔记本的VGA同样只有输出功能，平板，手机全都不行，不能作为显示设备，最多只能用ssh连接。</p><p>台式机的显示器总行了吧，资料上说要自带电源，怕烧坏树莓派。没事，台式的显示器本来就接电源线。又去店里换一个HDMI转VGA的线，是店里唯一的线，结果是坏的，把线接到树莓派上没有反应，提示<code>请检查线缆</code>而不是<code>无信号输入</code>，拿笔记本试了一下，果然不行，完全检测不到第二屏幕。换！店里没线了怎么办，本来想换HDMI转DVI的，因为显示器后面还有个DVI接口，但店员小哥不推荐，说是用DVI的少，最后拿了HDMI转VGA母口的线，又多买了一根双头VGA线，亏到爆。</p><p>不过，总算好使了。</p><p>当在显示器上看到Ubuntu mate的界面时我是激动的，太不容易了。初始配置之后还需要进行系统安装，怪不得没法直接进入。但是路由器的WiFi接入不了，或者连接后没法上网，完全没有头绪，只好先用手机开了热点，这倒是没问题。</p><p>把之前交叉编译的<code>geth</code>文件拷贝到了Ubuntu mate，放到<code>/usr/local/bin</code>目录下，运行<code>geth version</code>测试，倒是可以了，可惜屏幕打印的文本乱码。重新启动了一下树莓派，结果无限循环启动。初始界面提示如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>Driver &#39;sdhost-bcm2835&#39; already registered, aborting...
+</code></pre></td></tr></table></div></div><p>论坛上也有人遇到了这个<a href=https://ubuntu-mate.community/t/raspberry-pi-3-model-b-plus-ubuntu-mate-installation-error-driver-sdhost-bcm2835-already-registered-aborting/19300 target=_blank rel="noopener noreffer">问题</a>，但从去年11月到今年5月，回帖的所有人都遇到同样的问题而没有办法解决，我已经放弃了。</p><h3 id=raspbian下自编译quorum0910-pm>Raspbian下自编译quorum(09.10 pm)</h3><p>树莓派上编译使用quorum的人不多，但编译ethereum的人绝对不少，现在想起来，终于意识到一件事，大部分人还是在raspbian系统下编译使用的，既然ethereum的<code>geth</code>客户端可以，quorum没道理不行。有可能不是系统的问题，因为raspbian和ubuntu其实都属于基于Debian的发行版，那就是交叉编译问题了。找不到哪里出的错，干脆直接在Raspbian下编译一次quorum吧，空间占用多一点就多一点，还是足够的，唯一的问题只有翻墙，但这是没办法的事情，而且<code>geth</code>的编译暂时还不需要，<code>istanbul-tool</code>才需要。</p><blockquote><p>注：其实raspbian下翻墙试过了，我有surfshark的账号，官方也给了步骤，<a href=https://support.surfshark.com/hc/en-us/articles/360013425373-How-to-set-up-Surfshark-VPN-on-Raspberry-Pi target=_blank rel="noopener noreffer">How to set up Surfshark VPN on Raspberry Pi</a>，但最后一步连接总是出错，错误提示为</p><p>TLS Error: TLS handshake failed</p><p>网上关于这个Error的问题不少，但都没起作用，就放弃了。</p></blockquote><p>重新写入了之前备份的raspbian镜像（备份真的很有用，能省好多事儿）。启动树莓派，使用预定义的静态ip登录，安装go，下载github上的quorum项目(主要是这里直接下载比<code>git clone</code>快多了)。执行编译，注意使用<code>sudo make all</code>，因为编译需要分配存储空间，不给权限过不了。</p><p>树莓派卡死了。。。</p><p>重启了一次，第二次又卡死了，看来不是意外，应该是编译出了问题，果然，等了很久后，编译退出，系统正常了，但出现了错误提示，是一个存储问题。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback> running gcc failed: fork/exec /usr/bin/gcc: cannot allocate memory
+</code></pre></td></tr></table></div></div><p>Ethereum的论坛有人在编译时遇到了同样的问题，<a href=https://ethereum.stackexchange.com/questions/12222/installing-geth-on-raspberry-pi-3-cannot-allocate-memory-error target=_blank rel="noopener noreffer">Installing geth on Raspberry Pi 3 - cannot allocate memory error</a>，回帖提到是因为编译所需的内存不够的缘故，建议杀掉内存占用大而且不用的进程。使用<code>free -h</code>查看</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>              total        used        free      shared  buff/cache   available
+Mem:          926Mi       119Mi       575Mi       7.0Mi       231Mi       744Mi
+Swap:          99Mi          0B        99Mi
+</code></pre></td></tr></table></div></div><p>不算少啊，700多M呢，再用<code>top</code>命令看进程，并按<code>M</code>键按内存占用排序，发现杀哪个进程都不合适。回帖中还有人提到可以调整交换空间大小，就是第二行的Swap，树莓派默认100M，可以调大点，问题的说明及解决方案见<a href=https://raspberrypi.stackexchange.com/questions/70/how-to-set-up-swap-space target=_blank rel="noopener noreffer">How to set up swap space</a>。</p><p>树莓派使用<code>dphys-swapfile</code>文件定义交换空间大小，打开配置文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>$ sudo nano /etc/dphys-swapfile
+</code></pre></td></tr></table></div></div><p>启用内容只有一行</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>CONF_SWAPSIZE=100
+</code></pre></td></tr></table></div></div><p>代表默认100M交换空间大小，把数值改成合适的内容，我直接改了1024。然后重新启用新的配置文件。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>$ sudo /etc/init.d/dphys-swapfile restart
+</code></pre></td></tr></table></div></div><p>完成后再用<code>free -h</code>命令查看交换空间大小就变了，此时重新编译，编译速度会大大加快，等待一段时间后，编译顺利执行完毕。将编译得到的文件复制到/usr/local/bin目录下。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo cp build/bin/geth /usr/local/bin
+$ sudo cp build/bin/bootnode /usr/local/bin
+<span class=c1># 验证</span>
+$ geth version
+</code></pre></td></tr></table></div></div><p>成功。</p><h3 id=istantul-tool0911-am>istantul-tool(09.11 am)</h3><p>istantul-tool的编译毫无办法，编译过程要访问google，有些ip无法访问，但既然这里编译没有指明针对arm架构，明天把虚拟机编译好的文件拿过来试试。</p><p>Linux编译得到的istanbul文件在树莓派中无法执行，错误提示为</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>-bash: ./istanbul: cannot execute binary file: Exec format error
+</code></pre></td></tr></table></div></div><p>使用<code>file istanbul</code>命令查看文件信息</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>istanbul: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64                                                                                                                        .so.2, for GNU/Linux 3.2.0, Go BuildID=Whu77pcg5_4qdJyzC6lH/RiHbDbxGfs3BFqYFYhdk/Uvgfkwy9en1ShuGpCcPB/qCr7Qg3bewybrm4                                                                                                                        vmE3B, BuildID[sha1]=588353ce35513ef4a2d9695f458a338e226093b1, not stripped
+</code></pre></td></tr></table></div></div><p>x86-64的，看来还是架构相关，项目本身没有提供对arm的编译功能，没有办法了。不过有可能不需要在树莓派中运行，我们只需要在作为主节点的虚拟机利用它生成各节点数据，然后拷贝到树莓派中就行。</p><h3 id=运行geth文件0911-am>运行geth文件（09.11 am）</h3><p>直接拷贝编译的geth文件到另一个树莓派，并使用<code>cp</code>命令复制到/usr/local/bin目录无法执行，提示</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>-bash: /usr/local/bin/geth: Permission denied
+</code></pre></td></tr></table></div></div><p>是因为没有执行权限，使用<code>chmod</code>命令授予权限即可顺利执行</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ <span class=nb>cd</span> quorum
+$ sudo cp build/bin/geth /usr/local/bin
+$ sudo chmod +x /usr/local/bin/geth
+$ geth version
+WARN <span class=o>[</span>09-11<span class=p>|</span>03:13:38.840<span class=o>]</span> Sanitizing cache to Go<span class=err>&#39;</span>s GC limits       <span class=nv>provided</span><span class=o>=</span><span class=m>1024</span> <span class=nv>updated</span><span class=o>=</span><span class=m>308</span>
+Geth
+Version: 1.8.18-stable
+Quorum Version: 2.2.5
+Architecture: arm
+Protocol Versions: <span class=o>[</span><span class=m>63</span> 62<span class=o>]</span>
+Network Id: <span class=m>1337</span>
+Go Version: go1.11.6
+Operating System: linux
+<span class=nv>GOPATH</span><span class=o>=</span>
+<span class=nv>GOROOT</span><span class=o>=</span>/usr/lib/go-1.11
+</code></pre></td></tr></table></div></div><p>这样看来，交叉编译的结果也不是因为系统不支持，应该也是没有执行权限，下面是使用geth version命令测试交叉编译的geth的结果。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>WARN <span class=o>[</span>09-11<span class=p>|</span>03:27:52.671<span class=o>]</span> Sanitizing cache to Go<span class=err>&#39;</span>s GC limits       <span class=nv>provided</span><span class=o>=</span><span class=m>1024</span>                                      <span class=nv>updated</span><span class=o>=</span><span class=m>308</span>
+Geth
+Version: 1.8.18-stable
+Git Commit: 7e87e403407fcb3b3c417739eef2fe1dae923add
+Quorum Version: 2.2.5
+Architecture: arm
+Protocol Versions: <span class=o>[</span><span class=m>63</span> 62<span class=o>]</span>
+Network Id: <span class=m>1337</span>
+Go Version: go1.12
+Operating System: linux
+<span class=nv>GOPATH</span><span class=o>=</span>
+<span class=nv>GOROOT</span><span class=o>=</span>/usr/local/go
+</code></pre></td></tr></table></div></div><p>走了好多弯路。。。原来一开始的结果就可以。</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2020-11-24</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/%E7%A0%94%E7%A9%B6%E8%AE%B0%E5%BD%954-%E5%88%A9%E7%94%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%90%AD%E5%BB%BA%E5%AE%9E%E9%AA%8C%E5%B9%B3%E5%8F%B0/index.md target=_blank>阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://shuzang.github.io/%E7%A0%94%E7%A9%B6%E8%AE%B0%E5%BD%954-%E5%88%A9%E7%94%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%90%AD%E5%BB%BA%E5%AE%9E%E9%AA%8C%E5%B9%B3%E5%8F%B0/ data-title=研究记录4-利用虚拟机搭建实验平台(失败) data-hashtags=科研记录><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://shuzang.github.io/%E7%A0%94%E7%A9%B6%E8%AE%B0%E5%BD%954-%E5%88%A9%E7%94%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%90%AD%E5%BB%BA%E5%AE%9E%E9%AA%8C%E5%B9%B3%E5%8F%B0/ data-hashtag=科研记录><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://shuzang.github.io/%E7%A0%94%E7%A9%B6%E8%AE%B0%E5%BD%954-%E5%88%A9%E7%94%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%90%AD%E5%BB%BA%E5%AE%9E%E9%AA%8C%E5%B9%B3%E5%8F%B0/ data-title=研究记录4-利用虚拟机搭建实验平台(失败)><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://shuzang.github.io/%E7%A0%94%E7%A9%B6%E8%AE%B0%E5%BD%954-%E5%88%A9%E7%94%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%90%AD%E5%BB%BA%E5%AE%9E%E9%AA%8C%E5%B9%B3%E5%8F%B0/ data-title=研究记录4-利用虚拟机搭建实验平台(失败)><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://shuzang.github.io/%E7%A0%94%E7%A9%B6%E8%AE%B0%E5%BD%954-%E5%88%A9%E7%94%A8%E8%99%9A%E6%8B%9F%E6%9C%BA%E6%90%AD%E5%BB%BA%E5%AE%9E%E9%AA%8C%E5%B9%B3%E5%8F%B0/ data-title=研究记录4-利用虚拟机搭建实验平台(失败)><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/%E7%A7%91%E7%A0%94%E8%AE%B0%E5%BD%95/>科研记录</a></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/linux%E7%B3%BB%E5%88%97-vmware%E8%99%9A%E6%8B%9F%E6%9C%BA%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7/ class=prev rel=prev title=VMware虚拟机使用技巧><i class="fas fa-angle-left fa-fw"></i>VMware虚拟机使用技巧</a>
+<a href=/golang%E8%AF%AD%E6%B3%95%E5%9F%BA%E7%A1%801-%E8%83%8C%E6%99%AF%E4%B8%8E%E5%88%9D%E6%8E%A2/ class=next rel=next title=Golang语法基础1-背景与初探>Golang语法基础1-背景与初探<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><div id=valine class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://valine.js.org/>Valine</a>.</noscript></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.63.2">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i>LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>Shuzang</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=/lib/valine/valine.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>

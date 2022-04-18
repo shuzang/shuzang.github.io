@@ -1,0 +1,280 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>Golang日志系统 - Shuzang's Blog</title><meta name=Description content="书藏的个人博客，记录学习，记录生活"><meta property="og:title" content="Golang日志系统"><meta property="og:description" content="日志是一个系统必不可少的部分，本篇介绍Golang中的日志系统。"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.github.io/golang%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/"><meta property="og:image" content="https://shuzang.github.io/logo.png"><meta property="article:published_time" content="2020-06-07T09:48:00+08:00"><meta property="article:modified_time" content="2020-06-07T00:00:00+00:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://shuzang.github.io/logo.png"><meta name=twitter:title content="Golang日志系统"><meta name=twitter:description content="日志是一个系统必不可少的部分，本篇介绍Golang中的日志系统。"><meta name=application-name content="Shuzang's Blog"><meta name=apple-mobile-web-app-title content="Shuzang's Blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://shuzang.github.io/golang%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/><link rel=prev href=https://shuzang.github.io/%E5%9F%BA%E4%BA%8Ego%E8%AF%AD%E8%A8%80%E5%BC%80%E5%8F%91%E5%9C%A8%E7%BA%BF%E8%AE%BA%E5%9D%9B5-%E5%88%9B%E5%BB%BA%E7%BE%A4%E7%BB%84%E5%92%8C%E4%B8%BB%E9%A2%98%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/><link rel=next href=https://shuzang.github.io/%E5%9F%BA%E4%BA%8Ego%E8%AF%AD%E8%A8%80%E5%BC%80%E5%8F%91%E5%9C%A8%E7%BA%BF%E8%AE%BA%E5%9D%9B6-%E6%97%A5%E5%BF%97%E5%92%8C%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Golang日志系统","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/golang%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F\/"},"image":["https:\/\/shuzang.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"Go实战","wordcount":2270,"url":"https:\/\/shuzang.github.io\/golang%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F\/","datePublished":"2020-06-07T09:48:00+08:00","dateModified":"2020-06-07T00:00:00+00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/shuzang.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"Shuzang"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Shuzang's Blog"><span class=header-title-pre><i class="far fa-kiss-wink-heart fa-fw"></i></span>LoveIt</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/tags/>标签 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/>关于 </a><a class=menu-item href=https://github.com/shuzang title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item language" title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
+<select class=language-select id=language-select-desktop onchange="location=this.value;"><option value=/golang%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/ selected>简体中文</option></select>
+</a><span class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Shuzang's Blog"><span class=header-title-pre><i class="far fa-kiss-wink-heart fa-fw"></i></span>LoveIt</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/posts/>所有文章</a><a class=menu-item href=/tags/>标签</a><a class=menu-item href=/categories/>分类</a><a class=menu-item href=/about/>关于</a><a class=menu-item href=https://github.com/shuzang title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i></a><a href=javascript:void(0); class=menu-item title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
+<select class=language-select onchange="location=this.value;"><option value=/golang%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/ selected>简体中文</option></select></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">Golang日志系统</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>Shuzang</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/><i class="far fa-folder fa-fw"></i>Golang学习之路</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-06-07>2020-06-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2270 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id=/golang%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/ class=leancloud_visitors data-flag-title=Golang日志系统>
+<i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+</span>&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#1-内置log包>1. 内置log包</a><ul><li><a href=#11-内置实现>1.1 内置实现</a></li><li><a href=#12-基于logger自定义>1.2 基于Logger自定义</a></li></ul></li><li><a href=#2-第三方log库>2. 第三方log库</a></li><li><a href=#3参考>3.参考</a></li></ul></nav></div></div><div class=content id=content><p>日志是一个系统必不可少的部分，本篇介绍Golang中的日志系统。</p><h2 id=1-内置log包>1. 内置log包</h2><p>官方提供的 log 包实现了简单的日志服务。该包定义了一个 Logger 类型，提供了一些格式化输出方法，为了更容易地使用，对该类型提供了一个标准 Logger 实现，该 Logger 会打印每条日志信息的日期、时间、默认输出到标准错误，Fatal系列函数会在写入日志信息后调用 os.Exit(1)。Panic系列函数会在写入日志信息后panic。</p><h3 id=11-内置实现>1.1 内置实现</h3><p>一个内置实现使用的简单例子如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=c1>// This sample program demonstrates how to use the base log package.
+</span><span class=c1></span><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=p>(</span>
+    <span class=s>&#34;log&#34;</span>
+<span class=p>)</span>
+
+<span class=kd>func</span> <span class=nf>init</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>log</span><span class=p>.</span><span class=nf>SetPrefix</span><span class=p>(</span><span class=s>&#34;TRACE: &#34;</span><span class=p>)</span>
+    <span class=nx>log</span><span class=p>.</span><span class=nf>SetFlags</span><span class=p>(</span><span class=nx>log</span><span class=p>.</span><span class=nx>Ldate</span> <span class=p>|</span> <span class=nx>log</span><span class=p>.</span><span class=nx>Lmicroseconds</span> <span class=p>|</span> <span class=nx>log</span><span class=p>.</span><span class=nx>Llongfile</span><span class=p>)</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+    <span class=c1>// Println writes to the standard logger.
+</span><span class=c1></span>    <span class=nx>log</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;message&#34;</span><span class=p>)</span>
+
+    <span class=c1>// Fatalln is Println() followed by a call to os.Exit(1).
+</span><span class=c1></span>    <span class=nx>log</span><span class=p>.</span><span class=nf>Fatalln</span><span class=p>(</span><span class=s>&#34;fatal message&#34;</span><span class=p>)</span>
+
+    <span class=c1>// Panicln is Println() followed by a call to panic().
+</span><span class=c1></span>    <span class=nx>log</span><span class=p>.</span><span class=nf>Panicln</span><span class=p>(</span><span class=s>&#34;panic message&#34;</span><span class=p>)</span>
+<span class=p>}</span>
+<span class=o>--</span><span class=o>--</span><span class=o>--</span><span class=o>--</span><span class=o>--</span><span class=o>--</span><span class=o>--</span><span class=o>--</span><span class=o>--</span><span class=o>--</span><span class=o>--</span><span class=o>--</span><span class=o>--</span><span class=o>--</span><span class=o>--</span><span class=o>-</span>
+<span class=nx>TRACE</span><span class=p>:</span> <span class=mi>2019</span><span class=o>/</span><span class=mo>04</span><span class=o>/</span><span class=mi>0</span><span class=mi>9</span> <span class=mi>14</span><span class=p>:</span><span class=mi>24</span><span class=p>:</span><span class=mf>32.868375</span> <span class=nx>D</span><span class=p>:</span><span class=o>/</span><span class=k>go</span><span class=o>/</span><span class=nx>TestFile</span><span class=o>/</span><span class=nx>src</span><span class=o>/</span><span class=nx>main</span><span class=o>/</span><span class=nx>TestLog</span><span class=p>.</span><span class=k>go</span><span class=p>:</span><span class=mi>15</span><span class=p>:</span> <span class=nx>message</span>
+<span class=nx>TRACE</span><span class=p>:</span> <span class=mi>2019</span><span class=o>/</span><span class=mo>04</span><span class=o>/</span><span class=mi>0</span><span class=mi>9</span> <span class=mi>14</span><span class=p>:</span><span class=mi>24</span><span class=p>:</span><span class=mf>32.962329</span> <span class=nx>D</span><span class=p>:</span><span class=o>/</span><span class=k>go</span><span class=o>/</span><span class=nx>TestFile</span><span class=o>/</span><span class=nx>src</span><span class=o>/</span><span class=nx>main</span><span class=o>/</span><span class=nx>TestLog</span><span class=p>.</span><span class=k>go</span><span class=p>:</span><span class=mi>18</span><span class=p>:</span> <span class=nx>fatal</span> <span class=nx>message</span>
+
+<span class=nx>Process</span> <span class=nx>finished</span> <span class=nx>with</span> <span class=nx>exit</span> <span class=nx>code</span> <span class=mi>1</span>
+</code></pre></td></tr></table></div></div><p>原型函数的说明如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>Flags</span><span class=p>(</span><span class=p>)</span> <span class=kt>int</span>            		<span class=c1>// Flags返回标准logger的输出选项
+</span><span class=c1></span><span class=kd>func</span> <span class=nf>SetFlags</span><span class=p>(</span><span class=nx>flag</span> <span class=kt>int</span><span class=p>)</span>   		<span class=c1>// SetFlags设置标准logger的输出选项
+</span><span class=c1></span><span class=kd>func</span> <span class=nf>Prefix</span><span class=p>(</span><span class=p>)</span> <span class=kt>string</span>      		<span class=c1>// Prefix返回标准logger的输出前缀
+</span><span class=c1></span><span class=kd>func</span> <span class=nf>SetPrefix</span><span class=p>(</span><span class=nx>prefix</span> <span class=kt>string</span><span class=p>)</span> 		<span class=c1>// SetPrefix设置标准logger的输出前缀
+</span><span class=c1></span><span class=kd>func</span> <span class=nf>SetOutput</span><span class=p>(</span><span class=nx>w</span> <span class=nx>io</span><span class=p>.</span><span class=nx>Writer</span><span class=p>)</span>		<span class=c1>// SetOutput设置标准logger的输出目的地，默认是标准错误输出
+</span><span class=c1></span>
+<span class=c1>// Printf调用Output将生成的格式化字符串输出到标准logger，参数用和fmt.Printf相同的方法处理。
+</span><span class=c1></span><span class=kd>func</span> <span class=nf>Printf</span><span class=p>(</span><span class=nx>format</span> <span class=kt>string</span><span class=p>,</span> <span class=nx>v</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span>
+<span class=c1>// Print调用Output将生成的格式化字符串输出到标准logger，参数用和fmt.Print相同的方法处理。
+</span><span class=c1></span><span class=kd>func</span> <span class=nf>Print</span><span class=p>(</span><span class=nx>v</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span>
+<span class=c1>// Println调用Output将生成的格式化字符串输出到标准logger，参数用和fmt.Println相同的方法处理。
+</span><span class=c1></span><span class=kd>func</span> <span class=nf>Println</span><span class=p>(</span><span class=nx>v</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span>
+
+<span class=kd>func</span> <span class=nf>Fatalf</span><span class=p>(</span><span class=nx>format</span> <span class=kt>string</span><span class=p>,</span> <span class=nx>v</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span>	<span class=c1>// Fatalf等价于{Printf(v...); os.Exit(1)}
+</span><span class=c1></span><span class=kd>func</span> <span class=nf>Fatal</span><span class=p>(</span><span class=nx>v</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span>			<span class=c1>// Fatal等价于{Print(v...); os.Exit(1)}
+</span><span class=c1></span><span class=kd>func</span> <span class=nf>Fatalln</span><span class=p>(</span><span class=nx>v</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span>			<span class=c1>// Fatalln等价于{Println(v...); os.Exit(1)}
+</span><span class=c1></span>
+<span class=kd>func</span> <span class=nf>Panicf</span><span class=p>(</span><span class=nx>format</span> <span class=kt>string</span><span class=p>,</span> <span class=nx>v</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span>	<span class=c1>// Panicf等价于{Printf(v...); panic(...)}
+</span><span class=c1></span><span class=kd>func</span> <span class=nf>Panic</span><span class=p>(</span><span class=nx>v</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span>			<span class=c1>// Panic等价于{Print(v...); panic(...)}
+</span><span class=c1></span><span class=kd>func</span> <span class=nf>Panicln</span><span class=p>(</span><span class=nx>v</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span>			<span class=c1>// Panicln等价于{Println(v...); panic(...)}
+</span></code></pre></td></tr></table></div></div><p>SetPrefix 设置输出前缀，SetfFlags 设置输出选项，为了理解输出前缀与选项，我们先来看一个标准输出</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=nx>TRACE</span><span class=p>:</span> <span class=mi>2019</span><span class=o>/</span><span class=mo>04</span><span class=o>/</span><span class=mi>0</span><span class=mi>9</span> <span class=mi>14</span><span class=p>:</span><span class=mi>24</span><span class=p>:</span><span class=mf>32.868375</span> <span class=nx>D</span><span class=p>:</span><span class=o>/</span><span class=k>go</span><span class=o>/</span><span class=nx>TestFile</span><span class=o>/</span><span class=nx>src</span><span class=o>/</span><span class=nx>main</span><span class=o>/</span><span class=nx>TestLog</span><span class=p>.</span><span class=k>go</span><span class=p>:</span><span class=mi>15</span><span class=p>:</span> <span class=nx>message</span>
+</code></pre></td></tr></table></div></div><p>其中，<code>TRACE</code> 就是输出前缀，可以通过 SetPrefix 设置，通过 Prefix 输出，用来在普通的程序输出中分布出日志。后面冒号前的信息就是输出选项，通过 SetFlags 设置，通过 Flags 输出。输出选项的结构定义如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>const</span> <span class=p>(</span>
+    <span class=c1>// 字位共同控制输出日志信息的细节。不能控制输出的顺序和格式。
+</span><span class=c1></span>    <span class=c1>// 在所有项目后会有一个冒号：2009/01/23 01:23:23.123123 /a/b/c/d.go:23: message
+</span><span class=c1></span>    <span class=nx>Ldate</span>         <span class=p>=</span> <span class=mi>1</span> <span class=o>&lt;&lt;</span> <span class=kc>iota</span>     <span class=c1>// 日期：2009/01/23
+</span><span class=c1></span>    <span class=nx>Ltime</span>                         <span class=c1>// 时间：01:23:23
+</span><span class=c1></span>    <span class=nx>Lmicroseconds</span>                 <span class=c1>// 微秒分辨率：01:23:23.123123（用于增强Ltime位）
+</span><span class=c1></span>    <span class=nx>Llongfile</span>                     <span class=c1>// 文件全路径名+行号： /a/b/c/d.go:23
+</span><span class=c1></span>    <span class=nx>Lshortfile</span>                    <span class=c1>// 文件无路径名+行号：d.go:23（会覆盖掉Llongfile）
+</span><span class=c1></span>    <span class=nx>LstdFlags</span>     <span class=p>=</span> <span class=nx>Ldate</span> <span class=p>|</span> <span class=nx>Ltime</span> <span class=c1>// 标准logger的初始值
+</span><span class=c1></span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>log 包有一个很方便的地方就是，这些日志记录器是多 goroutine 安全的。这意味着在多个goroutine 可以同时调用来自同一个日志记录器的这些函数，而不会有彼此间的写冲突。标准日志记录器具有这一性质，用户定制的日志记录器也应该满足这一性质。</p><h3 id=12-基于logger自定义>1.2 基于Logger自定义</h3><p>官方的预置实现是基于Logger类型的，我们也可以基于Logger类型自己进行实现</p><p>Logger类型表示一个活动状态的记录日志的对象，它会生成一行行的输出写入一个io.Writer接口。每一条日志操作会调用一次io.Writer接口的Write方法。Logger类型的对象可以被多个线程安全的同时使用，它会保证对io.Writer接口的顺序访问。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>type</span> <span class=nx>Logger</span> <span class=kd>struct</span> <span class=p>{</span>
+    <span class=c1>// contains filtered or unexported fields
+</span><span class=c1></span><span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>Logger类型的方法就是官方实现的那些函数</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=p>(</span><span class=nx>l</span> <span class=o>*</span><span class=nx>Logger</span><span class=p>)</span> <span class=nf>Fatal</span><span class=p>(</span><span class=nx>v</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>l</span> <span class=o>*</span><span class=nx>Logger</span><span class=p>)</span> <span class=nf>Fatalf</span><span class=p>(</span><span class=nx>format</span> <span class=kt>string</span><span class=p>,</span> <span class=nx>v</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>l</span> <span class=o>*</span><span class=nx>Logger</span><span class=p>)</span> <span class=nf>Fatalln</span><span class=p>(</span><span class=nx>v</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>l</span> <span class=o>*</span><span class=nx>Logger</span><span class=p>)</span> <span class=nf>Flags</span><span class=p>(</span><span class=p>)</span> <span class=kt>int</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>l</span> <span class=o>*</span><span class=nx>Logger</span><span class=p>)</span> <span class=nf>Output</span><span class=p>(</span><span class=nx>calldepth</span> <span class=kt>int</span><span class=p>,</span> <span class=nx>s</span> <span class=kt>string</span><span class=p>)</span> <span class=kt>error</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>l</span> <span class=o>*</span><span class=nx>Logger</span><span class=p>)</span> <span class=nf>Panic</span><span class=p>(</span><span class=nx>v</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>l</span> <span class=o>*</span><span class=nx>Logger</span><span class=p>)</span> <span class=nf>Panicf</span><span class=p>(</span><span class=nx>format</span> <span class=kt>string</span><span class=p>,</span> <span class=nx>v</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>l</span> <span class=o>*</span><span class=nx>Logger</span><span class=p>)</span> <span class=nf>Panicln</span><span class=p>(</span><span class=nx>v</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>l</span> <span class=o>*</span><span class=nx>Logger</span><span class=p>)</span> <span class=nf>Prefix</span><span class=p>(</span><span class=p>)</span> <span class=kt>string</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>l</span> <span class=o>*</span><span class=nx>Logger</span><span class=p>)</span> <span class=nf>Print</span><span class=p>(</span><span class=nx>v</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>l</span> <span class=o>*</span><span class=nx>Logger</span><span class=p>)</span> <span class=nf>Printf</span><span class=p>(</span><span class=nx>format</span> <span class=kt>string</span><span class=p>,</span> <span class=nx>v</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>l</span> <span class=o>*</span><span class=nx>Logger</span><span class=p>)</span> <span class=nf>Println</span><span class=p>(</span><span class=nx>v</span> <span class=o>...</span><span class=kd>interface</span><span class=p>{</span><span class=p>}</span><span class=p>)</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>l</span> <span class=o>*</span><span class=nx>Logger</span><span class=p>)</span> <span class=nf>SetFlags</span><span class=p>(</span><span class=nx>flag</span> <span class=kt>int</span><span class=p>)</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>l</span> <span class=o>*</span><span class=nx>Logger</span><span class=p>)</span> <span class=nf>SetPrefix</span><span class=p>(</span><span class=nx>prefix</span> <span class=kt>string</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>有区别的是，还有一个 New 函数用来创建一个 Logger，其中的参数 out 用于设置日志信息写入的目的地，prefix 设置前缀，flag 设置选项。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>New</span><span class=p>(</span><span class=nx>out</span> <span class=nx>io</span><span class=p>.</span><span class=nx>Writer</span><span class=p>,</span> <span class=nx>prefix</span> <span class=kt>string</span><span class=p>,</span> <span class=nx>flag</span> <span class=kt>int</span><span class=p>)</span> <span class=o>*</span><span class=nx>Logger</span>
+</code></pre></td></tr></table></div></div><p>一个简单的使用示例如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>var</span> <span class=nx>buf</span> <span class=nx>bytes</span><span class=p>.</span><span class=nx>Buffer</span>
+<span class=nx>logger</span> <span class=o>:=</span> <span class=nx>log</span><span class=p>.</span><span class=nf>New</span><span class=p>(</span><span class=o>&amp;</span><span class=nx>buf</span><span class=p>,</span> <span class=s>&#34;logger: &#34;</span><span class=p>,</span> <span class=nx>log</span><span class=p>.</span><span class=nx>Lshortfile</span><span class=p>)</span>
+<span class=nx>logger</span><span class=p>.</span><span class=nf>Print</span><span class=p>(</span><span class=s>&#34;Hello, log file!&#34;</span><span class=p>)</span>
+<span class=nx>fmt</span><span class=p>.</span><span class=nf>Print</span><span class=p>(</span><span class=o>&amp;</span><span class=nx>buf</span><span class=p>)</span>
+<span class=c1>// Output
+</span><span class=c1></span><span class=nx>logger</span><span class=p>:</span> <span class=nx>example_test</span><span class=p>.</span><span class=k>go</span><span class=p>:</span><span class=mi>16</span><span class=p>:</span> <span class=nx>Hello</span><span class=p>,</span> <span class=nx>log</span> <span class=nx>file</span><span class=p>!</span>
+</code></pre></td></tr></table></div></div><p>一般情况下，我们需要区分不同的日志级别：Info、Warning 和 Error，这里有一个参考实现</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=c1>// 这个示例程序展示如何创建定制的日志记录器
+</span><span class=c1></span><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=p>(</span>
+    <span class=s>&#34;io&#34;</span>
+    <span class=s>&#34;io/ioutil&#34;</span>
+    <span class=s>&#34;log&#34;</span>
+    <span class=s>&#34;os&#34;</span>
+<span class=p>)</span>
+
+<span class=kd>var</span> <span class=p>(</span>
+    <span class=nx>Trace</span>   <span class=o>*</span><span class=nx>log</span><span class=p>.</span><span class=nx>Logger</span> <span class=c1>// 记录所有日志
+</span><span class=c1></span>    <span class=nx>Info</span>    <span class=o>*</span><span class=nx>log</span><span class=p>.</span><span class=nx>Logger</span> <span class=c1>// 重要的信息
+</span><span class=c1></span>    <span class=nx>Warning</span> <span class=o>*</span><span class=nx>log</span><span class=p>.</span><span class=nx>Logger</span> <span class=c1>// 需要注意的信息
+</span><span class=c1></span>    <span class=nx>Error</span>   <span class=o>*</span><span class=nx>log</span><span class=p>.</span><span class=nx>Logger</span> <span class=c1>// 非常严重的问题
+</span><span class=c1></span><span class=p>)</span>
+
+<span class=kd>func</span> <span class=nf>init</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>file</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>os</span><span class=p>.</span><span class=nf>OpenFile</span><span class=p>(</span><span class=s>&#34;errors.txt&#34;</span><span class=p>,</span>
+        <span class=nx>os</span><span class=p>.</span><span class=nx>O_CREATE</span><span class=p>|</span><span class=nx>os</span><span class=p>.</span><span class=nx>O_WRONLY</span><span class=p>|</span><span class=nx>os</span><span class=p>.</span><span class=nx>O_APPEND</span><span class=p>,</span> <span class=mo>0666</span><span class=p>)</span>
+    <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=nx>log</span><span class=p>.</span><span class=nf>Fatalln</span><span class=p>(</span><span class=s>&#34;Failed to open error log file:&#34;</span><span class=p>,</span> <span class=nx>err</span><span class=p>)</span>
+    <span class=p>}</span>
+
+    <span class=nx>Trace</span> <span class=p>=</span> <span class=nx>log</span><span class=p>.</span><span class=nf>New</span><span class=p>(</span><span class=nx>ioutil</span><span class=p>.</span><span class=nx>Discard</span><span class=p>,</span>
+        <span class=s>&#34;TRACE: &#34;</span><span class=p>,</span>
+        <span class=nx>log</span><span class=p>.</span><span class=nx>Ldate</span><span class=p>|</span><span class=nx>log</span><span class=p>.</span><span class=nx>Ltime</span><span class=p>|</span><span class=nx>log</span><span class=p>.</span><span class=nx>Lshortfile</span><span class=p>)</span>
+
+    <span class=nx>Info</span> <span class=p>=</span> <span class=nx>log</span><span class=p>.</span><span class=nf>New</span><span class=p>(</span><span class=nx>os</span><span class=p>.</span><span class=nx>Stdout</span><span class=p>,</span>
+        <span class=s>&#34;INFO: &#34;</span><span class=p>,</span>
+        <span class=nx>log</span><span class=p>.</span><span class=nx>Ldate</span><span class=p>|</span><span class=nx>log</span><span class=p>.</span><span class=nx>Ltime</span><span class=p>|</span><span class=nx>log</span><span class=p>.</span><span class=nx>Lshortfile</span><span class=p>)</span>
+
+    <span class=nx>Warning</span> <span class=p>=</span> <span class=nx>log</span><span class=p>.</span><span class=nf>New</span><span class=p>(</span><span class=nx>os</span><span class=p>.</span><span class=nx>Stdout</span><span class=p>,</span>
+        <span class=s>&#34;WARNING: &#34;</span><span class=p>,</span>
+        <span class=nx>log</span><span class=p>.</span><span class=nx>Ldate</span><span class=p>|</span><span class=nx>log</span><span class=p>.</span><span class=nx>Ltime</span><span class=p>|</span><span class=nx>log</span><span class=p>.</span><span class=nx>Lshortfile</span><span class=p>)</span>
+
+    <span class=nx>Error</span> <span class=p>=</span> <span class=nx>log</span><span class=p>.</span><span class=nf>New</span><span class=p>(</span><span class=nx>io</span><span class=p>.</span><span class=nf>MultiWriter</span><span class=p>(</span><span class=nx>file</span><span class=p>,</span> <span class=nx>os</span><span class=p>.</span><span class=nx>Stderr</span><span class=p>)</span><span class=p>,</span>
+        <span class=s>&#34;ERROR: &#34;</span><span class=p>,</span>
+        <span class=nx>log</span><span class=p>.</span><span class=nx>Ldate</span><span class=p>|</span><span class=nx>log</span><span class=p>.</span><span class=nx>Ltime</span><span class=p>|</span><span class=nx>log</span><span class=p>.</span><span class=nx>Lshortfile</span><span class=p>)</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>Trace</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;I have something standard to say&#34;</span><span class=p>)</span>
+    <span class=nx>Info</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;Special Information&#34;</span><span class=p>)</span>
+    <span class=nx>Warning</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;There is something you need to know about&#34;</span><span class=p>)</span>
+    <span class=nx>Error</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;Something has failed&#34;</span><span class=p>)</span>
+<span class=p>}</span>
+<span class=o>--</span><span class=o>--</span><span class=o>--</span><span class=o>--</span><span class=o>--</span><span class=o>--</span><span class=o>--</span><span class=o>--</span><span class=o>--</span><span class=o>--</span><span class=o>--</span><span class=o>--</span><span class=o>--</span><span class=o>--</span><span class=o>--</span><span class=o>--</span><span class=o>--</span><span class=o>--</span>
+<span class=nx>INFO</span><span class=p>:</span> <span class=mi>2019</span><span class=o>/</span><span class=mo>04</span><span class=o>/</span><span class=mi>0</span><span class=mi>9</span> <span class=mi>14</span><span class=p>:</span><span class=mi>37</span><span class=p>:</span><span class=mi>11</span> <span class=nx>TestCustomLog</span><span class=p>.</span><span class=k>go</span><span class=p>:</span><span class=mi>44</span><span class=p>:</span> <span class=nx>Special</span> <span class=nx>Information</span>
+<span class=nx>ERROR</span><span class=p>:</span> <span class=mi>2019</span><span class=o>/</span><span class=mo>04</span><span class=o>/</span><span class=mi>0</span><span class=mi>9</span> <span class=mi>14</span><span class=p>:</span><span class=mi>37</span><span class=p>:</span><span class=mi>11</span> <span class=nx>TestCustomLog</span><span class=p>.</span><span class=k>go</span><span class=p>:</span><span class=mi>46</span><span class=p>:</span> <span class=nx>Something</span> <span class=nx>has</span> <span class=nx>failed</span>
+<span class=nx>WARNING</span><span class=p>:</span> <span class=mi>2019</span><span class=o>/</span><span class=mo>04</span><span class=o>/</span><span class=mi>0</span><span class=mi>9</span> <span class=mi>14</span><span class=p>:</span><span class=mi>37</span><span class=p>:</span><span class=mi>11</span> <span class=nx>TestCustomLog</span><span class=p>.</span><span class=k>go</span><span class=p>:</span><span class=mi>45</span><span class=p>:</span> 
+<span class=nx>There</span> <span class=nx>is</span> <span class=nx>something</span> <span class=nx>you</span> <span class=nx>need</span> <span class=nx>to</span> <span class=nx>know</span> <span class=nx>about</span>
+</code></pre></td></tr></table></div></div><p>这里写入的目的地为 ioutil.Discard，这是一个 io.Writer 接口，调用它的 Write 方法将不做任何事情并且始终成功返回。</p><p>OpenFile几个选项说明如下</p><ul><li>O_CREATE // 如果不存在将创建一个新文件</li><li>O_WRONLY // 只写模式打开文件</li><li>O_APPEND // 写操作时将数据附加到文件尾部</li></ul><h2 id=2-第三方log库>2. 第三方log库</h2><p>比较流行且近期还在更新的日志库有 <a href="https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Fsirupsen%2Flogrus" target=_blank rel="noopener noreffer">logrus</a>、<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Fuber-go%2Fzap" target=_blank rel="noopener noreffer">zap</a>、<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Foklog%2Foklog" target=_blank rel="noopener noreffer">oklog</a>、<a href="https://links.jianshu.com/go?to=https%3A%2F%2Fgithub.com%2Frs%2Fzerolog" target=_blank rel="noopener noreffer">zerolog</a></p><p>可以考虑选择 JSON 格式的日志，参考 <a href="https://links.jianshu.com/go?to=https%3A%2F%2Fzhuanlan.zhihu.com%2Fp%2F27363484" target=_blank rel="noopener noreffer">最佳日志实践（v2.0）</a> 一文</p><p>关于性能可以参考 <a href="https://links.jianshu.com/go?to=https%3A%2F%2Fmzh.io%2Fgolang-build-tags-for-debug" target=_blank rel="noopener noreffer">Go零消耗debug log技巧</a>，使用官方模块在生产环境中存在性能瓶颈</p><h2 id=3参考>3.参考</h2><p>[1] 合肥懒皮，简书，<a href=https://www.jianshu.com/p/73ae6dc4d16a target=_blank rel="noopener noreffer">Golang log日志</a>，2019.04.09</p><p>[2] <a href=https://studygolang.com/pkgdoc target=_blank rel="noopener noreffer">Go语言标准库文档</a></p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2020-06-07</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/golang%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/index.md target=_blank>阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://shuzang.github.io/golang%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/ data-title=Golang日志系统 data-hashtags=Go实战><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://shuzang.github.io/golang%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/ data-hashtag=Go实战><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://shuzang.github.io/golang%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/ data-title=Golang日志系统><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://shuzang.github.io/golang%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/ data-title=Golang日志系统><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://shuzang.github.io/golang%E6%97%A5%E5%BF%97%E7%B3%BB%E7%BB%9F/ data-title=Golang日志系统><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/go%E5%AE%9E%E6%88%98/>Go实战</a></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/%E5%9F%BA%E4%BA%8Ego%E8%AF%AD%E8%A8%80%E5%BC%80%E5%8F%91%E5%9C%A8%E7%BA%BF%E8%AE%BA%E5%9D%9B5-%E5%88%9B%E5%BB%BA%E7%BE%A4%E7%BB%84%E5%92%8C%E4%B8%BB%E9%A2%98%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/ class=prev rel=prev title=基于Go语言开发在线论坛5-创建群组和主题功能实现><i class="fas fa-angle-left fa-fw"></i>基于Go语言开发在线论坛5-创建群组和主题功能实现</a>
+<a href=/%E5%9F%BA%E4%BA%8Ego%E8%AF%AD%E8%A8%80%E5%BC%80%E5%8F%91%E5%9C%A8%E7%BA%BF%E8%AE%BA%E5%9D%9B6-%E6%97%A5%E5%BF%97%E5%92%8C%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/ class=next rel=next title=基于Go语言开发在线论坛6-日志与错误处理>基于Go语言开发在线论坛6-日志与错误处理<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><div id=valine class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://valine.js.org/>Valine</a>.</noscript></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.63.2">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i>LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>Shuzang</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=/lib/valine/valine.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>

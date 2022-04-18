@@ -1,0 +1,326 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>数据结构-链表 - Shuzang's Blog</title><meta name=Description content="书藏的个人博客，记录学习，记录生活"><meta property="og:title" content="数据结构-链表"><meta property="og:description" content="链表是一种最为基础的数据结构，由一系列结点组成，每个结点不仅包含值，还包含指向下一个结点（有时也包括上一个结点）的指针。相比于数组，在链表中"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%841-%E9%93%BE%E8%A1%A8/"><meta property="og:image" content="https://shuzang.github.io/logo.png"><meta property="article:published_time" content="2020-02-20T00:00:00+00:00"><meta property="article:modified_time" content="2020-03-28T00:00:00+00:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://shuzang.github.io/logo.png"><meta name=twitter:title content="数据结构-链表"><meta name=twitter:description content="链表是一种最为基础的数据结构，由一系列结点组成，每个结点不仅包含值，还包含指向下一个结点（有时也包括上一个结点）的指针。相比于数组，在链表中"><meta name=application-name content="Shuzang's Blog"><meta name=apple-mobile-web-app-title content="Shuzang's Blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://shuzang.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%841-%E9%93%BE%E8%A1%A8/><link rel=prev href=https://shuzang.github.io/%E6%9D%82%E8%B0%88-%E6%97%B6%E9%97%B4%E4%B8%8D%E5%A4%9F%E7%94%A8%E6%80%8E%E4%B9%88%E5%8A%9E/><link rel=next href=https://shuzang.github.io/%E4%B9%A6%E8%97%8F%E7%9A%84%E7%94%9F%E6%B4%BB%E5%91%A8%E5%88%8A%E7%AC%AC-8-%E6%9C%9F/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"数据结构-链表","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%841-%E9%93%BE%E8%A1%A8\/"},"image":["https:\/\/shuzang.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"数据结构与算法","wordcount":2949,"url":"https:\/\/shuzang.github.io\/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%841-%E9%93%BE%E8%A1%A8\/","datePublished":"2020-02-20T00:00:00+00:00","dateModified":"2020-03-28T00:00:00+00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/shuzang.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"Shuzang"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Shuzang's Blog"><span class=header-title-pre><i class="far fa-kiss-wink-heart fa-fw"></i></span>LoveIt</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/tags/>标签 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/>关于 </a><a class=menu-item href=https://github.com/shuzang title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item language" title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
+<select class=language-select id=language-select-desktop onchange="location=this.value;"><option value=/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%841-%E9%93%BE%E8%A1%A8/ selected>简体中文</option></select>
+</a><span class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Shuzang's Blog"><span class=header-title-pre><i class="far fa-kiss-wink-heart fa-fw"></i></span>LoveIt</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/posts/>所有文章</a><a class=menu-item href=/tags/>标签</a><a class=menu-item href=/categories/>分类</a><a class=menu-item href=/about/>关于</a><a class=menu-item href=https://github.com/shuzang title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i></a><a href=javascript:void(0); class=menu-item title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
+<select class=language-select onchange="location=this.value;"><option value=/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%841-%E9%93%BE%E8%A1%A8/ selected>简体中文</option></select></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">数据结构-链表</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>Shuzang</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/><i class="far fa-folder fa-fw"></i>爱编程爱技术的孩子</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-02-20>2020-02-20</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2949 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;<span id=/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%841-%E9%93%BE%E8%A1%A8/ class=leancloud_visitors data-flag-title=数据结构-链表>
+<i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+</span>&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#1-单链表>1. 单链表</a><ul><li><a href=#11-获取指定结点的值>1.1 获取指定结点的值</a></li><li><a href=#12-插入结点>1.2 插入结点</a></li><li><a href=#13-删除结点>1.3 删除结点</a></li><li><a href=#14-打印链表>1.4 打印链表</a></li></ul></li><li><a href=#2-双指针技巧>2. 双指针技巧</a><ul><li><a href=#21-环形链表>2.1 环形链表</a></li><li><a href=#22-相交链表>2.2 相交链表</a></li></ul></li><li><a href=#其它资料>其它资料</a></li></ul></nav></div></div><div class=content id=content><p>链表是一种最为基础的数据结构，由一系列结点组成，每个结点不仅包含值，还包含指向下一个结点（有时也包括上一个结点）的指针。相比于数组，在链表中访问指定的元素则需要$O(N)$的复杂度，但进行插入和删除操作只需要$O(1)$的复杂度</p><h2 id=1-单链表>1. 单链表</h2><p>一个单链表的例子如下，蓝色箭头显示链表中的结点是如何相连的</p><p><img src=https://aliyun-lc-upload.oss-cn-hangzhou.aliyuncs.com/aliyun-lc-upload/uploads/2018/08/05/screen-shot-2018-04-12-at-152754.png style=zoom:50%></p><p>关于结点的最常见的定义如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=c1>//单链表结点
+</span><span class=c1></span><span class=kd>type</span> <span class=nx>node</span> <span class=kd>struct</span> <span class=p>{</span>
+	<span class=nx>val</span>  <span class=kt>int</span>   <span class=c1>// 结点的值
+</span><span class=c1></span>	<span class=nx>next</span> <span class=o>*</span><span class=nx>node</span> <span class=c1>// 指向下一个结点的指针
+</span><span class=c1></span><span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>多数情况下，我们使用头结点来表示整个链表，并将链表的长度存储其中。虽然增加了一个结点的存储，但带来的好处却是巨大的</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=c1>//头结点，也是单链表的起始
+</span><span class=c1></span><span class=kd>type</span> <span class=nx>singlyLinkedList</span> <span class=kd>struct</span> <span class=p>{</span>
+	<span class=nx>length</span> <span class=kt>int</span>   <span class=c1>// 链表长度
+</span><span class=c1></span>	<span class=nx>next</span>   <span class=o>*</span><span class=nx>node</span> <span class=c1>// 指向第一个结点的指针
+</span><span class=c1></span><span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>定义了头结点的情况下，需要事先对链表进行初始化</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=cm>/* @description: 初始化链表(头结点)
+</span><span class=cm>   @author: shuzang 2020-03-28
+</span><span class=cm>   @param: 无
+</span><span class=cm>   @return: _ *singleLinkedList 指向单链表(头结点)的指针
+</span><span class=cm>*/</span>
+<span class=kd>func</span> <span class=nf>constructor</span><span class=p>(</span><span class=p>)</span> <span class=o>*</span><span class=nx>singlyLinkedList</span> <span class=p>{</span>
+	<span class=k>return</span> <span class=o>&amp;</span><span class=nx>singlyLinkedList</span><span class=p>{</span><span class=mi>0</span><span class=p>,</span> <span class=kc>nil</span><span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h3 id=11-获取指定结点的值>1.1 获取指定结点的值</h3><p>本质是对链表的遍历，修改操作也是相同的算法，只是需要遍历到指定元素后进行修改即可，程序实现如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=cm>/* @description: 如果索引有效，获取链表中第 index 个结点的值
+</span><span class=cm>   @author: shuzang 2020-03-28
+</span><span class=cm>   @param: index int 要获取的元素位置
+</span><span class=cm>   @return: _ int 获取元素的值; _ error 索引无效时返回错误
+</span><span class=cm>*/</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>list</span> <span class=o>*</span><span class=nx>singlyLinkedList</span><span class=p>)</span> <span class=nf>Get</span><span class=p>(</span><span class=nx>index</span> <span class=kt>int</span><span class=p>)</span> <span class=p>(</span><span class=kt>int</span><span class=p>,</span> <span class=kt>error</span><span class=p>)</span> <span class=p>{</span>
+	<span class=k>if</span> <span class=nx>index</span> <span class=p>&lt;</span> <span class=mi>1</span> <span class=o>||</span> <span class=nx>index</span> <span class=p>&gt;</span> <span class=nx>list</span><span class=p>.</span><span class=nx>length</span> <span class=p>{</span>
+		<span class=k>return</span> <span class=o>-</span><span class=mi>1</span><span class=p>,</span> <span class=nx>errors</span><span class=p>.</span><span class=nf>New</span><span class=p>(</span><span class=s>&#34;param - index is invalid&#34;</span><span class=p>)</span>
+	<span class=p>}</span>
+	<span class=nx>cur</span> <span class=o>:=</span> <span class=nx>list</span><span class=p>.</span><span class=nx>next</span>
+	<span class=k>for</span> <span class=nx>i</span> <span class=o>:=</span> <span class=mi>1</span><span class=p>;</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=nx>index</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span> <span class=p>{</span>
+		<span class=nx>cur</span> <span class=p>=</span> <span class=nx>cur</span><span class=p>.</span><span class=nx>next</span>
+	<span class=p>}</span>
+	<span class=k>return</span> <span class=nx>cur</span><span class=p>.</span><span class=nx>val</span><span class=p>,</span> <span class=kc>nil</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h3 id=12-插入结点>1.2 插入结点</h3><p>如果我们想在 prev 结点后插入新结点，基本操作步骤如下</p><ol><li>初始化新结点 newNode</li><li>将新结点的 Next 指针指向 prev 结点的下一个结点</li><li>将 prev 结点的 Next 指针指向新结点</li></ol><p><img src=https://aliyun-lc-upload.oss-cn-hangzhou.aliyuncs.com/aliyun-lc-upload/uploads/2018/04/26/screen-shot-2018-04-25-at-163243.png style=zoom:50%></p><p>在开头插入结点和在结尾插入结点是两种特殊情况，前者需要考虑头结点的存在，后者需要遍历到链表结尾，我们不再详述。三种插入的程序实现如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=cm>/* @description: 在链表的第一个元素之前插入结点，插入后，新结点将成为链表的第一个结点
+</span><span class=cm>   @author: shuzang	2020-03-28
+</span><span class=cm>   @param: val	int	要添加的元素的值
+</span><span class=cm>   @return: 无
+</span><span class=cm>*/</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>list</span> <span class=o>*</span><span class=nx>singlyLinkedList</span><span class=p>)</span> <span class=nf>AddAtHead</span><span class=p>(</span><span class=nx>val</span> <span class=kt>int</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>list</span><span class=p>.</span><span class=nx>next</span> <span class=p>=</span> <span class=o>&amp;</span><span class=nx>node</span><span class=p>{</span><span class=nx>val</span><span class=p>,</span> <span class=nx>list</span><span class=p>.</span><span class=nx>next</span><span class=p>}</span>
+	<span class=nx>list</span><span class=p>.</span><span class=nx>length</span><span class=o>++</span>
+<span class=p>}</span>
+
+<span class=cm>/* @description: 将新结点追加到链表的最后一个元素
+</span><span class=cm>   @author: shuzang 2020-03-28
+</span><span class=cm>   @param: val int 要添加的元素的值
+</span><span class=cm>   @return: 无
+</span><span class=cm>*/</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>list</span> <span class=o>*</span><span class=nx>singlyLinkedList</span><span class=p>)</span> <span class=nf>AddAtTail</span><span class=p>(</span><span class=nx>val</span> <span class=kt>int</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>newNode</span> <span class=o>:=</span> <span class=o>&amp;</span><span class=nx>node</span><span class=p>{</span><span class=nx>val</span><span class=p>,</span> <span class=kc>nil</span><span class=p>}</span>
+
+	<span class=k>if</span> <span class=nx>list</span><span class=p>.</span><span class=nx>next</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+		<span class=nx>list</span><span class=p>.</span><span class=nx>next</span> <span class=p>=</span> <span class=nx>newNode</span>
+	<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+		<span class=nx>cur</span> <span class=o>:=</span> <span class=nx>list</span><span class=p>.</span><span class=nx>next</span>
+		<span class=k>for</span> <span class=nx>cur</span><span class=p>.</span><span class=nx>next</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+			<span class=nx>cur</span> <span class=p>=</span> <span class=nx>cur</span><span class=p>.</span><span class=nx>next</span>
+		<span class=p>}</span>
+		<span class=nx>cur</span><span class=p>.</span><span class=nx>next</span> <span class=p>=</span> <span class=nx>newNode</span>
+	<span class=p>}</span>
+
+	<span class=nx>list</span><span class=p>.</span><span class=nx>length</span><span class=o>++</span>
+<span class=p>}</span>
+
+<span class=cm>/* @description: 在链表的第 index 个结点前添加结点，插入后新结点成为第 index 个结点，
+</span><span class=cm>如果 index 大于链表长度，结点添加到链表末尾，如果 index 小于 1，则在头部插入结点
+</span><span class=cm>   @author: shuzang 2020-03-28
+</span><span class=cm>   @param: index int 要插入的位置，起始数字为 1; val int 要插入的元素的值
+</span><span class=cm>   @return: 无
+</span><span class=cm>*/</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>list</span> <span class=o>*</span><span class=nx>singlyLinkedList</span><span class=p>)</span> <span class=nf>AddAtIndex</span><span class=p>(</span><span class=nx>index</span><span class=p>,</span> <span class=nx>val</span> <span class=kt>int</span><span class=p>)</span> <span class=p>{</span>
+	<span class=k>if</span> <span class=nx>index</span> <span class=p>&gt;</span> <span class=nx>list</span><span class=p>.</span><span class=nx>length</span> <span class=p>{</span>
+		<span class=nx>list</span><span class=p>.</span><span class=nf>AddAtTail</span><span class=p>(</span><span class=nx>val</span><span class=p>)</span>
+	<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=nx>index</span> <span class=o>&lt;=</span> <span class=mi>1</span> <span class=p>{</span>
+		<span class=nx>list</span><span class=p>.</span><span class=nf>AddAtHead</span><span class=p>(</span><span class=nx>val</span><span class=p>)</span>
+	<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+		<span class=nx>cur</span> <span class=o>:=</span> <span class=nx>list</span><span class=p>.</span><span class=nx>next</span>
+		<span class=k>for</span> <span class=nx>i</span> <span class=o>:=</span> <span class=mi>1</span><span class=p>;</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=nx>index</span><span class=o>-</span><span class=mi>1</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span> <span class=p>{</span>
+			<span class=nx>cur</span> <span class=p>=</span> <span class=nx>cur</span><span class=p>.</span><span class=nx>next</span>
+		<span class=p>}</span>
+		<span class=nx>cur</span><span class=p>.</span><span class=nx>next</span> <span class=p>=</span> <span class=o>&amp;</span><span class=nx>node</span><span class=p>{</span><span class=nx>val</span><span class=p>,</span> <span class=nx>cur</span><span class=p>.</span><span class=nx>next</span><span class=p>}</span>
+	<span class=p>}</span>
+
+	<span class=nx>list</span><span class=p>.</span><span class=nx>length</span><span class=o>++</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h3 id=13-删除结点>1.3 删除结点</h3><p>删除结点只需要将前一个结点的 Next 指针指向当前结点的下一个结点，需要注意的是我们只需要遍历到待插入结点的前一个结点即可</p><p><img src=https://aliyun-lc-upload.oss-cn-hangzhou.aliyuncs.com/aliyun-lc-upload/uploads/2018/04/26/screen-shot-2018-04-26-at-203640.png style=zoom:50%></p><p>程序实现如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=cm>/* @description: 如果索引有效，删除链表第 index 个位置的结点
+</span><span class=cm>   @author: shuzang 2020-03-28
+</span><span class=cm>   @param: index int 要删除的元素位置
+</span><span class=cm>   @return: _ error 索引无效时返回错误
+</span><span class=cm>*/</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>list</span> <span class=o>*</span><span class=nx>singlyLinkedList</span><span class=p>)</span> <span class=nf>DeleteAtIndex</span><span class=p>(</span><span class=nx>index</span> <span class=kt>int</span><span class=p>)</span> <span class=kt>error</span> <span class=p>{</span>
+	<span class=k>if</span> <span class=nx>index</span> <span class=p>&lt;</span> <span class=mi>1</span> <span class=o>||</span> <span class=nx>index</span> <span class=p>&gt;</span> <span class=nx>list</span><span class=p>.</span><span class=nx>length</span> <span class=p>{</span>
+		<span class=k>return</span> <span class=nx>errors</span><span class=p>.</span><span class=nf>New</span><span class=p>(</span><span class=s>&#34;param - index is invalid&#34;</span><span class=p>)</span>
+	<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=nx>index</span> <span class=o>==</span> <span class=mi>1</span> <span class=p>{</span>
+		<span class=nx>list</span><span class=p>.</span><span class=nx>next</span> <span class=p>=</span> <span class=nx>list</span><span class=p>.</span><span class=nx>next</span><span class=p>.</span><span class=nx>next</span>
+	<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+		<span class=nx>cur</span> <span class=o>:=</span> <span class=nx>list</span><span class=p>.</span><span class=nx>next</span>
+		<span class=k>for</span> <span class=nx>i</span> <span class=o>:=</span> <span class=mi>1</span><span class=p>;</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=nx>index</span><span class=o>-</span><span class=mi>1</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span> <span class=p>{</span>
+			<span class=nx>cur</span> <span class=p>=</span> <span class=nx>cur</span><span class=p>.</span><span class=nx>next</span>
+		<span class=p>}</span>
+		<span class=nx>cur</span><span class=p>.</span><span class=nx>next</span> <span class=p>=</span> <span class=nx>cur</span><span class=p>.</span><span class=nx>next</span><span class=p>.</span><span class=nx>next</span>
+	<span class=p>}</span>
+
+	<span class=nx>list</span><span class=p>.</span><span class=nx>length</span><span class=o>--</span>
+	<span class=k>return</span> <span class=kc>nil</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h3 id=14-打印链表>1.4 打印链表</h3><p>一个工具函数，不是必要的，但是很常用，打印输出整个单链表</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=cm>/* @description: 工具函数，打印单链表
+</span><span class=cm>   @author: shzuang 2020-03-28
+</span><span class=cm>   @param: 无
+</span><span class=cm>   @return: 无
+</span><span class=cm>*/</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>list</span> <span class=o>*</span><span class=nx>singlyLinkedList</span><span class=p>)</span> <span class=nf>PrintList</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>cur</span> <span class=o>:=</span> <span class=nx>list</span><span class=p>.</span><span class=nx>next</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=p>(</span><span class=s>&#34;当前单链表为: &#34;</span><span class=p>)</span><span class=p>)</span>
+	<span class=k>for</span> <span class=p>;</span> <span class=nx>cur</span><span class=p>.</span><span class=nx>next</span> <span class=o>!=</span> <span class=kc>nil</span><span class=p>;</span> <span class=nx>cur</span> <span class=p>=</span> <span class=nx>cur</span><span class=p>.</span><span class=nx>next</span> <span class=p>{</span>
+		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;%v-&gt;&#34;</span><span class=p>,</span> <span class=nx>cur</span><span class=p>.</span><span class=nx>val</span><span class=p>)</span>
+	<span class=p>}</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>cur</span><span class=p>.</span><span class=nx>val</span><span class=p>)</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h2 id=2-双指针技巧>2. 双指针技巧</h2><p>双指针是一种经典的链表操作技巧，对很多问题都有非常好的作用，下面通过几个经典问题进行介绍</p><h3 id=21-环形链表>2.1 环形链表</h3><p>关于环形链表的经典问法是：给定一个链表，判断链表中是否有环。更多扩展的问题包括：</p><ol><li>如果存在环，找出环的入口结点</li><li>如果存在环，求环中的结点个数</li><li>如果存在环，求链表长度</li></ol><p>这些问题都可以通过Floyd判环算法解决，算法的基本思想可以拿跑圈来举例说明：假设两个人在一条环形跑道上跑步，同时出发，但速度一个快一个慢，我们知道，如果一直跑下去，快的人总能追上慢的一方，此时快的一方多跑的路程一定是跑道长度的整数倍，即我们所说的「套圈了」</p><p>有人也拿龟兔赛跑举例，但思想是相同的。基于上述思想，Floyd提出了双指针算法（快指针和慢指针），算法分两个阶段。</p><p><strong>第一阶段</strong>可以用来判断是否有环。慢指针（龟）每次前进一步，快指针（兔）每次前进两步（两步或多步效果是等价的，只要一个比另一个快就行）。如果两者在链表头以外的某一点相遇（即相等）了，那么说明链表有环，否则，如果（快指针）到达了链表的结尾，那么说明没环。</p><p><img src=https://pic.leetcode-cn.com/99987d4e679fdfbcfd206a4429d9b076b46ad09bd2670f886703fb35ef130635-image.png style=zoom:50%></p><p><strong>第二阶段</strong>确定环的起点。假设链表起点到环的起点距离为$F$（这里我们提到的距离是结点个数），第一阶段相遇时的结点距离环的起点为$a$，环的周长为 $n = a + b$。那么第一阶段两者相遇时，慢指针移动的总距离为 $d = F + r_1 n + a$，由于快指针移动速度是慢指针的两倍，其移动的总距离为$2d = F + r_2 n + a$，其中$r_1$为慢指针第一次相遇时转过的圈数，$r_2$为快指针第一次相遇时转过的圈数。我们令两者相减（快减慢），那么得到 $d = (r_2 - r_1)n$，意为 $d$ 是环长度的倍数。</p><p>因此，我们将慢指针移动到链表的起点，快指针保持在第一次相遇的结点，然后两者同时开始移动，但这次两者每次都只移动一步。当慢指针前进了 $F$ 到达环的起点时，快指针距离链表起点 $d + F$，由于 $d$ 是环长度的倍数，这个距离可以看作快指针从链表起点出发，走到环的起点，然后绕环转了几圈，但此时停在了环的起点。即两个第二次的相遇点就是环的起点。</p><p>程序实现如下，需要注意的有两点</p><ol><li>调用 Next 字段前，检查结点是否为空</li><li>仔细考虑循环的结束条件</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>detectCycle</span><span class=p>(</span><span class=nx>head</span> <span class=o>*</span><span class=nx>LinkedList</span><span class=p>)</span> <span class=o>*</span><span class=nx>Node</span> <span class=p>{</span>
+    <span class=nx>slow</span><span class=p>,</span> <span class=nx>fast</span> <span class=o>:=</span> <span class=nx>head</span><span class=p>.</span><span class=nx>Next</span><span class=p>,</span><span class=nx>head</span><span class=p>.</span><span class=nx>Next</span>
+    <span class=c1>//第一阶段，循环退出条件为fast指针或fast.Next为nil，因为fast始终在slow前面，所以不需要判断slow
+</span><span class=c1></span>    <span class=k>for</span> <span class=nx>fast</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=o>&amp;&amp;</span> <span class=nx>fast</span><span class=p>.</span><span class=nx>Next</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=nx>slow</span> <span class=p>=</span> <span class=nx>slow</span><span class=p>.</span><span class=nx>Next</span>
+        <span class=nx>fast</span> <span class=p>=</span> <span class=nx>fast</span><span class=p>.</span><span class=nx>Next</span><span class=p>.</span><span class=nx>Next</span>
+        <span class=k>if</span> <span class=nx>fast</span> <span class=o>==</span> <span class=nx>slow</span> <span class=p>{</span>
+            <span class=nx>slow</span> <span class=p>=</span> <span class=nx>head</span>
+            <span class=k>break</span>
+        <span class=p>}</span>
+    <span class=p>}</span>
+    <span class=c1>//退出循环要么是到达相遇点，要么是没有环，没有环时返回nil
+</span><span class=c1></span>    <span class=k>if</span> <span class=nx>fast</span> <span class=o>==</span> <span class=kc>nil</span> <span class=o>||</span> <span class=nx>fast</span><span class=p>.</span><span class=nx>Next</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=kc>nil</span>
+    <span class=p>}</span>
+    <span class=c1>//第二阶段,每次移动一步直到相遇，slow指针已经调整完毕
+</span><span class=c1></span>    <span class=k>for</span> <span class=nx>fast</span> <span class=o>!=</span> <span class=nx>slow</span> <span class=p>{</span>
+        <span class=nx>slow</span> <span class=p>=</span> <span class=nx>slow</span><span class=p>.</span><span class=nx>Next</span>
+        <span class=nx>fast</span> <span class=p>=</span> <span class=nx>fast</span><span class=p>.</span><span class=nx>Next</span>
+    <span class=p>}</span>
+    <span class=k>return</span> <span class=nx>fast</span> <span class=c1>//此时fast == slow，返回任一个都可以
+</span><span class=c1></span><span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>得到环的起点后，快指针再跑一圈就可以得到环的长度，相应的，慢指针移回链表起点再走一遍然后和环的长度相加可以得到链表长度。</p><h3 id=22-相交链表>2.2 相交链表</h3><p>经典问法是：判断两个无环链表是否相交，如果相交，求相交的起始结点。如下图在 c1 结点相交。</p><p><img src=https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/12/14/160_statement.png style=zoom:67%></p><p>基本求解步骤如下</p><ol><li>创建两个指针 pA 和 pB，分别初始化为链表 <code>A</code> 和 <code>B</code> 的头结点。然后让它们向后逐结点遍历。</li><li>当 pA 到达链表的尾部时，将它重定位到链表 B 的头结点 (注意，是链表 B)；类似的，当 pB 到达链表的尾部时，将它重定位到链表 A 的头结点。</li><li>若在某一时刻 pA 和 pB 相遇，则该结点为相交结点。</li></ol><p>可以这样理解，除去相交部分（3个结点），A 有 2 个结点，B有 3 个结点。重定位后，A多走的距离正好是重定位前少走的距离，这样直到相交，两者都走了 2+3+3 个结点距离。</p><p>程序实现如下，正常情况两个链表不相交的条件是最后一个结点不相同，但是实际上如果任意一个链表为空或两者不相交，根据循环最后都会走到 nil，因此也会跳出循环，而且返回pA或pB的值 nil 也是我们想要的返回值，如果相交，同样直接返回pA或pB的值即可。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>getIntersectionNode</span><span class=p>(</span><span class=nx>headA</span><span class=p>,</span> <span class=nx>headB</span> <span class=o>*</span><span class=nx>LinkedList</span><span class=p>)</span> <span class=o>*</span><span class=nx>Node</span> <span class=p>{</span>
+    <span class=nx>pA</span><span class=p>,</span><span class=nx>pB</span> <span class=o>:=</span> <span class=nx>headA</span><span class=p>.</span><span class=nx>Next</span><span class=p>,</span> <span class=nx>headB</span><span class=p>.</span><span class=nx>Next</span>
+    <span class=k>for</span> <span class=nx>pA</span> <span class=o>!=</span> <span class=nx>pB</span> <span class=p>{</span>
+        <span class=k>if</span> <span class=nx>pA</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+            <span class=nx>pA</span> <span class=p>=</span> <span class=nx>headB</span><span class=p>.</span><span class=nx>Next</span>
+        <span class=p>}</span><span class=k>else</span><span class=p>{</span>
+            <span class=nx>pA</span> <span class=p>=</span> <span class=nx>pA</span><span class=p>.</span><span class=nx>Next</span>
+        <span class=p>}</span>
+        <span class=k>if</span> <span class=nx>pB</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+            <span class=nx>pB</span> <span class=p>=</span> <span class=nx>headA</span><span class=p>.</span><span class=nx>Next</span>
+        <span class=p>}</span><span class=k>else</span><span class=p>{</span>
+            <span class=nx>pB</span> <span class=p>=</span> <span class=nx>pB</span><span class=p>.</span><span class=nx>Next</span>
+        <span class=p>}</span>
+    <span class=p>}</span>
+    <span class=k>return</span> <span class=nx>pA</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h2 id=其它资料>其它资料</h2><p><a href=https://xiaoneng.blog.csdn.net/article/details/104007259 target=_blank rel="noopener noreffer">Leetcode刷题总结之链表</a></p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2020-03-28</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%841-%E9%93%BE%E8%A1%A8/index.md target=_blank>阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://shuzang.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%841-%E9%93%BE%E8%A1%A8/ data-title=数据结构-链表 data-hashtags=数据结构与算法><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://shuzang.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%841-%E9%93%BE%E8%A1%A8/ data-hashtag=数据结构与算法><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://shuzang.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%841-%E9%93%BE%E8%A1%A8/ data-title=数据结构-链表><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://shuzang.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%841-%E9%93%BE%E8%A1%A8/ data-title=数据结构-链表><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://shuzang.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%841-%E9%93%BE%E8%A1%A8/ data-title=数据结构-链表><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/>数据结构与算法</a></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/%E6%9D%82%E8%B0%88-%E6%97%B6%E9%97%B4%E4%B8%8D%E5%A4%9F%E7%94%A8%E6%80%8E%E4%B9%88%E5%8A%9E/ class=prev rel=prev title=时间不够用怎么办><i class="fas fa-angle-left fa-fw"></i>时间不够用怎么办</a>
+<a href=/%E4%B9%A6%E8%97%8F%E7%9A%84%E7%94%9F%E6%B4%BB%E5%91%A8%E5%88%8A%E7%AC%AC-8-%E6%9C%9F/ class=next rel=next title="书藏的生活周刊第 8 期 (20200221)">书藏的生活周刊第 8 期 (20200221)<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><div id=valine class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://valine.js.org/>Valine</a>.</noscript></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.63.2">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i>LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>Shuzang</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=/lib/valine/valine.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>

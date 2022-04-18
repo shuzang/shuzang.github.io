@@ -1,0 +1,564 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>以太坊开发4-geth console命令 - Shuzang's Blog</title><meta name=Description content="书藏的个人博客，记录学习，记录生活"><meta property="og:title" content="以太坊开发4-geth console命令"><meta property="og:description" content="Geth Console是一个交互式的JavaScript执行环境，其中>是命令提示符。在这个环境里也内置了一些用来操作以太坊的JavaScript对象，可以直接使用这些对象。这些对象主要包括：
+
+eth：包含一些跟操作区块链相关的方法；
+net：包含一些查看p2p网络状态的方法；
+admin：包含一些与管理节点相关的方法；
+miner：包含启动&停止挖矿的一些方法；
+personal：主要包含一些管理账户的方法；
+txpool：包含一些查看交易内存池的方法；
+web3：包含了以上对象，还包含一些单位换算的方法。"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.github.io/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E5%BC%80%E5%8F%914-geth-console%E5%91%BD%E4%BB%A4/"><meta property="og:image" content="https://shuzang.github.io/logo.png"><meta property="article:published_time" content="2019-03-08T10:27:00+08:00"><meta property="article:modified_time" content="2020-11-11T00:00:00+00:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://shuzang.github.io/logo.png"><meta name=twitter:title content="以太坊开发4-geth console命令"><meta name=twitter:description content="Geth Console是一个交互式的JavaScript执行环境，其中>是命令提示符。在这个环境里也内置了一些用来操作以太坊的JavaScript对象，可以直接使用这些对象。这些对象主要包括：
+
+eth：包含一些跟操作区块链相关的方法；
+net：包含一些查看p2p网络状态的方法；
+admin：包含一些与管理节点相关的方法；
+miner：包含启动&停止挖矿的一些方法；
+personal：主要包含一些管理账户的方法；
+txpool：包含一些查看交易内存池的方法；
+web3：包含了以上对象，还包含一些单位换算的方法。"><meta name=application-name content="Shuzang's Blog"><meta name=apple-mobile-web-app-title content="Shuzang's Blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://shuzang.github.io/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E5%BC%80%E5%8F%914-geth-console%E5%91%BD%E4%BB%A4/><link rel=prev href=https://shuzang.github.io/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E5%BC%80%E5%8F%913-geth%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%91%BD%E4%BB%A4/><link rel=next href=https://shuzang.github.io/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E5%BC%80%E5%8F%915-%E8%8A%82%E7%82%B9%E8%BF%9E%E6%8E%A5%E5%88%B0%E7%BD%91%E7%BB%9C%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"以太坊开发4-geth console命令","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E5%BC%80%E5%8F%914-geth-console%E5%91%BD%E4%BB%A4\/"},"image":["https:\/\/shuzang.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"区块链","wordcount":4103,"url":"https:\/\/shuzang.github.io\/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E5%BC%80%E5%8F%914-geth-console%E5%91%BD%E4%BB%A4\/","datePublished":"2019-03-08T10:27:00+08:00","dateModified":"2020-11-11T00:00:00+00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/shuzang.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"Shuzang"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Shuzang's Blog"><span class=header-title-pre><i class="far fa-kiss-wink-heart fa-fw"></i></span>LoveIt</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/tags/>标签 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/>关于 </a><a class=menu-item href=https://github.com/shuzang title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item language" title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
+<select class=language-select id=language-select-desktop onchange="location=this.value;"><option value=/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E5%BC%80%E5%8F%914-geth-console%E5%91%BD%E4%BB%A4/ selected>简体中文</option></select>
+</a><span class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Shuzang's Blog"><span class=header-title-pre><i class="far fa-kiss-wink-heart fa-fw"></i></span>LoveIt</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/posts/>所有文章</a><a class=menu-item href=/tags/>标签</a><a class=menu-item href=/categories/>分类</a><a class=menu-item href=/about/>关于</a><a class=menu-item href=https://github.com/shuzang title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i></a><a href=javascript:void(0); class=menu-item title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
+<select class=language-select onchange="location=this.value;"><option value=/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E5%BC%80%E5%8F%914-geth-console%E5%91%BD%E4%BB%A4/ selected>简体中文</option></select></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">以太坊开发4-geth console命令</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>Shuzang</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/><i class="far fa-folder fa-fw"></i>研究生的区块链学习之路</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2019-03-08>2019-03-08</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4103 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 9 分钟&nbsp;<span id=/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E5%BC%80%E5%8F%914-geth-console%E5%91%BD%E4%BB%A4/ class=leancloud_visitors data-flag-title="以太坊开发4-geth console命令">
+<i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+</span>&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#1-console命令>1. console命令</a><ul><li><a href=#11-简单启动>1.1 简单启动</a></li><li><a href=#12-日志控制>1.2 日志控制</a></li><li><a href=#13-重定向日志>1.3 重定向日志</a></li></ul></li><li><a href=#2-attach命令>2. attach命令</a></li><li><a href=#3-management-api>3. Management API</a><ul><li><a href=#31-admin>3.1 Admin</a><ul><li><a href=#adminaddpeerurl>admin.addPeer(url)</a></li><li><a href=#admindatadir>admin.datadir</a></li><li><a href=#adminnodeinfo>admin.nodeInfo</a></li><li><a href=#adminpeers>admin.peers</a></li><li><a href=#adminsetsolcpath>admin.setSolc(path)</a></li><li><a href=#adminstartrpchost-port-cors-apis>admin.startRPC(host, port, cors, apis)</a></li><li><a href=#adminstartwshost-port-cors-apis>admin.startWS(host, port, cors, apis)</a></li><li><a href=#adminstoprpc>admin.stopRPC()</a></li><li><a href=#adminstopws>admin.stopWS()</a></li></ul></li><li><a href=#32-debug>3.2 Debug</a></li><li><a href=#33-miner>3.3 Miner</a></li><li><a href=#34-personal>3.4 Personal</a><ul><li><a href=#personallistaccounts>personal.listAccounts</a></li><li><a href=#personalnewaccount>personal.newAccount()</a></li><li><a href=#personalunlockaccountaddress-passphrase-duration>personal.unlockAccount(address, passphrase, duration)</a></li><li><a href=#personalsendtransactiontx-passphrase>personal.sendTransaction(tx, passphrase)</a></li><li><a href=#personalsignmessage-account-password>personal.sign(message, account, [password])</a></li><li><a href=#personalecrecovermessage-signature>personal.ecRecover(message, signature)</a></li><li><a href=#personallockaccountaddress>personal.lockAccount(address)</a></li><li><a href=#personalimportrawkeykeydata-passphrase>personal.importRawKey(keydata, passphrase)</a></li></ul></li><li><a href=#35-txpool>3.5 Txpool</a><ul><li><a href=#txpoolcontent>txpool.content</a></li><li><a href=#txpoolinspect>txpool.inspect</a></li><li><a href=#txpoolstatus>txpool.status</a></li></ul></li><li><a href=#36-net和web3>3.6 net和web3</a></li></ul></li><li><a href=#四常用命令>四、常用命令</a></li></ul></nav></div></div><div class=content id=content><p>Geth Console是一个交互式的JavaScript执行环境，其中<code>></code>是命令提示符。在这个环境里也内置了一些用来操作以太坊的JavaScript对象，可以直接使用这些对象。这些对象主要包括：</p><ul><li>eth：包含一些跟操作区块链相关的方法；</li><li>net：包含一些查看p2p网络状态的方法；</li><li>admin：包含一些与管理节点相关的方法；</li><li>miner：包含启动&停止挖矿的一些方法；</li><li>personal：主要包含一些管理账户的方法；</li><li>txpool：包含一些查看交易内存池的方法；</li><li>web3：包含了以上对象，还包含一些单位换算的方法。</li></ul><h2 id=1-console命令>1. console命令</h2><h3 id=11-简单启动>1.1 简单启动</h3><p>最简单的启动方式如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ geth console
+</code></pre></td></tr></table></div></div><p>控制台启动成功后，可以看到<code>></code>提示符，等待输入控制台命令</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>&gt; 
+</code></pre></td></tr></table></div></div><p>输入<code>exit</code>退出</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>&gt; <span class=nb>exit</span>
+</code></pre></td></tr></table></div></div><h3 id=12-日志控制>1.2 日志控制</h3><p>使用<code>geth console</code>启动会在交互界面不时出现日志提示，可以将日志输出到文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>~/Desktop$ geth console 2&gt;&gt;geth.log
+</code></pre></td></tr></table></div></div><p>此时geth.log日志文件位于命令执行时的目录下，比如我执行命令在<code>~/Desktop</code>目录，geth.log文件也在这里。可以自己手动打开文件查看日志，当然也可以新开一个终端用<code>tail</code>命令查看日志</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ tail -f geth.log
+</code></pre></td></tr></table></div></div><h3 id=13-重定向日志>1.3 重定向日志</h3><p>实际上还可以将日志输出到另一个终端，也就是重定向日志。先在2号终端输入：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ tty
+dev/pts/1
+</code></pre></td></tr></table></div></div><p>获取得到终端编号，然后在1号终端输入如下命令，就可以将日志输出到2号终端</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ geth console 2&gt;&gt; /dev/pts/1
+</code></pre></td></tr></table></div></div><p>不想看到日志的话也可以选择将日志输出到空的终端</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ geth console 2&gt;&gt; /dev/null
+</code></pre></td></tr></table></div></div><p>正常的不输出日志的方式实际上并不是使用如上命令，而是使用<code>--verbosity</code>来控制日志级别，此时不输出日志的命令如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ geth --verbosity <span class=m>0</span> console
+</code></pre></td></tr></table></div></div><h2 id=2-attach命令>2. attach命令</h2><p>另一个启动geth交互式JavaScript环境的方法是连接到一个geth节点</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>geth attach ipc:<span class=o>{</span>ipc_file_path<span class=o>}</span> <span class=c1># geth.ipc 文件路径</span>
+geth attach http://191.168.1.1:8545 <span class=c1># JSONRPC 的地址</span>
+geth attach ws://191.168.1.1:8546
+</code></pre></td></tr></table></div></div><p>注意，要连接到的节点在启动时必须开启ipc服务，不然不会产生geth.ipc文件。产生的geth.ipc文件位于存放链数据的data文件下，即<code>datadir</code>命令后面跟的文件目录，和keystort文件以及geth文件位于同一级目录。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ tree ~/Desktop -L <span class=m>2</span>
+/home/shuzang/Desktop
+├── data
+│   ├── geth
+│   ├── geth.ipc
+│   ├── <span class=nb>history</span>
+│   └── keystore
+├── genesis.json
+└── geth.log
+
+<span class=m>3</span> directories, <span class=m>4</span> files
+</code></pre></td></tr></table></div></div><h2 id=3-management-api>3. Management API</h2><p>该部分翻译自：<a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs target=_blank rel="noopener noreffer">management API</a></p><p>除官方 <a href=https://github.com/ethereum/wiki/wiki/JSON-RPC target=_blank rel="noopener noreffer">DApp APIs</a> 接口外，go-ethereum还支持额外的一些Management API。与DApp API类似，这些也是使用JSON-RPC提供的，并遵循完全相同的规范。这些API正是应用在Geth提供的控制台中。</p><p>除了官方公布的DApp API（如eth，shh，<a href=https://web3js.readthedocs.io/en/1.0/getting-started.html target=_blank rel="noopener noreffer">web3</a>）之外，额外的Management API列表如下：</p><ul><li><code>admin</code>: Geth node management</li><li><code>debug</code>: Geth node debugging</li><li><code>miner</code>: Miner and <a href=https://github.com/ethereum/wiki/wiki/Ethash-DAG target=_blank rel="noopener noreffer">DAG</a> management</li><li><code>personal</code>: Account management</li><li><code>txpool</code>: Transaction pool inspection</li></ul><table><thead><tr><th>admin</th><th>debug</th><th>miner</th><th>personal</th><th>txpool</th></tr></thead><tbody><tr><td>addPeer</td><td>backtraceAt</td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#miner_setextra target=_blank rel="noopener noreffer">setExtra</a></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#personal_ecrecover target=_blank rel="noopener noreffer">ecRecover</a></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#txpool_content target=_blank rel="noopener noreffer">content</a></td></tr><tr><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#datadir target=_blank rel="noopener noreffer">datadir</a></td><td>blockProfile</td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#miner_setgasprice target=_blank rel="noopener noreffer">setGasPrice</a></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#personal_importrawkey target=_blank rel="noopener noreffer">importRawKey</a></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#txpool_inspect target=_blank rel="noopener noreffer">inspect</a></td></tr><tr><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#admin_nodeinfo target=_blank rel="noopener noreffer">nodeInfo</a></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#debug_cpuProfile target=_blank rel="noopener noreffer">cpuProfile</a></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#miner_start target=_blank rel="noopener noreffer">start</a></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#personal_listaccounts target=_blank rel="noopener noreffer">listAccounts</a></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#txpool_status target=_blank rel="noopener noreffer">status</a></td></tr><tr><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#admin_peers target=_blank rel="noopener noreffer">peers</a></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#debug_dumpblock target=_blank rel="noopener noreffer">dumpBlock</a></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#miner_stop target=_blank rel="noopener noreffer">stop</a></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#personal_lockaccount target=_blank rel="noopener noreffer">lockAccount</a></td><td></td></tr><tr><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#admin_setcolc target=_blank rel="noopener noreffer">setSolc</a></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#debug_gcStats target=_blank rel="noopener noreffer">gcStats</a></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#miner_gethashrate target=_blank rel="noopener noreffer">getHashrate</a></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#personal_newaccount target=_blank rel="noopener noreffer">newAccount</a></td><td></td></tr><tr><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#admin_startrpc target=_blank rel="noopener noreffer">startRPC</a></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#debug_getblockrlp target=_blank rel="noopener noreffer">getBlockRlp</a></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#miner_setetherbase target=_blank rel="noopener noreffer">setEtherbase</a></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#personal_unlockaccount target=_blank rel="noopener noreffer">unlockAccount</a></td><td></td></tr><tr><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#admin_startws target=_blank rel="noopener noreffer">startWS</a></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#debug_goTrace target=_blank rel="noopener noreffer">goTrace</a></td><td></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#personal_sendtransaction target=_blank rel="noopener noreffer">sendTransaction</a></td><td></td></tr><tr><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#admin_stoprpc target=_blank rel="noopener noreffer">stopRPC</a></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#debug_memStats target=_blank rel="noopener noreffer">memStats</a></td><td></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#personal_sign target=_blank rel="noopener noreffer">sign</a></td><td></td></tr><tr><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#admin_stopws target=_blank rel="noopener noreffer">stopWS</a></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#debug_seedhash target=_blank rel="noopener noreffer">seedHash</a><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#personal_sign target=_blank rel="noopener noreffer">sign</a></td><td></td><td></td><td></td></tr><tr><td></td><td>setBlockProfileRate</td><td></td><td></td><td></td></tr><tr><td></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#debug_sethead target=_blank rel="noopener noreffer">setHead</a></td><td></td><td></td><td></td></tr><tr><td></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#debug_stacks target=_blank rel="noopener noreffer">stacks</a></td><td></td><td></td><td></td></tr><tr><td></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#debug_startCPUProfile target=_blank rel="noopener noreffer">startCPUProfile</a></td><td></td><td></td><td></td></tr><tr><td></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#debug_startGoTrace target=_blank rel="noopener noreffer">startGoTrace</a></td><td></td><td></td><td></td></tr><tr><td></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#debug_stopCPUProfile target=_blank rel="noopener noreffer">stopCPUProfile</a></td><td></td><td></td><td></td></tr><tr><td></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#debug_stopGoTrace target=_blank rel="noopener noreffer">stopGoTrace</a></td><td></td><td></td><td></td></tr><tr><td></td><td>traceBlock</td><td></td><td></td><td></td></tr><tr><td></td><td>traceBlockByNumber</td><td></td><td></td><td></td></tr><tr><td></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#debug_blockbyhash target=_blank rel="noopener noreffer">traceBlockByHash</a></td><td></td><td></td><td></td></tr><tr><td></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#debug_traceblockfromfile target=_blank rel="noopener noreffer">traceBlockFromFile</a></td><td></td><td></td><td></td></tr><tr><td></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#debug_tracetransaction target=_blank rel="noopener noreffer">traceTransaction</a></td><td></td><td></td><td></td></tr><tr><td></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#debug_verbosity target=_blank rel="noopener noreffer">verbosity</a></td><td></td><td></td><td></td></tr><tr><td></td><td><a href=https://github.com/ethereum/go-ethereum/wiki/Management-APIs#debug_vmodule target=_blank rel="noopener noreffer">vmodule</a></td><td></td><td></td><td></td></tr><tr><td></td><td>writeBlockProfile</td><td></td><td></td><td></td></tr><tr><td></td><td>writeMemProfile</td><td></td><td></td><td></td></tr></tbody></table><h3 id=31-admin>3.1 Admin</h3><p><code>admin</code>API给了我们几种非标准的RPC方法，允许我们对Geth实例进行细粒度的控制，包括但不限于网络节点和RPC的端点管理。</p><h4 id=adminaddpeerurl>admin.addPeer(url)</h4><p>该方法请求添加一个新的远程节点到跟踪的静态节点列表中，节点将始终尝试保持与这些节点的连接，如果远程节点断开，则每隔一段时间尝试重连一次。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=o>&gt;</span> <span class=nx>admin</span><span class=p>.</span><span class=nx>addPeer</span><span class=p>(</span><span class=s2>&#34;enode://a979fb575495b8d6db44f750317d0f4622bf4c2aa3365d6af7c284339968eef29b69ad0dce72a4d8db5ebb4968de0e3bec910127f134779fbcb0cb6d3331163c@52.16.188.185:30303&#34;</span><span class=p>)</span>
+<span class=kc>true</span>
+</code></pre></td></tr></table></div></div><h4 id=admindatadir>admin.datadir</h4><p>用于查找正在运行的Geth节点当前用于存储的数据库的绝对路径</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=o>&gt;</span> <span class=nx>admin</span><span class=p>.</span><span class=nx>datadir</span>
+<span class=s2>&#34;/home/Karalabe/.ethereum&#34;</span>
+</code></pre></td></tr></table></div></div><h4 id=adminnodeinfo>admin.nodeInfo</h4><p>查询当前网络正在运行的Geth节点的所有已知信息，包括节点作为P2P网络参与者的本身的信息和它自己运行的应用协议（e.g. eth,les,shh,bzz）的专有信息。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=o>&gt;</span> <span class=nx>admin</span><span class=p>.</span><span class=nx>nodeInfo</span>
+<span class=p>{</span>
+  <span class=nx>enode</span><span class=o>:</span> <span class=s2>&#34;enode://44826a5d6a55f88a18298bca4773fca5749cdc3a5c9f308aa7d810e9b31123f3e7c5fba0b1d70aac5308426f47df2a128a6747040a3815cc7dd7167d03be320d@[::]:30303&#34;</span><span class=p>,</span>
+  <span class=nx>id</span><span class=o>:</span> <span class=s2>&#34;44826a5d6a55f88a18298bca4773fca5749cdc3a5c9f308aa7d810e9b31123f3e7c5fba0b1d70aac5308426f47df2a128a6747040a3815cc7dd7167d03be320d&#34;</span><span class=p>,</span>
+  <span class=nx>ip</span><span class=o>:</span> <span class=s2>&#34;::&#34;</span><span class=p>,</span>
+  <span class=nx>listenAddr</span><span class=o>:</span> <span class=s2>&#34;[::]:30303&#34;</span><span class=p>,</span>
+  <span class=nx>name</span><span class=o>:</span> <span class=s2>&#34;Geth/v1.5.0-unstable/linux/go1.6&#34;</span><span class=p>,</span>
+  <span class=nx>ports</span><span class=o>:</span> <span class=p>{</span>
+    <span class=nx>discovery</span><span class=o>:</span> <span class=mi>30303</span><span class=p>,</span>
+    <span class=nx>listener</span><span class=o>:</span> <span class=mi>30303</span>
+  <span class=p>}</span><span class=p>,</span>
+  <span class=nx>protocols</span><span class=o>:</span> <span class=p>{</span>
+    <span class=nx>eth</span><span class=o>:</span> <span class=p>{</span>
+      <span class=nx>difficulty</span><span class=o>:</span> <span class=mi>17334254859343145000</span><span class=p>,</span>
+      <span class=nx>genesis</span><span class=o>:</span> <span class=s2>&#34;0xd4e56740f876aef8c010b86a40d5f56745a118d0906a34e69aec8c0db1cb8fa3&#34;</span><span class=p>,</span>
+      <span class=nx>head</span><span class=o>:</span> <span class=s2>&#34;0xb83f73fbe6220c111136aefd27b160bf4a34085c65ba89f24246b3162257c36a&#34;</span><span class=p>,</span>
+      <span class=nx>network</span><span class=o>:</span> <span class=mi>1</span>
+    <span class=p>}</span>
+  <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h4 id=adminpeers>admin.peers</h4><p>和admin.nodeInfo相似，但查询的是所有连接的远程节点的信息</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-Javascript data-lang=Javascript><span class=o>&gt;</span> <span class=nx>admin</span><span class=p>.</span><span class=nx>peers</span>
+<span class=p>[</span><span class=p>{</span>
+    <span class=nx>caps</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;eth/61&#34;</span><span class=p>,</span> <span class=s2>&#34;eth/62&#34;</span><span class=p>,</span> <span class=s2>&#34;eth/63&#34;</span><span class=p>]</span><span class=p>,</span>
+    <span class=nx>id</span><span class=o>:</span> <span class=s2>&#34;08a6b39263470c78d3e4f58e3c997cd2e7af623afce64656cfc56480babcea7a9138f3d09d7b9879344c2d2e457679e3655d4b56eaff5fd4fd7f147bdb045124&#34;</span><span class=p>,</span>
+    <span class=nx>name</span><span class=o>:</span> <span class=s2>&#34;Geth/v1.5.0-unstable/linux/go1.5.1&#34;</span><span class=p>,</span>
+    <span class=nx>network</span><span class=o>:</span> <span class=p>{</span>
+      <span class=nx>localAddress</span><span class=o>:</span> <span class=s2>&#34;192.168.0.104:51068&#34;</span><span class=p>,</span>
+      <span class=nx>remoteAddress</span><span class=o>:</span> <span class=s2>&#34;71.62.31.72:30303&#34;</span>
+    <span class=p>}</span><span class=p>,</span>
+    <span class=nx>protocols</span><span class=o>:</span> <span class=p>{</span>
+      <span class=nx>eth</span><span class=o>:</span> <span class=p>{</span>
+        <span class=nx>difficulty</span><span class=o>:</span> <span class=mi>17334052235346465000</span><span class=p>,</span>
+        <span class=nx>head</span><span class=o>:</span> <span class=s2>&#34;5794b768dae6c6ee5366e6ca7662bdff2882576e09609bf778633e470e0e7852&#34;</span><span class=p>,</span>
+        <span class=nx>version</span><span class=o>:</span> <span class=mi>63</span>
+      <span class=p>}</span>
+    <span class=p>}</span>
+<span class=p>}</span><span class=p>,</span> <span class=cm>/* ... */</span> <span class=p>{</span>
+    <span class=nx>caps</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;eth/61&#34;</span><span class=p>,</span> <span class=s2>&#34;eth/62&#34;</span><span class=p>,</span> <span class=s2>&#34;eth/63&#34;</span><span class=p>]</span><span class=p>,</span>
+    <span class=nx>id</span><span class=o>:</span> <span class=s2>&#34;fcad9f6d3faf89a0908a11ddae9d4be3a1039108263b06c96171eb3b0f3ba85a7095a03bb65198c35a04829032d198759edfca9b63a8b69dc47a205d94fce7cc&#34;</span><span class=p>,</span>
+    <span class=nx>name</span><span class=o>:</span> <span class=s2>&#34;Geth/v1.3.5-506c9277/linux/go1.4.2&#34;</span><span class=p>,</span>
+    <span class=nx>network</span><span class=o>:</span> <span class=p>{</span>
+      <span class=nx>localAddress</span><span class=o>:</span> <span class=s2>&#34;192.168.0.104:55968&#34;</span><span class=p>,</span>
+      <span class=nx>remoteAddress</span><span class=o>:</span> <span class=s2>&#34;121.196.232.205:30303&#34;</span>
+    <span class=p>}</span><span class=p>,</span>
+    <span class=nx>protocols</span><span class=o>:</span> <span class=p>{</span>
+      <span class=nx>eth</span><span class=o>:</span> <span class=p>{</span>
+        <span class=nx>difficulty</span><span class=o>:</span> <span class=mi>17335165914080772000</span><span class=p>,</span>
+        <span class=nx>head</span><span class=o>:</span> <span class=s2>&#34;5794b768dae6c6ee5366e6ca7662bdff2882576e09609bf778633e470e0e7852&#34;</span><span class=p>,</span>
+        <span class=nx>version</span><span class=o>:</span> <span class=mi>63</span>
+      <span class=p>}</span>
+    <span class=p>}</span>
+<span class=p>}</span><span class=p>]</span>
+</code></pre></td></tr></table></div></div><h4 id=adminsetsolcpath>admin.setSolc(path)</h4><p>当调用<code>eth_compileSolidity</code>RPC方法时用来设置Solidity编译器路径，不设置的话，默认路径是<code>/usr/bin/solc</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=o>&gt;</span> <span class=nx>admin</span><span class=p>.</span><span class=nx>setSolc</span><span class=p>(</span><span class=s2>&#34;/usr/bin/solc&#34;</span><span class=p>)</span>
+<span class=s2>&#34;solc, the solidity compiler commandline interface
+</span><span class=s2> Version: 0.3.2-0/Release-Linux/g++/Interpreter
+</span><span class=s2>
+</span><span class=s2> path: /usr/bin/solc&#34;</span>
+</code></pre></td></tr></table></div></div><h4 id=adminstartrpchost-port-cors-apis>admin.startRPC(host, port, cors, apis)</h4><p>开启一个基于JSON RPC的HTTP Webserver来处理客户端请求，参数含义如下：</p><ul><li><code>host</code>: network interface to open the listener socket on (默认<code>"localhost"</code>)</li><li><code>port</code>: network port to open the listener socket on (默认<code>8545</code>)</li><li><code>cors</code>: <a href=https://en.wikipedia.org/wiki/Cross-origin_resource_sharing target=_blank rel="noopener noreffer">cross-origin resource sharing</a> header to use (默认 <code>""</code>)</li><li><code>apis</code>:通过此接口提供的API模块 (默认 <code>"eth,net,web3"</code>)</li></ul><p>返回一个布尔值表示HTTP RPC监听是否打开，任何时候只允许一个HTTP端点保持活动</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=o>&gt;</span> <span class=nx>admin</span><span class=p>.</span><span class=nx>startRPC</span><span class=p>(</span><span class=s2>&#34;127.0.0.1&#34;</span><span class=p>,</span><span class=mi>8545</span><span class=p>)</span>
+<span class=kc>true</span>
+</code></pre></td></tr></table></div></div><h4 id=adminstartwshost-port-cors-apis>admin.startWS(host, port, cors, apis)</h4><p>和RPC相似，不同的是开启的是WebSocket Websever。Example</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-Javascript data-lang=Javascript><span class=o>&gt;</span> <span class=nx>admin</span><span class=p>.</span><span class=nx>startWS</span><span class=p>(</span><span class=s2>&#34;127.0.0.1&#34;</span><span class=p>,</span> <span class=mi>8546</span><span class=p>)</span>
+<span class=kc>true</span>
+</code></pre></td></tr></table></div></div><h4 id=adminstoprpc>admin.stopRPC()</h4><p>和RPC开启对应，关闭HTTP Webserver</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-Javascript data-lang=Javascript><span class=o>&gt;</span> <span class=nx>admin</span><span class=p>.</span><span class=nx>stopRPC</span><span class=p>(</span><span class=p>)</span>
+<span class=kc>true</span>
+</code></pre></td></tr></table></div></div><h4 id=adminstopws>admin.stopWS()</h4><p>和WebSocket开启对应，关闭WebSocket Webserver</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-Javascript data-lang=Javascript><span class=o>&gt;</span> <span class=nx>admin</span><span class=p>.</span><span class=nx>stopWS</span><span class=p>(</span><span class=p>)</span>
+<span class=kc>true</span>
+</code></pre></td></tr></table></div></div><blockquote><p>Q：HTTP和WebSocket有啥区别</p><p>A：<a href=https://www.cnblogs.com/Jamie1032797633/p/9342957.html target=_blank rel="noopener noreffer">HTTP协议和WebSocket协议（一）</a>, <a href=https://www.cnblogs.com/Jamie1032797633/p/9343000.html target=_blank rel="noopener noreffer">HTTP协议和WebSocket协议（二）</a></p></blockquote><h3 id=32-debug>3.2 Debug</h3><p>提供一些非标准的RPC方法，运行我们在运行时检查、调试和设置某些调试标志</p><p>这部分的话从上面表格也看出来了，方法比较多，而且是调试用，就不细列了，用的时候查就行了。</p><h3 id=33-miner>3.3 Miner</h3><p>允许我们远程控制节点的挖矿操作并进行各种挖矿相关的设置</p><ul><li>miner.setExtra(string)：设置一个矿工挖矿时可以包含的额外数据，最大32字节</li><li>miner.setGasPrice(number)：设置挖矿时接受的最低Gas价格，低于此价格的交易不会被收集到区块</li><li>miner.start(number)：以给定数量的线程启动CPU挖矿进程，如果需要生成新的DAG</li><li>miner.stop()：停止CPU挖矿操作</li><li>miner.setEtherbase(address)：设置挖矿奖励账户地址</li></ul><h3 id=34-personal>3.4 Personal</h3><p>管理私钥</p><h4 id=personallistaccounts>personal.listAccounts</h4><p>返回密钥库中所有密钥对应的以太坊账户地址</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=o>&gt;</span> <span class=nx>personal</span><span class=p>.</span><span class=nx>listAccounts</span>
+<span class=p>[</span><span class=s2>&#34;0x5e97870f263700f46aa00d967821199b9bc5a120&#34;</span><span class=p>,</span> <span class=s2>&#34;0x3d80b31a78c30fc628f20b2c89d7ddbf6e53cedc&#34;</span><span class=p>]</span>
+</code></pre></td></tr></table></div></div><h4 id=personalnewaccount>personal.newAccount()</h4><p>生成新的私钥并将其存储在密钥库目录中。密钥文件使用给定的密码加密。返回新帐户的地址。未提供参数时，会在控制台提示输入密码。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=o>&gt;</span> <span class=nx>personal</span><span class=p>.</span><span class=nx>newAccount</span><span class=p>(</span><span class=p>)</span>
+<span class=nx>Passphrase</span><span class=o>:</span> 
+<span class=nx>Repeat</span> <span class=nx>passphrase</span><span class=o>:</span> 
+<span class=s2>&#34;0x5e97870f263700f46aa00d967821199b9bc5a120&#34;</span>
+</code></pre></td></tr></table></div></div><p>也可以直接提供参数作为密码</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=o>&gt;</span> <span class=nx>personal</span><span class=p>.</span><span class=nx>newAccount</span><span class=p>(</span><span class=s2>&#34;h4ck3r&#34;</span><span class=p>)</span>
+<span class=s2>&#34;0x3d80b31a78c30fc628f20b2c89d7ddbf6e53cedc&#34;</span>
+</code></pre></td></tr></table></div></div><h4 id=personalunlockaccountaddress-passphrase-duration>personal.unlockAccount(address, passphrase, duration)</h4><p>使用密码解密密钥库中某个地址对应的账户。使用JavaScript控制台时，密码短语和解锁持续时间都是可选的。如果密码短语未作为参数提供，控制台将以交互方式提示输入密码短语。</p><p>解锁持续时间默认为300秒，geth退出持续时间也会结束。帐户解锁时可以与eth_sign和eth_sendTransaction一起使用。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=o>&gt;</span> <span class=nx>personal</span><span class=p>.</span><span class=nx>unlockAccount</span><span class=p>(</span><span class=s2>&#34;0x5e97870f263700f46aa00d967821199b9bc5a120&#34;</span><span class=p>)</span>
+<span class=nx>Unlock</span> <span class=nx>account</span> <span class=mh>0x5e97870f263700f46aa00d967821199b9bc5a120</span>
+<span class=nx>Passphrase</span><span class=o>:</span> 
+<span class=kc>true</span>
+</code></pre></td></tr></table></div></div><p>提供密码字段和持续时间作为参数</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=o>&gt;</span> <span class=nx>personal</span><span class=p>.</span><span class=nx>unlockAccount</span><span class=p>(</span><span class=s2>&#34;0x5e97870f263700f46aa00d967821199b9bc5a120&#34;</span><span class=p>,</span> <span class=s2>&#34;foo&#34;</span><span class=p>,</span> <span class=mi>30</span><span class=p>)</span>
+<span class=kc>true</span>
+</code></pre></td></tr></table></div></div><p>如果不想将密码字段作为参数显式输入，但又想设置持续时间，如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=o>&gt;</span> <span class=nx>personal</span><span class=p>.</span><span class=nx>unlockAccount</span><span class=p>(</span><span class=s2>&#34;0x5e97870f263700f46aa00d967821199b9bc5a120&#34;</span><span class=p>,</span> <span class=kc>null</span><span class=p>,</span> <span class=mi>30</span><span class=p>)</span>
+<span class=nx>Unlock</span> <span class=nx>account</span> <span class=mh>0x5e97870f263700f46aa00d967821199b9bc5a120</span>
+<span class=nx>Passphrase</span><span class=o>:</span> 
+<span class=kc>true</span>
+</code></pre></td></tr></table></div></div><h4 id=personalsendtransactiontx-passphrase>personal.sendTransaction(tx, passphrase)</h4><p>验证给定的密码短语并提交交易。该交易与eth_sendTransaction的参数相同，并包含from地址。如果验证了密码短语可以用来解锁<code>tx.from</code>的账户，签名并发送到网络上。该帐户未在节点中全局解锁，不能在其他RPC调用中使用。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=o>&gt;</span> <span class=kd>var</span> <span class=nx>tx</span> <span class=o>=</span> <span class=p>{</span><span class=nx>from</span><span class=o>:</span> <span class=s2>&#34;0x391694e7e0b0cce554cb130d723a9d27458f9298&#34;</span><span class=p>,</span> <span class=nx>to</span><span class=o>:</span> <span class=s2>&#34;0xafa3f8684e54059998bc3a7b0d2b0da075154d66&#34;</span><span class=p>,</span> <span class=nx>value</span><span class=o>:</span> <span class=nx>web3</span><span class=p>.</span><span class=nx>toWei</span><span class=p>(</span><span class=mf>1.23</span><span class=p>,</span> <span class=s2>&#34;ether&#34;</span><span class=p>)</span><span class=p>}</span>
+<span class=kc>undefined</span>
+<span class=o>&gt;</span> <span class=nx>personal</span><span class=p>.</span><span class=nx>sendTransaction</span><span class=p>(</span><span class=nx>tx</span><span class=p>,</span> <span class=s2>&#34;passphrase&#34;</span><span class=p>)</span>
+<span class=mh>0x8474441674cdd47b35b875fd1a530b800b51a5264b9975fb21129eeb8c18582f</span>
+</code></pre></td></tr></table></div></div><h4 id=personalsignmessage-account-password>personal.sign(message, account, [password])</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=o>&gt;</span> <span class=nx>personal</span><span class=p>.</span><span class=nx>sign</span><span class=p>(</span><span class=s2>&#34;0xdeadbeaf&#34;</span><span class=p>,</span> <span class=s2>&#34;0x9b2055d370f73ec7d8a03e965129118dc8f5bf83&#34;</span><span class=p>,</span> <span class=s2>&#34;&#34;</span><span class=p>)</span>
+<span class=s2>&#34;0xa3f20717a250c2b0b729b7e5becbff67fdaef7e0699da4de7ca5895b02a170a12d887fd3b17bfdce3481f10bea41f45ba9f709d39ce8325427b57afcfc994cee1b&#34;</span>
+</code></pre></td></tr></table></div></div><h4 id=personalecrecovermessage-signature>personal.ecRecover(message, signature)</h4><p>返回与某个私钥相关联的地址，该私钥用于<code>personal.sign</code>中计算签名</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=o>&gt;</span> <span class=nx>personal</span><span class=p>.</span><span class=nx>sign</span><span class=p>(</span><span class=s2>&#34;0xdeadbeaf&#34;</span><span class=p>,</span> <span class=s2>&#34;0x9b2055d370f73ec7d8a03e965129118dc8f5bf83&#34;</span><span class=p>,</span> <span class=s2>&#34;&#34;</span><span class=p>)</span>
+<span class=s2>&#34;0xa3f20717a250c2b0b729b7e5becbff67fdaef7e0699da4de7ca5895b02a170a12d887fd3b17bfdce3481f10bea41f45ba9f709d39ce8325427b57afcfc994cee1b&#34;</span>
+<span class=o>&gt;</span> <span class=nx>personal</span><span class=p>.</span><span class=nx>ecRecover</span><span class=p>(</span><span class=s2>&#34;0xdeadbeaf&#34;</span><span class=p>,</span> <span class=s2>&#34;0xa3f20717a250c2b0b729b7e5becbff67fdaef7e0699da4de7ca5895b02a170a12d887fd3b17bfdce3481f10bea41f45ba9f709d39ce8325427b57afcfc994cee1b&#34;</span><span class=p>)</span>
+<span class=s2>&#34;0x9b2055d370f73ec7d8a03e965129118dc8f5bf83&#34;</span>
+</code></pre></td></tr></table></div></div><h4 id=personallockaccountaddress>personal.lockAccount(address)</h4><p>从内存中删除具有给定地址的私钥。该帐户不能再用于发送交易。</p><h4 id=personalimportrawkeykeydata-passphrase>personal.importRawKey(keydata, passphrase)</h4><p>将给定的未加密私钥（十六进制字符串）导入密钥存储区，并使用密码短语对其进行加密。返回新帐户的地址</p><h3 id=35-txpool>3.5 Txpool</h3><p>给我们访问交易池和排队队列中待处理交易的权限，交易池中是所有挂起的交易</p><h4 id=txpoolcontent>txpool.content</h4><p>返回交易池和待处理交易队列中的内容</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span><span class=lnt>79
+</span><span class=lnt>80
+</span><span class=lnt>81
+</span><span class=lnt>82
+</span><span class=lnt>83
+</span><span class=lnt>84
+</span><span class=lnt>85
+</span><span class=lnt>86
+</span><span class=lnt>87
+</span><span class=lnt>88
+</span><span class=lnt>89
+</span><span class=lnt>90
+</span><span class=lnt>91
+</span><span class=lnt>92
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=o>&gt;</span> <span class=nx>txpool</span><span class=p>.</span><span class=nx>content</span>
+<span class=p>{</span>
+  <span class=nx>pending</span><span class=o>:</span> <span class=p>{</span>
+    <span class=mh>0x0216d5032f356960cd3749c31ab34eeff21b3395</span><span class=o>:</span> <span class=p>{</span>
+      <span class=mi>806</span><span class=o>:</span> <span class=p>[</span><span class=p>{</span>
+        <span class=nx>blockHash</span><span class=o>:</span> <span class=s2>&#34;0x0000000000000000000000000000000000000000000000000000000000000000&#34;</span><span class=p>,</span>
+        <span class=nx>blockNumber</span><span class=o>:</span> <span class=kc>null</span><span class=p>,</span>
+        <span class=nx>from</span><span class=o>:</span> <span class=s2>&#34;0x0216d5032f356960cd3749c31ab34eeff21b3395&#34;</span><span class=p>,</span>
+        <span class=nx>gas</span><span class=o>:</span> <span class=s2>&#34;0x5208&#34;</span><span class=p>,</span>
+        <span class=nx>gasPrice</span><span class=o>:</span> <span class=s2>&#34;0xba43b7400&#34;</span><span class=p>,</span>
+        <span class=nx>hash</span><span class=o>:</span> <span class=s2>&#34;0xaf953a2d01f55cfe080c0c94150a60105e8ac3d51153058a1f03dd239dd08586&#34;</span><span class=p>,</span>
+        <span class=nx>input</span><span class=o>:</span> <span class=s2>&#34;0x&#34;</span><span class=p>,</span>
+        <span class=nx>nonce</span><span class=o>:</span> <span class=s2>&#34;0x326&#34;</span><span class=p>,</span>
+        <span class=nx>to</span><span class=o>:</span> <span class=s2>&#34;0x7f69a91a3cf4be60020fb58b893b7cbb65376db8&#34;</span><span class=p>,</span>
+        <span class=nx>transactionIndex</span><span class=o>:</span> <span class=kc>null</span><span class=p>,</span>
+        <span class=nx>value</span><span class=o>:</span> <span class=s2>&#34;0x19a99f0cf456000&#34;</span>
+      <span class=p>}</span><span class=p>]</span>
+    <span class=p>}</span><span class=p>,</span>
+    <span class=mh>0x24d407e5a0b506e1cb2fae163100b5de01f5193c</span><span class=o>:</span> <span class=p>{</span>
+      <span class=mi>34</span><span class=o>:</span> <span class=p>[</span><span class=p>{</span>
+        <span class=nx>blockHash</span><span class=o>:</span> <span class=s2>&#34;0x0000000000000000000000000000000000000000000000000000000000000000&#34;</span><span class=p>,</span>
+        <span class=nx>blockNumber</span><span class=o>:</span> <span class=kc>null</span><span class=p>,</span>
+        <span class=nx>from</span><span class=o>:</span> <span class=s2>&#34;0x24d407e5a0b506e1cb2fae163100b5de01f5193c&#34;</span><span class=p>,</span>
+        <span class=nx>gas</span><span class=o>:</span> <span class=s2>&#34;0x44c72&#34;</span><span class=p>,</span>
+        <span class=nx>gasPrice</span><span class=o>:</span> <span class=s2>&#34;0x4a817c800&#34;</span><span class=p>,</span>
+        <span class=nx>hash</span><span class=o>:</span> <span class=s2>&#34;0xb5b8b853af32226755a65ba0602f7ed0e8be2211516153b75e9ed640a7d359fe&#34;</span><span class=p>,</span>
+        <span class=nx>input</span><span class=o>:</span> <span class=s2>&#34;0xb61d27f600000000000000000000000024d407e5a0b506e1cb2fae163100b5de01f5193c00000000000000000000000000000000000000000000000053444835ec580000000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000&#34;</span><span class=p>,</span>
+        <span class=nx>nonce</span><span class=o>:</span> <span class=s2>&#34;0x22&#34;</span><span class=p>,</span>
+        <span class=nx>to</span><span class=o>:</span> <span class=s2>&#34;0x7320785200f74861b69c49e4ab32399a71b34f1a&#34;</span><span class=p>,</span>
+        <span class=nx>transactionIndex</span><span class=o>:</span> <span class=kc>null</span><span class=p>,</span>
+        <span class=nx>value</span><span class=o>:</span> <span class=s2>&#34;0x0&#34;</span>
+      <span class=p>}</span><span class=p>]</span>
+    <span class=p>}</span>
+  <span class=p>}</span><span class=p>,</span>
+  <span class=nx>queued</span><span class=o>:</span> <span class=p>{</span>
+    <span class=mh>0x976a3fc5d6f7d259ebfb4cc2ae75115475e9867c</span><span class=o>:</span> <span class=p>{</span>
+      <span class=mi>3</span><span class=o>:</span> <span class=p>[</span><span class=p>{</span>
+        <span class=nx>blockHash</span><span class=o>:</span> <span class=s2>&#34;0x0000000000000000000000000000000000000000000000000000000000000000&#34;</span><span class=p>,</span>
+        <span class=nx>blockNumber</span><span class=o>:</span> <span class=kc>null</span><span class=p>,</span>
+        <span class=nx>from</span><span class=o>:</span> <span class=s2>&#34;0x976a3fc5d6f7d259ebfb4cc2ae75115475e9867c&#34;</span><span class=p>,</span>
+        <span class=nx>gas</span><span class=o>:</span> <span class=s2>&#34;0x15f90&#34;</span><span class=p>,</span>
+        <span class=nx>gasPrice</span><span class=o>:</span> <span class=s2>&#34;0x4a817c800&#34;</span><span class=p>,</span>
+        <span class=nx>hash</span><span class=o>:</span> <span class=s2>&#34;0x57b30c59fc39a50e1cba90e3099286dfa5aaf60294a629240b5bbec6e2e66576&#34;</span><span class=p>,</span>
+        <span class=nx>input</span><span class=o>:</span> <span class=s2>&#34;0x&#34;</span><span class=p>,</span>
+        <span class=nx>nonce</span><span class=o>:</span> <span class=s2>&#34;0x3&#34;</span><span class=p>,</span>
+        <span class=nx>to</span><span class=o>:</span> <span class=s2>&#34;0x346fb27de7e7370008f5da379f74dd49f5f2f80f&#34;</span><span class=p>,</span>
+        <span class=nx>transactionIndex</span><span class=o>:</span> <span class=kc>null</span><span class=p>,</span>
+        <span class=nx>value</span><span class=o>:</span> <span class=s2>&#34;0x1f161421c8e0000&#34;</span>
+      <span class=p>}</span><span class=p>]</span>
+    <span class=p>}</span><span class=p>,</span>
+    <span class=mh>0x9b11bf0459b0c4b2f87f8cebca4cfc26f294b63a</span><span class=o>:</span> <span class=p>{</span>
+      <span class=mi>2</span><span class=o>:</span> <span class=p>[</span><span class=p>{</span>
+        <span class=nx>blockHash</span><span class=o>:</span> <span class=s2>&#34;0x0000000000000000000000000000000000000000000000000000000000000000&#34;</span><span class=p>,</span>
+        <span class=nx>blockNumber</span><span class=o>:</span> <span class=kc>null</span><span class=p>,</span>
+        <span class=nx>from</span><span class=o>:</span> <span class=s2>&#34;0x9b11bf0459b0c4b2f87f8cebca4cfc26f294b63a&#34;</span><span class=p>,</span>
+        <span class=nx>gas</span><span class=o>:</span> <span class=s2>&#34;0x15f90&#34;</span><span class=p>,</span>
+        <span class=nx>gasPrice</span><span class=o>:</span> <span class=s2>&#34;0xba43b7400&#34;</span><span class=p>,</span>
+        <span class=nx>hash</span><span class=o>:</span> <span class=s2>&#34;0x3a3c0698552eec2455ed3190eac3996feccc806970a4a056106deaf6ceb1e5e3&#34;</span><span class=p>,</span>
+        <span class=nx>input</span><span class=o>:</span> <span class=s2>&#34;0x&#34;</span><span class=p>,</span>
+        <span class=nx>nonce</span><span class=o>:</span> <span class=s2>&#34;0x2&#34;</span><span class=p>,</span>
+        <span class=nx>to</span><span class=o>:</span> <span class=s2>&#34;0x24a461f25ee6a318bdef7f33de634a67bb67ac9d&#34;</span><span class=p>,</span>
+        <span class=nx>transactionIndex</span><span class=o>:</span> <span class=kc>null</span><span class=p>,</span>
+        <span class=nx>value</span><span class=o>:</span> <span class=s2>&#34;0xebec21ee1da40000&#34;</span>
+      <span class=p>}</span><span class=p>]</span><span class=p>,</span>
+      <span class=mi>6</span><span class=o>:</span> <span class=p>[</span><span class=p>{</span>
+        <span class=nx>blockHash</span><span class=o>:</span> <span class=s2>&#34;0x0000000000000000000000000000000000000000000000000000000000000000&#34;</span><span class=p>,</span>
+        <span class=nx>blockNumber</span><span class=o>:</span> <span class=kc>null</span><span class=p>,</span>
+        <span class=nx>from</span><span class=o>:</span> <span class=s2>&#34;0x9b11bf0459b0c4b2f87f8cebca4cfc26f294b63a&#34;</span><span class=p>,</span>
+        <span class=nx>gas</span><span class=o>:</span> <span class=s2>&#34;0x15f90&#34;</span><span class=p>,</span>
+        <span class=nx>gasPrice</span><span class=o>:</span> <span class=s2>&#34;0x4a817c800&#34;</span><span class=p>,</span>
+        <span class=nx>hash</span><span class=o>:</span> <span class=s2>&#34;0xbbcd1e45eae3b859203a04be7d6e1d7b03b222ec1d66dfcc8011dd39794b147e&#34;</span><span class=p>,</span>
+        <span class=nx>input</span><span class=o>:</span> <span class=s2>&#34;0x&#34;</span><span class=p>,</span>
+        <span class=nx>nonce</span><span class=o>:</span> <span class=s2>&#34;0x6&#34;</span><span class=p>,</span>
+        <span class=nx>to</span><span class=o>:</span> <span class=s2>&#34;0x6368f3f8c2b42435d6c136757382e4a59436a681&#34;</span><span class=p>,</span>
+        <span class=nx>transactionIndex</span><span class=o>:</span> <span class=kc>null</span><span class=p>,</span>
+        <span class=nx>value</span><span class=o>:</span> <span class=s2>&#34;0xf9a951af55470000&#34;</span>
+      <span class=p>}</span><span class=p>,</span> <span class=p>{</span>
+        <span class=nx>blockHash</span><span class=o>:</span> <span class=s2>&#34;0x0000000000000000000000000000000000000000000000000000000000000000&#34;</span><span class=p>,</span>
+        <span class=nx>blockNumber</span><span class=o>:</span> <span class=kc>null</span><span class=p>,</span>
+        <span class=nx>from</span><span class=o>:</span> <span class=s2>&#34;0x9b11bf0459b0c4b2f87f8cebca4cfc26f294b63a&#34;</span><span class=p>,</span>
+        <span class=nx>gas</span><span class=o>:</span> <span class=s2>&#34;0x15f90&#34;</span><span class=p>,</span>
+        <span class=nx>gasPrice</span><span class=o>:</span> <span class=s2>&#34;0x4a817c800&#34;</span><span class=p>,</span>
+        <span class=nx>hash</span><span class=o>:</span> <span class=s2>&#34;0x60803251d43f072904dc3a2d6a084701cd35b4985790baaf8a8f76696041b272&#34;</span><span class=p>,</span>
+        <span class=nx>input</span><span class=o>:</span> <span class=s2>&#34;0x&#34;</span><span class=p>,</span>
+        <span class=nx>nonce</span><span class=o>:</span> <span class=s2>&#34;0x6&#34;</span><span class=p>,</span>
+        <span class=nx>to</span><span class=o>:</span> <span class=s2>&#34;0x8db7b4e0ecb095fbd01dffa62010801296a9ac78&#34;</span><span class=p>,</span>
+        <span class=nx>transactionIndex</span><span class=o>:</span> <span class=kc>null</span><span class=p>,</span>
+        <span class=nx>value</span><span class=o>:</span> <span class=s2>&#34;0xebe866f5f0a06000&#34;</span>
+      <span class=p>}</span><span class=p>]</span><span class=p>,</span>
+    <span class=p>}</span>
+  <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h4 id=txpoolinspect>txpool.inspect</h4><p>和<code>txpool.content</code>相似，不同的是只列出所有交易摘要，而<code>txpool.content</code>是列出前几个交易的详细内容</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=o>&gt;</span> <span class=nx>txpool</span><span class=p>.</span><span class=nx>inspect</span>
+<span class=p>{</span>
+  <span class=nx>pending</span><span class=o>:</span> <span class=p>{</span>
+    <span class=mh>0x26588a9301b0428d95e6fc3a5024fce8bec12d51</span><span class=o>:</span> <span class=p>{</span>
+      <span class=mi>31813</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;0x3375ee30428b2a71c428afa5e89e427905f95f7e: 0 wei + 500000 × 20000000000 gas&#34;</span><span class=p>]</span>
+    <span class=p>}</span><span class=p>,</span>
+    <span class=mh>0x2a65aca4d5fc5b5c859090a6c34d164135398226</span><span class=o>:</span> <span class=p>{</span>
+      <span class=mi>563662</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;0x958c1fa64b34db746925c6f8a3dd81128e40355e: 1051546810000000000 wei + 90000 × 20000000000 gas&#34;</span><span class=p>]</span><span class=p>,</span>
+      <span class=mi>563663</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;0x77517b1491a0299a44d668473411676f94e97e34: 1051190740000000000 wei + 90000 × 20000000000 gas&#34;</span><span class=p>]</span><span class=p>,</span>
+      <span class=mi>563664</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;0x3e2a7fe169c8f8eee251bb00d9fb6d304ce07d3a: 1050828950000000000 wei + 90000 × 20000000000 gas&#34;</span><span class=p>]</span><span class=p>,</span>
+      <span class=mi>563665</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;0xaf6c4695da477f8c663ea2d8b768ad82cb6a8522: 1050544770000000000 wei + 90000 × 20000000000 gas&#34;</span><span class=p>]</span><span class=p>,</span>
+      <span class=mi>563666</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;0x139b148094c50f4d20b01caf21b85edb711574db: 1048598530000000000 wei + 90000 × 20000000000 gas&#34;</span><span class=p>]</span><span class=p>,</span>
+      <span class=mi>563667</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;0x48b3bd66770b0d1eecefce090dafee36257538ae: 1048367260000000000 wei + 90000 × 20000000000 gas&#34;</span><span class=p>]</span><span class=p>,</span>
+      <span class=mi>563668</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;0x468569500925d53e06dd0993014ad166fd7dd381: 1048126690000000000 wei + 90000 × 20000000000 gas&#34;</span><span class=p>]</span><span class=p>,</span>
+      <span class=mi>563669</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;0x3dcb4c90477a4b8ff7190b79b524773cbe3be661: 1047965690000000000 wei + 90000 × 20000000000 gas&#34;</span><span class=p>]</span><span class=p>,</span>
+      <span class=mi>563670</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;0x6dfef5bc94b031407ffe71ae8076ca0fbf190963: 1047859050000000000 wei + 90000 × 20000000000 gas&#34;</span><span class=p>]</span>
+    <span class=p>}</span><span class=p>,</span>
+    <span class=mh>0x9174e688d7de157c5c0583df424eaab2676ac162</span><span class=o>:</span> <span class=p>{</span>
+      <span class=mi>3</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;0xbb9bc244d798123fde783fcc1c72d3bb8c189413: 30000000000000000000 wei + 85000 × 21000000000 gas&#34;</span><span class=p>]</span>
+    <span class=p>}</span><span class=p>,</span>
+    <span class=mh>0xb18f9d01323e150096650ab989cfecd39d757aec</span><span class=o>:</span> <span class=p>{</span>
+      <span class=mi>777</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;0xcd79c72690750f079ae6ab6ccd7e7aedc03c7720: 0 wei + 1000000 × 20000000000 gas&#34;</span><span class=p>]</span>
+    <span class=p>}</span><span class=p>,</span>
+    <span class=mh>0xb2916c870cf66967b6510b76c07e9d13a5d23514</span><span class=o>:</span> <span class=p>{</span>
+      <span class=mi>2</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;0x576f25199d60982a8f31a8dff4da8acb982e6aba: 26000000000000000000 wei + 90000 × 20000000000 gas&#34;</span><span class=p>]</span>
+    <span class=p>}</span><span class=p>,</span>
+    <span class=mh>0xbc0ca4f217e052753614d6b019948824d0d8688b</span><span class=o>:</span> <span class=p>{</span>
+      <span class=mi>0</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;0x2910543af39aba0cd09dbb2d50200b3e800a63d2: 1000000000000000000 wei + 50000 × 1171602790622 gas&#34;</span><span class=p>]</span>
+    <span class=p>}</span><span class=p>,</span>
+    <span class=mh>0xea674fdde714fd979de3edf0f56aa9716b898ec8</span><span class=o>:</span> <span class=p>{</span>
+      <span class=mi>70148</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;0xe39c55ead9f997f7fa20ebe40fb4649943d7db66: 1000767667434026200 wei + 90000 × 20000000000 gas&#34;</span><span class=p>]</span>
+    <span class=p>}</span>
+  <span class=p>}</span><span class=p>,</span>
+  <span class=nx>queued</span><span class=o>:</span> <span class=p>{</span>
+    <span class=mh>0x0f6000de1578619320aba5e392706b131fb1de6f</span><span class=o>:</span> <span class=p>{</span>
+      <span class=mi>6</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;0x8383534d0bcd0186d326c993031311c0ac0d9b2d: 9000000000000000000 wei + 21000 × 20000000000 gas&#34;</span><span class=p>]</span>
+    <span class=p>}</span><span class=p>,</span>
+    <span class=mh>0x5b30608c678e1ac464a8994c3b33e5cdf3497112</span><span class=o>:</span> <span class=p>{</span>
+      <span class=mi>6</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;0x9773547e27f8303c87089dc42d9288aa2b9d8f06: 50000000000000000000 wei + 90000 × 50000000000 gas&#34;</span><span class=p>]</span>
+    <span class=p>}</span><span class=p>,</span>
+    <span class=mh>0x976a3fc5d6f7d259ebfb4cc2ae75115475e9867c</span><span class=o>:</span> <span class=p>{</span>
+      <span class=mi>3</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;0x346fb27de7e7370008f5da379f74dd49f5f2f80f: 140000000000000000 wei + 90000 × 20000000000 gas&#34;</span><span class=p>]</span>
+    <span class=p>}</span><span class=p>,</span>
+    <span class=mh>0x9b11bf0459b0c4b2f87f8cebca4cfc26f294b63a</span><span class=o>:</span> <span class=p>{</span>
+      <span class=mi>2</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;0x24a461f25ee6a318bdef7f33de634a67bb67ac9d: 17000000000000000000 wei + 90000 × 50000000000 gas&#34;</span><span class=p>]</span><span class=p>,</span>
+      <span class=mi>6</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;0x6368f3f8c2b42435d6c136757382e4a59436a681: 17990000000000000000 wei + 90000 × 20000000000 gas&#34;</span><span class=p>,</span> <span class=s2>&#34;0x8db7b4e0ecb095fbd01dffa62010801296a9ac78: 16998950000000000000 wei + 90000 × 20000000000 gas&#34;</span><span class=p>]</span><span class=p>,</span>
+      <span class=mi>7</span><span class=o>:</span> <span class=p>[</span><span class=s2>&#34;0x6368f3f8c2b42435d6c136757382e4a59436a681: 17900000000000000000 wei + 90000 × 20000000000 gas&#34;</span><span class=p>]</span>
+    <span class=p>}</span>
+  <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h4 id=txpoolstatus>txpool.status</h4><p>和前两个相比更简单，只返回交易数目</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-javascript data-lang=javascript><span class=o>&gt;</span> <span class=nx>txpool</span><span class=p>.</span><span class=nx>status</span>
+<span class=p>{</span>
+  <span class=nx>pending</span><span class=o>:</span> <span class=mi>10</span><span class=p>,</span>
+  <span class=nx>queued</span><span class=o>:</span> <span class=mi>7</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h3 id=36-net和web3>3.6 net和web3</h3><p>这两个也有使用，但是没找到Javascript控制台下命令格式的具体说明</p><h2 id=四常用命令>四、常用命令</h2><ul><li>personal.newAccount()：创建账户；</li><li>personal.unlockAccount()：解锁账户；</li><li>eth.accounts：枚举系统中的账户；</li><li>eth.getBalance()：查看账户余额，返回值的单位是 Wei（Wei 是以太坊中最小货币面额单位，类似比特币中的聪，1 ether = 10^18 Wei）；</li><li>eth.blockNumber：列出区块总数；</li><li>eth.getTransaction()：获取交易；</li><li>eth.getBlock()：获取区块；</li><li>miner.start()：开始挖矿；</li><li>miner.stop()：停止挖矿；</li><li>web3.fromWei()：Wei 换算成以太币；</li><li>web3.toWei()：以太币换算成 Wei；</li><li>txpool.status：交易池中的状态；</li><li>admin.addPeer()：连接到其他节点；</li></ul></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2020-11-11</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E5%BC%80%E5%8F%914-geth-console%E5%91%BD%E4%BB%A4/index.md target=_blank>阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://shuzang.github.io/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E5%BC%80%E5%8F%914-geth-console%E5%91%BD%E4%BB%A4/ data-title="以太坊开发4-geth console命令" data-hashtags=区块链><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://shuzang.github.io/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E5%BC%80%E5%8F%914-geth-console%E5%91%BD%E4%BB%A4/ data-hashtag=区块链><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://shuzang.github.io/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E5%BC%80%E5%8F%914-geth-console%E5%91%BD%E4%BB%A4/ data-title="以太坊开发4-geth console命令"><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://shuzang.github.io/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E5%BC%80%E5%8F%914-geth-console%E5%91%BD%E4%BB%A4/ data-title="以太坊开发4-geth console命令"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://shuzang.github.io/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E5%BC%80%E5%8F%914-geth-console%E5%91%BD%E4%BB%A4/ data-title="以太坊开发4-geth console命令"><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/>区块链</a></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E5%BC%80%E5%8F%913-geth%E5%AE%A2%E6%88%B7%E7%AB%AF%E5%91%BD%E4%BB%A4/ class=prev rel=prev title=以太坊开发3-geth客户端命令><i class="fas fa-angle-left fa-fw"></i>以太坊开发3-geth客户端命令</a>
+<a href=/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E5%BC%80%E5%8F%915-%E8%8A%82%E7%82%B9%E8%BF%9E%E6%8E%A5%E5%88%B0%E7%BD%91%E7%BB%9C%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/ class=next rel=next title=以太坊开发5-以太坊节点连接到网络的几种方式>以太坊开发5-以太坊节点连接到网络的几种方式<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><div id=valine class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://valine.js.org/>Valine</a>.</noscript></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.63.2">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i>LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>Shuzang</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=/lib/valine/valine.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>
