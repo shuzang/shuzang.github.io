@@ -1,690 +1,956 @@
-<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>Golang查漏补缺-程序执行时间优化 - Shuzang's Blog</title><meta name=Description content="书藏的个人博客，记录学习，记录生活"><meta property="og:title" content="Golang查漏补缺-程序执行时间优化"><meta property="og:description" content="最近在刷PAT乙级的题，因为PAT考点一般只提供C/C++或Java环境的缘故，网上找到的90%都是C++代码，剩下的又绝大部分是Java，"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.github.io/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E4%BC%98%E5%8C%96/"><meta property="og:image" content="https://shuzang.github.io/logo.png"><meta property="article:published_time" content="2019-08-16T00:00:00+00:00"><meta property="article:modified_time" content="2019-08-16T00:00:00+00:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://shuzang.github.io/logo.png"><meta name=twitter:title content="Golang查漏补缺-程序执行时间优化"><meta name=twitter:description content="最近在刷PAT乙级的题，因为PAT考点一般只提供C/C++或Java环境的缘故，网上找到的90%都是C++代码，剩下的又绝大部分是Java，"><meta name=application-name content="Shuzang's Blog"><meta name=apple-mobile-web-app-title content="Shuzang's Blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://shuzang.github.io/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E4%BC%98%E5%8C%96/><link rel=prev href=https://shuzang.github.io/%E7%A0%94%E7%A9%B6%E8%AE%B0%E5%BD%953-%E5%BC%80%E9%A2%98%E7%A1%AE%E5%AE%9A%E9%A2%98%E7%9B%AE/><link rel=next href=https://shuzang.github.io/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E5%AF%B9%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B%E6%8E%92%E5%BA%8F/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Golang查漏补缺-程序执行时间优化","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E4%BC%98%E5%8C%96\/"},"image":["https:\/\/shuzang.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"Go语法","wordcount":3727,"url":"https:\/\/shuzang.github.io\/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E4%BC%98%E5%8C%96\/","datePublished":"2019-08-16T00:00:00+00:00","dateModified":"2019-08-16T00:00:00+00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/shuzang.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"Shuzang"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Shuzang's Blog">Shuzang's Blog</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/tags/>标签 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/>关于 </a><a class=menu-item href=https://github.com/shuzang title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item language" title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
-<select class=language-select id=language-select-desktop onchange="location=this.value;"><option value=/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E4%BC%98%E5%8C%96/ selected>简体中文</option></select>
-</a><span class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
-<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Shuzang's Blog">Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
-<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/posts/>所有文章</a><a class=menu-item href=/tags/>标签</a><a class=menu-item href=/categories/>分类</a><a class=menu-item href=/about/>关于</a><a class=menu-item href=https://github.com/shuzang title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
-<i class="fas fa-adjust fa-fw"></i></a><a href=javascript:void(0); class=menu-item title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
-<select class=language-select onchange="location=this.value;"><option value=/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E4%BC%98%E5%8C%96/ selected>简体中文</option></select></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">Golang查漏补缺-程序执行时间优化</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>Shuzang</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/><i class="far fa-folder fa-fw"></i>Golang学习之路</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2019-08-16>2019-08-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3727 字&nbsp;
-<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;<span id=/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E4%BC%98%E5%8C%96/ class=leancloud_visitors data-flag-title=Golang查漏补缺-程序执行时间优化>
-<i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
-</span>&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>目录</span>
-<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#io性能>I/O性能</a></li><li><a href=#排序优化>排序优化</a></li><li><a href=#总结>总结</a></li></ul></nav></div></div><div class=content id=content><p>最近在刷PAT乙级的题，因为PAT考点一般只提供C/C++或Java环境的缘故，网上找到的90%都是C++代码，剩下的又绝大部分是Java，还有一小部分Python，其他语言还真没看到。我用go来刷题，遇到很多问题还真的只能自己慢慢琢磨，倒也很是能锻炼人。</p><p>在PAT乙级1015（德才论）和1018（锤子剪刀布）两题中，历经万难，总有测试点显示“运行超时”。仔细一想，不应该啊，go的编译执行速度应该算比较快了，比C++应该差不了多少，这也是go的优点，怎么就运行超时呢，前两天写的时候没想出来，就这么放下了，但这两天心里一直惦记着。知道今天，想到一件事，1015（德才论）还好说，涉及排序，可能算法不够好。1018（锤子剪刀布）一题中也没排序，这么就运行超时了，于是去网上找到了<a href=https://blog.csdn.net/M1M1M16/article/details/79535286 target=_blank rel="noopener noreffer">Python解法</a>，竟然过了，彻底陷入了迷惘，go的速度连Python都比不过了吗，肯定有没注意到的地方，于是开始了执行时间优化之旅。</p><p>1018（锤子剪刀布）的原始代码如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span><span class=lnt>23
-</span><span class=lnt>24
-</span><span class=lnt>25
-</span><span class=lnt>26
-</span><span class=lnt>27
-</span><span class=lnt>28
-</span><span class=lnt>29
-</span><span class=lnt>30
-</span><span class=lnt>31
-</span><span class=lnt>32
-</span><span class=lnt>33
-</span><span class=lnt>34
-</span><span class=lnt>35
-</span><span class=lnt>36
-</span><span class=lnt>37
-</span><span class=lnt>38
-</span><span class=lnt>39
-</span><span class=lnt>40
-</span><span class=lnt>41
-</span><span class=lnt>42
-</span><span class=lnt>43
-</span><span class=lnt>44
-</span><span class=lnt>45
-</span><span class=lnt>46
-</span><span class=lnt>47
-</span><span class=lnt>48
-</span><span class=lnt>49
-</span><span class=lnt>50
-</span><span class=lnt>51
-</span><span class=lnt>52
-</span><span class=lnt>53
-</span><span class=lnt>54
-</span><span class=lnt>55
-</span><span class=lnt>56
-</span><span class=lnt>57
-</span><span class=lnt>58
-</span><span class=lnt>59
-</span><span class=lnt>60
-</span><span class=lnt>61
-</span><span class=lnt>62
-</span><span class=lnt>63
-</span><span class=lnt>64
-</span><span class=lnt>65
-</span><span class=lnt>66
-</span><span class=lnt>67
-</span><span class=lnt>68
-</span><span class=lnt>69
-</span><span class=lnt>70
-</span><span class=lnt>71
-</span><span class=lnt>72
-</span><span class=lnt>73
-</span><span class=lnt>74
-</span><span class=lnt>75
-</span><span class=lnt>76
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=cm>/*题目说明
-</span><span class=cm>大家应该都会玩“锤子剪刀布”的游戏,现给出两人的交锋记录，请统计双方的胜、平、负次数，并且给出双方分别出什么手势的胜算最大。
-</span><span class=cm>
-</span><span class=cm>输入格式：
-</span><span class=cm>输入第 1 行给出正整数 N（≤10^5），即双方交锋的次数。随后 N 行，每行给出一次交锋的信息，即甲、乙双方同时给出的的手势。C 代表“锤子”、J 代表“剪刀”、B 代表“布”，第 1 个字母代表甲方，第 2 个代表乙方，中间有 1 个空格。
-</span><span class=cm>
-</span><span class=cm>输出格式：
-</span><span class=cm>输出第 1、2 行分别给出甲、乙的胜、平、负次数，数字间以 1 个空格分隔。第 3 行给出两个字母，分别代表甲、乙获胜次数最多的手势，中间有 1 个空格。如果解不唯一，则输出按字母序最小的解。
-</span><span class=cm>
-</span><span class=cm>输入样例：
-</span><span class=cm>10
-</span><span class=cm>C J
-</span><span class=cm>J B
-</span><span class=cm>C B
-</span><span class=cm>B B
-</span><span class=cm>B C
-</span><span class=cm>C C
-</span><span class=cm>C B
-</span><span class=cm>J B
-</span><span class=cm>B C
-</span><span class=cm>J J
-</span><span class=cm>输出样例：
-</span><span class=cm>5 3 2
-</span><span class=cm>2 3 5
-</span><span class=cm>B B
-</span><span class=cm>
-</span><span class=cm>时间限制: 200 ms
-</span><span class=cm>内存限制: 64 MB
-</span><span class=cm>代码长度限制: 16 KB
-</span><span class=cm>*/</span>
-<span class=kn>package</span> <span class=nx>main</span>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Golang查漏补缺-程序执行时间优化 - Shuzang&#39;s Blog</title><meta name="Description" content="书藏的个人博客，记录学习，记录生活"><meta property="og:title" content="Golang查漏补缺-程序执行时间优化" />
+<meta property="og:description" content="最近在刷PAT乙级的题，因为PAT考点一般只提供C/C&#43;&#43;或Java环境的缘故，网上找到的90%都是C&#43;&#43;代码，剩下的又绝大部分是Java，" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://shuzang.github.io/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E4%BC%98%E5%8C%96/" />
+<meta property="og:image" content="https://shuzang.github.io/logo.png"/>
+<meta property="article:published_time" content="2019-08-16T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-08-16T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://shuzang.github.io/logo.png"/>
 
-<span class=kn>import</span> <span class=s>&#34;fmt&#34;</span>
+<meta name="twitter:title" content="Golang查漏补缺-程序执行时间优化"/>
+<meta name="twitter:description" content="最近在刷PAT乙级的题，因为PAT考点一般只提供C/C&#43;&#43;或Java环境的缘故，网上找到的90%都是C&#43;&#43;代码，剩下的又绝大部分是Java，"/>
+<meta name="application-name" content="Shuzang&#39;s Blog">
+<meta name="apple-mobile-web-app-title" content="Shuzang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://shuzang.github.io/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E4%BC%98%E5%8C%96/" /><link rel="prev" href="https://shuzang.github.io/%E7%A0%94%E7%A9%B6%E8%AE%B0%E5%BD%953-%E5%BC%80%E9%A2%98%E7%A1%AE%E5%AE%9A%E9%A2%98%E7%9B%AE/" /><link rel="next" href="https://shuzang.github.io/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E5%AF%B9%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B%E6%8E%92%E5%BA%8F/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Golang查漏补缺-程序执行时间优化",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/shuzang.github.io\/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E4%BC%98%E5%8C%96\/"
+        },"image": ["https:\/\/shuzang.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Go语法","wordcount":  3727 ,
+        "url": "https:\/\/shuzang.github.io\/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E4%BC%98%E5%8C%96\/","datePublished": "2019-08-16T00:00:00+00:00","dateModified": "2019-08-16T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/shuzang.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Shuzang"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
-<span class=kd>func</span> <span class=nf>findMax</span><span class=p>(</span><span class=nx>a</span> <span class=p>[</span><span class=mi>3</span><span class=p>]</span><span class=kt>int</span><span class=p>)</span> <span class=kt>int</span> <span class=p>{</span>
-	<span class=kd>var</span> <span class=nx>max</span><span class=p>,</span> <span class=nx>index</span> <span class=kt>int</span>
-	<span class=k>for</span> <span class=nx>k</span><span class=p>,</span> <span class=nx>v</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>a</span> <span class=p>{</span>
-		<span class=k>if</span> <span class=nx>v</span> <span class=p>&gt;</span> <span class=nx>max</span> <span class=p>{</span>
-			<span class=nx>max</span> <span class=p>=</span> <span class=nx>v</span>
-			<span class=nx>index</span> <span class=p>=</span> <span class=nx>k</span>
-		<span class=p>}</span>
-	<span class=p>}</span>
-	<span class=k>return</span> <span class=nx>index</span>
-<span class=p>}</span>
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Shuzang&#39;s Blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>LoveIt</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/categories/documentation/"> Docs </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/shuzang" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E4%BC%98%E5%8C%96/" selected>English</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Shuzang&#39;s Blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>LoveIt</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/categories/documentation/" title="">Docs</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/shuzang" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E4%BC%98%E5%8C%96/" selected>English</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Golang查漏补缺-程序执行时间优化</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Shuzang</a></span>&nbsp;<span class="post-category">included in <a href="/categories/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/"><i class="far fa-folder fa-fw"></i>Golang学习之路</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2019-08-16">2019-08-16</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;3727 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;8 minutes&nbsp;<span id="/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E4%BC%98%E5%8C%96/" class="leancloud_visitors" data-flag-title="Golang查漏补缺-程序执行时间优化">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#io性能">I/O性能</a></li>
+    <li><a href="#排序优化">排序优化</a></li>
+    <li><a href="#总结">总结</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>最近在刷PAT乙级的题，因为PAT考点一般只提供C/C++或Java环境的缘故，网上找到的90%都是C++代码，剩下的又绝大部分是Java，还有一小部分Python，其他语言还真没看到。我用go来刷题，遇到很多问题还真的只能自己慢慢琢磨，倒也很是能锻炼人。</p>
+<p>在PAT乙级1015（德才论）和1018（锤子剪刀布）两题中，历经万难，总有测试点显示“运行超时”。仔细一想，不应该啊，go的编译执行速度应该算比较快了，比C++应该差不了多少，这也是go的优点，怎么就运行超时呢，前两天写的时候没想出来，就这么放下了，但这两天心里一直惦记着。知道今天，想到一件事，1015（德才论）还好说，涉及排序，可能算法不够好。1018（锤子剪刀布）一题中也没排序，这么就运行超时了，于是去网上找到了<a href="https://blog.csdn.net/M1M1M16/article/details/79535286" target="_blank" rel="noopener noreffer">Python解法</a>，竟然过了，彻底陷入了迷惘，go的速度连Python都比不过了吗，肯定有没注意到的地方，于是开始了执行时间优化之旅。</p>
+<p>1018（锤子剪刀布）的原始代码如下</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="cm">/*题目说明
+</span><span class="cm">大家应该都会玩“锤子剪刀布”的游戏,现给出两人的交锋记录，请统计双方的胜、平、负次数，并且给出双方分别出什么手势的胜算最大。
+</span><span class="cm">
+</span><span class="cm">输入格式：
+</span><span class="cm">输入第 1 行给出正整数 N（≤10^5），即双方交锋的次数。随后 N 行，每行给出一次交锋的信息，即甲、乙双方同时给出的的手势。C 代表“锤子”、J 代表“剪刀”、B 代表“布”，第 1 个字母代表甲方，第 2 个代表乙方，中间有 1 个空格。
+</span><span class="cm">
+</span><span class="cm">输出格式：
+</span><span class="cm">输出第 1、2 行分别给出甲、乙的胜、平、负次数，数字间以 1 个空格分隔。第 3 行给出两个字母，分别代表甲、乙获胜次数最多的手势，中间有 1 个空格。如果解不唯一，则输出按字母序最小的解。
+</span><span class="cm">
+</span><span class="cm">输入样例：
+</span><span class="cm">10
+</span><span class="cm">C J
+</span><span class="cm">J B
+</span><span class="cm">C B
+</span><span class="cm">B B
+</span><span class="cm">B C
+</span><span class="cm">C C
+</span><span class="cm">C B
+</span><span class="cm">J B
+</span><span class="cm">B C
+</span><span class="cm">J J
+</span><span class="cm">输出样例：
+</span><span class="cm">5 3 2
+</span><span class="cm">2 3 5
+</span><span class="cm">B B
+</span><span class="cm">
+</span><span class="cm">时间限制: 200 ms
+</span><span class="cm">内存限制: 64 MB
+</span><span class="cm">代码长度限制: 16 KB
+</span><span class="cm">*/</span>
+<span class="kn">package</span> <span class="nx">main</span>
 
-<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
-	<span class=kd>var</span> <span class=p>(</span>
-		<span class=nx>n</span>             <span class=kt>int</span>
-		<span class=nx>jiawin</span><span class=p>,</span> <span class=nx>yiwin</span> <span class=kt>int</span>
-		<span class=nx>jia</span><span class=p>,</span> <span class=nx>yi</span>       <span class=p>[</span><span class=mi>3</span><span class=p>]</span><span class=kt>int</span>
-		<span class=nx>str</span>           <span class=p>=</span> <span class=s>&#34;BCJ&#34;</span>
-	<span class=p>)</span>
-	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Scanln</span><span class=p>(</span><span class=o>&amp;</span><span class=nx>n</span><span class=p>)</span>
-	<span class=k>for</span> <span class=nx>i</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=nx>n</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span> <span class=p>{</span>
-		<span class=kd>var</span> <span class=nx>t</span> <span class=p>[</span><span class=mi>2</span><span class=p>]</span><span class=kt>string</span>
-		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Scanln</span><span class=p>(</span><span class=o>&amp;</span><span class=nx>t</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=p>,</span><span class=o>&amp;</span><span class=nx>t</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span><span class=p>)</span>
-		<span class=k>if</span> <span class=nx>t</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>==</span> <span class=s>&#34;B&#34;</span> <span class=o>&amp;&amp;</span> <span class=nx>t</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span> <span class=o>==</span> <span class=s>&#34;C&#34;</span> <span class=p>{</span>
-			<span class=nx>jia</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=o>++</span>
-		<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=nx>t</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>==</span> <span class=s>&#34;B&#34;</span> <span class=o>&amp;&amp;</span> <span class=nx>t</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span> <span class=o>==</span> <span class=s>&#34;J&#34;</span> <span class=p>{</span>
-			<span class=nx>yi</span><span class=p>[</span><span class=mi>2</span><span class=p>]</span><span class=o>++</span>
-		<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=nx>t</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>==</span> <span class=s>&#34;C&#34;</span> <span class=o>&amp;&amp;</span> <span class=nx>t</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span> <span class=o>==</span> <span class=s>&#34;B&#34;</span> <span class=p>{</span>
-			<span class=nx>yi</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=o>++</span>
-		<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=nx>t</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>==</span> <span class=s>&#34;C&#34;</span> <span class=o>&amp;&amp;</span> <span class=nx>t</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span> <span class=o>==</span> <span class=s>&#34;J&#34;</span> <span class=p>{</span>
-			<span class=nx>jia</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span><span class=o>++</span>
-		<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=nx>t</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>==</span> <span class=s>&#34;J&#34;</span> <span class=o>&amp;&amp;</span> <span class=nx>t</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span> <span class=o>==</span> <span class=s>&#34;B&#34;</span> <span class=p>{</span>
-			<span class=nx>jia</span><span class=p>[</span><span class=mi>2</span><span class=p>]</span><span class=o>++</span>
-		<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=nx>t</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>==</span> <span class=s>&#34;J&#34;</span> <span class=o>&amp;&amp;</span> <span class=nx>t</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span> <span class=o>==</span> <span class=s>&#34;C&#34;</span> <span class=p>{</span>
-			<span class=nx>yi</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span><span class=o>++</span>
-		<span class=p>}</span>
-	<span class=p>}</span>
-	<span class=nx>jiawin</span> <span class=p>=</span> <span class=nx>jia</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>+</span> <span class=nx>jia</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span> <span class=o>+</span> <span class=nx>jia</span><span class=p>[</span><span class=mi>2</span><span class=p>]</span>
-	<span class=nx>yiwin</span> <span class=p>=</span> <span class=nx>yi</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>+</span> <span class=nx>yi</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span> <span class=o>+</span> <span class=nx>yi</span><span class=p>[</span><span class=mi>2</span><span class=p>]</span>
-	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>jiawin</span><span class=p>,</span> <span class=nx>n</span><span class=o>-</span><span class=nx>jiawin</span><span class=o>-</span><span class=nx>yiwin</span><span class=p>,</span> <span class=nx>yiwin</span><span class=p>)</span>
-	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>yiwin</span><span class=p>,</span> <span class=nx>n</span><span class=o>-</span><span class=nx>jiawin</span><span class=o>-</span><span class=nx>yiwin</span><span class=p>,</span> <span class=nx>jiawin</span><span class=p>)</span>
-	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;%c %c&#34;</span><span class=p>,</span> <span class=nx>str</span><span class=p>[</span><span class=nf>findMax</span><span class=p>(</span><span class=nx>jia</span><span class=p>)</span><span class=p>]</span><span class=p>,</span> <span class=nx>str</span><span class=p>[</span><span class=nf>findMax</span><span class=p>(</span><span class=nx>yi</span><span class=p>)</span><span class=p>]</span><span class=p>)</span>
-<span class=p>}</span>
-</code></pre></td></tr></table></div></div><p>检查了半天实在找不到什么地方可以优化的，时间复杂度的大头是for循环，但能迁移出来的代码都已经迁移出来了，结果始终如下图</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1018%e5%8e%9f%e5%a7%8b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c.png data-srcset="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1018%e5%8e%9f%e5%a7%8b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c.png, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1018%e5%8e%9f%e5%a7%8b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c.png 1.5x, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1018%e5%8e%9f%e5%a7%8b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c.png 2x" data-sizes=auto alt=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1018原始代码提交结果.png title=1018原始代码提交结果></p><h2 id=io性能>I/O性能</h2><p>在google上搜go程序的执行时间怎么优化，最终在<a href=https://groups.google.com/forum/#!topic/golang-nuts/W08rFBcHKbc target=_blank rel="noopener noreffer">golang-nuts讨论组</a>发现一个靠谱的问题以及有用的回答。</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_%e4%bb%a3%e7%a0%81io%e4%bc%98%e5%8c%96.png data-srcset="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_%e4%bb%a3%e7%a0%81io%e4%bc%98%e5%8c%96.png, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_%e4%bb%a3%e7%a0%81io%e4%bc%98%e5%8c%96.png 1.5x, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_%e4%bb%a3%e7%a0%81io%e4%bc%98%e5%8c%96.png 2x" data-sizes=auto alt=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_代码io优化.png title=go代码io优化></p><p>原来是I/O读写的问题，fmt包的读写这么不省心吗，怪不得，1015和1015如果测试点是边界值的话，循环要执行10000次，I/O读写出了问题，不超时才怪。看作者在之后的讨论中说他的程序“On my system: C runs in ~50ms, python in ~125ms and go in ~450ms.”也难怪Python都能通过，go通过不了了。</p><p>按照其他人的回答，使用bufio包替换了for循环中的fmt进行读取，改进的代码如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span><span class=lnt>23
-</span><span class=lnt>24
-</span><span class=lnt>25
-</span><span class=lnt>26
-</span><span class=lnt>27
-</span><span class=lnt>28
-</span><span class=lnt>29
-</span><span class=lnt>30
-</span><span class=lnt>31
-</span><span class=lnt>32
-</span><span class=lnt>33
-</span><span class=lnt>34
-</span><span class=lnt>35
-</span><span class=lnt>36
-</span><span class=lnt>37
-</span><span class=lnt>38
-</span><span class=lnt>39
-</span><span class=lnt>40
-</span><span class=lnt>41
-</span><span class=lnt>42
-</span><span class=lnt>43
-</span><span class=lnt>44
-</span><span class=lnt>45
-</span><span class=lnt>46
-</span><span class=lnt>47
-</span><span class=lnt>48
-</span><span class=lnt>49
-</span><span class=lnt>50
-</span><span class=lnt>51
-</span><span class=lnt>52
-</span><span class=lnt>53
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+<span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
 
-<span class=kn>import</span> <span class=p>(</span>
-	<span class=s>&#34;bufio&#34;</span>
-	<span class=s>&#34;fmt&#34;</span>
-	<span class=s>&#34;os&#34;</span>
-	<span class=s>&#34;strings&#34;</span>
-<span class=p>)</span>
+<span class="kd">func</span> <span class="nf">findMax</span><span class="p">(</span><span class="nx">a</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">max</span><span class="p">,</span> <span class="nx">index</span> <span class="kt">int</span>
+	<span class="k">for</span> <span class="nx">k</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">a</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="nx">v</span> <span class="p">&gt;</span> <span class="nx">max</span> <span class="p">{</span>
+			<span class="nx">max</span> <span class="p">=</span> <span class="nx">v</span>
+			<span class="nx">index</span> <span class="p">=</span> <span class="nx">k</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">index</span>
+<span class="p">}</span>
 
-<span class=kd>func</span> <span class=nf>findMax</span><span class=p>(</span><span class=nx>a</span> <span class=p>[</span><span class=mi>3</span><span class=p>]</span><span class=kt>int</span><span class=p>)</span> <span class=kt>int</span> <span class=p>{</span>
-	<span class=kd>var</span> <span class=nx>max</span><span class=p>,</span> <span class=nx>index</span> <span class=kt>int</span>
-	<span class=k>for</span> <span class=nx>k</span><span class=p>,</span> <span class=nx>v</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>a</span> <span class=p>{</span>
-		<span class=k>if</span> <span class=nx>v</span> <span class=p>&gt;</span> <span class=nx>max</span> <span class=p>{</span>
-			<span class=nx>max</span> <span class=p>=</span> <span class=nx>v</span>
-			<span class=nx>index</span> <span class=p>=</span> <span class=nx>k</span>
-		<span class=p>}</span>
-	<span class=p>}</span>
-	<span class=k>return</span> <span class=nx>index</span>
-<span class=p>}</span>
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="p">(</span>
+		<span class="nx">n</span>             <span class="kt">int</span>
+		<span class="nx">jiawin</span><span class="p">,</span> <span class="nx">yiwin</span> <span class="kt">int</span>
+		<span class="nx">jia</span><span class="p">,</span> <span class="nx">yi</span>       <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">int</span>
+		<span class="nx">str</span>           <span class="p">=</span> <span class="s">&#34;BCJ&#34;</span>
+	<span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Scanln</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">n</span><span class="p">)</span>
+	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="kd">var</span> <span class="nx">t</span> <span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="kt">string</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Scanln</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">t</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="o">&amp;</span><span class="nx">t</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+		<span class="k">if</span> <span class="nx">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;B&#34;</span> <span class="o">&amp;&amp;</span> <span class="nx">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;C&#34;</span> <span class="p">{</span>
+			<span class="nx">jia</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">++</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;B&#34;</span> <span class="o">&amp;&amp;</span> <span class="nx">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;J&#34;</span> <span class="p">{</span>
+			<span class="nx">yi</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">++</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;C&#34;</span> <span class="o">&amp;&amp;</span> <span class="nx">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;B&#34;</span> <span class="p">{</span>
+			<span class="nx">yi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">++</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;C&#34;</span> <span class="o">&amp;&amp;</span> <span class="nx">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;J&#34;</span> <span class="p">{</span>
+			<span class="nx">jia</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">++</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;J&#34;</span> <span class="o">&amp;&amp;</span> <span class="nx">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;B&#34;</span> <span class="p">{</span>
+			<span class="nx">jia</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">++</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;J&#34;</span> <span class="o">&amp;&amp;</span> <span class="nx">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;C&#34;</span> <span class="p">{</span>
+			<span class="nx">yi</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">++</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="nx">jiawin</span> <span class="p">=</span> <span class="nx">jia</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nx">jia</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nx">jia</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+	<span class="nx">yiwin</span> <span class="p">=</span> <span class="nx">yi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nx">yi</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nx">yi</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">jiawin</span><span class="p">,</span> <span class="nx">n</span><span class="o">-</span><span class="nx">jiawin</span><span class="o">-</span><span class="nx">yiwin</span><span class="p">,</span> <span class="nx">yiwin</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">yiwin</span><span class="p">,</span> <span class="nx">n</span><span class="o">-</span><span class="nx">jiawin</span><span class="o">-</span><span class="nx">yiwin</span><span class="p">,</span> <span class="nx">jiawin</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%c %c&#34;</span><span class="p">,</span> <span class="nx">str</span><span class="p">[</span><span class="nf">findMax</span><span class="p">(</span><span class="nx">jia</span><span class="p">)],</span> <span class="nx">str</span><span class="p">[</span><span class="nf">findMax</span><span class="p">(</span><span class="nx">yi</span><span class="p">)])</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>检查了半天实在找不到什么地方可以优化的，时间复杂度的大头是for循环，但能迁移出来的代码都已经迁移出来了，结果始终如下图</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1018%e5%8e%9f%e5%a7%8b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c.png"
+        data-srcset="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1018%e5%8e%9f%e5%a7%8b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c.png, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1018%e5%8e%9f%e5%a7%8b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c.png 1.5x, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1018%e5%8e%9f%e5%a7%8b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c.png 2x"
+        data-sizes="auto"
+        alt="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1018原始代码提交结果.png"
+        title="1018原始代码提交结果" /></p>
+<h2 id="io性能">I/O性能</h2>
+<p>在google上搜go程序的执行时间怎么优化，最终在<a href="https://groups.google.com/forum/#!topic/golang-nuts/W08rFBcHKbc" target="_blank" rel="noopener noreffer">golang-nuts讨论组</a>发现一个靠谱的问题以及有用的回答。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_%e4%bb%a3%e7%a0%81io%e4%bc%98%e5%8c%96.png"
+        data-srcset="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_%e4%bb%a3%e7%a0%81io%e4%bc%98%e5%8c%96.png, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_%e4%bb%a3%e7%a0%81io%e4%bc%98%e5%8c%96.png 1.5x, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_%e4%bb%a3%e7%a0%81io%e4%bc%98%e5%8c%96.png 2x"
+        data-sizes="auto"
+        alt="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_代码io优化.png"
+        title="go代码io优化" /></p>
+<p>原来是I/O读写的问题，fmt包的读写这么不省心吗，怪不得，1015和1015如果测试点是边界值的话，循环要执行10000次，I/O读写出了问题，不超时才怪。看作者在之后的讨论中说他的程序“On my system: C runs in ~50ms, python in ~125ms and go in ~450ms.”也难怪Python都能通过，go通过不了了。</p>
+<p>按照其他人的回答，使用bufio包替换了for循环中的fmt进行读取，改进的代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
-<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
-	<span class=kd>var</span> <span class=p>(</span>
-		<span class=nx>n</span>             <span class=kt>int</span>
-		<span class=nx>jiawin</span><span class=p>,</span> <span class=nx>yiwin</span> <span class=kt>int</span>
-		<span class=nx>jia</span><span class=p>,</span> <span class=nx>yi</span>       <span class=p>[</span><span class=mi>3</span><span class=p>]</span><span class=kt>int</span>
-		<span class=nx>str</span>           <span class=p>=</span> <span class=s>&#34;BCJ&#34;</span>
-	<span class=p>)</span>
-	<span class=c1>// 用fmt读取输入会有测试点超时
-</span><span class=c1></span>	<span class=nx>inputReader</span> <span class=o>:=</span> <span class=nx>bufio</span><span class=p>.</span><span class=nf>NewReader</span><span class=p>(</span><span class=nx>os</span><span class=p>.</span><span class=nx>Stdin</span><span class=p>)</span>
-	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Scanln</span><span class=p>(</span><span class=o>&amp;</span><span class=nx>n</span><span class=p>)</span>
-	<span class=k>for</span> <span class=nx>i</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=nx>n</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span> <span class=p>{</span>
-		<span class=nx>s</span><span class=p>,</span> <span class=nx>_</span> <span class=o>:=</span> <span class=nx>inputReader</span><span class=p>.</span><span class=nf>ReadString</span><span class=p>(</span><span class=sc>&#39;\n&#39;</span><span class=p>)</span>
-		<span class=nx>t</span> <span class=o>:=</span> <span class=nx>strings</span><span class=p>.</span><span class=nf>Fields</span><span class=p>(</span><span class=nx>s</span><span class=p>)</span>
-		<span class=k>if</span> <span class=nx>t</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>==</span> <span class=s>&#34;B&#34;</span> <span class=o>&amp;&amp;</span> <span class=nx>t</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span> <span class=o>==</span> <span class=s>&#34;C&#34;</span> <span class=p>{</span>
-			<span class=nx>jia</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=o>++</span>
-		<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=nx>t</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>==</span> <span class=s>&#34;B&#34;</span> <span class=o>&amp;&amp;</span> <span class=nx>t</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span> <span class=o>==</span> <span class=s>&#34;J&#34;</span> <span class=p>{</span>
-			<span class=nx>yi</span><span class=p>[</span><span class=mi>2</span><span class=p>]</span><span class=o>++</span>
-		<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=nx>t</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>==</span> <span class=s>&#34;C&#34;</span> <span class=o>&amp;&amp;</span> <span class=nx>t</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span> <span class=o>==</span> <span class=s>&#34;B&#34;</span> <span class=p>{</span>
-			<span class=nx>yi</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=o>++</span>
-		<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=nx>t</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>==</span> <span class=s>&#34;C&#34;</span> <span class=o>&amp;&amp;</span> <span class=nx>t</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span> <span class=o>==</span> <span class=s>&#34;J&#34;</span> <span class=p>{</span>
-			<span class=nx>jia</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span><span class=o>++</span>
-		<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=nx>t</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>==</span> <span class=s>&#34;J&#34;</span> <span class=o>&amp;&amp;</span> <span class=nx>t</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span> <span class=o>==</span> <span class=s>&#34;B&#34;</span> <span class=p>{</span>
-			<span class=nx>jia</span><span class=p>[</span><span class=mi>2</span><span class=p>]</span><span class=o>++</span>
-		<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=nx>t</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>==</span> <span class=s>&#34;J&#34;</span> <span class=o>&amp;&amp;</span> <span class=nx>t</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span> <span class=o>==</span> <span class=s>&#34;C&#34;</span> <span class=p>{</span>
-			<span class=nx>yi</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span><span class=o>++</span>
-		<span class=p>}</span>
-	<span class=p>}</span>
-	<span class=nx>jiawin</span> <span class=p>=</span> <span class=nx>jia</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>+</span> <span class=nx>jia</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span> <span class=o>+</span> <span class=nx>jia</span><span class=p>[</span><span class=mi>2</span><span class=p>]</span>
-	<span class=nx>yiwin</span> <span class=p>=</span> <span class=nx>yi</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>+</span> <span class=nx>yi</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span> <span class=o>+</span> <span class=nx>yi</span><span class=p>[</span><span class=mi>2</span><span class=p>]</span>
-	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>jiawin</span><span class=p>,</span> <span class=nx>n</span><span class=o>-</span><span class=nx>jiawin</span><span class=o>-</span><span class=nx>yiwin</span><span class=p>,</span> <span class=nx>yiwin</span><span class=p>)</span>
-	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>yiwin</span><span class=p>,</span> <span class=nx>n</span><span class=o>-</span><span class=nx>jiawin</span><span class=o>-</span><span class=nx>yiwin</span><span class=p>,</span> <span class=nx>jiawin</span><span class=p>)</span>
-	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;%c %c&#34;</span><span class=p>,</span> <span class=nx>str</span><span class=p>[</span><span class=nf>findMax</span><span class=p>(</span><span class=nx>jia</span><span class=p>)</span><span class=p>]</span><span class=p>,</span> <span class=nx>str</span><span class=p>[</span><span class=nf>findMax</span><span class=p>(</span><span class=nx>yi</span><span class=p>)</span><span class=p>]</span><span class=p>)</span>
-<span class=p>}</span>
-</code></pre></td></tr></table></div></div><p>果然通过了，如下图，最后一个测试点28ms,一想想题目时间限制是200ms，从超时到28，这提升，看起来1015的德才论一题也有救了。</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1018%e6%94%b9%e8%bf%9b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c.png data-srcset="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1018%e6%94%b9%e8%bf%9b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c.png, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1018%e6%94%b9%e8%bf%9b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c.png 1.5x, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1018%e6%94%b9%e8%bf%9b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c.png 2x" data-sizes=auto alt=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1018改进代码提交结果.png title=1018改进代码提交结果></p><h2 id=排序优化>排序优化</h2><p>1018德才论的原始代码如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>  1
-</span><span class=lnt>  2
-</span><span class=lnt>  3
-</span><span class=lnt>  4
-</span><span class=lnt>  5
-</span><span class=lnt>  6
-</span><span class=lnt>  7
-</span><span class=lnt>  8
-</span><span class=lnt>  9
-</span><span class=lnt> 10
-</span><span class=lnt> 11
-</span><span class=lnt> 12
-</span><span class=lnt> 13
-</span><span class=lnt> 14
-</span><span class=lnt> 15
-</span><span class=lnt> 16
-</span><span class=lnt> 17
-</span><span class=lnt> 18
-</span><span class=lnt> 19
-</span><span class=lnt> 20
-</span><span class=lnt> 21
-</span><span class=lnt> 22
-</span><span class=lnt> 23
-</span><span class=lnt> 24
-</span><span class=lnt> 25
-</span><span class=lnt> 26
-</span><span class=lnt> 27
-</span><span class=lnt> 28
-</span><span class=lnt> 29
-</span><span class=lnt> 30
-</span><span class=lnt> 31
-</span><span class=lnt> 32
-</span><span class=lnt> 33
-</span><span class=lnt> 34
-</span><span class=lnt> 35
-</span><span class=lnt> 36
-</span><span class=lnt> 37
-</span><span class=lnt> 38
-</span><span class=lnt> 39
-</span><span class=lnt> 40
-</span><span class=lnt> 41
-</span><span class=lnt> 42
-</span><span class=lnt> 43
-</span><span class=lnt> 44
-</span><span class=lnt> 45
-</span><span class=lnt> 46
-</span><span class=lnt> 47
-</span><span class=lnt> 48
-</span><span class=lnt> 49
-</span><span class=lnt> 50
-</span><span class=lnt> 51
-</span><span class=lnt> 52
-</span><span class=lnt> 53
-</span><span class=lnt> 54
-</span><span class=lnt> 55
-</span><span class=lnt> 56
-</span><span class=lnt> 57
-</span><span class=lnt> 58
-</span><span class=lnt> 59
-</span><span class=lnt> 60
-</span><span class=lnt> 61
-</span><span class=lnt> 62
-</span><span class=lnt> 63
-</span><span class=lnt> 64
-</span><span class=lnt> 65
-</span><span class=lnt> 66
-</span><span class=lnt> 67
-</span><span class=lnt> 68
-</span><span class=lnt> 69
-</span><span class=lnt> 70
-</span><span class=lnt> 71
-</span><span class=lnt> 72
-</span><span class=lnt> 73
-</span><span class=lnt> 74
-</span><span class=lnt> 75
-</span><span class=lnt> 76
-</span><span class=lnt> 77
-</span><span class=lnt> 78
-</span><span class=lnt> 79
-</span><span class=lnt> 80
-</span><span class=lnt> 81
-</span><span class=lnt> 82
-</span><span class=lnt> 83
-</span><span class=lnt> 84
-</span><span class=lnt> 85
-</span><span class=lnt> 86
-</span><span class=lnt> 87
-</span><span class=lnt> 88
-</span><span class=lnt> 89
-</span><span class=lnt> 90
-</span><span class=lnt> 91
-</span><span class=lnt> 92
-</span><span class=lnt> 93
-</span><span class=lnt> 94
-</span><span class=lnt> 95
-</span><span class=lnt> 96
-</span><span class=lnt> 97
-</span><span class=lnt> 98
-</span><span class=lnt> 99
-</span><span class=lnt>100
-</span><span class=lnt>101
-</span><span class=lnt>102
-</span><span class=lnt>103
-</span><span class=lnt>104
-</span><span class=lnt>105
-</span><span class=lnt>106
-</span><span class=lnt>107
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=cm>/*
-</span><span class=cm>宋代史学家司马光在《资治通鉴》中有一段著名的“德才论”：“是故才德全尽谓之圣人，才德兼亡谓之愚人，德胜才谓之君子，才胜德谓之小人。凡取人之术，苟不得圣人，君子而与之，与其得小人，不若得愚人。”
-</span><span class=cm>
-</span><span class=cm>现给出一批考生的德才分数，请根据司马光的理论给出录取排名。
-</span><span class=cm>
-</span><span class=cm>输入格式：
-</span><span class=cm>输入第一行给出 3 个正整数，分别为：N（≤10^5），即考生总数；L（≥60），为录取最低分数线，即德分和才分均不低于 L 的考生才有资格被考虑录取；H（&lt;100），为优先录取线——德分和才分均不低于此线的被定义为“才德全尽”，此类考生按德才总分从高到低排序；才分不到但德分到线的一类考生属于“德胜才”，也按总分排序，但排在第一类考生之后；德才分均低于 H，但是德分不低于才分的考生属于“才德兼亡”但尚有“德胜才”者，按总分排序，但排在第二类考生之后；其他达到最低线 L 的考生也按总分排序，但排在第三类考生之后。
-</span><span class=cm>
-</span><span class=cm>随后 N 行，每行给出一位考生的信息，包括：准考证号 德分 才分，其中准考证号为 8 位整数，德才分为区间 [0, 100] 内的整数。数字间以空格分隔。
-</span><span class=cm>
-</span><span class=cm>输出格式：
-</span><span class=cm>输出第一行首先给出达到最低分数线的考生人数 M，随后 M 行，每行按照输入格式输出一位考生的信息，考生按输入中说明的规则从高到低排序。当某类考生中有多人总分相同时，按其德分降序排列；若德分也并列，则按准考证号的升序输出。
-</span><span class=cm>
-</span><span class=cm>输入样例：
-</span><span class=cm>14 60 80
-</span><span class=cm>10000001 64 90
-</span><span class=cm>10000002 90 60
-</span><span class=cm>10000011 85 80
-</span><span class=cm>10000003 85 80
-</span><span class=cm>10000004 80 85
-</span><span class=cm>10000005 82 77
-</span><span class=cm>10000006 83 76
-</span><span class=cm>10000007 90 78
-</span><span class=cm>10000008 75 79
-</span><span class=cm>10000009 59 90
-</span><span class=cm>10000010 88 45
-</span><span class=cm>10000012 80 100
-</span><span class=cm>10000013 90 99
-</span><span class=cm>10000014 66 60
-</span><span class=cm>输出样例：
-</span><span class=cm>12
-</span><span class=cm>10000013 90 99
-</span><span class=cm>10000012 80 100
-</span><span class=cm>10000003 85 80
-</span><span class=cm>10000011 85 80
-</span><span class=cm>10000004 80 85
-</span><span class=cm>10000007 90 78
-</span><span class=cm>10000006 83 76
-</span><span class=cm>10000005 82 77
-</span><span class=cm>10000002 90 60
-</span><span class=cm>10000014 66 60
-</span><span class=cm>10000008 75 79
-</span><span class=cm>10000001 64 90
-</span><span class=cm>
-</span><span class=cm>时间限制: 400 ms
-</span><span class=cm>内存限制: 64 MB
-</span><span class=cm>代码长度限制: 16 KB
-</span><span class=cm>*/</span>
-<span class=kn>package</span> <span class=nx>main</span>
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;bufio&#34;</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;os&#34;</span>
+	<span class="s">&#34;strings&#34;</span>
+<span class="p">)</span>
 
-<span class=kn>import</span> <span class=p>(</span>
-	<span class=s>&#34;fmt&#34;</span>
-<span class=p>)</span>
+<span class="kd">func</span> <span class="nf">findMax</span><span class="p">(</span><span class="nx">a</span> <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">int</span><span class="p">)</span> <span class="kt">int</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="nx">max</span><span class="p">,</span> <span class="nx">index</span> <span class="kt">int</span>
+	<span class="k">for</span> <span class="nx">k</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">a</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="nx">v</span> <span class="p">&gt;</span> <span class="nx">max</span> <span class="p">{</span>
+			<span class="nx">max</span> <span class="p">=</span> <span class="nx">v</span>
+			<span class="nx">index</span> <span class="p">=</span> <span class="nx">k</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">return</span> <span class="nx">index</span>
+<span class="p">}</span>
 
-<span class=c1>//L is student level weight
-</span><span class=c1></span><span class=kd>const</span> <span class=nx>L</span> <span class=p>=</span> <span class=mi>100000000000000</span>
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="p">(</span>
+		<span class="nx">n</span>             <span class="kt">int</span>
+		<span class="nx">jiawin</span><span class="p">,</span> <span class="nx">yiwin</span> <span class="kt">int</span>
+		<span class="nx">jia</span><span class="p">,</span> <span class="nx">yi</span>       <span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="kt">int</span>
+		<span class="nx">str</span>           <span class="p">=</span> <span class="s">&#34;BCJ&#34;</span>
+	<span class="p">)</span>
+	<span class="c1">// 用fmt读取输入会有测试点超时
+</span><span class="c1"></span>	<span class="nx">inputReader</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nf">NewReader</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stdin</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Scanln</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">n</span><span class="p">)</span>
+	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="nx">s</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">inputReader</span><span class="p">.</span><span class="nf">ReadString</span><span class="p">(</span><span class="sc">&#39;\n&#39;</span><span class="p">)</span>
+		<span class="nx">t</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Fields</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+		<span class="k">if</span> <span class="nx">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;B&#34;</span> <span class="o">&amp;&amp;</span> <span class="nx">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;C&#34;</span> <span class="p">{</span>
+			<span class="nx">jia</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">++</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;B&#34;</span> <span class="o">&amp;&amp;</span> <span class="nx">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;J&#34;</span> <span class="p">{</span>
+			<span class="nx">yi</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">++</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;C&#34;</span> <span class="o">&amp;&amp;</span> <span class="nx">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;B&#34;</span> <span class="p">{</span>
+			<span class="nx">yi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">++</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;C&#34;</span> <span class="o">&amp;&amp;</span> <span class="nx">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;J&#34;</span> <span class="p">{</span>
+			<span class="nx">jia</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">++</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;J&#34;</span> <span class="o">&amp;&amp;</span> <span class="nx">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;B&#34;</span> <span class="p">{</span>
+			<span class="nx">jia</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">++</span>
+		<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;J&#34;</span> <span class="o">&amp;&amp;</span> <span class="nx">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#34;C&#34;</span> <span class="p">{</span>
+			<span class="nx">yi</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">++</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="nx">jiawin</span> <span class="p">=</span> <span class="nx">jia</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nx">jia</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nx">jia</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+	<span class="nx">yiwin</span> <span class="p">=</span> <span class="nx">yi</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="nx">yi</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nx">yi</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">jiawin</span><span class="p">,</span> <span class="nx">n</span><span class="o">-</span><span class="nx">jiawin</span><span class="o">-</span><span class="nx">yiwin</span><span class="p">,</span> <span class="nx">yiwin</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">yiwin</span><span class="p">,</span> <span class="nx">n</span><span class="o">-</span><span class="nx">jiawin</span><span class="o">-</span><span class="nx">yiwin</span><span class="p">,</span> <span class="nx">jiawin</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%c %c&#34;</span><span class="p">,</span> <span class="nx">str</span><span class="p">[</span><span class="nf">findMax</span><span class="p">(</span><span class="nx">jia</span><span class="p">)],</span> <span class="nx">str</span><span class="p">[</span><span class="nf">findMax</span><span class="p">(</span><span class="nx">yi</span><span class="p">)])</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>果然通过了，如下图，最后一个测试点28ms,一想想题目时间限制是200ms，从超时到28，这提升，看起来1015的德才论一题也有救了。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1018%e6%94%b9%e8%bf%9b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c.png"
+        data-srcset="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1018%e6%94%b9%e8%bf%9b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c.png, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1018%e6%94%b9%e8%bf%9b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c.png 1.5x, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1018%e6%94%b9%e8%bf%9b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c.png 2x"
+        data-sizes="auto"
+        alt="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1018改进代码提交结果.png"
+        title="1018改进代码提交结果" /></p>
+<h2 id="排序优化">排序优化</h2>
+<p>1018德才论的原始代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="cm">/*
+</span><span class="cm">宋代史学家司马光在《资治通鉴》中有一段著名的“德才论”：“是故才德全尽谓之圣人，才德兼亡谓之愚人，德胜才谓之君子，才胜德谓之小人。凡取人之术，苟不得圣人，君子而与之，与其得小人，不若得愚人。”
+</span><span class="cm">
+</span><span class="cm">现给出一批考生的德才分数，请根据司马光的理论给出录取排名。
+</span><span class="cm">
+</span><span class="cm">输入格式：
+</span><span class="cm">输入第一行给出 3 个正整数，分别为：N（≤10^5），即考生总数；L（≥60），为录取最低分数线，即德分和才分均不低于 L 的考生才有资格被考虑录取；H（&lt;100），为优先录取线——德分和才分均不低于此线的被定义为“才德全尽”，此类考生按德才总分从高到低排序；才分不到但德分到线的一类考生属于“德胜才”，也按总分排序，但排在第一类考生之后；德才分均低于 H，但是德分不低于才分的考生属于“才德兼亡”但尚有“德胜才”者，按总分排序，但排在第二类考生之后；其他达到最低线 L 的考生也按总分排序，但排在第三类考生之后。
+</span><span class="cm">
+</span><span class="cm">随后 N 行，每行给出一位考生的信息，包括：准考证号 德分 才分，其中准考证号为 8 位整数，德才分为区间 [0, 100] 内的整数。数字间以空格分隔。
+</span><span class="cm">
+</span><span class="cm">输出格式：
+</span><span class="cm">输出第一行首先给出达到最低分数线的考生人数 M，随后 M 行，每行按照输入格式输出一位考生的信息，考生按输入中说明的规则从高到低排序。当某类考生中有多人总分相同时，按其德分降序排列；若德分也并列，则按准考证号的升序输出。
+</span><span class="cm">
+</span><span class="cm">输入样例：
+</span><span class="cm">14 60 80
+</span><span class="cm">10000001 64 90
+</span><span class="cm">10000002 90 60
+</span><span class="cm">10000011 85 80
+</span><span class="cm">10000003 85 80
+</span><span class="cm">10000004 80 85
+</span><span class="cm">10000005 82 77
+</span><span class="cm">10000006 83 76
+</span><span class="cm">10000007 90 78
+</span><span class="cm">10000008 75 79
+</span><span class="cm">10000009 59 90
+</span><span class="cm">10000010 88 45
+</span><span class="cm">10000012 80 100
+</span><span class="cm">10000013 90 99
+</span><span class="cm">10000014 66 60
+</span><span class="cm">输出样例：
+</span><span class="cm">12
+</span><span class="cm">10000013 90 99
+</span><span class="cm">10000012 80 100
+</span><span class="cm">10000003 85 80
+</span><span class="cm">10000011 85 80
+</span><span class="cm">10000004 80 85
+</span><span class="cm">10000007 90 78
+</span><span class="cm">10000006 83 76
+</span><span class="cm">10000005 82 77
+</span><span class="cm">10000002 90 60
+</span><span class="cm">10000014 66 60
+</span><span class="cm">10000008 75 79
+</span><span class="cm">10000001 64 90
+</span><span class="cm">
+</span><span class="cm">时间限制: 400 ms
+</span><span class="cm">内存限制: 64 MB
+</span><span class="cm">代码长度限制: 16 KB
+</span><span class="cm">*/</span>
+<span class="kn">package</span> <span class="nx">main</span>
 
-<span class=c1>//S is student grade weight
-</span><span class=c1></span><span class=kd>const</span> <span class=nx>S</span> <span class=p>=</span> <span class=mi>100000000000</span>
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+<span class="p">)</span>
 
-<span class=c1>//D is student id weight
-</span><span class=c1></span><span class=kd>const</span> <span class=nx>D</span> <span class=p>=</span> <span class=mi>100000000</span>
+<span class="c1">//L is student level weight
+</span><span class="c1"></span><span class="kd">const</span> <span class="nx">L</span> <span class="p">=</span> <span class="mi">100000000000000</span>
 
-<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
-	<span class=kd>var</span> <span class=p>(</span>
-		<span class=nx>n</span><span class=p>,</span> <span class=nx>l</span><span class=p>,</span> <span class=nx>h</span>           <span class=kt>int</span>
-		<span class=nx>id</span><span class=p>,</span> <span class=nx>de</span><span class=p>,</span> <span class=nx>cai</span>       <span class=kt>int</span>
-		<span class=nx>sum</span><span class=p>,</span> <span class=nx>level</span><span class=p>,</span> <span class=nx>count</span> <span class=kt>int</span>
-		<span class=nx>student</span>           <span class=p>[</span><span class=p>]</span><span class=kt>int64</span>
-	<span class=p>)</span>
-	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Scanln</span><span class=p>(</span><span class=o>&amp;</span><span class=nx>n</span><span class=p>,</span> <span class=o>&amp;</span><span class=nx>l</span><span class=p>,</span> <span class=o>&amp;</span><span class=nx>h</span><span class=p>)</span>
-	<span class=k>for</span> <span class=nx>i</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=nx>n</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span> <span class=p>{</span>
-		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Scanln</span><span class=p>(</span><span class=o>&amp;</span><span class=nx>id</span><span class=p>,</span> <span class=o>&amp;</span><span class=nx>de</span><span class=p>,</span> <span class=o>&amp;</span><span class=nx>cai</span><span class=p>)</span>
-		<span class=k>if</span> <span class=nx>de</span> <span class=o>&gt;=</span> <span class=nx>l</span> <span class=o>&amp;&amp;</span> <span class=nx>cai</span> <span class=o>&gt;=</span> <span class=nx>l</span> <span class=p>{</span>
-			<span class=nx>sum</span> <span class=p>=</span> <span class=nx>de</span> <span class=o>+</span> <span class=nx>cai</span>
-			<span class=k>if</span> <span class=nx>de</span> <span class=o>&gt;=</span> <span class=nx>h</span> <span class=o>&amp;&amp;</span> <span class=nx>cai</span> <span class=o>&gt;=</span> <span class=nx>h</span> <span class=p>{</span>
-				<span class=nx>level</span> <span class=p>=</span> <span class=mi>4</span>
-			<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=nx>de</span> <span class=o>&gt;=</span> <span class=nx>h</span> <span class=o>&amp;&amp;</span> <span class=nx>cai</span> <span class=p>&lt;</span> <span class=nx>h</span> <span class=p>{</span>
-				<span class=nx>level</span> <span class=p>=</span> <span class=mi>3</span>
-			<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=nx>de</span> <span class=p>&lt;</span> <span class=nx>h</span> <span class=o>&amp;&amp;</span> <span class=nx>cai</span> <span class=p>&lt;</span> <span class=nx>h</span> <span class=o>&amp;&amp;</span> <span class=nx>de</span> <span class=o>&gt;=</span> <span class=nx>cai</span> <span class=p>{</span>
-				<span class=nx>level</span> <span class=p>=</span> <span class=mi>2</span>
-			<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
-				<span class=nx>level</span> <span class=p>=</span> <span class=mi>1</span>
-			<span class=p>}</span>
-			<span class=nx>tmp</span> <span class=o>:=</span> <span class=nx>level</span><span class=o>*</span><span class=nx>L</span> <span class=o>+</span> <span class=nx>sum</span><span class=o>*</span><span class=nx>S</span> <span class=o>+</span> <span class=nx>de</span><span class=o>*</span><span class=nx>D</span> <span class=o>+</span> <span class=nx>D</span> <span class=o>-</span> <span class=nx>id</span>
-			<span class=nx>student</span> <span class=p>=</span> <span class=nb>append</span><span class=p>(</span><span class=nx>student</span><span class=p>,</span> <span class=nb>int64</span><span class=p>(</span><span class=nx>tmp</span><span class=p>)</span><span class=p>)</span>
-			<span class=nx>count</span><span class=o>++</span>
-		<span class=p>}</span>
-	<span class=p>}</span>
-	<span class=k>for</span> <span class=nx>i</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=nx>count</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span> <span class=p>{</span>
-		<span class=k>for</span> <span class=nx>j</span> <span class=o>:=</span> <span class=nx>i</span><span class=p>;</span> <span class=nx>j</span> <span class=p>&lt;</span> <span class=nx>count</span><span class=p>;</span> <span class=nx>j</span><span class=o>++</span> <span class=p>{</span>
-			<span class=k>if</span> <span class=nx>student</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span> <span class=p>&lt;</span> <span class=nx>student</span><span class=p>[</span><span class=nx>j</span><span class=p>]</span> <span class=p>{</span>
-				<span class=nx>tmp</span> <span class=o>:=</span> <span class=nx>student</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span>
-				<span class=nx>student</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span> <span class=p>=</span> <span class=nx>student</span><span class=p>[</span><span class=nx>j</span><span class=p>]</span>
-				<span class=nx>student</span><span class=p>[</span><span class=nx>j</span><span class=p>]</span> <span class=p>=</span> <span class=nx>tmp</span>
-			<span class=p>}</span>
-		<span class=p>}</span>
-	<span class=p>}</span>
-	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>count</span><span class=p>)</span>
-	<span class=k>for</span> <span class=nx>i</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=nx>count</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span> <span class=p>{</span>
-		<span class=nx>id</span> <span class=p>=</span> <span class=nb>int</span><span class=p>(</span><span class=nx>D</span> <span class=o>-</span> <span class=nx>student</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span><span class=o>%</span><span class=nx>D</span><span class=p>)</span>
-		<span class=nx>sum</span> <span class=p>=</span> <span class=nb>int</span><span class=p>(</span><span class=nx>student</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span> <span class=o>%</span> <span class=nx>L</span> <span class=o>/</span> <span class=nx>S</span><span class=p>)</span>
-		<span class=nx>de</span> <span class=p>=</span> <span class=nb>int</span><span class=p>(</span><span class=nx>student</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span> <span class=o>%</span> <span class=nx>S</span> <span class=o>/</span> <span class=nx>D</span><span class=p>)</span>
-		<span class=nx>cai</span> <span class=p>=</span> <span class=nx>sum</span> <span class=o>-</span> <span class=nx>de</span>
-		<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>id</span><span class=p>,</span> <span class=nx>de</span><span class=p>,</span> <span class=nx>cai</span><span class=p>)</span>
-	<span class=p>}</span>
-<span class=p>}</span>
-</code></pre></td></tr></table></div></div><p>其实这已经是优化过了，之前写的时候用的正规的结构体的思路，为了优化，改成这种用权重的剑走偏锋的思路。但提交结果没有丝毫改变，超时就是超时。</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015%e5%8e%9f%e5%a7%8b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c.png data-srcset="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015%e5%8e%9f%e5%a7%8b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c.png, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015%e5%8e%9f%e5%a7%8b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c.png 1.5x, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015%e5%8e%9f%e5%a7%8b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c.png 2x" data-sizes=auto alt=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015原始代码提交结果.png title=1015原始代码提交结果></p><p>改呗，第一个for循环里的输入改成用缓冲区的bufio，按1018的提升幅度，估计可以。改进部分的代码如下。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span><span class=lnt>23
-</span><span class=lnt>24
-</span><span class=lnt>25
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Scanln</span><span class=p>(</span><span class=o>&amp;</span><span class=nx>n</span><span class=p>,</span> <span class=o>&amp;</span><span class=nx>l</span><span class=p>,</span> <span class=o>&amp;</span><span class=nx>h</span><span class=p>)</span>
-	<span class=nx>inputReader</span> <span class=o>:=</span> <span class=nx>bufio</span><span class=p>.</span><span class=nf>NewReader</span><span class=p>(</span><span class=nx>os</span><span class=p>.</span><span class=nx>Stdin</span><span class=p>)</span>
-	<span class=k>for</span> <span class=nx>i</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=nx>n</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span> <span class=p>{</span>
-		<span class=nx>s</span><span class=p>,</span> <span class=nx>_</span> <span class=o>:=</span> <span class=nx>inputReader</span><span class=p>.</span><span class=nf>ReadString</span><span class=p>(</span><span class=sc>&#39;\n&#39;</span><span class=p>)</span>
-		<span class=nx>t</span> <span class=o>:=</span> <span class=nx>strings</span><span class=p>.</span><span class=nf>Fields</span><span class=p>(</span><span class=nx>s</span><span class=p>)</span>
-		<span class=nx>id</span><span class=p>,</span> <span class=nx>_</span> <span class=p>=</span> <span class=nx>strconv</span><span class=p>.</span><span class=nf>Atoi</span><span class=p>(</span><span class=nb>string</span><span class=p>(</span><span class=nx>t</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=p>)</span><span class=p>)</span>
-		<span class=nx>de</span><span class=p>,</span> <span class=nx>_</span> <span class=p>=</span> <span class=nx>strconv</span><span class=p>.</span><span class=nf>Atoi</span><span class=p>(</span><span class=nb>string</span><span class=p>(</span><span class=nx>t</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span><span class=p>)</span><span class=p>)</span>
-		<span class=nx>cai</span><span class=p>,</span> <span class=nx>_</span> <span class=p>=</span> <span class=nx>strconv</span><span class=p>.</span><span class=nf>Atoi</span><span class=p>(</span><span class=nb>string</span><span class=p>(</span><span class=nx>t</span><span class=p>[</span><span class=mi>2</span><span class=p>]</span><span class=p>)</span><span class=p>)</span>
-		<span class=c1>//fmt.Scanln(&amp;id, &amp;de, &amp;cai)
-</span><span class=c1></span>		<span class=k>if</span> <span class=nx>de</span> <span class=o>&gt;=</span> <span class=nx>l</span> <span class=o>&amp;&amp;</span> <span class=nx>cai</span> <span class=o>&gt;=</span> <span class=nx>l</span> <span class=p>{</span>
-			<span class=nx>sum</span> <span class=p>=</span> <span class=nx>de</span> <span class=o>+</span> <span class=nx>cai</span>
-			<span class=k>if</span> <span class=nx>de</span> <span class=o>&gt;=</span> <span class=nx>h</span> <span class=o>&amp;&amp;</span> <span class=nx>cai</span> <span class=o>&gt;=</span> <span class=nx>h</span> <span class=p>{</span>
-				<span class=nx>level</span> <span class=p>=</span> <span class=mi>4</span>
-			<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=nx>de</span> <span class=o>&gt;=</span> <span class=nx>h</span> <span class=o>&amp;&amp;</span> <span class=nx>cai</span> <span class=p>&lt;</span> <span class=nx>h</span> <span class=p>{</span>
-				<span class=nx>level</span> <span class=p>=</span> <span class=mi>3</span>
-			<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=nx>de</span> <span class=p>&lt;</span> <span class=nx>h</span> <span class=o>&amp;&amp;</span> <span class=nx>cai</span> <span class=p>&lt;</span> <span class=nx>h</span> <span class=o>&amp;&amp;</span> <span class=nx>de</span> <span class=o>&gt;=</span> <span class=nx>cai</span> <span class=p>{</span>
-				<span class=nx>level</span> <span class=p>=</span> <span class=mi>2</span>
-			<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
-				<span class=nx>level</span> <span class=p>=</span> <span class=mi>1</span>
-			<span class=p>}</span>
-			<span class=nx>tmp</span> <span class=o>:=</span> <span class=nx>level</span><span class=o>*</span><span class=nx>L</span> <span class=o>+</span> <span class=nx>sum</span><span class=o>*</span><span class=nx>S</span> <span class=o>+</span> <span class=nx>de</span><span class=o>*</span><span class=nx>D</span> <span class=o>+</span> <span class=nx>D</span> <span class=o>-</span> <span class=nx>id</span>
-			<span class=nx>student</span> <span class=p>=</span> <span class=nb>append</span><span class=p>(</span><span class=nx>student</span><span class=p>,</span> <span class=nb>int64</span><span class=p>(</span><span class=nx>tmp</span><span class=p>)</span><span class=p>)</span>
-			<span class=nx>count</span><span class=o>++</span>
-		<span class=p>}</span>
-	<span class=p>}</span>
-</code></pre></td></tr></table></div></div><p>第2个测试点过了，但第3，第4个还是没过。</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015%e6%94%b9%e8%bf%9b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c1.png data-srcset="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015%e6%94%b9%e8%bf%9b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c1.png, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015%e6%94%b9%e8%bf%9b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c1.png 1.5x, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015%e6%94%b9%e8%bf%9b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c1.png 2x" data-sizes=auto alt=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015改进代码提交结果1.png title=1015改进代码提交结果1></p><p>回去一看代码，得，最后一个for循环有输出，用fmt又费不少时间，继续改缓冲区，正巧这时候查到了<a href=https://zhuanlan.zhihu.com/p/73690883 target=_blank rel="noopener noreffer">GO语言基础进阶教程：bufio包</a>，分析了bufio提升文件读写效率的原因，于是参考说明改了输出，如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>count</span><span class=p>)</span>
-	<span class=nx>buf</span> <span class=o>:=</span> <span class=nx>bufio</span><span class=p>.</span><span class=nf>NewWriter</span><span class=p>(</span><span class=nx>os</span><span class=p>.</span><span class=nx>Stdout</span><span class=p>)</span>
-	<span class=k>for</span> <span class=nx>i</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=nx>count</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span> <span class=p>{</span>
-		<span class=nx>id</span> <span class=p>=</span> <span class=nb>int</span><span class=p>(</span><span class=nx>D</span> <span class=o>-</span> <span class=nx>student</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span><span class=o>%</span><span class=nx>D</span><span class=p>)</span>
-		<span class=nx>sum</span> <span class=p>=</span> <span class=nb>int</span><span class=p>(</span><span class=nx>student</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span> <span class=o>%</span> <span class=nx>L</span> <span class=o>/</span> <span class=nx>S</span><span class=p>)</span>
-		<span class=nx>de</span> <span class=p>=</span> <span class=nb>int</span><span class=p>(</span><span class=nx>student</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span> <span class=o>%</span> <span class=nx>S</span> <span class=o>/</span> <span class=nx>D</span><span class=p>)</span>
-		<span class=nx>cai</span> <span class=p>=</span> <span class=nx>sum</span> <span class=o>-</span> <span class=nx>de</span>
-		<span class=nx>buf</span><span class=p>.</span><span class=nf>WriteString</span><span class=p>(</span><span class=nx>fmt</span><span class=p>.</span><span class=nf>Sprintf</span><span class=p>(</span><span class=s>&#34;%d %d %d\n&#34;</span><span class=p>,</span> <span class=nx>id</span><span class=p>,</span> <span class=nx>de</span><span class=p>,</span> <span class=nx>cai</span><span class=p>)</span><span class=p>)</span>
-	<span class=p>}</span>
-	<span class=nx>buf</span><span class=p>.</span><span class=nf>Flush</span><span class=p>(</span><span class=p>)</span>
-</code></pre></td></tr></table></div></div><p>没怎么起作用，只是第2个测试点从290ms提升到了272ms。那就只能改排序了，程序里自己写了两层循环，本来以为能过，看来还是得用sort包。改进的完整代码如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span><span class=lnt>23
-</span><span class=lnt>24
-</span><span class=lnt>25
-</span><span class=lnt>26
-</span><span class=lnt>27
-</span><span class=lnt>28
-</span><span class=lnt>29
-</span><span class=lnt>30
-</span><span class=lnt>31
-</span><span class=lnt>32
-</span><span class=lnt>33
-</span><span class=lnt>34
-</span><span class=lnt>35
-</span><span class=lnt>36
-</span><span class=lnt>37
-</span><span class=lnt>38
-</span><span class=lnt>39
-</span><span class=lnt>40
-</span><span class=lnt>41
-</span><span class=lnt>42
-</span><span class=lnt>43
-</span><span class=lnt>44
-</span><span class=lnt>45
-</span><span class=lnt>46
-</span><span class=lnt>47
-</span><span class=lnt>48
-</span><span class=lnt>49
-</span><span class=lnt>50
-</span><span class=lnt>51
-</span><span class=lnt>52
-</span><span class=lnt>53
-</span><span class=lnt>54
-</span><span class=lnt>55
-</span><span class=lnt>56
-</span><span class=lnt>57
-</span><span class=lnt>58
-</span><span class=lnt>59
-</span><span class=lnt>60
-</span><span class=lnt>61
-</span><span class=lnt>62
-</span><span class=lnt>63
-</span><span class=lnt>64
-</span><span class=lnt>65
-</span><span class=lnt>66
-</span><span class=lnt>67
-</span><span class=lnt>68
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+<span class="c1">//S is student grade weight
+</span><span class="c1"></span><span class="kd">const</span> <span class="nx">S</span> <span class="p">=</span> <span class="mi">100000000000</span>
 
-<span class=kn>import</span> <span class=p>(</span>
-	<span class=s>&#34;bufio&#34;</span>
-	<span class=s>&#34;fmt&#34;</span>
-	<span class=s>&#34;os&#34;</span>
-	<span class=s>&#34;sort&#34;</span>
-	<span class=s>&#34;strconv&#34;</span>
-	<span class=s>&#34;strings&#34;</span>
-<span class=p>)</span>
+<span class="c1">//D is student id weight
+</span><span class="c1"></span><span class="kd">const</span> <span class="nx">D</span> <span class="p">=</span> <span class="mi">100000000</span>
 
-<span class=c1>//L is student level weight
-</span><span class=c1></span><span class=kd>const</span> <span class=nx>L</span> <span class=p>=</span> <span class=mi>100000000000000</span>
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="p">(</span>
+		<span class="nx">n</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">h</span>           <span class="kt">int</span>
+		<span class="nx">id</span><span class="p">,</span> <span class="nx">de</span><span class="p">,</span> <span class="nx">cai</span>       <span class="kt">int</span>
+		<span class="nx">sum</span><span class="p">,</span> <span class="nx">level</span><span class="p">,</span> <span class="nx">count</span> <span class="kt">int</span>
+		<span class="nx">student</span>           <span class="p">[]</span><span class="kt">int64</span>
+	<span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Scanln</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">n</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">l</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">h</span><span class="p">)</span>
+	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Scanln</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">id</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">de</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">cai</span><span class="p">)</span>
+		<span class="k">if</span> <span class="nx">de</span> <span class="o">&gt;=</span> <span class="nx">l</span> <span class="o">&amp;&amp;</span> <span class="nx">cai</span> <span class="o">&gt;=</span> <span class="nx">l</span> <span class="p">{</span>
+			<span class="nx">sum</span> <span class="p">=</span> <span class="nx">de</span> <span class="o">+</span> <span class="nx">cai</span>
+			<span class="k">if</span> <span class="nx">de</span> <span class="o">&gt;=</span> <span class="nx">h</span> <span class="o">&amp;&amp;</span> <span class="nx">cai</span> <span class="o">&gt;=</span> <span class="nx">h</span> <span class="p">{</span>
+				<span class="nx">level</span> <span class="p">=</span> <span class="mi">4</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">de</span> <span class="o">&gt;=</span> <span class="nx">h</span> <span class="o">&amp;&amp;</span> <span class="nx">cai</span> <span class="p">&lt;</span> <span class="nx">h</span> <span class="p">{</span>
+				<span class="nx">level</span> <span class="p">=</span> <span class="mi">3</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">de</span> <span class="p">&lt;</span> <span class="nx">h</span> <span class="o">&amp;&amp;</span> <span class="nx">cai</span> <span class="p">&lt;</span> <span class="nx">h</span> <span class="o">&amp;&amp;</span> <span class="nx">de</span> <span class="o">&gt;=</span> <span class="nx">cai</span> <span class="p">{</span>
+				<span class="nx">level</span> <span class="p">=</span> <span class="mi">2</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+				<span class="nx">level</span> <span class="p">=</span> <span class="mi">1</span>
+			<span class="p">}</span>
+			<span class="nx">tmp</span> <span class="o">:=</span> <span class="nx">level</span><span class="o">*</span><span class="nx">L</span> <span class="o">+</span> <span class="nx">sum</span><span class="o">*</span><span class="nx">S</span> <span class="o">+</span> <span class="nx">de</span><span class="o">*</span><span class="nx">D</span> <span class="o">+</span> <span class="nx">D</span> <span class="o">-</span> <span class="nx">id</span>
+			<span class="nx">student</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">student</span><span class="p">,</span> <span class="nb">int64</span><span class="p">(</span><span class="nx">tmp</span><span class="p">))</span>
+			<span class="nx">count</span><span class="o">++</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">count</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="nx">j</span> <span class="o">:=</span> <span class="nx">i</span><span class="p">;</span> <span class="nx">j</span> <span class="p">&lt;</span> <span class="nx">count</span><span class="p">;</span> <span class="nx">j</span><span class="o">++</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="nx">student</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">&lt;</span> <span class="nx">student</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="p">{</span>
+				<span class="nx">tmp</span> <span class="o">:=</span> <span class="nx">student</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+				<span class="nx">student</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">=</span> <span class="nx">student</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span>
+				<span class="nx">student</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span> <span class="p">=</span> <span class="nx">tmp</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">count</span><span class="p">)</span>
+	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">count</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="nx">id</span> <span class="p">=</span> <span class="nb">int</span><span class="p">(</span><span class="nx">D</span> <span class="o">-</span> <span class="nx">student</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="o">%</span><span class="nx">D</span><span class="p">)</span>
+		<span class="nx">sum</span> <span class="p">=</span> <span class="nb">int</span><span class="p">(</span><span class="nx">student</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">%</span> <span class="nx">L</span> <span class="o">/</span> <span class="nx">S</span><span class="p">)</span>
+		<span class="nx">de</span> <span class="p">=</span> <span class="nb">int</span><span class="p">(</span><span class="nx">student</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">%</span> <span class="nx">S</span> <span class="o">/</span> <span class="nx">D</span><span class="p">)</span>
+		<span class="nx">cai</span> <span class="p">=</span> <span class="nx">sum</span> <span class="o">-</span> <span class="nx">de</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">id</span><span class="p">,</span> <span class="nx">de</span><span class="p">,</span> <span class="nx">cai</span><span class="p">)</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>其实这已经是优化过了，之前写的时候用的正规的结构体的思路，为了优化，改成这种用权重的剑走偏锋的思路。但提交结果没有丝毫改变，超时就是超时。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015%e5%8e%9f%e5%a7%8b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c.png"
+        data-srcset="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015%e5%8e%9f%e5%a7%8b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c.png, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015%e5%8e%9f%e5%a7%8b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c.png 1.5x, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015%e5%8e%9f%e5%a7%8b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c.png 2x"
+        data-sizes="auto"
+        alt="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015原始代码提交结果.png"
+        title="1015原始代码提交结果" /></p>
+<p>改呗，第一个for循环里的输入改成用缓冲区的bufio，按1018的提升幅度，估计可以。改进部分的代码如下。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Scanln</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">n</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">l</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">h</span><span class="p">)</span>
+	<span class="nx">inputReader</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nf">NewReader</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stdin</span><span class="p">)</span>
+	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="nx">s</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">inputReader</span><span class="p">.</span><span class="nf">ReadString</span><span class="p">(</span><span class="sc">&#39;\n&#39;</span><span class="p">)</span>
+		<span class="nx">t</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Fields</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+		<span class="nx">id</span><span class="p">,</span> <span class="nx">_</span> <span class="p">=</span> <span class="nx">strconv</span><span class="p">.</span><span class="nf">Atoi</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+		<span class="nx">de</span><span class="p">,</span> <span class="nx">_</span> <span class="p">=</span> <span class="nx">strconv</span><span class="p">.</span><span class="nf">Atoi</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+		<span class="nx">cai</span><span class="p">,</span> <span class="nx">_</span> <span class="p">=</span> <span class="nx">strconv</span><span class="p">.</span><span class="nf">Atoi</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">t</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+		<span class="c1">//fmt.Scanln(&amp;id, &amp;de, &amp;cai)
+</span><span class="c1"></span>		<span class="k">if</span> <span class="nx">de</span> <span class="o">&gt;=</span> <span class="nx">l</span> <span class="o">&amp;&amp;</span> <span class="nx">cai</span> <span class="o">&gt;=</span> <span class="nx">l</span> <span class="p">{</span>
+			<span class="nx">sum</span> <span class="p">=</span> <span class="nx">de</span> <span class="o">+</span> <span class="nx">cai</span>
+			<span class="k">if</span> <span class="nx">de</span> <span class="o">&gt;=</span> <span class="nx">h</span> <span class="o">&amp;&amp;</span> <span class="nx">cai</span> <span class="o">&gt;=</span> <span class="nx">h</span> <span class="p">{</span>
+				<span class="nx">level</span> <span class="p">=</span> <span class="mi">4</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">de</span> <span class="o">&gt;=</span> <span class="nx">h</span> <span class="o">&amp;&amp;</span> <span class="nx">cai</span> <span class="p">&lt;</span> <span class="nx">h</span> <span class="p">{</span>
+				<span class="nx">level</span> <span class="p">=</span> <span class="mi">3</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">de</span> <span class="p">&lt;</span> <span class="nx">h</span> <span class="o">&amp;&amp;</span> <span class="nx">cai</span> <span class="p">&lt;</span> <span class="nx">h</span> <span class="o">&amp;&amp;</span> <span class="nx">de</span> <span class="o">&gt;=</span> <span class="nx">cai</span> <span class="p">{</span>
+				<span class="nx">level</span> <span class="p">=</span> <span class="mi">2</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+				<span class="nx">level</span> <span class="p">=</span> <span class="mi">1</span>
+			<span class="p">}</span>
+			<span class="nx">tmp</span> <span class="o">:=</span> <span class="nx">level</span><span class="o">*</span><span class="nx">L</span> <span class="o">+</span> <span class="nx">sum</span><span class="o">*</span><span class="nx">S</span> <span class="o">+</span> <span class="nx">de</span><span class="o">*</span><span class="nx">D</span> <span class="o">+</span> <span class="nx">D</span> <span class="o">-</span> <span class="nx">id</span>
+			<span class="nx">student</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">student</span><span class="p">,</span> <span class="nb">int64</span><span class="p">(</span><span class="nx">tmp</span><span class="p">))</span>
+			<span class="nx">count</span><span class="o">++</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>第2个测试点过了，但第3，第4个还是没过。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015%e6%94%b9%e8%bf%9b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c1.png"
+        data-srcset="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015%e6%94%b9%e8%bf%9b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c1.png, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015%e6%94%b9%e8%bf%9b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c1.png 1.5x, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015%e6%94%b9%e8%bf%9b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c1.png 2x"
+        data-sizes="auto"
+        alt="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015改进代码提交结果1.png"
+        title="1015改进代码提交结果1" /></p>
+<p>回去一看代码，得，最后一个for循环有输出，用fmt又费不少时间，继续改缓冲区，正巧这时候查到了<a href="https://zhuanlan.zhihu.com/p/73690883" target="_blank" rel="noopener noreffer">GO语言基础进阶教程：bufio包</a>，分析了bufio提升文件读写效率的原因，于是参考说明改了输出，如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go">	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">count</span><span class="p">)</span>
+	<span class="nx">buf</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nf">NewWriter</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stdout</span><span class="p">)</span>
+	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">count</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="nx">id</span> <span class="p">=</span> <span class="nb">int</span><span class="p">(</span><span class="nx">D</span> <span class="o">-</span> <span class="nx">student</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="o">%</span><span class="nx">D</span><span class="p">)</span>
+		<span class="nx">sum</span> <span class="p">=</span> <span class="nb">int</span><span class="p">(</span><span class="nx">student</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">%</span> <span class="nx">L</span> <span class="o">/</span> <span class="nx">S</span><span class="p">)</span>
+		<span class="nx">de</span> <span class="p">=</span> <span class="nb">int</span><span class="p">(</span><span class="nx">student</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">%</span> <span class="nx">S</span> <span class="o">/</span> <span class="nx">D</span><span class="p">)</span>
+		<span class="nx">cai</span> <span class="p">=</span> <span class="nx">sum</span> <span class="o">-</span> <span class="nx">de</span>
+		<span class="nx">buf</span><span class="p">.</span><span class="nf">WriteString</span><span class="p">(</span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;%d %d %d\n&#34;</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">de</span><span class="p">,</span> <span class="nx">cai</span><span class="p">))</span>
+	<span class="p">}</span>
+	<span class="nx">buf</span><span class="p">.</span><span class="nf">Flush</span><span class="p">()</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>没怎么起作用，只是第2个测试点从290ms提升到了272ms。那就只能改排序了，程序里自己写了两层循环，本来以为能过，看来还是得用sort包。改进的完整代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
 
-<span class=c1>//S is student grade weight
-</span><span class=c1></span><span class=kd>const</span> <span class=nx>S</span> <span class=p>=</span> <span class=mi>100000000000</span>
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;bufio&#34;</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;os&#34;</span>
+	<span class="s">&#34;sort&#34;</span>
+	<span class="s">&#34;strconv&#34;</span>
+	<span class="s">&#34;strings&#34;</span>
+<span class="p">)</span>
 
-<span class=c1>//D is student id weight
-</span><span class=c1></span><span class=kd>const</span> <span class=nx>D</span> <span class=p>=</span> <span class=mi>100000000</span>
+<span class="c1">//L is student level weight
+</span><span class="c1"></span><span class="kd">const</span> <span class="nx">L</span> <span class="p">=</span> <span class="mi">100000000000000</span>
 
-<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
-	<span class=kd>var</span> <span class=p>(</span>
-		<span class=nx>n</span><span class=p>,</span> <span class=nx>l</span><span class=p>,</span> <span class=nx>h</span>           <span class=kt>int</span>
-		<span class=nx>id</span><span class=p>,</span> <span class=nx>de</span><span class=p>,</span> <span class=nx>cai</span>       <span class=kt>int</span>
-		<span class=nx>sum</span><span class=p>,</span> <span class=nx>level</span><span class=p>,</span> <span class=nx>count</span> <span class=kt>int</span>
-		<span class=nx>student</span>           <span class=p>[</span><span class=p>]</span><span class=kt>int64</span>
-	<span class=p>)</span>
-	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Scanln</span><span class=p>(</span><span class=o>&amp;</span><span class=nx>n</span><span class=p>,</span> <span class=o>&amp;</span><span class=nx>l</span><span class=p>,</span> <span class=o>&amp;</span><span class=nx>h</span><span class=p>)</span>
-	<span class=nx>inputReader</span> <span class=o>:=</span> <span class=nx>bufio</span><span class=p>.</span><span class=nf>NewReader</span><span class=p>(</span><span class=nx>os</span><span class=p>.</span><span class=nx>Stdin</span><span class=p>)</span>
-	<span class=k>for</span> <span class=nx>i</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=nx>n</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span> <span class=p>{</span>
-		<span class=nx>s</span><span class=p>,</span> <span class=nx>_</span> <span class=o>:=</span> <span class=nx>inputReader</span><span class=p>.</span><span class=nf>ReadString</span><span class=p>(</span><span class=sc>&#39;\n&#39;</span><span class=p>)</span>
-		<span class=nx>t</span> <span class=o>:=</span> <span class=nx>strings</span><span class=p>.</span><span class=nf>Fields</span><span class=p>(</span><span class=nx>s</span><span class=p>)</span>
-		<span class=nx>id</span><span class=p>,</span> <span class=nx>_</span> <span class=p>=</span> <span class=nx>strconv</span><span class=p>.</span><span class=nf>Atoi</span><span class=p>(</span><span class=nb>string</span><span class=p>(</span><span class=nx>t</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=p>)</span><span class=p>)</span>
-		<span class=nx>de</span><span class=p>,</span> <span class=nx>_</span> <span class=p>=</span> <span class=nx>strconv</span><span class=p>.</span><span class=nf>Atoi</span><span class=p>(</span><span class=nb>string</span><span class=p>(</span><span class=nx>t</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span><span class=p>)</span><span class=p>)</span>
-		<span class=nx>cai</span><span class=p>,</span> <span class=nx>_</span> <span class=p>=</span> <span class=nx>strconv</span><span class=p>.</span><span class=nf>Atoi</span><span class=p>(</span><span class=nb>string</span><span class=p>(</span><span class=nx>t</span><span class=p>[</span><span class=mi>2</span><span class=p>]</span><span class=p>)</span><span class=p>)</span>
-		<span class=c1>//fmt.Scanln(&amp;id, &amp;de, &amp;cai)
-</span><span class=c1></span>		<span class=k>if</span> <span class=nx>de</span> <span class=o>&gt;=</span> <span class=nx>l</span> <span class=o>&amp;&amp;</span> <span class=nx>cai</span> <span class=o>&gt;=</span> <span class=nx>l</span> <span class=p>{</span>
-			<span class=nx>sum</span> <span class=p>=</span> <span class=nx>de</span> <span class=o>+</span> <span class=nx>cai</span>
-			<span class=k>if</span> <span class=nx>de</span> <span class=o>&gt;=</span> <span class=nx>h</span> <span class=o>&amp;&amp;</span> <span class=nx>cai</span> <span class=o>&gt;=</span> <span class=nx>h</span> <span class=p>{</span>
-				<span class=nx>level</span> <span class=p>=</span> <span class=mi>4</span>
-			<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=nx>de</span> <span class=o>&gt;=</span> <span class=nx>h</span> <span class=o>&amp;&amp;</span> <span class=nx>cai</span> <span class=p>&lt;</span> <span class=nx>h</span> <span class=p>{</span>
-				<span class=nx>level</span> <span class=p>=</span> <span class=mi>3</span>
-			<span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=nx>de</span> <span class=p>&lt;</span> <span class=nx>h</span> <span class=o>&amp;&amp;</span> <span class=nx>cai</span> <span class=p>&lt;</span> <span class=nx>h</span> <span class=o>&amp;&amp;</span> <span class=nx>de</span> <span class=o>&gt;=</span> <span class=nx>cai</span> <span class=p>{</span>
-				<span class=nx>level</span> <span class=p>=</span> <span class=mi>2</span>
-			<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
-				<span class=nx>level</span> <span class=p>=</span> <span class=mi>1</span>
-			<span class=p>}</span>
-			<span class=nx>tmp</span> <span class=o>:=</span> <span class=nx>level</span><span class=o>*</span><span class=nx>L</span> <span class=o>+</span> <span class=nx>sum</span><span class=o>*</span><span class=nx>S</span> <span class=o>+</span> <span class=nx>de</span><span class=o>*</span><span class=nx>D</span> <span class=o>+</span> <span class=nx>D</span> <span class=o>-</span> <span class=nx>id</span>
-			<span class=nx>student</span> <span class=p>=</span> <span class=nb>append</span><span class=p>(</span><span class=nx>student</span><span class=p>,</span> <span class=nb>int64</span><span class=p>(</span><span class=nx>tmp</span><span class=p>)</span><span class=p>)</span>
-			<span class=nx>count</span><span class=o>++</span>
-		<span class=p>}</span>
-	<span class=p>}</span>
+<span class="c1">//S is student grade weight
+</span><span class="c1"></span><span class="kd">const</span> <span class="nx">S</span> <span class="p">=</span> <span class="mi">100000000000</span>
 
-	<span class=nx>sort</span><span class=p>.</span><span class=nf>SliceStable</span><span class=p>(</span><span class=nx>student</span><span class=p>,</span> <span class=kd>func</span><span class=p>(</span><span class=nx>i</span><span class=p>,</span> <span class=nx>j</span> <span class=kt>int</span><span class=p>)</span> <span class=kt>bool</span> <span class=p>{</span>
-		<span class=k>return</span> <span class=nx>student</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span> <span class=p>&gt;</span> <span class=nx>student</span><span class=p>[</span><span class=nx>j</span><span class=p>]</span>
-	<span class=p>}</span><span class=p>)</span>
+<span class="c1">//D is student id weight
+</span><span class="c1"></span><span class="kd">const</span> <span class="nx">D</span> <span class="p">=</span> <span class="mi">100000000</span>
 
-	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>count</span><span class=p>)</span>
-	<span class=nx>buf</span> <span class=o>:=</span> <span class=nx>bufio</span><span class=p>.</span><span class=nf>NewWriter</span><span class=p>(</span><span class=nx>os</span><span class=p>.</span><span class=nx>Stdout</span><span class=p>)</span>
-	<span class=k>for</span> <span class=nx>i</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=nx>count</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span> <span class=p>{</span>
-		<span class=nx>id</span> <span class=p>=</span> <span class=nb>int</span><span class=p>(</span><span class=nx>D</span> <span class=o>-</span> <span class=nx>student</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span><span class=o>%</span><span class=nx>D</span><span class=p>)</span>
-		<span class=nx>sum</span> <span class=p>=</span> <span class=nb>int</span><span class=p>(</span><span class=nx>student</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span> <span class=o>%</span> <span class=nx>L</span> <span class=o>/</span> <span class=nx>S</span><span class=p>)</span>
-		<span class=nx>de</span> <span class=p>=</span> <span class=nb>int</span><span class=p>(</span><span class=nx>student</span><span class=p>[</span><span class=nx>i</span><span class=p>]</span> <span class=o>%</span> <span class=nx>S</span> <span class=o>/</span> <span class=nx>D</span><span class=p>)</span>
-		<span class=nx>cai</span> <span class=p>=</span> <span class=nx>sum</span> <span class=o>-</span> <span class=nx>de</span>
-		<span class=nx>buf</span><span class=p>.</span><span class=nf>WriteString</span><span class=p>(</span><span class=nx>fmt</span><span class=p>.</span><span class=nf>Sprintf</span><span class=p>(</span><span class=s>&#34;%d %d %d\n&#34;</span><span class=p>,</span> <span class=nx>id</span><span class=p>,</span> <span class=nx>de</span><span class=p>,</span> <span class=nx>cai</span><span class=p>)</span><span class=p>)</span>
-	<span class=p>}</span>
-	<span class=nx>buf</span><span class=p>.</span><span class=nf>Flush</span><span class=p>(</span><span class=p>)</span>
-<span class=p>}</span>
-</code></pre></td></tr></table></div></div><p>这次终于通过了,第2个测试点竟然提升到了81ms，第3和第4个测试点也在200ms左右，没有卡在400ms的临界线，看起来还可以。</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015%e6%94%b9%e8%bf%9b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c2.png data-srcset="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015%e6%94%b9%e8%bf%9b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c2.png, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015%e6%94%b9%e8%bf%9b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c2.png 1.5x, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015%e6%94%b9%e8%bf%9b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c2.png 2x" data-sizes=auto alt=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015改进代码提交结果2.png title=1015改进代码提交结果2></p><h2 id=总结>总结</h2><ol><li>涉及大量数据的读写时，利用bufio包通过缓冲区进行读写比fmt要快的多。</li><li>排序的代码可以调用sort包，不仅仅是自己写两层循环排序的问题，不是必要的情况下，同样的排序算法，自己写的很难说比得过封装好的。更何况，无论是哪种语言，调用的执行排序算法的包其实不是单纯执行快排或堆排序等比较快的排序算法，而是根据输入在调整的，所以不管为了时间性能还是写的方便，直接调用sort包完事儿。</li></ol></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2019-08-16</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E4%BC%98%E5%8C%96/index.md target=_blank>阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://shuzang.github.io/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E4%BC%98%E5%8C%96/ data-title=Golang查漏补缺-程序执行时间优化 data-hashtags=Go语法><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://shuzang.github.io/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E4%BC%98%E5%8C%96/ data-hashtag=Go语法><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://shuzang.github.io/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E4%BC%98%E5%8C%96/ data-title=Golang查漏补缺-程序执行时间优化><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://shuzang.github.io/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E4%BC%98%E5%8C%96/ data-title=Golang查漏补缺-程序执行时间优化><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://shuzang.github.io/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E4%BC%98%E5%8C%96/ data-title=Golang查漏补缺-程序执行时间优化><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/go%E8%AF%AD%E6%B3%95/>Go语法</a></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/%E7%A0%94%E7%A9%B6%E8%AE%B0%E5%BD%953-%E5%BC%80%E9%A2%98%E7%A1%AE%E5%AE%9A%E9%A2%98%E7%9B%AE/ class=prev rel=prev title=研究记录3-开题确定题目><i class="fas fa-angle-left fa-fw"></i>研究记录3-开题确定题目</a>
-<a href=/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E5%AF%B9%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B%E6%8E%92%E5%BA%8F/ class=next rel=next title=Golang查漏补缺-对自定义类型排序>Golang查漏补缺-对自定义类型排序<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><div id=valine class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://valine.js.org/>Valine</a>.</noscript></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.63.2">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i>LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>Shuzang</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=/lib/valine/valine.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="kd">var</span> <span class="p">(</span>
+		<span class="nx">n</span><span class="p">,</span> <span class="nx">l</span><span class="p">,</span> <span class="nx">h</span>           <span class="kt">int</span>
+		<span class="nx">id</span><span class="p">,</span> <span class="nx">de</span><span class="p">,</span> <span class="nx">cai</span>       <span class="kt">int</span>
+		<span class="nx">sum</span><span class="p">,</span> <span class="nx">level</span><span class="p">,</span> <span class="nx">count</span> <span class="kt">int</span>
+		<span class="nx">student</span>           <span class="p">[]</span><span class="kt">int64</span>
+	<span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Scanln</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">n</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">l</span><span class="p">,</span> <span class="o">&amp;</span><span class="nx">h</span><span class="p">)</span>
+	<span class="nx">inputReader</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nf">NewReader</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stdin</span><span class="p">)</span>
+	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">n</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="nx">s</span><span class="p">,</span> <span class="nx">_</span> <span class="o">:=</span> <span class="nx">inputReader</span><span class="p">.</span><span class="nf">ReadString</span><span class="p">(</span><span class="sc">&#39;\n&#39;</span><span class="p">)</span>
+		<span class="nx">t</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Fields</span><span class="p">(</span><span class="nx">s</span><span class="p">)</span>
+		<span class="nx">id</span><span class="p">,</span> <span class="nx">_</span> <span class="p">=</span> <span class="nx">strconv</span><span class="p">.</span><span class="nf">Atoi</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+		<span class="nx">de</span><span class="p">,</span> <span class="nx">_</span> <span class="p">=</span> <span class="nx">strconv</span><span class="p">.</span><span class="nf">Atoi</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+		<span class="nx">cai</span><span class="p">,</span> <span class="nx">_</span> <span class="p">=</span> <span class="nx">strconv</span><span class="p">.</span><span class="nf">Atoi</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">t</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+		<span class="c1">//fmt.Scanln(&amp;id, &amp;de, &amp;cai)
+</span><span class="c1"></span>		<span class="k">if</span> <span class="nx">de</span> <span class="o">&gt;=</span> <span class="nx">l</span> <span class="o">&amp;&amp;</span> <span class="nx">cai</span> <span class="o">&gt;=</span> <span class="nx">l</span> <span class="p">{</span>
+			<span class="nx">sum</span> <span class="p">=</span> <span class="nx">de</span> <span class="o">+</span> <span class="nx">cai</span>
+			<span class="k">if</span> <span class="nx">de</span> <span class="o">&gt;=</span> <span class="nx">h</span> <span class="o">&amp;&amp;</span> <span class="nx">cai</span> <span class="o">&gt;=</span> <span class="nx">h</span> <span class="p">{</span>
+				<span class="nx">level</span> <span class="p">=</span> <span class="mi">4</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">de</span> <span class="o">&gt;=</span> <span class="nx">h</span> <span class="o">&amp;&amp;</span> <span class="nx">cai</span> <span class="p">&lt;</span> <span class="nx">h</span> <span class="p">{</span>
+				<span class="nx">level</span> <span class="p">=</span> <span class="mi">3</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="nx">de</span> <span class="p">&lt;</span> <span class="nx">h</span> <span class="o">&amp;&amp;</span> <span class="nx">cai</span> <span class="p">&lt;</span> <span class="nx">h</span> <span class="o">&amp;&amp;</span> <span class="nx">de</span> <span class="o">&gt;=</span> <span class="nx">cai</span> <span class="p">{</span>
+				<span class="nx">level</span> <span class="p">=</span> <span class="mi">2</span>
+			<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+				<span class="nx">level</span> <span class="p">=</span> <span class="mi">1</span>
+			<span class="p">}</span>
+			<span class="nx">tmp</span> <span class="o">:=</span> <span class="nx">level</span><span class="o">*</span><span class="nx">L</span> <span class="o">+</span> <span class="nx">sum</span><span class="o">*</span><span class="nx">S</span> <span class="o">+</span> <span class="nx">de</span><span class="o">*</span><span class="nx">D</span> <span class="o">+</span> <span class="nx">D</span> <span class="o">-</span> <span class="nx">id</span>
+			<span class="nx">student</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">student</span><span class="p">,</span> <span class="nb">int64</span><span class="p">(</span><span class="nx">tmp</span><span class="p">))</span>
+			<span class="nx">count</span><span class="o">++</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+
+	<span class="nx">sort</span><span class="p">.</span><span class="nf">SliceStable</span><span class="p">(</span><span class="nx">student</span><span class="p">,</span> <span class="kd">func</span><span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">j</span> <span class="kt">int</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+		<span class="k">return</span> <span class="nx">student</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="p">&gt;</span> <span class="nx">student</span><span class="p">[</span><span class="nx">j</span><span class="p">]</span>
+	<span class="p">})</span>
+
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">count</span><span class="p">)</span>
+	<span class="nx">buf</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nf">NewWriter</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stdout</span><span class="p">)</span>
+	<span class="k">for</span> <span class="nx">i</span> <span class="o">:=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="p">&lt;</span> <span class="nx">count</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span> <span class="p">{</span>
+		<span class="nx">id</span> <span class="p">=</span> <span class="nb">int</span><span class="p">(</span><span class="nx">D</span> <span class="o">-</span> <span class="nx">student</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="o">%</span><span class="nx">D</span><span class="p">)</span>
+		<span class="nx">sum</span> <span class="p">=</span> <span class="nb">int</span><span class="p">(</span><span class="nx">student</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">%</span> <span class="nx">L</span> <span class="o">/</span> <span class="nx">S</span><span class="p">)</span>
+		<span class="nx">de</span> <span class="p">=</span> <span class="nb">int</span><span class="p">(</span><span class="nx">student</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">%</span> <span class="nx">S</span> <span class="o">/</span> <span class="nx">D</span><span class="p">)</span>
+		<span class="nx">cai</span> <span class="p">=</span> <span class="nx">sum</span> <span class="o">-</span> <span class="nx">de</span>
+		<span class="nx">buf</span><span class="p">.</span><span class="nf">WriteString</span><span class="p">(</span><span class="nx">fmt</span><span class="p">.</span><span class="nf">Sprintf</span><span class="p">(</span><span class="s">&#34;%d %d %d\n&#34;</span><span class="p">,</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">de</span><span class="p">,</span> <span class="nx">cai</span><span class="p">))</span>
+	<span class="p">}</span>
+	<span class="nx">buf</span><span class="p">.</span><span class="nf">Flush</span><span class="p">()</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这次终于通过了,第2个测试点竟然提升到了81ms，第3和第4个测试点也在200ms左右，没有卡在400ms的临界线，看起来还可以。</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015%e6%94%b9%e8%bf%9b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c2.png"
+        data-srcset="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015%e6%94%b9%e8%bf%9b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c2.png, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015%e6%94%b9%e8%bf%9b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c2.png 1.5x, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015%e6%94%b9%e8%bf%9b%e4%bb%a3%e7%a0%81%e6%8f%90%e4%ba%a4%e7%bb%93%e6%9e%9c2.png 2x"
+        data-sizes="auto"
+        alt="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20190816_1015改进代码提交结果2.png"
+        title="1015改进代码提交结果2" /></p>
+<h2 id="总结">总结</h2>
+<ol>
+<li>涉及大量数据的读写时，利用bufio包通过缓冲区进行读写比fmt要快的多。</li>
+<li>排序的代码可以调用sort包，不仅仅是自己写两层循环排序的问题，不是必要的情况下，同样的排序算法，自己写的很难说比得过封装好的。更何况，无论是哪种语言，调用的执行排序算法的包其实不是单纯执行快排或堆排序等比较快的排序算法，而是根据输入在调整的，所以不管为了时间性能还是写的方便，直接调用sort包完事儿。</li>
+</ol>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2019-08-16</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E4%BC%98%E5%8C%96/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://shuzang.github.io/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E4%BC%98%E5%8C%96/" data-title="Golang查漏补缺-程序执行时间优化" data-via="xxxx" data-hashtags="Go语法"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://shuzang.github.io/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E4%BC%98%E5%8C%96/" data-hashtag="Go语法"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://shuzang.github.io/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E4%BC%98%E5%8C%96/" data-title="Golang查漏补缺-程序执行时间优化"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://shuzang.github.io/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E4%BC%98%E5%8C%96/" data-title="Golang查漏补缺-程序执行时间优化"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://shuzang.github.io/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E7%A8%8B%E5%BA%8F%E6%89%A7%E8%A1%8C%E6%97%B6%E9%97%B4%E4%BC%98%E5%8C%96/" data-title="Golang查漏补缺-程序执行时间优化"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/go%E8%AF%AD%E6%B3%95/">Go语法</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/%E7%A0%94%E7%A9%B6%E8%AE%B0%E5%BD%953-%E5%BC%80%E9%A2%98%E7%A1%AE%E5%AE%9A%E9%A2%98%E7%9B%AE/" class="prev" rel="prev" title="研究记录3-开题确定题目"><i class="fas fa-angle-left fa-fw"></i>研究记录3-开题确定题目</a>
+            <a href="/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E5%AF%B9%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B%E6%8E%92%E5%BA%8F/" class="next" rel="next" title="Golang查漏补缺-对自定义类型排序">Golang查漏补缺-对自定义类型排序<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2018 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Shuzang</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

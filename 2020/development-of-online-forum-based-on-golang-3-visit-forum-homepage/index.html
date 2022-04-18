@@ -1,0 +1,402 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>基于Go语言开发在线论坛3-访问论坛首页 - Shuzang's Blog</title><meta name=Description content="书藏的个人博客，记录学习，记录生活"><meta property="og:title" content="基于Go语言开发在线论坛3-访问论坛首页"><meta property="og:description" content="前两篇分别介绍了整体设计及数据表的创建、模型类的编写，本篇了解如何在服务端处理用户请求，并启动论坛首页。文章转自学院君的教程，略有改动。"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.github.io/2020/development-of-online-forum-based-on-golang-3-visit-forum-homepage/"><meta property="og:image" content="https://shuzang.github.io/logo.png"><meta property="article:published_time" content="2020-05-29T09:08:00+08:00"><meta property="article:modified_time" content="2020-06-14T00:00:00+00:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://shuzang.github.io/logo.png"><meta name=twitter:title content="基于Go语言开发在线论坛3-访问论坛首页"><meta name=twitter:description content="前两篇分别介绍了整体设计及数据表的创建、模型类的编写，本篇了解如何在服务端处理用户请求，并启动论坛首页。文章转自学院君的教程，略有改动。"><meta name=application-name content="Shuzang's Blog"><meta name=apple-mobile-web-app-title content="Shuzang's Blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://shuzang.github.io/2020/development-of-online-forum-based-on-golang-3-visit-forum-homepage/><link rel=prev href=https://shuzang.github.io/2020/golang-cryptographic-algorithm/><link rel=next href=https://shuzang.github.io/2020/golang-start-http-server/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"基于Go语言开发在线论坛3-访问论坛首页","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/2020\/development-of-online-forum-based-on-golang-3-visit-forum-homepage\/"},"image":["https:\/\/shuzang.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"Go实战","wordcount":2048,"url":"https:\/\/shuzang.github.io\/2020\/development-of-online-forum-based-on-golang-3-visit-forum-homepage\/","datePublished":"2020-05-29T09:08:00+08:00","dateModified":"2020-06-14T00:00:00+00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/shuzang.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"xueyuanjun"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Shuzang's Blog">Shuzang's Blog</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/tags/>标签 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/>关于 </a><a class=menu-item href=https://github.com/shuzang title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item language" title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
+<select class=language-select id=language-select-desktop onchange="location=this.value;"><option value=/2020/development-of-online-forum-based-on-golang-3-visit-forum-homepage/ selected>简体中文</option></select>
+</a><span class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Shuzang's Blog">Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/posts/>所有文章</a><a class=menu-item href=/tags/>标签</a><a class=menu-item href=/categories/>分类</a><a class=menu-item href=/about/>关于</a><a class=menu-item href=https://github.com/shuzang title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i></a><a href=javascript:void(0); class=menu-item title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
+<select class=language-select onchange="location=this.value;"><option value=/2020/development-of-online-forum-based-on-golang-3-visit-forum-homepage/ selected>简体中文</option></select></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">基于Go语言开发在线论坛3-访问论坛首页</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>xueyuanjun</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/><i class="far fa-folder fa-fw"></i>Golang学习之路</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-05-29>2020-05-29</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2048 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;<span id=/2020/development-of-online-forum-based-on-golang-3-visit-forum-homepage/ class=leancloud_visitors data-flag-title=基于Go语言开发在线论坛3-访问论坛首页>
+<i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+</span>&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#1-路由器定义>1. 路由器定义</a></li><li><a href=#2-启动http服务器>2. 启动HTTP服务器</a></li><li><a href=#3-处理静态资源>3. 处理静态资源</a></li><li><a href=#4-编写处理器实现>4. 编写处理器实现</a><ul><li><a href=#41-首页处理器方法>4.1 首页处理器方法</a></li><li><a href=#42-创建视图模板>4.2 创建视图模板</a></li><li><a href=#43-渲染视图模板>4.3 渲染视图模板</a></li><li><a href=#44-注册首页路由>4.4 注册首页路由</a></li></ul></li><li><a href=#5-访问论坛首页>5. 访问论坛首页</a></li></ul></nav></div></div><div class=content id=content><p>前两篇分别介绍了整体设计及数据表的创建、模型类的编写，本篇了解如何在服务端处理用户请求，并启动论坛首页。文章转自学院君的教程，略有改动。</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20200529_Jietu20200330-021118.jpg data-srcset="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20200529_Jietu20200330-021118.jpg, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20200529_Jietu20200330-021118.jpg 1.5x, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20200529_Jietu20200330-021118.jpg 2x" data-sizes=auto alt=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20200529_Jietu20200330-021118.jpg title=首页视图></p><p>用户请求的处理流程如下：</p><ol><li>客户端发送请求；</li><li>服务端路由器（multiplexer）将请求分发给指定处理器（handler）；</li><li>处理器处理请求，完成对应的业务逻辑；</li><li>处理器调用模板引擎生成 HTML 并将响应返回给客户端。</li></ol><p>接下来我们按照这个流程来编写服务端代码。</p><h2 id=1-路由器定义>1. 路由器定义</h2><p>这里我们基于 <a href=https://github.com/gorilla/mux target=_blank rel="noopener noreffer">gorilla/mux</a> 来实现路由器，所以需要安装对应依赖：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ go get -u github.com/gorilla/mux
+</code></pre></td></tr></table></div></div><p>将路由器定义在 <code>routes</code> 目录下的 <code>router.go</code> 中</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>routes</span>
+
+<span class=kn>import</span> <span class=s>&#34;github.com/gorilla/mux&#34;</span>
+
+<span class=c1>// 返回一个 mux.Router 类型指针，从而可以当作处理器使用
+</span><span class=c1></span><span class=kd>func</span> <span class=nf>NewRouter</span><span class=p>(</span><span class=p>)</span> <span class=o>*</span><span class=nx>mux</span><span class=p>.</span><span class=nx>Router</span> <span class=p>{</span>
+
+    <span class=c1>// 创建 mux.Router 路由器示例
+</span><span class=c1></span>    <span class=nx>router</span> <span class=o>:=</span> <span class=nx>mux</span><span class=p>.</span><span class=nf>NewRouter</span><span class=p>(</span><span class=p>)</span><span class=p>.</span><span class=nf>StrictSlash</span><span class=p>(</span><span class=kc>true</span><span class=p>)</span>
+
+    <span class=c1>// 遍历 web.go 中定义的所有 webRoutes
+</span><span class=c1></span>    <span class=k>for</span> <span class=nx>_</span><span class=p>,</span> <span class=nx>route</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>webRoutes</span> <span class=p>{</span>
+        <span class=c1>// 将每个 web 路由应用到路由器
+</span><span class=c1></span>        <span class=nx>router</span><span class=p>.</span><span class=nf>Methods</span><span class=p>(</span><span class=nx>route</span><span class=p>.</span><span class=nx>Method</span><span class=p>)</span><span class=p>.</span>
+            <span class=nf>Path</span><span class=p>(</span><span class=nx>route</span><span class=p>.</span><span class=nx>Pattern</span><span class=p>)</span><span class=p>.</span>
+            <span class=nf>Name</span><span class=p>(</span><span class=nx>route</span><span class=p>.</span><span class=nx>Name</span><span class=p>)</span><span class=p>.</span>
+            <span class=nf>Handler</span><span class=p>(</span><span class=nx>route</span><span class=p>.</span><span class=nx>HandlerFunc</span><span class=p>)</span>
+    <span class=p>}</span>
+
+    <span class=k>return</span> <span class=nx>router</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>将所有路由定义在同一目录的 <code>routes.go</code> 中：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>routes</span>
+
+<span class=kn>import</span> <span class=s>&#34;net/http&#34;</span>
+
+<span class=c1>// 定义一个 WebRoute 结构体用于存放单个路由
+</span><span class=c1></span><span class=kd>type</span> <span class=nx>WebRoute</span> <span class=kd>struct</span> <span class=p>{</span>
+    <span class=nx>Name</span>        <span class=kt>string</span>
+    <span class=nx>Method</span>      <span class=kt>string</span>
+    <span class=nx>Pattern</span>     <span class=kt>string</span>
+    <span class=nx>HandlerFunc</span> <span class=nx>http</span><span class=p>.</span><span class=nx>HandlerFunc</span>
+<span class=p>}</span>
+
+<span class=c1>// 声明 WebRoutes 切片存放所有 Web 路由
+</span><span class=c1></span><span class=kd>type</span> <span class=nx>WebRoutes</span> <span class=p>[</span><span class=p>]</span><span class=nx>WebRoute</span>
+
+<span class=c1>// 定义所有 Web 路由
+</span><span class=c1></span><span class=kd>var</span> <span class=nx>webRoutes</span> <span class=p>=</span> <span class=nx>WebRoutes</span><span class=p>{</span>
+
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h2 id=2-启动http服务器>2. 启动HTTP服务器</h2><p>最后在项目根目录下的 <code>main.go</code> 中引入上述路由器来启动 HTTP 服务器：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=p>(</span>
+    <span class=p>.</span> <span class=s>&#34;github.com/xueyuanjun/chitchat/routes&#34;</span>
+    <span class=s>&#34;log&#34;</span>
+    <span class=s>&#34;net/http&#34;</span>
+<span class=p>)</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span>  <span class=p>{</span>
+    <span class=nf>startWebServer</span><span class=p>(</span><span class=s>&#34;8080&#34;</span><span class=p>)</span>
+<span class=p>}</span>
+
+<span class=c1>// 通过指定端口启动 Web 服务器
+</span><span class=c1></span><span class=kd>func</span> <span class=nf>startWebServer</span><span class=p>(</span><span class=nx>port</span> <span class=kt>string</span><span class=p>)</span>  <span class=p>{</span>
+    <span class=nx>r</span> <span class=o>:=</span> <span class=nf>NewRouter</span><span class=p>(</span><span class=p>)</span>
+    <span class=nx>http</span><span class=p>.</span><span class=nf>Handle</span><span class=p>(</span><span class=s>&#34;/&#34;</span><span class=p>,</span> <span class=nx>r</span><span class=p>)</span>  <span class=c1>// 通过 router.go 中定义的路由器来分发请求
+</span><span class=c1></span>
+    <span class=nx>log</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;Starting HTTP service at &#34;</span> <span class=o>+</span> <span class=nx>port</span><span class=p>)</span>
+    <span class=nx>err</span> <span class=o>:=</span> <span class=nx>http</span><span class=p>.</span><span class=nf>ListenAndServe</span><span class=p>(</span><span class=s>&#34;:&#34;</span> <span class=o>+</span> <span class=nx>port</span><span class=p>,</span> <span class=kc>nil</span><span class=p>)</span> <span class=c1>// 启动协程监听请求
+</span><span class=c1></span>
+    <span class=k>if</span> <span class=nx>err</span> <span class=o>!=</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=nx>log</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;An error occured starting HTTP listener at port &#34;</span> <span class=o>+</span> <span class=nx>port</span><span class=p>)</span>
+        <span class=nx>log</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;Error: &#34;</span> <span class=o>+</span> <span class=nx>err</span><span class=p>.</span><span class=nf>Error</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>这里我们指定 HTTP 服务器监听 <code>8080</code> 端口，使用的路由器正是上述 <code>router.go</code> 中 <code>NewRouter</code> 方法返回的 <code>mux.Router</code> 指针类型实例，这里可以看到引用的时候并没有带上包名前缀，之所以可以这么做是因为通过特殊符号 <code>.</code> 引入了 <code>routes</code>包，通过这种方式引入的包可以直接调用包中对外可见的变量、方法和结构体，而不需要加上包名前缀。</p><h2 id=3-处理静态资源>3. 处理静态资源</h2><p>在线论坛涉及到前端静态资源文件的处理，我们可以在 <code>startWebServer</code> 方法中新增如下这两行代码：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=nx>r</span> <span class=o>:=</span> <span class=nf>NewRouter</span><span class=p>(</span><span class=p>)</span> <span class=c1>// 通过 router.go 中定义的路由器来分发请求
+</span><span class=c1></span>
+<span class=c1>// 处理静态资源文件
+</span><span class=c1></span><span class=nx>assets</span> <span class=o>:=</span> <span class=nx>http</span><span class=p>.</span><span class=nf>FileServer</span><span class=p>(</span><span class=nx>http</span><span class=p>.</span><span class=nf>Dir</span><span class=p>(</span><span class=s>&#34;public&#34;</span><span class=p>)</span><span class=p>)</span>
+<span class=nx>r</span><span class=p>.</span><span class=nf>PathPrefix</span><span class=p>(</span><span class=s>&#34;/static/&#34;</span><span class=p>)</span><span class=p>.</span><span class=nf>Handler</span><span class=p>(</span><span class=nx>http</span><span class=p>.</span><span class=nf>StripPrefix</span><span class=p>(</span><span class=s>&#34;/static/&#34;</span><span class=p>,</span> <span class=nx>assets</span><span class=p>)</span><span class=p>)</span>
+
+<span class=nx>http</span><span class=p>.</span><span class=nf>Handle</span><span class=p>(</span><span class=s>&#34;/&#34;</span><span class=p>,</span> <span class=nx>r</span><span class=p>)</span> <span class=c1>// 应用路由器到 HTTP 服务器
+</span><span class=c1></span>
+<span class=o>...</span>
+</code></pre></td></tr></table></div></div><p>其中 <code>http.FileServer</code> 用于初始化文件服务器和目录为当前目录下的 <code>public</code> 目录。</p><p>然后在第二段代码中指定静态资源路由及处理逻辑：将 <code>/static/</code> 前缀的 URL 请求去除 <code>static</code> 前缀，然后在文件服务器查找指定文件路径是否存在（<code>public</code> 目录下的相对地址）。</p><p>比如 URL 请求路径为 <code>http://localhost:8080/static/css/bootstrap.min.css</code>，对应的查找路径是：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=p>&lt;</span><span class=nx>application</span> <span class=nx>root</span><span class=p>&gt;</span><span class=o>/</span><span class=nx>public</span><span class=o>/</span><span class=nx>css</span><span class=o>/</span><span class=nx>bootstrap</span><span class=p>.</span><span class=nx>min</span><span class=p>.</span><span class=nx>css</span>
+</code></pre></td></tr></table></div></div><p>对于静态资源文件直接返回文件内容，不会进行额外处理。</p><h2 id=4-编写处理器实现>4. 编写处理器实现</h2><h3 id=41-首页处理器方法>4.1 首页处理器方法</h3><p>做好上述准备工作后，接下来，我们来创建论坛首页的路由处理器，在 <code>handlers</code> 目录下新增一个 <code>index.go</code> 来定义首页的处理器方法：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>handlers</span>
+
+<span class=kn>import</span> <span class=p>(</span>
+    <span class=s>&#34;github.com/xueyuanjun/chitchat/models&#34;</span>
+    <span class=s>&#34;html/template&#34;</span>
+    <span class=s>&#34;net/http&#34;</span>
+<span class=p>)</span>
+
+<span class=c1>// 论坛首页路由处理器方法
+</span><span class=c1></span><span class=kd>func</span> <span class=nf>Index</span><span class=p>(</span><span class=nx>w</span> <span class=nx>http</span><span class=p>.</span><span class=nx>ResponseWriter</span><span class=p>,</span> <span class=nx>r</span> <span class=o>*</span><span class=nx>http</span><span class=p>.</span><span class=nx>Request</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>files</span> <span class=o>:=</span> <span class=p>[</span><span class=p>]</span><span class=kt>string</span><span class=p>{</span><span class=s>&#34;views/layout.html&#34;</span><span class=p>,</span> <span class=s>&#34;views/navbar.html&#34;</span><span class=p>,</span> <span class=s>&#34;views/index.html&#34;</span><span class=p>,</span><span class=p>}</span>
+    <span class=nx>templates</span> <span class=o>:=</span> <span class=nx>template</span><span class=p>.</span><span class=nf>Must</span><span class=p>(</span><span class=nx>template</span><span class=p>.</span><span class=nf>ParseFiles</span><span class=p>(</span><span class=nx>files</span><span class=o>...</span><span class=p>)</span><span class=p>)</span>
+    <span class=nx>threads</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>models</span><span class=p>.</span><span class=nf>Threads</span><span class=p>(</span><span class=p>)</span><span class=p>;</span>
+    <span class=k>if</span> <span class=nx>err</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+        <span class=nx>templates</span><span class=p>.</span><span class=nf>ExecuteTemplate</span><span class=p>(</span><span class=nx>w</span><span class=p>,</span> <span class=s>&#34;layout&#34;</span><span class=p>,</span> <span class=nx>threads</span><span class=p>)</span>
+    <span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h3 id=42-创建视图模板>4.2 创建视图模板</h3><p>这里我们使用 Go 自带的 <code>html/template</code> 作为模板引擎，需要传入位于 <code>views</code> 目录下的视图模板文件，这里传入了多个模板文件，包括主布局文件 <code>layout.html</code>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html>{{ define &#34;layout&#34; }}
+
+	<span class=cp>&lt;!DOCTYPE html&gt;</span>
+	<span class=p>&lt;</span><span class=nt>html</span> <span class=na>lang</span><span class=o>=</span><span class=s>&#34;en&#34;</span><span class=p></span><span class=p>&gt;</span>
+	<span class=p>&lt;</span><span class=nt>head</span><span class=p></span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>meta</span> <span class=na>charset</span><span class=o>=</span><span class=s>&#34;utf-8&#34;</span><span class=p></span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>meta</span> <span class=na>http-equiv</span><span class=o>=</span><span class=s>&#34;X-UA-Compatible&#34;</span> <span class=na>content</span><span class=o>=</span><span class=s>&#34;IE=9&#34;</span><span class=p></span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>meta</span> <span class=na>name</span><span class=o>=</span><span class=s>&#34;viewport&#34;</span> <span class=na>content</span><span class=o>=</span><span class=s>&#34;width=device-width, initial-scale=1&#34;</span><span class=p></span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>title</span><span class=p></span><span class=p>&gt;</span>ChitChat<span class=p>&lt;</span><span class=p>/</span><span class=nt>title</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>link</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;/static/css/bootstrap.min.css&#34;</span> <span class=na>rel</span><span class=o>=</span><span class=s>&#34;stylesheet&#34;</span><span class=p></span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>link</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;/static/css/font-awesome.min.css&#34;</span> <span class=na>rel</span><span class=o>=</span><span class=s>&#34;stylesheet&#34;</span><span class=p></span><span class=p>&gt;</span>
+	<span class=p>&lt;</span><span class=p>/</span><span class=nt>head</span><span class=p>&gt;</span>
+	<span class=p>&lt;</span><span class=nt>body</span><span class=p></span><span class=p>&gt;</span>
+    {{ template &#34;navbar&#34; . }}
+
+	<span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;container&#34;</span><span class=p></span><span class=p>&gt;</span>
+
+        {{ template &#34;content&#34; . }}
+
+	<span class=p>&lt;</span><span class=p>/</span><span class=nt>div</span><span class=p>&gt;</span> <span class=c>&lt;!--</span><span class=c> /container </span><span class=c>--&gt;</span>
+
+	<span class=p>&lt;</span><span class=nt>script</span> <span class=na>src</span><span class=o>=</span><span class=s>&#34;/static/js/jquery-2.1.1.min.js&#34;</span><span class=p></span><span class=p>&gt;</span><span class=p>&lt;</span><span class=p>/</span><span class=nt>script</span><span class=p>&gt;</span>
+	<span class=p>&lt;</span><span class=nt>script</span> <span class=na>src</span><span class=o>=</span><span class=s>&#34;/static/js/bootstrap.min.js&#34;</span><span class=p></span><span class=p>&gt;</span><span class=p>&lt;</span><span class=p>/</span><span class=nt>script</span><span class=p>&gt;</span>
+	<span class=p>&lt;</span><span class=p>/</span><span class=nt>body</span><span class=p>&gt;</span>
+	<span class=p>&lt;</span><span class=p>/</span><span class=nt>html</span><span class=p>&gt;</span>
+
+{{ end }}
+</code></pre></td></tr></table></div></div><p>顶部导航模板 <code>navbar.html</code>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html>{{ define &#34;navbar&#34; }}
+	<span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;navbar navbar-default navbar-static-top&#34;</span> <span class=na>role</span><span class=o>=</span><span class=s>&#34;navigation&#34;</span><span class=p></span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;container&#34;</span><span class=p></span><span class=p>&gt;</span>
+			<span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;navbar-header&#34;</span><span class=p></span><span class=p>&gt;</span>
+				<span class=p>&lt;</span><span class=nt>button</span> <span class=na>type</span><span class=o>=</span><span class=s>&#34;button&#34;</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;navbar-toggle collapsed&#34;</span> <span class=na>data-toggle</span><span class=o>=</span><span class=s>&#34;collapse&#34;</span> <span class=na>data-target</span><span class=o>=</span><span class=s>&#34;.navbar-collapse&#34;</span><span class=p></span><span class=p>&gt;</span>
+					<span class=p>&lt;</span><span class=nt>span</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;sr-only&#34;</span><span class=p></span><span class=p>&gt;</span>Toggle navigation<span class=p>&lt;</span><span class=p>/</span><span class=nt>span</span><span class=p>&gt;</span>
+					<span class=p>&lt;</span><span class=nt>span</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;icon-bar&#34;</span><span class=p></span><span class=p>&gt;</span><span class=p>&lt;</span><span class=p>/</span><span class=nt>span</span><span class=p>&gt;</span>
+					<span class=p>&lt;</span><span class=nt>span</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;icon-bar&#34;</span><span class=p></span><span class=p>&gt;</span><span class=p>&lt;</span><span class=p>/</span><span class=nt>span</span><span class=p>&gt;</span>
+					<span class=p>&lt;</span><span class=nt>span</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;icon-bar&#34;</span><span class=p></span><span class=p>&gt;</span><span class=p>&lt;</span><span class=p>/</span><span class=nt>span</span><span class=p>&gt;</span>
+				<span class=p>&lt;</span><span class=p>/</span><span class=nt>button</span><span class=p>&gt;</span>
+				<span class=p>&lt;</span><span class=nt>a</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;navbar-brand&#34;</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;/&#34;</span><span class=p></span><span class=p>&gt;</span>
+					<span class=p>&lt;</span><span class=nt>i</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;fa fa-comments-o&#34;</span><span class=p></span><span class=p>&gt;</span><span class=p>&lt;</span><span class=p>/</span><span class=nt>i</span><span class=p>&gt;</span>
+					ChitChat
+				<span class=p>&lt;</span><span class=p>/</span><span class=nt>a</span><span class=p>&gt;</span>
+			<span class=p>&lt;</span><span class=p>/</span><span class=nt>div</span><span class=p>&gt;</span>
+			<span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;navbar-collapse collapse&#34;</span><span class=p></span><span class=p>&gt;</span>
+				<span class=p>&lt;</span><span class=nt>ul</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;nav navbar-nav&#34;</span><span class=p></span><span class=p>&gt;</span>
+					<span class=p>&lt;</span><span class=nt>li</span><span class=p></span><span class=p>&gt;</span><span class=p>&lt;</span><span class=nt>a</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;/&#34;</span><span class=p></span><span class=p>&gt;</span>Home<span class=p>&lt;</span><span class=p>/</span><span class=nt>a</span><span class=p>&gt;</span><span class=p>&lt;</span><span class=p>/</span><span class=nt>li</span><span class=p>&gt;</span>
+				<span class=p>&lt;</span><span class=p>/</span><span class=nt>ul</span><span class=p>&gt;</span>
+				<span class=p>&lt;</span><span class=nt>ul</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;nav navbar-nav navbar-right&#34;</span><span class=p></span><span class=p>&gt;</span>
+					<span class=p>&lt;</span><span class=nt>li</span><span class=p></span><span class=p>&gt;</span><span class=p>&lt;</span><span class=nt>a</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;/login&#34;</span><span class=p></span><span class=p>&gt;</span>Login<span class=p>&lt;</span><span class=p>/</span><span class=nt>a</span><span class=p>&gt;</span><span class=p>&lt;</span><span class=p>/</span><span class=nt>li</span><span class=p>&gt;</span>
+				<span class=p>&lt;</span><span class=p>/</span><span class=nt>ul</span><span class=p>&gt;</span>
+			<span class=p>&lt;</span><span class=p>/</span><span class=nt>div</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=p>/</span><span class=nt>div</span><span class=p>&gt;</span>
+	<span class=p>&lt;</span><span class=p>/</span><span class=nt>div</span><span class=p>&gt;</span>
+{{ end }}
+</code></pre></td></tr></table></div></div><p>以及首页视图模板 <code>index.html</code>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html>{{ define &#34;content&#34; }}
+	<span class=p>&lt;</span><span class=nt>p</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;lead&#34;</span><span class=p></span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nt>a</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;/thread/new&#34;</span><span class=p></span><span class=p>&gt;</span>Start a thread<span class=p>&lt;</span><span class=p>/</span><span class=nt>a</span><span class=p>&gt;</span> or join one below!
+	<span class=p>&lt;</span><span class=p>/</span><span class=nt>p</span><span class=p>&gt;</span>
+
+    {{ range . }}
+		<span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;panel panel-default&#34;</span><span class=p></span><span class=p>&gt;</span>
+			<span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;panel-heading&#34;</span><span class=p></span><span class=p>&gt;</span>
+				<span class=p>&lt;</span><span class=nt>span</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;lead&#34;</span><span class=p></span><span class=p>&gt;</span> <span class=p>&lt;</span><span class=nt>i</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;fa fa-comment-o&#34;</span><span class=p></span><span class=p>&gt;</span><span class=p>&lt;</span><span class=p>/</span><span class=nt>i</span><span class=p>&gt;</span> {{ .Topic }}<span class=p>&lt;</span><span class=p>/</span><span class=nt>span</span><span class=p>&gt;</span>
+			<span class=p>&lt;</span><span class=p>/</span><span class=nt>div</span><span class=p>&gt;</span>
+			<span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;panel-body&#34;</span><span class=p></span><span class=p>&gt;</span>
+				Started by {{ .User.Name }} - {{ .CreatedAtDate }} - {{ .NumReplies }} posts.
+				<span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;pull-right&#34;</span><span class=p></span><span class=p>&gt;</span>
+					<span class=p>&lt;</span><span class=nt>a</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;/thread/read?id={{.Uuid }}&#34;</span><span class=p></span><span class=p>&gt;</span>Read more<span class=p>&lt;</span><span class=p>/</span><span class=nt>a</span><span class=p>&gt;</span>
+				<span class=p>&lt;</span><span class=p>/</span><span class=nt>div</span><span class=p>&gt;</span>
+			<span class=p>&lt;</span><span class=p>/</span><span class=nt>div</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=p>/</span><span class=nt>div</span><span class=p>&gt;</span>
+    {{ end }}
+
+{{ end }}
+</code></pre></td></tr></table></div></div><p>引入多个视图模板是为了提高模板代码的复用性，因为对于同一个应用的不同页面来说，可能基本布局、页面顶部导航和页面底部组件都是一样的，关于视图模板的细节，我们在后面视图模板部分会详细介绍，这里简单了解下即可。</p><h3 id=43-渲染视图模板>4.3 渲染视图模板</h3><p>我们可以从数据库查询群组数据并将该数据传递到模板文件，最后将模板视图渲染出来，对应代码如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=nx>threads</span><span class=p>,</span> <span class=nx>err</span> <span class=o>:=</span> <span class=nx>models</span><span class=p>.</span><span class=nf>Threads</span><span class=p>(</span><span class=p>)</span><span class=p>;</span>
+<span class=k>if</span> <span class=nx>err</span> <span class=o>==</span> <span class=kc>nil</span> <span class=p>{</span>
+    <span class=nx>templates</span><span class=p>.</span><span class=nf>ExecuteTemplate</span><span class=p>(</span><span class=nx>w</span><span class=p>,</span> <span class=s>&#34;layout&#34;</span><span class=p>,</span> <span class=nx>threads</span><span class=p>)</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>编译多个视图模板时，默认以第一个模板名作为最终视图模板名，所以这里第二个参数传入的是 <code>layout</code>，第三个参数传入要渲染的数据 <code>threads</code>，对应的渲染逻辑位于 <code>views/index.html</code> 中：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=p>{</span><span class=p>{</span> <span class=k>range</span> <span class=p>.</span> <span class=p>}</span><span class=p>}</span>
+	<span class=p>&lt;</span><span class=nx>div</span> <span class=nx>class</span><span class=p>=</span><span class=s>&#34;panel panel-default&#34;</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nx>div</span> <span class=nx>class</span><span class=p>=</span><span class=s>&#34;panel-heading&#34;</span><span class=p>&gt;</span>
+			<span class=p>&lt;</span><span class=nx>span</span> <span class=nx>class</span><span class=p>=</span><span class=s>&#34;lead&#34;</span><span class=p>&gt;</span> <span class=p>&lt;</span><span class=nx>i</span> <span class=nx>class</span><span class=p>=</span><span class=s>&#34;fa fa-comment-o&#34;</span><span class=p>&gt;</span><span class=p>&lt;</span><span class=o>/</span><span class=nx>i</span><span class=p>&gt;</span> <span class=p>{</span><span class=p>{</span> <span class=p>.</span><span class=nx>Topic</span> <span class=p>}</span><span class=p>}</span><span class=p>&lt;</span><span class=o>/</span><span class=nx>span</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=o>/</span><span class=nx>div</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=nx>div</span> <span class=nx>class</span><span class=p>=</span><span class=s>&#34;panel-body&#34;</span><span class=p>&gt;</span>
+			<span class=nx>Started</span> <span class=nx>by</span> <span class=p>{</span><span class=p>{</span> <span class=p>.</span><span class=nx>User</span><span class=p>.</span><span class=nx>Name</span> <span class=p>}</span><span class=p>}</span> <span class=o>-</span> <span class=p>{</span><span class=p>{</span> <span class=p>.</span><span class=nx>CreatedAtDate</span> <span class=p>}</span><span class=p>}</span> <span class=o>-</span> <span class=p>{</span><span class=p>{</span> <span class=p>.</span><span class=nx>NumReplies</span> <span class=p>}</span><span class=p>}</span> <span class=nx>posts</span><span class=p>.</span>
+			<span class=p>&lt;</span><span class=nx>div</span> <span class=nx>class</span><span class=p>=</span><span class=s>&#34;pull-right&#34;</span><span class=p>&gt;</span>
+				<span class=p>&lt;</span><span class=nx>a</span> <span class=nx>href</span><span class=p>=</span><span class=s>&#34;/thread/read?id={{.Uuid }}&#34;</span><span class=p>&gt;</span><span class=nx>Read</span> <span class=nx>more</span><span class=p>&lt;</span><span class=o>/</span><span class=nx>a</span><span class=p>&gt;</span>
+			<span class=p>&lt;</span><span class=o>/</span><span class=nx>div</span><span class=p>&gt;</span>
+		<span class=p>&lt;</span><span class=o>/</span><span class=nx>div</span><span class=p>&gt;</span>
+	<span class=p>&lt;</span><span class=o>/</span><span class=nx>div</span><span class=p>&gt;</span>
+<span class=p>{</span><span class=p>{</span> <span class=nx>end</span> <span class=p>}</span><span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>其中 <code>{{ range . }}</code> 表示将处理器方法传入的变量，这里是 <code>threads</code> 进行循环。</p><h3 id=44-注册首页路由>4.4 注册首页路由</h3><p>最好，我们在 <code>routes/routes.go</code> 中注册首页路由及对应的处理器方法 <code>Index</code>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>import</span> <span class=s>&#34;github.com/xueyuanjun/chitchat/handlers&#34;</span>
+
+<span class=c1>// 定义所有 Web 路由
+</span><span class=c1></span><span class=kd>var</span> <span class=nx>webRoutes</span> <span class=p>=</span> <span class=nx>WebRoutes</span><span class=p>{</span>
+    <span class=p>{</span>
+        <span class=s>&#34;home&#34;</span><span class=p>,</span>
+        <span class=s>&#34;GET&#34;</span><span class=p>,</span>
+        <span class=s>&#34;/&#34;</span><span class=p>,</span>
+        <span class=nx>handlers</span><span class=p>.</span><span class=nx>Index</span><span class=p>,</span>
+    <span class=p>}</span><span class=p>,</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h2 id=5-访问论坛首页>5. 访问论坛首页</h2><p>访问论坛首页之前，我们将相应的前端资源文件拷贝到 <code>public</code> 目录下，此时项目整体目录结构如下：</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20200529_%E7%9B%AE%E5%BD%95%E6%A0%BC%E5%BC%8F.png data-srcset="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20200529_%E7%9B%AE%E5%BD%95%E6%A0%BC%E5%BC%8F.png, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20200529_%E7%9B%AE%E5%BD%95%E6%A0%BC%E5%BC%8F.png 1.5x, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20200529_%E7%9B%AE%E5%BD%95%E6%A0%BC%E5%BC%8F.png 2x" data-sizes=auto alt=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20200529_%E7%9B%AE%E5%BD%95%E6%A0%BC%E5%BC%8F.png title=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20200529_%E7%9B%AE%E5%BD%95%E6%A0%BC%E5%BC%8F.png></p><p>然后我们在项目根目录下运行如下代码启动 HTTP 服务器</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ go run main.go
+</code></pre></td></tr></table></div></div><p>然后我们在浏览器访问论坛首页 <code>http://localhost:8080</code>：</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20200529_%E9%A6%96%E9%A1%B5.png data-srcset="https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20200529_%E9%A6%96%E9%A1%B5.png, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20200529_%E9%A6%96%E9%A1%B5.png 1.5x, https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20200529_%E9%A6%96%E9%A1%B5.png 2x" data-sizes=auto alt=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20200529_%E9%A6%96%E9%A1%B5.png title=首页></p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2020-06-14</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/2020/development-of-online-forum-based-on-golang-3-visit-forum-homepage/index.md target=_blank>阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://shuzang.github.io/2020/development-of-online-forum-based-on-golang-3-visit-forum-homepage/ data-title=基于Go语言开发在线论坛3-访问论坛首页 data-hashtags=Go实战><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://shuzang.github.io/2020/development-of-online-forum-based-on-golang-3-visit-forum-homepage/ data-hashtag=Go实战><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://shuzang.github.io/2020/development-of-online-forum-based-on-golang-3-visit-forum-homepage/ data-title=基于Go语言开发在线论坛3-访问论坛首页><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://shuzang.github.io/2020/development-of-online-forum-based-on-golang-3-visit-forum-homepage/ data-title=基于Go语言开发在线论坛3-访问论坛首页><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://shuzang.github.io/2020/development-of-online-forum-based-on-golang-3-visit-forum-homepage/ data-title=基于Go语言开发在线论坛3-访问论坛首页><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/go%E5%AE%9E%E6%88%98/>Go实战</a></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/2020/golang-cryptographic-algorithm/ class=prev rel=prev title=Golang密码学算法><i class="fas fa-angle-left fa-fw"></i>Golang密码学算法</a>
+<a href=/2020/golang-start-http-server/ class=next rel=next title=Golang启动HTTP服务器>Golang启动HTTP服务器<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><div id=valine class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://valine.js.org/>Valine</a>.</noscript></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.63.2">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i>LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>Shuzang</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=/lib/valine/valine.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>

@@ -1,0 +1,832 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>Golang语法基础8-结构体与方法 - Shuzang's Blog</title><meta name=Description content="书藏的个人博客，记录学习，记录生活"><meta property="og:title" content="Golang语法基础8-结构体与方法"><meta property="og:description" content="结构体是一种非常重要的结构，用到的地方非常多，在 Go 中，结构体还是实现面向对象编程的基础。"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.github.io/2019/golang-syntax-8-struct-and-method/"><meta property="og:image" content="https://shuzang.github.io/logo.png"><meta property="article:published_time" content="2019-11-26T00:00:00+00:00"><meta property="article:modified_time" content="2020-09-13T00:00:00+00:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://shuzang.github.io/logo.png"><meta name=twitter:title content="Golang语法基础8-结构体与方法"><meta name=twitter:description content="结构体是一种非常重要的结构，用到的地方非常多，在 Go 中，结构体还是实现面向对象编程的基础。"><meta name=application-name content="Shuzang's Blog"><meta name=apple-mobile-web-app-title content="Shuzang's Blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://shuzang.github.io/2019/golang-syntax-8-struct-and-method/><link rel=prev href=https://shuzang.github.io/2019/golang-syntax-9-interface-and-reflect/><link rel=next href=https://shuzang.github.io/2019/blockchain-based-access-control-for-iot/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Golang语法基础8-结构体与方法","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/2019\/golang-syntax-8-struct-and-method\/"},"image":["https:\/\/shuzang.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"Go语法","wordcount":4814,"url":"https:\/\/shuzang.github.io\/2019\/golang-syntax-8-struct-and-method\/","datePublished":"2019-11-26T00:00:00+00:00","dateModified":"2020-09-13T00:00:00+00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/shuzang.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"Shuzang"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Shuzang's Blog">Shuzang's Blog</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/tags/>标签 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/>关于 </a><a class=menu-item href=https://github.com/shuzang title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item language" title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
+<select class=language-select id=language-select-desktop onchange="location=this.value;"><option value=/2019/golang-syntax-8-struct-and-method/ selected>简体中文</option></select>
+</a><span class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Shuzang's Blog">Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/posts/>所有文章</a><a class=menu-item href=/tags/>标签</a><a class=menu-item href=/categories/>分类</a><a class=menu-item href=/about/>关于</a><a class=menu-item href=https://github.com/shuzang title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i></a><a href=javascript:void(0); class=menu-item title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
+<select class=language-select onchange="location=this.value;"><option value=/2019/golang-syntax-8-struct-and-method/ selected>简体中文</option></select></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">Golang语法基础8-结构体与方法</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>Shuzang</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/><i class="far fa-folder fa-fw"></i>Golang学习之路</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2019-11-26>2019-11-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 4814 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 10 分钟&nbsp;<span id=/2019/golang-syntax-8-struct-and-method/ class=leancloud_visitors data-flag-title=Golang语法基础8-结构体与方法>
+<i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;次阅读
+</span>&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#1-结构体>1. 结构体</a><ul><li><a href=#11-定义与初始化>1.1 定义与初始化</a></li><li><a href=#12-结构体标签>1.2 结构体标签</a></li><li><a href=#13-匿名字段与内嵌结构体>1.3 匿名字段与内嵌结构体</a></li><li><a href=#14-结构体工厂>1.4 结构体工厂</a></li></ul></li><li><a href=#2-方法>2. 方法</a><ul><li><a href=#21-函数和方法的区别>2.1 函数和方法的区别</a></li><li><a href=#22-指针或值作为接收者>2.2 指针或值作为接收者</a></li><li><a href=#23-利用方法读取结构体中的未导出字段>2.3 利用方法读取结构体中的未导出字段</a></li><li><a href=#24-内嵌类型的方法与继承>2.4 内嵌类型的方法与继承</a></li><li><a href=#25-在类型中嵌入功能>2.5 在类型中嵌入功能</a></li></ul></li></ul></nav></div></div><div class=content id=content><p>结构体是一种非常重要的结构，用到的地方非常多，在 Go 中，结构体还是实现面向对象编程的基础。</p><h2 id=1-结构体>1. 结构体</h2><h3 id=11-定义与初始化>1.1 定义与初始化</h3><p>结构体定义方式如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>type</span> <span class=nx>identifier</span> <span class=kd>struct</span> <span class=p>{</span>
+    <span class=nx>field1</span> <span class=nx>type1</span>
+    <span class=nx>field2</span> <span class=nx>type2</span>
+    <span class=o>...</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>大括号中的每一行称为一个字段，每个字段都有一个类型和一个名字，在一个结构体中，字段名必须是唯一的。结构体名和字段名的命名遵循可见性规则，即使用首字母的大小写来表示可导出和不可导出。但是需要注意，一个可导出的结构体类型中可以存在不可导出的字段。</p><p>结构体的字段可以是任意类型，甚至可以是结构体本身、函数或者接口。一个简单的结构体定义示例如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>type</span> <span class=nx>T</span> <span class=kd>struct</span> <span class=p>{</span>
+    <span class=nx>a</span><span class=p>,</span><span class=nx>b</span> <span class=kt>int</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>结构体是自定义数据类型，因此我们可以向基本数据类型一样声明/定义一个结构体类型的变量，声明时会分配内存并默认使用每个字段类型的零值来初始化。我们也可以手动初始化一个结构体，使用点号符给字段赋值，示例如下。另外，访问结构体内字段的值时同样使用点号符，这种使用点号符赋值和获取字段值的方式叫做<strong>选择器(selector)</strong>，</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>var</span> <span class=nx>s</span> <span class=nx>T</span>
+<span class=nx>s</span><span class=p>.</span><span class=nx>a</span> <span class=p>=</span> <span class=mi>5</span>
+<span class=nx>s</span><span class=p>.</span><span class=nx>b</span> <span class=p>=</span> <span class=mi>8</span>
+</code></pre></td></tr></table></div></div><p>由于结构体也是值类型，使用new函数创建。注意，使用 new 得到的 t 是指向结构体的指针。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>var</span> <span class=nx>t</span> <span class=o>*</span><span class=nx>T</span> <span class=p>=</span> <span class=nb>new</span><span class=p>(</span><span class=nx>T</span><span class=p>)</span>
+<span class=nx>t</span> <span class=o>:=</span> <span class=nb>new</span><span class=p>(</span><span class=nx>T</span><span class=p>)</span> <span class=c1>// 简单方便地写法，最常用
+</span></code></pre></td></tr></table></div></div><p>至此我们注意到，使用结构体时我们可能遇到两种类型：结构体类型和结构体指针类型，这两种类型都可以通过选择器的方式来使用，如下，v.i 和 p.i 都可以得到正确的值，在理解的时候可以想象底层对结构体指针 p 自动做了解引用，如 (*p).i。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>type</span> <span class=nx>myStruct</span> <span class=kd>struct</span> <span class=p>{</span> <span class=nx>i</span> <span class=kt>int</span> <span class=p>}</span>
+<span class=kd>var</span> <span class=nx>v</span> <span class=nx>myStruct</span>    <span class=c1>// v是结构体类型变量
+</span><span class=c1></span><span class=kd>var</span> <span class=nx>p</span> <span class=o>*</span><span class=nx>myStruct</span>   <span class=c1>// p是指向一个结构体类型变量的指针
+</span><span class=c1></span><span class=nx>v</span><span class=p>.</span><span class=nx>i</span>
+<span class=nx>p</span><span class=p>.</span><span class=nf>i</span>
+<span class=p>(</span><span class=o>*</span><span class=nx>p</span><span class=p>)</span><span class=p>.</span><span class=nx>i</span>
+</code></pre></td></tr></table></div></div><p>除使用选择器初始化结构体字段外，一种更简短更常用的结构体初始化方法如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=nx>ms</span> <span class=o>:=</span> <span class=nx>struct1</span><span class=p>{</span><span class=mi>10</span><span class=p>,</span> <span class=mf>15.5</span><span class=p>,</span> <span class=s>&#34;Chris&#34;</span><span class=p>}</span>  <span class=c1>//结构体类型
+</span><span class=c1></span><span class=nx>ms</span> <span class=o>:=</span> <span class=o>&amp;</span><span class=nx>struct1</span><span class=p>{</span><span class=mi>10</span><span class=p>,</span> <span class=mf>15.5</span><span class=p>,</span> <span class=s>&#34;Chris&#34;</span><span class=p>}</span>  <span class=c1>//结构体指针类型
+</span><span class=c1></span><span class=nx>ms</span> <span class=o>:=</span> <span class=o>&amp;</span><span class=nx>struct1</span><span class=p>{</span><span class=nx>f1</span><span class=p>:</span><span class=mf>15.5</span><span class=err>，</span><span class=nx>i1</span><span class=p>:</span><span class=mi>10</span><span class=p>}</span>  <span class=c1>//括号内声明字段名，这样可以不按定义的字段顺序，甚至省略部分字段
+</span></code></pre></td></tr></table></div></div><p>其中第二行称为混合字面量语法，但底层仍然会调用<code>new()</code>，因此与使用 <code>new()</code> 初始化是等同的。以<code>type Point struct {x,y int}</code>为例，这几种初始化方式的内存布局如下</p><p><img src=https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20191126_3EkqRU.jpg alt=结构体内存布局 style=zoom:80%></p><p>从上图可以看出，结构体和它包含的数据在内存中是以连续块的形式存在的，即使结构体中嵌套其它的结构体，同样如此。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>type</span> <span class=nx>Rect1</span> <span class=kd>struct</span> <span class=p>{</span><span class=nx>Min</span><span class=p>,</span> <span class=nx>Max</span> <span class=nx>Point</span> <span class=p>}</span>
+<span class=kd>type</span> <span class=nx>Rect2</span> <span class=kd>struct</span> <span class=p>{</span><span class=nx>Min</span><span class=p>,</span> <span class=nx>Max</span> <span class=o>*</span><span class=nx>Point</span> <span class=p>}</span>
+</code></pre></td></tr></table></div></div><p><img class=lazyload src=/svg/loading.min.svg data-src="https://github.com/unknwon/the-way-to-go_ZH_CN/raw/master/eBook/images/10.1_fig10.2.jpg?raw=true" data-srcset="https://github.com/unknwon/the-way-to-go_ZH_CN/raw/master/eBook/images/10.1_fig10.2.jpg?raw=true, https://github.com/unknwon/the-way-to-go_ZH_CN/raw/master/eBook/images/10.1_fig10.2.jpg?raw=true 1.5x, https://github.com/unknwon/the-way-to-go_ZH_CN/raw/master/eBook/images/10.1_fig10.2.jpg?raw=true 2x" data-sizes=auto alt="https://github.com/unknwon/the-way-to-go_ZH_CN/raw/master/eBook/images/10.1_fig10.2.jpg?raw=true" title=嵌套结构体内存布局></p><p>一个使用结构体的完整例子如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+<span class=kn>import</span> <span class=s>&#34;fmt&#34;</span>
+
+<span class=kd>type</span> <span class=nx>struct1</span> <span class=kd>struct</span> <span class=p>{</span>
+    <span class=nx>i1</span>  <span class=kt>int</span>
+    <span class=nx>f1</span>  <span class=kt>float32</span>
+    <span class=nx>str</span> <span class=kt>string</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+    <span class=nx>ms</span> <span class=o>:=</span> <span class=nb>new</span><span class=p>(</span><span class=nx>struct1</span><span class=p>)</span>
+    <span class=nx>ms</span><span class=p>.</span><span class=nx>i1</span> <span class=p>=</span> <span class=mi>10</span>
+    <span class=nx>ms</span><span class=p>.</span><span class=nx>f1</span> <span class=p>=</span> <span class=mf>15.5</span>
+    <span class=nx>ms</span><span class=p>.</span><span class=nx>str</span><span class=p>=</span> <span class=s>&#34;Chris&#34;</span>
+
+    <span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;The int is: %d\n&#34;</span><span class=p>,</span> <span class=nx>ms</span><span class=p>.</span><span class=nx>i1</span><span class=p>)</span>
+    <span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;The float is: %f\n&#34;</span><span class=p>,</span> <span class=nx>ms</span><span class=p>.</span><span class=nx>f1</span><span class=p>)</span>
+    <span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;The string is: %s\n&#34;</span><span class=p>,</span> <span class=nx>ms</span><span class=p>.</span><span class=nx>str</span><span class=p>)</span>
+    <span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>ms</span><span class=p>)</span>
+<span class=p>}</span>
+<span class=c1>//Output:
+</span><span class=c1></span><span class=nx>The</span> <span class=kt>int</span> <span class=nx>is</span><span class=p>:</span> <span class=mi>10</span>
+<span class=nx>The</span> <span class=kt>float</span> <span class=nx>is</span><span class=p>:</span> <span class=mf>15.500000</span>
+<span class=nx>The</span> <span class=kt>string</span> <span class=nx>is</span><span class=p>:</span> <span class=nx>Chris</span>
+<span class=o>&amp;</span><span class=p>{</span><span class=mi>10</span> <span class=mf>15.5</span> <span class=nx>Chris</span><span class=p>}</span>
+</code></pre></td></tr></table></div></div><h3 id=12-结构体标签>1.2 结构体标签</h3><p>实际上，一个完整的结构体定义，在字段名和类型外，还有一个标签(tag)部分。标签是一个字符串，用来对字段进行一定的说明，对程序功能没有太大的作用，因此前面才没有介绍。正如我们说的，它的主要作用就是对字段进行说明，标签只有包 <code>reflect</code> 能获取。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=p>(</span>
+	<span class=s>&#34;fmt&#34;</span>
+	<span class=s>&#34;reflect&#34;</span>
+<span class=p>)</span>
+
+<span class=kd>type</span> <span class=nx>TagType</span> <span class=kd>struct</span> <span class=p>{</span> <span class=c1>// tags
+</span><span class=c1></span>	<span class=nx>field1</span> <span class=kt>bool</span>   <span class=s>&#34;An important answer&#34;</span>
+	<span class=nx>field2</span> <span class=kt>string</span> <span class=s>&#34;The name of the thing&#34;</span>
+	<span class=nx>field3</span> <span class=kt>int</span>    <span class=s>&#34;How much there are&#34;</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>tt</span> <span class=o>:=</span> <span class=nx>TagType</span><span class=p>{</span><span class=kc>true</span><span class=p>,</span> <span class=s>&#34;Barak Obama&#34;</span><span class=p>,</span> <span class=mi>1</span><span class=p>}</span>
+	<span class=k>for</span> <span class=nx>i</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=mi>3</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span> <span class=p>{</span>
+		<span class=nf>refTag</span><span class=p>(</span><span class=nx>tt</span><span class=p>,</span> <span class=nx>i</span><span class=p>)</span>
+	<span class=p>}</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=nf>refTag</span><span class=p>(</span><span class=nx>tt</span> <span class=nx>TagType</span><span class=p>,</span> <span class=nx>ix</span> <span class=kt>int</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>ttType</span> <span class=o>:=</span> <span class=nx>reflect</span><span class=p>.</span><span class=nf>TypeOf</span><span class=p>(</span><span class=nx>tt</span><span class=p>)</span>
+	<span class=nx>ixField</span> <span class=o>:=</span> <span class=nx>ttType</span><span class=p>.</span><span class=nf>Field</span><span class=p>(</span><span class=nx>ix</span><span class=p>)</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;%v\n&#34;</span><span class=p>,</span> <span class=nx>ixField</span><span class=p>.</span><span class=nx>Tag</span><span class=p>)</span>
+<span class=p>}</span>
+<span class=c1>//Output:
+</span><span class=c1></span><span class=nx>An</span> <span class=nx>important</span> <span class=nx>answer</span>
+<span class=nx>The</span> <span class=nx>name</span> <span class=nx>of</span> <span class=nx>the</span> <span class=nx>thing</span>
+<span class=nx>How</span> <span class=nx>much</span> <span class=nx>there</span> <span class=nx>are</span>
+</code></pre></td></tr></table></div></div><h3 id=13-匿名字段与内嵌结构体>1.3 匿名字段与内嵌结构体</h3><p>结构体的字段名其实和变量很相似，不需要时也可以用空白符 <code>_</code> 代替，但实际上，也可以直接省略，即整个字段只有类型，此时类型就是字段名，这种字段叫做<strong>匿名字段</strong>。如下例，通过类型 <code>t.float32</code> 来获取存储在匿名字段中的数据，也因为这种调用方式，一个结构体中对每一种数据类型只能有一个匿名字段。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=s>&#34;fmt&#34;</span>
+
+<span class=kd>type</span> <span class=nx>T</span> <span class=kd>struct</span> <span class=p>{</span>
+	<span class=nx>a</span>       <span class=kt>int</span>
+	<span class=kt>float32</span> <span class=c1>// anonymous field
+</span><span class=c1></span><span class=p>}</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>t</span> <span class=o>:=</span> <span class=nx>T</span><span class=p>{</span><span class=mi>6</span><span class=p>,</span> <span class=mf>7.5</span><span class=p>}</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>t</span><span class=p>.</span><span class=kt>float32</span><span class=p>)</span>
+<span class=p>}</span>
+
+<span class=c1>//Output:
+</span><span class=c1></span><span class=p>{</span><span class=mi>6</span> <span class=mf>7.5</span><span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>由于结构体本身也是一种数据类型，因此也可以作为匿名字段使用，称为<strong>内嵌结构体</strong>。通过内嵌结构体可以实现 OO 编程种的继承。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=s>&#34;fmt&#34;</span>
+
+<span class=kd>type</span> <span class=nx>A</span> <span class=kd>struct</span> <span class=p>{</span>
+	<span class=nx>ax</span><span class=p>,</span> <span class=nx>ay</span> <span class=kt>int</span>
+<span class=p>}</span>
+
+<span class=kd>type</span> <span class=nx>B</span> <span class=kd>struct</span> <span class=p>{</span>
+	<span class=nx>A</span>
+	<span class=nx>bx</span><span class=p>,</span> <span class=nx>by</span> <span class=kt>float32</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>b</span> <span class=o>:=</span> <span class=nx>B</span><span class=p>{</span><span class=nx>A</span><span class=p>{</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>}</span><span class=p>,</span> <span class=mf>3.0</span><span class=p>,</span> <span class=mf>4.0</span><span class=p>}</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>b</span><span class=p>.</span><span class=nx>ax</span><span class=p>,</span> <span class=nx>b</span><span class=p>.</span><span class=nx>ay</span><span class=p>,</span> <span class=nx>b</span><span class=p>.</span><span class=nx>bx</span><span class=p>,</span> <span class=nx>b</span><span class=p>.</span><span class=nx>by</span><span class=p>)</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>b</span><span class=p>.</span><span class=nx>A</span><span class=p>)</span>
+<span class=p>}</span>
+<span class=c1>//Output:
+</span><span class=c1></span><span class=mi>1</span> <span class=mi>2</span> <span class=mi>3</span> <span class=mi>4</span>
+<span class=p>{</span><span class=mi>1</span> <span class=mi>2</span><span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>使用内嵌结构体的时候，很可能会出现命名冲突（继承来的字段名和当前结构体的某个字段名相同），这种情况下外层的名字会覆盖内层的名字，但两者的内存空间都会保留，下例中<code>d.b</code>的调用不会出错，指的是float32，而不是<code>B.b</code>，进行内层调用可以使用<code>d.B.b</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>type</span> <span class=nx>B</span> <span class=kd>struct</span> <span class=p>{</span><span class=nx>a</span><span class=p>,</span> <span class=nx>b</span> <span class=kt>int</span><span class=p>}</span>
+<span class=kd>type</span> <span class=nx>D</span> <span class=kd>struct</span> <span class=p>{</span><span class=nx>B</span><span class=p>;</span> <span class=nx>b</span> <span class=kt>float32</span><span class=p>}</span>
+<span class=kd>var</span> <span class=nx>d</span> <span class=nx>D</span>
+</code></pre></td></tr></table></div></div><p>但下面这种情况，<code>c.a</code>的调用会导致编译器错误,只能由程序员手动修改</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>type</span> <span class=nx>A</span> <span class=kd>struct</span> <span class=p>{</span><span class=nx>a</span> <span class=kt>int</span><span class=p>}</span>
+<span class=kd>type</span> <span class=nx>B</span> <span class=kd>struct</span> <span class=p>{</span><span class=nx>a</span><span class=p>,</span> <span class=nx>b</span> <span class=kt>int</span><span class=p>}</span>
+
+<span class=kd>type</span> <span class=nx>C</span> <span class=kd>struct</span> <span class=p>{</span><span class=nx>A</span><span class=p>;</span> <span class=nx>B</span><span class=p>}</span>
+<span class=kd>var</span> <span class=nx>c</span> <span class=nx>C</span>
+</code></pre></td></tr></table></div></div><h3 id=14-结构体工厂>1.4 结构体工厂</h3><p>可以为结构体定义一个工厂来创建结构体实例，工厂的名字通常以new或New开头，这是一种很常用的方法。假设定义了如下File结构体类型</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>type</span> <span class=nx>File</span> <span class=kd>struct</span> <span class=p>{</span>
+    <span class=nx>fd</span> <span class=kt>int</span> <span class=c1>//文件描述符
+</span><span class=c1></span>    <span class=nx>name</span> <span class=kt>string</span> <span class=c1>//文件名
+</span><span class=c1></span><span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>下面是为File结构体创建的工厂，返回一个指向结构体的指针</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>NewFile</span><span class=p>(</span><span class=nx>fd</span> <span class=kt>int</span><span class=p>,</span> <span class=nx>name</span> <span class=kt>string</span><span class=p>)</span> <span class=o>*</span><span class=nx>File</span> <span class=p>{</span>
+    <span class=k>if</span> <span class=nx>fd</span> <span class=p>&lt;</span> <span class=mi>0</span> <span class=p>{</span>
+        <span class=k>return</span> <span class=kc>nil</span>
+    <span class=p>}</span>
+
+    <span class=k>return</span> <span class=o>&amp;</span><span class=nx>File</span><span class=p>{</span><span class=nx>fd</span><span class=p>,</span> <span class=nx>name</span><span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>然后这样调用它</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=nx>f</span> <span class=o>:=</span> <span class=nf>NewFile</span><span class=p>(</span><span class=mi>10</span><span class=p>,</span> <span class=s>&#34;./test.txt&#34;</span><span class=p>)</span>
+</code></pre></td></tr></table></div></div><p>这种方式可以模拟OO编程中使用<code>new</code>的实例化，如果要完全等同，还需要利用可见性规则禁止使用Go内置的<code>new()</code>函数</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>type</span> <span class=nx>matrix</span> <span class=kd>struct</span> <span class=p>{</span>
+    <span class=o>...</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=nf>NewMatrix</span><span class=p>(</span><span class=nx>params</span><span class=p>)</span> <span class=o>*</span><span class=nx>matrix</span> <span class=p>{</span>
+    <span class=nx>m</span> <span class=o>:=</span> <span class=nb>new</span><span class=p>(</span><span class=nx>matrix</span><span class=p>)</span> <span class=c1>// 初始化 m
+</span><span class=c1></span>    <span class=k>return</span> <span class=nx>m</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>然后在其它包里就只能使用工厂创建结构体实例</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+<span class=kn>import</span> <span class=s>&#34;matrix&#34;</span>
+<span class=o>...</span>
+<span class=nx>wrong</span> <span class=o>:=</span> <span class=nb>new</span><span class=p>(</span><span class=nx>matrix</span><span class=p>.</span><span class=nx>matrix</span><span class=p>)</span>     <span class=c1>// 编译失败（matrix 是私有的）
+</span><span class=c1></span><span class=nx>right</span> <span class=o>:=</span> <span class=nx>matrix</span><span class=p>.</span><span class=nf>NewMatrix</span><span class=p>(</span><span class=o>...</span><span class=p>)</span>  <span class=c1>// 实例化 matrix 的唯一方式
+</span></code></pre></td></tr></table></div></div><h2 id=2-方法>2. 方法</h2><p>Go中的方法是作用在接收者上的一个函数，接收者是某种类型的变量。定义方法的一般格式如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=p>(</span><span class=nx>recv</span> <span class=nx>receiver_type</span><span class=p>)</span> <span class=nf>methodName</span><span class=p>(</span><span class=nx>parameter_list</span><span class=p>)</span> <span class=p>(</span><span class=nx>return_value_list</span><span class=p>)</span> <span class=p>{</span> <span class=o>...</span> <span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>在<code>func</code>关键字之后，方法名之前的括号中声明接收者和接收者类型。同样还可以看到，方法的本质仍然是函数，只不过是针对特定变量的函数，除了括号中的接收者声明，其它部分和普通函数没有不同。</p><p>接收者几乎可以是任何类型的变量，包括基本数据类型、数组的别名类型、结构体、函数等，但不可以是接口，因为方法是需要实现的，而接口只是抽象定义。</p><p>如果接收者变量<code>recv</code>已经在其它地方进行了初始化，Method1是它的方法名，那么方法的调用格式为<code>recv.Method1()</code>，同结构体相似，如果<code>recv</code>是指针，调用时自动解引用。</p><p>如果方法不需要使用<code>recv</code>的值，可以用空白符<code>_</code>替换它</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=p>(</span><span class=nx>_</span> <span class=nx>receiver_type</span><span class=p>)</span> <span class=nf>methodName</span><span class=p>(</span><span class=nx>parameter_list</span><span class=p>)</span> <span class=p>(</span><span class=nx>return_value_list</span><span class=p>)</span> <span class=p>{</span> <span class=o>...</span> <span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>类型 T（或 *T）上的所有方法的集合叫做类型 T（或 *T）的方法集（method set）。</p><p>一个接收者变量加上它的方法等价于面向对象中的一个类，区别只在于Go中方法的代码与变量定义是分离的，只要在同一个包中即可。</p><p>因为方法是函数，所以方法同样不允许重载，但不同的接收者变量可以有相同名字的方法，即使它们在同一个包中，一个例子如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=p>(</span><span class=nx>a</span> <span class=o>*</span><span class=nx>denseMatrix</span><span class=p>)</span> <span class=nf>Add</span><span class=p>(</span><span class=nx>b</span> <span class=nx>Matrix</span><span class=p>)</span> <span class=nx>Matrix</span>
+<span class=kd>func</span> <span class=p>(</span><span class=nx>a</span> <span class=o>*</span><span class=nx>sparseMatrix</span><span class=p>)</span> <span class=nf>Add</span><span class=p>(</span><span class=nx>b</span> <span class=nx>Matrix</span><span class=p>)</span> <span class=nx>Matrix</span>
+</code></pre></td></tr></table></div></div><p>一个结构体方法的例子如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=s>&#34;fmt&#34;</span>
+
+<span class=kd>type</span> <span class=nx>TwoInts</span> <span class=kd>struct</span> <span class=p>{</span>
+	<span class=nx>a</span> <span class=kt>int</span>
+	<span class=nx>b</span> <span class=kt>int</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>two1</span> <span class=o>:=</span> <span class=nb>new</span><span class=p>(</span><span class=nx>TwoInts</span><span class=p>)</span>
+	<span class=nx>two1</span><span class=p>.</span><span class=nx>a</span> <span class=p>=</span> <span class=mi>12</span>
+	<span class=nx>two1</span><span class=p>.</span><span class=nx>b</span> <span class=p>=</span> <span class=mi>10</span>
+
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;The sum is: %d\n&#34;</span><span class=p>,</span> <span class=nx>two1</span><span class=p>.</span><span class=nf>AddThem</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;Add them to the param: %d\n&#34;</span><span class=p>,</span> <span class=nx>two1</span><span class=p>.</span><span class=nf>AddToParam</span><span class=p>(</span><span class=mi>20</span><span class=p>)</span><span class=p>)</span>
+
+	<span class=nx>two2</span> <span class=o>:=</span> <span class=nx>TwoInts</span><span class=p>{</span><span class=mi>3</span><span class=p>,</span> <span class=mi>4</span><span class=p>}</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Printf</span><span class=p>(</span><span class=s>&#34;The sum is: %d\n&#34;</span><span class=p>,</span> <span class=nx>two2</span><span class=p>.</span><span class=nf>AddThem</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>tn</span> <span class=o>*</span><span class=nx>TwoInts</span><span class=p>)</span> <span class=nf>AddThem</span><span class=p>(</span><span class=p>)</span> <span class=kt>int</span> <span class=p>{</span>
+	<span class=k>return</span> <span class=nx>tn</span><span class=p>.</span><span class=nx>a</span> <span class=o>+</span> <span class=nx>tn</span><span class=p>.</span><span class=nx>b</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>tn</span> <span class=o>*</span><span class=nx>TwoInts</span><span class=p>)</span> <span class=nf>AddToParam</span><span class=p>(</span><span class=nx>param</span> <span class=kt>int</span><span class=p>)</span> <span class=kt>int</span> <span class=p>{</span>
+	<span class=k>return</span> <span class=nx>tn</span><span class=p>.</span><span class=nx>a</span> <span class=o>+</span> <span class=nx>tn</span><span class=p>.</span><span class=nx>b</span> <span class=o>+</span> <span class=nx>param</span>
+<span class=p>}</span>
+<span class=c1>//Output:
+</span><span class=c1></span><span class=nx>The</span> <span class=nx>sum</span> <span class=nx>is</span><span class=p>:</span> <span class=mi>22</span>
+<span class=nx>Add</span> <span class=nx>them</span> <span class=nx>to</span> <span class=nx>the</span> <span class=nx>param</span><span class=p>:</span> <span class=mi>42</span>
+<span class=nx>The</span> <span class=nx>sum</span> <span class=nx>is</span><span class=p>:</span> <span class=mi>7</span>
+</code></pre></td></tr></table></div></div><p>一个非结构体类型(数组别名)方法的例子如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=s>&#34;fmt&#34;</span>
+
+<span class=kd>type</span> <span class=nx>IntVector</span> <span class=p>[</span><span class=p>]</span><span class=kt>int</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>v</span> <span class=nx>IntVector</span><span class=p>)</span> <span class=nf>Sum</span><span class=p>(</span><span class=p>)</span> <span class=p>(</span><span class=nx>s</span> <span class=kt>int</span><span class=p>)</span> <span class=p>{</span>
+	<span class=k>for</span> <span class=nx>_</span><span class=p>,</span> <span class=nx>x</span> <span class=o>:=</span> <span class=k>range</span> <span class=nx>v</span> <span class=p>{</span>
+		<span class=nx>s</span> <span class=o>+=</span> <span class=nx>x</span>
+	<span class=p>}</span>
+	<span class=k>return</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>IntVector</span><span class=p>{</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>3</span><span class=p>}</span><span class=p>.</span><span class=nf>Sum</span><span class=p>(</span><span class=p>)</span><span class=p>)</span> <span class=c1>// 输出是6
+</span><span class=c1></span><span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>变量和定义在它上面的方法必须在同一个包里定义，如下例是错误的，这也是为什么不能定义int这样的基本类型的方法，但可以定义基本类型的别名的方法</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=s>&#34;container/list&#34;</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>p</span> <span class=o>*</span><span class=nx>list</span><span class=p>.</span><span class=nx>List</span><span class=p>)</span> <span class=nf>Iter</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+	<span class=c1>// ...
+</span><span class=c1></span><span class=p>}</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>lst</span> <span class=o>:=</span> <span class=nb>new</span><span class=p>(</span><span class=nx>list</span><span class=p>.</span><span class=nx>List</span><span class=p>)</span>
+	<span class=k>for</span> <span class=nx>_</span><span class=p>=</span> <span class=k>range</span> <span class=nx>lst</span><span class=p>.</span><span class=nf>Iter</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+	<span class=p>}</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><h3 id=21-函数和方法的区别>2.1 函数和方法的区别</h3><p>函数将变量作为参数：<strong>Function1(recv)</strong></p><p>方法在变量上被调用：<strong>recv.Method1()</strong></p><p>在接收者是指针时，方法可以改变接收者的值（或状态），这点函数也可以做到（当参数作为指针传递，即通过引用调用时，函数也可以改变参数的状态）。</p><p><strong>不要忘记 Method1 后边的括号 ()，否则会引发编译器错误：<code>method recv.Method1 is not an expression, must be called</code></strong></p><p>接收者必须有一个显式的名字，这个名字必须在方法中被使用。</p><p><strong>receiver_type</strong> 叫做 <strong>（接收者）基本类型</strong>，这个类型必须在和方法同样的包中被声明。</p><p>在 Go 中，（接收者）类型关联的方法不写在类型结构里面，就像类那样；耦合更加宽松；类型和方法之间的关联由接收者来建立。</p><p><strong>方法没有和数据定义（结构体）混在一起：它们是正交的类型；表示（数据）和行为（方法）是独立的。</strong></p><h3 id=22-指针或值作为接收者>2.2 指针或值作为接收者</h3><p>如果想要方法改变接收者的数据，就在接收者的指针类型上定义该方法。否则，就在普通的值类型上定义方法。一个例子如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=p>(</span>
+	<span class=s>&#34;fmt&#34;</span>
+<span class=p>)</span>
+
+<span class=kd>type</span> <span class=nx>B</span> <span class=kd>struct</span> <span class=p>{</span>
+	<span class=nx>thing</span> <span class=kt>int</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>b</span> <span class=o>*</span><span class=nx>B</span><span class=p>)</span> <span class=nf>change</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span> <span class=nx>b</span><span class=p>.</span><span class=nx>thing</span> <span class=p>=</span> <span class=mi>1</span> <span class=p>}</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>b</span> <span class=nx>B</span><span class=p>)</span> <span class=nf>write</span><span class=p>(</span><span class=p>)</span> <span class=kt>string</span> <span class=p>{</span> <span class=k>return</span> <span class=nx>fmt</span><span class=p>.</span><span class=nf>Sprint</span><span class=p>(</span><span class=nx>b</span><span class=p>)</span> <span class=p>}</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+	<span class=kd>var</span> <span class=nx>b1</span> <span class=nx>B</span> <span class=c1>// b1是值
+</span><span class=c1></span>	<span class=nx>b1</span><span class=p>.</span><span class=nf>change</span><span class=p>(</span><span class=p>)</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>b1</span><span class=p>.</span><span class=nf>write</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
+
+	<span class=nx>b2</span> <span class=o>:=</span> <span class=nb>new</span><span class=p>(</span><span class=nx>B</span><span class=p>)</span> <span class=c1>// b2是指针
+</span><span class=c1></span>	<span class=nx>b2</span><span class=p>.</span><span class=nf>change</span><span class=p>(</span><span class=p>)</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>b2</span><span class=p>.</span><span class=nf>write</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
+<span class=p>}</span>
+
+<span class=cm>/* 输出：
+</span><span class=cm>{1}
+</span><span class=cm>{1}
+</span><span class=cm>*/</span>
+</code></pre></td></tr></table></div></div><p>指针方法和值方法都可以在指针或非指针上被调用，如上例，b1是值类型，而change()方法作用在指针类型上，b1.change()会被自动转换为(&b1).change()；b2是指针类型，但write()方法是值类型，b2.write()会被自动转换成(*b2).write()</p><h3 id=23-利用方法读取结构体中的未导出字段>2.3 利用方法读取结构体中的未导出字段</h3><p>本文开始对结构体的介绍中，提到结构体对外部可见，而结构体中的字段对外部不可见是可能发生的，对于这种情况，读取或修改结构体中的字段值可以通过作用在结构体上的方法完成，一个例子如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>person</span>
+
+<span class=kd>type</span> <span class=nx>Person</span> <span class=kd>struct</span> <span class=p>{</span>
+	<span class=nx>firstName</span> <span class=kt>string</span>
+	<span class=nx>lastName</span>  <span class=kt>string</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>p</span> <span class=o>*</span><span class=nx>Person</span><span class=p>)</span> <span class=nf>FirstName</span><span class=p>(</span><span class=p>)</span> <span class=kt>string</span> <span class=p>{</span>
+	<span class=k>return</span> <span class=nx>p</span><span class=p>.</span><span class=nx>firstName</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>p</span> <span class=o>*</span><span class=nx>Person</span><span class=p>)</span> <span class=nf>SetFirstName</span><span class=p>(</span><span class=nx>newName</span> <span class=kt>string</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>p</span><span class=p>.</span><span class=nx>firstName</span> <span class=p>=</span> <span class=nx>newName</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>对其中定义的结构体字段进行调用</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=p>(</span>
+	<span class=s>&#34;./person&#34;</span>
+	<span class=s>&#34;fmt&#34;</span>
+<span class=p>)</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>p</span> <span class=o>:=</span> <span class=nb>new</span><span class=p>(</span><span class=nx>person</span><span class=p>.</span><span class=nx>Person</span><span class=p>)</span>
+	<span class=c1>// p.firstName undefined
+</span><span class=c1></span>	<span class=c1>// (cannot refer to unexported field or method firstName)
+</span><span class=c1></span>	<span class=c1>// p.firstName = &#34;Eric&#34;
+</span><span class=c1></span>	<span class=nx>p</span><span class=p>.</span><span class=nf>SetFirstName</span><span class=p>(</span><span class=s>&#34;Eric&#34;</span><span class=p>)</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>p</span><span class=p>.</span><span class=nf>FirstName</span><span class=p>(</span><span class=p>)</span><span class=p>)</span> <span class=c1>// Output: Eric
+</span><span class=c1></span><span class=p>}</span>
+</code></pre></td></tr></table></div></div><h3 id=24-内嵌类型的方法与继承>2.4 内嵌类型的方法与继承</h3><p>当一个匿名类型被内嵌在结构体中时，匿名类型的可见方法也同样被内嵌，这在效果上等同于外层类型 <strong>继承</strong> 了这些方法 ， 这个机制提供了一种简单的方式来模拟面向对象语言中的子类和继承相关的效果。一个示例如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=p>(</span>
+	<span class=s>&#34;fmt&#34;</span>
+	<span class=s>&#34;math&#34;</span>
+<span class=p>)</span>
+
+<span class=kd>type</span> <span class=nx>Point</span> <span class=kd>struct</span> <span class=p>{</span>
+	<span class=nx>x</span><span class=p>,</span> <span class=nx>y</span> <span class=kt>float64</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>p</span> <span class=o>*</span><span class=nx>Point</span><span class=p>)</span> <span class=nf>Abs</span><span class=p>(</span><span class=p>)</span> <span class=kt>float64</span> <span class=p>{</span>
+	<span class=k>return</span> <span class=nx>math</span><span class=p>.</span><span class=nf>Sqrt</span><span class=p>(</span><span class=nx>p</span><span class=p>.</span><span class=nx>x</span><span class=o>*</span><span class=nx>p</span><span class=p>.</span><span class=nx>x</span> <span class=o>+</span> <span class=nx>p</span><span class=p>.</span><span class=nx>y</span><span class=o>*</span><span class=nx>p</span><span class=p>.</span><span class=nx>y</span><span class=p>)</span>
+<span class=p>}</span>
+
+<span class=kd>type</span> <span class=nx>NamedPoint</span> <span class=kd>struct</span> <span class=p>{</span>
+	<span class=nx>Point</span>
+	<span class=nx>name</span> <span class=kt>string</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>n</span> <span class=o>:=</span> <span class=o>&amp;</span><span class=nx>NamedPoint</span><span class=p>{</span><span class=nx>Point</span><span class=p>{</span><span class=mi>3</span><span class=p>,</span> <span class=mi>4</span><span class=p>}</span><span class=p>,</span> <span class=s>&#34;Pythagoras&#34;</span><span class=p>}</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>n</span><span class=p>.</span><span class=nf>Abs</span><span class=p>(</span><span class=p>)</span><span class=p>)</span> <span class=c1>// 打印5
+</span><span class=c1></span><span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>使用同名方法可以覆盖父类型中的方法，比如在上例中添加如下代码，会打印100</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=p>(</span><span class=nx>n</span> <span class=o>*</span><span class=nx>NamedPoint</span><span class=p>)</span> <span class=nf>Abs</span><span class=p>(</span><span class=p>)</span> <span class=kt>float64</span> <span class=p>{</span>
+	<span class=k>return</span> <span class=nx>n</span><span class=p>.</span><span class=nx>Point</span><span class=p>.</span><span class=nf>Abs</span><span class=p>(</span><span class=p>)</span> <span class=o>*</span> <span class=mf>100.</span>
+<span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>因为一个结构体可以嵌入多个匿名类型，所以实际上可以实现简单的多重继承，如下例所示</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=p>(</span>
+	<span class=s>&#34;fmt&#34;</span>
+<span class=p>)</span>
+
+<span class=kd>type</span> <span class=nx>Camera</span> <span class=kd>struct</span><span class=p>{</span><span class=p>}</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>c</span> <span class=o>*</span><span class=nx>Camera</span><span class=p>)</span> <span class=nf>TakeAPicture</span><span class=p>(</span><span class=p>)</span> <span class=kt>string</span> <span class=p>{</span>
+	<span class=k>return</span> <span class=s>&#34;Click&#34;</span>
+<span class=p>}</span>
+
+<span class=kd>type</span> <span class=nx>Phone</span> <span class=kd>struct</span><span class=p>{</span><span class=p>}</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>p</span> <span class=o>*</span><span class=nx>Phone</span><span class=p>)</span> <span class=nf>Call</span><span class=p>(</span><span class=p>)</span> <span class=kt>string</span> <span class=p>{</span>
+	<span class=k>return</span> <span class=s>&#34;Ring Ring&#34;</span>
+<span class=p>}</span>
+
+<span class=kd>type</span> <span class=nx>CameraPhone</span> <span class=kd>struct</span> <span class=p>{</span>
+	<span class=nx>Camera</span>
+	<span class=nx>Phone</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>cp</span> <span class=o>:=</span> <span class=nb>new</span><span class=p>(</span><span class=nx>CameraPhone</span><span class=p>)</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;Our new CameraPhone exhibits multiple behaviors...&#34;</span><span class=p>)</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;It exhibits behavior of a Camera: &#34;</span><span class=p>,</span> <span class=nx>cp</span><span class=p>.</span><span class=nf>TakeAPicture</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;It works like a Phone too: &#34;</span><span class=p>,</span> <span class=nx>cp</span><span class=p>.</span><span class=nf>Call</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
+<span class=p>}</span>
+<span class=c1>//Output:
+</span><span class=c1></span><span class=nx>Our</span> <span class=nx>new</span> <span class=nx>CameraPhone</span> <span class=nx>exhibits</span> <span class=nx>multiple</span> <span class=nx>behaviors</span><span class=o>...</span>
+<span class=nx>It</span> <span class=nx>exhibits</span> <span class=nx>behavior</span> <span class=nx>of</span> <span class=nx>a</span> <span class=nx>Camera</span><span class=p>:</span> <span class=nx>Click</span>
+<span class=nx>It</span> <span class=nx>works</span> <span class=nx>like</span> <span class=nx>a</span> <span class=nx>Phone</span> <span class=nx>too</span><span class=p>:</span> <span class=nx>Ring</span> <span class=nx>Ring</span>
+</code></pre></td></tr></table></div></div><h3 id=25-在类型中嵌入功能>2.5 在类型中嵌入功能</h3><p>主要有两种方法来实现在类型中嵌入功能：</p><p>A：聚合（或组合）：包含一个所需功能类型的具名字段。</p><p>B：内嵌：内嵌（匿名地）所需功能类型，像前一节 10.6.5 所演示的那样。</p><p>假设有一个 <code>Customer</code> 类型，我们想让它通过 <code>Log</code> 类型来包含日志功能，<code>Log</code> 类型只是简单地包含一个累积的消息（当然它可以是复杂的）。如果想让特定类型都具备日志功能，你可以实现一个这样的 <code>Log</code> 类型，然后将它作为特定类型的一个字段，并提供 <code>Log()</code>，它返回这个日志的引用。</p><p>使用聚合方式实现如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=p>(</span>
+	<span class=s>&#34;fmt&#34;</span>
+<span class=p>)</span>
+
+<span class=kd>type</span> <span class=nx>Log</span> <span class=kd>struct</span> <span class=p>{</span>
+	<span class=nx>msg</span> <span class=kt>string</span>
+<span class=p>}</span>
+
+<span class=kd>type</span> <span class=nx>Customer</span> <span class=kd>struct</span> <span class=p>{</span>
+	<span class=nx>Name</span> <span class=kt>string</span>
+	<span class=nx>log</span>  <span class=o>*</span><span class=nx>Log</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>c</span> <span class=o>:=</span> <span class=nb>new</span><span class=p>(</span><span class=nx>Customer</span><span class=p>)</span>
+	<span class=nx>c</span><span class=p>.</span><span class=nx>Name</span> <span class=p>=</span> <span class=s>&#34;Barak Obama&#34;</span>
+	<span class=nx>c</span><span class=p>.</span><span class=nx>log</span> <span class=p>=</span> <span class=nb>new</span><span class=p>(</span><span class=nx>Log</span><span class=p>)</span>
+	<span class=nx>c</span><span class=p>.</span><span class=nx>log</span><span class=p>.</span><span class=nx>msg</span> <span class=p>=</span> <span class=s>&#34;1 - Yes we can!&#34;</span>
+	<span class=c1>// shorter
+</span><span class=c1></span>	<span class=nx>c</span> <span class=p>=</span> <span class=o>&amp;</span><span class=nx>Customer</span><span class=p>{</span><span class=s>&#34;Barak Obama&#34;</span><span class=p>,</span> <span class=o>&amp;</span><span class=nx>Log</span><span class=p>{</span><span class=s>&#34;1 - Yes we can!&#34;</span><span class=p>}</span><span class=p>}</span>
+	<span class=c1>// fmt.Println(c) &amp;{Barak Obama 1 - Yes we can!}
+</span><span class=c1></span>	<span class=nx>c</span><span class=p>.</span><span class=nf>Log</span><span class=p>(</span><span class=p>)</span><span class=p>.</span><span class=nf>Add</span><span class=p>(</span><span class=s>&#34;2 - After me the world will be a better place!&#34;</span><span class=p>)</span>
+	<span class=c1>//fmt.Println(c.log)
+</span><span class=c1></span>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>c</span><span class=p>.</span><span class=nf>Log</span><span class=p>(</span><span class=p>)</span><span class=p>)</span>
+
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>l</span> <span class=o>*</span><span class=nx>Log</span><span class=p>)</span> <span class=nf>Add</span><span class=p>(</span><span class=nx>s</span> <span class=kt>string</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>l</span><span class=p>.</span><span class=nx>msg</span> <span class=o>+=</span> <span class=s>&#34;\n&#34;</span> <span class=o>+</span> <span class=nx>s</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>l</span> <span class=o>*</span><span class=nx>Log</span><span class=p>)</span> <span class=nf>String</span><span class=p>(</span><span class=p>)</span> <span class=kt>string</span> <span class=p>{</span>
+	<span class=k>return</span> <span class=nx>l</span><span class=p>.</span><span class=nx>msg</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>c</span> <span class=o>*</span><span class=nx>Customer</span><span class=p>)</span> <span class=nf>Log</span><span class=p>(</span><span class=p>)</span> <span class=o>*</span><span class=nx>Log</span> <span class=p>{</span>
+	<span class=k>return</span> <span class=nx>c</span><span class=p>.</span><span class=nx>log</span>
+<span class=p>}</span>
+<span class=c1>//Output:
+</span><span class=c1></span><span class=mi>1</span> <span class=o>-</span> <span class=nx>Yes</span> <span class=nx>we</span> <span class=nx>can</span><span class=p>!</span>
+<span class=mi>2</span> <span class=o>-</span> <span class=nx>After</span> <span class=nx>me</span> <span class=nx>the</span> <span class=nx>world</span> <span class=nx>will</span> <span class=nx>be</span> <span class=nx>a</span> <span class=nx>better</span> <span class=nx>place</span><span class=p>!</span>
+</code></pre></td></tr></table></div></div><p>使用内嵌方式实现如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>main</span>
+
+<span class=kn>import</span> <span class=p>(</span>
+	<span class=s>&#34;fmt&#34;</span>
+<span class=p>)</span>
+
+<span class=kd>type</span> <span class=nx>Log</span> <span class=kd>struct</span> <span class=p>{</span>
+	<span class=nx>msg</span> <span class=kt>string</span>
+<span class=p>}</span>
+
+<span class=kd>type</span> <span class=nx>Customer</span> <span class=kd>struct</span> <span class=p>{</span>
+	<span class=nx>Name</span> <span class=kt>string</span>
+	<span class=nx>Log</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=nf>main</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>c</span> <span class=o>:=</span> <span class=o>&amp;</span><span class=nx>Customer</span><span class=p>{</span><span class=s>&#34;Barak Obama&#34;</span><span class=p>,</span> <span class=nx>Log</span><span class=p>{</span><span class=s>&#34;1 - Yes we can!&#34;</span><span class=p>}</span><span class=p>}</span>
+	<span class=nx>c</span><span class=p>.</span><span class=nf>Add</span><span class=p>(</span><span class=s>&#34;2 - After me the world will be a better place!&#34;</span><span class=p>)</span>
+	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>c</span><span class=p>)</span>
+
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>l</span> <span class=o>*</span><span class=nx>Log</span><span class=p>)</span> <span class=nf>Add</span><span class=p>(</span><span class=nx>s</span> <span class=kt>string</span><span class=p>)</span> <span class=p>{</span>
+	<span class=nx>l</span><span class=p>.</span><span class=nx>msg</span> <span class=o>+=</span> <span class=s>&#34;\n&#34;</span> <span class=o>+</span> <span class=nx>s</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>l</span> <span class=o>*</span><span class=nx>Log</span><span class=p>)</span> <span class=nf>String</span><span class=p>(</span><span class=p>)</span> <span class=kt>string</span> <span class=p>{</span>
+	<span class=k>return</span> <span class=nx>l</span><span class=p>.</span><span class=nx>msg</span>
+<span class=p>}</span>
+
+<span class=kd>func</span> <span class=p>(</span><span class=nx>c</span> <span class=o>*</span><span class=nx>Customer</span><span class=p>)</span> <span class=nf>String</span><span class=p>(</span><span class=p>)</span> <span class=kt>string</span> <span class=p>{</span>
+	<span class=k>return</span> <span class=nx>c</span><span class=p>.</span><span class=nx>Name</span> <span class=o>+</span> <span class=s>&#34;\nLog:&#34;</span> <span class=o>+</span> <span class=nx>fmt</span><span class=p>.</span><span class=nf>Sprintln</span><span class=p>(</span><span class=nx>c</span><span class=p>.</span><span class=nx>Log</span><span class=p>)</span>
+<span class=p>}</span>
+<span class=c1>//Output:
+</span><span class=c1></span><span class=nx>Barak</span> <span class=nx>Obama</span>
+<span class=nx>Log</span><span class=p>:</span><span class=p>{</span><span class=mi>1</span> <span class=o>-</span> <span class=nx>Yes</span> <span class=nx>we</span> <span class=nx>can</span><span class=p>!</span>
+<span class=mi>2</span> <span class=o>-</span> <span class=nx>After</span> <span class=nx>me</span> <span class=nx>the</span> <span class=nx>world</span> <span class=nx>will</span> <span class=nx>be</span> <span class=nx>a</span> <span class=nx>better</span> <span class=nx>place</span><span class=p>!</span><span class=p>}</span>
+</code></pre></td></tr></table></div></div><p>内嵌的类型不需要指针，<code>Customer</code> 也不需要 <code>Add</code> 方法，它使用 <code>Log</code> 的 <code>Add</code> 方法，<code>Customer</code> 有自己的 <code>String</code> 方法，并且在它里面调用了 <code>Log</code> 的 <code>String</code> 方法。</p><p>如果内嵌类型嵌入了其他类型，也是可以的，那些类型的方法可以直接在外层类型中使用。</p><p>因此一个好的策略是创建一些小的、可复用的类型作为一个工具箱，用于组成域类型。</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2020-09-13</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/2019/golang-syntax-8-struct-and-method/index.md target=_blank>阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://shuzang.github.io/2019/golang-syntax-8-struct-and-method/ data-title=Golang语法基础8-结构体与方法 data-hashtags=Go语法><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://shuzang.github.io/2019/golang-syntax-8-struct-and-method/ data-hashtag=Go语法><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://shuzang.github.io/2019/golang-syntax-8-struct-and-method/ data-title=Golang语法基础8-结构体与方法><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://shuzang.github.io/2019/golang-syntax-8-struct-and-method/ data-title=Golang语法基础8-结构体与方法><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://shuzang.github.io/2019/golang-syntax-8-struct-and-method/ data-title=Golang语法基础8-结构体与方法><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/go%E8%AF%AD%E6%B3%95/>Go语法</a></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/2019/golang-syntax-9-interface-and-reflect/ class=prev rel=prev title=Golang语法基础9-接口与反射><i class="fas fa-angle-left fa-fw"></i>Golang语法基础9-接口与反射</a>
+<a href=/2019/blockchain-based-access-control-for-iot/ class=next rel=next title=研究记录9-区块链用于物联网访问控制梳理>研究记录9-区块链用于物联网访问控制梳理<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><div id=valine class=comment></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://valine.js.org/>Valine</a>.</noscript></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.63.2">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i>LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2022</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>Shuzang</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=/lib/valine/valine.min.css><script type=text/javascript src=https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.zh-cn","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>
