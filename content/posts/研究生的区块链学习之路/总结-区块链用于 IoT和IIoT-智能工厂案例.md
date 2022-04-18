@@ -3,7 +3,6 @@ title: 文献综述-区块链用于 IoT/IIoT：智能工厂案例
 date: 2019-02-05
 lastmod: 2019-04-12T20:24:00+08:00
 tags: [科研记录]
-toc: true
 categories: [研究生的区块链学习之路]
 slug: Blockchain for IoT/IIoT：A smart factory case study 
 ---

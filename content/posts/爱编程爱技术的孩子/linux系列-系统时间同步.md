@@ -2,7 +2,6 @@
 title: linux系统时间同步
 date: 2019-12-20
 tags: [linux]
-toc: true
 categories: [爱编程爱技术的孩子]
 ---
 

@@ -3,7 +3,6 @@ title: hugo搭建个人博客4-主题美化
 date: 2019-09-30
 lastmod: 2020-02-12
 tags: [Hugo]
-toc: true
 categories: [爱编程爱技术的孩子]
 
 slug: Hugo blog theme beautify

@@ -3,7 +3,6 @@ title: Golang语法基础1-背景与初探
 date: 2019-09-13
 lastmod: 2020-06-13
 tags: [Go语法]
-toc: true
 categories: [Golang学习之路]
 slug: Golang Basic Grammar 1-Background and Preliminary Exploration 
 ---

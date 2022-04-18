@@ -2,7 +2,6 @@
 title: A Blockchain based access control for IoT
 date: 2020-02-06
 tags: [论文笔记]
-toc: true
 categories: [研究生的区块链学习之路]
 ---
 

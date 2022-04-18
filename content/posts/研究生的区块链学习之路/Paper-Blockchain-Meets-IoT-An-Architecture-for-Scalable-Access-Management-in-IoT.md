@@ -3,7 +3,6 @@ title: Blockchain Meets IoT：An Architecture for Scalable Access Management in 
 date: 2018-12-28T15:42:00+08:00
 lastmod: 2020-02-20
 tags: [论文笔记]
-toc: true
 categories: [研究生的区块链学习之路] 
 ---
 

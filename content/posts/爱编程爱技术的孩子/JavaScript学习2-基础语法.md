@@ -1,7 +1,6 @@
 ---
 title: JavaScript学习2-基础语法
 date: 2020-05-22T17:07:00+08:00
-toc: true
 categories: [爱编程爱技术的孩子]
 slug: JavaScript learning 2 basic syntax
 ---

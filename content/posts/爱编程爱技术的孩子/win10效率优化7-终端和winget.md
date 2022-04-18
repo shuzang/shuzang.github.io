@@ -3,7 +3,6 @@ title: win10效率优化7-终端和winget
 date: 2020-10-07
 lastmod: 2020-10-07
 tags: [win10]
-toc: true
 categories: [爱编程爱技术的孩子]
 slug: Efficient use of win10 7-windows terminal and winget 
 ---

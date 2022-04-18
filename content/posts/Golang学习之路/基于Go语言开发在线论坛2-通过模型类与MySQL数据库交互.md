@@ -4,7 +4,6 @@ author: xueyuanjun
 date: 2020-05-27T18:25:20+08:00 
 lastmod: 2020-06-14
 tags: [Go实战]
-toc: true
 categories: [Golang学习之路]
 slug: Development of online forum based on golang 2-Interact with MySQL 
 ---

@@ -2,7 +2,6 @@
 title: Blockchain-Based Platform Architecture for Industrial IoT
 date: 2019-02-28T10:50:00+08:00
 tags: [论文笔记]
-toc: true
 categories: [研究生的区块链学习之路]
 ---
 

@@ -3,7 +3,6 @@ title: VMware虚拟机使用技巧
 date: 2019-09-06
 lastmod: 2019-11-17
 tags: [linux]
-toc: true
 categories: [爱编程爱技术的孩子] 
 slug: VMware usage
 ---

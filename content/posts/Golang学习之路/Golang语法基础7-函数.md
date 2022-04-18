@@ -3,7 +3,6 @@ title: Golang语法基础7-函数
 date: 2019-11-25
 lastmod: 2020-06-16
 tags: [Go语法]
-toc: true
 categories: [Golang学习之路]
 slug: Golang syntax 7-function 
 ---

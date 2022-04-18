@@ -3,7 +3,6 @@ title: 区块链学习5-ETC和ETH
 date: 2019-01-16T10:48:00+08:00
 lastmod: 2020-11-11
 tags: [区块链]
-toc: true
 categories: [研究生的区块链学习之路] 
 slug: ethereum and ethereum classic
 ---

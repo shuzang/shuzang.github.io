@@ -3,7 +3,6 @@ title: Hexo 搭建个人博客
 date: 2018-04-17T20:30:00+08:00
 lastmod: 2020-02-12
 tags: [Hugo]
-toc: true
 categories: [爱编程爱技术的孩子]
 slug: using Hexo build persoanl blog 
 ---
@@ -256,8 +255,7 @@ douban:
 # navigatior items
 nav:
   Posts: /archives
-  toc: true
-categories: /category
+  categories: /category
   Tags: /tag
   Books: /book
   Movies: /movie  

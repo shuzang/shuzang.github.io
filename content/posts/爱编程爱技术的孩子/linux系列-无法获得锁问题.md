@@ -2,7 +2,6 @@
 title: Ubuntu中无法获得锁相关问题的解决方案
 date: 2020-01-03
 tags: [linux]
-toc: true
 categories: [爱编程爱技术的孩子]
 ---
 

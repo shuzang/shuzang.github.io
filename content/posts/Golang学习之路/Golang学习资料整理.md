@@ -2,7 +2,6 @@
 title: Golang学习资料
 date: 2021-07-05T19:13:00+08:00
 tags: [Go语法]
-toc: true
 categories: [Golang学习之路]
 slug: Golang learning materials
 ---

@@ -3,7 +3,6 @@ title: 以太坊开发8-Truffle框架安装使用
 date: 2019-11-06
 lastmod: 2020-11-11
 tags: [区块链]
-toc: true
 categories: [研究生的区块链学习之路] 
 slug: use truffle develop ethereum project 
 ---
