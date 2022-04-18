@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Golang深入学习5-使用dlv调试程序 - Shuzang&#39;s Blog</title><meta name="Description" content="书藏的个人博客，记录学习，记录生活"><meta property="og:title" content="Golang深入学习5-使用dlv调试程序" />
+<meta property="og:description" content="在C/C&#43;&#43;中，使用 GDB 调试程序，但在Go中，看过网上的一些文章后，发现 dlv 是个更好的选择，本文进行介绍。" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://shuzang.github.io/golang%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A05-%E4%BD%BF%E7%94%A8dlv%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F/" />
+<meta property="og:image" content="https://shuzang.github.io/logo.png"/>
+<meta property="article:published_time" content="2020-07-26T09:43:00+08:00" />
+<meta property="article:modified_time" content="2020-07-26T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://shuzang.github.io/logo.png"/>
+
+<meta name="twitter:title" content="Golang深入学习5-使用dlv调试程序"/>
+<meta name="twitter:description" content="在C/C&#43;&#43;中，使用 GDB 调试程序，但在Go中，看过网上的一些文章后，发现 dlv 是个更好的选择，本文进行介绍。"/>
+<meta name="application-name" content="Shuzang&#39;s Blog">
+<meta name="apple-mobile-web-app-title" content="Shuzang&#39;s Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://shuzang.github.io/golang%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A05-%E4%BD%BF%E7%94%A8dlv%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F/" /><link rel="prev" href="https://shuzang.github.io/golang%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A04-map/" /><link rel="next" href="https://shuzang.github.io/golang%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A06-%E4%BD%BF%E7%94%A8pprof%E8%BF%9B%E8%A1%8C%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Golang深入学习5-使用dlv调试程序",
+        "inLanguage": "en",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/shuzang.github.io\/golang%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A05-%E4%BD%BF%E7%94%A8dlv%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F\/"
+        },"image": ["https:\/\/shuzang.github.io\/images\/Apple-Devices-Preview.png"],"genre": "posts","keywords": "Go语法","wordcount":  1909 ,
+        "url": "https:\/\/shuzang.github.io\/golang%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A05-%E4%BD%BF%E7%94%A8dlv%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F\/","datePublished": "2020-07-26T09:43:00+08:00","dateModified": "2020-07-26T00:00:00+00:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+            "@type": "Organization",
+            "name": "xxxx","logo": "https:\/\/shuzang.github.io\/images\/avatar.png"},"author": {
+                "@type": "Person",
+                "name": "Shuzang"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Shuzang&#39;s Blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>LoveIt</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> Posts </a><a class="menu-item" href="/tags/"> Tags </a><a class="menu-item" href="/categories/"> Categories </a><a class="menu-item" href="/categories/documentation/"> Docs </a><a class="menu-item" href="/about/"> About </a><a class="menu-item" href="https://github.com/shuzang" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item language" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                        <select class="language-select" id="language-select-desktop" onchange="location = this.value;"><option value="/golang%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A05-%E4%BD%BF%E7%94%A8dlv%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F/" selected>English</option></select>
+                    </a><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Shuzang&#39;s Blog"><span class="header-title-pre"><i class='far fa-kiss-wink-heart fa-fw'></i></span>LoveIt</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        Cancel
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">Posts</a><a class="menu-item" href="/tags/" title="">Tags</a><a class="menu-item" href="/categories/" title="">Categories</a><a class="menu-item" href="/categories/documentation/" title="">Docs</a><a class="menu-item" href="/about/" title="">About</a><a class="menu-item" href="https://github.com/shuzang" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a><a href="javascript:void(0);" class="menu-item" title="Select Language">English<i class="fas fa-chevron-right fa-fw"></i>
+                    <select class="language-select" onchange="location = this.value;"><option value="/golang%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A05-%E4%BD%BF%E7%94%A8dlv%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F/" selected>English</option></select>
+                </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Golang深入学习5-使用dlv调试程序</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw"></i>Shuzang</a></span>&nbsp;<span class="post-category">included in <a href="/categories/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/"><i class="far fa-folder fa-fw"></i>Golang学习之路</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-07-26">2020-07-26</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;1909 words&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;4 minutes&nbsp;<span id="/golang%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A05-%E4%BD%BF%E7%94%A8dlv%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F/" class="leancloud_visitors" data-flag-title="Golang深入学习5-使用dlv调试程序">
+                        <i class="far fa-eye fa-fw"></i>&nbsp;<span class=leancloud-visitors-count></span>&nbsp;views
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-基本命令">1. 基本命令</a></li>
+    <li><a href="#2-命令使用">2. 命令使用</a>
+      <ul>
+        <li><a href="#21-断点设置">2.1 断点设置</a></li>
+        <li><a href="#22-打印断点信息">2.2 打印断点信息</a></li>
+        <li><a href="#23-运行直到断点处">2.3 运行直到断点处</a></li>
+        <li><a href="#24-下一步">2.4 下一步</a></li>
+        <li><a href="#25-查看局部变量">2.5 查看局部变量</a></li>
+        <li><a href="#26-查看当前调用栈">2.6 查看当前调用栈</a></li>
+        <li><a href="#27-打印源代码">2.7 打印源代码</a></li>
+        <li><a href="#28-运行到断点处执行某个命令">2.8 运行到断点处执行某个命令</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-goroutine-调试">3. Goroutine 调试</a></li>
+    <li><a href="#4-后记">4. 后记</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>在C/C++中，使用 GDB 调试程序，但在Go中，看过网上的一些文章后，发现 dlv 是个更好的选择，本文进行介绍。</p>
+<p>实际上，<a href="https://github.com/go-delve/delve" target="_blank" rel="noopener noreffer">delve</a> 才是全称，dlv 只是启动命令，如果使用 VScode，默认使用的调试器就是基于 delve 的。</p>
+<h2 id="1-基本命令">1. 基本命令</h2>
+<p>使用如下命令安装</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="k">go</span> <span class="nx">get</span> <span class="nx">github</span><span class="p">.</span><span class="nx">com</span><span class="o">/</span><span class="k">go</span><span class="o">-</span><span class="nx">delve</span><span class="o">/</span><span class="nx">delve</span><span class="o">/</span><span class="nx">cmd</span><span class="o">/</span><span class="nx">dlv</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>安装后执行 <code>dlv</code> 命令查看基本信息</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ dlv
+Delve is a <span class="nb">source</span> level debugger <span class="k">for</span> Go programs.
+
+Delve enables you to interact with your program by controlling the execution of the process,
+evaluating variables, and providing information of thread / goroutine state, CPU register state and more.
+
+The goal of this tool is to provide a simple yet powerful interface <span class="k">for</span> debugging Go programs.
+
+Pass flags to the program you are debugging using <span class="sb">`</span>--<span class="sb">`</span>, <span class="k">for</span> example:
+
+<span class="sb">`</span>dlv <span class="nb">exec</span> ./hello -- server --config conf/config.toml<span class="sb">`</span>
+
+Usage:
+  dlv <span class="o">[</span>command<span class="o">]</span>
+
+Available Commands:
+  attach      Attach to running process and begin debugging.
+  connect     Connect to a headless debug server.
+  core        Examine a core dump.
+  debug       Compile and begin debugging main package in current directory, or the package specified.
+  <span class="nb">exec</span>        Execute a precompiled binary, and begin a debug session.
+  <span class="nb">help</span>        Help about any <span class="nb">command</span>
+  run         Deprecated command. Use <span class="s1">&#39;debug&#39;</span> instead.
+  <span class="nb">test</span>        Compile <span class="nb">test</span> binary and begin debugging program.
+  trace       Compile and begin tracing program.
+  version     Prints version.
+
+Flags:
+      --accept-multiclient   Allows a headless server to accept multiple client connections.
+      --api-version int      Selects API version when headless. <span class="o">(</span>default 1<span class="o">)</span>
+      --backend string       Backend selection <span class="o">(</span>see <span class="s1">&#39;dlv help backend&#39;</span><span class="o">)</span>. <span class="o">(</span>default <span class="s2">&#34;default&#34;</span><span class="o">)</span>
+      --build-flags string   Build flags, to be passed to the compiler.
+      --check-go-version     Checks that the version of Go in use is compatible with Delve. <span class="o">(</span>default <span class="nb">true</span><span class="o">)</span>
+      --headless             Run debug server only, in headless mode.
+      --init string          Init file, executed by the terminal client.
+  -l, --listen string        Debugging server listen address. <span class="o">(</span>default <span class="s2">&#34;127.0.0.1:0&#34;</span><span class="o">)</span>
+      --log                  Enable debugging server logging.
+      --log-dest string      Writes logs to the specified file or file descriptor <span class="o">(</span>see <span class="s1">&#39;dlv help log&#39;</span><span class="o">)</span>.
+      --log-output string    Comma separated list of components that should produce debug output <span class="o">(</span>see <span class="s1">&#39;dlv help log&#39;</span><span class="o">)</span>
+      --only-same-user       Only connections from the same user that started this instance of Delve are allowed to connect. <span class="o">(</span>default <span class="nb">true</span><span class="o">)</span>
+      --wd string            Working directory <span class="k">for</span> running the program. <span class="o">(</span>default <span class="s2">&#34;.&#34;</span><span class="o">)</span>
+
+Additional <span class="nb">help</span> topics:
+  dlv backend Help about the --backend flag.
+  dlv log     Help about logging flags.
+
+Use <span class="s2">&#34;dlv [command] --help&#34;</span> <span class="k">for</span> more information about a command.
+</code></pre></td></tr></table>
+</div>
+</div><p>进入调试模式有以下几种办法</p>
+<ol>
+<li>dlv attach pid：对正在运行的进程直接进行调试（pid 为进程id）；</li>
+<li>dlv debug：编译源文件并开始调试，这里应和 main 函数位于同一目录，或者指定完整的 main 函数路径</li>
+<li>dlv exec filename：从二进制文件启动调试</li>
+</ol>
+<p>我们以下面的程序为例进行说明，使用 dlv debug 进入调试</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="s">&#34;fmt&#34;</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">a</span> <span class="o">:=</span> <span class="mi">10</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>进入调试，使用 help 可以查看所有可用命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ dlv debug main.go
+Type <span class="s1">&#39;help&#39;</span> <span class="k">for</span> list of commands.
+<span class="o">(</span>dlv<span class="o">)</span> <span class="nb">help</span>
+The following commands are available:
+    args ------------------------ Print <span class="k">function</span> arguments.
+    <span class="nb">break</span> <span class="o">(</span>alias: b<span class="o">)</span> ------------ Sets a breakpoint.
+    breakpoints <span class="o">(</span>alias: bp<span class="o">)</span> ----- Print out info <span class="k">for</span> active breakpoints.
+    call ------------------------ Resumes process, injecting a <span class="k">function</span> call <span class="o">(</span>EXPERIMENTAL!!!<span class="o">)</span>
+    clear ----------------------- Deletes breakpoint.
+    clearall -------------------- Deletes multiple breakpoints.
+    condition <span class="o">(</span>alias: cond<span class="o">)</span> ----- Set breakpoint condition.
+    config ---------------------- Changes configuration parameters.
+    <span class="k">continue</span> <span class="o">(</span>alias: c<span class="o">)</span> --------- Run <span class="k">until</span> breakpoint or program termination.
+    deferred -------------------- Executes <span class="nb">command</span> in the context of a deferred call.
+    disassemble <span class="o">(</span>alias: disass<span class="o">)</span> - Disassembler.
+    down ------------------------ Move the current frame down.
+    edit <span class="o">(</span>alias: ed<span class="o">)</span> ------------ Open where you are in <span class="nv">$DELVE_EDITOR</span> or <span class="nv">$EDITOR</span>
+    <span class="nb">exit</span> <span class="o">(</span>alias: quit <span class="p">|</span> q<span class="o">)</span> ------ Exit the debugger.
+    frame ----------------------- Set the current frame, or execute <span class="nb">command</span> on a different frame.
+    funcs ----------------------- Print list of functions.
+    goroutine <span class="o">(</span>alias: gr<span class="o">)</span> ------- Shows or changes current goroutine
+    goroutines <span class="o">(</span>alias: grs<span class="o">)</span> ----- List program goroutines.
+    <span class="nb">help</span> <span class="o">(</span>alias: h<span class="o">)</span> ------------- Prints the <span class="nb">help</span> message.
+    libraries ------------------- List loaded dynamic libraries
+    list <span class="o">(</span>alias: ls <span class="p">|</span> l<span class="o">)</span> -------- Show <span class="nb">source</span> code.
+    locals ---------------------- Print <span class="nb">local</span> variables.
+    next <span class="o">(</span>alias: n<span class="o">)</span> ------------- Step over to next <span class="nb">source</span> line.
+    on -------------------------- Executes a <span class="nb">command</span> when a breakpoint is hit.
+    print <span class="o">(</span>alias: p<span class="o">)</span> ------------ Evaluate an expression.
+    regs ------------------------ Print contents of CPU registers.
+    restart <span class="o">(</span>alias: r<span class="o">)</span> ---------- Restart process.
+    <span class="nb">set</span> ------------------------- Changes the value of a variable.
+    <span class="nb">source</span> ---------------------- Executes a file containing a list of delve commands
+    sources --------------------- Print list of <span class="nb">source</span> files.
+    stack <span class="o">(</span>alias: bt<span class="o">)</span> ----------- Print stack trace.
+    step <span class="o">(</span>alias: s<span class="o">)</span> ------------- Single step through program.
+    step-instruction <span class="o">(</span>alias: si<span class="o">)</span>  Single step a single cpu instruction.
+    stepout <span class="o">(</span>alias: so<span class="o">)</span> --------- Step out of the current <span class="k">function</span>.
+    thread <span class="o">(</span>alias: tr<span class="o">)</span> ---------- Switch to the specified thread.
+    threads --------------------- Print out info <span class="k">for</span> every traced thread.
+    trace <span class="o">(</span>alias: t<span class="o">)</span> ------------ Set tracepoint.
+    types ----------------------- Print list of types
+    up -------------------------- Move the current frame up.
+    vars ------------------------ Print package variables.
+    whatis ---------------------- Prints <span class="nb">type</span> of an expression.
+Type <span class="nb">help</span> followed by a <span class="nb">command</span> <span class="k">for</span> full documentation.
+</code></pre></td></tr></table>
+</div>
+</div><p>常用的命令总结如下：</p>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>b</td>
+<td>设置断点</td>
+</tr>
+<tr>
+<td>bp</td>
+<td>打印正活动的断点信息</td>
+</tr>
+<tr>
+<td>clear</td>
+<td>删除断点</td>
+</tr>
+<tr>
+<td>clearall</td>
+<td>删除所有断点</td>
+</tr>
+<tr>
+<td>c</td>
+<td>运行直到断点处或程序终止</td>
+</tr>
+<tr>
+<td>n</td>
+<td>下一步，不会进入函数</td>
+</tr>
+<tr>
+<td>s</td>
+<td>下一步，会进入函数</td>
+</tr>
+<tr>
+<td>so</td>
+<td>跳出当前函数</td>
+</tr>
+<tr>
+<td>args</td>
+<td>查看函数参数</td>
+</tr>
+<tr>
+<td>locals</td>
+<td>查看所有局部变量</td>
+</tr>
+<tr>
+<td>list</td>
+<td>打印当前源代码</td>
+</tr>
+<tr>
+<td>on</td>
+<td>运行到某断点然后执行相应的命令，比如 on 2 list</td>
+</tr>
+<tr>
+<td>bt</td>
+<td>打印当前调用栈</td>
+</tr>
+<tr>
+<td>exit</td>
+<td>退出</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2-命令使用">2. 命令使用</h2>
+<p>下面通过实践说明这些简单命令的使用</p>
+<h3 id="21-断点设置">2.1 断点设置</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">(</span>dlv<span class="o">)</span> b main.go:6
+Breakpoint <span class="m">1</span> <span class="nb">set</span> at 0x4bd2f8 <span class="k">for</span> main.main<span class="o">()</span> F:/Gotest/main.go:6
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="22-打印断点信息">2.2 打印断点信息</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">(</span>dlv<span class="o">)</span> bp
+Breakpoint runtime-fatal-throw at 0x4377e0 <span class="k">for</span> runtime.fatalthrow<span class="o">()</span> c:/go/src/runtime/panic.go:1162 <span class="o">(</span>0<span class="o">)</span>
+Breakpoint unrecovered-panic at 0x437860 <span class="k">for</span> runtime.fatalpanic<span class="o">()</span> c:/go/src/runtime/panic.go:1189 <span class="o">(</span>0<span class="o">)</span>  
+        print runtime.curg._panic.arg
+Breakpoint <span class="m">1</span> at 0x4bd2f8 <span class="k">for</span> main.main<span class="o">()</span> F:/Gotest/main.go:6 <span class="o">(</span>0<span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="23-运行直到断点处">2.3 运行直到断点处</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">(</span>dlv<span class="o">)</span> c
+&gt; main.main<span class="o">()</span> F:/Gotest/main.go:6 <span class="o">(</span>hits goroutine<span class="o">(</span>1<span class="o">)</span>:1 total:1<span class="o">)</span> <span class="o">(</span>PC: 0x4bd2f8<span class="o">)</span>
+     1: package main
+     2: 
+     3: import <span class="s2">&#34;fmt&#34;</span>
+     4: 
+     5: func main<span class="o">()</span> <span class="o">{</span>
+<span class="o">=</span>&gt;   6:         a :<span class="o">=</span> <span class="m">10</span>       
+     7:         fmt.Println<span class="o">(</span>a<span class="o">)</span>
+     8: <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="24-下一步">2.4 下一步</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">(</span>dlv<span class="o">)</span> n
+&gt; main.main<span class="o">()</span> F:/Gotest/main.go:7 <span class="o">(</span>PC: 0x4bd301<span class="o">)</span>
+     2: 
+     3: import <span class="s2">&#34;fmt&#34;</span>
+     4: 
+     5: func main<span class="o">()</span> <span class="o">{</span>
+     6:         a :<span class="o">=</span> <span class="nv">10</span>
+<span class="o">=</span>&gt;   7:         fmt.Println<span class="o">(</span>a<span class="o">)</span>
+     8: <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="25-查看局部变量">2.5 查看局部变量</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">(</span>dlv<span class="o">)</span> locals
+<span class="nv">a</span> <span class="o">=</span> <span class="m">10</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="26-查看当前调用栈">2.6 查看当前调用栈</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">(</span>dlv<span class="o">)</span> bt
+<span class="m">0</span>  0x00000000004bd301 in main.main
+   at F:/Gotest/main.go:7
+<span class="m">1</span>  0x0000000000439cfa in runtime.main
+   at c:/go/src/runtime/proc.go:203
+<span class="m">2</span>  0x00000000004643d1 in runtime.goexit
+   at c:/go/src/runtime/asm_amd64.s:1373
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="27-打印源代码">2.7 打印源代码</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">(</span>dlv<span class="o">)</span> list
+&gt; main.main<span class="o">()</span> F:/Gotest/main.go:7 <span class="o">(</span>PC: 0x4bd301<span class="o">)</span>
+     2: 
+     3: import <span class="s2">&#34;fmt&#34;</span>
+     4: 
+     5: func main<span class="o">()</span> <span class="o">{</span>
+     6:         a :<span class="o">=</span> <span class="nv">10</span>
+<span class="o">=</span>&gt;   7:         fmt.Println<span class="o">(</span>a<span class="o">)</span>
+     8: <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="28-运行到断点处执行某个命令">2.8 运行到断点处执行某个命令</h3>
+<p>1 是断点ID，p a 代表指定到断点处打印变量 a 的值</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">(</span>dlv<span class="o">)</span> on <span class="m">1</span> p a
+<span class="o">(</span>dlv<span class="o">)</span> c
+<span class="m">10</span>
+Process <span class="m">6540</span> has exited with status <span class="m">0</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="3-goroutine-调试">3. Goroutine 调试</h2>
+<p>Go 的优势在协程，dlv 相比 GDB 的优点也在于对协程调试的支持，我们以下面的程序为例，给出示例</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;time&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="nx">a</span> <span class="o">:=</span> <span class="mi">10</span>
+	<span class="k">go</span> <span class="nf">printA</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+
+	<span class="nx">time</span><span class="p">.</span><span class="nf">Sleep</span><span class="p">(</span><span class="mf">1e9</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">printA</span><span class="p">(</span><span class="nx">a</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>设置断点并启动运行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">&gt; b main.go:12
+Breakpoint <span class="m">1</span> <span class="nb">set</span> at 0x4bd5be <span class="k">for</span> main.main<span class="o">()</span> F:/Gotest/main.go:12
+<span class="o">(</span>dlv<span class="o">)</span> c
+&gt; main.main<span class="o">()</span> F:/Gotest/main.go:12 <span class="o">(</span>hits goroutine<span class="o">(</span>1<span class="o">)</span>:1 total:1<span class="o">)</span> <span class="o">(</span>PC: 0x4bd5be<span class="o">)</span>
+     7: 
+     8: func main<span class="o">()</span> <span class="o">{</span>
+     9:         a :<span class="o">=</span> <span class="m">10</span>
+    10:         go printA<span class="o">(</span>a<span class="o">)</span>
+    11: 
+<span class="o">=</span>&gt;  12:         time.Sleep<span class="o">(</span>1e9<span class="o">)</span>
+    13: <span class="o">}</span>
+    14: 
+    15: func printA<span class="o">(</span>a int<span class="o">)</span> <span class="o">{</span>
+    16:         fmt.Println<span class="o">(</span>a<span class="o">)</span>
+    17: <span class="o">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>查看当前启动的协程，其中 Goroutine 1 是主协程，Goroutine 6 是自行启动的子协程</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">(</span>dlv<span class="o">)</span> goroutines
+* Goroutine <span class="m">1</span> - User: F:/Gotest/main.go:12 main.main <span class="o">(</span>0x4bd5be<span class="o">)</span> <span class="o">(</span>thread 11412<span class="o">)</span>
+  Goroutine <span class="m">2</span> - User: c:/go/src/runtime/proc.go:305 runtime.gopark <span class="o">(</span>0x43a092<span class="o">)</span>
+  Goroutine <span class="m">3</span> - User: c:/go/src/runtime/proc.go:305 runtime.gopark <span class="o">(</span>0x43a092<span class="o">)</span>
+  Goroutine <span class="m">4</span> - User: c:/go/src/runtime/proc.go:305 runtime.gopark <span class="o">(</span>0x43a092<span class="o">)</span>
+  Goroutine <span class="m">5</span> - User: c:/go/src/runtime/proc.go:305 runtime.gopark <span class="o">(</span>0x43a092<span class="o">)</span>
+  Goroutine <span class="m">6</span> - User: F:/Gotest/main.go:15 main.printA <span class="o">(</span>0x4bd5e0<span class="o">)</span>
+<span class="o">[</span><span class="m">6</span> goroutines<span class="o">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>打印主协程当前的变量</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">(</span>dlv<span class="o">)</span> locals
+<span class="nv">a</span> <span class="o">=</span> <span class="m">10</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如果要查看子协程的情况，需要先切换到子协程</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="o">(</span>dlv<span class="o">)</span> goroutine <span class="m">6</span>
+Switched from <span class="m">1</span> to <span class="m">6</span> <span class="o">(</span>thread 11412<span class="o">)</span>
+<span class="o">(</span>dlv<span class="o">)</span> bt
+<span class="m">0</span>  0x00000000004bd5e0 in main.printA
+   at F:/Gotest/main.go:15
+<span class="m">1</span>  0x0000000000464621 in runtime.goexit
+   at c:/go/src/runtime/asm_amd64.s:1373
+<span class="o">(</span>dlv<span class="o">)</span> args
+<span class="nv">a</span> <span class="o">=</span> <span class="m">10</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="4-后记">4. 后记</h2>
+<p>写到这里好像没发现直接使用 dlv 有什么优势，VScode 在 delve 基础上完成的调试功能更方便，比自己使用命令逐步执行好多了。</p></div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2020-07-26</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/golang%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A05-%E4%BD%BF%E7%94%A8dlv%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F/index.md" target="_blank">Read Markdown</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://shuzang.github.io/golang%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A05-%E4%BD%BF%E7%94%A8dlv%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F/" data-title="Golang深入学习5-使用dlv调试程序" data-via="xxxx" data-hashtags="Go语法"><i class="fab fa-twitter fa-fw"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://shuzang.github.io/golang%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A05-%E4%BD%BF%E7%94%A8dlv%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F/" data-hashtag="Go语法"><i class="fab fa-facebook-square fa-fw"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://shuzang.github.io/golang%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A05-%E4%BD%BF%E7%94%A8dlv%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F/" data-title="Golang深入学习5-使用dlv调试程序"><i class="fab fa-hacker-news fa-fw"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://shuzang.github.io/golang%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A05-%E4%BD%BF%E7%94%A8dlv%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F/" data-title="Golang深入学习5-使用dlv调试程序"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://shuzang.github.io/golang%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A05-%E4%BD%BF%E7%94%A8dlv%E8%B0%83%E8%AF%95%E7%A8%8B%E5%BA%8F/" data-title="Golang深入学习5-使用dlv调试程序"><i class="fab fa-weibo fa-fw"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/go%E8%AF%AD%E6%B3%95/">Go语法</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/golang%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A04-map/" class="prev" rel="prev" title="Golang深入学习4-map"><i class="fas fa-angle-left fa-fw"></i>Golang深入学习4-map</a>
+            <a href="/golang%E6%B7%B1%E5%85%A5%E5%AD%A6%E4%B9%A06-%E4%BD%BF%E7%94%A8pprof%E8%BF%9B%E8%A1%8C%E6%80%A7%E8%83%BD%E5%88%86%E6%9E%90/" class="next" rel="next" title="Golang深入学习6-使用pprof进行性能分析">Golang深入学习6-使用pprof进行性能分析<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.80.0">Hugo</a> | Theme - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2018 - 2022</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Shuzang</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/algoliasearch@4.2.0/dist/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":10},"comment":{"valine":{"appId":"QGzwQXOqs5JOhN4RGPOkR2mR-MdYXbMMI","appKey":"WBmoGyJtbqUswvfLh6L8iEBr","avatar":"mp","el":"#valine","emojiCDN":"https://cdn.jsdelivr.net/npm/emoji-datasource-google@5.0.1/img/google/64/","emojiMaps":{"100":"1f4af.png","alien":"1f47d.png","anger":"1f4a2.png","angry":"1f620.png","anguished":"1f627.png","astonished":"1f632.png","black_heart":"1f5a4.png","blue_heart":"1f499.png","blush":"1f60a.png","bomb":"1f4a3.png","boom":"1f4a5.png","broken_heart":"1f494.png","brown_heart":"1f90e.png","clown_face":"1f921.png","cold_face":"1f976.png","cold_sweat":"1f630.png","confounded":"1f616.png","confused":"1f615.png","cry":"1f622.png","crying_cat_face":"1f63f.png","cupid":"1f498.png","dash":"1f4a8.png","disappointed":"1f61e.png","disappointed_relieved":"1f625.png","dizzy":"1f4ab.png","dizzy_face":"1f635.png","drooling_face":"1f924.png","exploding_head":"1f92f.png","expressionless":"1f611.png","face_vomiting":"1f92e.png","face_with_cowboy_hat":"1f920.png","face_with_hand_over_mouth":"1f92d.png","face_with_head_bandage":"1f915.png","face_with_monocle":"1f9d0.png","face_with_raised_eyebrow":"1f928.png","face_with_rolling_eyes":"1f644.png","face_with_symbols_on_mouth":"1f92c.png","face_with_thermometer":"1f912.png","fearful":"1f628.png","flushed":"1f633.png","frowning":"1f626.png","ghost":"1f47b.png","gift_heart":"1f49d.png","green_heart":"1f49a.png","grimacing":"1f62c.png","grin":"1f601.png","grinning":"1f600.png","hankey":"1f4a9.png","hear_no_evil":"1f649.png","heart":"2764-fe0f.png","heart_decoration":"1f49f.png","heart_eyes":"1f60d.png","heart_eyes_cat":"1f63b.png","heartbeat":"1f493.png","heartpulse":"1f497.png","heavy_heart_exclamation_mark_ornament":"2763-fe0f.png","hole":"1f573-fe0f.png","hot_face":"1f975.png","hugging_face":"1f917.png","hushed":"1f62f.png","imp":"1f47f.png","innocent":"1f607.png","japanese_goblin":"1f47a.png","japanese_ogre":"1f479.png","joy":"1f602.png","joy_cat":"1f639.png","kiss":"1f48b.png","kissing":"1f617.png","kissing_cat":"1f63d.png","kissing_closed_eyes":"1f61a.png","kissing_heart":"1f618.png","kissing_smiling_eyes":"1f619.png","laughing":"1f606.png","left_speech_bubble":"1f5e8-fe0f.png","love_letter":"1f48c.png","lying_face":"1f925.png","mask":"1f637.png","money_mouth_face":"1f911.png","nauseated_face":"1f922.png","nerd_face":"1f913.png","neutral_face":"1f610.png","no_mouth":"1f636.png","open_mouth":"1f62e.png","orange_heart":"1f9e1.png","partying_face":"1f973.png","pensive":"1f614.png","persevere":"1f623.png","pleading_face":"1f97a.png","pouting_cat":"1f63e.png","purple_heart":"1f49c.png","rage":"1f621.png","relaxed":"263a-fe0f.png","relieved":"1f60c.png","revolving_hearts":"1f49e.png","right_anger_bubble":"1f5ef-fe0f.png","robot_face":"1f916.png","rolling_on_the_floor_laughing":"1f923.png","scream":"1f631.png","scream_cat":"1f640.png","see_no_evil":"1f648.png","shushing_face":"1f92b.png","skull":"1f480.png","skull_and_crossbones":"2620-fe0f.png","sleeping":"1f634.png","sleepy":"1f62a.png","slightly_frowning_face":"1f641.png","slightly_smiling_face":"1f642.png","smile":"1f604.png","smile_cat":"1f638.png","smiley":"1f603.png","smiley_cat":"1f63a.png","smiling_face_with_3_hearts":"1f970.png","smiling_imp":"1f608.png","smirk":"1f60f.png","smirk_cat":"1f63c.png","sneezing_face":"1f927.png","sob":"1f62d.png","space_invader":"1f47e.png","sparkling_heart":"1f496.png","speak_no_evil":"1f64a.png","speech_balloon":"1f4ac.png","star-struck":"1f929.png","stuck_out_tongue":"1f61b.png","stuck_out_tongue_closed_eyes":"1f61d.png","stuck_out_tongue_winking_eye":"1f61c.png","sunglasses":"1f60e.png","sweat":"1f613.png","sweat_drops":"1f4a6.png","sweat_smile":"1f605.png","thinking_face":"1f914.png","thought_balloon":"1f4ad.png","tired_face":"1f62b.png","triumph":"1f624.png","two_hearts":"1f495.png","unamused":"1f612.png","upside_down_face":"1f643.png","weary":"1f629.png","white_frowning_face":"2639-fe0f.png","white_heart":"1f90d.png","wink":"1f609.png","woozy_face":"1f974.png","worried":"1f61f.png","yawning_face":"1f971.png","yellow_heart":"1f49b.png","yum":"1f60b.png","zany_face":"1f92a.png","zipper_mouth_face":"1f910.png","zzz":"1f4a4.png"},"enableQQ":false,"highlight":true,"lang":"en","pageSize":10,"placeholder":"Your comment ...","recordIP":true,"serverURLs":"https://leancloud.hugoloveit.com","visitor":true}},"search":{"algoliaAppID":"PASDMWALPK","algoliaIndex":"index.en","algoliaSearchKey":"b42948e51daaa93df92381c8e2ac0f93","highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

@@ -1,3 +1,3 @@
-[submodule "themes/hugo-theme-next"]
-	path = themes/hugo-theme-next
-	url = https://github.com/shuzang/hugo-theme-next.git
+[submodule "themes/LoveIt"]
+	path = themes/LoveIt
+	url = https://github.com/dillonzq/LoveIt.git
