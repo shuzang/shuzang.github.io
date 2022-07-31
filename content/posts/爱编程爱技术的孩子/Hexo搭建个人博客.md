@@ -2,7 +2,7 @@
 title: Hexo 搭建个人博客
 date: 2018-04-17T20:30:00+08:00
 lastmod: 2020-02-12
-tags: [Hugo]
+tags: [博客搭建]
 categories: [爱编程爱技术的孩子]
 slug: using Hexo build persoanl blog 
 ---

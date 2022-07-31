@@ -1,7 +1,7 @@
 ---
 title: hugo开发主题1-内容管理
 date: 2020-11-11
-tags: [Hugo]
+tags: [博客搭建]
 categories: [爱编程爱技术的孩子]
 slug: Hugo develop themes 1-content management
 ---

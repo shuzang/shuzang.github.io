@@ -2,7 +2,7 @@
 title: hugo搭建个人博客1-基础建站
 date: 2019-04-26T10:45:00+08:00
 lastmod: 2020-10-31
-tags: [Hugo]
+tags: [博客搭建]
 categories: [爱编程爱技术的孩子]
 slug: Hugo blog-build personal blog
 ---
