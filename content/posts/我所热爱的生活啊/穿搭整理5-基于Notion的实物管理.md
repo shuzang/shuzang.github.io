@@ -1,5 +1,5 @@
 ---
-title: 穿搭整理4-基于Notion的实物管理
+title: 穿搭整理5-基于Notion的实物管理
 date: 2021-05-03
 tags: [生活技能]
 categories: [我所热爱的生活啊]
