@@ -120,3 +120,9 @@
 14、辽宁省博物馆“又见大唐”书画文物展 / 2019-11
 
 15、辽宁大学崇山校区 / 2019-12
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/special-issue-2019-reading-film-viewing-and-travel-records/  
+

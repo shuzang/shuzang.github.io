@@ -156,3 +156,9 @@ Ali, Saqib, et al. "Secure Data Provenance in Cloud-Centric Internet of Things v
 Multichain 虽然针对的是金融领域，但是在 2.0 中推出了一种称之为 off-chain 的结构用来存储大量的数据，减轻区块链负担，在这一特性的描述中，Multichain 对区块链数据存储问题给出了一个非常棒的总结。
 
 文章地址：https://www.multichain.com/blog/2018/06/scaling-blockchains-off-chain-data/
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/data-storage-in-blockchain/  
+

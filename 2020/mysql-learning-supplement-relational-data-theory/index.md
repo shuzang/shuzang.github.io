@@ -144,3 +144,9 @@ S 关系如下
 1. 实体完整性：主码中的属性不可取空值
 2. 参照完整性：关系中的某个属性列与另一个关系的主码对应
 3. 用户自定义完整性：类似于学生年龄取值这种符合现实特征的
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/mysql-learning-supplement-relational-data-theory/  
+

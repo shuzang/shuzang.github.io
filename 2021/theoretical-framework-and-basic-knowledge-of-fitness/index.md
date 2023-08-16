@@ -221,3 +221,9 @@
 [2] 季浏，《体育与健康》，普通高中课程标准实验教科书，华中师范大学出版社，2004
 
 [3] 芭芭拉·A·布什曼，《ACSM体能指导手册（第2版）》，人民邮电出版社，2020.06.
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2021/theoretical-framework-and-basic-knowledge-of-fitness/  
+

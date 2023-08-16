@@ -136,3 +136,9 @@ func firstBadVersion(n int) int {
 因为二分查找是不断折半的，其实就相当于对一棵二叉树的查找，其时间复杂度为 $O(logn)$
 
 同时，二分查找除了维持前后索引和中间索引三个值，不需要其它空间，因此空间复杂度为 $O(1)$
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/algorithm-search/  
+

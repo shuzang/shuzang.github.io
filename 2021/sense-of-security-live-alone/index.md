@@ -144,3 +144,9 @@
 至于我自己，可预见的可能很长一段时间都需要独居了，以后遇到没考虑到的事，会继续添加到知识库的。
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2021/sense-of-security-live-alone/  
+

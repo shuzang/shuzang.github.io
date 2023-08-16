@@ -253,3 +253,9 @@ EOS.IO 软件引入一种新的区块链架构设计，它使得去中心化的�
 - [Performance Evaluation of the Quorum Blockchain Platform](https://www.researchgate.net/publication/327570196_Performance_Evaluation_of_the_Quorum_Blockchain_Platform)
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/blockchain-platform-compare-and-select/  
+

@@ -104,3 +104,9 @@ Alice和Bob之间的访问控制协议如图4所示执行：
 - Alice首先使用她的身份ID<sub>A</sub>向Bob发起一个通信请求，并使用基于身份的验证和密钥协议（AKA）与Bob生成会话密钥k。使用任意对称密钥算法，k可以保证Alice和Bob之间后续通信的安全性。为了简单起见，我们只描述下面消息交换的过程并忽略每个通信的对称加密。
 - 然后Bob返回一个随机数n和一个访问策略p，表示谁可以与他通信。
 - Alice选择一个满足策略的子集，并使用其相应地址已被发出匹配属性i的每个密钥对随机数n进行签名。
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/a-novel-attribute-based-access-control-scheme-using-blockchain-for-iot/  
+

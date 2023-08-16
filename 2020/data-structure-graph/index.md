@@ -635,3 +635,9 @@ func PrimMiniSpanTree(g *Graph, start int) (int, []int) {
 Kruskal的算法时间复杂度为$O(eloge)$，只和边的数目 e 有关，与顶点个数 n 无关，适用于稀疏图
 
 Prim算法时间复杂度为$O(n^2)$，只和顶点个数 n 有关，与边的数目 e 无关，适用于稠密图
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/data-structure-graph/  
+

@@ -66,3 +66,9 @@ Filament提供一种服务，传感器不接入区块链从而降低部署成本
 区块链和物联网的组合主要是可以自动化耗时的工作流程，实现加密可验证性，节省大量成本和时间。
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2018/blockchains-and-smart-contracts-for-the-internet-of-things/  
+

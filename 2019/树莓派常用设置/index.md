@@ -188,3 +188,9 @@ static domain_name_servers=192.168.191.1
 备份系统很简单，将配置好的SD卡插入电脑，使用将系统写入SD卡的win32diskimager软件，新建以`.img`为后缀的文件，在路径栏选择该文件，选择读取等待进度条完成即可。需要注意的是，这样备份的镜像文件大小是SD卡的容量大小，所以，如果备份了一个32G大的SD卡镜像，之后无法写入16G的新SD卡。
 
 ![备份树莓派系统](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20190904_3AL6Z4.png)
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/  
+

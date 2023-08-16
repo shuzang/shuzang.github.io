@@ -255,3 +255,9 @@ MathType 是广泛使用的公式输入插件，但考虑到 Word 目前支持�
 
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2021/masters-thesis-format/  
+

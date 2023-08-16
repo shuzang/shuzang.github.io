@@ -197,3 +197,9 @@ $$
 m(i,W) = max\\{m(i-1,W),v_i + m(i,W-w_i)\\}
 $$
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/algorithm-dynamic-programming/  
+

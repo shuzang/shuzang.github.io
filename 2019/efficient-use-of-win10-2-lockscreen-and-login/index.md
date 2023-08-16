@@ -114,3 +114,9 @@ timeout 5 & c:\nircmd\nircmd.exe savescreenshot c:\\screenshot.png
 该命令将会延时5秒截取整个屏幕并将截图保存在C盘根目录下，我们需要在延时结束前最小化cmd窗口避免将其置入截图界面。预计截图结束后登录进入系统，将可以在C盘根目录成功找到命名为`screenshot.png`的截图文件
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/efficient-use-of-win10-2-lockscreen-and-login/  
+

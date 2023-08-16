@@ -47,3 +47,9 @@ func Sum256(data []byte) [Size]byte
 ## 2. 对称加密算法
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/golang-cryptographic-algorithm/  
+

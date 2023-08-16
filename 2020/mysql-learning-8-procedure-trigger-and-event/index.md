@@ -348,3 +348,9 @@ mysql> SHOW VARIABLES LIKE 'event_scheduler';
 ```
 
 结果显示，参数 event_scheduler 的值为 ON，表示已经开启。
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/mysql-learning-8-procedure-trigger-and-event/  
+

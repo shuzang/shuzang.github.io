@@ -32,3 +32,9 @@ a = make([]int,3)
 在 Go 的官方文档中，使用的也都是 declaration 这个词，统一用「声明」来描述
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/golang-supplement-the-difference-between-definition-and-declaration/  
+

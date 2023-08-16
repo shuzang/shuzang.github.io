@@ -621,3 +621,9 @@ func (this *MyStack) Empty() bool {
 ```
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/data-structure-queue-and-stack/  
+

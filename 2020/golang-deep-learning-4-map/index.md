@@ -153,3 +153,9 @@ func hashGrow(t *maptype, h *hmap) {
 ## 参考
 
 [1] 简书，Love语鬼，[Golang map的底层实现](https://www.jianshu.com/p/aa0d4808cbb8)
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/golang-deep-learning-4-map/  
+

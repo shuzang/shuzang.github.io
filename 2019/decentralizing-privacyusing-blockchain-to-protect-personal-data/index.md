@@ -154,3 +154,9 @@ $$
 
 此外，通过分布式的平台，制定关于收集，存储和共享敏感数据的法律和监管决策应该更加简单。此外，法律法规可以编入区块链本身，以便自动执行。在其他情况下，分类帐可以作为访问（或存储）数据的合法证据，因为它是（计算上）防篡改的。
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/decentralizing-privacyusing-blockchain-to-protect-personal-data/  
+

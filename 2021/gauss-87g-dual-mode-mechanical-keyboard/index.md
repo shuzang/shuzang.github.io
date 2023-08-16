@@ -36,3 +36,9 @@
 2021.07.21日补充。到现在为止问题没有复发，使用良好。
 
 2021.08.14日补充。比较费电，一个月换了 2-3 次电池，不用的时候最好关掉无线开关。
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2021/gauss-87g-dual-mode-mechanical-keyboard/  
+

@@ -199,3 +199,9 @@ $ sudo rm -rf Origami-1.0.5.zip
 [5] NEUQ金课行动. [使用虚拟机安装X86版本的raspbian](https://www.bilibili.com/video/av45274204). 2019.03. 
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/using-virtual-machine-as-raspberry-pi-server-to-build-dynamic-blog/  
+

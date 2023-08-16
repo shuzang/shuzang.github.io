@@ -266,3 +266,9 @@ $$
 所有的删除方法总结如下表
 
 ![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200318_epub_27600261_1226.jpg)
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/data-structure-b-tree-and-red-black-tree/  
+

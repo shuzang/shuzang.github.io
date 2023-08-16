@@ -180,3 +180,9 @@ main.go:3:6: can inline main
 [4] Young，CSDN，[Go 的变量到底在堆还是栈中分配](https://blog.csdn.net/agonie201218/article/details/77574556)
 
 [5] 胖虎，微信公众号，[简单聊聊内存逃逸](https://mp.weixin.qq.com/s?__biz=MzAwMDAxNjU4Mg==&mid=2247483686&idx=1&sn=e48c51107191f02da5751a19a54f7d41&chksm=9aee288fad99a199c126d5ff735af7320356ce4bb5753ae59ac6231e596354499414b5705b79&token=2092782362&lang=zh_CN#rd)
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/golang-deep-learning-8-stack-heap-and-escape-analysis/  
+

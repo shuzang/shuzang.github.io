@@ -444,3 +444,9 @@ $ node requester.js
 ```
 
 方法3是唯一执行成功的。
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/access-control-prototype-system-implementation/  
+

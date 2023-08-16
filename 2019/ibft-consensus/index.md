@@ -111,3 +111,9 @@ IBFT使用一个和Clique相似的验证者投票机制，每个epoch交易都�
 - [Correctness Analysis of Istanbul Byzantine Fault Tolerance](https://arxiv.org/pdf/1901.07160.pdf)
 
 - 没有激励机制
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/ibft-consensus/  
+

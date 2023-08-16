@@ -455,3 +455,9 @@ goreturns
 这里需要注意的是`args`，调试时程序需要传入的参数数组是该配置参数的值
 
 **运行**程序使用快捷键`Ctrl+F5`，和调试使用的是同一个配置文件。
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/golang-basic-grammar-1-background-and-preliminary-exploration/  
+

@@ -107,3 +107,9 @@ admin.addPeer("enode://f4642fa65af50cfdea8fa7414a5def7bb7991478b768e296f5e4a54e8
 ```
 
 目前控制台不支持移除节点、增加节点数量以及增加非静态节点（断开连接时不重连的节点）
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/the-way-to-connect-to-the-network-about-ethereum-node/  
+

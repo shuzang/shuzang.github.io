@@ -38,3 +38,9 @@
 看了很多回答，大家似乎普遍认为世界会变得更好，起码，如果大家都想变好，就一定会变好。但我也突然意识到好不好是个相当主观的问题，但是，如简教授所说，我们还是有一些共同的评价依据，下面找一些数据支撑，主要是关于医学教授罗斯林提出的几个问题。
 
 ![BRM_20230204_问题调研](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BRM_20230204_问题调研.jpg)
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2023/will-the-world-change-for-the-better/  
+

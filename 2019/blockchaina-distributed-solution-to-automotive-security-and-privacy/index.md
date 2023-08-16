@@ -108,3 +108,9 @@ OBM管理簇成员避免了流量攻击。
 ### 结论
 
 提出一个基于区块链的架构，用于智能车辆安全与隐私。并分析了其在一些场景中的应用。
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/blockchaina-distributed-solution-to-automotive-security-and-privacy/  
+

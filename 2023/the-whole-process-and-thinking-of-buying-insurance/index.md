@@ -172,3 +172,9 @@
 [4] 知乎，[长相安 VS 蓝医保 VS 好医保 3 军之战，我依旧更喜欢蓝医保](https://sspai.com/link?target=https%3A%2F%2Fzhuanlan.zhihu.com%2Fp%2F621980670)
 
 [5] 太平洋保险，[蓝医保保险条款](https://sspai.com/link?target=https%3A%2F%2Fhealth.cpic.com.cn%2Fupload%2Fresources%2Ffile%2F2023%2F05%2F31%2F70992.pdf)
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2023/the-whole-process-and-thinking-of-buying-insurance/  
+

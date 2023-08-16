@@ -85,3 +85,9 @@
 **extraData** An optional free, but max. 32-byte long space to conserve smart things for ethernity. :)
 
 **gasLimit** A scalar value equal to the current chain-wide limit of Gas expenditure per block. High in our case to avoid being limited by this threshold during tests. Note: this does not indicate that we should not pay attention to the Gas consumption of our Contracts.
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E5%BC%80%E5%8F%912-%E5%88%9B%E4%B8%96%E5%8C%BA%E5%9D%97%E6%96%87%E4%BB%B6genesis.json/  
+

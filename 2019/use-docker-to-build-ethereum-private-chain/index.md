@@ -448,3 +448,9 @@ geth      geth.ipc  history   keystore
 此时可使用`exit`命令退出容器，注意，因为我们这次是用`exec`命令登入的，所以退出时不关闭容器，使用`ps`命令仍能在运行容器列表中看到miner
 
 当然，也可以使用`attach`命令而不是`exec`命令进入，但这样退出会直接退出容器，不会出现在运行列表中
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/use-docker-to-build-ethereum-private-chain/  
+

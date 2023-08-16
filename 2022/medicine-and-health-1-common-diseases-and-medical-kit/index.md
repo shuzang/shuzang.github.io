@@ -182,3 +182,9 @@
 [6] 刘成玉. 诊断学（第4版）[M]. 人民卫生出版社. 2019-01.
 
 [7] 江苏省药学会编著. 社区居民安全合理用药读本[M]. 江苏凤凰科技出版社. 2015-09.
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2022/medicine-and-health-1-common-diseases-and-medical-kit/  
+

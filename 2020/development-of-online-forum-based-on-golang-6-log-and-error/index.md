@@ -234,3 +234,9 @@ ERROR 2020/04/07 14:55:39 helper.go:71: sql: no rows in result set Cannot find u
 接下来，我们访问一个不存在的群组 `http://localhost:8080/thread/read?id=100`，页面就会重定向到错误页面：
 
 ![](https://qcdn.xueyuanjun.com/storage/uploads/images/gallery/2020-04/image-15862427655179.jpg)
+
+---
+
+> 作者: xueyuanjun  
+> URL: https://shuzang.github.io/2020/development-of-online-forum-based-on-golang-6-log-and-error/  
+

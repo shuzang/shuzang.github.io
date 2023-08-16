@@ -486,3 +486,9 @@ Go是编译型的语言，因此函数的编写顺序无关紧要，但鉴于可
    ```
 
 最后，main函数放在所有函数的最后。
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/golang-syntax-7-function/  
+

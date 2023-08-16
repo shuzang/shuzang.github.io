@@ -468,3 +468,9 @@ IoT 设备性能不足以作为区块链节点；节点越多达成共识时间�
 [24]  Kokoriskogias E, Jovanovic P, Gailly N, et al. Enhancing Bitcoin Security and Performance with Strong Consistency via Collective Signing[C]. usenix security symposium, 2016: 279-296. [链接](https://www.usenix.org/system/files/conference/usenixsecurity16/sec16_paper_kokoris-kogias.pdf)
 
 [25]  Miller D. Blockchain and the Internet of Things in the Industrial Sector[J]. IT Professional, 2018, 20(3): 15-18. 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/blockchain-based-access-control-for-iot/  
+

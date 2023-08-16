@@ -220,3 +220,9 @@ Engineering Village现归爱思唯尔所有，因此EI收录的期刊列表从El
 [5] 虎嗅, 学术出版为什么成了一门利润惊人的生意，2019.04.16,  https://www.huxiu.com/article/294575.html 
 
 [6] 百度文库, 什么是核心期刊，核心期刊有几种, 2018.05.22,  https://wenku.baidu.com/view/6ce3478d0342a8956bec0975f46527d3250ca612.html 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2018/academic-basic-knowledge/  
+

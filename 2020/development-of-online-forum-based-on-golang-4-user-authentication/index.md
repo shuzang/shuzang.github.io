@@ -385,3 +385,9 @@ func Index(writer http.ResponseWriter, request *http.Request) {
 此时显示的是「Logout」链接，点击即可退出应用：
 
 ![](https://qcdn.xueyuanjun.com/storage/uploads/images/gallery/2020-04/image-15856719117027.jpg)
+
+---
+
+> 作者: xueyuanjun  
+> URL: https://shuzang.github.io/2020/development-of-online-forum-based-on-golang-4-user-authentication/  
+

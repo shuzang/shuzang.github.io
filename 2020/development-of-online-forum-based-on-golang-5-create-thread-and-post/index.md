@@ -287,3 +287,9 @@ func PostThread(writer http.ResponseWriter, request *http.Request) {
 回到论坛首页，你可以看到每个群组下的主题数目：
 
 ![](https://qcdn.xueyuanjun.com/storage/uploads/images/gallery/2020-04/image-15858883971308.jpg)
+
+---
+
+> 作者: xueyuanjun  
+> URL: https://shuzang.github.io/2020/development-of-online-forum-based-on-golang-5-create-thread-and-post/  
+

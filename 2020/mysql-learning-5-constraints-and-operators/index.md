@@ -488,3 +488,9 @@ MySQL 提供了一些内部函数帮助用户更方便地处理表中数据，�
 
 - [MySQL 常用函数汇总](http://m.biancheng.net/mysql/function/)
 - [MySQL 官方参考文档](https://dev.mysql.com/doc/refman/5.7/en/)
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/mysql-learning-5-constraints-and-operators/  
+

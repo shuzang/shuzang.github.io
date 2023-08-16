@@ -479,3 +479,9 @@ var test = testContract.new(
 
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/summary-of-smart-contract-knowledge-points/  
+

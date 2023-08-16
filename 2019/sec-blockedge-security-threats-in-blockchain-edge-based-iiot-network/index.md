@@ -79,3 +79,9 @@ Kumar, Tanesh & Braeken, An & Ramani, Vidhya & Ahmad, Ijaz & Harjula, Erkki & Yl
 
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/sec-blockedge-security-threats-in-blockchain-edge-based-iiot-network/  
+

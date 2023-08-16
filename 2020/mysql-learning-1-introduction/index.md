@@ -164,3 +164,9 @@ SQL 的几个易错书写规则如下
 1. 以分号 `;` 结尾
 2. SQL 语句不区分大小写
 3. 单词需要半角空格或换行来分隔
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/mysql-learning-1-introduction/  
+

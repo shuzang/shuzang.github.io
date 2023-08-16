@@ -286,3 +286,9 @@
 [2] 张春蓉等.  [色彩构成_安阳工学院_中国大学MOOC(慕课)](https://www.icourse163.org/course/AYIT-1003593006)[OL]. 2020-11-11 第 5 次开课
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/basic-knowledge-of-colorology/  
+

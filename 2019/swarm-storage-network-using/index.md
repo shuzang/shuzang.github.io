@@ -129,3 +129,9 @@ $ curl http://localhost:5500/bzz:/your hash comes here/
 <br>
 
 可查看[swarm文档](<https://swarm-guide.readthedocs.io/en/latest/introduction.html>)阅读更多细节
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/swarm-storage-network-using/  
+

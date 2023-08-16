@@ -43,3 +43,9 @@
 **使用ssh工具连接**
 
 使用ssh工具（我用Putty），通过查询到的IP连接树莓派，默认用户名和密码是`pi`和`raspberry`
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BD%BF%E7%94%A8%E7%BD%91%E7%BA%BF%E7%9B%B4%E8%BF%9E%E7%94%B5%E8%84%91/  
+

@@ -572,3 +572,9 @@ r.HandleFunc("/debug/pprof/trace", pprof.Trace)
 之后的使用就没有区别了。
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/golang-deep-learning-6-performance-analysis-pprof/  
+

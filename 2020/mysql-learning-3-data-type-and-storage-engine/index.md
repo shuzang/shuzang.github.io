@@ -179,3 +179,9 @@ ALTER TABLE <表名> ENGINE=<存储引擎名>;
 ```
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/mysql-learning-3-data-type-and-storage-engine/  
+

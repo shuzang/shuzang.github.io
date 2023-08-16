@@ -67,3 +67,9 @@ limit <limit_number>
 [1] 樱桃mayue，51CTO博客，[MySql学习笔记（二）：SQL执行顺序](https://blog.51cto.com/13593129/2357192?source=dra)，2019.03.02
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/mysql-learning-supplement-statement-execution-order/  
+

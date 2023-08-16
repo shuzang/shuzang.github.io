@@ -380,3 +380,9 @@ fType1 = func f(a type1, b type2)
 通过这种机制，所有的错误都会被 recover，并且调用函数后的错误检查代码也被简化为调用 check(err) 即可。在这种模式下，不同的错误处理必须对应不同的函数类型；它们（错误处理）可能被隐藏在错误处理包内部。可选的更加通用的方式是用一个空接口类型的切片作为参数和返回值。 
 
 最最重要的一点，Goroutine 中抛出的异常，只能在本协程中使用 recover 捕获，主协程是无法接收到的，同时，子协程发生的 panic 如果没有被捕获，会导致整个程序中断。
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/golang-syntax-11-error-and-panic/  
+

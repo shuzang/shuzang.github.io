@@ -282,3 +282,9 @@ func rawstring(size int) (s string, b []byte) {
 1. string 和 []byte，string 和 []rune 的转换都会进行内存的重新分配，有一定代价；
 2. 直接访问 string 中的成员，类型为 byte，使用 for range 结构，类型为 rune；
 3. 需要修改 string 中的成员时，需要转换 []byte；
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/golang-deep-learning-2-string/  
+

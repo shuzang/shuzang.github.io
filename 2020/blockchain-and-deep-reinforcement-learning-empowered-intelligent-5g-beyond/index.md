@@ -142,3 +142,9 @@ Day Y, Xu D, Maharjan S, 等. Blockchain and Deep Reinforcement Learning Empower
 更进一步的，我们关心的是计算卸载场景下区块链如何保证 D2D 的安全，因此作者描述的四个资源管理案例有一定的作用。但是，作者的思路是 MBS 作为区块链节点，重新将基站和边缘服务器引入了方案中，我们使用 D2D 进行资源卸载的原因是节省频谱资源并弥补 MEC 场景的不足，将 MBS 引入不太合适。另一方面，MBS 维持区块链意味着这是一个小范围场景，最多整个城市的 MBS 都加入，移动设备或车辆在不同地域间的移动可能会带来数据访问问题，需要不同区块链的协作。最后的担心是，深度强化学习也是一种计算密集型任务，需要不断地训练，将 DRL 算法放在区块链中运行，资源消耗与收益是否匹配犹未可知。最后得到的一个启发是，不必局限于计算卸载，D2D 缓存也是一个方向。
 
 注：插图源自原论文
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/blockchain-and-deep-reinforcement-learning-empowered-intelligent-5g-beyond/  
+

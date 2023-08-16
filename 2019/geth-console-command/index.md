@@ -597,3 +597,9 @@ undefined
 - admin.addPeer()：连接到其他节点；
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/geth-console-command/  
+

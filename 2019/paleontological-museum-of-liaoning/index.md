@@ -52,3 +52,9 @@
 ![运5](https://picped-1301226557.cos.ap-beijing.myqcloud.com/SH_20190824_63651963-fc138f80-c78c-11e9-8b1a-b967af3141aa.jpg)
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/paleontological-museum-of-liaoning/  
+

@@ -532,3 +532,9 @@ Truffle develop
 [2] Using Truffle Develop and The Console, https://www.trufflesuite.com/docs/truffle/getting-started/using-truffle-develop-and-the-console#truffle-develop
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/use-truffle-develop-ethereum-project/  
+

@@ -318,3 +318,9 @@ $ go run main.go
 然后我们在浏览器访问论坛首页 `http://localhost:8080`：
 
 ![首页](https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20200529_%E9%A6%96%E9%A1%B5.png)
+
+---
+
+> 作者: xueyuanjun  
+> URL: https://shuzang.github.io/2020/development-of-online-forum-based-on-golang-3-visit-forum-homepage/  
+

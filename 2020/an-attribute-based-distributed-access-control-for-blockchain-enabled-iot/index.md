@@ -113,3 +113,9 @@ PC 提供的函数功能如下
 [^ouaddah2016access]:A. Ouaddah, H. Mousannif, A. A. Elkalam, and A. A. Ouahman, “Access control in The Internet of Things: Big challenges and new opportunities,” *Computer Networks*, vol. 112, pp. 237–262, 2016.
 
 可以思考如何在区块链中改善这两者。
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/an-attribute-based-distributed-access-control-for-blockchain-enabled-iot/  
+

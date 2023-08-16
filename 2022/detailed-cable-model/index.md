@@ -77,3 +77,9 @@
 - 额定电压10kV架空绝缘电缆：[国家标准|GB/T 14049-2008](http://openstd.samr.gov.cn/bzgk/gb/newGbInfo?hcno=498F0E9BDCC9F878D7A6272E0AEC46AD)
 - 陈蕾. 电缆图表手册（第二版）[M]. 中国水利水电出版社. 2014-01.
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2022/detailed-cable-model/  
+

@@ -182,3 +182,9 @@ $$
 ## Conclusions
 
 在本文中，我们提出了一种创新的基于区块链的IIoT架构，以帮助构建更安全可靠的IIoT系统。通过分析现有IIoT架构的缺点和区块链技术的优势，我们引入了一种新的IIoT架构，并对所有架构层进行了详细分析。此外，我们引入BLP模型以及Biba模型来理论上设计安全保证。在此基础上，我们描述了所提出的架构的关键技术，流程和防御机制。最后，我们对现有的自动生产平台进行了改造，以讨论与传统IIoT架构相比的改进。它表明，所提出的架构可以极大地提高CIA的要求。因此，所提出的架构可以在未来实现更多的扩展，例如通过智能合约的集成，实现资源的自动配置;通过分布式系统，可以实现所有设备的在线远程升级。
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/a-blockchain-based-solution-for-enhancing-security-and-privacy-in-smart-factory/  
+

@@ -498,3 +498,9 @@ Version B: Value of items: [map[] map[] map[] map[] map[]]
 应该意识到，for-range 结构中，value 只是值的拷贝，对它做操作不会影响原值，因此上例中第二种写法是错误的，真正的 map 元素并没有得到初始化。
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/golang-syntax-6-array-slice-and-map/  
+

@@ -87,3 +87,9 @@ func Merge(a,b int) int {
 如果有n个节点、e条边（关系），每一条边（u, v）进行集合合并时，都要查找u和v的祖宗，查找的路径从当前节点一直到根节点。n个节点组成的树，平均情况下树的高度为logn，因此并查集中，合并集合的时间复杂度为O(elogn)。
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/data-structure-union-find-set/  
+

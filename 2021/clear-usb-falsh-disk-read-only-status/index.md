@@ -34,3 +34,9 @@ U盘变只读是经常出现的情况，以前都是使用写保护开关，一�
 ```
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2021/clear-usb-falsh-disk-read-only-status/  
+

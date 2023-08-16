@@ -527,3 +527,9 @@ func (user *User) CreatePost(conv Thread, body string) (post Post, err error) {
 在上述编写的模型类中，模型类与数据表的映射由 `go-mysql-driver` 底层实现，每次从数据库查询到结果之后，可以通过 `Scan` 方法将数据表字段值映射到对应的结构体模型类，而将模型类保存到数据库时，又可以基于字段映射关系将结构体属性值转化为对应的数据表字段值。
 
 底层数据库交互逻辑定义好了之后，接下来，我们就可以编写上层实现代码了，下一篇介绍在线论坛项目上层路由和处理器方法的实现。
+
+---
+
+> 作者: xueyuanjun  
+> URL: https://shuzang.github.io/2020/development-of-online-forum-based-on-golang-2-interact-with-mysql/  
+

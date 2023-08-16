@@ -179,3 +179,9 @@ InsertSort(A[0...n-1])
 - 对于使用次数较少的程序，力求算法简单易懂；
 - 对于反复多次使用的程序，尽可能选用快速的算法；
 - 若待解决的问题数据量极大，机器的存储空间较小，则相应算法主要考虑如何节省空间。
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/algorithm-time-and-space-complexity/  
+

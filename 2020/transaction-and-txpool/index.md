@@ -137,3 +137,9 @@ type TxPool struct {
 更全面的描述可以参考 [以太坊技术与实现：交易池](https://learnblockchain.cn/books/geth/part2/txpool.html)
 
 我们关心发起交易的时间和智能合约执行并返回结果的时间是否有区别
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/transaction-and-txpool/  
+

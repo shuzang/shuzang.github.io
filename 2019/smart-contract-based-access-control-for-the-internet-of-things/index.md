@@ -129,3 +129,9 @@ JC的subject和object字段留空。依据查找表，RC提供以下函数接口
 ## Conclusion
 
 本文研究了物联网中的访问控制问题，为此我们提出了一个基于智能合约的架构来实现分布式和可信赖的访问控制。该框架包括用于系统中多个subject - object对的访问控制的多个ACC，一个用于在访问控制期间判断subject的恶意行为的JC，以及一个用于管理ACC和JC的RC。还为物联网系统中的访问控制提供了案例研究，其中包括一台台式计算机，一台笔记本电脑和两台Raspberry Pi。案例研究证明了所提架构在实现物联网分布式和可信赖访问控制方面的可行性
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/smart-contract-based-access-control-for-the-internet-of-things/  
+

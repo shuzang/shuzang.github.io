@@ -30,3 +30,9 @@ $ sudo hwclock --systohc
 ```
 
 ntpdate cn.pool.ntp.org是位于中国的公共NTP服务器
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/linux%E7%B3%BB%E7%BB%9F%E6%97%B6%E9%97%B4%E5%90%8C%E6%AD%A5/  
+

@@ -81,3 +81,9 @@
 每个月做预算，超出预算的部分可以下个月买
 
 想买的东西记录到表格
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2022/shopping-process/  
+

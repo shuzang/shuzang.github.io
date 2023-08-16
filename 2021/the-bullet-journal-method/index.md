@@ -89,3 +89,9 @@ Custom Log 是其它任何我们想要的记录，比如食物记录、睡眠记
 - [ ] 花费多天完成的任务，每天完成一部分
 - [ ] 记录事件时的描述方式
 - [ ] 一些工作/事情归类到事件还是待做
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2021/the-bullet-journal-method/  
+

@@ -714,3 +714,9 @@ func main() {
 14. 所有功能完成后，根据情况进行重构，比如代码的解耦等，然后完成添加注释、编写文档等工作；
 15. Go 文档的编写与使用；
 16. 日志系统的使用。
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/a-cli-implement-of-2048-game-using-go/  
+

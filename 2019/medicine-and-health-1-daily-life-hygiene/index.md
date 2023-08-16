@@ -106,3 +106,9 @@
    - 不要在床上看书、看电视或玩手机等，进行这些活动通常会破坏固定的入睡时间
 
 总结及计划：睡前喝一杯牛奶，并热水洗脚，以听轻音乐作为入睡仪式；右侧卧睡，入睡和起床时间固定
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/medicine-and-health-1-daily-life-hygiene/  
+

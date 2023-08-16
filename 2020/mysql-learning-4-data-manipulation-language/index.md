@@ -178,3 +178,9 @@ mysql> DROP TABLE tb_emp4;
 ```
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/mysql-learning-4-data-manipulation-language/  
+

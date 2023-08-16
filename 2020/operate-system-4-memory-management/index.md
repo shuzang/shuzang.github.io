@@ -245,3 +245,9 @@
 ![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200813_1597397492705.jpg)
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/operate-system-4-memory-management/  
+

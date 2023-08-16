@@ -146,3 +146,9 @@ $ docker start chitchat
 不使用docker直接在win10中安装mysql参考[win10安装Mysql教程](https://www.cnblogs.com/xiaokang01/p/12092160.html)
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/using-docker-installation-to-run-mysql/  
+

@@ -124,3 +124,9 @@ win10现在可以从任务栏的时间和日期处快速添加事件或提醒，
 如果说分屏是一个工作同时开启多个窗口，虚拟桌面就是在不同的工作间切换，比如我将论文阅读和博客写作两件事分到不同的桌面。使用「windows 徽标键 + Tab」可以进行切换不同的桌面，同时也可以查看时间线并跳转查看之前的工作。
 
 ![虚拟桌面](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200119_72674911-7388e900-3ab7-11ea-9e9d-8f65a0115015.png)
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/efficient-use-of-win10-5-system-function-use/  
+

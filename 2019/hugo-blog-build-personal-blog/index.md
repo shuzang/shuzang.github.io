@@ -593,3 +593,9 @@ script:
 ![持续集成通过](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20190426_1HVos1.png)
 
 然后访问[博客首页](https://shuzang.github.io)，不出意外就可以看到新的改动了。如果部署失败，在网页端的日志记录中找到失败原因，然后修改代码重新提交即可，新的提交通过后，原先失败的提交将会被解决。
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/hugo-blog-build-personal-blog/  
+

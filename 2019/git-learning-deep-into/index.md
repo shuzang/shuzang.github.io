@@ -293,3 +293,9 @@ GitHub 项目的 README.md 中可以添加徽章（Badge）对项目进行标记
 [6] Git文档. [Git工具-子模块](https://git-scm.com/book/zh/v2/Git-工具-子模块). 2nd Edition.
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/git-learning-deep-into/  
+

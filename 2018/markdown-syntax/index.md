@@ -417,3 +417,9 @@ H<sub>2</sub>O
 [3]  [Markdown资源列表](https://github.com/nicejade/nice-front-end-tutorial/blob/master/tutorial/markdown-tutorial.md)
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2018/markdown-syntax/  
+

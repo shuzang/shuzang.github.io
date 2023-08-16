@@ -204,3 +204,9 @@ Ziggurat：基于区块链提供文字、图片、音视频版权资产的登记
 - Merkle树结构
 - Bloom Filter结构
 - 同态加密
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2018/overview-of-blockchain/  
+

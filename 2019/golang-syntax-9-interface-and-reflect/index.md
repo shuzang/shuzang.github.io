@@ -751,3 +751,9 @@ It works like a Phone too: Ring Ring
 ```
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/golang-syntax-9-interface-and-reflect/  
+

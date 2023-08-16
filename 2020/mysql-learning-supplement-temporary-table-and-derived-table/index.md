@@ -74,3 +74,9 @@ Every derived table must have its own alias.
 ```
 
 所以，我们可以看到，派生表不需要像临时表那样需要创建。
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/mysql-learning-supplement-temporary-table-and-derived-table/  
+

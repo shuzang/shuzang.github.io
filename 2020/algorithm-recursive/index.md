@@ -197,3 +197,9 @@ func helper(start int, ls []int, acc int) int {
 ## 5. 原则
 
 递归的作用非常强大，但可能出现堆栈溢出，因此，可能的情况下，尽量使用记忆化技术节省调用次数，使用尾递归节省栈空间。
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/algorithm-recursive/  
+

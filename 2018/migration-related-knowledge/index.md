@@ -312,3 +312,9 @@ arm-liunx-gnu-
 5. [OpenEmbedded](http://www.openembedded.org/wiki/Main_Page)的[BitBake](http://en.wikipedia.org/wiki/BitBake)：OpenEmbedded是一个创建嵌入式Linux的整套框架，其中包括了制作对应的交叉编译器的工具，叫做BitBake。OpenEmbedded简称OE。
 6. Crossdev
 7. [OSELAS.Toolchain()](http://www.pengutronix.de/oselas/toolchain/index_en.html)
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2018/migration-related-knowledge/  
+

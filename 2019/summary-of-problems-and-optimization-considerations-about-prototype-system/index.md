@@ -334,3 +334,9 @@ RC和ACC中都会涉及`delete`操作，用来删除映射表中无效的方法�
 
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/summary-of-problems-and-optimization-considerations-about-prototype-system/  
+

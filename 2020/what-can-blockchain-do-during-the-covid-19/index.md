@@ -53,3 +53,9 @@
 第二点很重要，需要去跟踪每分钱最终去哪儿了，中间损耗多少，只有用到最终受益人时，才成为可以支出的状态花出去，捐赠人很明确的想知道捐钱没问题，一些示例如
 
 ![](https://pic1.zhimg.com/80/v2-97e3acc2a38606fe86b60d14441497d0_720w.jpg)
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/what-can-blockchain-do-during-the-covid-19/  
+

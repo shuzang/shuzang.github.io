@@ -1,16 +1,16 @@
-<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>hugo搭建个人博客4-主题美化 - Shuzang's Blog</title><meta name=Description content="书藏的个人博客，记录学习，记录生活"><meta property="og:title" content="hugo搭建个人博客4-主题美化"><meta property="og:description" content="1. 基础知识 通过一个简单的主题开发流程，理解需要的基本知识，为自己进行主题修改和美化打基础，这里参考create a new theme一文。 开发准备 U"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.github.io/2019/hugo-blog-theme-beautify/"><meta property="og:image" content="https://shuzang.github.io/logo.png"><meta property="article:published_time" content="2019-09-30T00:00:00+00:00"><meta property="article:modified_time" content="2020-02-12T00:00:00+00:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://shuzang.github.io/logo.png"><meta name=twitter:title content="hugo搭建个人博客4-主题美化"><meta name=twitter:description content="1. 基础知识 通过一个简单的主题开发流程，理解需要的基本知识，为自己进行主题修改和美化打基础，这里参考create a new theme一文。 开发准备 U"><meta name=application-name content="Shuzang's Blog"><meta name=apple-mobile-web-app-title content="Shuzang's Blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://shuzang.github.io/2019/hugo-blog-theme-beautify/><link rel=prev href=https://shuzang.github.io/2019/blockchain-and-anomaly-detection/><link rel=next href=https://shuzang.github.io/2019/git-learning-deep-into/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"hugo搭建个人博客4-主题美化","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/2019\/hugo-blog-theme-beautify\/"},"image":["https:\/\/shuzang.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"博客搭建","wordcount":3990,"url":"https:\/\/shuzang.github.io\/2019\/hugo-blog-theme-beautify\/","datePublished":"2019-09-30T00:00:00+00:00","dateModified":"2020-02-12T00:00:00+00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/shuzang.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"Shuzang"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Shuzang's Blog">Shuzang's Blog</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/tags/>标签 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/>关于 </a><a class=menu-item href=https://github.com/shuzang title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item language" title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
-<select class=language-select id=language-select-desktop onchange="location=this.value;"><option value=/2019/hugo-blog-theme-beautify/ selected>简体中文</option></select>
-</a><span class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
-<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Shuzang's Blog">Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
-<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/posts/>所有文章</a><a class=menu-item href=/tags/>标签</a><a class=menu-item href=/categories/>分类</a><a class=menu-item href=/about/>关于</a><a class=menu-item href=https://github.com/shuzang title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
-<i class="fas fa-adjust fa-fw"></i></a><a href=javascript:void(0); class=menu-item title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
-<select class=language-select onchange="location=this.value;"><option value=/2019/hugo-blog-theme-beautify/ selected>简体中文</option></select></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">hugo搭建个人博客4-主题美化</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>Shuzang</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/><i class="far fa-folder fa-fw"></i>爱编程爱技术的孩子</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2019-09-30>2019-09-30</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 3990 字&nbsp;
-<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 8 分钟&nbsp;</div></div><div class=featured-image><img class=lazyload src=/svg/loading.min.svg data-src=https://cdn.wispx.cn/wallpaper/2018/07/28/f45cfdcb1f79bc01d95c22adc63a2854.jpg!wallpaper.detail data-srcset="https://cdn.wispx.cn/wallpaper/2018/07/28/f45cfdcb1f79bc01d95c22adc63a2854.jpg!wallpaper.detail, https://cdn.wispx.cn/wallpaper/2018/07/28/f45cfdcb1f79bc01d95c22adc63a2854.jpg!wallpaper.detail 1.5x, https://cdn.wispx.cn/wallpaper/2018/07/28/f45cfdcb1f79bc01d95c22adc63a2854.jpg!wallpaper.detail 2x" data-sizes=auto alt=https://cdn.wispx.cn/wallpaper/2018/07/28/f45cfdcb1f79bc01d95c22adc63a2854.jpg!wallpaper.detail title=https://cdn.wispx.cn/wallpaper/2018/07/28/f45cfdcb1f79bc01d95c22adc63a2854.jpg!wallpaper.detail></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>目录</span>
-<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#1-基础知识>1. 基础知识</a><ul><li><a href=#开发准备>开发准备</a></li><li><a href=#开发流程>开发流程</a></li></ul></li><li><a href=#2-调整引用样式>2. 调整引用样式</a></li><li><a href=#3-添加阅读进度条>3. 添加阅读进度条</a></li><li><a href=#4-添加侧边栏目录>4. 添加侧边栏目录</a></li><li><a href=#5-图片添加阴影>5. 图片添加阴影</a></li></ul></nav></div></div><div class=content id=content><h2 id=1-基础知识>1. 基础知识</h2><p>通过一个简单的主题开发流程，理解需要的基本知识，为自己进行主题修改和美化打基础，这里参考<a href=https://github.com/digitalcraftsman/hugo-steam-theme/blob/master/exampleSite/content/post/creating-a-new-theme.md target=_blank rel="noopener noreffer">create a new theme</a>一文。</p><h3 id=开发准备>开发准备</h3><p>Ubuntu安装hugo</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+<!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=zh-CN><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=2"><meta name=robots content="noodp"><title>hugo搭建个人博客4-主题美化 - Shuzang's Blog</title><meta name=author content="Shuzang"><meta name=author-link content><meta name=description content="1. 基础知识 通过一个简单的主题开发流程，理解需要的基本知识，为自己进行主题修改和美化打基础，这里参考create a new theme一文。 开发准备 U"><meta name=keywords content="博客搭建"><meta itemprop=name content="hugo搭建个人博客4-主题美化"><meta itemprop=description content="1. 基础知识 通过一个简单的主题开发流程，理解需要的基本知识，为自己进行主题修改和美化打基础，这里参考create a new theme一文。 开发准备 U"><meta itemprop=datePublished content="2019-09-30T00:00:00+00:00"><meta itemprop=dateModified content="2020-02-12T00:00:00+00:00"><meta itemprop=wordCount content="3989"><meta itemprop=image content="https://shuzang.github.io/logo.png"><meta itemprop=keywords content="博客搭建,"><meta property="og:title" content="hugo搭建个人博客4-主题美化"><meta property="og:description" content="1. 基础知识 通过一个简单的主题开发流程，理解需要的基本知识，为自己进行主题修改和美化打基础，这里参考create a new theme一文。 开发准备 U"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.github.io/2019/hugo-blog-theme-beautify/"><meta property="og:image" content="https://shuzang.github.io/logo.png"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-09-30T00:00:00+00:00"><meta property="article:modified_time" content="2020-02-12T00:00:00+00:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://shuzang.github.io/logo.png"><meta name=twitter:title content="hugo搭建个人博客4-主题美化"><meta name=twitter:description content="1. 基础知识 通过一个简单的主题开发流程，理解需要的基本知识，为自己进行主题修改和美化打基础，这里参考create a new theme一文。 开发准备 U"><meta name=application-name content="FixIt"><meta name=apple-mobile-web-app-title content="FixIt"><meta name=theme-color data-light=#f8f8f8 data-dark=#252627 content="#f8f8f8"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://shuzang.github.io/2019/hugo-blog-theme-beautify/><link rel=prev href=https://shuzang.github.io/2019/blockchain-and-anomaly-detection/><link rel=next href=https://shuzang.github.io/2019/git-learning-deep-into/><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><meta name=google-site-verification content="UA-209130979-1"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"hugo搭建个人博客4-主题美化","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/2019\/hugo-blog-theme-beautify\/"},"genre":"posts","keywords":"博客搭建","wordcount":3989,"url":"https:\/\/shuzang.github.io\/2019\/hugo-blog-theme-beautify\/","datePublished":"2019-09-30T00:00:00+00:00","dateModified":"2020-02-12T00:00:00+00:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Shuzang"},"description":""}</script></head><body data-header-desktop=sticky data-header-mobile=auto><script>(window.localStorage?.getItem("theme")?localStorage.getItem("theme")==="dark":"auto"==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:"auto"==="dark")&&document.body.setAttribute("data-theme","dark")</script><div class=wrapper data-page-style=normal><header class="desktop animate__faster" id=header-desktop><div class=header-wrapper data-github-corner=right><div class=header-title><a href=/ title="Shuzang's Blog"><img loading=lazy src=/images/avatar.png srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x" sizes=auto data-title="Shuzang's Blog" data-alt="Shuzang's Blog" class=logo style="background:url(/svg/loading.min.svg)no-repeat 50%" onload='this.title=this.dataset.title,this.alt=this.dataset.alt;for(const e of["style","data-title","data-alt","onerror","onload"])this.removeAttribute(e);this.dataset.lazyloaded=""' onerror='this.title=this.dataset.title,this.alt=this.dataset.alt;for(const e of["style","data-title","data-alt","onerror","onload"])this.removeAttribute(e)'><span class=header-title-text>Shuzang's Blog</span></a><span class=header-subtitle></span></div><nav><ul class=menu><li class=menu-item><a class=menu-link href=/posts/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> Posts</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden=true></i> Categories</a></li><li class=menu-item><a class=menu-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> About</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容…… id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fa-solid fa-search fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fa-solid fa-times-circle fa-fw" aria-hidden=true></i></a>
+<span class="search-button search-loading" id=search-loading-desktop><i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></li><li class="menu-item theme-switch" title=切换主题><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></li></ul></nav></div></header><header class="mobile animate__faster" id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Shuzang's Blog"><img loading=lazy src=/images/avatar.png srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x" sizes=auto data-title=/images/avatar.png data-alt=/images/avatar.png class=logo style="background:url(/svg/loading.min.svg)no-repeat 50%" onload='this.title=this.dataset.title,this.alt=this.dataset.alt;for(const e of["style","data-title","data-alt","onerror","onload"])this.removeAttribute(e);this.dataset.lazyloaded=""' onerror='this.title=this.dataset.title,this.alt=this.dataset.alt;for(const e of["style","data-title","data-alt","onerror","onload"])this.removeAttribute(e)'><span class=header-title-text>Shuzang's Blog</span></a><span class=header-subtitle></span></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><nav><ul class=menu id=menu-mobile><li class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容…… id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fa-solid fa-search fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fa-solid fa-times-circle fa-fw" aria-hidden=true></i></a>
+<span class="search-button search-loading" id=search-loading-mobile><i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></li><li class=menu-item><a class=menu-link href=/posts/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> Posts</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden=true></i> Categories</a></li><li class=menu-item><a class=menu-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> About</a></li><li class="menu-item menu-system"><span class="menu-system-item theme-switch" title=切换主题><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></span></li></ul></nav></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=container><aside class=toc id=toc-auto><h2 class=toc-title>目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden=true></i></h2><div class=toc-content id=toc-content-auto></div></aside><aside class=aside-custom></aside><article class="page single"><div class=header><h1 class="single-title animate__animated animate__flipInX"><span>hugo搭建个人博客4-主题美化</span></h1></div><div class=post-meta><div class=post-meta-line><span class=post-author><span class=author><i class="fa-solid fa-user-circle" aria-hidden=true></i>
+Shuzang</span></span>
+<span class=post-category>收录于 <a href=/categories/%E7%88%B1%E7%BC%96%E7%A8%8B%E7%88%B1%E6%8A%80%E6%9C%AF%E7%9A%84%E5%AD%A9%E5%AD%90/><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> 爱编程爱技术的孩子</a></span></div><div class=post-meta-line><span title="发布于 2019-09-30 00:00:00"><i class="fa-regular fa-calendar-alt fa-fw me-1" aria-hidden=true></i><time datetime=2019-09-30>2019-09-30</time></span>&nbsp;<span title="更新于 2020-02-12 00:00:00"><i class="fa-regular fa-edit fa-fw me-1" aria-hidden=true></i><time datetime=2020-02-12>2020-02-12</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden=true></i>约 3989 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden=true></i>预计阅读 8 分钟</span>&nbsp;</div></div><div class=featured-image><img loading=lazy src=https://cdn.wispx.cn/wallpaper/2018/07/28/f45cfdcb1f79bc01d95c22adc63a2854.jpg!wallpaper.detail srcset="https://cdn.wispx.cn/wallpaper/2018/07/28/f45cfdcb1f79bc01d95c22adc63a2854.jpg!wallpaper.detail, https://cdn.wispx.cn/wallpaper/2018/07/28/f45cfdcb1f79bc01d95c22adc63a2854.jpg!wallpaper.detail 1.5x, https://cdn.wispx.cn/wallpaper/2018/07/28/f45cfdcb1f79bc01d95c22adc63a2854.jpg!wallpaper.detail 2x" sizes=auto data-title=https://cdn.wispx.cn/wallpaper/2018/07/28/f45cfdcb1f79bc01d95c22adc63a2854.jpg!wallpaper.detail data-alt=https://cdn.wispx.cn/wallpaper/2018/07/28/f45cfdcb1f79bc01d95c22adc63a2854.jpg!wallpaper.detail style="background:url(/svg/loading.min.svg)no-repeat 50%" onload='this.title=this.dataset.title,this.alt=this.dataset.alt;for(const e of["style","data-title","data-alt","onerror","onload"])this.removeAttribute(e);this.dataset.lazyloaded=""' onerror='this.title=this.dataset.title,this.alt=this.dataset.alt;for(const e of["style","data-title","data-alt","onerror","onload"])this.removeAttribute(e)'></div><div class="details toc" id=toc-static data-kept=false><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fa-solid fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#1-基础知识>1. 基础知识</a><ul><li><a href=#开发准备>开发准备</a></li><li><a href=#开发流程>开发流程</a></li></ul></li><li><a href=#2-调整引用样式>2. 调整引用样式</a></li><li><a href=#3-添加阅读进度条>3. 添加阅读进度条</a></li><li><a href=#4-添加侧边栏目录>4. 添加侧边栏目录</a></li><li><a href=#5-图片添加阴影>5. 图片添加阴影</a></li></ul></nav></div></div><div class=content id=content><h2 id=1-基础知识>1. 基础知识</h2><p>通过一个简单的主题开发流程，理解需要的基本知识，为自己进行主题修改和美化打基础，这里参考<a href=https://github.com/digitalcraftsman/hugo-steam-theme/blob/master/exampleSite/content/post/creating-a-new-theme.md target=_blank rel="external nofollow noopener noreferrer">create a new theme</a>一文。</p><h3 id=开发准备>开发准备</h3><p>Ubuntu安装hugo</p><div class=highlight id=id-1><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ snap install hugo --channel<span class=o>=</span>extended
-hugo <span class=o>(</span>extended/stable<span class=o>)</span> 0.58.3 from Hugo Authors installed
-</code></pre></td></tr></table></div></div><p>该命令将安装<code>extended</code>Sass/SCSS版本(apt-get 安装的hugo版本较低)</p><p>建立博客文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ snap install hugo --channel<span class=o>=</span>extended
+</span></span><span class=line><span class=cl>hugo <span class=o>(</span>extended/stable<span class=o>)</span> 0.58.3 from Hugo Authors installed</span></span></code></pre></td></tr></table></div></div><p>该命令将安装<code>extended</code>Sass/SCSS版本(apt-get 安装的hugo版本较低)</p><p>建立博客文件</p><div class=highlight id=id-2><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -20,17 +20,16 @@ hugo <span class=o>(</span>extended/stable<span class=o>)</span> 0.58.3 from Hug
 </span><span class=lnt> 8
 </span><span class=lnt> 9
 </span><span class=lnt>10
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ hugo new site newTheme
-$ ls -l
-total <span class=m>28</span>
-drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 15:52 archetypes
--rw-r--r-- <span class=m>1</span> shuzang shuzang   <span class=m>82</span> Sep <span class=m>25</span> 15:52 config.toml
-drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 15:52 content
-drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 15:52 data
-drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 15:52 layouts
-drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 15:52 static
-drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 15:52 themes
-</code></pre></td></tr></table></div></div><p>创建主题</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ hugo new site newTheme
+</span></span><span class=line><span class=cl>$ ls -l
+</span></span><span class=line><span class=cl>total <span class=m>28</span>
+</span></span><span class=line><span class=cl>drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 15:52 archetypes
+</span></span><span class=line><span class=cl>-rw-r--r-- <span class=m>1</span> shuzang shuzang   <span class=m>82</span> Sep <span class=m>25</span> 15:52 config.toml
+</span></span><span class=line><span class=cl>drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 15:52 content
+</span></span><span class=line><span class=cl>drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 15:52 data
+</span></span><span class=line><span class=cl>drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 15:52 layouts
+</span></span><span class=line><span class=cl>drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 15:52 static
+</span></span><span class=line><span class=cl>drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 15:52 themes</span></span></code></pre></td></tr></table></div></div><p>创建主题</p><div class=highlight id=id-3><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -41,18 +40,17 @@ drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep 
 </span><span class=lnt> 9
 </span><span class=lnt>10
 </span><span class=lnt>11
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ hugo new theme LeaveIt
-$ find themes -type f <span class=p>|</span> xargs ls -l
--rw-r--r-- <span class=m>1</span> shuzang shuzang    <span class=m>8</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/archetypes/default.md
--rw-r--r-- <span class=m>1</span> shuzang shuzang    <span class=m>0</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/layouts/404.html
--rw-r--r-- <span class=m>1</span> shuzang shuzang    <span class=m>0</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/layouts/_default/list.html
--rw-r--r-- <span class=m>1</span> shuzang shuzang    <span class=m>0</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/layouts/_default/single.html
--rw-r--r-- <span class=m>1</span> shuzang shuzang    <span class=m>0</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/layouts/index.html
--rw-r--r-- <span class=m>1</span> shuzang shuzang    <span class=m>0</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/layouts/partials/footer.html
--rw-r--r-- <span class=m>1</span> shuzang shuzang    <span class=m>0</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/layouts/partials/header.html
--rw-r--r-- <span class=m>1</span> shuzang shuzang <span class=m>1081</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/LICENSE.md
--rw-r--r-- <span class=m>1</span> shuzang shuzang  <span class=m>436</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/theme.toml
-</code></pre></td></tr></table></div></div><p><code>find themes -type f</code>将themes目录及其子目录的所有一般文件列出</p><p><code>xargs ls -l</code>在<code>find</code>命令基础上列出这些文件的基本信息</p><p>LeaveIt 包含 templates (以 .html为后缀的文件), license 文件, 主题描述 (theme.toml 文件), 和一个空的archetype.</p><p>license文件默认填充MIT协议</p><p>根据引号中的描述编辑theme.toml文件，声明主题基本信息，参照<a href=https://github.com/gohugoio/hugoThemes#themetoml target=_blank rel="noopener noreffer">hugoThemes</a>的说明</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ hugo new theme LeaveIt
+</span></span><span class=line><span class=cl>$ find themes -type f <span class=p>|</span> xargs ls -l
+</span></span><span class=line><span class=cl>-rw-r--r-- <span class=m>1</span> shuzang shuzang    <span class=m>8</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/archetypes/default.md
+</span></span><span class=line><span class=cl>-rw-r--r-- <span class=m>1</span> shuzang shuzang    <span class=m>0</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/layouts/404.html
+</span></span><span class=line><span class=cl>-rw-r--r-- <span class=m>1</span> shuzang shuzang    <span class=m>0</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/layouts/_default/list.html
+</span></span><span class=line><span class=cl>-rw-r--r-- <span class=m>1</span> shuzang shuzang    <span class=m>0</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/layouts/_default/single.html
+</span></span><span class=line><span class=cl>-rw-r--r-- <span class=m>1</span> shuzang shuzang    <span class=m>0</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/layouts/index.html
+</span></span><span class=line><span class=cl>-rw-r--r-- <span class=m>1</span> shuzang shuzang    <span class=m>0</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/layouts/partials/footer.html
+</span></span><span class=line><span class=cl>-rw-r--r-- <span class=m>1</span> shuzang shuzang    <span class=m>0</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/layouts/partials/header.html
+</span></span><span class=line><span class=cl>-rw-r--r-- <span class=m>1</span> shuzang shuzang <span class=m>1081</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/LICENSE.md
+</span></span><span class=line><span class=cl>-rw-r--r-- <span class=m>1</span> shuzang shuzang  <span class=m>436</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/theme.toml</span></span></code></pre></td></tr></table></div></div><p><code>find themes -type f</code>将themes目录及其子目录的所有一般文件列出</p><p><code>xargs ls -l</code>在<code>find</code>命令基础上列出这些文件的基本信息</p><p>LeaveIt 包含 templates (以 .html为后缀的文件), license 文件, 主题描述 (theme.toml 文件), 和一个空的archetype.</p><p>license文件默认填充MIT协议</p><p>根据引号中的描述编辑theme.toml文件，声明主题基本信息，参照<a href=https://github.com/gohugoio/hugoThemes#themetoml target=_blank rel="external nofollow noopener noreferrer">hugoThemes</a>的说明</p><div class=highlight id=id-4><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -71,36 +69,34 @@ $ find themes -type f <span class=p>|</span> xargs ls -l
 </span><span class=lnt>17
 </span><span class=lnt>18
 </span><span class=lnt>19
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ nano themes/LeaveIt/theme.toml
-<span class=nv>name</span> <span class=o>=</span> <span class=s2>&#34;Theme Name&#34;</span>
-<span class=nv>license</span> <span class=o>=</span> <span class=s2>&#34;MIT&#34;</span>
-<span class=nv>licenselink</span> <span class=o>=</span> <span class=s2>&#34;Link to theme&#39;s license&#34;</span>
-<span class=nv>description</span> <span class=o>=</span> <span class=s2>&#34;Theme description&#34;</span>
-<span class=nv>homepage</span> <span class=o>=</span> <span class=s2>&#34;Website of your theme&#34;</span>
-<span class=nv>tags</span> <span class=o>=</span> <span class=o>[</span><span class=s2>&#34;blog&#34;</span>, <span class=s2>&#34;company&#34;</span><span class=o>]</span>
-<span class=nv>features</span> <span class=o>=</span> <span class=o>[</span><span class=s2>&#34;some&#34;</span>, <span class=s2>&#34;awesome&#34;</span>, <span class=s2>&#34;features&#34;</span><span class=o>]</span>
-<span class=nv>min_version</span> <span class=o>=</span> <span class=s2>&#34;0.57.0&#34;</span>
-
-<span class=o>[</span>author<span class=o>]</span>
-    <span class=nv>name</span> <span class=o>=</span> <span class=s2>&#34;Your name&#34;</span>
-    <span class=nv>homepage</span> <span class=o>=</span> <span class=s2>&#34;Your website&#34;</span>
-
-<span class=c1># If porting an existing theme</span>
-<span class=o>[</span>original<span class=o>]</span>
-    <span class=nv>author</span> <span class=o>=</span> <span class=s2>&#34;Name of original author&#34;</span>
-    <span class=nv>homepage</span> <span class=o>=</span> <span class=s2>&#34;His/Her website&#34;</span>
-    <span class=nv>repo</span> <span class=o>=</span> <span class=s2>&#34;Link to source code of original theme&#34;</span>
-</code></pre></td></tr></table></div></div><p>编辑config.toml文件，在文件名添加theme字段，启用主题</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ nano themes/LeaveIt/theme.toml
+</span></span><span class=line><span class=cl><span class=nv>name</span> <span class=o>=</span> <span class=s2>&#34;Theme Name&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>license</span> <span class=o>=</span> <span class=s2>&#34;MIT&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>licenselink</span> <span class=o>=</span> <span class=s2>&#34;Link to theme&#39;s license&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>description</span> <span class=o>=</span> <span class=s2>&#34;Theme description&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>homepage</span> <span class=o>=</span> <span class=s2>&#34;Website of your theme&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>tags</span> <span class=o>=</span> <span class=o>[</span><span class=s2>&#34;blog&#34;</span>, <span class=s2>&#34;company&#34;</span><span class=o>]</span>
+</span></span><span class=line><span class=cl><span class=nv>features</span> <span class=o>=</span> <span class=o>[</span><span class=s2>&#34;some&#34;</span>, <span class=s2>&#34;awesome&#34;</span>, <span class=s2>&#34;features&#34;</span><span class=o>]</span>
+</span></span><span class=line><span class=cl><span class=nv>min_version</span> <span class=o>=</span> <span class=s2>&#34;0.57.0&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>[</span>author<span class=o>]</span>
+</span></span><span class=line><span class=cl>    <span class=nv>name</span> <span class=o>=</span> <span class=s2>&#34;Your name&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=nv>homepage</span> <span class=o>=</span> <span class=s2>&#34;Your website&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># If porting an existing theme</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>original<span class=o>]</span>
+</span></span><span class=line><span class=cl>    <span class=nv>author</span> <span class=o>=</span> <span class=s2>&#34;Name of original author&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=nv>homepage</span> <span class=o>=</span> <span class=s2>&#34;His/Her website&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=nv>repo</span> <span class=o>=</span> <span class=s2>&#34;Link to source code of original theme&#34;</span></span></span></code></pre></td></tr></table></div></div><p>编辑config.toml文件，在文件名添加theme字段，启用主题</p><div class=highlight id=id-5><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ nano config.toml
-<span class=nv>baseURL</span> <span class=o>=</span> <span class=s2>&#34;http://example.org/&#34;</span>
-<span class=nv>languageCode</span> <span class=o>=</span> <span class=s2>&#34;en-us&#34;</span>
-<span class=nv>title</span> <span class=o>=</span> <span class=s2>&#34;My New Hugo Site&#34;</span>
-<span class=nv>theme</span> <span class=o>=</span> <span class=s2>&#34;LeaveIt&#34;</span>
-</code></pre></td></tr></table></div></div><p>重新生成网站，public文件夹和themes/LeaveIt都将生成js和css文件夹用于控制格式</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ nano config.toml
+</span></span><span class=line><span class=cl><span class=nv>baseURL</span> <span class=o>=</span> <span class=s2>&#34;http://example.org/&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>languageCode</span> <span class=o>=</span> <span class=s2>&#34;en-us&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>title</span> <span class=o>=</span> <span class=s2>&#34;My New Hugo Site&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>theme</span> <span class=o>=</span> <span class=s2>&#34;LeaveIt&#34;</span></span></span></code></pre></td></tr></table></div></div><p>重新生成网站，public文件夹和themes/LeaveIt都将生成js和css文件夹用于控制格式</p><div class=highlight id=id-6><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -118,45 +114,42 @@ $ find themes -type f <span class=p>|</span> xargs ls -l
 </span><span class=lnt>16
 </span><span class=lnt>17
 </span><span class=lnt>18
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ hugo --verbose
-$ ls -l public
-total <span class=m>24</span>
-drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 15:56 categories
-drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:09 css
--rw-r--r-- <span class=m>1</span> shuzang shuzang  <span class=m>468</span> Sep <span class=m>25</span> 16:43 index.xml
-drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:09 js
--rw-r--r-- <span class=m>1</span> shuzang shuzang  <span class=m>437</span> Sep <span class=m>25</span> 16:43 sitemap.xml
-drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 15:56 tags
-$ find themes/LeaveIt -type d <span class=p>|</span> xargs ls -ld
-drwxr-xr-x <span class=m>5</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:32 themes/LeaveIt
-drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/archetypes
-drwxr-xr-x <span class=m>4</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/layouts
-drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/layouts/_default
-drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/layouts/partials
-drwxr-xr-x <span class=m>4</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/static
-drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/static/css
-drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/static/js
-</code></pre></td></tr></table></div></div><h3 id=开发流程>开发流程</h3><p>删除public文件夹，执行hugo server命令并添加&ndash;watch参数，打开浏览器查看网站，修改主题文件，浏览器页面将会实时更改</p><p>建议：不要直接在主题上开发，使用git，在开发分支开发，确认功能无误后合并到主分支</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ hugo --verbose
+</span></span><span class=line><span class=cl>$ ls -l public
+</span></span><span class=line><span class=cl>total <span class=m>24</span>
+</span></span><span class=line><span class=cl>drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 15:56 categories
+</span></span><span class=line><span class=cl>drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:09 css
+</span></span><span class=line><span class=cl>-rw-r--r-- <span class=m>1</span> shuzang shuzang  <span class=m>468</span> Sep <span class=m>25</span> 16:43 index.xml
+</span></span><span class=line><span class=cl>drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:09 js
+</span></span><span class=line><span class=cl>-rw-r--r-- <span class=m>1</span> shuzang shuzang  <span class=m>437</span> Sep <span class=m>25</span> 16:43 sitemap.xml
+</span></span><span class=line><span class=cl>drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 15:56 tags
+</span></span><span class=line><span class=cl>$ find themes/LeaveIt -type d <span class=p>|</span> xargs ls -ld
+</span></span><span class=line><span class=cl>drwxr-xr-x <span class=m>5</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:32 themes/LeaveIt
+</span></span><span class=line><span class=cl>drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/archetypes
+</span></span><span class=line><span class=cl>drwxr-xr-x <span class=m>4</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/layouts
+</span></span><span class=line><span class=cl>drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/layouts/_default
+</span></span><span class=line><span class=cl>drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/layouts/partials
+</span></span><span class=line><span class=cl>drwxr-xr-x <span class=m>4</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/static
+</span></span><span class=line><span class=cl>drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/static/css
+</span></span><span class=line><span class=cl>drwxr-xr-x <span class=m>2</span> shuzang shuzang <span class=m>4096</span> Sep <span class=m>25</span> 16:09 themes/LeaveIt/static/js</span></span></code></pre></td></tr></table></div></div><h3 id=开发流程>开发流程</h3><p>删除public文件夹，执行hugo server命令并添加&ndash;watch参数，打开浏览器查看网站，修改主题文件，浏览器页面将会实时更改</p><p>建议：不要直接在主题上开发，使用git，在开发分支开发，确认功能无误后合并到主分支</p><div class=highlight id=id-7><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=c1># 删除public文件夹</span>
-$ rm -rf public
-<span class=c1># 以watch模式实时查看改动</span>
-$ hugo server --watch --verbose
-</code></pre></td></tr></table></div></div><p>更新Home Page 模板，位于layout/目录下：</p><ul><li>index.html</li><li>_default/list.html</li><li>_default/single.html</li></ul><p>现在，模板文件是空的，添加以下内容到模板文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 删除public文件夹</span>
+</span></span><span class=line><span class=cl>$ rm -rf public
+</span></span><span class=line><span class=cl><span class=c1># 以watch模式实时查看改动</span>
+</span></span><span class=line><span class=cl>$ hugo server --watch --verbose</span></span></code></pre></td></tr></table></div></div><p>更新Home Page 模板，位于layout/目录下：</p><ul><li>index.html</li><li>_default/list.html</li><li>_default/single.html</li></ul><p>现在，模板文件是空的，添加以下内容到模板文件</p><div class=highlight id=id-8><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
 </span><span class=lnt>6
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ nano themes/LeaveIt/layouts/index.html
-&lt;html&gt; 
-&lt;body&gt; 
-  &lt;p&gt;hugo says hello!&lt;/p&gt; 
-&lt;/body&gt; 
-&lt;/html&gt;
-</code></pre></td></tr></table></div></div><p>浏览器将显示p标签中的语句</p><p>hugo中有三种类型的模板，home页面模板刚刚已修改，single类型的模板用于生成单个内容的文件，list类型的模板用于生成多个内容的文件，即single.html和list.html</p><p>还存在partial，content views和terms三种类型的模板，这里不做详细介绍。</p><p>更新index.html使之能显示主页</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ nano themes/LeaveIt/layouts/index.html
+</span></span><span class=line><span class=cl>&lt;html&gt; 
+</span></span><span class=line><span class=cl>&lt;body&gt; 
+</span></span><span class=line><span class=cl>  &lt;p&gt;hugo says hello!&lt;/p&gt; 
+</span></span><span class=line><span class=cl>&lt;/body&gt; 
+</span></span><span class=line><span class=cl>&lt;/html&gt;</span></span></code></pre></td></tr></table></div></div><p>浏览器将显示p标签中的语句</p><p>hugo中有三种类型的模板，home页面模板刚刚已修改，single类型的模板用于生成单个内容的文件，list类型的模板用于生成多个内容的文件，即single.html和list.html</p><p>还存在partial，content views和terms三种类型的模板，这里不做详细介绍。</p><p>更新index.html使之能显示主页</p><div class=highlight id=id-9><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -164,15 +157,14 @@ $ hugo server --watch --verbose
 </span><span class=lnt>6
 </span><span class=lnt>7
 </span><span class=lnt>8
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html><span class=cp>&lt;!DOCTYPE html&gt;</span>
-<span class=p>&lt;</span><span class=nt>html</span><span class=p></span><span class=p>&gt;</span>
-<span class=p>&lt;</span><span class=nt>body</span><span class=p></span><span class=p>&gt;</span>
-  {{ range first 10 .Data.Pages }}
-    <span class=p>&lt;</span><span class=nt>h1</span><span class=p></span><span class=p>&gt;</span>{{ .Title }}<span class=p>&lt;</span><span class=p>/</span><span class=nt>h1</span><span class=p>&gt;</span>
-  {{ end }}
-<span class=p>&lt;</span><span class=p>/</span><span class=nt>body</span><span class=p>&gt;</span>
-<span class=p>&lt;</span><span class=p>/</span><span class=nt>html</span><span class=p>&gt;</span>
-</code></pre></td></tr></table></div></div><p>hugo使用Go模板引擎，引擎将扫描模板文件中”{{“和”}}“中间的命令内容并执行，上面的index.html文件中包含三个命令</p><ol><li>range</li><li>.Title</li><li>end</li></ol><p>range是迭代器，用于遍历前十个page，hugo创建的每个html文件都属于page，所以遍历pages将查看创建的每个文件</p><p>.Title打印<code>title</code>变量的值，hugo从markdown文件前面的格式说明中获取该值</p><p>end结束range开启的迭代</p><p>hugo会在创建html文件前将所有内容加载到变量中，然后模板对其进行处理</p><p>因此，更新后的index.html文件将显示first.md和second.md两篇博文的标题</p><p>到此开发一个主题的所有知识就全部介绍完毕了，剩下的就是熟悉Go模板的命令及使用它。但这里还有一些内容可以令我们更容易地创建模板</p><p>修改single.html文件使之展示博文内容</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=cp>&lt;!DOCTYPE html&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>html</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>body</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  {{ range first 10 .Data.Pages }}
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>h1</span><span class=p>&gt;</span>{{ .Title }}<span class=p>&lt;/</span><span class=nt>h1</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  {{ end }}
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>body</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>html</span><span class=p>&gt;</span></span></span></code></pre></td></tr></table></div></div><p>hugo使用Go模板引擎，引擎将扫描模板文件中”{{“和”}}“中间的命令内容并执行，上面的index.html文件中包含三个命令</p><ol><li>range</li><li>.Title</li><li>end</li></ol><p>range是迭代器，用于遍历前十个page，hugo创建的每个html文件都属于page，所以遍历pages将查看创建的每个文件</p><p>.Title打印<code>title</code>变量的值，hugo从markdown文件前面的格式说明中获取该值</p><p>end结束range开启的迭代</p><p>hugo会在创建html文件前将所有内容加载到变量中，然后模板对其进行处理</p><p>因此，更新后的index.html文件将显示first.md和second.md两篇博文的标题</p><p>到此开发一个主题的所有知识就全部介绍完毕了，剩下的就是熟悉Go模板的命令及使用它。但这里还有一些内容可以令我们更容易地创建模板</p><p>修改single.html文件使之展示博文内容</p><div class=highlight id=id-10><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -182,17 +174,16 @@ $ hugo server --watch --verbose
 </span><span class=lnt> 8
 </span><span class=lnt> 9
 </span><span class=lnt>10
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html><span class=cp>&lt;!DOCTYPE html&gt;</span>
-<span class=p>&lt;</span><span class=nt>html</span><span class=p></span><span class=p>&gt;</span>
-<span class=p>&lt;</span><span class=nt>head</span><span class=p></span><span class=p>&gt;</span>
-  <span class=p>&lt;</span><span class=nt>title</span><span class=p></span><span class=p>&gt;</span>{{ .Title }}<span class=p>&lt;</span><span class=p>/</span><span class=nt>title</span><span class=p>&gt;</span>
-<span class=p>&lt;</span><span class=p>/</span><span class=nt>head</span><span class=p>&gt;</span>
-<span class=p>&lt;</span><span class=nt>body</span><span class=p></span><span class=p>&gt;</span>
-  <span class=p>&lt;</span><span class=nt>h1</span><span class=p></span><span class=p>&gt;</span>{{ .Title }}<span class=p>&lt;</span><span class=p>/</span><span class=nt>h1</span><span class=p>&gt;</span>
-  {{ .Content }}
-<span class=p>&lt;</span><span class=p>/</span><span class=nt>body</span><span class=p>&gt;</span>
-<span class=p>&lt;</span><span class=p>/</span><span class=nt>html</span><span class=p>&gt;</span>
-</code></pre></td></tr></table></div></div><p>修改index.html为博文标题标题添加链接</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=cp>&lt;!DOCTYPE html&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>html</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>head</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>title</span><span class=p>&gt;</span>{{ .Title }}<span class=p>&lt;/</span><span class=nt>title</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>head</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>body</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>h1</span><span class=p>&gt;</span>{{ .Title }}<span class=p>&lt;/</span><span class=nt>h1</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  {{ .Content }}
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>body</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>html</span><span class=p>&gt;</span></span></span></code></pre></td></tr></table></div></div><p>修改index.html为博文标题标题添加链接</p><div class=highlight id=id-11><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -200,15 +191,14 @@ $ hugo server --watch --verbose
 </span><span class=lnt>6
 </span><span class=lnt>7
 </span><span class=lnt>8
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html><span class=cp>&lt;!DOCTYPE html&gt;</span>
-<span class=p>&lt;</span><span class=nt>html</span><span class=p></span><span class=p>&gt;</span>
-<span class=p>&lt;</span><span class=nt>body</span><span class=p></span><span class=p>&gt;</span>
-  {{ range first 10 .Data.Pages }}
-    <span class=p>&lt;</span><span class=nt>h1</span><span class=p></span><span class=p>&gt;</span><span class=p>&lt;</span><span class=nt>a</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;{{ .Permalink }}&#34;</span><span class=p></span><span class=p>&gt;</span>{{ .Title }}<span class=p>&lt;</span><span class=p>/</span><span class=nt>a</span><span class=p>&gt;</span><span class=p>&lt;</span><span class=p>/</span><span class=nt>h1</span><span class=p>&gt;</span>
-  {{ end }}
-<span class=p>&lt;</span><span class=p>/</span><span class=nt>body</span><span class=p>&gt;</span>
-<span class=p>&lt;</span><span class=p>/</span><span class=nt>html</span><span class=p>&gt;</span>
-</code></pre></td></tr></table></div></div><p>在content目录创建about.md文件，作为主页面顶级菜单</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=cp>&lt;!DOCTYPE html&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>html</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>body</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  {{ range first 10 .Data.Pages }}
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>h1</span><span class=p>&gt;&lt;</span><span class=nt>a</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;{{ .Permalink }}&#34;</span><span class=p>&gt;</span>{{ .Title }}<span class=p>&lt;/</span><span class=nt>a</span><span class=p>&gt;&lt;/</span><span class=nt>h1</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  {{ end }}
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>body</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>html</span><span class=p>&gt;</span></span></span></code></pre></td></tr></table></div></div><p>在content目录创建about.md文件，作为主页面顶级菜单</p><div class=highlight id=id-12><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -218,17 +208,16 @@ $ hugo server --watch --verbose
 </span><span class=lnt> 8
 </span><span class=lnt> 9
 </span><span class=lnt>10
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-markdown data-lang=markdown>+++
-title = &#34;about&#34;
-description = &#34;about this site&#34;
-date = &#34;2014-09-27&#34;
-slug = &#34;about time&#34;
-+++
-
-<span class=gu>## about us
-</span><span class=gu></span>
-i&#39;m speechless
-</code></pre></td></tr></table></div></div><p>浏览器主页面将显示about菜单，单击即可跳转查看其内容，但它和博文标题放在一起，因此修改index.html文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>+++
+</span></span><span class=line><span class=cl>title = &#34;about&#34;
+</span></span><span class=line><span class=cl>description = &#34;about this site&#34;
+</span></span><span class=line><span class=cl>date = &#34;2014-09-27&#34;
+</span></span><span class=line><span class=cl>slug = &#34;about time&#34;
+</span></span><span class=line><span class=cl>+++
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=gu>## about us
+</span></span></span><span class=line><span class=cl><span class=gu></span>
+</span></span><span class=line><span class=cl>i&#39;m speechless</span></span></code></pre></td></tr></table></div></div><p>浏览器主页面将显示about菜单，单击即可跳转查看其内容，但它和博文标题放在一起，因此修改index.html文件</p><div class=highlight id=id-13><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -246,31 +235,29 @@ i&#39;m speechless
 </span><span class=lnt>16
 </span><span class=lnt>17
 </span><span class=lnt>18
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html><span class=cp>&lt;!DOCTYPE html&gt;</span>
-<span class=p>&lt;</span><span class=nt>html</span><span class=p></span><span class=p>&gt;</span>
-<span class=p>&lt;</span><span class=nt>body</span><span class=p></span><span class=p>&gt;</span>
-  <span class=p>&lt;</span><span class=nt>h1</span><span class=p></span><span class=p>&gt;</span>posts<span class=p>&lt;</span><span class=p>/</span><span class=nt>h1</span><span class=p>&gt;</span>
-  {{ range first 10 .Data.Pages }}
-    {{ if eq .Type &#34;post&#34;}}
-      <span class=p>&lt;</span><span class=nt>h2</span><span class=p></span><span class=p>&gt;</span><span class=p>&lt;</span><span class=nt>a</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;{{ .Permalink }}&#34;</span><span class=p></span><span class=p>&gt;</span>{{ .Title }}<span class=p>&lt;</span><span class=p>/</span><span class=nt>a</span><span class=p>&gt;</span><span class=p>&lt;</span><span class=p>/</span><span class=nt>h2</span><span class=p>&gt;</span>
-    {{ end }}
-  {{ end }}
-
-  <span class=p>&lt;</span><span class=nt>h1</span><span class=p></span><span class=p>&gt;</span>pages<span class=p>&lt;</span><span class=p>/</span><span class=nt>h1</span><span class=p>&gt;</span>
-  {{ range .Data.Pages }}
-    {{ if eq .Type &#34;page&#34; }}
-      <span class=p>&lt;</span><span class=nt>h2</span><span class=p></span><span class=p>&gt;</span><span class=p>&lt;</span><span class=nt>a</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;{{ .Permalink }}&#34;</span><span class=p></span><span class=p>&gt;</span>{{ .Title }}<span class=p>&lt;</span><span class=p>/</span><span class=nt>a</span><span class=p>&gt;</span><span class=p>&lt;</span><span class=p>/</span><span class=nt>h2</span><span class=p>&gt;</span>
-    {{ end }}
-  {{ end }}
-<span class=p>&lt;</span><span class=p>/</span><span class=nt>body</span><span class=p>&gt;</span>
-<span class=p>&lt;</span><span class=p>/</span><span class=nt>html</span><span class=p>&gt;</span>
-</code></pre></td></tr></table></div></div><p>主页面将分两部分显示：博文和页面。并链接到不同的页面。</p><p>改变配置文件中的permalinks，设置页面名</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=cp>&lt;!DOCTYPE html&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>html</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>body</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>h1</span><span class=p>&gt;</span>posts<span class=p>&lt;/</span><span class=nt>h1</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  {{ range first 10 .Data.Pages }}
+</span></span><span class=line><span class=cl>    {{ if eq .Type &#34;post&#34;}}
+</span></span><span class=line><span class=cl>      <span class=p>&lt;</span><span class=nt>h2</span><span class=p>&gt;&lt;</span><span class=nt>a</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;{{ .Permalink }}&#34;</span><span class=p>&gt;</span>{{ .Title }}<span class=p>&lt;/</span><span class=nt>a</span><span class=p>&gt;&lt;/</span><span class=nt>h2</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    {{ end }}
+</span></span><span class=line><span class=cl>  {{ end }}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>h1</span><span class=p>&gt;</span>pages<span class=p>&lt;/</span><span class=nt>h1</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  {{ range .Data.Pages }}
+</span></span><span class=line><span class=cl>    {{ if eq .Type &#34;page&#34; }}
+</span></span><span class=line><span class=cl>      <span class=p>&lt;</span><span class=nt>h2</span><span class=p>&gt;&lt;</span><span class=nt>a</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;{{ .Permalink }}&#34;</span><span class=p>&gt;</span>{{ .Title }}<span class=p>&lt;/</span><span class=nt>a</span><span class=p>&gt;&lt;/</span><span class=nt>h2</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    {{ end }}
+</span></span><span class=line><span class=cl>  {{ end }}
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>body</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>html</span><span class=p>&gt;</span></span></span></code></pre></td></tr></table></div></div><p>主页面将分两部分显示：博文和页面。并链接到不同的页面。</p><p>改变配置文件中的permalinks，设置页面名</p><div class=highlight id=id-14><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-toml data-lang=toml><span class=p>[</span><span class=nx>permalinks</span><span class=p>]</span>
-	<span class=nx>page</span> <span class=p>=</span> <span class=s2>&#34;/:title/&#34;</span>
-	<span class=nx>about</span> <span class=p>=</span> <span class=s2>&#34;/:filename/&#34;</span>
-</code></pre></td></tr></table></div></div><p>如果模板文件存在重叠，可以把重叠部分以共享模板的形式放在themes/LeaveIt/layouts/partials/目录。通常，模板文件引用都会有一个指定的路径，但是partials没有，hugo会沿着TODO定义的搜索路径去使用，因此可以编辑这里的内容来覆盖主题的表达。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-toml data-lang=toml><span class=line><span class=cl><span class=p>[</span><span class=nx>permalinks</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>	<span class=nx>page</span> <span class=p>=</span> <span class=s2>&#34;/:title/&#34;</span>
+</span></span><span class=line><span class=cl>	<span class=nx>about</span> <span class=p>=</span> <span class=s2>&#34;/:filename/&#34;</span></span></span></code></pre></td></tr></table></div></div><p>如果模板文件存在重叠，可以把重叠部分以共享模板的形式放在themes/LeaveIt/layouts/partials/目录。通常，模板文件引用都会有一个指定的路径，但是partials没有，hugo会沿着TODO定义的搜索路径去使用，因此可以编辑这里的内容来覆盖主题的表达。</p><div class=highlight id=id-15><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -281,24 +268,22 @@ i&#39;m speechless
 </span><span class=lnt> 9
 </span><span class=lnt>10
 </span><span class=lnt>11
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ vi themes/LeaveIt/layouts/partials/header.html
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-	&lt;title&gt;<span class=o>{</span><span class=o>{</span> .Title <span class=o>}</span><span class=o>}</span>&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-
-$ vi themes/LeaveIt/layouts/partials/footer.html
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre></td></tr></table></div></div><p>partials和普通模板调用的不同是没有路径，比如</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ vi themes/LeaveIt/layouts/partials/header.html
+</span></span><span class=line><span class=cl>&lt;!DOCTYPE html&gt;
+</span></span><span class=line><span class=cl>&lt;html&gt;
+</span></span><span class=line><span class=cl>&lt;head&gt;
+</span></span><span class=line><span class=cl>	&lt;title&gt;<span class=o>{{</span> .Title <span class=o>}}</span>&lt;/title&gt;
+</span></span><span class=line><span class=cl>&lt;/head&gt;
+</span></span><span class=line><span class=cl>&lt;body&gt;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>$ vi themes/LeaveIt/layouts/partials/footer.html
+</span></span><span class=line><span class=cl>&lt;/body&gt;
+</span></span><span class=line><span class=cl>&lt;/html&gt;</span></span></code></pre></td></tr></table></div></div><p>partials和普通模板调用的不同是没有路径，比如</p><div class=highlight id=id-16><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html>{{ template &#34;theme/partials/header.html&#34; . }}
-vs
-{{ partial &#34;header.html&#34; . }}
-</code></pre></td></tr></table></div></div><p>更新index.html文件内容</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl>{{ template &#34;theme/partials/header.html&#34; . }}
+</span></span><span class=line><span class=cl>vs
+</span></span><span class=line><span class=cl>{{ partial &#34;header.html&#34; . }}</span></span></code></pre></td></tr></table></div></div><p>更新index.html文件内容</p><div class=highlight id=id-17><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -315,50 +300,47 @@ vs
 </span><span class=lnt>15
 </span><span class=lnt>16
 </span><span class=lnt>17
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html>{{ partial &#34;header.html&#34; . }}
-
-  <span class=p>&lt;</span><span class=nt>h1</span><span class=p></span><span class=p>&gt;</span>posts<span class=p>&lt;</span><span class=p>/</span><span class=nt>h1</span><span class=p>&gt;</span>
-  {{ range first 10 .Data.Pages }}
-    {{ if eq .Type &#34;post&#34;}}
-      <span class=p>&lt;</span><span class=nt>h2</span><span class=p></span><span class=p>&gt;</span><span class=p>&lt;</span><span class=nt>a</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;{{ .Permalink }}&#34;</span><span class=p></span><span class=p>&gt;</span>{{ .Title }}<span class=p>&lt;</span><span class=p>/</span><span class=nt>a</span><span class=p>&gt;</span><span class=p>&lt;</span><span class=p>/</span><span class=nt>h2</span><span class=p>&gt;</span>
-    {{ end }}
-  {{ end }}
-
-  <span class=p>&lt;</span><span class=nt>h1</span><span class=p></span><span class=p>&gt;</span>pages<span class=p>&lt;</span><span class=p>/</span><span class=nt>h1</span><span class=p>&gt;</span>
-  {{ range .Data.Pages }}
-    {{ if or (eq .Type &#34;page&#34;) (eq .Type &#34;about&#34;) }}
-      <span class=p>&lt;</span><span class=nt>h2</span><span class=p></span><span class=p>&gt;</span><span class=p>&lt;</span><span class=nt>a</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;{{ .Permalink }}&#34;</span><span class=p></span><span class=p>&gt;</span>{{ .Type }} - {{ .Title }} - {{ .RelPermalink }}<span class=p>&lt;</span><span class=p>/</span><span class=nt>a</span><span class=p>&gt;</span><span class=p>&lt;</span><span class=p>/</span><span class=nt>h2</span><span class=p>&gt;</span>
-    {{ end }}
-  {{ end }}
-
-{{ partial &#34;footer.html&#34; . }}
-</code></pre></td></tr></table></div></div><p>更新single.html文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl>{{ partial &#34;header.html&#34; . }}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>h1</span><span class=p>&gt;</span>posts<span class=p>&lt;/</span><span class=nt>h1</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  {{ range first 10 .Data.Pages }}
+</span></span><span class=line><span class=cl>    {{ if eq .Type &#34;post&#34;}}
+</span></span><span class=line><span class=cl>      <span class=p>&lt;</span><span class=nt>h2</span><span class=p>&gt;&lt;</span><span class=nt>a</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;{{ .Permalink }}&#34;</span><span class=p>&gt;</span>{{ .Title }}<span class=p>&lt;/</span><span class=nt>a</span><span class=p>&gt;&lt;/</span><span class=nt>h2</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    {{ end }}
+</span></span><span class=line><span class=cl>  {{ end }}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>h1</span><span class=p>&gt;</span>pages<span class=p>&lt;/</span><span class=nt>h1</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  {{ range .Data.Pages }}
+</span></span><span class=line><span class=cl>    {{ if or (eq .Type &#34;page&#34;) (eq .Type &#34;about&#34;) }}
+</span></span><span class=line><span class=cl>      <span class=p>&lt;</span><span class=nt>h2</span><span class=p>&gt;&lt;</span><span class=nt>a</span> <span class=na>href</span><span class=o>=</span><span class=s>&#34;{{ .Permalink }}&#34;</span><span class=p>&gt;</span>{{ .Type }} - {{ .Title }} - {{ .RelPermalink }}<span class=p>&lt;/</span><span class=nt>a</span><span class=p>&gt;&lt;/</span><span class=nt>h2</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    {{ end }}
+</span></span><span class=line><span class=cl>  {{ end }}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>{{ partial &#34;footer.html&#34; . }}</span></span></code></pre></td></tr></table></div></div><p>更新single.html文件</p><div class=highlight id=id-18><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
 </span><span class=lnt>6
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html>{{ partial &#34;header.html&#34; . }}
-
-  <span class=p>&lt;</span><span class=nt>h1</span><span class=p></span><span class=p>&gt;</span>{{ .Title }}<span class=p>&lt;</span><span class=p>/</span><span class=nt>h1</span><span class=p>&gt;</span>
-  {{ .Content }}
-
-{{ partial &#34;footer.html&#34; . }}
-</code></pre></td></tr></table></div></div><p>此时浏览器中主页面about菜单将额外展示类型和标题</p><p>更新single.html文件，添加对博文日期的渲染</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl>{{ partial &#34;header.html&#34; . }}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>h1</span><span class=p>&gt;</span>{{ .Title }}<span class=p>&lt;/</span><span class=nt>h1</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  {{ .Content }}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>{{ partial &#34;footer.html&#34; . }}</span></span></code></pre></td></tr></table></div></div><p>此时浏览器中主页面about菜单将额外展示类型和标题</p><p>更新single.html文件，添加对博文日期的渲染</p><div class=highlight id=id-19><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
 </span><span class=lnt>6
 </span><span class=lnt>7
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html>{{ partial &#34;header.html&#34; . }}
-
-  <span class=p>&lt;</span><span class=nt>h1</span><span class=p></span><span class=p>&gt;</span>{{ .Title }}<span class=p>&lt;</span><span class=p>/</span><span class=nt>h1</span><span class=p>&gt;</span>
-  <span class=p>&lt;</span><span class=nt>h2</span><span class=p></span><span class=p>&gt;</span>{{ .Date.Format &#34;Mon, Jan 2, 2006&#34; }}<span class=p>&lt;</span><span class=p>/</span><span class=nt>h2</span><span class=p>&gt;</span>
-  {{ .Content }}
-
-{{ partial &#34;footer.html&#34; . }}
-</code></pre></td></tr></table></div></div><p>此时浏览器博文页面将展示创建日期</p><p>有多种方式使日期只展示在博文页面中，一种是在index.html中添加if条件语间，另一种是为博文创建单独的模板。当主题比较复杂时，创建针对博文的单独模板</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl>{{ partial &#34;header.html&#34; . }}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>h1</span><span class=p>&gt;</span>{{ .Title }}<span class=p>&lt;/</span><span class=nt>h1</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>h2</span><span class=p>&gt;</span>{{ .Date.Format &#34;Mon, Jan 2, 2006&#34; }}<span class=p>&lt;/</span><span class=nt>h2</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  {{ .Content }}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>{{ partial &#34;footer.html&#34; . }}</span></span></code></pre></td></tr></table></div></div><p>此时浏览器博文页面将展示创建日期</p><p>有多种方式使日期只展示在博文页面中，一种是在index.html中添加if条件语间，另一种是为博文创建单独的模板。当主题比较复杂时，创建针对博文的单独模板</p><div class=highlight id=id-20><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -374,23 +356,22 @@ vs
 </span><span class=lnt>14
 </span><span class=lnt>15
 </span><span class=lnt>16
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ mkdir themes/LeaveIt/layouts/post
-$ nano themes/LeaveIt/layouts/_default/single.html
-<span class=o>{</span><span class=o>{</span> partial <span class=s2>&#34;header.html&#34;</span> . <span class=o>}</span><span class=o>}</span>
-
-  &lt;h1&gt;<span class=o>{</span><span class=o>{</span> .Title <span class=o>}</span><span class=o>}</span>&lt;/h1&gt;
-  <span class=o>{</span><span class=o>{</span> .Content <span class=o>}</span><span class=o>}</span>
-
-<span class=o>{</span><span class=o>{</span> partial <span class=s2>&#34;footer.html&#34;</span> . <span class=o>}</span><span class=o>}</span>
-$ nano themes/LeaveIt/layouts/post/single.html
-<span class=o>{</span><span class=o>{</span> partial <span class=s2>&#34;header.html&#34;</span> . <span class=o>}</span><span class=o>}</span>
-
-  &lt;h1&gt;<span class=o>{</span><span class=o>{</span> .Title <span class=o>}</span><span class=o>}</span>&lt;/h1&gt;
-  &lt;h2&gt;<span class=o>{</span><span class=o>{</span> .Date.Format <span class=s2>&#34;Mon, Jan 2, 2006&#34;</span> <span class=o>}</span><span class=o>}</span>&lt;/h2&gt;
-  <span class=o>{</span><span class=o>{</span> .Content <span class=o>}</span><span class=o>}</span>
-
-<span class=o>{</span><span class=o>{</span> partial <span class=s2>&#34;footer.html&#34;</span> . <span class=o>}</span><span class=o>}</span>
-</code></pre></td></tr></table></div></div><p>移除了默认的single模板中对日期的指定，而在post的single模板添加</p><p>至此对主题的基本结构有了了解，接下来应该进一步学习Hugo中Go模板的语法，参见<a href=https://github.com/digitalcraftsman/hugo-steam-theme/blob/master/exampleSite/content/post/goisforlovers.md target=_blank rel="noopener noreffer">Introduction to Go Templates</a></p><p>注意，以下的调整都是对原主题样式的调整，需要修改主题源码，因此最好clone主题仓库进行开发。</p><h2 id=2-调整引用样式>2. 调整引用样式</h2><p>主题原有的引用样式如下</p><blockquote><p>引用样式示例</p></blockquote><p>修改<code>assets/css/_common/_core/base.scss</code>文件如下调整引用样式</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ mkdir themes/LeaveIt/layouts/post
+</span></span><span class=line><span class=cl>$ nano themes/LeaveIt/layouts/_default/single.html
+</span></span><span class=line><span class=cl><span class=o>{{</span> partial <span class=s2>&#34;header.html&#34;</span> . <span class=o>}}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  &lt;h1&gt;<span class=o>{{</span> .Title <span class=o>}}</span>&lt;/h1&gt;
+</span></span><span class=line><span class=cl>  <span class=o>{{</span> .Content <span class=o>}}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>{{</span> partial <span class=s2>&#34;footer.html&#34;</span> . <span class=o>}}</span>
+</span></span><span class=line><span class=cl>$ nano themes/LeaveIt/layouts/post/single.html
+</span></span><span class=line><span class=cl><span class=o>{{</span> partial <span class=s2>&#34;header.html&#34;</span> . <span class=o>}}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  &lt;h1&gt;<span class=o>{{</span> .Title <span class=o>}}</span>&lt;/h1&gt;
+</span></span><span class=line><span class=cl>  &lt;h2&gt;<span class=o>{{</span> .Date.Format <span class=s2>&#34;Mon, Jan 2, 2006&#34;</span> <span class=o>}}</span>&lt;/h2&gt;
+</span></span><span class=line><span class=cl>  <span class=o>{{</span> .Content <span class=o>}}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>{{</span> partial <span class=s2>&#34;footer.html&#34;</span> . <span class=o>}}</span></span></span></code></pre></td></tr></table></div></div><p>移除了默认的single模板中对日期的指定，而在post的single模板添加</p><p>至此对主题的基本结构有了了解，接下来应该进一步学习Hugo中Go模板的语法，参见<a href=https://github.com/digitalcraftsman/hugo-steam-theme/blob/master/exampleSite/content/post/goisforlovers.md target=_blank rel="external nofollow noopener noreferrer">Introduction to Go Templates</a></p><p>注意，以下的调整都是对原主题样式的调整，需要修改主题源码，因此最好clone主题仓库进行开发。</p><h2 id=2-调整引用样式>2. 调整引用样式</h2><p>主题原有的引用样式如下</p><blockquote><p>引用样式示例</p></blockquote><p>修改<code>assets/css/_common/_core/base.scss</code>文件如下调整引用样式</p><div class=highlight id=id-21><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -446,63 +427,63 @@ $ nano themes/LeaveIt/layouts/post/single.html
 </span><span class=lnt>54
 </span><span class=lnt>55
 </span><span class=lnt>56
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-diff data-lang=diff>  }
-
-  blockquote {
-<span class=gd>-    font-size: 1rem;
-</span><span class=gd></span><span class=gd>-    display: block;
-</span><span class=gd></span><span class=gd>-    border-width: 1px 0;
-</span><span class=gd></span><span class=gd>-    border-style: solid;
-</span><span class=gd></span><span class=gd>-    border-color: $light-border-color;
-</span><span class=gd></span><span class=gd>-    padding: 1.5em 1.2em 0.5em 1.2em;
-</span><span class=gd></span><span class=gd>-    margin: 0 0 2em 0;
-</span><span class=gd></span><span class=gd>-    position: relative;
-</span><span class=gd></span><span class=gd>-
-</span><span class=gd></span><span class=gd>-    &amp;:before {
-</span><span class=gd></span><span class=gd>-      content: &#39;\201C&#39;;
-</span><span class=gd></span><span class=gd>-      position: absolute;
-</span><span class=gd></span><span class=gd>-      top: 0em;
-</span><span class=gd></span><span class=gd>-      left: 50%;
-</span><span class=gd></span><span class=gd>-      transform: translate(-50%, -50%);
-</span><span class=gd></span><span class=gd>-      width: 3rem;
-</span><span class=gd></span><span class=gd>-      height: 2rem;
-</span><span class=gd></span><span class=gd>-      font: 6em/1.08em &#39;PT Sans&#39;, sans-serif;
-</span><span class=gd></span><span class=gd>-      color: $light-post-link-color;
-</span><span class=gd></span><span class=gd>-      text-align: center;
-</span><span class=gd></span><span class=gd>-
-</span><span class=gd></span><span class=gd>-       .dark-theme &amp;{
-</span><span class=gd></span><span class=gd>-         color: $dark-post-link-color;
-</span><span class=gd></span><span class=gd>-       }
-</span><span class=gd></span><span class=gd>-    }
-</span><span class=gd></span><span class=gd>-    &amp;:after {
-</span><span class=gd></span><span class=gd>-      content: &#34;#blockquote&#34; attr(cite);
-</span><span class=gd></span><span class=gd>-      display: block;
-</span><span class=gd></span><span class=gd>-      text-align: right;
-</span><span class=gd></span><span class=gd>-      font-size: 0.875em;
-</span><span class=gd></span><span class=gd>-      color: $light-post-link-color;
-</span><span class=gd></span><span class=gd>-
-</span><span class=gd></span><span class=gd>-       .dark-theme &amp;{
-</span><span class=gd></span><span class=gd>-         color: $dark-post-link-color;
-</span><span class=gd></span><span class=gd>-       }
-</span><span class=gd></span><span class=gd>-    }
-</span><span class=gd></span><span class=gi>+    font: 14px/22px normal helvetica, sans-serif;
-</span><span class=gi></span><span class=gi>+    margin-top: 10px;
-</span><span class=gi></span><span class=gi>+    margin-bottom: 10px;
-</span><span class=gi></span><span class=gi>+    margin-left: 2%;
-</span><span class=gi></span><span class=gi>+    margin-right: 0%;
-</span><span class=gi></span><span class=gi>+    padding-left: 15px;
-</span><span class=gi></span><span class=gi>+    padding-top: 10px;
-</span><span class=gi></span><span class=gi>+    padding-right: 10px;
-</span><span class=gi></span><span class=gi>+    padding-bottom: 10px;
-</span><span class=gi></span><span class=gi>+    border-left: 3px solid #ccc;
-</span><span class=gi></span><span class=gi>+    background-color:#f1f1f1;  
-</span><span class=gi></span>
-    .dark-theme &amp; {
-<span class=gd>-      border-color: $dark-border-color;
-</span><span class=gd></span><span class=gi>+      background-color:#252529;
-</span><span class=gi></span>    }
-  } 
-</code></pre></td></tr></table></div></div><h2 id=3-添加阅读进度条>3. 添加阅读进度条</h2><p>首先在<code>layouts/partials/header.html</code>文件中如下所示插入代码</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-diff data-lang=diff><span class=line><span class=cl>  }
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  blockquote {
+</span></span><span class=line><span class=cl><span class=gd>-    font-size: 1rem;
+</span></span></span><span class=line><span class=cl><span class=gd>-    display: block;
+</span></span></span><span class=line><span class=cl><span class=gd>-    border-width: 1px 0;
+</span></span></span><span class=line><span class=cl><span class=gd>-    border-style: solid;
+</span></span></span><span class=line><span class=cl><span class=gd>-    border-color: $light-border-color;
+</span></span></span><span class=line><span class=cl><span class=gd>-    padding: 1.5em 1.2em 0.5em 1.2em;
+</span></span></span><span class=line><span class=cl><span class=gd>-    margin: 0 0 2em 0;
+</span></span></span><span class=line><span class=cl><span class=gd>-    position: relative;
+</span></span></span><span class=line><span class=cl><span class=gd>-
+</span></span></span><span class=line><span class=cl><span class=gd>-    &amp;:before {
+</span></span></span><span class=line><span class=cl><span class=gd>-      content: &#39;\201C&#39;;
+</span></span></span><span class=line><span class=cl><span class=gd>-      position: absolute;
+</span></span></span><span class=line><span class=cl><span class=gd>-      top: 0em;
+</span></span></span><span class=line><span class=cl><span class=gd>-      left: 50%;
+</span></span></span><span class=line><span class=cl><span class=gd>-      transform: translate(-50%, -50%);
+</span></span></span><span class=line><span class=cl><span class=gd>-      width: 3rem;
+</span></span></span><span class=line><span class=cl><span class=gd>-      height: 2rem;
+</span></span></span><span class=line><span class=cl><span class=gd>-      font: 6em/1.08em &#39;PT Sans&#39;, sans-serif;
+</span></span></span><span class=line><span class=cl><span class=gd>-      color: $light-post-link-color;
+</span></span></span><span class=line><span class=cl><span class=gd>-      text-align: center;
+</span></span></span><span class=line><span class=cl><span class=gd>-
+</span></span></span><span class=line><span class=cl><span class=gd>-       .dark-theme &amp;{
+</span></span></span><span class=line><span class=cl><span class=gd>-         color: $dark-post-link-color;
+</span></span></span><span class=line><span class=cl><span class=gd>-       }
+</span></span></span><span class=line><span class=cl><span class=gd>-    }
+</span></span></span><span class=line><span class=cl><span class=gd>-    &amp;:after {
+</span></span></span><span class=line><span class=cl><span class=gd>-      content: &#34;#blockquote&#34; attr(cite);
+</span></span></span><span class=line><span class=cl><span class=gd>-      display: block;
+</span></span></span><span class=line><span class=cl><span class=gd>-      text-align: right;
+</span></span></span><span class=line><span class=cl><span class=gd>-      font-size: 0.875em;
+</span></span></span><span class=line><span class=cl><span class=gd>-      color: $light-post-link-color;
+</span></span></span><span class=line><span class=cl><span class=gd>-
+</span></span></span><span class=line><span class=cl><span class=gd>-       .dark-theme &amp;{
+</span></span></span><span class=line><span class=cl><span class=gd>-         color: $dark-post-link-color;
+</span></span></span><span class=line><span class=cl><span class=gd>-       }
+</span></span></span><span class=line><span class=cl><span class=gd>-    }
+</span></span></span><span class=line><span class=cl><span class=gd></span><span class=gi>+    font: 14px/22px normal helvetica, sans-serif;
+</span></span></span><span class=line><span class=cl><span class=gi>+    margin-top: 10px;
+</span></span></span><span class=line><span class=cl><span class=gi>+    margin-bottom: 10px;
+</span></span></span><span class=line><span class=cl><span class=gi>+    margin-left: 2%;
+</span></span></span><span class=line><span class=cl><span class=gi>+    margin-right: 0%;
+</span></span></span><span class=line><span class=cl><span class=gi>+    padding-left: 15px;
+</span></span></span><span class=line><span class=cl><span class=gi>+    padding-top: 10px;
+</span></span></span><span class=line><span class=cl><span class=gi>+    padding-right: 10px;
+</span></span></span><span class=line><span class=cl><span class=gi>+    padding-bottom: 10px;
+</span></span></span><span class=line><span class=cl><span class=gi>+    border-left: 3px solid #ccc;
+</span></span></span><span class=line><span class=cl><span class=gi>+    background-color:#f1f1f1;  
+</span></span></span><span class=line><span class=cl><span class=gi></span>
+</span></span><span class=line><span class=cl>    .dark-theme &amp; {
+</span></span><span class=line><span class=cl><span class=gd>-      border-color: $dark-border-color;
+</span></span></span><span class=line><span class=cl><span class=gd></span><span class=gi>+      background-color:#252529;
+</span></span></span><span class=line><span class=cl><span class=gi></span>    }
+</span></span><span class=line><span class=cl>  } 
+</span></span></code></pre></td></tr></table></div></div><h2 id=3-添加阅读进度条>3. 添加阅读进度条</h2><p>首先在<code>layouts/partials/header.html</code>文件中如下所示插入代码</p><div class=highlight id=id-22><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -520,27 +501,25 @@ $ nano themes/LeaveIt/layouts/post/single.html
 </span><span class=lnt>16
 </span><span class=lnt>17
 </span><span class=lnt>18
-</span><span class=lnt>19
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-diff data-lang=diff>&lt;nav class=&#34;navbar&#34;&gt;
-<span class=gi>+    {{ if (and .IsPage (not .Params.notsb)) }}
-</span><span class=gi></span><span class=gi>+        &lt;div class=&#34;top-scroll-bar&#34;&gt;&lt;/div&gt;
-</span><span class=gi></span><span class=gi>+    {{ end }}
-</span><span class=gi></span>    &lt;div class=&#34;container&#34;&gt;
-        &lt;div class=&#34;navbar-header header-logo&#34;&gt;
-        	&lt;a href=&#34;{{ .Site.BaseURL }}&#34;&gt;{{ .Site.Title }}&lt;/a&gt;
-<span class=gu>@@ -13,7 +16,10 @@
-</span><span class=gu></span>    &lt;/div&gt;
-&lt;/nav&gt;
-&lt;nav class=&#34;navbar-mobile&#34; id=&#34;nav-mobile&#34; style=&#34;display: none&#34;&gt;
-<span class=gi>+    {{ if (and .IsPage (not .Params.notsb)) }}
-</span><span class=gi></span><span class=gi>+        &lt;div class=&#34;top-scroll-bar&#34;&gt;&lt;/div&gt;
-</span><span class=gi></span><span class=gi>+    {{ end }}
-</span><span class=gi></span>    &lt;div class=&#34;container&#34;&gt;
-        &lt;div class=&#34;navbar-header&#34;&gt;
-            &lt;div&gt;  &lt;a href=&#34;javascript:void(0);&#34; class=&#34;theme-switch&#34;&gt;&lt;i class=&#34;iconfont icon-sun&#34;&gt;&lt;/i&gt;&lt;/a&gt;&amp;nbsp;&lt;a href=&#34;{{.Site.BaseURL}}&#34;&gt;{{ .Site.Title }}&lt;/a&gt;&lt;/div&gt;
-            &lt;div class=&#34;menu-toggle&#34;&gt;
-
-</code></pre></td></tr></table></div></div><p>然后在<code>assets/css/_cusstom.scss</code>文件中添加进度条样式</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-diff data-lang=diff><span class=line><span class=cl>&lt;nav class=&#34;navbar&#34;&gt;
+</span></span><span class=line><span class=cl><span class=gi>+    {{ if (and .IsPage (not .Params.notsb)) }}
+</span></span></span><span class=line><span class=cl><span class=gi>+        &lt;div class=&#34;top-scroll-bar&#34;&gt;&lt;/div&gt;
+</span></span></span><span class=line><span class=cl><span class=gi>+    {{ end }}
+</span></span></span><span class=line><span class=cl><span class=gi></span>    &lt;div class=&#34;container&#34;&gt;
+</span></span><span class=line><span class=cl>        &lt;div class=&#34;navbar-header header-logo&#34;&gt;
+</span></span><span class=line><span class=cl>        	&lt;a href=&#34;{{ .Site.BaseURL }}&#34;&gt;{{ .Site.Title }}&lt;/a&gt;
+</span></span><span class=line><span class=cl><span class=gu>@@ -13,7 +16,10 @@
+</span></span></span><span class=line><span class=cl><span class=gu></span>    &lt;/div&gt;
+</span></span><span class=line><span class=cl>&lt;/nav&gt;
+</span></span><span class=line><span class=cl>&lt;nav class=&#34;navbar-mobile&#34; id=&#34;nav-mobile&#34; style=&#34;display: none&#34;&gt;
+</span></span><span class=line><span class=cl><span class=gi>+    {{ if (and .IsPage (not .Params.notsb)) }}
+</span></span></span><span class=line><span class=cl><span class=gi>+        &lt;div class=&#34;top-scroll-bar&#34;&gt;&lt;/div&gt;
+</span></span></span><span class=line><span class=cl><span class=gi>+    {{ end }}
+</span></span></span><span class=line><span class=cl><span class=gi></span>    &lt;div class=&#34;container&#34;&gt;
+</span></span><span class=line><span class=cl>        &lt;div class=&#34;navbar-header&#34;&gt;
+</span></span><span class=line><span class=cl>            &lt;div&gt;  &lt;a href=&#34;javascript:void(0);&#34; class=&#34;theme-switch&#34;&gt;&lt;i class=&#34;iconfont icon-sun&#34;&gt;&lt;/i&gt;&lt;/a&gt;&amp;nbsp;&lt;a href=&#34;{{.Site.BaseURL}}&#34;&gt;{{ .Site.Title }}&lt;/a&gt;&lt;/div&gt;
+</span></span><span class=line><span class=cl>            &lt;div class=&#34;menu-toggle&#34;&gt;
+</span></span></code></pre></td></tr></table></div></div><p>然后在<code>assets/css/_cusstom.scss</code>文件中添加进度条样式</p><div class=highlight id=id-23><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -551,32 +530,30 @@ $ nano themes/LeaveIt/layouts/post/single.html
 </span><span class=lnt> 9
 </span><span class=lnt>10
 </span><span class=lnt>11
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-scss data-lang=scss><span class=c1>// 顶部阅读进度条
-</span><span class=c1></span><span class=nc>.</span><span class=nc>top-scroll-bar</span> <span class=p>{</span>
-    <span class=nt>position</span><span class=nd>:</span> <span class=nt>fixed</span><span class=p>;</span>
-    <span class=nt>top</span><span class=nd>:</span> <span class=nt>0</span><span class=p>;</span>
-    <span class=nt>left</span><span class=nd>:</span> <span class=nt>0</span><span class=p>;</span>
-    <span class=nt>z-index</span><span class=nd>:</span> <span class=nt>9999</span><span class=p>;</span>
-    <span class=nt>display</span><span class=nd>:</span> <span class=nt>none</span><span class=p>;</span>
-    <span class=nt>width</span><span class=nd>:</span> <span class=nt>0</span><span class=p>;</span>
-    <span class=nt>height</span><span class=nd>:</span> <span class=nt>3px</span><span class=p>;</span>
-    <span class=nt>background</span><span class=nd>:</span> <span class=nn>#</span><span class=nn>ef3982</span><span class=p>;</span>
-  <span class=p>}</span> 
-</code></pre></td></tr></table></div></div><p>之后新建一个 js 脚本文件 <code>assets/js/_custom.js</code> ，来控制进度条</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-scss data-lang=scss><span class=line><span class=cl><span class=c1>// 顶部阅读进度条
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nc>.top-scroll-bar</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=na>position</span><span class=o>:</span> <span class=ni>fixed</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=na>top</span><span class=o>:</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=na>left</span><span class=o>:</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=na>z-index</span><span class=o>:</span> <span class=mi>9999</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=na>display</span><span class=o>:</span> <span class=ni>none</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=na>width</span><span class=o>:</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=na>height</span><span class=o>:</span> <span class=mi>3</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=na>background</span><span class=o>:</span> <span class=mh>#ef3982</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span> </span></span></code></pre></td></tr></table></div></div><p>之后新建一个 js 脚本文件 <code>assets/js/_custom.js</code> ，来控制进度条</p><div class=highlight id=id-24><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
 </span><span class=lnt>6
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=c1>// 顶部阅读进度条
-</span><span class=c1></span><span class=nx>$</span><span class=p>(</span><span class=nb>document</span><span class=p>)</span><span class=p>.</span><span class=nx>ready</span><span class=p>(</span><span class=kd>function</span> <span class=p>(</span><span class=p>)</span> <span class=p>{</span>
-    <span class=nx>$</span><span class=p>(</span><span class=nb>window</span><span class=p>)</span><span class=p>.</span><span class=nx>scroll</span><span class=p>(</span><span class=kd>function</span><span class=p>(</span><span class=p>)</span><span class=p>{</span>
-      <span class=nx>$</span><span class=p>(</span><span class=s2>&#34;.top-scroll-bar&#34;</span><span class=p>)</span><span class=p>.</span><span class=nx>attr</span><span class=p>(</span><span class=s2>&#34;style&#34;</span><span class=p>,</span> <span class=s2>&#34;width: &#34;</span> <span class=o>+</span> <span class=p>(</span><span class=nx>$</span><span class=p>(</span><span class=k>this</span><span class=p>)</span><span class=p>.</span><span class=nx>scrollTop</span><span class=p>(</span><span class=p>)</span> <span class=o>/</span> <span class=p>(</span><span class=nx>$</span><span class=p>(</span><span class=nb>document</span><span class=p>)</span><span class=p>.</span><span class=nx>height</span><span class=p>(</span><span class=p>)</span> <span class=o>-</span> <span class=nx>$</span><span class=p>(</span><span class=k>this</span><span class=p>)</span><span class=p>.</span><span class=nx>height</span><span class=p>(</span><span class=p>)</span><span class=p>)</span> <span class=o>*</span> <span class=mi>100</span><span class=p>)</span> <span class=o>+</span> <span class=s2>&#34;%; display: block;&#34;</span><span class=p>)</span><span class=p>;</span>
-    <span class=p>}</span><span class=p>)</span><span class=p>;</span>
-  <span class=p>}</span><span class=p>)</span><span class=p>;</span> 
-</code></pre></td></tr></table></div></div><p>最后， js 脚本引入到博客中，使其生效。</p><p>在 <code>/layouts/partials/js.html</code> 文件中添加以下内容，然后将 <code>$custom</code> 加入到变量 <code>$vendorscript</code> 中</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html>{{ $custom := resources.Get &#34;/js/_custom.js&#34; }}
-</code></pre></td></tr></table></div></div><p>重新编译后预览博客就可以看到阅读进度条了。</p><h2 id=4-添加侧边栏目录>4. 添加侧边栏目录</h2><p>原本LeaveIt主题不支持文章目录导航，可以按如下方法添加，但样式不是很合适</p><p>首先在<code>/assets/css/_custom.scss</code>添加侧边栏目录(toc)样式</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=c1>// 顶部阅读进度条
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>$</span><span class=p>(</span><span class=nb>document</span><span class=p>).</span><span class=nx>ready</span><span class=p>(</span><span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>$</span><span class=p>(</span><span class=nb>window</span><span class=p>).</span><span class=nx>scroll</span><span class=p>(</span><span class=kd>function</span><span class=p>(){</span>
+</span></span><span class=line><span class=cl>      <span class=nx>$</span><span class=p>(</span><span class=s2>&#34;.top-scroll-bar&#34;</span><span class=p>).</span><span class=nx>attr</span><span class=p>(</span><span class=s2>&#34;style&#34;</span><span class=p>,</span> <span class=s2>&#34;width: &#34;</span> <span class=o>+</span> <span class=p>(</span><span class=nx>$</span><span class=p>(</span><span class=k>this</span><span class=p>).</span><span class=nx>scrollTop</span><span class=p>()</span> <span class=o>/</span> <span class=p>(</span><span class=nx>$</span><span class=p>(</span><span class=nb>document</span><span class=p>).</span><span class=nx>height</span><span class=p>()</span> <span class=o>-</span> <span class=nx>$</span><span class=p>(</span><span class=k>this</span><span class=p>).</span><span class=nx>height</span><span class=p>())</span> <span class=o>*</span> <span class=mi>100</span><span class=p>)</span> <span class=o>+</span> <span class=s2>&#34;%; display: block;&#34;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>});</span>
+</span></span><span class=line><span class=cl>  <span class=p>});</span> 
+</span></span></code></pre></td></tr></table></div></div><p>最后， js 脚本引入到博客中，使其生效。</p><p>在 <code>/layouts/partials/js.html</code> 文件中添加以下内容，然后将 <code>$custom</code> 加入到变量 <code>$vendorscript</code> 中</p><div class=highlight id=id-25><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl>{{ $custom := resources.Get &#34;/js/_custom.js&#34; }}</span></span></code></pre></td></tr></table></div></div><p>重新编译后预览博客就可以看到阅读进度条了。</p><h2 id=4-添加侧边栏目录>4. 添加侧边栏目录</h2><p>原本LeaveIt主题不支持文章目录导航，可以按如下方法添加，但样式不是很合适</p><p>首先在<code>/assets/css/_custom.scss</code>添加侧边栏目录(toc)样式</p><div class=highlight id=id-26><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -643,74 +620,73 @@ $ nano themes/LeaveIt/layouts/post/single.html
 </span><span class=lnt>65
 </span><span class=lnt>66
 </span><span class=lnt>67
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-scss data-lang=scss><span class=c1>// 添加toc栏
-</span><span class=c1></span>  <span class=nc>.</span><span class=nc>post-toc</span> <span class=p>{</span>
-    <span class=nt>position</span><span class=nd>:</span> <span class=nt>absolute</span><span class=p>;</span>
-    <span class=nt>width</span><span class=nd>:</span> <span class=nt>200px</span><span class=p>;</span>
-    <span class=nt>margin-left</span><span class=nd>:</span> <span class=nt>800px</span><span class=p>;</span>
-    <span class=nt>padding</span><span class=nd>:</span> <span class=nt>10px</span><span class=p>;</span>
-    <span class=nt>word-wrap</span><span class=nd>:</span> <span class=nt>break-word</span><span class=p>;</span>
-    <span class=nt>box-sizing</span><span class=nd>:</span> <span class=nt>border-box</span><span class=p>;</span>
-
-    <span class=nc>.</span><span class=nc>post-toc-title</span> <span class=p>{</span>
-        <span class=nt>margin</span><span class=nd>:</span> <span class=nt>0</span><span class=p>;</span>
-        <span class=nt>font-weight</span><span class=nd>:</span> <span class=nt>400</span><span class=p>;</span>
-        <span class=nt>text-transform</span><span class=nd>:</span> <span class=nt>uppercase</span><span class=p>;</span>
-    <span class=p>}</span>
-
-    <span class=nc>.</span><span class=nc>post-toc-content</span> <span class=p>{</span>
-        <span class=k>&amp;</span><span class=nc>.</span><span class=nc>always-active</span> <span class=nt>ul</span> <span class=p>{</span>
-            <span class=nt>display</span><span class=nd>:</span> <span class=nt>block</span><span class=p>;</span>
-        <span class=p>}</span>
-
-        <span class=o>&gt;</span><span class=nt>nav</span><span class=o>&gt;</span><span class=nt>ul</span> <span class=p>{</span>
-            <span class=nt>margin</span><span class=nd>:</span> <span class=nt>10px</span> <span class=nt>0</span><span class=p>;</span>
-        <span class=p>}</span>
-
-        <span class=nt>ul</span> <span class=p>{</span>
-            <span class=nt>padding-left</span><span class=nd>:</span> <span class=nt>0</span><span class=p>;</span>
-            <span class=nt>list-style</span><span class=nd>:</span> <span class=nt>none</span><span class=p>;</span>
-
-            <span class=nt>ul</span> <span class=p>{</span>
-            <span class=nt>padding-left</span><span class=nd>:</span> <span class=nt>15px</span><span class=p>;</span>
-            <span class=nt>display</span><span class=nd>:</span> <span class=nt>none</span><span class=p>;</span>
-            <span class=p>}</span>
-
-            <span class=nc>.</span><span class=nc>has-active</span> <span class=o>&gt;</span> <span class=nt>ul</span> <span class=p>{</span>
-                <span class=nt>display</span><span class=nd>:</span> <span class=nt>block</span><span class=p>;</span>
-            <span class=p>}</span>
-        <span class=p>}</span>
-    <span class=p>}</span>
-
-    <span class=nt>a</span><span class=nd>:</span><span class=nd>hover</span> <span class=p>{</span>
-        <span class=nt>color</span><span class=nd>:</span> <span class=nn>#</span><span class=nn>c05b4d</span><span class=p>;</span>
-        <span class=nt>-webkit-transform</span><span class=nd>:</span> <span class=nt>scale</span><span class=o>(</span><span class=nt>1</span><span class=nc>.</span><span class=nc>1</span><span class=o>)</span><span class=p>;</span>
-        <span class=nt>-ms-transform</span><span class=nd>:</span> <span class=nt>scale</span><span class=o>(</span><span class=nt>1</span><span class=nc>.</span><span class=nc>1</span><span class=o>)</span><span class=p>;</span>
-        <span class=nt>transform</span><span class=nd>:</span> <span class=nt>scale</span><span class=o>(</span><span class=nt>1</span><span class=nc>.</span><span class=nc>1</span><span class=o>)</span><span class=p>;</span>
-    <span class=p>}</span>
-
-    <span class=nt>a</span> <span class=p>{</span>
-        <span class=nt>display</span><span class=nd>:</span> <span class=nt>block</span><span class=p>;</span>
-        <span class=nt>line-height</span><span class=nd>:</span> <span class=nt>30px</span><span class=p>;</span>
-        <span class=nt>overflow</span><span class=nd>:</span> <span class=nt>hidden</span><span class=p>;</span>
-        <span class=nt>white-space</span><span class=nd>:</span> <span class=nt>nowrap</span><span class=p>;</span>
-        <span class=nt>text-overflow</span><span class=nd>:</span> <span class=nt>ellipsis</span><span class=p>;</span>
-        <span class=nt>-webkit-transition-duration</span><span class=nd>:</span> <span class=nc>.</span><span class=nc>2s</span><span class=p>;</span>
-        <span class=nt>transition-duration</span><span class=nd>:</span> <span class=nc>.</span><span class=nc>2s</span><span class=p>;</span>
-        <span class=nt>-webkit-transition-property</span><span class=nd>:</span> <span class=nt>-webkit-transform</span><span class=p>;</span>
-        <span class=nt>transition-property</span><span class=nd>:</span> <span class=nt>-webkit-transform</span><span class=p>;</span>
-        <span class=nt>transition-property</span><span class=nd>:</span> <span class=nt>transform</span><span class=p>;</span>
-        <span class=nt>transition-property</span><span class=nd>:</span> <span class=nt>transform</span><span class=o>,</span><span class=nt>-webkit-transform</span><span class=p>;</span>
-        <span class=nt>-webkit-transition-timing-function</span><span class=nd>:</span> <span class=nt>ease-out</span><span class=p>;</span>
-        <span class=nt>transition-timing-function</span><span class=nd>:</span> <span class=nt>ease-out</span><span class=p>;</span>
-    <span class=p>}</span>
-<span class=p>}</span>
-<span class=k>@media</span> <span class=n>only</span> <span class=n>screen</span> <span class=ow>and</span> <span class=p>(</span><span class=no>max-width</span><span class=o>:</span> <span class=mi>1224</span><span class=kt>px</span><span class=p>)</span> <span class=p>{</span>
-    <span class=nc>.</span><span class=nc>post-toc</span> <span class=p>{</span>
-        <span class=nt>display</span><span class=nd>:</span> <span class=nt>none</span><span class=p>;</span>
-    <span class=p>}</span>
-<span class=p>}</span> 
-</code></pre></td></tr></table></div></div><p>然后在 <code>layouts/partials/</code> 下新建 <code>toc.html</code> 文件，内容如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-scss data-lang=scss><span class=line><span class=cl><span class=c1>// 添加toc栏
+</span></span></span><span class=line><span class=cl><span class=c1></span>  <span class=nc>.post-toc</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=na>position</span><span class=o>:</span> <span class=ni>absolute</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=na>width</span><span class=o>:</span> <span class=mi>200</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=na>margin-left</span><span class=o>:</span> <span class=mi>800</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=na>padding</span><span class=o>:</span> <span class=mi>10</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=na>word-wrap</span><span class=o>:</span> <span class=ni>break-word</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=na>box-sizing</span><span class=o>:</span> <span class=ni>border-box</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nc>.post-toc-title</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=na>margin</span><span class=o>:</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=na>font-weight</span><span class=o>:</span> <span class=mi>400</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=na>text-transform</span><span class=o>:</span> <span class=ni>uppercase</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nc>.post-toc-content</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>&amp;</span><span class=nc>.always-active</span> <span class=nt>ul</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=na>display</span><span class=o>:</span> <span class=ni>block</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=o>&gt;</span><span class=nt>nav</span><span class=o>&gt;</span><span class=nt>ul</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=na>margin</span><span class=o>:</span> <span class=mi>10</span><span class=kt>px</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=nt>ul</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=na>padding-left</span><span class=o>:</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=na>list-style</span><span class=o>:</span> <span class=ni>none</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=nt>ul</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=na>padding-left</span><span class=o>:</span> <span class=mi>15</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=na>display</span><span class=o>:</span> <span class=ni>none</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=nc>.has-active</span> <span class=o>&gt;</span> <span class=nt>ul</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>                <span class=na>display</span><span class=o>:</span> <span class=ni>block</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>            <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nt>a</span><span class=nd>:hover</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=na>color</span><span class=o>:</span> <span class=mh>#c05b4d</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=na>-webkit-transform</span><span class=o>:</span> <span class=nf>scale</span><span class=p>(</span><span class=mi>1</span><span class=mf>.1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=na>-ms-transform</span><span class=o>:</span> <span class=nf>scale</span><span class=p>(</span><span class=mi>1</span><span class=mf>.1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=na>transform</span><span class=o>:</span> <span class=nf>scale</span><span class=p>(</span><span class=mi>1</span><span class=mf>.1</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nt>a</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=na>display</span><span class=o>:</span> <span class=ni>block</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=na>line-height</span><span class=o>:</span> <span class=mi>30</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=na>overflow</span><span class=o>:</span> <span class=ni>hidden</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=na>white-space</span><span class=o>:</span> <span class=ni>nowrap</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=na>text-overflow</span><span class=o>:</span> <span class=ni>ellipsis</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=na>-webkit-transition-duration</span><span class=o>:</span> <span class=mf>.2</span><span class=kt>s</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=na>transition-duration</span><span class=o>:</span> <span class=mf>.2</span><span class=kt>s</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=na>-webkit-transition-property</span><span class=o>:</span> <span class=o>-</span><span class=n>webkit-transform</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=na>transition-property</span><span class=o>:</span> <span class=o>-</span><span class=n>webkit-transform</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=na>transition-property</span><span class=o>:</span> <span class=ni>transform</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=na>transition-property</span><span class=o>:</span> <span class=ni>transform</span><span class=o>,-</span><span class=n>webkit-transform</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=na>-webkit-transition-timing-function</span><span class=o>:</span> <span class=ni>ease-out</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=na>transition-timing-function</span><span class=o>:</span> <span class=ni>ease-out</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=k>@media</span> <span class=n>only</span> <span class=ni>screen</span> <span class=ow>and</span> <span class=p>(</span><span class=na>max-width</span><span class=o>:</span> <span class=mi>1224</span><span class=kt>px</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nc>.post-toc</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=na>display</span><span class=o>:</span> <span class=ni>none</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span> </span></span></code></pre></td></tr></table></div></div><p>然后在 <code>layouts/partials/</code> 下新建 <code>toc.html</code> 文件，内容如下</p><div class=highlight id=id-27><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -745,64 +721,64 @@ $ nano themes/LeaveIt/layouts/post/single.html
 </span><span class=lnt>33
 </span><span class=lnt>34
 </span><span class=lnt>35
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html><span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;post-toc&#34;</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;post-toc&#34;</span><span class=p></span><span class=p>&gt;</span>
-  <span class=p>&lt;</span><span class=nt>h2</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;post-toc-title&#34;</span><span class=p></span><span class=p>&gt;</span>{{ T &#34;toc&#34; }}<span class=p>&lt;</span><span class=p>/</span><span class=nt>h2</span><span class=p>&gt;</span>
-  {{ $globalAutoCollapseToc := .Site.Params.autoCollapseToc | default false }}
-  <span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;post-toc-content{{ if not (or .Params.autoCollapseToc (and $globalAutoCollapseToc (ne .Params.autoCollapseToc false))) }} always-active{{ end }}&#34;</span><span class=p></span><span class=p>&gt;</span>
-    {{.TableOfContents}}
-  <span class=p>&lt;</span><span class=p>/</span><span class=nt>div</span><span class=p>&gt;</span>
-<span class=p>&lt;</span><span class=p>/</span><span class=nt>div</span><span class=p>&gt;</span>
-
-<span class=p>&lt;</span><span class=nt>script</span> <span class=na>type</span><span class=o>=</span><span class=s>&#34;text/javascript&#34;</span><span class=p></span><span class=p>&gt;</span>
-  <span class=nb>window</span><span class=p>.</span><span class=nx>onload</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>(</span><span class=p>)</span> <span class=p>{</span>
-    <span class=kd>var</span> <span class=nx>fix</span> <span class=o>=</span> <span class=nx>$</span><span class=p>(</span><span class=s1>&#39;.post-toc&#39;</span><span class=p>)</span><span class=p>;</span>
-    <span class=kd>var</span> <span class=nx>end</span> <span class=o>=</span> <span class=nx>$</span><span class=p>(</span><span class=s1>&#39;.post-comment&#39;</span><span class=p>)</span><span class=p>;</span>
-    <span class=kd>var</span> <span class=nx>fixTop</span> <span class=o>=</span> <span class=nx>fix</span><span class=p>.</span><span class=nx>offset</span><span class=p>(</span><span class=p>)</span><span class=p>.</span><span class=nx>top</span><span class=p>,</span> <span class=nx>fixHeight</span> <span class=o>=</span> <span class=nx>fix</span><span class=p>.</span><span class=nx>height</span><span class=p>(</span><span class=p>)</span><span class=p>;</span>
-    <span class=kd>var</span> <span class=nx>endTop</span><span class=p>,</span> <span class=nx>miss</span><span class=p>;</span>
-    <span class=kd>var</span> <span class=nx>offsetTop</span> <span class=o>=</span> <span class=nx>fix</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=p>.</span><span class=nx>offsetTop</span><span class=p>;</span>
-    <span class=nx>$</span><span class=p>(</span><span class=nb>window</span><span class=p>)</span><span class=p>.</span><span class=nx>scroll</span><span class=p>(</span><span class=kd>function</span> <span class=p>(</span><span class=p>)</span> <span class=p>{</span>
-      <span class=kd>var</span> <span class=nx>docTop</span> <span class=o>=</span> <span class=nb>Math</span><span class=p>.</span><span class=nx>max</span><span class=p>(</span><span class=nb>document</span><span class=p>.</span><span class=nx>body</span><span class=p>.</span><span class=nx>scrollTop</span><span class=p>,</span> <span class=nb>document</span><span class=p>.</span><span class=nx>documentElement</span><span class=p>.</span><span class=nx>scrollTop</span><span class=p>)</span><span class=p>;</span>
-      <span class=k>if</span> <span class=p>(</span><span class=nx>end</span><span class=p>.</span><span class=nx>length</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
-        <span class=nx>endTop</span> <span class=o>=</span> <span class=nx>end</span><span class=p>.</span><span class=nx>offset</span><span class=p>(</span><span class=p>)</span><span class=p>.</span><span class=nx>top</span><span class=p>;</span>
-        <span class=nx>miss</span> <span class=o>=</span> <span class=nx>endTop</span> <span class=o>-</span> <span class=nx>docTop</span> <span class=o>-</span> <span class=nx>fixHeight</span><span class=p>;</span>
-      <span class=p>}</span>
-      <span class=k>if</span> <span class=p>(</span><span class=nx>fixTop</span> <span class=o>&lt;</span> <span class=nx>docTop</span><span class=p>)</span> <span class=p>{</span>
-        <span class=nx>fix</span><span class=p>.</span><span class=nx>css</span><span class=p>(</span><span class=p>{</span> <span class=s1>&#39;position&#39;</span><span class=o>:</span> <span class=s1>&#39;fixed&#39;</span> <span class=p>}</span><span class=p>)</span><span class=p>;</span>
-        <span class=k>if</span> <span class=p>(</span><span class=p>(</span><span class=nx>end</span><span class=p>.</span><span class=nx>length</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>)</span> <span class=o>&amp;&amp;</span> <span class=p>(</span><span class=nx>endTop</span> <span class=o>&lt;</span> <span class=p>(</span><span class=nx>docTop</span> <span class=o>+</span> <span class=nx>fixHeight</span><span class=p>)</span><span class=p>)</span><span class=p>)</span> <span class=p>{</span>
-          <span class=nx>fix</span><span class=p>.</span><span class=nx>css</span><span class=p>(</span><span class=p>{</span> <span class=nx>top</span><span class=o>:</span> <span class=nx>miss</span> <span class=p>}</span><span class=p>)</span><span class=p>;</span>
-        <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
-          <span class=nx>fix</span><span class=p>.</span><span class=nx>css</span><span class=p>(</span><span class=p>{</span> <span class=nx>top</span><span class=o>:</span> <span class=mi>0</span> <span class=p>}</span><span class=p>)</span><span class=p>;</span>
-        <span class=p>}</span>
-      <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
-        <span class=nx>fix</span><span class=p>.</span><span class=nx>css</span><span class=p>(</span><span class=p>{</span> <span class=s1>&#39;position&#39;</span><span class=o>:</span> <span class=s1>&#39;absolute&#39;</span> <span class=p>}</span><span class=p>)</span><span class=p>;</span>
-        <span class=nx>fix</span><span class=p>.</span><span class=nx>css</span><span class=p>(</span><span class=p>{</span> <span class=nx>top</span><span class=o>:</span> <span class=nx>offsetTop</span> <span class=p>}</span><span class=p>)</span><span class=p>;</span>
-      <span class=p>}</span>
-    <span class=p>}</span><span class=p>)</span>
-  <span class=p>}</span>
-<span class=p>&lt;</span><span class=p>/</span><span class=nt>script</span><span class=p>&gt;</span>  
-</code></pre></td></tr></table></div></div><p>在文章页的模板 <code>layouts/_default/single.html</code> 中<code>&lt;/header></code>标签后引入toc模板</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;post-toc&#34;</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;post-toc&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>h2</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;post-toc-title&#34;</span><span class=p>&gt;</span>{{ T &#34;toc&#34; }}<span class=p>&lt;/</span><span class=nt>h2</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  {{ $globalAutoCollapseToc := .Site.Params.autoCollapseToc | default false }}
+</span></span><span class=line><span class=cl>  <span class=p>&lt;</span><span class=nt>div</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;post-toc-content{{ if not (or .Params.autoCollapseToc (and $globalAutoCollapseToc (ne .Params.autoCollapseToc false))) }} always-active{{ end }}&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    {{.TableOfContents}}
+</span></span><span class=line><span class=cl>  <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>script</span> <span class=na>type</span><span class=o>=</span><span class=s>&#34;text/javascript&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>  <span class=nb>window</span><span class=p>.</span><span class=nx>onload</span> <span class=o>=</span> <span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kd>var</span> <span class=nx>fix</span> <span class=o>=</span> <span class=nx>$</span><span class=p>(</span><span class=s1>&#39;.post-toc&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=kd>var</span> <span class=nx>end</span> <span class=o>=</span> <span class=nx>$</span><span class=p>(</span><span class=s1>&#39;.post-comment&#39;</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=kd>var</span> <span class=nx>fixTop</span> <span class=o>=</span> <span class=nx>fix</span><span class=p>.</span><span class=nx>offset</span><span class=p>().</span><span class=nx>top</span><span class=p>,</span> <span class=nx>fixHeight</span> <span class=o>=</span> <span class=nx>fix</span><span class=p>.</span><span class=nx>height</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=kd>var</span> <span class=nx>endTop</span><span class=p>,</span> <span class=nx>miss</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kd>var</span> <span class=nx>offsetTop</span> <span class=o>=</span> <span class=nx>fix</span><span class=p>[</span><span class=mi>0</span><span class=p>].</span><span class=nx>offsetTop</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=nx>$</span><span class=p>(</span><span class=nb>window</span><span class=p>).</span><span class=nx>scroll</span><span class=p>(</span><span class=kd>function</span> <span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=kd>var</span> <span class=nx>docTop</span> <span class=o>=</span> <span class=nb>Math</span><span class=p>.</span><span class=nx>max</span><span class=p>(</span><span class=nb>document</span><span class=p>.</span><span class=nx>body</span><span class=p>.</span><span class=nx>scrollTop</span><span class=p>,</span> <span class=nb>document</span><span class=p>.</span><span class=nx>documentElement</span><span class=p>.</span><span class=nx>scrollTop</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>      <span class=k>if</span> <span class=p>(</span><span class=nx>end</span><span class=p>.</span><span class=nx>length</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>endTop</span> <span class=o>=</span> <span class=nx>end</span><span class=p>.</span><span class=nx>offset</span><span class=p>().</span><span class=nx>top</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>        <span class=nx>miss</span> <span class=o>=</span> <span class=nx>endTop</span> <span class=o>-</span> <span class=nx>docTop</span> <span class=o>-</span> <span class=nx>fixHeight</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>      <span class=k>if</span> <span class=p>(</span><span class=nx>fixTop</span> <span class=o>&lt;</span> <span class=nx>docTop</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>fix</span><span class=p>.</span><span class=nx>css</span><span class=p>({</span> <span class=s1>&#39;position&#39;</span><span class=o>:</span> <span class=s1>&#39;fixed&#39;</span> <span class=p>});</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=p>((</span><span class=nx>end</span><span class=p>.</span><span class=nx>length</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>)</span> <span class=o>&amp;&amp;</span> <span class=p>(</span><span class=nx>endTop</span> <span class=o>&lt;</span> <span class=p>(</span><span class=nx>docTop</span> <span class=o>+</span> <span class=nx>fixHeight</span><span class=p>)))</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=nx>fix</span><span class=p>.</span><span class=nx>css</span><span class=p>({</span> <span class=nx>top</span><span class=o>:</span> <span class=nx>miss</span> <span class=p>});</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=nx>fix</span><span class=p>.</span><span class=nx>css</span><span class=p>({</span> <span class=nx>top</span><span class=o>:</span> <span class=mi>0</span> <span class=p>});</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>fix</span><span class=p>.</span><span class=nx>css</span><span class=p>({</span> <span class=s1>&#39;position&#39;</span><span class=o>:</span> <span class=s1>&#39;absolute&#39;</span> <span class=p>});</span>
+</span></span><span class=line><span class=cl>        <span class=nx>fix</span><span class=p>.</span><span class=nx>css</span><span class=p>({</span> <span class=nx>top</span><span class=o>:</span> <span class=nx>offsetTop</span> <span class=p>});</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>})</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>  </span></span></code></pre></td></tr></table></div></div><p>在文章页的模板 <code>layouts/_default/single.html</code> 中<code>&lt;/header></code>标签后引入toc模板</p><div class=highlight id=id-28><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-html data-lang=html> {{ if ( .Site.Params.toc | default true ) }}
-     {{ partial &#34;toc.html&#34; . }}
- {{ end }}
-</code></pre></td></tr></table></div></div><p>添加后重新使用hugo生成静态页面，只要文章有多级标题，就能在侧边栏看到导航目录</p><p>最后在站点配置文件<code>config.toml</code>中添加如下配置</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl> {{ if ( .Site.Params.toc | default true ) }}
+</span></span><span class=line><span class=cl>     {{ partial &#34;toc.html&#34; . }}
+</span></span><span class=line><span class=cl> {{ end }}</span></span></code></pre></td></tr></table></div></div><p>添加后重新使用hugo生成静态页面，只要文章有多级标题，就能在侧边栏看到导航目录</p><p>最后在站点配置文件<code>config.toml</code>中添加如下配置</p><div class=highlight id=id-29><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-toml data-lang=toml><span class=nx>toc</span> <span class=p>=</span> <span class=kc>true</span>                <span class=c># 是否开启目录</span>
-<span class=nx>autoCollapseToc</span> <span class=p>=</span> <span class=kc>true</span>   <span class=c># Auto expand and collapse toc</span>
-</code></pre></td></tr></table></div></div><h2 id=5-图片添加阴影>5. 图片添加阴影</h2><p>在 <code>assets/css/style.scss</code>中添加以下代码</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-toml data-lang=toml><span class=line><span class=cl><span class=nx>toc</span> <span class=p>=</span> <span class=kc>true</span>                <span class=c># 是否开启目录</span>
+</span></span><span class=line><span class=cl><span class=nx>autoCollapseToc</span> <span class=p>=</span> <span class=kc>true</span>   <span class=c># Auto expand and collapse toc</span></span></span></code></pre></td></tr></table></div></div><h2 id=5-图片添加阴影>5. 图片添加阴影</h2><p>在 <code>assets/css/style.scss</code>中添加以下代码</p><div class=highlight id=id-30><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
 </span><span class=lnt>6
 </span><span class=lnt>7
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-scss data-lang=scss><span class=c1>// 图片阴影
-</span><span class=c1></span><span class=nc>.</span><span class=nc>post-content</span> <span class=p>{</span>
-	<span class=nt>img</span> <span class=p>{</span>
-        <span class=nt>box-shadow</span><span class=nd>:</span> <span class=nt>0</span> <span class=nt>0</span> <span class=nt>15px</span> <span class=nt>5px</span> <span class=nt>rgba</span><span class=o>(</span><span class=nt>0</span><span class=o>,</span> <span class=nt>0</span><span class=o>,</span> <span class=nt>0</span><span class=o>,</span> <span class=nc>.</span><span class=nc>28</span><span class=o>)</span><span class=p>;</span>
-        <span class=nt>max-width</span><span class=nd>:</span> <span class=nt>1080px</span><span class=p>;</span>
-	<span class=p>}</span>
-<span class=p>}</span>
-</code></pre></td></tr></table></div></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2020-02-12</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/2019/hugo-blog-theme-beautify/index.md target=_blank>阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://shuzang.github.io/2019/hugo-blog-theme-beautify/ data-title=hugo搭建个人博客4-主题美化 data-hashtags=博客搭建><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://shuzang.github.io/2019/hugo-blog-theme-beautify/ data-hashtag=博客搭建><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://shuzang.github.io/2019/hugo-blog-theme-beautify/ data-title=hugo搭建个人博客4-主题美化><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://shuzang.github.io/2019/hugo-blog-theme-beautify/ data-title=hugo搭建个人博客4-主题美化><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://shuzang.github.io/2019/hugo-blog-theme-beautify/ data-title=hugo搭建个人博客4-主题美化 data-image=https://cdn.wispx.cn/wallpaper/2018/07/28/f45cfdcb1f79bc01d95c22adc63a2854.jpg!wallpaper.detail><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/>博客搭建</a></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/2019/blockchain-and-anomaly-detection/ class=prev rel=prev title=研究记录5-区块链与异常检测方向探索><i class="fas fa-angle-left fa-fw"></i>研究记录5-区块链与异常检测方向探索</a>
-<a href=/2019/git-learning-deep-into/ class=next rel=next title="Git深入-子模块, 徽章, 开源协议">Git深入-子模块, 徽章, 开源协议<i class="fas fa-angle-right fa-fw"></i></a></div></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.63.2">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i>LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2023</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>Shuzang</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js></script><script type=text/javascript src=/lib/lunr/lunr.stemmer.support.min.js></script><script type=text/javascript src=/lib/lunr/lunr.zh.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-scss data-lang=scss><span class=line><span class=cl><span class=c1>// 图片阴影
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nc>.post-content</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nt>img</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=na>box-shadow</span><span class=o>:</span> <span class=mi>0</span> <span class=mi>0</span> <span class=mi>15</span><span class=kt>px</span> <span class=mi>5</span><span class=kt>px</span> <span class=nf>rgba</span><span class=p>(</span><span class=mi>0</span><span class=o>,</span> <span class=mi>0</span><span class=o>,</span> <span class=mi>0</span><span class=o>,</span> <span class=mf>.28</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=na>max-width</span><span class=o>:</span> <span class=mi>1080</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span title="更新于 2020-02-12 00:00:00">更新于 2020-02-12&nbsp;</span></div><div class=post-info-license><span><a rel="license external nofollow noopener noreferrer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div><div class=post-info-line><div class=post-info-md><span><a href=/2019/hugo-blog-theme-beautify/index.md title=阅读原始文档 class=link-to-markdown>阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://shuzang.github.io/2019/hugo-blog-theme-beautify/ data-title=hugo搭建个人博客4-主题美化 data-hashtags=博客搭建><i class="fa-brands fa-twitter fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://shuzang.github.io/2019/hugo-blog-theme-beautify/ data-hashtag=博客搭建><i class="fa-brands fa-facebook-square fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://shuzang.github.io/2019/hugo-blog-theme-beautify/ data-title=hugo搭建个人博客4-主题美化 data-image=https://cdn.wispx.cn/wallpaper/2018/07/28/f45cfdcb1f79bc01d95c22adc63a2854.jpg!wallpaper.detail><i class="fa-brands fa-weibo fa-fw" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fa-solid fa-tags fa-fw me-1" aria-hidden=true></i><a href=/tags/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/ class=post-tag>博客搭建</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/2019/blockchain-and-anomaly-detection/ class=post-nav-item rel=prev title=研究记录5-区块链与异常检测方向探索><i class="fa-solid fa-angle-left fa-fw" aria-hidden=true></i>研究记录5-区块链与异常检测方向探索</a>
+<a href=/2019/git-learning-deep-into/ class=post-nav-item rel=next title="Git深入-子模块, 徽章, 开源协议">Git深入-子模块, 徽章, 开源协议<i class="fa-solid fa-angle-right fa-fw" aria-hidden=true></i></a></div></div></article></main><footer class=footer><div class=footer-container><div class="footer-line powered">由 <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreferrer" title="Hugo 0.117.0">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/hugo-fixit/FixIt target=_blank rel=external title="FixIt v0.2.18"><img class=fixit-icon src=/fixit.min.svg alt="FixIt logo">&nbsp;FixIt</a></div><div class="footer-line copyright" itemscope itemtype=http://schema.org/CreativeWork><i class="fa-regular fa-copyright fa-fw" aria-hidden=true></i>
+<span itemprop=copyrightYear>2018 - 2023</span><span class=author itemprop=copyrightHolder>
+<a href=/>Shuzang</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div><div class="footer-line statistics"></div><div class="footer-line visitor"><span id=busuanzi_container_site_uv title=总访客数><i class="fa-regular fa-user fa-fw" aria-hidden=true></i>&nbsp;<span id=busuanzi_value_site_uv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span><span id=busuanzi_container_site_pv class=footer-divider title=总访问量><i class="fa-regular fa-eye fa-fw" aria-hidden=true></i>&nbsp;<span id=busuanzi_value_site_pv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span></div></div></footer></div><div class=widgets><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role=button aria-label=回到顶部><i class="fa-solid fa-arrow-up fa-fw" aria-hidden=true></i><span class="variant-numeric d-none">0%</span></div></div><a href=https://github.com/shuzang title="View source on GitHub" target=_blank rel="external nofollow" class="github-corner right d-none-mobile"><svg viewBox="0 0 250 250" aria-hidden="true"><path d="M0 0 115 115h15l12 27L250 250V0z"/><path d="M128.3 109C113.8 99.7 119 89.6 119 89.6 122 82.7 120.5 78.6 120.5 78.6 119.2 72 123.4 76.3 123.4 76.3 127.3 80.9 125.5 87.3 125.5 87.3 122.9 97.6 130.6 101.9 134.4 103.2" fill="currentcolor" style="transform-origin:130px 106px" class="octo-arm"/><path d="M115 115C114.9 115.1 118.7 116.5 119.8 115.4l13.9-13.8C136.9 99.2 139.9 98.4 142.2 98.6 133.8 88 127.5 74.4 143.8 58 148.5 53.4 154 51.2 159.7 51 160.3 49.4 163.2 43.6 171.4 40.1 171.4 40.1 176.1 42.5 178.8 56.2 183.1 58.6 187.2 61.8 190.9 65.4 194.5 69 197.7 73.2 200.1 77.6 213.8 80.2 216.3 84.9 216.3 84.9 212.7 93.1 206.9 96 205.4 96.6 205.1 102.4 203 107.8 198.3 112.5 181.9 128.9 168.3 122.5 157.7 114.1 157.9 116.9 156.7 120.9 152.7 124.9L141 136.5C139.8 137.7 141.6 141.9 141.8 141.8z" fill="currentcolor" class="octo-body"/></svg></a><div id=mask></div><div class=reading-progress-bar style=left:0;top:0></div><noscript><div class=noscript-warning>FixIt 主题在启用 JavaScript 的情况下效果最佳。</div></noscript></div><link rel=stylesheet href=/lib/lightgallery/css/lightgallery-bundle.min.css><link rel=stylesheet href=/lib/katex/katex.min.css><link rel=stylesheet href=/lib/cookieconsent/cookieconsent.min.css><link rel=stylesheet href=/lib/pace/themes/blue/pace-theme-minimal.css><script src=/lib/autocomplete/autocomplete.min.js defer></script><script src=/lib/fuse/fuse.min.js defer></script><script src=/lib/twemoji/twemoji.min.js defer></script><script src=/lib/lightgallery/lightgallery.min.js defer></script><script src=/lib/lightgallery/plugins/thumbnail/lg-thumbnail.min.js defer></script><script src=/lib/lightgallery/plugins/zoom/lg-zoom.min.js defer></script><script src=/lib/sharer/sharer.min.js async defer></script><script src=/lib/katex/katex.min.js defer></script><script src=/lib/katex/auto-render.min.js defer></script><script src=/lib/katex/copy-tex.min.js defer></script><script src=/lib/katex/mhchem.min.js defer></script><script src=/lib/cookieconsent/cookieconsent.min.js defer></script><script src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js async defer></script><script src=/lib/pace/pace.min.js async defer></script><script>window.config={code:{copyTitle:"复制到剪贴板",editLockTitle:"锁定可编辑代码块",editUnLockTitle:"解锁可编辑代码块",editable:!0,maxShownLines:10},comment:{enable:!1},cookieconsent:{content:{dismiss:"同意",link:"了解更多",message:"本网站使用 Cookies 来改善您的浏览体验。"},enable:!0,palette:{button:{background:"#f0f0f0"},popup:{background:"#1aa3ff"}},theme:"edgeless"},lightgallery:!0,math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!0,left:"\\begin{equation}",right:"\\end{equation}"},{display:!0,left:"\\begin{equation*}",right:"\\end{equation*}"},{display:!0,left:"\\begin{align}",right:"\\end{align}"},{display:!0,left:"\\begin{align*}",right:"\\end{align*}"},{display:!0,left:"\\begin{alignat}",right:"\\end{alignat}"},{display:!0,left:"\\begin{alignat*}",right:"\\end{alignat*}"},{display:!0,left:"\\begin{gather}",right:"\\end{gather}"},{display:!0,left:"\\begin{CD}",right:"\\end{CD}"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},search:{distance:100,findAllMatches:!1,fuseIndexURL:"/index.json",highlightTag:"em",ignoreFieldNorm:!1,ignoreLocation:!1,isCaseSensitive:!1,location:0,maxResultLength:10,minMatchCharLength:2,noResultsFound:"没有找到结果",snippetLength:30,threshold:.3,type:"fuse",useExtendedSearch:!1},twemoji:!0}</script><script src=/js/theme.min.js defer></script></body></html>

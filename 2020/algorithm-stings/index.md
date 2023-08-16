@@ -242,3 +242,9 @@ func KMP(S,T string, pos int, next []int) int {
 ```
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/algorithm-stings/  
+

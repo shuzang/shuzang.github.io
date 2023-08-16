@@ -26,3 +26,9 @@
 <img src="https://picped-1301226557.cos.ap-beijing.myqcloud.com/SH_20190330_%E5%AD%9F%E5%A7%9C%E5%A5%B3%E5%BA%99_20190330(1).jpg" alt="" style="zoom: 25%;" />
 
 难过的是公交一小时一班，1点15的车我一点17到站牌。随后整整步行了五公里回到山海关才坐车离开。
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/meng-jiangnu-temple/  
+

@@ -536,3 +536,9 @@ func main() {
 未完待续...
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/golang-syntax-5-string-input-and-output/  
+

@@ -16,3 +16,9 @@ Unix 可以算作操作系统的鼻祖，macOS 是 FreeBSD 的衍生，Linux 是
 类 Unix 系统是指继承 UNIX 的设计风格演变出来的系统，都相当程度地继承了原始 UNIX 的特性，并且都在一定程度上遵守POSIX规范，但是它们却并不含有UNIX的源代码，因为 UNIX 的源代码为 SCO公司所有，属于商业软件。
 
 由于 UNIX 标准认定价格昂贵，目前只有苹果的 MacOS 获得了认定，可以称作 Unix 系统，Linux 只能称作类 Unix 操作系统。
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/windows-linux-unix-and-macos/  
+

@@ -255,3 +255,9 @@ Office 或者编程基本上是对字符串的匹配，因此一般使用正则�
 [3] 知乎，[正则表达式教程-语法篇](https://zhuanlan.zhihu.com/p/28672572)
 
 [4] CSDN，[通配符和正则表达式的区别](https://blog.csdn.net/weini1111/article/details/72896874)
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/regular-expression-basic-syntax/  
+

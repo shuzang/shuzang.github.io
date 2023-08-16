@@ -147,3 +147,9 @@ func minSubArrayLen(s int, nums []int) int {
 滑动窗口最重要的是确定何时移动两个指针，当然，边界和初始值也非常重要。
 
 当然，总体来看的话，其实后面两种方法都属于双指针的技巧。
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/algorithm-array/  
+

@@ -1,20 +1,20 @@
-<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>Golang语法基础12-测试 - Shuzang's Blog</title><meta name=Description content="书藏的个人博客，记录学习，记录生活"><meta property="og:title" content="Golang语法基础12-测试"><meta property="og:description" content="实际开发中对代码进行测试是不可缺少的工作，在go中可以通过testing包来进行代码的测试。testing包和go test命令相互配合，能够"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.github.io/2019/golang-syntax-12-test/"><meta property="og:image" content="https://shuzang.github.io/logo.png"><meta property="article:published_time" content="2019-12-22T00:00:00+00:00"><meta property="article:modified_time" content="2019-12-22T00:00:00+00:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://shuzang.github.io/logo.png"><meta name=twitter:title content="Golang语法基础12-测试"><meta name=twitter:description content="实际开发中对代码进行测试是不可缺少的工作，在go中可以通过testing包来进行代码的测试。testing包和go test命令相互配合，能够"><meta name=application-name content="Shuzang's Blog"><meta name=apple-mobile-web-app-title content="Shuzang's Blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://shuzang.github.io/2019/golang-syntax-12-test/><link rel=prev href=https://shuzang.github.io/2019/golang-syntax-11-error-and-panic/><link rel=next href=https://shuzang.github.io/2020/special-issue-2019-reading-film-viewing-and-travel-records/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Golang语法基础12-测试","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/2019\/golang-syntax-12-test\/"},"image":["https:\/\/shuzang.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"Go语法","wordcount":2444,"url":"https:\/\/shuzang.github.io\/2019\/golang-syntax-12-test\/","datePublished":"2019-12-22T00:00:00+00:00","dateModified":"2019-12-22T00:00:00+00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/shuzang.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"Shuzang"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Shuzang's Blog">Shuzang's Blog</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/tags/>标签 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/>关于 </a><a class=menu-item href=https://github.com/shuzang title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item language" title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
-<select class=language-select id=language-select-desktop onchange="location=this.value;"><option value=/2019/golang-syntax-12-test/ selected>简体中文</option></select>
-</a><span class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
-<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Shuzang's Blog">Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
-<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/posts/>所有文章</a><a class=menu-item href=/tags/>标签</a><a class=menu-item href=/categories/>分类</a><a class=menu-item href=/about/>关于</a><a class=menu-item href=https://github.com/shuzang title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
-<i class="fas fa-adjust fa-fw"></i></a><a href=javascript:void(0); class=menu-item title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
-<select class=language-select onchange="location=this.value;"><option value=/2019/golang-syntax-12-test/ selected>简体中文</option></select></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">Golang语法基础12-测试</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>Shuzang</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/><i class="far fa-folder fa-fw"></i>Golang学习之路</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2019-12-22>2019-12-22</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2444 字&nbsp;
-<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 5 分钟&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>目录</span>
-<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#基本说明>基本说明</a></li><li><a href=#单元测试>单元测试</a></li><li><a href=#性能测试>性能测试</a></li><li><a href=#go-test命令的参数>go test命令的参数</a></li></ul></li></ul></li></ul></nav></div></div><div class=content id=content><p>实际开发中对代码进行测试是不可缺少的工作，在go中可以通过<code>testing</code>包来进行代码的测试。<code>testing</code>包和<code>go test</code>命令相互配合，能够完成代码的自动化测试。</p><p>在实际开发中，对代码进行测试是不可缺少的工作，在go中可以通过<code>testing</code>包对代码进行单元测试和性能测试。</p><h4 id=基本说明>基本说明</h4><p><code>testing</code>包是与<code>go test</code>命令配合使用的，编写测试代码需要使用<code>testing</code>包，而执行测试需要使用<code>go test</code>命令。执行测试时，会自动读取源码目录下名为<code>*_test.go</code>的文件，生成并运行测试用的可执行文件，并最终在终端输出测试信息。输出的信息类似于</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+<!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=zh-CN><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=2"><meta name=robots content="noodp"><title>Golang语法基础12-测试 - Shuzang's Blog</title><meta name=author content="Shuzang"><meta name=author-link content><meta name=description content="实际开发中对代码进行测试是不可缺少的工作，在go中可以通过testing包来进行代码的测试。testing包和go test命令相互配合，能够"><meta name=keywords content="Go语法"><meta itemprop=name content="Golang语法基础12-测试"><meta itemprop=description content="实际开发中对代码进行测试是不可缺少的工作，在go中可以通过testing包来进行代码的测试。testing包和go test命令相互配合，能够"><meta itemprop=datePublished content="2019-12-22T00:00:00+00:00"><meta itemprop=dateModified content="2019-12-22T00:00:00+00:00"><meta itemprop=wordCount content="2444"><meta itemprop=image content="https://shuzang.github.io/logo.png"><meta itemprop=keywords content="Go语法,"><meta property="og:title" content="Golang语法基础12-测试"><meta property="og:description" content="实际开发中对代码进行测试是不可缺少的工作，在go中可以通过testing包来进行代码的测试。testing包和go test命令相互配合，能够"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.github.io/2019/golang-syntax-12-test/"><meta property="og:image" content="https://shuzang.github.io/logo.png"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-12-22T00:00:00+00:00"><meta property="article:modified_time" content="2019-12-22T00:00:00+00:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://shuzang.github.io/logo.png"><meta name=twitter:title content="Golang语法基础12-测试"><meta name=twitter:description content="实际开发中对代码进行测试是不可缺少的工作，在go中可以通过testing包来进行代码的测试。testing包和go test命令相互配合，能够"><meta name=application-name content="FixIt"><meta name=apple-mobile-web-app-title content="FixIt"><meta name=theme-color data-light=#f8f8f8 data-dark=#252627 content="#f8f8f8"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://shuzang.github.io/2019/golang-syntax-12-test/><link rel=prev href=https://shuzang.github.io/2019/golang-syntax-11-error-and-panic/><link rel=next href=https://shuzang.github.io/2020/%E6%80%BB%E6%9C%89%E4%BA%9B%E7%BE%8E%E5%A5%BD%E7%9A%84%E4%BA%8B%E6%83%85%E5%8F%91%E7%94%9F/><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><meta name=google-site-verification content="UA-209130979-1"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Golang语法基础12-测试","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/2019\/golang-syntax-12-test\/"},"genre":"posts","keywords":"Go语法","wordcount":2444,"url":"https:\/\/shuzang.github.io\/2019\/golang-syntax-12-test\/","datePublished":"2019-12-22T00:00:00+00:00","dateModified":"2019-12-22T00:00:00+00:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Shuzang"},"description":""}</script></head><body data-header-desktop=sticky data-header-mobile=auto><script>(window.localStorage?.getItem("theme")?localStorage.getItem("theme")==="dark":"auto"==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:"auto"==="dark")&&document.body.setAttribute("data-theme","dark")</script><div class=wrapper data-page-style=normal><header class="desktop animate__faster" id=header-desktop><div class=header-wrapper data-github-corner=right><div class=header-title><a href=/ title="Shuzang's Blog"><img loading=lazy src=/images/avatar.png srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x" sizes=auto data-title="Shuzang's Blog" data-alt="Shuzang's Blog" class=logo style="background:url(/svg/loading.min.svg)no-repeat 50%" onload='this.title=this.dataset.title,this.alt=this.dataset.alt;for(const e of["style","data-title","data-alt","onerror","onload"])this.removeAttribute(e);this.dataset.lazyloaded=""' onerror='this.title=this.dataset.title,this.alt=this.dataset.alt;for(const e of["style","data-title","data-alt","onerror","onload"])this.removeAttribute(e)'><span class=header-title-text>Shuzang's Blog</span></a><span class=header-subtitle></span></div><nav><ul class=menu><li class=menu-item><a class=menu-link href=/posts/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> Posts</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden=true></i> Categories</a></li><li class=menu-item><a class=menu-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> About</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容…… id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fa-solid fa-search fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fa-solid fa-times-circle fa-fw" aria-hidden=true></i></a>
+<span class="search-button search-loading" id=search-loading-desktop><i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></li><li class="menu-item theme-switch" title=切换主题><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></li></ul></nav></div></header><header class="mobile animate__faster" id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Shuzang's Blog"><img loading=lazy src=/images/avatar.png srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x" sizes=auto data-title=/images/avatar.png data-alt=/images/avatar.png class=logo style="background:url(/svg/loading.min.svg)no-repeat 50%" onload='this.title=this.dataset.title,this.alt=this.dataset.alt;for(const e of["style","data-title","data-alt","onerror","onload"])this.removeAttribute(e);this.dataset.lazyloaded=""' onerror='this.title=this.dataset.title,this.alt=this.dataset.alt;for(const e of["style","data-title","data-alt","onerror","onload"])this.removeAttribute(e)'><span class=header-title-text>Shuzang's Blog</span></a><span class=header-subtitle></span></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><nav><ul class=menu id=menu-mobile><li class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容…… id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fa-solid fa-search fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fa-solid fa-times-circle fa-fw" aria-hidden=true></i></a>
+<span class="search-button search-loading" id=search-loading-mobile><i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></li><li class=menu-item><a class=menu-link href=/posts/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> Posts</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden=true></i> Categories</a></li><li class=menu-item><a class=menu-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> About</a></li><li class="menu-item menu-system"><span class="menu-system-item theme-switch" title=切换主题><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></span></li></ul></nav></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=container><aside class=toc id=toc-auto><h2 class=toc-title>目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden=true></i></h2><div class=toc-content id=toc-content-auto></div></aside><aside class=aside-custom></aside><article class="page single"><div class=header><h1 class="single-title animate__animated animate__flipInX"><span>Golang语法基础12-测试</span></h1></div><div class=post-meta><div class=post-meta-line><span class=post-author><span class=author><i class="fa-solid fa-user-circle" aria-hidden=true></i>
+Shuzang</span></span>
+<span class=post-category>收录于 <a href=/categories/golang%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> Golang学习之路</a></span></div><div class=post-meta-line><span title="发布于 2019-12-22 00:00:00"><i class="fa-regular fa-calendar-alt fa-fw me-1" aria-hidden=true></i><time datetime=2019-12-22>2019-12-22</time></span>&nbsp;<span title="更新于 2019-12-22 00:00:00"><i class="fa-regular fa-edit fa-fw me-1" aria-hidden=true></i><time datetime=2019-12-22>2019-12-22</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden=true></i>约 2444 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden=true></i>预计阅读 5 分钟</span>&nbsp;</div></div><div class="details toc" id=toc-static data-kept=false><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fa-solid fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><ul><li><ul><li><a href=#基本说明>基本说明</a></li><li><a href=#单元测试>单元测试</a></li><li><a href=#性能测试>性能测试</a></li><li><a href=#go-test命令的参数>go test命令的参数</a></li></ul></li></ul></li></ul></nav></div></div><div class=content id=content><p>实际开发中对代码进行测试是不可缺少的工作，在go中可以通过<code>testing</code>包来进行代码的测试。<code>testing</code>包和<code>go test</code>命令相互配合，能够完成代码的自动化测试。</p><p>在实际开发中，对代码进行测试是不可缺少的工作，在go中可以通过<code>testing</code>包对代码进行单元测试和性能测试。</p><h4 id=基本说明>基本说明</h4><p><code>testing</code>包是与<code>go test</code>命令配合使用的，编写测试代码需要使用<code>testing</code>包，而执行测试需要使用<code>go test</code>命令。执行测试时，会自动读取源码目录下名为<code>*_test.go</code>的文件，生成并运行测试用的可执行文件，并最终在终端输出测试信息。输出的信息类似于</p><div class=highlight id=id-1><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=nx>ok</span>   <span class=nx>archive</span><span class=o>/</span><span class=nx>tar</span>   <span class=mf>0.011</span><span class=nx>s</span>
-<span class=nx>FAIL</span> <span class=nx>archive</span><span class=o>/</span><span class=nx>zip</span>   <span class=mf>0.022</span><span class=nx>s</span>
-<span class=nx>ok</span>   <span class=nx>compress</span><span class=o>/</span><span class=nx>gzip</span> <span class=mf>0.033</span><span class=nx>s</span>
-<span class=o>...</span>
-</code></pre></td></tr></table></div></div><p><code>testing</code>包的说明位于：<a href=https://golang.org/pkg/testing/ target=_blank rel="noopener noreffer">Package testing</a></p><p><code>go test</code>的说明可通过执行<code> go help test</code>查看</p><h4 id=单元测试>单元测试</h4><p>假设当前我们在源代码目录拥有名为<code>hello.go</code>的源码文件，其内容如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=nx>ok</span>   <span class=nx>archive</span><span class=o>/</span><span class=nx>tar</span>   <span class=mf>0.011</span><span class=nx>s</span>
+</span></span><span class=line><span class=cl><span class=nx>FAIL</span> <span class=nx>archive</span><span class=o>/</span><span class=nx>zip</span>   <span class=mf>0.022</span><span class=nx>s</span>
+</span></span><span class=line><span class=cl><span class=nx>ok</span>   <span class=nx>compress</span><span class=o>/</span><span class=nx>gzip</span> <span class=mf>0.033</span><span class=nx>s</span>
+</span></span><span class=line><span class=cl><span class=o>...</span></span></span></code></pre></td></tr></table></div></div><p><code>testing</code>包的说明位于：<a href=https://golang.org/pkg/testing/ target=_blank rel="external nofollow noopener noreferrer">Package testing</a></p><p><code>go test</code>的说明可通过执行<code> go help test</code>查看</p><h4 id=单元测试>单元测试</h4><p>假设当前我们在源代码目录拥有名为<code>hello.go</code>的源码文件，其内容如下：</p><div class=highlight id=id-2><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -22,31 +22,28 @@
 </span><span class=lnt>6
 </span><span class=lnt>7
 </span><span class=lnt>8
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>hello</span>
-
-<span class=kn>import</span> <span class=s>&#34;fmt&#34;</span>
-
-<span class=c1>//Hello print &#34;hello!
-</span><span class=c1></span><span class=kd>func</span> <span class=nf>Hello</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
-	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;hello!&#34;</span><span class=p>)</span>
-<span class=p>}</span>
-</code></pre></td></tr></table></div></div><p>首先编写测试用例，即在<code>hello.go</code>文件同目录下创建<code>hello_test.go</code>文件，编辑其内容如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kn>package</span> <span class=nx>hello</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=s>&#34;fmt&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>//Hello print &#34;hello!
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>func</span> <span class=nf>Hello</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;hello!&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><p>首先编写测试用例，即在<code>hello.go</code>文件同目录下创建<code>hello_test.go</code>文件，编辑其内容如下：</p><div class=highlight id=id-3><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
 </span><span class=lnt>6
 </span><span class=lnt>7
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>hello</span>
-
-<span class=kn>import</span> <span class=s>&#34;testing&#34;</span>
-
-<span class=kd>func</span> <span class=nf>TestHello</span><span class=p>(</span><span class=nx>t</span> <span class=o>*</span><span class=nx>testing</span><span class=p>.</span><span class=nx>T</span><span class=p>)</span> <span class=p>{</span>
-	<span class=nf>Hello</span><span class=p>(</span><span class=p>)</span>
-<span class=p>}</span>
-</code></pre></td></tr></table></div></div><p>注意，单元测试的函数头一般符合如下形式，其中<code>Xxx</code>是测试函数名。无论原函数名首字母是否大写，测试函数中函数名的首字母必须大写，原话为<code>where Xxx does not start with a lowercase letter.</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>TestXxx</span><span class=p>(</span><span class=nx>t</span> <span class=o>*</span><span class=nx>testing</span><span class=p>.</span><span class=nx>T</span><span class=p>)</span>
-</code></pre></td></tr></table></div></div><p>在这两个文件目录下执行<code>go test</code>命令</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kn>package</span> <span class=nx>hello</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=s>&#34;testing&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>TestHello</span><span class=p>(</span><span class=nx>t</span> <span class=o>*</span><span class=nx>testing</span><span class=p>.</span><span class=nx>T</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nf>Hello</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><p>注意，单元测试的函数头一般符合如下形式，其中<code>Xxx</code>是测试函数名。无论原函数名首字母是否大写，测试函数中函数名的首字母必须大写，原话为<code>where Xxx does not start with a lowercase letter.</code></p><div class=highlight id=id-4><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kd>func</span> <span class=nf>TestXxx</span><span class=p>(</span><span class=nx>t</span> <span class=o>*</span><span class=nx>testing</span><span class=p>.</span><span class=nx>T</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div><p>在这两个文件目录下执行<code>go test</code>命令</p><div class=highlight id=id-5><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -56,17 +53,16 @@
 </span><span class=lnt> 8
 </span><span class=lnt> 9
 </span><span class=lnt>10
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-powershell data-lang=powershell><span class=nb>PS </span><span class=n>F:</span><span class=p>\</span><span class=n>Go</span><span class=p>&gt;</span> <span class=nb>ls
-</span><span class=nb></span><span class=n>Mode</span>                <span class=n>LastWriteTime</span>         <span class=n>Length</span> <span class=n>Name</span>
-<span class=p>-</span><span class=p>-</span><span class=p>-</span><span class=p>-</span>                <span class=p>-</span><span class=p>-</span><span class=p>-</span><span class=p>-</span><span class=p>-</span><span class=p>-</span><span class=p>-</span><span class=p>-</span><span class=p>-</span><span class=p>-</span><span class=p>-</span><span class=p>-</span><span class=p>-</span>         <span class=p>-</span><span class=p>-</span><span class=p>-</span><span class=p>-</span><span class=p>-</span><span class=p>-</span> <span class=p>-</span><span class=p>-</span><span class=p>-</span><span class=p>-</span>
-<span class=n>-a</span><span class=p>-</span><span class=p>-</span><span class=p>-</span><span class=p>-</span>        <span class=n>2019</span><span class=p>/</span><span class=n>9</span><span class=p>/</span><span class=n>19</span>     <span class=n>19</span><span class=err>:</span><span class=n>31</span>            <span class=n>154</span> <span class=n>hello</span><span class=p>.</span><span class=n>go</span>
-<span class=n>-a</span><span class=p>-</span><span class=p>-</span><span class=p>-</span><span class=p>-</span>        <span class=n>2019</span><span class=p>/</span><span class=n>9</span><span class=p>/</span><span class=n>19</span>     <span class=n>19</span><span class=err>:</span><span class=n>45</span>            <span class=n>222</span> <span class=n>hello_test</span><span class=p>.</span><span class=n>go</span>
-
-<span class=nb>PS </span><span class=n>F:</span><span class=p>\</span><span class=n>Go</span><span class=p>&gt;</span> <span class=n>go</span> <span class=n>test</span>
-<span class=n>hello</span><span class=p>!</span>
-<span class=n>PASS</span>
-<span class=n>ok</span>      <span class=n>_</span><span class=p>/</span><span class=n>F_</span><span class=p>/</span><span class=n>Go</span> <span class=n>0</span><span class=p>.</span><span class=n>248s</span>
-</code></pre></td></tr></table></div></div><p>根据输出结果可知测试通过</p><h4 id=性能测试>性能测试</h4><p>在<code>hello.go</code>中新增<code>Add</code>函数</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-powershell data-lang=powershell><span class=line><span class=cl><span class=nb>PS </span><span class=n>F:</span><span class=p>\</span><span class=n>Go</span><span class=p>&gt;</span> <span class=nb>ls
+</span></span></span><span class=line><span class=cl><span class=nb></span><span class=n>Mode</span>                <span class=n>LastWriteTime</span>         <span class=n>Length</span> <span class=n>Name</span>
+</span></span><span class=line><span class=cl><span class=p>----</span>                <span class=p>-------------</span>         <span class=p>------</span> <span class=p>----</span>
+</span></span><span class=line><span class=cl><span class=n>-a</span><span class=p>----</span>        <span class=mf>2019</span><span class=p>/</span><span class=mf>9</span><span class=p>/</span><span class=mf>19</span>     <span class=mf>19</span><span class=err>:</span><span class=mf>31</span>            <span class=mf>154</span> <span class=n>hello</span><span class=p>.</span><span class=py>go</span>
+</span></span><span class=line><span class=cl><span class=n>-a</span><span class=p>----</span>        <span class=mf>2019</span><span class=p>/</span><span class=mf>9</span><span class=p>/</span><span class=mf>19</span>     <span class=mf>19</span><span class=err>:</span><span class=mf>45</span>            <span class=mf>222</span> <span class=n>hello_test</span><span class=p>.</span><span class=py>go</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>PS </span><span class=n>F:</span><span class=p>\</span><span class=n>Go</span><span class=p>&gt;</span> <span class=n>go</span> <span class=n>test</span>
+</span></span><span class=line><span class=cl><span class=n>hello</span><span class=p>!</span>
+</span></span><span class=line><span class=cl><span class=n>PASS</span>
+</span></span><span class=line><span class=cl><span class=n>ok</span>      <span class=n>_</span><span class=p>/</span><span class=n>F_</span><span class=p>/</span><span class=n>Go</span> <span class=mf>0</span><span class=p>.</span><span class=n>248s</span></span></span></code></pre></td></tr></table></div></div><p>根据输出结果可知测试通过</p><h4 id=性能测试>性能测试</h4><p>在<code>hello.go</code>中新增<code>Add</code>函数</p><div class=highlight id=id-6><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -79,20 +75,19 @@
 </span><span class=lnt>11
 </span><span class=lnt>12
 </span><span class=lnt>13
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>hello</span>
-
-<span class=kn>import</span> <span class=s>&#34;fmt&#34;</span>
-
-<span class=c1>//Hello print &#34;hello!
-</span><span class=c1></span><span class=kd>func</span> <span class=nf>Hello</span><span class=p>(</span><span class=p>)</span> <span class=p>{</span>
-	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;hello!&#34;</span><span class=p>)</span>
-<span class=p>}</span>
-
-<span class=c1>//Add add para
-</span><span class=c1></span><span class=kd>func</span> <span class=nf>Add</span><span class=p>(</span><span class=nx>i</span> <span class=kt>int</span><span class=p>)</span> <span class=kt>int</span> <span class=p>{</span>
-	<span class=k>return</span> <span class=nx>i</span>
-<span class=p>}</span>
-</code></pre></td></tr></table></div></div><p>在<code>hello_test.go</code>文件中添加<code>Add</code>的性能测试函数</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kn>package</span> <span class=nx>hello</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=s>&#34;fmt&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>//Hello print &#34;hello!
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>func</span> <span class=nf>Hello</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=s>&#34;hello!&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>//Add add para
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kd>func</span> <span class=nf>Add</span><span class=p>(</span><span class=nx>i</span> <span class=kt>int</span><span class=p>)</span> <span class=kt>int</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=k>return</span> <span class=nx>i</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><p>在<code>hello_test.go</code>文件中添加<code>Add</code>的性能测试函数</p><div class=highlight id=id-7><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -110,27 +105,25 @@
 </span><span class=lnt>16
 </span><span class=lnt>17
 </span><span class=lnt>18
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kn>package</span> <span class=nx>hello</span>
-
-<span class=kn>import</span> <span class=p>(</span>
-	<span class=s>&#34;fmt&#34;</span>
-	<span class=s>&#34;testing&#34;</span>
-<span class=p>)</span>
-
-<span class=kd>func</span> <span class=nf>TestHello</span><span class=p>(</span><span class=nx>t</span> <span class=o>*</span><span class=nx>testing</span><span class=p>.</span><span class=nx>T</span><span class=p>)</span> <span class=p>{</span>
-	<span class=nf>Hello</span><span class=p>(</span><span class=p>)</span>
-<span class=p>}</span>
-
-<span class=kd>func</span> <span class=nf>BenchmarkAdd</span><span class=p>(</span><span class=nx>b</span> <span class=o>*</span><span class=nx>testing</span><span class=p>.</span><span class=nx>B</span><span class=p>)</span> <span class=p>{</span>
-	<span class=kd>var</span> <span class=nx>sum</span> <span class=kt>int</span>
-	<span class=k>for</span> <span class=nx>i</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=nx>b</span><span class=p>.</span><span class=nx>N</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span> <span class=p>{</span>
-		<span class=nx>sum</span> <span class=o>+=</span> <span class=nf>Add</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
-	<span class=p>}</span>
-	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>sum</span><span class=p>)</span>
-<span class=p>}</span>
-</code></pre></td></tr></table></div></div><p>性能测试的函数头也符合与单元测试相似的形式</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-go data-lang=go><span class=kd>func</span> <span class=nf>BenchmarkXxx</span><span class=p>(</span><span class=nx>b</span> <span class=o>*</span><span class=nx>testing</span><span class=p>.</span><span class=nx>B</span><span class=p>)</span>
-</code></pre></td></tr></table></div></div><p>执行带<code>bench</code>参数的<code>go test</code>命令</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kn>package</span> <span class=nx>hello</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=p>(</span>
+</span></span><span class=line><span class=cl>	<span class=s>&#34;fmt&#34;</span>
+</span></span><span class=line><span class=cl>	<span class=s>&#34;testing&#34;</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>TestHello</span><span class=p>(</span><span class=nx>t</span> <span class=o>*</span><span class=nx>testing</span><span class=p>.</span><span class=nx>T</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=nf>Hello</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>func</span> <span class=nf>BenchmarkAdd</span><span class=p>(</span><span class=nx>b</span> <span class=o>*</span><span class=nx>testing</span><span class=p>.</span><span class=nx>B</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>	<span class=kd>var</span> <span class=nx>sum</span> <span class=kt>int</span>
+</span></span><span class=line><span class=cl>	<span class=k>for</span> <span class=nx>i</span> <span class=o>:=</span> <span class=mi>0</span><span class=p>;</span> <span class=nx>i</span> <span class=p>&lt;</span> <span class=nx>b</span><span class=p>.</span><span class=nx>N</span><span class=p>;</span> <span class=nx>i</span><span class=o>++</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>		<span class=nx>sum</span> <span class=o>+=</span> <span class=nf>Add</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>	<span class=p>}</span>
+</span></span><span class=line><span class=cl>	<span class=nx>fmt</span><span class=p>.</span><span class=nf>Println</span><span class=p>(</span><span class=nx>sum</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>}</span></span></span></code></pre></td></tr></table></div></div><p>性能测试的函数头也符合与单元测试相似的形式</p><div class=highlight id=id-8><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-go data-lang=go><span class=line><span class=cl><span class=kd>func</span> <span class=nf>BenchmarkXxx</span><span class=p>(</span><span class=nx>b</span> <span class=o>*</span><span class=nx>testing</span><span class=p>.</span><span class=nx>B</span><span class=p>)</span></span></span></code></pre></td></tr></table></div></div><p>执行带<code>bench</code>参数的<code>go test</code>命令</p><div class=highlight id=id-9><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -143,22 +136,20 @@
 </span><span class=lnt>11
 </span><span class=lnt>12
 </span><span class=lnt>13
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-powershell data-lang=powershell><span class=nb>PS </span><span class=n>F:</span><span class=p>\</span><span class=n>Go</span><span class=p>&gt;</span> <span class=n>go</span> <span class=n>test</span> <span class=n>-bench</span> <span class=p>.</span>
-<span class=n>hello</span><span class=p>!</span>
-<span class=n>1</span>
-<span class=n>goos</span><span class=err>:</span> <span class=n>windows</span>
-<span class=n>goarch</span><span class=err>:</span> <span class=n>amd64</span>
-<span class=n>BenchmarkHello</span><span class=p>-</span><span class=n>4</span>        <span class=n>100</span>
-<span class=n>10000</span>
-<span class=n>1000000</span>
-<span class=n>100000000</span>
-<span class=n>2000000000</span>
-<span class=n>2000000000</span>               <span class=n>0</span><span class=p>.</span><span class=n>32</span> <span class=n>ns</span><span class=p>/</span><span class=n>op</span>
-<span class=n>PASS</span>
-<span class=n>ok</span>      <span class=n>_</span><span class=p>/</span><span class=n>F_</span><span class=p>/</span><span class=n>Go</span> <span class=n>1</span><span class=p>.</span><span class=n>019s</span>
-</code></pre></td></tr></table></div></div><p>以上命令只执行了性能测试函数，BenchmarkHello执行了2000000000次，每次的平均执行时间为0.32ns，总的执行时间为1.019s。测试通过。</p><h4 id=go-test命令的参数>go test命令的参数</h4><p>以上是基本的单元测试和性能测试命令，<code>go test</code>命令还拥有大量的参数，可以对测试进行定制。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>usage: go <span class=nb>test</span> <span class=o>[</span>build/test flags<span class=o>]</span> <span class=o>[</span>packages<span class=o>]</span> <span class=o>[</span>build/test flags <span class=p>&amp;</span> <span class=nb>test</span> binary flags<span class=o>]</span>
-</code></pre></td></tr></table></div></div><p>如上，<code>go test</code>命令接受用于本身的两个参数和用于生成的测试结果文件的两个参数。</p><p>用于test命令本身的参数列表如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-powershell data-lang=powershell><span class=line><span class=cl><span class=nb>PS </span><span class=n>F:</span><span class=p>\</span><span class=n>Go</span><span class=p>&gt;</span> <span class=n>go</span> <span class=n>test</span> <span class=n>-bench</span> <span class=p>.</span>
+</span></span><span class=line><span class=cl><span class=n>hello</span><span class=p>!</span>
+</span></span><span class=line><span class=cl><span class=mf>1</span>
+</span></span><span class=line><span class=cl><span class=n>goos</span><span class=err>:</span> <span class=n>windows</span>
+</span></span><span class=line><span class=cl><span class=n>goarch</span><span class=err>:</span> <span class=n>amd64</span>
+</span></span><span class=line><span class=cl><span class=n>BenchmarkHello</span><span class=p>-</span><span class=mf>4</span>        <span class=mf>100</span>
+</span></span><span class=line><span class=cl><span class=mf>10000</span>
+</span></span><span class=line><span class=cl><span class=mf>1000000</span>
+</span></span><span class=line><span class=cl><span class=mf>100000000</span>
+</span></span><span class=line><span class=cl><span class=mf>2000000000</span>
+</span></span><span class=line><span class=cl><span class=mf>2000000000</span>               <span class=mf>0.32</span> <span class=n>ns</span><span class=p>/</span><span class=n>op</span>
+</span></span><span class=line><span class=cl><span class=n>PASS</span>
+</span></span><span class=line><span class=cl><span class=n>ok</span>      <span class=n>_</span><span class=p>/</span><span class=n>F_</span><span class=p>/</span><span class=n>Go</span> <span class=mf>1</span><span class=p>.</span><span class=n>019s</span></span></span></code></pre></td></tr></table></div></div><p>以上命令只执行了性能测试函数，BenchmarkHello执行了2000000000次，每次的平均执行时间为0.32ns，总的执行时间为1.019s。测试通过。</p><h4 id=go-test命令的参数>go test命令的参数</h4><p>以上是基本的单元测试和性能测试命令，<code>go test</code>命令还拥有大量的参数，可以对测试进行定制。</p><div class=highlight id=id-10><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>usage: go <span class=nb>test</span> <span class=o>[</span>build/test flags<span class=o>]</span> <span class=o>[</span>packages<span class=o>]</span> <span class=o>[</span>build/test flags <span class=p>&amp;</span> <span class=nb>test</span> binary flags<span class=o>]</span></span></span></code></pre></td></tr></table></div></div><p>如上，<code>go test</code>命令接受用于本身的两个参数和用于生成的测试结果文件的两个参数。</p><p>用于test命令本身的参数列表如下</p><div class=highlight id=id-11><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -228,77 +219,76 @@
 </span><span class=lnt>68
 </span><span class=lnt>69
 </span><span class=lnt>70
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>-bench regexp
-    只运行与正则表达式匹配的性能测试，默认不执行任何性能测试。
-    对于测试，正则表达式由斜杠（/）字符拆分为正则表达式序列
-    要运行所有的性能测试, 使用 <span class=s1>&#39;-bench .&#39;</span> 或 <span class=s1>&#39;-bench=.&#39;</span>.
-
--benchtime t
-    Run enough iterations of each benchmark to take t, specified
-    as a time.Duration <span class=o>(</span><span class=k>for</span> example, -benchtime 1h30s<span class=o>)</span>.
-    The default is <span class=m>1</span> second <span class=o>(</span>1s<span class=o>)</span>.
-    The special syntax Nx means to run the benchmark N <span class=nb>times</span>
-    <span class=o>(</span><span class=k>for</span> example, -benchtime 100x<span class=o>)</span>.
-
--count n
-    运行每个测试和性能测试n次（默认1次）
-    如果设置了 -cpu 参数, 为每个 GOMAXPROCS 值运行 n 次
-
--cover
-    启用测试覆盖率分析。这里要注意，测试覆盖率分析是通过在编译前注释源码来实现的，因此，出现错误时报告的行     号可能不对应。
-
--covermode set,count,atomic
-    为正在测试的包设置测试覆盖率分析的模式。 
-    默认为 <span class=s2>&#34;set&#34;</span> 启用了 -race 则为 <span class=s2>&#34;atomic&#34;</span>.
-    各模式说明：
-	set: bool: 这个声明运行了吗
-	count: int: 这个声明运行了多少次
-	atomic: int: count, but correct in multithreaded tests<span class=p>;</span>
-		significantly more expensive.
-    需要设置 -cover
-
--coverpkg pattern1,pattern2,pattern3
-    在每个测试中对与模式匹配的包应用测试覆盖率分析。默认情况下，每个测试只分析正在测试的包。
-    运行 <span class=s1>&#39;go help packages&#39;</span> 可获得包模式的说明
-    需要设置 -cover
-
--cpu 1,2,4
-    指定应为其执行测试或性能测试的GOMAXPROCS值的列表。默认值是GOMAXPROCS的当前值。
-
--failfast
-    第一次测试失败后不开启新的测试
-
--list regexp
-    列出与正则表达式匹配的测试、性能测试或示例测试。
-    但不会运行任何测试、性能测试或示例测试。
-    只列出顶级测试。不会显示子测试或子性能测试。
-
--parallel n
-    允许调用t.parallel的测试函数并行执行。
-  	n是要同时运行的最大测试数；默认设置为GOMAXPROCS的值。
-  	该参数只适用于单个测试二进制文件。
-  	并行测试不同的package参加 <span class=s1>&#39;go help build&#39;</span> 命令的说明
-
--run regexp
-    仅运行与正则表达式匹配的那些测试和示例测试。
-    对于测试，正则表达式由斜杠（/）字符拆分为正则表达式序列
-
--short
-    测试长时间运行时声明需要缩短时间，默认关闭。
-
--timeout d
-    如果测试文件的运行时间长于 d, panic。
-    如果d为 0, 未超时。
-    默认为 <span class=m>10</span> 分钟 <span class=o>(</span>10m<span class=o>)</span>.
-
--v
-    详细输出：记录所有运行的测试。即使测试成功，也打印日志。
-
--vet list
-    在“go test”期间配置“go vet”的调用，从而使用以逗号分隔的vet检查列表。
-    如果list为空，则“go test”运行“go vet”，其中列出了一系列被认为值得解决的检查。
-    如果list是“off”，则“go test”根本不会运行“go vet”。
-</code></pre></td></tr></table></div></div><p>用于生成的测试结果文件的参数列表如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>-bench regexp
+</span></span><span class=line><span class=cl>    只运行与正则表达式匹配的性能测试，默认不执行任何性能测试。
+</span></span><span class=line><span class=cl>    对于测试，正则表达式由斜杠（/）字符拆分为正则表达式序列
+</span></span><span class=line><span class=cl>    要运行所有的性能测试, 使用 <span class=s1>&#39;-bench .&#39;</span> 或 <span class=s1>&#39;-bench=.&#39;</span>.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-benchtime t
+</span></span><span class=line><span class=cl>    Run enough iterations of each benchmark to take t, specified
+</span></span><span class=line><span class=cl>    as a time.Duration <span class=o>(</span><span class=k>for</span> example, -benchtime 1h30s<span class=o>)</span>.
+</span></span><span class=line><span class=cl>    The default is <span class=m>1</span> second <span class=o>(</span>1s<span class=o>)</span>.
+</span></span><span class=line><span class=cl>    The special syntax Nx means to run the benchmark N <span class=nb>times</span>
+</span></span><span class=line><span class=cl>    <span class=o>(</span><span class=k>for</span> example, -benchtime 100x<span class=o>)</span>.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-count n
+</span></span><span class=line><span class=cl>    运行每个测试和性能测试n次（默认1次）
+</span></span><span class=line><span class=cl>    如果设置了 -cpu 参数, 为每个 GOMAXPROCS 值运行 n 次
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-cover
+</span></span><span class=line><span class=cl>    启用测试覆盖率分析。这里要注意，测试覆盖率分析是通过在编译前注释源码来实现的，因此，出现错误时报告的行     号可能不对应。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-covermode set,count,atomic
+</span></span><span class=line><span class=cl>    为正在测试的包设置测试覆盖率分析的模式。 
+</span></span><span class=line><span class=cl>    默认为 <span class=s2>&#34;set&#34;</span> 启用了 -race 则为 <span class=s2>&#34;atomic&#34;</span>.
+</span></span><span class=line><span class=cl>    各模式说明：
+</span></span><span class=line><span class=cl>	set: bool: 这个声明运行了吗
+</span></span><span class=line><span class=cl>	count: int: 这个声明运行了多少次
+</span></span><span class=line><span class=cl>	atomic: int: count, but correct in multithreaded tests<span class=p>;</span>
+</span></span><span class=line><span class=cl>		significantly more expensive.
+</span></span><span class=line><span class=cl>    需要设置 -cover
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-coverpkg pattern1,pattern2,pattern3
+</span></span><span class=line><span class=cl>    在每个测试中对与模式匹配的包应用测试覆盖率分析。默认情况下，每个测试只分析正在测试的包。
+</span></span><span class=line><span class=cl>    运行 <span class=s1>&#39;go help packages&#39;</span> 可获得包模式的说明
+</span></span><span class=line><span class=cl>    需要设置 -cover
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-cpu 1,2,4
+</span></span><span class=line><span class=cl>    指定应为其执行测试或性能测试的GOMAXPROCS值的列表。默认值是GOMAXPROCS的当前值。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-failfast
+</span></span><span class=line><span class=cl>    第一次测试失败后不开启新的测试
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-list regexp
+</span></span><span class=line><span class=cl>    列出与正则表达式匹配的测试、性能测试或示例测试。
+</span></span><span class=line><span class=cl>    但不会运行任何测试、性能测试或示例测试。
+</span></span><span class=line><span class=cl>    只列出顶级测试。不会显示子测试或子性能测试。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-parallel n
+</span></span><span class=line><span class=cl>    允许调用t.parallel的测试函数并行执行。
+</span></span><span class=line><span class=cl>  	n是要同时运行的最大测试数；默认设置为GOMAXPROCS的值。
+</span></span><span class=line><span class=cl>  	该参数只适用于单个测试二进制文件。
+</span></span><span class=line><span class=cl>  	并行测试不同的package参加 <span class=s1>&#39;go help build&#39;</span> 命令的说明
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-run regexp
+</span></span><span class=line><span class=cl>    仅运行与正则表达式匹配的那些测试和示例测试。
+</span></span><span class=line><span class=cl>    对于测试，正则表达式由斜杠（/）字符拆分为正则表达式序列
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-short
+</span></span><span class=line><span class=cl>    测试长时间运行时声明需要缩短时间，默认关闭。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-timeout d
+</span></span><span class=line><span class=cl>    如果测试文件的运行时间长于 d, panic。
+</span></span><span class=line><span class=cl>    如果d为 0, 未超时。
+</span></span><span class=line><span class=cl>    默认为 <span class=m>10</span> 分钟 <span class=o>(</span>10m<span class=o>)</span>.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-v
+</span></span><span class=line><span class=cl>    详细输出：记录所有运行的测试。即使测试成功，也打印日志。
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-vet list
+</span></span><span class=line><span class=cl>    在“go test”期间配置“go vet”的调用，从而使用以逗号分隔的vet检查列表。
+</span></span><span class=line><span class=cl>    如果list为空，则“go test”运行“go vet”，其中列出了一系列被认为值得解决的检查。
+</span></span><span class=line><span class=cl>    如果list是“off”，则“go test”根本不会运行“go vet”。</span></span></code></pre></td></tr></table></div></div><p>用于生成的测试结果文件的参数列表如下</p><div class=highlight id=id-12><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -343,54 +333,56 @@
 </span><span class=lnt>43
 </span><span class=lnt>44
 </span><span class=lnt>45
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>-benchmem
-    打印性能测试的内存分配统计信息
-
--blockprofile block.out
-    Write a goroutine blocking profile to the specified file
-    when all tests are complete.
-    Writes <span class=nb>test</span> binary as -c would.
-
--blockprofilerate n
-    Control the detail provided in goroutine blocking profiles by
-    calling runtime.SetBlockProfileRate with n.
-    See <span class=s1>&#39;go doc runtime.SetBlockProfileRate&#39;</span>.
-    The profiler aims to sample, on average, one blocking event every
-    n nanoseconds the program spends blocked. By default,
-    <span class=k>if</span> -test.blockprofile is <span class=nb>set</span> without this flag, all blocking events
-    are recorded, equivalent to -test.blockprofilerate<span class=o>=</span>1.
-
--coverprofile cover.out
-    所有测试完成后，将测试覆盖率分析结果写入指定文件，需要设置 -cover
-
--cpuprofile cpu.out
-    退出前将CPU分析结果写入指定文件
-    Writes <span class=nb>test</span> binary as -c would.
-
--memprofile mem.out
-    所有测试完成后，将内存分配分析结果写入指定文件
-    Writes <span class=nb>test</span> binary as -c would.
-
--memprofilerate n
-    通过设置 runtime.MemProfileRate 启用更精确（也更昂贵）的内存分配分析. 
-    参见 <span class=s1>&#39;go doc runtime.MemProfileRate&#39;</span>.
-    要分析所有的内存分配, 使用 -test.memprofilerate<span class=o>=</span>1.
-
--mutexprofile mutex.out
-    当所有测试完成时，将互斥竞争分析结果写入指定文件。
-    Writes <span class=nb>test</span> binary as -c would.
-
--mutexprofilefraction n
-    Sample <span class=m>1</span> in n stack traces of goroutines holding a contended mutex.
-
--outputdir directory
-    将分析结果文件放到指定目录。默认目录为 <span class=s2>&#34;go test&#34;</span> 运行的目录
-
--trace trace.out
-    退出前将执行追踪结果写入指定文件
-</code></pre></td></tr></table></div></div><p>每个参数也可以通过<code>test.</code>前缀来使用，当调用测试生成的二进制结果文件时（<code>go test -c</code>命令会编译生成结果文件但不会执行），前缀是必须的。</p><p>如下列两个命令等价，参见<a href=https://golang.org/cmd/go/#hdr-Testing_flags target=_blank rel="noopener noreffer">Testing flags</a></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>-benchmem
+</span></span><span class=line><span class=cl>    打印性能测试的内存分配统计信息
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-blockprofile block.out
+</span></span><span class=line><span class=cl>    Write a goroutine blocking profile to the specified file
+</span></span><span class=line><span class=cl>    when all tests are complete.
+</span></span><span class=line><span class=cl>    Writes <span class=nb>test</span> binary as -c would.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-blockprofilerate n
+</span></span><span class=line><span class=cl>    Control the detail provided in goroutine blocking profiles by
+</span></span><span class=line><span class=cl>    calling runtime.SetBlockProfileRate with n.
+</span></span><span class=line><span class=cl>    See <span class=s1>&#39;go doc runtime.SetBlockProfileRate&#39;</span>.
+</span></span><span class=line><span class=cl>    The profiler aims to sample, on average, one blocking event every
+</span></span><span class=line><span class=cl>    n nanoseconds the program spends blocked. By default,
+</span></span><span class=line><span class=cl>    <span class=k>if</span> -test.blockprofile is <span class=nb>set</span> without this flag, all blocking events
+</span></span><span class=line><span class=cl>    are recorded, equivalent to -test.blockprofilerate<span class=o>=</span>1.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-coverprofile cover.out
+</span></span><span class=line><span class=cl>    所有测试完成后，将测试覆盖率分析结果写入指定文件，需要设置 -cover
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-cpuprofile cpu.out
+</span></span><span class=line><span class=cl>    退出前将CPU分析结果写入指定文件
+</span></span><span class=line><span class=cl>    Writes <span class=nb>test</span> binary as -c would.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-memprofile mem.out
+</span></span><span class=line><span class=cl>    所有测试完成后，将内存分配分析结果写入指定文件
+</span></span><span class=line><span class=cl>    Writes <span class=nb>test</span> binary as -c would.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-memprofilerate n
+</span></span><span class=line><span class=cl>    通过设置 runtime.MemProfileRate 启用更精确（也更昂贵）的内存分配分析. 
+</span></span><span class=line><span class=cl>    参见 <span class=s1>&#39;go doc runtime.MemProfileRate&#39;</span>.
+</span></span><span class=line><span class=cl>    要分析所有的内存分配, 使用 -test.memprofilerate<span class=o>=</span>1.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-mutexprofile mutex.out
+</span></span><span class=line><span class=cl>    当所有测试完成时，将互斥竞争分析结果写入指定文件。
+</span></span><span class=line><span class=cl>    Writes <span class=nb>test</span> binary as -c would.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-mutexprofilefraction n
+</span></span><span class=line><span class=cl>    Sample <span class=m>1</span> in n stack traces of goroutines holding a contended mutex.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-outputdir directory
+</span></span><span class=line><span class=cl>    将分析结果文件放到指定目录。默认目录为 <span class=s2>&#34;go test&#34;</span> 运行的目录
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>-trace trace.out
+</span></span><span class=line><span class=cl>    退出前将执行追踪结果写入指定文件</span></span></code></pre></td></tr></table></div></div><p>每个参数也可以通过<code>test.</code>前缀来使用，当调用测试生成的二进制结果文件时（<code>go test -c</code>命令会编译生成结果文件但不会执行），前缀是必须的。</p><p>如下列两个命令等价，参见<a href=https://golang.org/cmd/go/#hdr-Testing_flags target=_blank rel="external nofollow noopener noreferrer">Testing flags</a></p><div class=highlight id=id-13><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ go <span class=nb>test</span> -v -myflag testdata -cpuprofile<span class=o>=</span>prof.out -x
-$ pkg.test -test.v -myflag testdata -test.cpuprofile<span class=o>=</span>prof.out
-</code></pre></td></tr></table></div></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2019-12-22</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/2019/golang-syntax-12-test/index.md target=_blank>阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://shuzang.github.io/2019/golang-syntax-12-test/ data-title=Golang语法基础12-测试 data-hashtags=Go语法><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://shuzang.github.io/2019/golang-syntax-12-test/ data-hashtag=Go语法><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://shuzang.github.io/2019/golang-syntax-12-test/ data-title=Golang语法基础12-测试><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://shuzang.github.io/2019/golang-syntax-12-test/ data-title=Golang语法基础12-测试><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://shuzang.github.io/2019/golang-syntax-12-test/ data-title=Golang语法基础12-测试><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/go%E8%AF%AD%E6%B3%95/>Go语法</a></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/2019/golang-syntax-11-error-and-panic/ class=prev rel=prev title=Golang语法基础11-错误处理><i class="fas fa-angle-left fa-fw"></i>Golang语法基础11-错误处理</a>
-<a href=/2020/special-issue-2019-reading-film-viewing-and-travel-records/ class=next rel=next title=特刊：2019年阅读、观影和旅行记录>特刊：2019年阅读、观影和旅行记录<i class="fas fa-angle-right fa-fw"></i></a></div></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.63.2">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i>LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2023</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>Shuzang</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js></script><script type=text/javascript src=/lib/lunr/lunr.stemmer.support.min.js></script><script type=text/javascript src=/lib/lunr/lunr.zh.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ go <span class=nb>test</span> -v -myflag testdata -cpuprofile<span class=o>=</span>prof.out -x
+</span></span><span class=line><span class=cl>$ pkg.test -test.v -myflag testdata -test.cpuprofile<span class=o>=</span>prof.out</span></span></code></pre></td></tr></table></div></div></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span title="更新于 2019-12-22 00:00:00">更新于 2019-12-22&nbsp;</span></div><div class=post-info-license><span><a rel="license external nofollow noopener noreferrer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div><div class=post-info-line><div class=post-info-md><span><a href=/2019/golang-syntax-12-test/index.md title=阅读原始文档 class=link-to-markdown>阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://shuzang.github.io/2019/golang-syntax-12-test/ data-title=Golang语法基础12-测试 data-hashtags=Go语法><i class="fa-brands fa-twitter fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://shuzang.github.io/2019/golang-syntax-12-test/ data-hashtag=Go语法><i class="fa-brands fa-facebook-square fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://shuzang.github.io/2019/golang-syntax-12-test/ data-title=Golang语法基础12-测试><i class="fa-brands fa-weibo fa-fw" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fa-solid fa-tags fa-fw me-1" aria-hidden=true></i><a href=/tags/go%E8%AF%AD%E6%B3%95/ class=post-tag>Go语法</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/2019/golang-syntax-11-error-and-panic/ class=post-nav-item rel=prev title=Golang语法基础11-错误处理><i class="fa-solid fa-angle-left fa-fw" aria-hidden=true></i>Golang语法基础11-错误处理</a>
+<a href=/2020/%E6%80%BB%E6%9C%89%E4%BA%9B%E7%BE%8E%E5%A5%BD%E7%9A%84%E4%BA%8B%E6%83%85%E5%8F%91%E7%94%9F/ class=post-nav-item rel=next title=总有些美好的事情发生>总有些美好的事情发生<i class="fa-solid fa-angle-right fa-fw" aria-hidden=true></i></a></div></div></article></main><footer class=footer><div class=footer-container><div class="footer-line powered">由 <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreferrer" title="Hugo 0.117.0">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/hugo-fixit/FixIt target=_blank rel=external title="FixIt v0.2.18"><img class=fixit-icon src=/fixit.min.svg alt="FixIt logo">&nbsp;FixIt</a></div><div class="footer-line copyright" itemscope itemtype=http://schema.org/CreativeWork><i class="fa-regular fa-copyright fa-fw" aria-hidden=true></i>
+<span itemprop=copyrightYear>2018 - 2023</span><span class=author itemprop=copyrightHolder>
+<a href=/>Shuzang</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div><div class="footer-line statistics"></div><div class="footer-line visitor"><span id=busuanzi_container_site_uv title=总访客数><i class="fa-regular fa-user fa-fw" aria-hidden=true></i>&nbsp;<span id=busuanzi_value_site_uv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span><span id=busuanzi_container_site_pv class=footer-divider title=总访问量><i class="fa-regular fa-eye fa-fw" aria-hidden=true></i>&nbsp;<span id=busuanzi_value_site_pv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span></div></div></footer></div><div class=widgets><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role=button aria-label=回到顶部><i class="fa-solid fa-arrow-up fa-fw" aria-hidden=true></i><span class="variant-numeric d-none">0%</span></div></div><a href=https://github.com/shuzang title="View source on GitHub" target=_blank rel="external nofollow" class="github-corner right d-none-mobile"><svg viewBox="0 0 250 250" aria-hidden="true"><path d="M0 0 115 115h15l12 27L250 250V0z"/><path d="M128.3 109C113.8 99.7 119 89.6 119 89.6 122 82.7 120.5 78.6 120.5 78.6 119.2 72 123.4 76.3 123.4 76.3 127.3 80.9 125.5 87.3 125.5 87.3 122.9 97.6 130.6 101.9 134.4 103.2" fill="currentcolor" style="transform-origin:130px 106px" class="octo-arm"/><path d="M115 115C114.9 115.1 118.7 116.5 119.8 115.4l13.9-13.8C136.9 99.2 139.9 98.4 142.2 98.6 133.8 88 127.5 74.4 143.8 58 148.5 53.4 154 51.2 159.7 51 160.3 49.4 163.2 43.6 171.4 40.1 171.4 40.1 176.1 42.5 178.8 56.2 183.1 58.6 187.2 61.8 190.9 65.4 194.5 69 197.7 73.2 200.1 77.6 213.8 80.2 216.3 84.9 216.3 84.9 212.7 93.1 206.9 96 205.4 96.6 205.1 102.4 203 107.8 198.3 112.5 181.9 128.9 168.3 122.5 157.7 114.1 157.9 116.9 156.7 120.9 152.7 124.9L141 136.5C139.8 137.7 141.6 141.9 141.8 141.8z" fill="currentcolor" class="octo-body"/></svg></a><div id=mask></div><div class=reading-progress-bar style=left:0;top:0></div><noscript><div class=noscript-warning>FixIt 主题在启用 JavaScript 的情况下效果最佳。</div></noscript></div><link rel=stylesheet href=/lib/lightgallery/css/lightgallery-bundle.min.css><link rel=stylesheet href=/lib/katex/katex.min.css><link rel=stylesheet href=/lib/cookieconsent/cookieconsent.min.css><link rel=stylesheet href=/lib/pace/themes/blue/pace-theme-minimal.css><script src=/lib/autocomplete/autocomplete.min.js defer></script><script src=/lib/fuse/fuse.min.js defer></script><script src=/lib/twemoji/twemoji.min.js defer></script><script src=/lib/lightgallery/lightgallery.min.js defer></script><script src=/lib/lightgallery/plugins/thumbnail/lg-thumbnail.min.js defer></script><script src=/lib/lightgallery/plugins/zoom/lg-zoom.min.js defer></script><script src=/lib/sharer/sharer.min.js async defer></script><script src=/lib/katex/katex.min.js defer></script><script src=/lib/katex/auto-render.min.js defer></script><script src=/lib/katex/copy-tex.min.js defer></script><script src=/lib/katex/mhchem.min.js defer></script><script src=/lib/cookieconsent/cookieconsent.min.js defer></script><script src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js async defer></script><script src=/lib/pace/pace.min.js async defer></script><script>window.config={code:{copyTitle:"复制到剪贴板",editLockTitle:"锁定可编辑代码块",editUnLockTitle:"解锁可编辑代码块",editable:!0,maxShownLines:10},comment:{enable:!1},cookieconsent:{content:{dismiss:"同意",link:"了解更多",message:"本网站使用 Cookies 来改善您的浏览体验。"},enable:!0,palette:{button:{background:"#f0f0f0"},popup:{background:"#1aa3ff"}},theme:"edgeless"},lightgallery:!0,math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!0,left:"\\begin{equation}",right:"\\end{equation}"},{display:!0,left:"\\begin{equation*}",right:"\\end{equation*}"},{display:!0,left:"\\begin{align}",right:"\\end{align}"},{display:!0,left:"\\begin{align*}",right:"\\end{align*}"},{display:!0,left:"\\begin{alignat}",right:"\\end{alignat}"},{display:!0,left:"\\begin{alignat*}",right:"\\end{alignat*}"},{display:!0,left:"\\begin{gather}",right:"\\end{gather}"},{display:!0,left:"\\begin{CD}",right:"\\end{CD}"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},search:{distance:100,findAllMatches:!1,fuseIndexURL:"/index.json",highlightTag:"em",ignoreFieldNorm:!1,ignoreLocation:!1,isCaseSensitive:!1,location:0,maxResultLength:10,minMatchCharLength:2,noResultsFound:"没有找到结果",snippetLength:30,threshold:.3,type:"fuse",useExtendedSearch:!1},twemoji:!0}</script><script src=/js/theme.min.js defer></script></body></html>

@@ -277,3 +277,9 @@ func getIntersectionNode(headA, headB *LinkedList) *Node {
 ## 其它资料
 
 [Leetcode刷题总结之链表](https://xiaoneng.blog.csdn.net/article/details/104007259)
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/data-structure-linkedlist/  
+

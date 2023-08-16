@@ -506,3 +506,9 @@ Body部分的格式是固定的，必须写成`This reverts commit <hash>.`，�
 - [AngularJS Git Commit Message Conventions](https://docs.google.com/document/d/1QrDFcIiPjSLDn3EL15IJygNPiHORgU1_OOAqWjiDU5Y/edit#heading=h.greljkmo14y0)
 - [commit-messages-guide_中文版](https://github.com/RomuloOliveira/commit-messages-guide/blob/master/README_zh-CN.md)
 - [Understanding Semantic Commit Messages Using Git and Angular](https://nitayneeman.com/posts/understanding-semantic-commit-messages-using-git-and-angular/)
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2018/git-learning-improvement/  
+

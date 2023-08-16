@@ -341,3 +341,9 @@ T恤：
 ![色彩搭配方式](https://picped-1301226557.cos.ap-beijing.myqcloud.com/SH_20191205_72957173-9714a200-3ddd-11ea-8b3a-23f5c8d96a47.jpg)
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/clothing-style-development-and-clothing-purchase/  
+

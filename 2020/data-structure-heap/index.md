@@ -345,3 +345,9 @@ func Example_priorityQueue() {
 [1] [Golang: 详解container/heap](https://ieevee.com/tech/2018/01/29/go-heap.html)
 
 [2] [B站-浙江大学数据结构课程](https://www.bilibili.com/video/av43521866?p=51)
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/data-structure-heap/  
+

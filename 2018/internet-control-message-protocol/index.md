@@ -185,3 +185,9 @@ typedef struct iphdr
 - Sleep(1000)，删除会使被ping的目的机非常繁忙
 
 - 发送的ICMP报文中的数据部分最大可以设置为65535-20-8个字节，这将使网络拥堵
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2018/internet-control-message-protocol/  
+

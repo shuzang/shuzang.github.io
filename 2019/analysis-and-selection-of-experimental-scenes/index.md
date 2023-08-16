@@ -209,3 +209,9 @@ Blockchain, IoT, Access Control 是核心的三个关键词。该领域的研究
 [^shi_iotreview_2019]: 史锦山,李茹,等.物联网下的区块链访问控制综述J.软件学报,2019,Vol.30Issue(6):1632–1648.
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/analysis-and-selection-of-experimental-scenes/  
+

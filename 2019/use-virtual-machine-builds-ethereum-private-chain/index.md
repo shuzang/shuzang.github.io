@@ -843,3 +843,9 @@ data0 目录中的相关文件列表
 | web3.toWei()             | 将 ether 或者其他单位换算成 Wei                |
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/use-virtual-machine-builds-ethereum-private-chain/  
+

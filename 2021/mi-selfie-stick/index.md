@@ -20,3 +20,9 @@
 这个商品整体比较符合心意，还是比较喜欢的，不过有一个缺点，就是蓝牙遥控器充电使用的是 Micro-USB 接口，而不是 Type-C，对于我好不容易统一起来的接口是一个阻碍，又要多备一根线。
 
 ![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/SH_20210618_小米支架式自拍杆.jpg)
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2021/mi-selfie-stick/  
+

@@ -41,3 +41,9 @@
 
 ![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/Go_20200527_image-DraggedImage-1.png)
 
+
+---
+
+> 作者: xueyuanjun  
+> URL: https://shuzang.github.io/2020/development-of-online-forum-based-on-golang-1-overall-design-and-data-model/  
+

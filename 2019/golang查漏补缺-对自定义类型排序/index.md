@@ -241,3 +241,9 @@ By age: [{Bob 75} {Alice 55} {Vera 24} {Gopher 7}]
 
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/golang%E6%9F%A5%E6%BC%8F%E8%A1%A5%E7%BC%BA-%E5%AF%B9%E8%87%AA%E5%AE%9A%E4%B9%89%E7%B1%BB%E5%9E%8B%E6%8E%92%E5%BA%8F/  
+

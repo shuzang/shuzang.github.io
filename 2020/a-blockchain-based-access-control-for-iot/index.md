@@ -129,3 +129,9 @@ sequenceDiagram
 2. 资源所有者利用ACL定义请求者对资源的访问权限，从方案设计来看，每次有新的请求都需要资源所有者主动识别和确认是否授权，物联网环境设备数量较大，因此单位时间产生的访问请求量级也比较大，这种授权方式工作量较大，不利于操作。
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/a-blockchain-based-access-control-for-iot/  
+

@@ -117,3 +117,9 @@ Markdown文档编辑器，所见即所得，写作工具。[下载地址](https:
 ![Zotero](https://picped-1301226557.cos.ap-beijing.myqcloud.com/BC_20200119_72677631-7a285800-3ad9-11ea-8319-9c6c398ca377.png)
 
 大量的工具都可以通过 chocolately 安装，包括 Edge，Github Desktop，VSCode，Go，Typora，pandoc，iobit uninstaller，git，rainmeter，zotero，uplay 和 steam，openVPN，NZXT，Notion，7zip。
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/efficient-use-of-win10-6-software-collection/  
+

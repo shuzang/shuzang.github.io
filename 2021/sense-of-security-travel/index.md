@@ -283,3 +283,9 @@
 为了应对大部分情况，可以准备 EDC 工具（Every Day Carry），即每日随身携带的工具，这部分可以参考乔老师的 [一个防身术教官眼中的 EDC](https://sspai.com/post/68476)。另外，大家看这篇文章的时候可能注意到很多都是贝尔的日常生存自救手册的总结，在B站有资源。最后，还是那句话，永远不要放弃希望。
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2021/sense-of-security-travel/  
+

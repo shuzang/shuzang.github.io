@@ -170,3 +170,9 @@ type itab struct {
 ```
 
 第二，使用 unsafe.Pointer 和 uintptr 要非常注意，因为它们绕过了类型系统直接操作内存地址。
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/golang-deep-learning-1-uintptr-and-unsafe.pointer/  
+

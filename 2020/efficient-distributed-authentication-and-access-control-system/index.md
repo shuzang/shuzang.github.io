@@ -120,3 +120,9 @@ $$
 最大的启发在于没有完全抛弃原来的CA，权威依然作为区块链的一部分参与进来，对于区块链监管体系的建立有一定参考价值。
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/efficient-distributed-authentication-and-access-control-system/  
+

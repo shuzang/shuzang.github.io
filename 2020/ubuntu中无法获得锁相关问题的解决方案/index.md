@@ -88,3 +88,9 @@ dpkg: error: dpkg frontend is locked by another process
 最直接的办法是重新启动
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/ubuntu%E4%B8%AD%E6%97%A0%E6%B3%95%E8%8E%B7%E5%BE%97%E9%94%81%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/  
+

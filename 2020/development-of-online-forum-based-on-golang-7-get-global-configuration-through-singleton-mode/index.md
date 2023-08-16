@@ -193,3 +193,9 @@ $ go run main.go
 ![](https://qcdn.xueyuanjun.com/storage/uploads/images/gallery/2020-04/image-15863962655932.jpg)
 
 成功，对用户来说，没有任何感知后台的变动。
+
+---
+
+> 作者: xueyuanjun  
+> URL: https://shuzang.github.io/2020/development-of-online-forum-based-on-golang-7-get-global-configuration-through-singleton-mode/  
+

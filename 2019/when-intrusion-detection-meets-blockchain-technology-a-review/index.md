@@ -87,3 +87,9 @@ Meng W, Tischhauser E, Wang Q, et al. When Intrusion Detection Meets Blockchain 
 要注意，用不用区块链解决入侵检测问题需要具体评判，传统方案依然值得研究。
 
 > 总体思路，节点在本地运行机器学习分类器生成正常配置文件，以智能合约的形式存储在区块链中，并根据安全策略周期性的更新，运行过程中检测系统事件并和配置文件比较，发现异常后生成警报并在区块链中记录保证不可篡改，判决合约根据警报和节点历史行为做出判决。
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/when-intrusion-detection-meets-blockchain-technology-a-review/  
+

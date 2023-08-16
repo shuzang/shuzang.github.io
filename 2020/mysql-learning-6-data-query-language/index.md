@@ -1030,3 +1030,9 @@ Empty set (0.00 sec)
 **总结**
 
 当不需要该表时，用 DROP；当仍要保留该表，但要删除所有记录时，用 TRUNCATE；当要删除部分记录时，用 DELETE
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/mysql-learning-6-data-query-language/  
+

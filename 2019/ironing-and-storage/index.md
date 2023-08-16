@@ -186,3 +186,9 @@ T恤：将T恤对折，接着在底部折一小块，袖子也对折，然后由
 ![](http://5b0988e595225.cdn.sohucs.com/images/20180501/cfc92a552183437f828500bf7b86dbd3.gif)
 
 内裤和袜子的折叠法与居家相同
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/ironing-and-storage/  
+

@@ -385,3 +385,9 @@ $ docker container prune
 参考：[前言 - Docker —— 从入门到实践 (gitbook.io)](https://yeasy.gitbook.io/docker_practice/)
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/image-container-and-repository/  
+

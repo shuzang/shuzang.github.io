@@ -170,3 +170,9 @@ supervisorctl start chitchat
 
 并且无论是否退出远程服务器还是关闭 Go Web 应用进程，都不会影响在线论坛的访问，因为它是以守护进程的方式运行的，并且可以在关闭后自动重启。
 
+
+---
+
+> 作者: xueyuanjun  
+> URL: https://shuzang.github.io/2020/development-of-online-forum-based-on-golang-9-deploy-go-web-application/  
+

@@ -344,3 +344,9 @@ func MergeSort(nums []int) []int {
 对于链表来说，可执行的排序包括直接插入、简单选择、快排、冒泡、和归并。
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/algorithm-sort/  
+

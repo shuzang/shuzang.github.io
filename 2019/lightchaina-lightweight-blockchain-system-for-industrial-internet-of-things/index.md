@@ -133,3 +133,9 @@ Chainbase：管理本地交易池，验证交易，拥有添加或过滤Cache la
 ## 四、Conclusion
 
 为了使区块链适用于IIoT场景，提出共识算法SMP减少算力消耗，提出数据结构LB减少通信冗余，过滤区块减小存储负担。并通过实验证明了该方案的优越性。
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/lightchaina-lightweight-blockchain-system-for-industrial-internet-of-things/  
+

@@ -66,3 +66,9 @@
 祈求上天赐予我平静的心 接受不可改变之事  
 给我勇气 改变可以改变之事  
 并赐予我 分辨这两者的智慧  
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2018/engraved-in-st-pauls-church-in-1962/  
+

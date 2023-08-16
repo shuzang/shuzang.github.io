@@ -46,3 +46,9 @@
 **保持平和心态**
 
 危难关头，最考验人的心理素质。这一场心理战，您的表现如何？不妨采取写日记的方式，记录生活的精彩瞬间和深深的感动。请您记住，无论做什么，你才是生活的主人！
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/how-to-avoid-information-overload/  
+

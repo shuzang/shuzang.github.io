@@ -175,3 +175,9 @@ for _, cookie := range r.Cookies() {
 
 1. 上野宣[日]，[图解HTTP](https://book.douban.com/subject/25863515/)，人民邮电出版社，2014
 2. 学院君，[在 Go 语言中设置、读取和删除 HTTP Cookie](https://xueyuanjun.com/post/21668)，2020
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/golang-set-and-use-cookie/  
+

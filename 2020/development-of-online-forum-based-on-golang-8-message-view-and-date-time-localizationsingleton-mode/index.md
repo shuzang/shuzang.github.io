@@ -275,3 +275,9 @@ func formatDate(t time.Time) string {
 
 ![](https://qcdn.xueyuanjun.com/storage/uploads/images/gallery/2020-04/image-15869318394657.jpg)
 
+
+---
+
+> 作者: xueyuanjun  
+> URL: https://shuzang.github.io/2020/development-of-online-forum-based-on-golang-8-message-view-and-date-time-localizationsingleton-mode/  
+

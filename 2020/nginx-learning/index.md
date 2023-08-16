@@ -301,3 +301,9 @@ server {
 要应用新配置，请按照前面几节的说明将重新加载配置文件。还有许多[其他指令](http://nginx.org/en/docs/http/ngx_http_proxy_module.html)可用于进一步配置代理连接。
 
 更多的内容可以查看 [nginx documentation](http://nginx.org/en/docs/)，本文主体都翻译自该文档。
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/nginx-learning/  
+

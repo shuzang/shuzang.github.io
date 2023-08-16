@@ -232,3 +232,9 @@ func (t *Template) Execute(wr io.Writer, data interface{}) error
 ```
 
 Execute方法将解析好的模板应用到data上，并将输出写入wr，唯一的区别就是没有绑定模板。
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/golang-template/  
+

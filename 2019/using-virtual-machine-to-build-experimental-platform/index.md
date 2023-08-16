@@ -1036,3 +1036,9 @@ GOROOT=/usr/local/go
 走了好多弯路。。。原来一开始的结果就可以。
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/using-virtual-machine-to-build-experimental-platform/  
+

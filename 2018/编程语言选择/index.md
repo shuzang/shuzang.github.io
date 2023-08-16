@@ -41,3 +41,9 @@
 [2016主流编程语言的详细对比](https://blog.csdn.net/z4909801/article/details/56511220)  
 [几种主流编程语言的优点和缺点比较](http://baijiahao.baidu.com/s?id=1574780298772788&wfr=spider&for=pc)  
 [各主流编程语言各自擅长什么场景，为什么？](https://www.zhihu.com/question/20806939)
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2018/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80%E9%80%89%E6%8B%A9/  
+

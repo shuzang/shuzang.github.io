@@ -178,3 +178,9 @@ console.log(factorial(3));
 ```
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/javascript-learning-2-basic-syntax/  
+

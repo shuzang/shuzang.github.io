@@ -625,3 +625,9 @@ func Huffman(H MinHeap) {
 [1] [CSDN-Golang实现平衡二叉树](https://blog.csdn.net/qq_36183935/article/details/80315808)
 
  
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/data-structure-binary-search-tree/  
+

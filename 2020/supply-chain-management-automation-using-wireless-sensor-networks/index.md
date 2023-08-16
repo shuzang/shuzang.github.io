@@ -57,3 +57,9 @@ L. Evers and P. Havinga, “Supply Chain Management Automation using Wireless Se
 4. 托盘上的节点对农场、码头、配送中心的访问点发起访问，验证是否在正确的时间到达了正确的地点
 
 我们通过实施这几个访问控制操作验证我们方案的有效性，所有的记录都收集到区块链中，从而保证不可篡改，农场主、货运商、分销商等不同角色对日志的访问权限也受到限制。恶意的请求行为（如短时间高频率的请求）会被记录并判定设备是否被入侵。
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/supply-chain-management-automation-using-wireless-sensor-networks/  
+

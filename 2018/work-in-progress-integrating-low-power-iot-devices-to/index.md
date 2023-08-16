@@ -31,3 +31,9 @@
 
 基于事件的通信主要是指智能合约的程序结构
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2018/work-in-progress-integrating-low-power-iot-devices-to/  
+

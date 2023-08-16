@@ -56,3 +56,9 @@ C -->|Yes| D[Block Released For Further Validation]
 短短四页的论文仅仅是阐述了一个基本思想，作者可能只是想占一个坑，但这一思路却非常值得借鉴。至于异常检测的逻辑是定义在智能合约中还是定义在共识代码中，就有待之后仔细分析了。
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/securing-majority-attack-in-blockchain-using-machine-learning/  
+

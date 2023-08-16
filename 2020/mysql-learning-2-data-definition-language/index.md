@@ -125,3 +125,9 @@ USE <数据库名>
 | 列名     | 否               | 否    |
 | 列别名   | 否               | 否    |
 | 变量名   | 否               | 是    |
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/mysql-learning-2-data-definition-language/  
+

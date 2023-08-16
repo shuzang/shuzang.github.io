@@ -631,3 +631,9 @@ func main() {
 ```
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/golang-syntax-10-goroutine-and-channel/  
+

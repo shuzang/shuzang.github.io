@@ -119,3 +119,9 @@ win10 预览版用户直接就可以使用，是系统自带的，非预览版�
 
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/efficient-use-of-win10-7-windows-terminal-and-winget/  
+

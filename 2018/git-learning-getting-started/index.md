@@ -494,3 +494,9 @@ $ git commit -m "remove hellogit.txt"
 [3] [Github Learning Lab](https://lab.github.com/)
 
 [4] [Hellogithub](https://hellogithub.com/)
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2018/git-learning-getting-started/  
+

@@ -152,3 +152,9 @@ signature script： <sig> [sig] [sig...] <redeemscript>
 
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2018/bitcoin-fundamentals/  
+

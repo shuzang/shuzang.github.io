@@ -28,3 +28,9 @@
 - 押金支付要慎重，一般是一个月
 - 商量好付房租的周期，年付、季付或月付，对自己来讲，越短越好
 - 询问周围邻居，不要有太吵闹或不易相处的
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/life-skills-notes-on-renting/  
+

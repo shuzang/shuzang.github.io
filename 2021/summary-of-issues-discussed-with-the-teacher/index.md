@@ -479,3 +479,9 @@ IoT节点不一定是实际的传感器
 2. 输入数据集（即输入文件中的多列数据），可以试着用机器学习的方式做一下检测，看一下结果，老师推荐了 weka;
 
 3. 恶意行为添加了对特殊策略条目的处理，实验时如何把它加入输入数据集；
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2021/summary-of-issues-discussed-with-the-teacher/  
+

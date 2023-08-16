@@ -58,3 +58,9 @@
 - 床上用品统一风格：现在的虽然不好看，但是挺舒服
 - 空调清理：没有梯子，够不着
 - 门窗、床、柜子、桌椅用贴纸统一风格，太费事了，不想动
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2021/dormitory-renovation-plan/  
+

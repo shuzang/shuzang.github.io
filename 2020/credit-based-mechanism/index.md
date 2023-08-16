@@ -371,3 +371,9 @@ T_{blocked} = 2^{Cr_i}, if \ \text{频繁请求恶意行为} \ or \ \text{(信�
 $$
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/credit-based-mechanism/  
+

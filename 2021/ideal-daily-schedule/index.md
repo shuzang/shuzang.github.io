@@ -38,3 +38,9 @@
 23:00 - 23:30，洗漱，准备睡觉
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2021/ideal-daily-schedule/  
+

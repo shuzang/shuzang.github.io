@@ -256,3 +256,9 @@ EMOM循环训练是时间效率最高的循环训练模式，使用EMOM循环训
 周一、四进行方案A，周二、五进行方案B，周三、六、日休息。进行深蹲跳时，若一次性无法完成规定次数，可以分多次完成。
 
 <img src="https://res.weread.qq.com/wrepub/epub_908135_173" style="zoom:50%;" />
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2021/five-types-of-fat-loss-exercises/  
+

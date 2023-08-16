@@ -331,3 +331,9 @@ func max(a, b int) int {
 
 
 https://www.cnblogs.com/mfrank/p/10533701.html
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/algorithm-knapsack-problem/  
+

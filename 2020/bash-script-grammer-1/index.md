@@ -508,3 +508,9 @@ $ read-single
 Enter one or more values > a b c d
 REPLY = 'a b c d'
 ```
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/bash-script-grammer-1/  
+

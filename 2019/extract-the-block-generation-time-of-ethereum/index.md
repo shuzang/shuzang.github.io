@@ -158,3 +158,9 @@ Number,Timestamp,Block generation time
 [Kaggle-Beyond Queries: Exploring the BigQuery API](<https://www.kaggle.com/sohier/beyond-queries-exploring-the-bigquery-api>)
 
 [Kaggle-Visualizing average Ether costs over time](<https://www.kaggle.com/mrisdal/visualizing-average-ether-costs-over-time/data>)
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/extract-the-block-generation-time-of-ethereum/  
+

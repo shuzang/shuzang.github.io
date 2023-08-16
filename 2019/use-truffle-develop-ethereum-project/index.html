@@ -1,24 +1,22 @@
-<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>以太坊开发8-Truffle框架安装使用 - Shuzang's Blog</title><meta name=Description content="书藏的个人博客，记录学习，记录生活"><meta property="og:title" content="以太坊开发8-Truffle框架安装使用"><meta property="og:description" content="Truffle和Ganache的安装使用 1. 安装Truffle 在Ubuntu18.04 下安装运行，要求Node.js版本高于v8.9.4 1 2 3"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.github.io/2019/use-truffle-develop-ethereum-project/"><meta property="og:image" content="https://shuzang.github.io/logo.png"><meta property="article:published_time" content="2019-11-06T00:00:00+00:00"><meta property="article:modified_time" content="2020-11-11T00:00:00+00:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://shuzang.github.io/logo.png"><meta name=twitter:title content="以太坊开发8-Truffle框架安装使用"><meta name=twitter:description content="Truffle和Ganache的安装使用 1. 安装Truffle 在Ubuntu18.04 下安装运行，要求Node.js版本高于v8.9.4 1 2 3"><meta name=application-name content="Shuzang's Blog"><meta name=apple-mobile-web-app-title content="Shuzang's Blog"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://shuzang.github.io/2019/use-truffle-develop-ethereum-project/><link rel=prev href=https://shuzang.github.io/2019/summary-of-problems-and-optimization-considerations-about-prototype-system/><link rel=next href=https://shuzang.github.io/2019/medicine-and-health-3-first-aid-knowledge/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.13.0/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"以太坊开发8-Truffle框架安装使用","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/2019\/use-truffle-develop-ethereum-project\/"},"image":["https:\/\/shuzang.github.io\/images\/Apple-Devices-Preview.png"],"genre":"posts","keywords":"区块链","wordcount":2776,"url":"https:\/\/shuzang.github.io\/2019\/use-truffle-develop-ethereum-project\/","datePublished":"2019-11-06T00:00:00+00:00","dateModified":"2020-11-11T00:00:00+00:00","license":"This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher":{"@type":"Organization","name":"xxxx","logo":"https:\/\/shuzang.github.io\/images\/avatar.png"},"author":{"@type":"Person","name":"Shuzang"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':('auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark'))&&document.body.setAttribute('theme','dark');</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Shuzang's Blog">Shuzang's Blog</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/posts/>所有文章 </a><a class=menu-item href=/tags/>标签 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/about/>关于 </a><a class=menu-item href=https://github.com/shuzang title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item language" title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
-<select class=language-select id=language-select-desktop onchange="location=this.value;"><option value=/2019/use-truffle-develop-ethereum-project/ selected>简体中文</option></select>
-</a><span class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
-<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span></span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Shuzang's Blog">Shuzang's Blog</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
-<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a><a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a><span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/posts/>所有文章</a><a class=menu-item href=/tags/>标签</a><a class=menu-item href=/categories/>分类</a><a class=menu-item href=/about/>关于</a><a class=menu-item href=https://github.com/shuzang title=GitHub rel="noopener noreffer" target=_blank><i class="fab fa-github fa-fw"></i></a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
-<i class="fas fa-adjust fa-fw"></i></a><a href=javascript:void(0); class=menu-item title=选择语言>简体中文<i class="fas fa-chevron-right fa-fw"></i>
-<select class=language-select onchange="location=this.value;"><option value=/2019/use-truffle-develop-ethereum-project/ selected>简体中文</option></select></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">以太坊开发8-Truffle框架安装使用</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw"></i>Shuzang</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/><i class="far fa-folder fa-fw"></i>研究生的区块链学习之路</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2019-11-06>2019-11-06</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 2776 字&nbsp;
-<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 6 分钟&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>目录</span>
-<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><ul><li><a href=#1-安装truffle>1. 安装Truffle</a></li><li><a href=#2-创建项目>2. 创建项目</a></li><li><a href=#3-编译>3. 编译</a></li><li><a href=#4-测试>4. 测试</a></li><li><a href=#5-与ganache关联使用>5. 与Ganache关联使用</a></li><li><a href=#6-与合约交互>6. 与合约交互</a></li><li><a href=#7-使用truffle-develop>7. 使用truffle develop</a></li><li><a href=#8-truffle-develop和truffle-console>8. Truffle develop和Truffle console</a></li><li><a href=#参考>参考</a></li></ul></li></ul></nav></div></div><div class=content id=content><p>Truffle和Ganache的安装使用</p><h3 id=1-安装truffle>1. 安装Truffle</h3><p>在Ubuntu18.04 下安装运行，要求Node.js版本高于v8.9.4</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+<!doctype html><html itemscope itemtype=http://schema.org/WebPage lang=zh-CN><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,maximum-scale=2"><meta name=robots content="noodp"><title>以太坊开发8-Truffle框架安装使用 - Shuzang's Blog</title><meta name=author content="Shuzang"><meta name=author-link content><meta name=description content="Truffle和Ganache的安装使用 1. 安装Truffle 在Ubuntu18.04 下安装运行，要求Node.js版本高于v8.9.4 1 2 3"><meta name=keywords content="区块链"><meta itemprop=name content="以太坊开发8-Truffle框架安装使用"><meta itemprop=description content="Truffle和Ganache的安装使用 1. 安装Truffle 在Ubuntu18.04 下安装运行，要求Node.js版本高于v8.9.4 1 2 3"><meta itemprop=datePublished content="2019-11-06T00:00:00+00:00"><meta itemprop=dateModified content="2020-11-11T00:00:00+00:00"><meta itemprop=wordCount content="2776"><meta itemprop=image content="https://shuzang.github.io/logo.png"><meta itemprop=keywords content="区块链,"><meta property="og:title" content="以太坊开发8-Truffle框架安装使用"><meta property="og:description" content="Truffle和Ganache的安装使用 1. 安装Truffle 在Ubuntu18.04 下安装运行，要求Node.js版本高于v8.9.4 1 2 3"><meta property="og:type" content="article"><meta property="og:url" content="https://shuzang.github.io/2019/use-truffle-develop-ethereum-project/"><meta property="og:image" content="https://shuzang.github.io/logo.png"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-11-06T00:00:00+00:00"><meta property="article:modified_time" content="2020-11-11T00:00:00+00:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://shuzang.github.io/logo.png"><meta name=twitter:title content="以太坊开发8-Truffle框架安装使用"><meta name=twitter:description content="Truffle和Ganache的安装使用 1. 安装Truffle 在Ubuntu18.04 下安装运行，要求Node.js版本高于v8.9.4 1 2 3"><meta name=application-name content="FixIt"><meta name=apple-mobile-web-app-title content="FixIt"><meta name=theme-color data-light=#f8f8f8 data-dark=#252627 content="#f8f8f8"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=canonical href=https://shuzang.github.io/2019/use-truffle-develop-ethereum-project/><link rel=prev href=https://shuzang.github.io/2019/summary-of-problems-and-optimization-considerations-about-prototype-system/><link rel=next href=https://shuzang.github.io/2019/medicine-and-health-3-first-aid-knowledge/><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><meta name=google-site-verification content="UA-209130979-1"><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"以太坊开发8-Truffle框架安装使用","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/shuzang.github.io\/2019\/use-truffle-develop-ethereum-project\/"},"genre":"posts","keywords":"区块链","wordcount":2776,"url":"https:\/\/shuzang.github.io\/2019\/use-truffle-develop-ethereum-project\/","datePublished":"2019-11-06T00:00:00+00:00","dateModified":"2020-11-11T00:00:00+00:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"Shuzang"},"description":""}</script></head><body data-header-desktop=sticky data-header-mobile=auto><script>(window.localStorage?.getItem("theme")?localStorage.getItem("theme")==="dark":"auto"==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:"auto"==="dark")&&document.body.setAttribute("data-theme","dark")</script><div class=wrapper data-page-style=normal><header class="desktop animate__faster" id=header-desktop><div class=header-wrapper data-github-corner=right><div class=header-title><a href=/ title="Shuzang's Blog"><img loading=lazy src=/images/avatar.png srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x" sizes=auto data-title="Shuzang's Blog" data-alt="Shuzang's Blog" class=logo style="background:url(/svg/loading.min.svg)no-repeat 50%" onload='this.title=this.dataset.title,this.alt=this.dataset.alt;for(const e of["style","data-title","data-alt","onerror","onload"])this.removeAttribute(e);this.dataset.lazyloaded=""' onerror='this.title=this.dataset.title,this.alt=this.dataset.alt;for(const e of["style","data-title","data-alt","onerror","onload"])this.removeAttribute(e)'><span class=header-title-text>Shuzang's Blog</span></a><span class=header-subtitle></span></div><nav><ul class=menu><li class=menu-item><a class=menu-link href=/posts/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> Posts</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden=true></i> Categories</a></li><li class=menu-item><a class=menu-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> About</a></li><li class="menu-item delimiter"></li><li class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容…… id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fa-solid fa-search fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fa-solid fa-times-circle fa-fw" aria-hidden=true></i></a>
+<span class="search-button search-loading" id=search-loading-desktop><i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></li><li class="menu-item theme-switch" title=切换主题><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></li></ul></nav></div></header><header class="mobile animate__faster" id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Shuzang's Blog"><img loading=lazy src=/images/avatar.png srcset="/images/avatar.png, /images/avatar.png 1.5x, /images/avatar.png 2x" sizes=auto data-title=/images/avatar.png data-alt=/images/avatar.png class=logo style="background:url(/svg/loading.min.svg)no-repeat 50%" onload='this.title=this.dataset.title,this.alt=this.dataset.alt;for(const e of["style","data-title","data-alt","onerror","onload"])this.removeAttribute(e);this.dataset.lazyloaded=""' onerror='this.title=this.dataset.title,this.alt=this.dataset.alt;for(const e of["style","data-title","data-alt","onerror","onload"])this.removeAttribute(e)'><span class=header-title-text>Shuzang's Blog</span></a><span class=header-subtitle></span></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><nav><ul class=menu id=menu-mobile><li class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容…… id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fa-solid fa-search fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fa-solid fa-times-circle fa-fw" aria-hidden=true></i></a>
+<span class="search-button search-loading" id=search-loading-mobile><i class="fa-solid fa-spinner fa-fw fa-spin" aria-hidden=true></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></li><li class=menu-item><a class=menu-link href=/posts/><i class="fa-solid fa-archive fa-fw fa-sm" aria-hidden=true></i> Posts</a></li><li class=menu-item><a class=menu-link href=/categories/><i class="fa-solid fa-th fa-fw fa-sm" aria-hidden=true></i> Categories</a></li><li class=menu-item><a class=menu-link href=/tags/>Tags</a></li><li class=menu-item><a class=menu-link href=/about/><i class="fa-solid fa-tags fa-fw fa-sm" aria-hidden=true></i> About</a></li><li class="menu-item menu-system"><span class="menu-system-item theme-switch" title=切换主题><i class="fa-solid fa-adjust fa-fw" aria-hidden=true></i></span></li></ul></nav></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=container><aside class=toc id=toc-auto><h2 class=toc-title>目录&nbsp;<i class="toc-icon fa-solid fa-angle-down fa-fw" aria-hidden=true></i></h2><div class=toc-content id=toc-content-auto></div></aside><aside class=aside-custom></aside><article class="page single"><div class=header><h1 class="single-title animate__animated animate__flipInX"><span>以太坊开发8-Truffle框架安装使用</span></h1></div><div class=post-meta><div class=post-meta-line><span class=post-author><span class=author><i class="fa-solid fa-user-circle" aria-hidden=true></i>
+Shuzang</span></span>
+<span class=post-category>收录于 <a href=/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E7%9A%84%E5%8C%BA%E5%9D%97%E9%93%BE%E5%AD%A6%E4%B9%A0%E4%B9%8B%E8%B7%AF/><i class="fa-regular fa-folder fa-fw" aria-hidden=true></i> 研究生的区块链学习之路</a></span></div><div class=post-meta-line><span title="发布于 2019-11-06 00:00:00"><i class="fa-regular fa-calendar-alt fa-fw me-1" aria-hidden=true></i><time datetime=2019-11-06>2019-11-06</time></span>&nbsp;<span title="更新于 2020-11-11 00:00:00"><i class="fa-regular fa-edit fa-fw me-1" aria-hidden=true></i><time datetime=2020-11-11>2020-11-11</time></span>&nbsp;<span><i class="fa-solid fa-pencil-alt fa-fw me-1" aria-hidden=true></i>约 2776 字</span>&nbsp;<span><i class="fa-regular fa-clock fa-fw me-1" aria-hidden=true></i>预计阅读 6 分钟</span>&nbsp;</div></div><div class="details toc" id=toc-static data-kept=false><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fa-solid fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><ul><li><a href=#1-安装truffle>1. 安装Truffle</a></li><li><a href=#2-创建项目>2. 创建项目</a></li><li><a href=#3-编译>3. 编译</a></li><li><a href=#4-测试>4. 测试</a></li><li><a href=#5-与ganache关联使用>5. 与Ganache关联使用</a></li><li><a href=#6-与合约交互>6. 与合约交互</a></li><li><a href=#7-使用truffle-develop>7. 使用truffle develop</a></li><li><a href=#8-truffle-develop和truffle-console>8. Truffle develop和Truffle console</a></li><li><a href=#参考>参考</a></li></ul></li></ul></nav></div></div><div class=content id=content><p>Truffle和Ganache的安装使用</p><h3 id=1-安装truffle>1. 安装Truffle</h3><p>在Ubuntu18.04 下安装运行，要求Node.js版本高于v8.9.4</p><div class=highlight id=id-1><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo apt-get install npm
-$ sudo npm install npm@latest -g
-$ sudo npm install n -g
-$ sudo n lts
-</code></pre></td></tr></table></div></div><p>安装Truffle</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ sudo npm install -g truffle
-</code></pre></td></tr></table></div></div><h3 id=2-创建项目>2. 创建项目</h3><p>以<a href=https://www.trufflesuite.com/boxes target=_blank rel="noopener noreffer">Truffle Boxes</a>中的<a href=https://www.trufflesuite.com/boxes/metacoin target=_blank rel="noopener noreffer">MetaCoin</a>项目为例</p><p>首先为 Truffle 项目创建新目录</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ mkdir MetaCoin <span class=o>&amp;&amp;</span> <span class=nb>cd</span> MetaCoin
-</code></pre></td></tr></table></div></div><p>下载MetaCoin box</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ sudo apt-get install npm
+</span></span><span class=line><span class=cl>$ sudo npm install npm@latest -g
+</span></span><span class=line><span class=cl>$ sudo npm install n -g
+</span></span><span class=line><span class=cl>$ sudo n lts</span></span></code></pre></td></tr></table></div></div><p>安装Truffle</p><div class=highlight id=id-2><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ sudo npm install -g truffle</span></span></code></pre></td></tr></table></div></div><h3 id=2-创建项目>2. 创建项目</h3><p>以<a href=https://www.trufflesuite.com/boxes target=_blank rel="external nofollow noopener noreferrer">Truffle Boxes</a>中的<a href=https://www.trufflesuite.com/boxes/metacoin target=_blank rel="external nofollow noopener noreferrer">MetaCoin</a>项目为例</p><p>首先为 Truffle 项目创建新目录</p><div class=highlight id=id-3><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ mkdir MetaCoin <span class=o>&amp;&amp;</span> <span class=nb>cd</span> MetaCoin</span></span></code></pre></td></tr></table></div></div><p>下载MetaCoin box</p><div class=highlight id=id-4><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -32,21 +30,20 @@ $ sudo n lts
 </span><span class=lnt>12
 </span><span class=lnt>13
 </span><span class=lnt>14
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ truffle unbox metacoin
-
-✔ Preparing to download
-✔ Downloading
-✔ Cleaning up temporary files
-✔ Setting up box
-
-Unbox successful. Sweet!
-
-Commands:
-
-  Compile contracts: truffle compile
-  Migrate contracts: truffle migrate
-  Test contracts:    truffle <span class=nb>test</span>
-</code></pre></td></tr></table></div></div><p>下载完成后的项目目录如下</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ truffle unbox metacoin
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>✔ Preparing to download
+</span></span><span class=line><span class=cl>✔ Downloading
+</span></span><span class=line><span class=cl>✔ Cleaning up temporary files
+</span></span><span class=line><span class=cl>✔ Setting up box
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Unbox successful. Sweet!
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Commands:
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  Compile contracts: truffle compile
+</span></span><span class=line><span class=cl>  Migrate contracts: truffle migrate
+</span></span><span class=line><span class=cl>  Test contracts:    truffle test</span></span></code></pre></td></tr></table></div></div><p>下载完成后的项目目录如下</p><div class=highlight id=id-5><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -62,23 +59,22 @@ Commands:
 </span><span class=lnt>14
 </span><span class=lnt>15
 </span><span class=lnt>16
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ tree
-.
-├── contracts
-│   ├── ConvertLib.sol
-│   ├── MetaCoin.sol
-│   └── Migrations.sol
-├── LICENSE
-├── migrations
-│   ├── 1_initial_migration.js
-│   └── 2_deploy_contracts.js
-├── <span class=nb>test</span>
-│   ├── metacoin.js
-│   └── TestMetaCoin.sol
-└── truffle-config.js
-
-<span class=m>3</span> directories, <span class=m>9</span> files
-</code></pre></td></tr></table></div></div><p><code>contracts</code>是solidity编写的合约存放的文件夹</p><ul><li><code>MetaCoin.sol</code>创建了一种简单的代币，它引用了<code>ConvertLib.sol</code>合约</li><li><code>Migrations.sol</code>是一个单独的合约文件，用来管理所部署合约的状态，每个Truffle项目中都有该文件，而且通常不需要更改</li></ul><p><code>migrations</code>是部署脚本存放的文件夹</p><ul><li><code>1_initial_migration.js</code>是<code>Migrations.sol</code>合约的迁移和部署脚本</li><li><code>2_deploy_contracts.js</code>是<code>MetaCoin.sol</code>合约的迁移和部署脚本</li><li>所有的脚本按文件名开头的序号按顺序执行</li></ul><p><code>test</code>是测试应用和合约的测试文件存放的目录</p><ul><li><code>TestMetaCoin.sol</code>是合约形式的测试文件</li><li><code>metacoin.js</code>是JS脚本形式的测试文件</li><li>两者的功能是一样的，只是使用了不同方式做测试</li></ul><p><code>truffle.js</code>是Truffle的配置文件，用于配置网络信息和其它项目相关的信息</p><h3 id=3-编译>3. 编译</h3><p>编译合约</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ tree
+</span></span><span class=line><span class=cl>.
+</span></span><span class=line><span class=cl>├── contracts
+</span></span><span class=line><span class=cl>│   ├── ConvertLib.sol
+</span></span><span class=line><span class=cl>│   ├── MetaCoin.sol
+</span></span><span class=line><span class=cl>│   └── Migrations.sol
+</span></span><span class=line><span class=cl>├── LICENSE
+</span></span><span class=line><span class=cl>├── migrations
+</span></span><span class=line><span class=cl>│   ├── 1_initial_migration.js
+</span></span><span class=line><span class=cl>│   └── 2_deploy_contracts.js
+</span></span><span class=line><span class=cl>├── <span class=nb>test</span>
+</span></span><span class=line><span class=cl>│   ├── metacoin.js
+</span></span><span class=line><span class=cl>│   └── TestMetaCoin.sol
+</span></span><span class=line><span class=cl>└── truffle-config.js
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=m>3</span> directories, <span class=m>9</span> files</span></span></code></pre></td></tr></table></div></div><p><code>contracts</code>是solidity编写的合约存放的文件夹</p><ul><li><code>MetaCoin.sol</code>创建了一种简单的代币，它引用了<code>ConvertLib.sol</code>合约</li><li><code>Migrations.sol</code>是一个单独的合约文件，用来管理所部署合约的状态，每个Truffle项目中都有该文件，而且通常不需要更改</li></ul><p><code>migrations</code>是部署脚本存放的文件夹</p><ul><li><code>1_initial_migration.js</code>是<code>Migrations.sol</code>合约的迁移和部署脚本</li><li><code>2_deploy_contracts.js</code>是<code>MetaCoin.sol</code>合约的迁移和部署脚本</li><li>所有的脚本按文件名开头的序号按顺序执行</li></ul><p><code>test</code>是测试应用和合约的测试文件存放的目录</p><ul><li><code>TestMetaCoin.sol</code>是合约形式的测试文件</li><li><code>metacoin.js</code>是JS脚本形式的测试文件</li><li>两者的功能是一样的，只是使用了不同方式做测试</li></ul><p><code>truffle.js</code>是Truffle的配置文件，用于配置网络信息和其它项目相关的信息</p><h3 id=3-编译>3. 编译</h3><p>编译合约</p><div class=highlight id=id-6><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -88,17 +84,16 @@ Commands:
 </span><span class=lnt> 8
 </span><span class=lnt> 9
 </span><span class=lnt>10
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ truffle compile
-
-Compiling your contracts...
-<span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span>
-&gt; Compiling ./contracts/ConvertLib.sol
-&gt; Compiling ./contracts/MetaCoin.sol
-&gt; Compiling ./contracts/Migrations.sol
-&gt; Artifacts written to /home/shuzang/MetaCoin/build/contracts
-&gt; Compiled successfully using:
-   - solc: 0.5.8+commit.23d335f2.Emscripten.clang
-</code></pre></td></tr></table></div></div><h3 id=4-测试>4. 测试</h3><p>在终端中运行合约形式的测试文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ truffle compile
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Compiling your contracts...
+</span></span><span class=line><span class=cl><span class=o>===========================</span>
+</span></span><span class=line><span class=cl>&gt; Compiling ./contracts/ConvertLib.sol
+</span></span><span class=line><span class=cl>&gt; Compiling ./contracts/MetaCoin.sol
+</span></span><span class=line><span class=cl>&gt; Compiling ./contracts/Migrations.sol
+</span></span><span class=line><span class=cl>&gt; Artifacts written to /home/shuzang/MetaCoin/build/contracts
+</span></span><span class=line><span class=cl>&gt; Compiled successfully using:
+</span></span><span class=line><span class=cl>   - solc: 0.5.8+commit.23d335f2.Emscripten.clang</span></span></code></pre></td></tr></table></div></div><h3 id=4-测试>4. 测试</h3><p>在终端中运行合约形式的测试文件</p><div class=highlight id=id-7><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -115,24 +110,23 @@ Compiling your contracts...
 </span><span class=lnt>15
 </span><span class=lnt>16
 </span><span class=lnt>17
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ truffle <span class=nb>test</span> ./test/TestMetaCoin.sol
-
-Compiling your contracts...
-<span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span>
-&gt; Compiling ./contracts/ConvertLib.sol
-&gt; Compiling ./contracts/MetaCoin.sol
-&gt; Compiling ./contracts/Migrations.sol
-&gt; Compiling ./test/TestMetaCoin.sol
-
-
-
-  TestMetaCoin
-    ✓ testInitialBalanceUsingDeployedContract <span class=o>(</span>83ms<span class=o>)</span>
-    ✓ testInitialBalanceWithNewMetaCoin <span class=o>(</span>76ms<span class=o>)</span>
-
-
-  <span class=m>2</span> passing <span class=o>(</span>6s<span class=o>)</span>
-</code></pre></td></tr></table></div></div><p>在终端中运行JS脚本形式的测试文件</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ truffle <span class=nb>test</span> ./test/TestMetaCoin.sol
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Compiling your contracts...
+</span></span><span class=line><span class=cl><span class=o>===========================</span>
+</span></span><span class=line><span class=cl>&gt; Compiling ./contracts/ConvertLib.sol
+</span></span><span class=line><span class=cl>&gt; Compiling ./contracts/MetaCoin.sol
+</span></span><span class=line><span class=cl>&gt; Compiling ./contracts/Migrations.sol
+</span></span><span class=line><span class=cl>&gt; Compiling ./test/TestMetaCoin.sol
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  TestMetaCoin
+</span></span><span class=line><span class=cl>    ✓ testInitialBalanceUsingDeployedContract <span class=o>(</span>83ms<span class=o>)</span>
+</span></span><span class=line><span class=cl>    ✓ testInitialBalanceWithNewMetaCoin <span class=o>(</span>76ms<span class=o>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=m>2</span> passing <span class=o>(</span>6s<span class=o>)</span></span></span></code></pre></td></tr></table></div></div><p>在终端中运行JS脚本形式的测试文件</p><div class=highlight id=id-8><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -149,24 +143,23 @@ Compiling your contracts...
 </span><span class=lnt>15
 </span><span class=lnt>16
 </span><span class=lnt>17
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ truffle <span class=nb>test</span> ./test/metacoin.js
-
-Compiling your contracts...
-<span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span>
-&gt; Compiling ./contracts/ConvertLib.sol
-&gt; Compiling ./contracts/MetaCoin.sol
-&gt; Compiling ./contracts/Migrations.sol
-
-
-
-  Contract: MetaCoin
-    ✓ should put <span class=m>10000</span> MetaCoin in the first account
-    ✓ should call a <span class=k>function</span> that depends on a linked library <span class=o>(</span>60ms<span class=o>)</span>
-    ✓ should send coin correctly <span class=o>(</span>154ms<span class=o>)</span>
-
-
-  <span class=m>3</span> passing <span class=o>(</span>271ms<span class=o>)</span>
-</code></pre></td></tr></table></div></div><h3 id=5-与ganache关联使用>5. 与Ganache关联使用</h3><p>为了部署合约我们需要连到区块链，Truffle提供这方面的功能，但是目前我们使用Ganache来模拟区块链做部署测试</p><p>首先在<a href=https://github.com/trufflesuite/ganache/releases target=_blank rel="noopener noreffer">Download</a>页面下载对应操作系统的Ganache软件包，Linux系统下该软件包点击即可启动，无需安装</p><p>然后编辑<code>truffle-config.js</code>文件，替换为如下内容，这些配置参数将允许Ganache以默认参数连接</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ truffle <span class=nb>test</span> ./test/metacoin.js
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Compiling your contracts...
+</span></span><span class=line><span class=cl><span class=o>===========================</span>
+</span></span><span class=line><span class=cl>&gt; Compiling ./contracts/ConvertLib.sol
+</span></span><span class=line><span class=cl>&gt; Compiling ./contracts/MetaCoin.sol
+</span></span><span class=line><span class=cl>&gt; Compiling ./contracts/Migrations.sol
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  Contract: MetaCoin
+</span></span><span class=line><span class=cl>    ✓ should put <span class=m>10000</span> MetaCoin in the first account
+</span></span><span class=line><span class=cl>    ✓ should call a <span class=k>function</span> that depends on a linked library <span class=o>(</span>60ms<span class=o>)</span>
+</span></span><span class=line><span class=cl>    ✓ should send coin correctly <span class=o>(</span>154ms<span class=o>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=m>3</span> passing <span class=o>(</span>271ms<span class=o>)</span></span></span></code></pre></td></tr></table></div></div><h3 id=5-与ganache关联使用>5. 与Ganache关联使用</h3><p>为了部署合约我们需要连到区块链，Truffle提供这方面的功能，但是目前我们使用Ganache来模拟区块链做部署测试</p><p>首先在<a href=https://github.com/trufflesuite/ganache/releases target=_blank rel="external nofollow noopener noreferrer">Download</a>页面下载对应操作系统的Ganache软件包，Linux系统下该软件包点击即可启动，无需安装</p><p>然后编辑<code>truffle-config.js</code>文件，替换为如下内容，这些配置参数将允许Ganache以默认参数连接</p><div class=highlight id=id-9><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -175,16 +168,15 @@ Compiling your contracts...
 </span><span class=lnt>7
 </span><span class=lnt>8
 </span><span class=lnt>9
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=nx>module</span><span class=p>.</span><span class=nx>exports</span> <span class=o>=</span> <span class=p>{</span>
-  <span class=nx>networks</span><span class=o>:</span> <span class=p>{</span>
-    <span class=nx>development</span><span class=o>:</span> <span class=p>{</span>
-      <span class=nx>host</span><span class=o>:</span> <span class=s2>&#34;127.0.0.1&#34;</span><span class=p>,</span>
-      <span class=nx>port</span><span class=o>:</span> <span class=mi>7545</span><span class=p>,</span>
-      <span class=nx>network_id</span><span class=o>:</span> <span class=s2>&#34;*&#34;</span>
-    <span class=p>}</span>
-  <span class=p>}</span>
-<span class=p>}</span><span class=p>;</span>
-</code></pre></td></tr></table></div></div><p>保存并关闭文件，打开Ganache</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://www.trufflesuite.com/img/docs/ganache/quickstart/accounts.png data-srcset="https://www.trufflesuite.com/img/docs/ganache/quickstart/accounts.png, https://www.trufflesuite.com/img/docs/ganache/quickstart/accounts.png 1.5x, https://www.trufflesuite.com/img/docs/ganache/quickstart/accounts.png 2x" data-sizes=auto alt=https://www.trufflesuite.com/img/docs/ganache/quickstart/accounts.png title=Ganache></p><p>执行迁移命令，将合约部署到Ganache创建的区块链</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>module</span><span class=p>.</span><span class=nx>exports</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>networks</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>development</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>host</span><span class=o>:</span> <span class=s2>&#34;127.0.0.1&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nx>port</span><span class=o>:</span> <span class=mi>7545</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=nx>network_id</span><span class=o>:</span> <span class=s2>&#34;*&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>};</span></span></span></code></pre></td></tr></table></div></div><p>保存并关闭文件，打开Ganache</p><p><img loading=lazy src=https://www.trufflesuite.com/img/docs/ganache/quickstart/accounts.png srcset="https://www.trufflesuite.com/img/docs/ganache/quickstart/accounts.png, https://www.trufflesuite.com/img/docs/ganache/quickstart/accounts.png 1.5x, https://www.trufflesuite.com/img/docs/ganache/quickstart/accounts.png 2x" sizes=auto data-title=Ganache data-alt=Ganache style="background:url(/svg/loading.min.svg)no-repeat 50%" onload='this.title=this.dataset.title,this.alt=this.dataset.alt;for(const e of["style","data-title","data-alt","onerror","onload"])this.removeAttribute(e);this.dataset.lazyloaded=""' onerror='this.title=this.dataset.title,this.alt=this.dataset.alt;for(const e of["style","data-title","data-alt","onerror","onload"])this.removeAttribute(e)'></p><p>执行迁移命令，将合约部署到Ganache创建的区块链</p><div class=highlight id=id-10><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -270,113 +262,108 @@ Compiling your contracts...
 </span><span class=lnt>84
 </span><span class=lnt>85
 </span><span class=lnt>86
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ truffle migrate
-
-Compiling your contracts...
-<span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span>
-&gt; Everything is up to date, there is nothing to compile.
-
-
-
-Starting migrations...
-<span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span>
-&gt; Network name:    <span class=s1>&#39;development&#39;</span>
-&gt; Network id:      <span class=m>5777</span>
-&gt; Block gas limit: 0x6691b7
-
-
-1_initial_migration.js
-<span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span>
-
-   Deploying <span class=s1>&#39;Migrations&#39;</span>
-   ----------------------
-   &gt; transaction hash:    0x58a9f65031802c841183fc99a46d647870a99de5a717e27791f7ea13e9ccd47c
-   &gt; Blocks: <span class=m>0</span>            Seconds: <span class=m>0</span>
-   &gt; contract address:    0x03A587F157700FBdDff5195F22Eeab32c030424e
-   &gt; block number:        <span class=m>1</span>
-   &gt; block timestamp:     <span class=m>1573040253</span>
-   &gt; account:             0x6c9d11d64bDC226d3d143b228d1019cB187c962d
-   &gt; balance:             99.99477214
-   &gt; gas used:            <span class=m>261393</span>
-   &gt; gas price:           <span class=m>20</span> gwei
-   &gt; value sent:          <span class=m>0</span> ETH
-   &gt; total cost:          0.00522786 ETH
-
-
-   &gt; Saving migration to chain.
-   &gt; Saving artifacts
-   -------------------------------------
-   &gt; Total cost:          0.00522786 ETH
-
-
-2_deploy_contracts.js
-<span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span>
-
-   Deploying <span class=s1>&#39;ConvertLib&#39;</span>
-   ----------------------
-   &gt; transaction hash:    0x1685578d778d127196ce3b7d915b44e6433049f2a250e4384f836161cba8b75c
-   &gt; Blocks: <span class=m>0</span>            Seconds: <span class=m>0</span>
-   &gt; contract address:    0x741be30b7E4F5160026A0882f15763E623Fbcd66
-   &gt; block number:        <span class=m>3</span>
-   &gt; block timestamp:     <span class=m>1573040254</span>
-   &gt; account:             0x6c9d11d64bDC226d3d143b228d1019cB187c962d
-   &gt; balance:             99.99185922
-   &gt; gas used:            <span class=m>103623</span>
-   &gt; gas price:           <span class=m>20</span> gwei
-   &gt; value sent:          <span class=m>0</span> ETH
-   &gt; total cost:          0.00207246 ETH
-
-
-   Linking
-   -------
-   * Contract: MetaCoin &lt;--&gt; Library: ConvertLib <span class=o>(</span>at address: 0x741be30b7E4F5160026A0882f15763E623Fbcd66<span class=o>)</span>
-
-   Deploying <span class=s1>&#39;MetaCoin&#39;</span>
-   --------------------
-   &gt; transaction hash:    0x8800cc6fecf73a8d247fad63d5e739cccbd5e9f8dd350bbb709eb258396b96e4
-   &gt; Blocks: <span class=m>0</span>            Seconds: <span class=m>0</span>
-   &gt; contract address:    0xBfc5d417c17fc15E837aCA46063F6b5403ad469e
-   &gt; block number:        <span class=m>4</span>
-   &gt; block timestamp:     <span class=m>1573040254</span>
-   &gt; account:             0x6c9d11d64bDC226d3d143b228d1019cB187c962d
-   &gt; balance:             99.98509224
-   &gt; gas used:            <span class=m>338349</span>
-   &gt; gas price:           <span class=m>20</span> gwei
-   &gt; value sent:          <span class=m>0</span> ETH
-   &gt; total cost:          0.00676698 ETH
-
-
-   &gt; Saving migration to chain.
-   &gt; Saving artifacts
-   -------------------------------------
-   &gt; Total cost:          0.00883944 ETH
-
-
-<span class=nv>Summary</span>
-<span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span>
-&gt; Total deployments:   <span class=m>3</span>
-&gt; Final cost:          0.0140673 ETH
-</code></pre></td></tr></table></div></div><p>输出记录中显示了交易ID，部署的合约地址，总花费，实时状态等诸多信息。</p><p>在Ganache中点击<code>Transactions</code>按钮可以看到执行的交易的详细信息。</p><p>之后，使用Truffle控制台还可以和合约交互</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ truffle migrate
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Compiling your contracts...
+</span></span><span class=line><span class=cl><span class=o>===========================</span>
+</span></span><span class=line><span class=cl>&gt; Everything is up to date, there is nothing to compile.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Starting migrations...
+</span></span><span class=line><span class=cl><span class=o>======================</span>
+</span></span><span class=line><span class=cl>&gt; Network name:    <span class=s1>&#39;development&#39;</span>
+</span></span><span class=line><span class=cl>&gt; Network id:      <span class=m>5777</span>
+</span></span><span class=line><span class=cl>&gt; Block gas limit: 0x6691b7
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>1_initial_migration.js
+</span></span><span class=line><span class=cl><span class=o>======================</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   Deploying <span class=s1>&#39;Migrations&#39;</span>
+</span></span><span class=line><span class=cl>   ----------------------
+</span></span><span class=line><span class=cl>   &gt; transaction hash:    0x58a9f65031802c841183fc99a46d647870a99de5a717e27791f7ea13e9ccd47c
+</span></span><span class=line><span class=cl>   &gt; Blocks: <span class=m>0</span>            Seconds: <span class=m>0</span>
+</span></span><span class=line><span class=cl>   &gt; contract address:    0x03A587F157700FBdDff5195F22Eeab32c030424e
+</span></span><span class=line><span class=cl>   &gt; block number:        <span class=m>1</span>
+</span></span><span class=line><span class=cl>   &gt; block timestamp:     <span class=m>1573040253</span>
+</span></span><span class=line><span class=cl>   &gt; account:             0x6c9d11d64bDC226d3d143b228d1019cB187c962d
+</span></span><span class=line><span class=cl>   &gt; balance:             99.99477214
+</span></span><span class=line><span class=cl>   &gt; gas used:            <span class=m>261393</span>
+</span></span><span class=line><span class=cl>   &gt; gas price:           <span class=m>20</span> gwei
+</span></span><span class=line><span class=cl>   &gt; value sent:          <span class=m>0</span> ETH
+</span></span><span class=line><span class=cl>   &gt; total cost:          0.00522786 ETH
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   &gt; Saving migration to chain.
+</span></span><span class=line><span class=cl>   &gt; Saving artifacts
+</span></span><span class=line><span class=cl>   -------------------------------------
+</span></span><span class=line><span class=cl>   &gt; Total cost:          0.00522786 ETH
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>2_deploy_contracts.js
+</span></span><span class=line><span class=cl><span class=o>=====================</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   Deploying <span class=s1>&#39;ConvertLib&#39;</span>
+</span></span><span class=line><span class=cl>   ----------------------
+</span></span><span class=line><span class=cl>   &gt; transaction hash:    0x1685578d778d127196ce3b7d915b44e6433049f2a250e4384f836161cba8b75c
+</span></span><span class=line><span class=cl>   &gt; Blocks: <span class=m>0</span>            Seconds: <span class=m>0</span>
+</span></span><span class=line><span class=cl>   &gt; contract address:    0x741be30b7E4F5160026A0882f15763E623Fbcd66
+</span></span><span class=line><span class=cl>   &gt; block number:        <span class=m>3</span>
+</span></span><span class=line><span class=cl>   &gt; block timestamp:     <span class=m>1573040254</span>
+</span></span><span class=line><span class=cl>   &gt; account:             0x6c9d11d64bDC226d3d143b228d1019cB187c962d
+</span></span><span class=line><span class=cl>   &gt; balance:             99.99185922
+</span></span><span class=line><span class=cl>   &gt; gas used:            <span class=m>103623</span>
+</span></span><span class=line><span class=cl>   &gt; gas price:           <span class=m>20</span> gwei
+</span></span><span class=line><span class=cl>   &gt; value sent:          <span class=m>0</span> ETH
+</span></span><span class=line><span class=cl>   &gt; total cost:          0.00207246 ETH
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   Linking
+</span></span><span class=line><span class=cl>   -------
+</span></span><span class=line><span class=cl>   * Contract: MetaCoin &lt;--&gt; Library: ConvertLib <span class=o>(</span>at address: 0x741be30b7E4F5160026A0882f15763E623Fbcd66<span class=o>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   Deploying <span class=s1>&#39;MetaCoin&#39;</span>
+</span></span><span class=line><span class=cl>   --------------------
+</span></span><span class=line><span class=cl>   &gt; transaction hash:    0x8800cc6fecf73a8d247fad63d5e739cccbd5e9f8dd350bbb709eb258396b96e4
+</span></span><span class=line><span class=cl>   &gt; Blocks: <span class=m>0</span>            Seconds: <span class=m>0</span>
+</span></span><span class=line><span class=cl>   &gt; contract address:    0xBfc5d417c17fc15E837aCA46063F6b5403ad469e
+</span></span><span class=line><span class=cl>   &gt; block number:        <span class=m>4</span>
+</span></span><span class=line><span class=cl>   &gt; block timestamp:     <span class=m>1573040254</span>
+</span></span><span class=line><span class=cl>   &gt; account:             0x6c9d11d64bDC226d3d143b228d1019cB187c962d
+</span></span><span class=line><span class=cl>   &gt; balance:             99.98509224
+</span></span><span class=line><span class=cl>   &gt; gas used:            <span class=m>338349</span>
+</span></span><span class=line><span class=cl>   &gt; gas price:           <span class=m>20</span> gwei
+</span></span><span class=line><span class=cl>   &gt; value sent:          <span class=m>0</span> ETH
+</span></span><span class=line><span class=cl>   &gt; total cost:          0.00676698 ETH
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   &gt; Saving migration to chain.
+</span></span><span class=line><span class=cl>   &gt; Saving artifacts
+</span></span><span class=line><span class=cl>   -------------------------------------
+</span></span><span class=line><span class=cl>   &gt; Total cost:          0.00883944 ETH
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>Summary</span>
+</span></span><span class=line><span class=cl><span class=o>=======</span>
+</span></span><span class=line><span class=cl>&gt; Total deployments:   <span class=m>3</span>
+</span></span><span class=line><span class=cl>&gt; Final cost:          0.0140673 ETH</span></span></code></pre></td></tr></table></div></div><p>输出记录中显示了交易ID，部署的合约地址，总花费，实时状态等诸多信息。</p><p>在Ganache中点击<code>Transactions</code>按钮可以看到执行的交易的详细信息。</p><p>之后，使用Truffle控制台还可以和合约交互</p><div class=highlight id=id-11><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ truffle console
-truffle<span class=o>(</span>development<span class=o>)</span>&gt;
-</code></pre></td></tr></table></div></div><h3 id=6-与合约交互>6. 与合约交互</h3><p>truffle v5以后，控制台支持使用<code>async</code>或<code>await</code>函数，以下是一些合约交互的示例</p><p>首先部署合约并获取账户地址</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ truffle console
+</span></span><span class=line><span class=cl>truffle<span class=o>(</span>development<span class=o>)</span>&gt;</span></span></code></pre></td></tr></table></div></div><h3 id=6-与合约交互>6. 与合约交互</h3><p>truffle v5以后，控制台支持使用<code>async</code>或<code>await</code>函数，以下是一些合约交互的示例</p><p>首先部署合约并获取账户地址</p><div class=highlight id=id-12><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=nx>truffle</span><span class=p>(</span><span class=nx>development</span><span class=p>)</span><span class=o>&gt;</span> <span class=kd>let</span> <span class=nx>instance</span> <span class=o>=</span> <span class=nx>await</span> <span class=nx>MetaCoin</span><span class=p>.</span><span class=nx>deployed</span><span class=p>(</span><span class=p>)</span>
-<span class=nx>truffle</span><span class=p>(</span><span class=nx>development</span><span class=p>)</span><span class=o>&gt;</span> <span class=kd>let</span> <span class=nx>accounts</span> <span class=o>=</span> <span class=nx>await</span> <span class=nx>web3</span><span class=p>.</span><span class=nx>eth</span><span class=p>.</span><span class=nx>getAccounts</span><span class=p>(</span><span class=p>)</span>
-</code></pre></td></tr></table></div></div><p>检查部署合约的账户余额</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>truffle</span><span class=p>(</span><span class=nx>development</span><span class=p>)</span><span class=o>&gt;</span> <span class=kd>let</span> <span class=nx>instance</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>MetaCoin</span><span class=p>.</span><span class=nx>deployed</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=nx>truffle</span><span class=p>(</span><span class=nx>development</span><span class=p>)</span><span class=o>&gt;</span> <span class=kd>let</span> <span class=nx>accounts</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>web3</span><span class=p>.</span><span class=nx>eth</span><span class=p>.</span><span class=nx>getAccounts</span><span class=p>()</span></span></span></code></pre></td></tr></table></div></div><p>检查部署合约的账户余额</p><div class=highlight id=id-13><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=nx>truffle</span><span class=p>(</span><span class=nx>development</span><span class=p>)</span><span class=o>&gt;</span> <span class=kd>let</span> <span class=nx>balance</span> <span class=o>=</span> <span class=nx>await</span> <span class=nx>instance</span><span class=p>.</span><span class=nx>getBalance</span><span class=p>(</span><span class=nx>accounts</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=p>)</span>
-<span class=nx>truffle</span><span class=p>(</span><span class=nx>development</span><span class=p>)</span><span class=o>&gt;</span> <span class=nx>balance</span><span class=p>.</span><span class=nx>toNumber</span><span class=p>(</span><span class=p>)</span>
-<span class=mi>10000</span>
-</code></pre></td></tr></table></div></div><p>检查余额值多少ether，合约定义1单位余额值2ether</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>truffle</span><span class=p>(</span><span class=nx>development</span><span class=p>)</span><span class=o>&gt;</span> <span class=kd>let</span> <span class=nx>balance</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>instance</span><span class=p>.</span><span class=nx>getBalance</span><span class=p>(</span><span class=nx>accounts</span><span class=p>[</span><span class=mi>0</span><span class=p>])</span>
+</span></span><span class=line><span class=cl><span class=nx>truffle</span><span class=p>(</span><span class=nx>development</span><span class=p>)</span><span class=o>&gt;</span> <span class=nx>balance</span><span class=p>.</span><span class=nx>toNumber</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=mi>10000</span></span></span></code></pre></td></tr></table></div></div><p>检查余额值多少ether，合约定义1单位余额值2ether</p><div class=highlight id=id-14><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=nx>truffle</span><span class=p>(</span><span class=nx>development</span><span class=p>)</span><span class=o>&gt;</span> <span class=kd>let</span> <span class=nx>ether</span> <span class=o>=</span> <span class=nx>await</span> <span class=nx>instance</span><span class=p>.</span><span class=nx>getBalanceInEth</span><span class=p>(</span><span class=nx>accounts</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=p>)</span>
-<span class=nx>truffle</span><span class=p>(</span><span class=nx>development</span><span class=p>)</span><span class=o>&gt;</span> <span class=nx>ether</span><span class=p>.</span><span class=nx>toNumber</span><span class=p>(</span><span class=p>)</span>
-<span class=mi>20000</span>
-</code></pre></td></tr></table></div></div><p>向另一个账户发送货币</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>truffle</span><span class=p>(</span><span class=nx>development</span><span class=p>)</span><span class=o>&gt;</span> <span class=kd>let</span> <span class=nx>ether</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>instance</span><span class=p>.</span><span class=nx>getBalanceInEth</span><span class=p>(</span><span class=nx>accounts</span><span class=p>[</span><span class=mi>0</span><span class=p>])</span>
+</span></span><span class=line><span class=cl><span class=nx>truffle</span><span class=p>(</span><span class=nx>development</span><span class=p>)</span><span class=o>&gt;</span> <span class=nx>ether</span><span class=p>.</span><span class=nx>toNumber</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=mi>20000</span></span></span></code></pre></td></tr></table></div></div><p>向另一个账户发送货币</p><div class=highlight id=id-15><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -414,57 +401,54 @@ truffle<span class=o>(</span>development<span class=o>)</span>&gt;
 </span><span class=lnt>36
 </span><span class=lnt>37
 </span><span class=lnt>38
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=nx>truffle</span><span class=p>(</span><span class=nx>development</span><span class=p>)</span><span class=o>&gt;</span> <span class=nx>instance</span><span class=p>.</span><span class=nx>sendCoin</span><span class=p>(</span><span class=nx>accounts</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span><span class=p>,</span> <span class=mi>500</span><span class=p>)</span>
-<span class=p>{</span> <span class=nx>tx</span><span class=o>:</span>
-   <span class=s1>&#39;0xf392891ee029f6bc6f970b9e5ae91cfd2e92baa4e141f0a94f6c6fbf5942c8a8&#39;</span><span class=p>,</span>
-  <span class=nx>receipt</span><span class=o>:</span>
-   <span class=p>{</span> <span class=nx>transactionHash</span><span class=o>:</span>
-      <span class=s1>&#39;0xf392891ee029f6bc6f970b9e5ae91cfd2e92baa4e141f0a94f6c6fbf5942c8a8&#39;</span><span class=p>,</span>
-     <span class=nx>transactionIndex</span><span class=o>:</span> <span class=mi>0</span><span class=p>,</span>
-     <span class=nx>blockHash</span><span class=o>:</span>
-      <span class=s1>&#39;0x14d49b375d485ae98860383d3483174995f019f349e9fdf5fd1d669be35a4791&#39;</span><span class=p>,</span>
-     <span class=nx>blockNumber</span><span class=o>:</span> <span class=mi>6</span><span class=p>,</span>
-     <span class=nx>from</span><span class=o>:</span> <span class=s1>&#39;0x6c9d11d64bdc226d3d143b228d1019cb187c962d&#39;</span><span class=p>,</span>
-     <span class=nx>to</span><span class=o>:</span> <span class=s1>&#39;0xbfc5d417c17fc15e837aca46063f6b5403ad469e&#39;</span><span class=p>,</span>
-     <span class=nx>gasUsed</span><span class=o>:</span> <span class=mi>51072</span><span class=p>,</span>
-     <span class=nx>cumulativeGasUsed</span><span class=o>:</span> <span class=mi>51072</span><span class=p>,</span>
-     <span class=nx>contractAddress</span><span class=o>:</span> <span class=kc>null</span><span class=p>,</span>
-     <span class=nx>logs</span><span class=o>:</span> <span class=p>[</span> <span class=p>[</span><span class=nb>Object</span><span class=p>]</span> <span class=p>]</span><span class=p>,</span>
-     <span class=nx>status</span><span class=o>:</span> <span class=kc>true</span><span class=p>,</span>
-     <span class=nx>logsBloom</span><span class=o>:</span>
-      <span class=s1>&#39;0x00008000000000000000000000000000000000000000000400000000000000000400000010000000000000000000000000000000000002000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000010000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000800000000000&#39;</span><span class=p>,</span>
-     <span class=nx>v</span><span class=o>:</span> <span class=s1>&#39;0x1b&#39;</span><span class=p>,</span>
-     <span class=nx>r</span><span class=o>:</span>
-      <span class=s1>&#39;0x6ad89e5e88194468c9d8f82891c7839b9c4d92ee01bd689ce080e35e99e74d1d&#39;</span><span class=p>,</span>
-     <span class=nx>s</span><span class=o>:</span>
-      <span class=s1>&#39;0x77f2bc1452799a94cfaec2a9400f85393794ff96b285447a3407371b2d991978&#39;</span><span class=p>,</span>
-     <span class=nx>rawLogs</span><span class=o>:</span> <span class=p>[</span> <span class=p>[</span><span class=nb>Object</span><span class=p>]</span> <span class=p>]</span> <span class=p>}</span><span class=p>,</span>
-  <span class=nx>logs</span><span class=o>:</span>
-   <span class=p>[</span> <span class=p>{</span> <span class=nx>logIndex</span><span class=o>:</span> <span class=mi>0</span><span class=p>,</span>
-       <span class=nx>transactionIndex</span><span class=o>:</span> <span class=mi>0</span><span class=p>,</span>
-       <span class=nx>transactionHash</span><span class=o>:</span>
-        <span class=s1>&#39;0xf392891ee029f6bc6f970b9e5ae91cfd2e92baa4e141f0a94f6c6fbf5942c8a8&#39;</span><span class=p>,</span>
-       <span class=nx>blockHash</span><span class=o>:</span>
-        <span class=s1>&#39;0x14d49b375d485ae98860383d3483174995f019f349e9fdf5fd1d669be35a4791&#39;</span><span class=p>,</span>
-       <span class=nx>blockNumber</span><span class=o>:</span> <span class=mi>6</span><span class=p>,</span>
-       <span class=nx>address</span><span class=o>:</span> <span class=s1>&#39;0xBfc5d417c17fc15E837aCA46063F6b5403ad469e&#39;</span><span class=p>,</span>
-       <span class=nx>type</span><span class=o>:</span> <span class=s1>&#39;mined&#39;</span><span class=p>,</span>
-       <span class=nx>id</span><span class=o>:</span> <span class=s1>&#39;log_c14235e4&#39;</span><span class=p>,</span>
-       <span class=nx>event</span><span class=o>:</span> <span class=s1>&#39;Transfer&#39;</span><span class=p>,</span>
-       <span class=nx>args</span><span class=o>:</span> <span class=p>[</span><span class=nx>Result</span><span class=p>]</span> <span class=p>}</span> <span class=p>]</span> <span class=p>}</span>
-</code></pre></td></tr></table></div></div><p>检查接收账户的余额</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>truffle</span><span class=p>(</span><span class=nx>development</span><span class=p>)</span><span class=o>&gt;</span> <span class=nx>instance</span><span class=p>.</span><span class=nx>sendCoin</span><span class=p>(</span><span class=nx>accounts</span><span class=p>[</span><span class=mi>1</span><span class=p>],</span> <span class=mi>500</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>{</span> <span class=nx>tx</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>   <span class=s1>&#39;0xf392891ee029f6bc6f970b9e5ae91cfd2e92baa4e141f0a94f6c6fbf5942c8a8&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=nx>receipt</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>   <span class=p>{</span> <span class=nx>transactionHash</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>      <span class=s1>&#39;0xf392891ee029f6bc6f970b9e5ae91cfd2e92baa4e141f0a94f6c6fbf5942c8a8&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>     <span class=nx>transactionIndex</span><span class=o>:</span> <span class=mi>0</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>     <span class=nx>blockHash</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>      <span class=s1>&#39;0x14d49b375d485ae98860383d3483174995f019f349e9fdf5fd1d669be35a4791&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>     <span class=nx>blockNumber</span><span class=o>:</span> <span class=mi>6</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>     <span class=nx>from</span><span class=o>:</span> <span class=s1>&#39;0x6c9d11d64bdc226d3d143b228d1019cb187c962d&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>     <span class=nx>to</span><span class=o>:</span> <span class=s1>&#39;0xbfc5d417c17fc15e837aca46063f6b5403ad469e&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>     <span class=nx>gasUsed</span><span class=o>:</span> <span class=mi>51072</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>     <span class=nx>cumulativeGasUsed</span><span class=o>:</span> <span class=mi>51072</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>     <span class=nx>contractAddress</span><span class=o>:</span> <span class=kc>null</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>     <span class=nx>logs</span><span class=o>:</span> <span class=p>[</span> <span class=p>[</span><span class=nb>Object</span><span class=p>]</span> <span class=p>],</span>
+</span></span><span class=line><span class=cl>     <span class=nx>status</span><span class=o>:</span> <span class=kc>true</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>     <span class=nx>logsBloom</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>      <span class=s1>&#39;0x00008000000000000000000000000000000000000000000400000000000000000400000010000000000000000000000000000000000002000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000010000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000100000000000800000000000&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>     <span class=nx>v</span><span class=o>:</span> <span class=s1>&#39;0x1b&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>     <span class=nx>r</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>      <span class=s1>&#39;0x6ad89e5e88194468c9d8f82891c7839b9c4d92ee01bd689ce080e35e99e74d1d&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>     <span class=nx>s</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>      <span class=s1>&#39;0x77f2bc1452799a94cfaec2a9400f85393794ff96b285447a3407371b2d991978&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>     <span class=nx>rawLogs</span><span class=o>:</span> <span class=p>[</span> <span class=p>[</span><span class=nb>Object</span><span class=p>]</span> <span class=p>]</span> <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=nx>logs</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>   <span class=p>[</span> <span class=p>{</span> <span class=nx>logIndex</span><span class=o>:</span> <span class=mi>0</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>       <span class=nx>transactionIndex</span><span class=o>:</span> <span class=mi>0</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>       <span class=nx>transactionHash</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>        <span class=s1>&#39;0xf392891ee029f6bc6f970b9e5ae91cfd2e92baa4e141f0a94f6c6fbf5942c8a8&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>       <span class=nx>blockHash</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>        <span class=s1>&#39;0x14d49b375d485ae98860383d3483174995f019f349e9fdf5fd1d669be35a4791&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>       <span class=nx>blockNumber</span><span class=o>:</span> <span class=mi>6</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>       <span class=nx>address</span><span class=o>:</span> <span class=s1>&#39;0xBfc5d417c17fc15E837aCA46063F6b5403ad469e&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>       <span class=nx>type</span><span class=o>:</span> <span class=s1>&#39;mined&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>       <span class=nx>id</span><span class=o>:</span> <span class=s1>&#39;log_c14235e4&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>       <span class=nx>event</span><span class=o>:</span> <span class=s1>&#39;Transfer&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>       <span class=nx>args</span><span class=o>:</span> <span class=p>[</span><span class=nx>Result</span><span class=p>]</span> <span class=p>}</span> <span class=p>]</span> <span class=p>}</span></span></span></code></pre></td></tr></table></div></div><p>检查接收账户的余额</p><div class=highlight id=id-16><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=nx>truffle</span><span class=p>(</span><span class=nx>development</span><span class=p>)</span><span class=o>&gt;</span> <span class=kd>let</span> <span class=nx>received</span> <span class=o>=</span> <span class=nx>await</span> <span class=nx>instance</span><span class=p>.</span><span class=nx>getBalance</span><span class=p>(</span><span class=nx>accounts</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span><span class=p>)</span>
-<span class=nx>truffle</span><span class=p>(</span><span class=nx>development</span><span class=p>)</span><span class=o>&gt;</span> <span class=nx>received</span><span class=p>.</span><span class=nx>toNumber</span><span class=p>(</span><span class=p>)</span>
-<span class=mi>500</span>
-</code></pre></td></tr></table></div></div><p>检查发送账户的余额</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>truffle</span><span class=p>(</span><span class=nx>development</span><span class=p>)</span><span class=o>&gt;</span> <span class=kd>let</span> <span class=nx>received</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>instance</span><span class=p>.</span><span class=nx>getBalance</span><span class=p>(</span><span class=nx>accounts</span><span class=p>[</span><span class=mi>1</span><span class=p>])</span>
+</span></span><span class=line><span class=cl><span class=nx>truffle</span><span class=p>(</span><span class=nx>development</span><span class=p>)</span><span class=o>&gt;</span> <span class=nx>received</span><span class=p>.</span><span class=nx>toNumber</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=mi>500</span></span></span></code></pre></td></tr></table></div></div><p>检查发送账户的余额</p><div class=highlight id=id-17><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-js data-lang=js><span class=nx>truffle</span><span class=p>(</span><span class=nx>development</span><span class=p>)</span><span class=o>&gt;</span> <span class=kd>let</span> <span class=nx>newBalance</span> <span class=o>=</span> <span class=nx>await</span> <span class=nx>instance</span><span class=p>.</span><span class=nx>getBalance</span><span class=p>(</span><span class=nx>accounts</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span><span class=p>)</span>
-<span class=nx>truffle</span><span class=p>(</span><span class=nx>development</span><span class=p>)</span><span class=o>&gt;</span> <span class=nx>newBalance</span><span class=p>.</span><span class=nx>toNumber</span><span class=p>(</span><span class=p>)</span>
-<span class=mi>9500</span>
-</code></pre></td></tr></table></div></div><h3 id=7-使用truffle-develop>7. 使用truffle develop</h3><p>之前部署合约使用了Ganache，也可以使用truffle develop。这一工具是Truffle内置的测试用私链，运行在本地。</p><p>运行truffle develop</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=nx>truffle</span><span class=p>(</span><span class=nx>development</span><span class=p>)</span><span class=o>&gt;</span> <span class=kd>let</span> <span class=nx>newBalance</span> <span class=o>=</span> <span class=kr>await</span> <span class=nx>instance</span><span class=p>.</span><span class=nx>getBalance</span><span class=p>(</span><span class=nx>accounts</span><span class=p>[</span><span class=mi>0</span><span class=p>])</span>
+</span></span><span class=line><span class=cl><span class=nx>truffle</span><span class=p>(</span><span class=nx>development</span><span class=p>)</span><span class=o>&gt;</span> <span class=nx>newBalance</span><span class=p>.</span><span class=nx>toNumber</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=mi>9500</span></span></span></code></pre></td></tr></table></div></div><h3 id=7-使用truffle-develop>7. 使用truffle develop</h3><p>之前部署合约使用了Ganache，也可以使用truffle develop。这一工具是Truffle内置的测试用私链，运行在本地。</p><p>运行truffle develop</p><div class=highlight id=id-18><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -497,40 +481,39 @@ truffle<span class=o>(</span>development<span class=o>)</span>&gt;
 </span><span class=lnt>31
 </span><span class=lnt>32
 </span><span class=lnt>33
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>$ truffle develop
-Truffle Develop started at http://127.0.0.1:9545/
-
-Accounts:
-<span class=o>(</span>0<span class=o>)</span> 0xfc166345efd307d6c22bde2cc8f4e4e345c49495
-<span class=o>(</span>1<span class=o>)</span> 0x7b06844a7accc66d34294557d98224c39c496c81
-<span class=o>(</span>2<span class=o>)</span> 0x49bb2bd5e7506708b1c458d0b6331916180c091b
-<span class=o>(</span>3<span class=o>)</span> 0x6ee54be55b95845c3c00cf1fb34cff053b619f44
-<span class=o>(</span>4<span class=o>)</span> 0xeb259672501d8a16c954d09a8fdf84291d67cad2
-<span class=o>(</span>5<span class=o>)</span> 0xb924f911ae293488043f6cc1d534654213db498f
-<span class=o>(</span>6<span class=o>)</span> 0x02ce17094c74a5062ac6a2cd432a4948b7adba26
-<span class=o>(</span>7<span class=o>)</span> 0x2e8e85efcefb3e96f09f2ca4d3d4342ef88a0b2c
-<span class=o>(</span>8<span class=o>)</span> 0xd773abd9401ac8973cfcf5d8957bde6121347a92
-<span class=o>(</span>9<span class=o>)</span> 0x0fcbde05930c09ecac70f9eeddb92d8b7ddec845
-
-Private Keys:
-<span class=o>(</span>0<span class=o>)</span> 328523fee9c143c97a93d27c2ef67a37e57143591e584bcbbdc6de71a0f92d8e
-<span class=o>(</span>1<span class=o>)</span> 640e66ab0c0b9e775b32d5dfc00d71decc6c96006d71d6729abe336f88ef3c57
-<span class=o>(</span>2<span class=o>)</span> c819551e120e1de0785f4476f7221d9d656a3b7c0e0fbce1de4eef986b2384bc
-<span class=o>(</span>3<span class=o>)</span> 648892c4e7896ab4c1d26242ecda4de7f39a46cd2822451557c2910ce7b4be7f
-<span class=o>(</span>4<span class=o>)</span> 8902380d9dd0dd8d6d97e59c694944a95829776db1dcb61406baec815649cb03
-<span class=o>(</span>5<span class=o>)</span> f7d2341f7fbcde003d92e1a8ff3d3972fae00aff6a7568595e7bef03490efde9
-<span class=o>(</span>6<span class=o>)</span> e4d11c8069bfaa777f666817d2d5f6b30a33dd75fb960b6e95abfd368286ef37
-<span class=o>(</span>7<span class=o>)</span> 7af6c87f895b9c2a661748138a3bee82aff36439bcb43346f0285aa9dfb5aa04
-<span class=o>(</span>8<span class=o>)</span> c810feb901d3bbeb57c9fadeba4e9da6bb61d61f1512fdabf5b0363264dd6336
-<span class=o>(</span>9<span class=o>)</span> eb21927033d555614606e545e176c9584d8d673db404b70cc8fa4124cbee5438
-
-Mnemonic: merry wrong fruit carry rifle phrase catalog describe mail traffic rate act
-
-⚠️  Important ⚠️  : This mnemonic was created <span class=k>for</span> you by Truffle. It is not secure.
-Ensure you <span class=k>do</span> not use it on production blockchains, or <span class=k>else</span> you risk losing funds.
-
-truffle<span class=o>(</span>develop<span class=o>)</span>&gt; 
-</code></pre></td></tr></table></div></div><p>以上显示了生成的十个账户和它们的私钥，可用于之后与区块链的交互。</p><p>在出现的<code>truffle(develop)></code>提示符下，可以省略<code>truffle</code>前缀而执行truffle的相关命令，依次执行编译和迁移命令</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ truffle develop
+</span></span><span class=line><span class=cl>Truffle Develop started at http://127.0.0.1:9545/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Accounts:
+</span></span><span class=line><span class=cl><span class=o>(</span>0<span class=o>)</span> 0xfc166345efd307d6c22bde2cc8f4e4e345c49495
+</span></span><span class=line><span class=cl><span class=o>(</span>1<span class=o>)</span> 0x7b06844a7accc66d34294557d98224c39c496c81
+</span></span><span class=line><span class=cl><span class=o>(</span>2<span class=o>)</span> 0x49bb2bd5e7506708b1c458d0b6331916180c091b
+</span></span><span class=line><span class=cl><span class=o>(</span>3<span class=o>)</span> 0x6ee54be55b95845c3c00cf1fb34cff053b619f44
+</span></span><span class=line><span class=cl><span class=o>(</span>4<span class=o>)</span> 0xeb259672501d8a16c954d09a8fdf84291d67cad2
+</span></span><span class=line><span class=cl><span class=o>(</span>5<span class=o>)</span> 0xb924f911ae293488043f6cc1d534654213db498f
+</span></span><span class=line><span class=cl><span class=o>(</span>6<span class=o>)</span> 0x02ce17094c74a5062ac6a2cd432a4948b7adba26
+</span></span><span class=line><span class=cl><span class=o>(</span>7<span class=o>)</span> 0x2e8e85efcefb3e96f09f2ca4d3d4342ef88a0b2c
+</span></span><span class=line><span class=cl><span class=o>(</span>8<span class=o>)</span> 0xd773abd9401ac8973cfcf5d8957bde6121347a92
+</span></span><span class=line><span class=cl><span class=o>(</span>9<span class=o>)</span> 0x0fcbde05930c09ecac70f9eeddb92d8b7ddec845
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Private Keys:
+</span></span><span class=line><span class=cl><span class=o>(</span>0<span class=o>)</span> 328523fee9c143c97a93d27c2ef67a37e57143591e584bcbbdc6de71a0f92d8e
+</span></span><span class=line><span class=cl><span class=o>(</span>1<span class=o>)</span> 640e66ab0c0b9e775b32d5dfc00d71decc6c96006d71d6729abe336f88ef3c57
+</span></span><span class=line><span class=cl><span class=o>(</span>2<span class=o>)</span> c819551e120e1de0785f4476f7221d9d656a3b7c0e0fbce1de4eef986b2384bc
+</span></span><span class=line><span class=cl><span class=o>(</span>3<span class=o>)</span> 648892c4e7896ab4c1d26242ecda4de7f39a46cd2822451557c2910ce7b4be7f
+</span></span><span class=line><span class=cl><span class=o>(</span>4<span class=o>)</span> 8902380d9dd0dd8d6d97e59c694944a95829776db1dcb61406baec815649cb03
+</span></span><span class=line><span class=cl><span class=o>(</span>5<span class=o>)</span> f7d2341f7fbcde003d92e1a8ff3d3972fae00aff6a7568595e7bef03490efde9
+</span></span><span class=line><span class=cl><span class=o>(</span>6<span class=o>)</span> e4d11c8069bfaa777f666817d2d5f6b30a33dd75fb960b6e95abfd368286ef37
+</span></span><span class=line><span class=cl><span class=o>(</span>7<span class=o>)</span> 7af6c87f895b9c2a661748138a3bee82aff36439bcb43346f0285aa9dfb5aa04
+</span></span><span class=line><span class=cl><span class=o>(</span>8<span class=o>)</span> c810feb901d3bbeb57c9fadeba4e9da6bb61d61f1512fdabf5b0363264dd6336
+</span></span><span class=line><span class=cl><span class=o>(</span>9<span class=o>)</span> eb21927033d555614606e545e176c9584d8d673db404b70cc8fa4124cbee5438
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Mnemonic: merry wrong fruit carry rifle phrase catalog describe mail traffic rate act
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>⚠️  Important ⚠️  : This mnemonic was created <span class=k>for</span> you by Truffle. It is not secure.
+</span></span><span class=line><span class=cl>Ensure you <span class=k>do</span> not use it on production blockchains, or <span class=k>else</span> you risk losing funds.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>truffle<span class=o>(</span>develop<span class=o>)</span>&gt; </span></span></code></pre></td></tr></table></div></div><p>以上显示了生成的十个账户和它们的私钥，可用于之后与区块链的交互。</p><p>在出现的<code>truffle(develop)></code>提示符下，可以省略<code>truffle</code>前缀而执行truffle的相关命令，依次执行编译和迁移命令</p><div class=highlight id=id-19><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -622,97 +605,100 @@ truffle<span class=o>(</span>develop<span class=o>)</span>&gt;
 </span><span class=lnt>90
 </span><span class=lnt>91
 </span><span class=lnt>92
-</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash>truffle<span class=o>(</span>develop<span class=o>)</span>&gt; compile
-
-Compiling your contracts...
-<span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span>
-&gt; Everything is up to date, there is nothing to compile.
-
-truffle<span class=o>(</span>develop<span class=o>)</span>&gt; migrate
-
-Compiling your contracts...
-<span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span>
-&gt; Everything is up to date, there is nothing to compile.
-
-
-
-Starting migrations...
-<span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span>
-&gt; Network name:    <span class=s1>&#39;develop&#39;</span>
-&gt; Network id:      <span class=m>5777</span>
-&gt; Block gas limit: 0x6691b7
-
-
-1_initial_migration.js
-<span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span>
-
-   Replacing <span class=s1>&#39;Migrations&#39;</span>
-   ----------------------
-   &gt; transaction hash:    0x5cf8f2d9154c8c579535788af12bf153cba4dfe5f2e980b774f7a41cfe795089
-   &gt; Blocks: <span class=m>0</span>            Seconds: <span class=m>0</span>
-   &gt; contract address:    0x199Fb2370bb84f3eE5CacfF079D8478b67Cfba08
-   &gt; block number:        <span class=m>1</span>
-   &gt; block timestamp:     <span class=m>1573044347</span>
-   &gt; account:             0xFc166345EFd307D6c22bdE2cC8f4e4E345c49495
-   &gt; balance:             99.99477214
-   &gt; gas used:            <span class=m>261393</span>
-   &gt; gas price:           <span class=m>20</span> gwei
-   &gt; value sent:          <span class=m>0</span> ETH
-   &gt; total cost:          0.00522786 ETH
-
-
-   &gt; Saving migration to chain.
-   &gt; Saving artifacts
-   -------------------------------------
-   &gt; Total cost:          0.00522786 ETH
-
-
-2_deploy_contracts.js
-<span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span>
-
-   Replacing <span class=s1>&#39;ConvertLib&#39;</span>
-   ----------------------
-   &gt; transaction hash:    0x8bb95067ae3d85e519a37fa49feb0bca0b39ecd471f6626399b75c66592d5cb7
-   &gt; Blocks: <span class=m>0</span>            Seconds: <span class=m>0</span>
-   &gt; contract address:    0x3f2dF366aC8C3356516C53B14610DE53309F7CCA
-   &gt; block number:        <span class=m>3</span>
-   &gt; block timestamp:     <span class=m>1573044347</span>
-   &gt; account:             0xFc166345EFd307D6c22bdE2cC8f4e4E345c49495
-   &gt; balance:             99.99185922
-   &gt; gas used:            <span class=m>103623</span>
-   &gt; gas price:           <span class=m>20</span> gwei
-   &gt; value sent:          <span class=m>0</span> ETH
-   &gt; total cost:          0.00207246 ETH
-
-
-   Linking
-   -------
-   * Contract: MetaCoin &lt;--&gt; Library: ConvertLib <span class=o>(</span>at address: 0x3f2dF366aC8C3356516C53B14610DE53309F7CCA<span class=o>)</span>
-
-   Replacing <span class=s1>&#39;MetaCoin&#39;</span>
-   --------------------
-   &gt; transaction hash:    0x88213b424d793c5e8d04cce4f34789a38b5c318a3782da511eee51c73fc97da6
-   &gt; Blocks: <span class=m>0</span>            Seconds: <span class=m>0</span>
-   &gt; contract address:    0xBADc6F515922344a53675A348ccBEeec6A96a37a
-   &gt; block number:        <span class=m>4</span>
-   &gt; block timestamp:     <span class=m>1573044347</span>
-   &gt; account:             0xFc166345EFd307D6c22bdE2cC8f4e4E345c49495
-   &gt; balance:             99.98509224
-   &gt; gas used:            <span class=m>338349</span>
-   &gt; gas price:           <span class=m>20</span> gwei
-   &gt; value sent:          <span class=m>0</span> ETH
-   &gt; total cost:          0.00676698 ETH
-
-
-   &gt; Saving migration to chain.
-   &gt; Saving artifacts
-   -------------------------------------
-   &gt; Total cost:          0.00883944 ETH
-
-
-<span class=nv>Summary</span>
-<span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span><span class=o>=</span>
-&gt; Total deployments:   <span class=m>3</span>
-&gt; Final cost:          0.0140673 ETH
-</code></pre></td></tr></table></div></div><p>接下来同样可以在提示符下直接进行合约交互，而不必退出使用<code>truffle console</code></p><h3 id=8-truffle-develop和truffle-console>8. Truffle develop和Truffle console</h3><p>两者都可以用于测试合约交互和手动执行交易，但Truffle develop同时还可以用来发起一个区块链</p><p>两者的使用场景为</p><p>Truffle Console</p><ul><li>已经有正在使用的客户端，如Ganache或geth</li><li>想要部署到测试网络或以太坊主网络</li><li>想要使用具体的助记符或账户列表</li></ul><p>Truffle develop</p><ul><li>正在测试项目，该项目不会马上部署</li><li>不需要使用指定的账户，使用默认提供的账户足够</li><li>不想安装或管理额外的区块链客户端</li></ul><h3 id=参考>参考</h3><p>[1] Truffle Quickstart, <a href=https://www.trufflesuite.com/docs/truffle/quickstart>https://www.trufflesuite.com/docs/truffle/quickstart</a></p><p>[2] Using Truffle Develop and The Console, <a href=https://www.trufflesuite.com/docs/truffle/getting-started/using-truffle-develop-and-the-console#truffle-develop>https://www.trufflesuite.com/docs/truffle/getting-started/using-truffle-develop-and-the-console#truffle-develop</a></p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2020-11-11</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/2019/use-truffle-develop-ethereum-project/index.md target=_blank>阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://shuzang.github.io/2019/use-truffle-develop-ethereum-project/ data-title=以太坊开发8-Truffle框架安装使用 data-hashtags=区块链><i class="fab fa-twitter fa-fw"></i></a><a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://shuzang.github.io/2019/use-truffle-develop-ethereum-project/ data-hashtag=区块链><i class="fab fa-facebook-square fa-fw"></i></a><a href=javascript:void(0); title="分享到 Hacker News" data-sharer=hackernews data-url=https://shuzang.github.io/2019/use-truffle-develop-ethereum-project/ data-title=以太坊开发8-Truffle框架安装使用><i class="fab fa-hacker-news fa-fw"></i></a><a href=javascript:void(0); title="分享到 Line" data-sharer=line data-url=https://shuzang.github.io/2019/use-truffle-develop-ethereum-project/ data-title=以太坊开发8-Truffle框架安装使用><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@2.14.0/icons/line.svg></i></a><a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://shuzang.github.io/2019/use-truffle-develop-ethereum-project/ data-title=以太坊开发8-Truffle框架安装使用><i class="fab fa-weibo fa-fw"></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/>区块链</a></section><section><span><a href=javascript:void(0); onclick=window.history.back();>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/2019/summary-of-problems-and-optimization-considerations-about-prototype-system/ class=prev rel=prev title=研究记录8-原始论文问题总结及优化考虑><i class="fas fa-angle-left fa-fw"></i>研究记录8-原始论文问题总结及优化考虑</a>
-<a href=/2019/medicine-and-health-3-first-aid-knowledge/ class=next rel=next title=医药健康4-急救知识>医药健康4-急救知识<i class="fas fa-angle-right fa-fw"></i></a></div></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreffer" title="Hugo 0.63.2">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/dillonzq/LoveIt target=_blank rel="noopener noreffer" title="LoveIt 0.2.10"><i class="far fa-kiss-wink-heart fa-fw"></i>LoveIt</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2018 - 2023</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank>Shuzang</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i></a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><script type=text/javascript src=https://cdn.jsdelivr.net/npm/smooth-scroll@16.1.3/dist/smooth-scroll.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/autocomplete.js@0.37.1/dist/autocomplete.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lunr@2.3.8/lunr.min.js></script><script type=text/javascript src=/lib/lunr/lunr.stemmer.support.min.js></script><script type=text/javascript src=/lib/lunr/lunr.zh.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.2.2/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.4.0/sharer.min.js></script><script type=text/javascript>window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{},"search":{"highlightTag":"em","lunrIndexURL":"/index.json","lunrLanguageCode":"zh","lunrSegmentitURL":"/lib/lunr/lunr.segmentit.js","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"lunr"}};</script><script type=text/javascript src=/js/theme.min.js></script></body></html>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>truffle<span class=o>(</span>develop<span class=o>)</span>&gt; compile
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Compiling your contracts...
+</span></span><span class=line><span class=cl><span class=o>===========================</span>
+</span></span><span class=line><span class=cl>&gt; Everything is up to date, there is nothing to compile.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>truffle<span class=o>(</span>develop<span class=o>)</span>&gt; migrate
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Compiling your contracts...
+</span></span><span class=line><span class=cl><span class=o>===========================</span>
+</span></span><span class=line><span class=cl>&gt; Everything is up to date, there is nothing to compile.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Starting migrations...
+</span></span><span class=line><span class=cl><span class=o>======================</span>
+</span></span><span class=line><span class=cl>&gt; Network name:    <span class=s1>&#39;develop&#39;</span>
+</span></span><span class=line><span class=cl>&gt; Network id:      <span class=m>5777</span>
+</span></span><span class=line><span class=cl>&gt; Block gas limit: 0x6691b7
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>1_initial_migration.js
+</span></span><span class=line><span class=cl><span class=o>======================</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   Replacing <span class=s1>&#39;Migrations&#39;</span>
+</span></span><span class=line><span class=cl>   ----------------------
+</span></span><span class=line><span class=cl>   &gt; transaction hash:    0x5cf8f2d9154c8c579535788af12bf153cba4dfe5f2e980b774f7a41cfe795089
+</span></span><span class=line><span class=cl>   &gt; Blocks: <span class=m>0</span>            Seconds: <span class=m>0</span>
+</span></span><span class=line><span class=cl>   &gt; contract address:    0x199Fb2370bb84f3eE5CacfF079D8478b67Cfba08
+</span></span><span class=line><span class=cl>   &gt; block number:        <span class=m>1</span>
+</span></span><span class=line><span class=cl>   &gt; block timestamp:     <span class=m>1573044347</span>
+</span></span><span class=line><span class=cl>   &gt; account:             0xFc166345EFd307D6c22bdE2cC8f4e4E345c49495
+</span></span><span class=line><span class=cl>   &gt; balance:             99.99477214
+</span></span><span class=line><span class=cl>   &gt; gas used:            <span class=m>261393</span>
+</span></span><span class=line><span class=cl>   &gt; gas price:           <span class=m>20</span> gwei
+</span></span><span class=line><span class=cl>   &gt; value sent:          <span class=m>0</span> ETH
+</span></span><span class=line><span class=cl>   &gt; total cost:          0.00522786 ETH
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   &gt; Saving migration to chain.
+</span></span><span class=line><span class=cl>   &gt; Saving artifacts
+</span></span><span class=line><span class=cl>   -------------------------------------
+</span></span><span class=line><span class=cl>   &gt; Total cost:          0.00522786 ETH
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>2_deploy_contracts.js
+</span></span><span class=line><span class=cl><span class=o>=====================</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   Replacing <span class=s1>&#39;ConvertLib&#39;</span>
+</span></span><span class=line><span class=cl>   ----------------------
+</span></span><span class=line><span class=cl>   &gt; transaction hash:    0x8bb95067ae3d85e519a37fa49feb0bca0b39ecd471f6626399b75c66592d5cb7
+</span></span><span class=line><span class=cl>   &gt; Blocks: <span class=m>0</span>            Seconds: <span class=m>0</span>
+</span></span><span class=line><span class=cl>   &gt; contract address:    0x3f2dF366aC8C3356516C53B14610DE53309F7CCA
+</span></span><span class=line><span class=cl>   &gt; block number:        <span class=m>3</span>
+</span></span><span class=line><span class=cl>   &gt; block timestamp:     <span class=m>1573044347</span>
+</span></span><span class=line><span class=cl>   &gt; account:             0xFc166345EFd307D6c22bdE2cC8f4e4E345c49495
+</span></span><span class=line><span class=cl>   &gt; balance:             99.99185922
+</span></span><span class=line><span class=cl>   &gt; gas used:            <span class=m>103623</span>
+</span></span><span class=line><span class=cl>   &gt; gas price:           <span class=m>20</span> gwei
+</span></span><span class=line><span class=cl>   &gt; value sent:          <span class=m>0</span> ETH
+</span></span><span class=line><span class=cl>   &gt; total cost:          0.00207246 ETH
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   Linking
+</span></span><span class=line><span class=cl>   -------
+</span></span><span class=line><span class=cl>   * Contract: MetaCoin &lt;--&gt; Library: ConvertLib <span class=o>(</span>at address: 0x3f2dF366aC8C3356516C53B14610DE53309F7CCA<span class=o>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   Replacing <span class=s1>&#39;MetaCoin&#39;</span>
+</span></span><span class=line><span class=cl>   --------------------
+</span></span><span class=line><span class=cl>   &gt; transaction hash:    0x88213b424d793c5e8d04cce4f34789a38b5c318a3782da511eee51c73fc97da6
+</span></span><span class=line><span class=cl>   &gt; Blocks: <span class=m>0</span>            Seconds: <span class=m>0</span>
+</span></span><span class=line><span class=cl>   &gt; contract address:    0xBADc6F515922344a53675A348ccBEeec6A96a37a
+</span></span><span class=line><span class=cl>   &gt; block number:        <span class=m>4</span>
+</span></span><span class=line><span class=cl>   &gt; block timestamp:     <span class=m>1573044347</span>
+</span></span><span class=line><span class=cl>   &gt; account:             0xFc166345EFd307D6c22bdE2cC8f4e4E345c49495
+</span></span><span class=line><span class=cl>   &gt; balance:             99.98509224
+</span></span><span class=line><span class=cl>   &gt; gas used:            <span class=m>338349</span>
+</span></span><span class=line><span class=cl>   &gt; gas price:           <span class=m>20</span> gwei
+</span></span><span class=line><span class=cl>   &gt; value sent:          <span class=m>0</span> ETH
+</span></span><span class=line><span class=cl>   &gt; total cost:          0.00676698 ETH
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   &gt; Saving migration to chain.
+</span></span><span class=line><span class=cl>   &gt; Saving artifacts
+</span></span><span class=line><span class=cl>   -------------------------------------
+</span></span><span class=line><span class=cl>   &gt; Total cost:          0.00883944 ETH
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>Summary</span>
+</span></span><span class=line><span class=cl><span class=o>=======</span>
+</span></span><span class=line><span class=cl>&gt; Total deployments:   <span class=m>3</span>
+</span></span><span class=line><span class=cl>&gt; Final cost:          0.0140673 ETH</span></span></code></pre></td></tr></table></div></div><p>接下来同样可以在提示符下直接进行合约交互，而不必退出使用<code>truffle console</code></p><h3 id=8-truffle-develop和truffle-console>8. Truffle develop和Truffle console</h3><p>两者都可以用于测试合约交互和手动执行交易，但Truffle develop同时还可以用来发起一个区块链</p><p>两者的使用场景为</p><p>Truffle Console</p><ul><li>已经有正在使用的客户端，如Ganache或geth</li><li>想要部署到测试网络或以太坊主网络</li><li>想要使用具体的助记符或账户列表</li></ul><p>Truffle develop</p><ul><li>正在测试项目，该项目不会马上部署</li><li>不需要使用指定的账户，使用默认提供的账户足够</li><li>不想安装或管理额外的区块链客户端</li></ul><h3 id=参考>参考</h3><p>[1] Truffle Quickstart, <a href=https://www.trufflesuite.com/docs/truffle/quickstart target=_blank rel="external nofollow noopener noreferrer">https://www.trufflesuite.com/docs/truffle/quickstart</a></p><p>[2] Using Truffle Develop and The Console, <a href=https://www.trufflesuite.com/docs/truffle/getting-started/using-truffle-develop-and-the-console#truffle-develop target=_blank rel="external nofollow noopener noreferrer">https://www.trufflesuite.com/docs/truffle/getting-started/using-truffle-develop-and-the-console#truffle-develop</a></p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span title="更新于 2020-11-11 00:00:00">更新于 2020-11-11&nbsp;</span></div><div class=post-info-license><span><a rel="license external nofollow noopener noreferrer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div><div class=post-info-line><div class=post-info-md><span><a href=/2019/use-truffle-develop-ethereum-project/index.md title=阅读原始文档 class=link-to-markdown>阅读原始文档</a></span></div><div class=post-info-share><span><a href=javascript:void(0); title="分享到 Twitter" data-sharer=twitter data-url=https://shuzang.github.io/2019/use-truffle-develop-ethereum-project/ data-title=以太坊开发8-Truffle框架安装使用 data-hashtags=区块链><i class="fa-brands fa-twitter fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="分享到 Facebook" data-sharer=facebook data-url=https://shuzang.github.io/2019/use-truffle-develop-ethereum-project/ data-hashtag=区块链><i class="fa-brands fa-facebook-square fa-fw" aria-hidden=true></i></a>
+<a href=javascript:void(0); title="分享到 微博" data-sharer=weibo data-url=https://shuzang.github.io/2019/use-truffle-develop-ethereum-project/ data-title=以太坊开发8-Truffle框架安装使用><i class="fa-brands fa-weibo fa-fw" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fa-solid fa-tags fa-fw me-1" aria-hidden=true></i><a href=/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/ class=post-tag>区块链</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/2019/summary-of-problems-and-optimization-considerations-about-prototype-system/ class=post-nav-item rel=prev title=研究记录8-原始论文问题总结及优化考虑><i class="fa-solid fa-angle-left fa-fw" aria-hidden=true></i>研究记录8-原始论文问题总结及优化考虑</a>
+<a href=/2019/medicine-and-health-3-first-aid-knowledge/ class=post-nav-item rel=next title=医药健康4-急救知识>医药健康4-急救知识<i class="fa-solid fa-angle-right fa-fw" aria-hidden=true></i></a></div></div></article></main><footer class=footer><div class=footer-container><div class="footer-line powered">由 <a href=https://gohugo.io/ target=_blank rel="external nofollow noopener noreferrer" title="Hugo 0.117.0">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/hugo-fixit/FixIt target=_blank rel=external title="FixIt v0.2.18"><img class=fixit-icon src=/fixit.min.svg alt="FixIt logo">&nbsp;FixIt</a></div><div class="footer-line copyright" itemscope itemtype=http://schema.org/CreativeWork><i class="fa-regular fa-copyright fa-fw" aria-hidden=true></i>
+<span itemprop=copyrightYear>2018 - 2023</span><span class=author itemprop=copyrightHolder>
+<a href=/>Shuzang</a></span><span class="license footer-divider"><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div><div class="footer-line statistics"></div><div class="footer-line visitor"><span id=busuanzi_container_site_uv title=总访客数><i class="fa-regular fa-user fa-fw" aria-hidden=true></i>&nbsp;<span id=busuanzi_value_site_uv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span><span id=busuanzi_container_site_pv class=footer-divider title=总访问量><i class="fa-regular fa-eye fa-fw" aria-hidden=true></i>&nbsp;<span id=busuanzi_value_site_pv><i class="fa-solid fa-spinner fa-spin fa-fw" aria-hidden=true></i></span></span></div></div></footer></div><div class=widgets><div class="fixed-buttons animate__faster d-none"><div class="fixed-button back-to-top" role=button aria-label=回到顶部><i class="fa-solid fa-arrow-up fa-fw" aria-hidden=true></i><span class="variant-numeric d-none">0%</span></div></div><a href=https://github.com/shuzang title="View source on GitHub" target=_blank rel="external nofollow" class="github-corner right d-none-mobile"><svg viewBox="0 0 250 250" aria-hidden="true"><path d="M0 0 115 115h15l12 27L250 250V0z"/><path d="M128.3 109C113.8 99.7 119 89.6 119 89.6 122 82.7 120.5 78.6 120.5 78.6 119.2 72 123.4 76.3 123.4 76.3 127.3 80.9 125.5 87.3 125.5 87.3 122.9 97.6 130.6 101.9 134.4 103.2" fill="currentcolor" style="transform-origin:130px 106px" class="octo-arm"/><path d="M115 115C114.9 115.1 118.7 116.5 119.8 115.4l13.9-13.8C136.9 99.2 139.9 98.4 142.2 98.6 133.8 88 127.5 74.4 143.8 58 148.5 53.4 154 51.2 159.7 51 160.3 49.4 163.2 43.6 171.4 40.1 171.4 40.1 176.1 42.5 178.8 56.2 183.1 58.6 187.2 61.8 190.9 65.4 194.5 69 197.7 73.2 200.1 77.6 213.8 80.2 216.3 84.9 216.3 84.9 212.7 93.1 206.9 96 205.4 96.6 205.1 102.4 203 107.8 198.3 112.5 181.9 128.9 168.3 122.5 157.7 114.1 157.9 116.9 156.7 120.9 152.7 124.9L141 136.5C139.8 137.7 141.6 141.9 141.8 141.8z" fill="currentcolor" class="octo-body"/></svg></a><div id=mask></div><div class=reading-progress-bar style=left:0;top:0></div><noscript><div class=noscript-warning>FixIt 主题在启用 JavaScript 的情况下效果最佳。</div></noscript></div><link rel=stylesheet href=/lib/lightgallery/css/lightgallery-bundle.min.css><link rel=stylesheet href=/lib/katex/katex.min.css><link rel=stylesheet href=/lib/cookieconsent/cookieconsent.min.css><link rel=stylesheet href=/lib/pace/themes/blue/pace-theme-minimal.css><script src=/lib/autocomplete/autocomplete.min.js defer></script><script src=/lib/fuse/fuse.min.js defer></script><script src=/lib/twemoji/twemoji.min.js defer></script><script src=/lib/lightgallery/lightgallery.min.js defer></script><script src=/lib/lightgallery/plugins/thumbnail/lg-thumbnail.min.js defer></script><script src=/lib/lightgallery/plugins/zoom/lg-zoom.min.js defer></script><script src=/lib/sharer/sharer.min.js async defer></script><script src=/lib/katex/katex.min.js defer></script><script src=/lib/katex/auto-render.min.js defer></script><script src=/lib/katex/copy-tex.min.js defer></script><script src=/lib/katex/mhchem.min.js defer></script><script src=/lib/cookieconsent/cookieconsent.min.js defer></script><script src=//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js async defer></script><script src=/lib/pace/pace.min.js async defer></script><script>window.config={code:{copyTitle:"复制到剪贴板",editLockTitle:"锁定可编辑代码块",editUnLockTitle:"解锁可编辑代码块",editable:!0,maxShownLines:10},comment:{enable:!1},cookieconsent:{content:{dismiss:"同意",link:"了解更多",message:"本网站使用 Cookies 来改善您的浏览体验。"},enable:!0,palette:{button:{background:"#f0f0f0"},popup:{background:"#1aa3ff"}},theme:"edgeless"},lightgallery:!0,math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!0,left:"\\begin{equation}",right:"\\end{equation}"},{display:!0,left:"\\begin{equation*}",right:"\\end{equation*}"},{display:!0,left:"\\begin{align}",right:"\\end{align}"},{display:!0,left:"\\begin{align*}",right:"\\end{align*}"},{display:!0,left:"\\begin{alignat}",right:"\\end{alignat}"},{display:!0,left:"\\begin{alignat*}",right:"\\end{alignat*}"},{display:!0,left:"\\begin{gather}",right:"\\end{gather}"},{display:!0,left:"\\begin{CD}",right:"\\end{CD}"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},search:{distance:100,findAllMatches:!1,fuseIndexURL:"/index.json",highlightTag:"em",ignoreFieldNorm:!1,ignoreLocation:!1,isCaseSensitive:!1,location:0,maxResultLength:10,minMatchCharLength:2,noResultsFound:"没有找到结果",snippetLength:30,threshold:.3,type:"fuse",useExtendedSearch:!1},twemoji:!0}</script><script src=/js/theme.min.js defer></script></body></html>

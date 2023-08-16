@@ -141,3 +141,9 @@ keywords：blockchain; cyber-physical systems; smart contracts; ethereum; decent
 ## V. Conclusion
 
 FabRec原型提供了连接计算节点和物理设备（如Arduino / Raspberry PI和基本CNC机器）的概念验证系统，以证明在去中心化的和可互操作的网络上连接这些节点的可行性。我们使用以太坊智能合约，根据物理机器在网络另一部分记录的事件，自动启动给予Arduino系统的命令。展示了三种不同智能合约的数据模型。
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/a-case-study-for-blockchain-in-manufacturing-fabrec/  
+

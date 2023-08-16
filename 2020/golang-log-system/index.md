@@ -221,3 +221,9 @@ OpenFile几个选项说明如下
 
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/golang-log-system/  
+

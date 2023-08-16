@@ -433,3 +433,9 @@ $ mount rw -o remount /
 3. [Emdebian](http://www.emdebian.org/emdebian/flavours.html)
 
    这个就没什么了，主要是区别一下我们用到的嵌入式Debian的源码版本
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2018/migration-of-debian-system/  
+

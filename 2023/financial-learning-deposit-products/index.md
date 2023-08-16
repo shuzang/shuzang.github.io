@@ -93,3 +93,9 @@
 由于我们自身的专业水平问题，以及没有太多的精力去学习汇率波动的影响因素，最好的办法是找几家权威机构的预测结果，根据预测结构去投入，肯定是比自己瞎投收益要高的
 
 目前参考的预测网站是[Introduction - Long Forecast](https://longforecast.com/)
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2023/financial-learning-deposit-products/  
+

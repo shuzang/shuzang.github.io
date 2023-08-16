@@ -145,3 +145,9 @@ SP可能访问确定时间段内的数据或确定设备的数据。为例访问
 
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/blockchain-in-internet-of-thingschallenges-and-solutions/  
+

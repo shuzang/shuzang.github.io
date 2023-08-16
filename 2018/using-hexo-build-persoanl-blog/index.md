@@ -450,3 +450,9 @@ hexo+github模式的个人博客部署好了之后，hexo_blog文件夹中存在
 [7] [hexo的next主题个性化教程:打造炫酷网站](http://shenzekun.cn/hexo%E7%9A%84next%E4%B8%BB%E9%A2%98%E4%B8%AA%E6%80%A7%E5%8C%96%E9%85%8D%E7%BD%AE%E6%95%99%E7%A8%8B.html)
 
 [8] [关于HEXO搭建个人博客的点点滴滴](https://juejin.im/post/5a6ee00ef265da3e4b770ac1)
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2018/using-hexo-build-persoanl-blog/  
+

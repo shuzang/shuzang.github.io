@@ -190,3 +190,9 @@ T恤的变种有长袖T恤、衬衫的变种有短袖衬衫、卫衣的变种有
 
 ![](https://cdn.sspai.com/2020/12/06/062c918b4b0ff8ba66ded7e78e2a004c.png?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1)
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/fabric-and-clothing-classification/  
+

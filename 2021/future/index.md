@@ -146,3 +146,9 @@
   - [ ] 心理学知识学习
 
 - [x] 用自动化减少重复工作（理念）
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2021/future/  
+

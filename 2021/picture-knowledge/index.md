@@ -61,3 +61,9 @@ OLED（Organic Light-Emitting Diode，有机发光二极管）就是这种思路
 [2] CSDN，各种图片编码格式详解，https://blog.csdn.net/jemenchen/article/details/52658476
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2021/picture-knowledge/  
+

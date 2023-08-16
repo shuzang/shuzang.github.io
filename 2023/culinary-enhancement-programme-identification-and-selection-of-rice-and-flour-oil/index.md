@@ -112,3 +112,9 @@
 
 看透明度，透明度是反映油脂纯度的重要感官指标，纯净的油应是透明的，一般高品质的食用油在日光和灯光下肉眼观察清凉无雾状，无悬浮物，无杂质，透明度好。
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2023/culinary-enhancement-programme-identification-and-selection-of-rice-and-flour-oil/  
+

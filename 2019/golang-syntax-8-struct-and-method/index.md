@@ -648,3 +648,9 @@ Log:{1 - Yes we can!
 因此一个好的策略是创建一些小的、可复用的类型作为一个工具箱，用于组成域类型。
 
  
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/golang-syntax-8-struct-and-method/  
+

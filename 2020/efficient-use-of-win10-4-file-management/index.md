@@ -181,3 +181,9 @@ OneDrive保存的是使用频率比较高的文件，通常是需要在家里、
 - Ctrl + W：关闭当前窗口
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/efficient-use-of-win10-4-file-management/  
+

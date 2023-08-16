@@ -197,3 +197,9 @@
 我们讨论了单个工厂内使用区块链的可能性，以及为了提高工厂生产效率和安全，在共识、存储、安全和隐私的各个方面可以做的种种改进，从而为下一步的研究做准备。
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/blockchain-for-iot/iiota-smart-factory-case-study/  
+

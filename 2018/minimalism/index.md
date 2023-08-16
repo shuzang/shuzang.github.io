@@ -12,3 +12,9 @@
 
 知易行难，最终还是要知行合一才行啊。
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2018/minimalism/  
+

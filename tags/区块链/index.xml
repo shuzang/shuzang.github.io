@@ -1,6 +1,6 @@
-<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>区块链 - 标签 - Shuzang's Blog</title><link>https://shuzang.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</link><description>区块链 - 标签 - Shuzang's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>liuyang8443@qq.com (Shuzang)</managingEditor><webMaster>liuyang8443@qq.com (Shuzang)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Mon, 05 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://shuzang.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="self" type="application/rss+xml"/><item><title>区块链网址收藏</title><link>https://shuzang.github.io/2021/blockchain-url-collection/</link><pubDate>Mon, 05 Jul 2021 00:00:00 +0000</pubDate><author>作者</author><guid>https://shuzang.github.io/2021/blockchain-url-collection/</guid><description>&lt;p>区块链方向一些网址收藏，作为结尾。&lt;/p></description></item><item><title>区块链学习7-交易池底层实现</title><link>https://shuzang.github.io/2020/transaction-and-txpool/</link><pubDate>Fri, 04 Sep 2020 00:00:00 +0000</pubDate><author>作者</author><guid>https://shuzang.github.io/2020/transaction-and-txpool/</guid><description>&lt;p>起源于老师提出的一个问题：区块链是如何处理同时发起的多个请求的。想了想觉得核心是交易池机制，因此准备看一下交易池的原理和实现。&lt;/p></description></item><item><title>智能合约知识点总结</title><link>https://shuzang.github.io/2020/summary-of-smart-contract-knowledge-points/</link><pubDate>Mon, 04 May 2020 00:00:00 +0000</pubDate><author>作者</author><guid>https://shuzang.github.io/2020/summary-of-smart-contract-knowledge-points/</guid><description><![CDATA[<p>项目进行过程中知识点的总结</p>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>区块链 - 标签 - Shuzang's Blog</title><link>https://shuzang.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/</link><description>区块链 - 标签 - Shuzang's Blog</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>liuyang8443@qq.com (Shuzang)</managingEditor><webMaster>liuyang8443@qq.com (Shuzang)</webMaster><lastBuildDate>Mon, 05 Jul 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://shuzang.github.io/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/" rel="self" type="application/rss+xml"/><item><title>区块链网址收藏</title><link>https://shuzang.github.io/2021/blockchain-url-collection/</link><pubDate>Mon, 05 Jul 2021 00:00:00 +0000</pubDate><author>Shuzang</author><guid>https://shuzang.github.io/2021/blockchain-url-collection/</guid><description>&lt;p>区块链方向一些网址收藏，作为结尾。&lt;/p></description></item><item><title>区块链学习7-交易池底层实现</title><link>https://shuzang.github.io/2020/transaction-and-txpool/</link><pubDate>Fri, 04 Sep 2020 00:00:00 +0000</pubDate><author>Shuzang</author><guid>https://shuzang.github.io/2020/transaction-and-txpool/</guid><description>&lt;p>起源于老师提出的一个问题：区块链是如何处理同时发起的多个请求的。想了想觉得核心是交易池机制，因此准备看一下交易池的原理和实现。&lt;/p></description></item><item><title>智能合约知识点总结</title><link>https://shuzang.github.io/2020/summary-of-smart-contract-knowledge-points/</link><pubDate>Mon, 04 May 2020 00:00:00 +0000</pubDate><author>Shuzang</author><guid>https://shuzang.github.io/2020/summary-of-smart-contract-knowledge-points/</guid><description><![CDATA[<p>项目进行过程中知识点的总结</p>
 <h2 id="1-字符串比较">1. 字符串比较</h2>
-<p>翻译自：<a href="https://fravoll.github.io/solidity-patterns/string_equality_comparison.html" target="_blank" rel="noopener noreffer">Fravoll-String Equality Comparison</a></p>
+<p>翻译自：<a href="https://fravoll.github.io/solidity-patterns/string_equality_comparison.html"target="_blank" rel="external nofollow noopener noreferrer">Fravoll-String Equality Comparison</a></p>
 <p>比较两个给定字符串是否相等，是 Solidity 编程中最常见的一种情况，但语言本身并没有提供内置函数用于字符串比较，本文介绍两种可用方法并分析 Gas 消耗情况。</p>
 <h3 id="11-stringutils-库">1.1 StringUtils 库</h3>
 <p>第一种方法是使用 Ethereum 基金会提供的 StringUtils 库，它对每个字符进行成对比较，如果有一个字符对不匹配，则返回false。这种办法可以返回正确的结果，对于短字符串和字符不同发生在字符串前面的情况仅消耗少量 Gas。但是对于相等的字符串和长字符串，这种方法的 Gas 消耗较高，因为必须做很多比较才能得到正确结果。因此，字符串比较的两个可衡量的因素是字符串平均长度和正确率。</p>
@@ -11,9 +11,9 @@
 <li>使用 <code>keccak256()</code> 函数对两个字符串求哈希，然后比较计算得到的哈希值，从而确定是否相等。</li>
 </ol>
 <p>一个示例代码如下</p>
-<div class="highlight"><div class="chroma">
+<div class="highlight" id="id-1"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -23,17 +23,16 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-solidity" data-lang="solidity"><span class="err">#</span> <span class="err">这</span><span class="err">段</span><span class="err">代</span><span class="err">码</span><span class="err">未</span><span class="err">经</span><span class="err">安</span><span class="err">全</span><span class="err">审</span><span class="err">计</span><span class="err">，</span><span class="err">使</span><span class="err">用</span><span class="err">有</span><span class="err">风</span><span class="err">险</span>
-<span class="kd">function</span> <span class="n">hashCompareWithLengthCheck</span><span class="p">(</span><span class="kt">string</span> <span class="n">a</span><span class="p">,</span> <span class="kt">string</span> <span class="n">b</span><span class="p">)</span> <span class="kr">internal</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="kt">bytes</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="p">.</span><span class="n">length</span> <span class="o">!=</span> <span class="kt">bytes</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="p">.</span><span class="n">length</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nf">keccak256</span><span class="p">(</span><span class="n">abi</span><span class="p">.</span><span class="n">encodePacket</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="p">)</span> <span class="o">==</span> <span class="nf">keccak256</span><span class="p">(</span><span class="n">abi</span><span class="p">.</span><span class="n">encodePacket</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-solidity" data-lang="solidity"><span class="line"><span class="cl"><span class="err">#</span> <span class="err">这段代码未经安全审计，使用有风险</span>
+</span></span><span class="line"><span class="cl"><span class="kd">function</span> <span class="nf">hashCompareWithLengthCheck</span><span class="p">(</span><span class="kt">string</span> <span class="n">a</span><span class="p">,</span> <span class="kt">string</span> <span class="n">b</span><span class="p">)</span> <span class="k">internal</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">bool</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span><span class="p">(</span><span class="kt">bytes</span><span class="p">(</span><span class="n">a</span><span class="p">).</span><span class="n">length</span> <span class="o">!=</span> <span class="kt">bytes</span><span class="p">(</span><span class="n">b</span><span class="p">).</span><span class="n">length</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nb">keccak256</span><span class="p">(</span><span class="nb">abi</span><span class="p">.</span><span class="n">encodePacket</span><span class="p">(</span><span class="n">a</span><span class="p">))</span> <span class="o">==</span> <span class="nb">keccak256</span><span class="p">(</span><span class="nb">abi</span><span class="p">.</span><span class="n">encodePacket</span><span class="p">(</span><span class="n">b</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><code>abi.encodePacket(...) returns (bytes)</code> 用于对给定参数执行<a href="https://solidity-cn.readthedocs.io/zh/develop/abi-spec.html#abi-packed-mode" target="_blank" rel="noopener noreffer">紧打包编码</a>，官方文档中不推荐使用 <code>keccak256(...)</code> 直接计算哈希，而是使用 <code>keccak256(abi.encodePacked(...))</code></p>
+</div><p><code>abi.encodePacket(...) returns (bytes)</code> 用于对给定参数执行<a href="https://solidity-cn.readthedocs.io/zh/develop/abi-spec.html#abi-packed-mode"target="_blank" rel="external nofollow noopener noreferrer">紧打包编码</a>，官方文档中不推荐使用 <code>keccak256(...)</code> 直接计算哈希，而是使用 <code>keccak256(abi.encodePacked(...))</code></p>
 <h3 id="13-gas-消耗分析">1.3 Gas 消耗分析</h3>
 <p>在 Remix 编写代码测试了三种不同情况的字符串比较的 Gas 消耗</p>
 <ol>
@@ -45,82 +44,82 @@
 <table>
 <thead>
 <tr>
-<th align="left">Input A</th>
-<th align="left">Input B</th>
-<th align="right">Hash</th>
-<th align="right">Character + Length</th>
-<th align="right">Hash + Length</th>
+<th style="text-align:left">Input A</th>
+<th style="text-align:left">Input B</th>
+<th style="text-align:right">Hash</th>
+<th style="text-align:right">Character + Length</th>
+<th style="text-align:right">Hash + Length</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="left">abcdefghijklmnopqrstuvwxyz</td>
-<td align="left">abcdefghijklmnopqrstuvwxyz</td>
-<td align="right">1225</td>
-<td align="right">7062</td>
-<td align="right">1261</td>
+<td style="text-align:left">abcdefghijklmnopqrstuvwxyz</td>
+<td style="text-align:left">abcdefghijklmnopqrstuvwxyz</td>
+<td style="text-align:right">1225</td>
+<td style="text-align:right">7062</td>
+<td style="text-align:right">1261</td>
 </tr>
 <tr>
-<td align="left">abcdefghijklmnopqrstuvwxy<strong>X</strong></td>
-<td align="left">abcdefghijklmnopqrstuvwxyz</td>
-<td align="right">1225</td>
-<td align="right">7012</td>
-<td align="right">1261</td>
+<td style="text-align:left">abcdefghijklmnopqrstuvwxy<strong>X</strong></td>
+<td style="text-align:left">abcdefghijklmnopqrstuvwxyz</td>
+<td style="text-align:right">1225</td>
+<td style="text-align:right">7012</td>
+<td style="text-align:right">1261</td>
 </tr>
 <tr>
-<td align="left"><strong>X</strong>bcdefghijklmnopqrstuvwxyz</td>
-<td align="left">abcdefghijklmnopqrstuvwxyz</td>
-<td align="right">1225</td>
-<td align="right">912</td>
-<td align="right">1261</td>
+<td style="text-align:left"><strong>X</strong>bcdefghijklmnopqrstuvwxyz</td>
+<td style="text-align:left">abcdefghijklmnopqrstuvwxyz</td>
+<td style="text-align:right">1225</td>
+<td style="text-align:right">912</td>
+<td style="text-align:right">1261</td>
 </tr>
 <tr>
-<td align="left">a<strong>X</strong>cdefghijklmnopqrstuvwxyz</td>
-<td align="left">abcdefghijklmnopqrstuvwxyz</td>
-<td align="right">1225</td>
-<td align="right">1156</td>
-<td align="right">1261</td>
+<td style="text-align:left">a<strong>X</strong>cdefghijklmnopqrstuvwxyz</td>
+<td style="text-align:left">abcdefghijklmnopqrstuvwxyz</td>
+<td style="text-align:right">1225</td>
+<td style="text-align:right">1156</td>
+<td style="text-align:right">1261</td>
 </tr>
 <tr>
-<td align="left">ab<strong>X</strong>defghijklmnopqrstuvwxyz</td>
-<td align="left">abcdefghijklmnopqrstuvwxyz</td>
-<td align="right">1225</td>
-<td align="right">1400</td>
-<td align="right">1261</td>
+<td style="text-align:left">ab<strong>X</strong>defghijklmnopqrstuvwxyz</td>
+<td style="text-align:left">abcdefghijklmnopqrstuvwxyz</td>
+<td style="text-align:right">1225</td>
+<td style="text-align:right">1400</td>
+<td style="text-align:right">1261</td>
 </tr>
 <tr>
-<td align="left">abcdefghijkl</td>
-<td align="left">abcdefghijklmnopqrstuvwxyz</td>
-<td align="right">1225</td>
-<td align="right">690</td>
-<td align="right">707</td>
+<td style="text-align:left">abcdefghijkl</td>
+<td style="text-align:left">abcdefghijklmnopqrstuvwxyz</td>
+<td style="text-align:right">1225</td>
+<td style="text-align:right">690</td>
+<td style="text-align:right">707</td>
 </tr>
 <tr>
-<td align="left">a</td>
-<td align="left">a</td>
-<td align="right">1225</td>
-<td align="right">962</td>
-<td align="right">1261</td>
+<td style="text-align:left">a</td>
+<td style="text-align:left">a</td>
+<td style="text-align:right">1225</td>
+<td style="text-align:right">962</td>
+<td style="text-align:right">1261</td>
 </tr>
 <tr>
-<td align="left">ab</td>
-<td align="left">ab</td>
-<td align="right">1225</td>
-<td align="right">1156</td>
-<td align="right">1261</td>
+<td style="text-align:left">ab</td>
+<td style="text-align:left">ab</td>
+<td style="text-align:right">1225</td>
+<td style="text-align:right">1156</td>
+<td style="text-align:right">1261</td>
 </tr>
 <tr>
-<td align="left">abc</td>
-<td align="left">abc</td>
-<td align="right">1225</td>
-<td align="right">1450</td>
-<td align="right">1261</td>
+<td style="text-align:left">abc</td>
+<td style="text-align:left">abc</td>
+<td style="text-align:right">1225</td>
+<td style="text-align:right">1450</td>
+<td style="text-align:right">1261</td>
 </tr>
 </tbody>
 </table>
 <p>可以看出，哈希+字符串长度 的比较方式 Gas 消耗更加稳定，这种方式比较高效。</p>
 <h2 id="2-可见性与getter函数">2. 可见性与Getter函数</h2>
-<p>转自：<a href="https://learnblockchain.cn/docs/solidity/contracts.html#getter" target="_blank" rel="noopener noreffer">Solidity 0.6.4 中文文档</a></p>
+<p>转自：<a href="https://learnblockchain.cn/docs/solidity/contracts.html#getter"target="_blank" rel="external nofollow noopener noreferrer">Solidity 0.6.4 中文文档</a></p>
 <p>Solidity 有两种函数调用：内部调用（Internal Function Calls）和外部调用（External Function Calls）。前者指直接或递归地调用合约内部函数，不会产生实际的 EVM 调用，因此也被称为「消息嗲用」，后者指从合约外部调用合约中的函数，会产生一个 EVM 调用。</p>
 <h3 id="21-可见性">2.1 可见性</h3>
 <p>因此，函数和状态变量有四种可见性。函数可以指定为 <code>external</code>，<code>public</code>，<code>internal</code> 或 <code>private</code>，对于状态变量， 默认是 <code>internal</code> 且不能设置为 <code>external</code>。</p>
@@ -134,9 +133,9 @@
 <p>合约中的所有内容对外部观察者都是可见的。设置一些 <code>private</code> 类型只能阻止其他合约访问和修改这些信息， 但是对于区块链外的整个世界它仍然是可见的。</p>
 </blockquote>
 <p>可见性标识符的定义位置，对于状态变量来说是在类型后面，对于函数是在参数列表和返回关键字中间，如下例</p>
-<div class="highlight"><div class="chroma">
+<div class="highlight" id="id-2"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -145,19 +144,18 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-solidity" data-lang="solidity"><span class="kr">pragma solidity</span>  <span class="o">&gt;=</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">16</span> <span class="o">&lt;</span><span class="mi">0</span><span class="p">.</span><span class="mi">7</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
-
-<span class="kd">contract</span> <span class="n">C</span> <span class="p">{</span>
-    <span class="kd">function</span> <span class="n">f</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">)</span> <span class="kr">private</span> <span class="kr">pure</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="p">}</span>
-    <span class="kd">function</span> <span class="n">setData</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">)</span> <span class="kr">internal</span> <span class="p">{</span> <span class="n">data</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="p">}</span>
-    <span class="kt">uint</span> <span class="kr">public</span> <span class="n">data</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-solidity" data-lang="solidity"><span class="line"><span class="cl"><span class="k">pragma solidity</span>  <span class="o">&gt;=</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">16</span> <span class="o">&lt;</span><span class="mi">0</span><span class="p">.</span><span class="mi">7</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">contract</span> <span class="nc">C</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nf">f</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">)</span> <span class="k">private</span> <span class="k">pure</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nf">setData</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">)</span> <span class="k">internal</span> <span class="p">{</span> <span class="nb">data</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">uint</span> <span class="k">public</span> <span class="nb">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>在下面的例子中，<code>D</code> 可以调用 <code>c.getData（）</code> 来获取状态存储中 <code>data</code> 的值，但不能调用 <code>f</code> 。 合约 <code>E</code> 继承自 <code>C</code> ，因此可以调用 <code>compute</code>。</p>
-<div class="highlight"><div class="chroma">
+<div class="highlight" id="id-3"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -187,41 +185,40 @@
 </span><span class="lnt">28
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-solidity" data-lang="solidity"><span class="kr">pragma solidity</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">0</span> <span class="o">&lt;</span><span class="mi">0</span><span class="p">.</span><span class="mi">7</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
-
-<span class="kd">contract</span> <span class="n">C</span> <span class="p">{</span>
-    <span class="kt">uint</span> <span class="kr">private</span> <span class="n">data</span><span class="p">;</span>
-
-    <span class="kd">function</span> <span class="n">f</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">)</span> <span class="kr">private</span> <span class="k">returns</span><span class="p">(</span><span class="kt">uint</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="p">}</span>
-    <span class="kd">function</span> <span class="n">setData</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span> <span class="n">data</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="p">}</span>
-    <span class="kd">function</span> <span class="n">getData</span><span class="p">(</span><span class="p">)</span> <span class="kr">public</span> <span class="k">returns</span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">data</span><span class="p">;</span> <span class="p">}</span>
-    <span class="kd">function</span> <span class="n">compute</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">b</span><span class="p">)</span> <span class="kr">internal</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;</span> <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="c1">// 下面代码编译错误
-</span><span class="c1"></span><span class="kd">contract</span> <span class="n">D</span> <span class="p">{</span>
-    <span class="kd">function</span> <span class="n">readData</span><span class="p">(</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
-        <span class="n">C</span> <span class="n">c</span> <span class="o">=</span> <span class="k">new</span> <span class="n">C</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-        <span class="kt">uint</span> <span class="n">local</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">f</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 错误：成员 `f` 不可见
-</span><span class="c1"></span>        <span class="n">c</span><span class="p">.</span><span class="n">setData</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="p">;</span>
-        <span class="n">local</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">getData</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-        <span class="n">local</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">compute</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 错误：成员 `compute` 不可见
-</span><span class="c1"></span>    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">contract</span> <span class="n">E</span> <span class="kr">is</span> <span class="n">C</span> <span class="p">{</span>
-    <span class="kd">function</span> <span class="n">g</span><span class="p">(</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
-        <span class="n">C</span> <span class="n">c</span> <span class="o">=</span> <span class="k">new</span> <span class="n">C</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-        <span class="kt">uint</span> <span class="n">val</span> <span class="o">=</span> <span class="n">compute</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 访问内部成员（从继承合约访问父合约成员）
-</span><span class="c1"></span>    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-solidity" data-lang="solidity"><span class="line"><span class="cl"><span class="k">pragma solidity</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">0</span> <span class="o">&lt;</span><span class="mi">0</span><span class="p">.</span><span class="mi">7</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">contract</span> <span class="nc">C</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">uint</span> <span class="k">private</span> <span class="nb">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nf">f</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">)</span> <span class="k">private</span> <span class="k">returns</span><span class="p">(</span><span class="kt">uint</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nf">setData</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">)</span> <span class="k">public</span> <span class="p">{</span> <span class="nb">data</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nf">getData</span><span class="p">()</span> <span class="k">public</span> <span class="k">returns</span><span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nb">data</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nf">compute</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">b</span><span class="p">)</span> <span class="k">internal</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">;</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">// 下面代码编译错误
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">contract</span> <span class="nc">D</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nf">readData</span><span class="p">()</span> <span class="k">public</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">C</span> <span class="n">c</span> <span class="o">=</span> <span class="k">new</span> <span class="n">C</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">uint</span> <span class="n">local</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">f</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span> <span class="c1">// 错误：成员 `f` 不可见
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="n">c</span><span class="p">.</span><span class="n">setData</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">local</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">getData</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="n">local</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">compute</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span> <span class="c1">// 错误：成员 `compute` 不可见
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">contract</span> <span class="nc">E</span> <span class="k">is</span> <span class="n">C</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nf">g</span><span class="p">()</span> <span class="k">public</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">C</span> <span class="n">c</span> <span class="o">=</span> <span class="k">new</span> <span class="n">C</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">uint</span> <span class="n">val</span> <span class="o">=</span> <span class="n">compute</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span> <span class="c1">// 访问内部成员（从继承合约访问父合约成员）
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h3 id="22-getter-函数">2.2 Getter 函数</h3>
 <p>编译器自动为所有 <strong>public</strong> 状态变量创建 getter 函数。对于下面给出的合约，编译器会生成一个名为 <code>data</code> 的函数， 该函数没有参数，返回值是一个 <code>uint</code> 类型，即状态变量 <code>data</code> 的值。 状态变量的初始化可以在声明时完成。</p>
-<div class="highlight"><div class="chroma">
+<div class="highlight" id="id-4"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -235,24 +232,23 @@
 </span><span class="lnt">12
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-solidity" data-lang="solidity"><span class="kr">pragma solidity</span>  <span class="o">&gt;=</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">0</span> <span class="o">&lt;</span><span class="mi">0</span><span class="p">.</span><span class="mi">7</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
-
-<span class="kd">contract</span> <span class="n">C</span> <span class="p">{</span>
-    <span class="kt">uint</span> <span class="kr">public</span> <span class="n">data</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kd">contract</span> <span class="n">Caller</span> <span class="p">{</span>
-    <span class="n">C</span> <span class="n">c</span> <span class="o">=</span> <span class="k">new</span> <span class="n">C</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-    <span class="kd">function</span> <span class="n">f</span><span class="p">(</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
-        <span class="kt">uint</span> <span class="n">local</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="n">data</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-solidity" data-lang="solidity"><span class="line"><span class="cl"><span class="k">pragma solidity</span>  <span class="o">&gt;=</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">0</span> <span class="o">&lt;</span><span class="mi">0</span><span class="p">.</span><span class="mi">7</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">contract</span> <span class="nc">C</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">uint</span> <span class="k">public</span> <span class="nb">data</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">contract</span> <span class="nc">Caller</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">C</span> <span class="n">c</span> <span class="o">=</span> <span class="k">new</span> <span class="n">C</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nf">f</span><span class="p">()</span> <span class="k">public</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">uint</span> <span class="n">local</span> <span class="o">=</span> <span class="n">c</span><span class="p">.</span><span class="nb">data</span><span class="p">();</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>getter 函数具有外部（external）可见性。如果在内部访问 getter（即没有 <code>this.</code> ），它被认为一个状态变量。 如果使用外部访问（即用 <code>this.</code> ），它被认作为一个函数。</p>
-<div class="highlight"><div class="chroma">
+<div class="highlight" id="id-5"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -263,21 +259,20 @@
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-solidity" data-lang="solidity"><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">0</span> <span class="o">&lt;</span><span class="mi">0</span><span class="p">.</span><span class="mi">7</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
-
-<span class="kd">contract</span> <span class="n">C</span> <span class="p">{</span>
-    <span class="kt">uint</span> <span class="kr">public</span> <span class="n">data</span><span class="p">;</span>
-    <span class="kd">function</span> <span class="n">x</span><span class="p">(</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
-        <span class="n">data</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// 内部访问
-</span><span class="c1"></span>        <span class="kt">uint</span> <span class="n">val</span> <span class="o">=</span> <span class="nb">this</span><span class="p">.</span><span class="n">data</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="c1">// 外部访问
-</span><span class="c1"></span>    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-solidity" data-lang="solidity"><span class="line"><span class="cl"><span class="k">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">0</span> <span class="o">&lt;</span><span class="mi">0</span><span class="p">.</span><span class="mi">7</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">contract</span> <span class="nc">C</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">uint</span> <span class="k">public</span> <span class="nb">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nf">x</span><span class="p">()</span> <span class="k">public</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">data</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span> <span class="c1">// 内部访问
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">uint</span> <span class="n">val</span> <span class="o">=</span> <span class="nb">this</span><span class="p">.</span><span class="nb">data</span><span class="p">();</span> <span class="c1">// 外部访问
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>如果你有一个数组类型的 <code>public</code> 状态变量，那么你只能通过生成的 getter 函数访问数组的单个元素。 这个机制以避免返回整个数组时的高成本gas。 可以使用如 <code>data(0)</code> 用于指定参数要返回的单个元素。 如果要在一次调用中返回整个数组，则需要写一个函数，例如：</p>
-<div class="highlight"><div class="chroma">
+<div class="highlight" id="id-6"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -297,31 +292,30 @@
 </span><span class="lnt">18
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-solidity" data-lang="solidity"><span class="kr">pragma solidity</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">0</span> <span class="o">&lt;</span><span class="mi">0</span><span class="p">.</span><span class="mi">7</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
-
-<span class="kd">contract</span> <span class="n">arrayExample</span> <span class="p">{</span>
-  <span class="c1">// public state variable
-</span><span class="c1"></span>  <span class="kt">uint</span><span class="p">[</span><span class="p">]</span> <span class="kr">public</span> <span class="n">myArray</span><span class="p">;</span>
-
-  <span class="c1">// 指定生成的Getter 函数
-</span><span class="c1"></span>  <span class="cm">/*
-</span><span class="cm">  function myArray(uint i) public view returns (uint) {
-</span><span class="cm">      return myArray[i];
-</span><span class="cm">  }
-</span><span class="cm">  */</span>
-
-  <span class="c1">// 返回整个数组
-</span><span class="c1"></span>  <span class="kd">function</span> <span class="n">getArray</span><span class="p">(</span><span class="p">)</span> <span class="kr">public</span> <span class="kr">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">[</span><span class="p">]</span> <span class="kr">memory</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">return</span> <span class="n">myArray</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-solidity" data-lang="solidity"><span class="line"><span class="cl"><span class="k">pragma solidity</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">0</span> <span class="o">&lt;</span><span class="mi">0</span><span class="p">.</span><span class="mi">7</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">contract</span> <span class="nc">arrayExample</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// public state variable
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kt">uint</span><span class="p">[]</span> <span class="k">public</span> <span class="n">myArray</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// 指定生成的Getter 函数
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="cm">/*
+</span></span></span><span class="line"><span class="cl"><span class="cm">  function myArray(uint i) public view returns (uint) {
+</span></span></span><span class="line"><span class="cl"><span class="cm">      return myArray[i];
+</span></span></span><span class="line"><span class="cl"><span class="cm">  }
+</span></span></span><span class="line"><span class="cl"><span class="cm">  */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">  <span class="c1">// 返回整个数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="kd">function</span> <span class="nf">getArray</span><span class="p">()</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">[]</span> <span class="k">memory</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="n">myArray</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>现在可以使用 <code>getArray()</code> 获得整个数组，而 <code>myArray(i)</code> 是返回单个元素。</p>
 <p>下一个例子稍微复杂一些：</p>
-<div class="highlight"><div class="chroma">
+<div class="highlight" id="id-7"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -333,32 +327,30 @@
 </span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-solidity" data-lang="solidity"><span class="kr">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">0</span> <span class="o">&lt;</span><span class="mi">0</span><span class="p">.</span><span class="mi">7</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
-
-<span class="kd">contract</span> <span class="n">Complex</span> <span class="p">{</span>
-    <span class="kd">struct</span> <span class="n">Data</span> <span class="p">{</span>
-        <span class="kt">uint</span> <span class="n">a</span><span class="p">;</span>
-        <span class="kt">bytes3</span> <span class="n">b</span><span class="p">;</span>
-        <span class="kd">mapping</span> <span class="p">(</span><span class="kt">uint</span> <span class="o">=&gt;</span> <span class="kt">uint</span><span class="p">)</span> <span class="n">map</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="kd">mapping</span> <span class="p">(</span><span class="kt">uint</span> <span class="o">=&gt;</span> <span class="kd">mapping</span><span class="p">(</span><span class="kt">bool</span> <span class="o">=&gt;</span> <span class="n">Data</span><span class="p">[</span><span class="p">]</span><span class="p">)</span><span class="p">)</span> <span class="kr">public</span> <span class="n">data</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-solidity" data-lang="solidity"><span class="line"><span class="cl"><span class="k">pragma solidity</span> <span class="o">^</span><span class="mi">0</span><span class="p">.</span><span class="mi">4</span><span class="p">.</span><span class="mi">0</span> <span class="o">&lt;</span><span class="mi">0</span><span class="p">.</span><span class="mi">7</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">contract</span> <span class="nc">Complex</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">struct</span> <span class="nc">Data</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">uint</span> <span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">bytes3</span> <span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">mapping</span> <span class="p">(</span><span class="kt">uint</span> <span class="o">=&gt;</span> <span class="kt">uint</span><span class="p">)</span> <span class="n">map</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">mapping</span> <span class="p">(</span><span class="kt">uint</span> <span class="o">=&gt;</span> <span class="kd">mapping</span><span class="p">(</span><span class="kt">bool</span> <span class="o">=&gt;</span> <span class="n">Data</span><span class="p">[]))</span> <span class="k">public</span> <span class="nb">data</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>这将会生成以下形式的函数</p>
-<div class="highlight"><div class="chroma">
+<div class="highlight" id="id-8"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-solidity" data-lang="solidity"><span class="kd">function</span> <span class="n">data</span><span class="p">(</span><span class="kt">uint</span> <span class="n">arg1</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">arg2</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">arg3</span><span class="p">)</span> <span class="kr">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">,</span> <span class="kt">bytes3</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">a</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">arg1</span><span class="p">]</span><span class="p">[</span><span class="n">arg2</span><span class="p">]</span><span class="p">[</span><span class="n">arg3</span><span class="p">]</span><span class="p">.</span><span class="n">a</span><span class="p">;</span>
-    <span class="n">b</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">arg1</span><span class="p">]</span><span class="p">[</span><span class="n">arg2</span><span class="p">]</span><span class="p">[</span><span class="n">arg3</span><span class="p">]</span><span class="p">.</span><span class="n">b</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-solidity" data-lang="solidity"><span class="line"><span class="cl"><span class="kd">function</span> <span class="nf">data</span><span class="p">(</span><span class="kt">uint</span> <span class="n">arg1</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">arg2</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">arg3</span><span class="p">)</span> <span class="k">public</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">,</span> <span class="kt">bytes3</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">a</span> <span class="o">=</span> <span class="nb">data</span><span class="p">[</span><span class="n">arg1</span><span class="p">][</span><span class="n">arg2</span><span class="p">][</span><span class="n">arg3</span><span class="p">].</span><span class="n">a</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">b</span> <span class="o">=</span> <span class="nb">data</span><span class="p">[</span><span class="n">arg1</span><span class="p">][</span><span class="n">arg2</span><span class="p">][</span><span class="n">arg3</span><span class="p">].</span><span class="n">b</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>请注意，因为没有好的方法来提供映射的键，所以结构中的映射被省略。</p>
 <h2 id="3-合约间调用">3. 合约间调用</h2>
@@ -370,9 +362,9 @@
 <p>本文提到的合约调用方法的实质是抽象合约的使用。</p>
 <h3 id="31-同sol文件的智能合约调用">3.1 同sol文件的智能合约调用</h3>
 <p>下面的智能合约中，Main和Add两个合约定义在一个Main.sol文件中，可以同时编译，然后逐个部署。</p>
-<div class="highlight"><div class="chroma">
+<div class="highlight" id="id-9"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -394,27 +386,26 @@
 </span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">pragma</span> <span class="nx">solidity</span> <span class="o">^</span><span class="mf">0.5</span><span class="mf">.0</span><span class="p">;</span>
-
-
-<span class="nx">contract</span> <span class="nx">Main</span> <span class="p">{</span>
-  <span class="nx">Add</span> <span class="nx">add</span><span class="p">;</span>
-  
-  <span class="nx">constructor</span><span class="p">(</span><span class="nx">address</span> <span class="nx">_m</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
-     <span class="nx">add</span> <span class="o">=</span> <span class="nx">Add</span><span class="p">(</span><span class="nx">_m</span><span class="p">)</span><span class="p">;</span>
-  <span class="p">}</span>
-  
-  <span class="kd">function</span> <span class="nx">Addnumber</span><span class="p">(</span><span class="p">)</span> <span class="kr">public</span> <span class="nx">view</span> <span class="nx">returns</span> <span class="p">(</span><span class="nx">uint</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">add</span><span class="p">.</span><span class="nx">add5</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="nx">contract</span> <span class="nx">Add</span> <span class="p">{</span>
-  <span class="kd">function</span> <span class="nx">add5</span><span class="p">(</span><span class="nx">uint</span> <span class="nx">s</span><span class="p">)</span> <span class="kr">public</span> <span class="nx">pure</span> <span class="nx">returns</span> <span class="p">(</span><span class="nx">uint</span><span class="p">)</span><span class="p">{</span>
-      <span class="k">return</span> <span class="mi">5</span><span class="o">+</span><span class="nx">s</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">pragma</span> <span class="nx">solidity</span> <span class="o">^</span><span class="mf">0.5</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">contract</span> <span class="nx">Main</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">Add</span> <span class="nx">add</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">address</span> <span class="nx">_m</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="nx">add</span> <span class="o">=</span> <span class="nx">Add</span><span class="p">(</span><span class="nx">_m</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="kd">function</span> <span class="nx">Addnumber</span><span class="p">()</span> <span class="kr">public</span> <span class="nx">view</span> <span class="nx">returns</span> <span class="p">(</span><span class="nx">uint</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">add</span><span class="p">.</span><span class="nx">add5</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">contract</span> <span class="nx">Add</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="kd">function</span> <span class="nx">add5</span><span class="p">(</span><span class="nx">uint</span> <span class="nx">s</span><span class="p">)</span> <span class="kr">public</span> <span class="nx">pure</span> <span class="nx">returns</span> <span class="p">(</span><span class="nx">uint</span><span class="p">){</span>
+</span></span><span class="line"><span class="cl">      <span class="k">return</span> <span class="mi">5</span><span class="o">+</span><span class="nx">s</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>以使用Remix为例，点击编译按钮编译Main.sol文件，将会同时编译Main和Add两个合约。</p>
 <p></p>
@@ -427,9 +418,9 @@
 <h3 id="32-不同sol文件的智能合约调用">3.2 不同sol文件的智能合约调用</h3>
 <p>这一次我们测试不同sol文件的智能合约调用，来一个复杂一点的，两个合约分别是Add.sol和Main.sol。</p>
 <p>Add.sol使用了一个结构体来定义数值，并通过映射定义查找表来寻找这个值。文件中定义了两个函数，numRegister用来向表中添加数值，addValue用来将从表中查到的指定值+5返回。之所以用这个结构是因为我们的项目里用到了，这里来测试一下可不可行。</p>
-<div class="highlight"><div class="chroma">
+<div class="highlight" id="id-10"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -448,29 +439,28 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">pragma</span> <span class="nx">solidity</span> <span class="o">^</span><span class="mf">0.5</span><span class="mf">.0</span><span class="p">;</span>
-
-<span class="nx">contract</span> <span class="nx">Add</span> <span class="p">{</span>
-    <span class="nx">struct</span> <span class="nx">Num</span><span class="p">{</span>
-        <span class="nx">uint</span> <span class="nx">value</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="nx">mapping</span><span class="p">(</span><span class="nx">uint</span> <span class="p">=&gt;</span> <span class="nx">Num</span><span class="p">)</span> <span class="kr">public</span> <span class="nx">lookupTable</span><span class="p">;</span>
-    
-    <span class="kd">function</span> <span class="nx">numRegister</span><span class="p">(</span><span class="nx">uint</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">uint</span> <span class="nx">_value</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
-        <span class="nx">lookupTable</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span><span class="p">.</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">_value</span><span class="p">;</span>
-    <span class="p">}</span>
-    
-    <span class="kd">function</span> <span class="nx">addValue</span><span class="p">(</span><span class="nx">uint</span> <span class="nx">key</span><span class="p">)</span> <span class="kr">public</span> <span class="nx">view</span> <span class="nx">returns</span> <span class="p">(</span><span class="nx">uint</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="nx">lookupTable</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span><span class="p">.</span><span class="nx">value</span> <span class="o">+</span> <span class="mi">5</span><span class="p">;</span>
-    <span class="p">}</span>
-
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">pragma</span> <span class="nx">solidity</span> <span class="o">^</span><span class="mf">0.5</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">contract</span> <span class="nx">Add</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">struct</span> <span class="nx">Num</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">uint</span> <span class="nx">value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nx">mapping</span><span class="p">(</span><span class="nx">uint</span> <span class="p">=&gt;</span> <span class="nx">Num</span><span class="p">)</span> <span class="kr">public</span> <span class="nx">lookupTable</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nx">numRegister</span><span class="p">(</span><span class="nx">uint</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">uint</span> <span class="nx">_value</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nx">lookupTable</span><span class="p">[</span><span class="nx">key</span><span class="p">].</span><span class="nx">value</span> <span class="o">=</span> <span class="nx">_value</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nx">addValue</span><span class="p">(</span><span class="nx">uint</span> <span class="nx">key</span><span class="p">)</span> <span class="kr">public</span> <span class="nx">view</span> <span class="nx">returns</span> <span class="p">(</span><span class="nx">uint</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nx">lookupTable</span><span class="p">[</span><span class="nx">key</span><span class="p">].</span><span class="nx">value</span> <span class="o">+</span> <span class="mi">5</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>Main.sol没有多大变化</p>
-<div class="highlight"><div class="chroma">
+<div class="highlight" id="id-11"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
 </span><span class="lnt"> 4
@@ -489,24 +479,23 @@
 </span><span class="lnt">17
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">pragma</span> <span class="nx">solidity</span> <span class="o">^</span><span class="mf">0.5</span><span class="mf">.0</span><span class="p">;</span>
-
-<span class="nx">contract</span> <span class="nx">Main</span> <span class="p">{</span>
-  <span class="nx">Add</span> <span class="nx">add</span><span class="p">;</span>
-  
-  <span class="nx">constructor</span><span class="p">(</span><span class="nx">address</span> <span class="nx">_m</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
-     <span class="nx">add</span> <span class="o">=</span> <span class="nx">Add</span><span class="p">(</span><span class="nx">_m</span><span class="p">)</span><span class="p">;</span>
-  <span class="p">}</span>
-  
-  <span class="kd">function</span> <span class="nx">Addnumber</span><span class="p">(</span><span class="p">)</span> <span class="kr">public</span> <span class="nx">view</span> <span class="nx">returns</span> <span class="p">(</span><span class="nx">uint</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="nx">add</span><span class="p">.</span><span class="nx">addValue</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="nx">contract</span> <span class="nx">Add</span> <span class="p">{</span>
-      <span class="kd">function</span> <span class="nx">addValue</span><span class="p">(</span><span class="nx">uint</span> <span class="nx">key</span><span class="p">)</span> <span class="kr">public</span> <span class="nx">view</span> <span class="nx">returns</span> <span class="p">(</span><span class="nx">uint</span><span class="p">)</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">pragma</span> <span class="nx">solidity</span> <span class="o">^</span><span class="mf">0.5</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">contract</span> <span class="nx">Main</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">Add</span> <span class="nx">add</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="nx">constructor</span><span class="p">(</span><span class="nx">address</span> <span class="nx">_m</span><span class="p">)</span> <span class="kr">public</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="nx">add</span> <span class="o">=</span> <span class="nx">Add</span><span class="p">(</span><span class="nx">_m</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">  <span class="kd">function</span> <span class="nx">Addnumber</span><span class="p">()</span> <span class="kr">public</span> <span class="nx">view</span> <span class="nx">returns</span> <span class="p">(</span><span class="nx">uint</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="nx">add</span><span class="p">.</span><span class="nx">addValue</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nx">contract</span> <span class="nx">Add</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">      <span class="kd">function</span> <span class="nx">addValue</span><span class="p">(</span><span class="nx">uint</span> <span class="nx">key</span><span class="p">)</span> <span class="kr">public</span> <span class="nx">view</span> <span class="nx">returns</span> <span class="p">(</span><span class="nx">uint</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>仍然是先编译部署Add合约，部署后调用numRegister函数写入数值5，并调用addValue函数测试返回。</p>
 <p></p>
@@ -514,15 +503,15 @@
 <p></p>
 <h3 id="33-总结">3.3 总结</h3>
 <p>合约内的调用方法是相同的，都要先实例化，然后传入被调合约地址，接着才能调用。而写在不同sol文件中时，需要额外声明被调合约的抽象合约，有些文章中说使用<code>call</code>，<code>callcode</code>或<code>delegatecall</code>，但并不建议，因为这三个函数都是非常底层的函数，破坏了类型的安全，只能作为最后的手段使用。</p>
-<p>详细的解释参考了<a href="https://ethereum.stackexchange.com/questions/9733/calling-function-from-deployed-contract" target="_blank" rel="noopener noreffer">StackExchange-Calling function from deployed contract</a></p>
+<p>详细的解释参考了<a href="https://ethereum.stackexchange.com/questions/9733/calling-function-from-deployed-contract"target="_blank" rel="external nofollow noopener noreferrer">StackExchange-Calling function from deployed contract</a></p>
 <h2 id="4-函数修饰词pure和view">4. 函数修饰词pure和view</h2>
-<p>转自<a href="https://learnblockchain.cn/docs/solidity/contracts.html#view" target="_blank" rel="noopener noreffer">深入理解Solidity-函数</a></p>
+<p>转自<a href="https://learnblockchain.cn/docs/solidity/contracts.html#view"target="_blank" rel="external nofollow noopener noreferrer">深入理解Solidity-函数</a></p>
 <p>这两个函数修饰词的作用是告诉编译器函数是否会读取/修改状态，view 表示保证不修改状态，pure 表示保证不读取也不修改状态。Solidity v0.4.17 之前没有这两个修饰词，而是使用 constant 关键字，和 view 的含义相同，不过在 v0.5.0 之后被移除，现在只能使用这两个 view 和 pure。</p>
 <h3 id="41-view-视图函数">4.1 view 视图函数</h3>
 <p>Getter 方法会被自动标记为 <code>view</code>，除此之外，一个 view 修饰的例子如下</p>
-<div class="highlight"><div class="chroma">
+<div class="highlight" id="id-12"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -531,14 +520,13 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-solidity" data-lang="solidity"><span class="kr">pragma solidity</span>  <span class="o">&gt;=</span><span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">.</span><span class="mi">0</span> <span class="o">&lt;</span><span class="mi">0</span><span class="p">.</span><span class="mi">7</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
-
-<span class="kd">contract</span> <span class="n">C</span> <span class="p">{</span>
-    <span class="kd">function</span> <span class="n">f</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">b</span><span class="p">)</span> <span class="kr">public</span> <span class="kr">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="p">(</span><span class="n">b</span> <span class="o">+</span> <span class="mi">42</span><span class="p">)</span> <span class="o">+</span> <span class="nb">now</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-solidity" data-lang="solidity"><span class="line"><span class="cl"><span class="k">pragma solidity</span>  <span class="o">&gt;=</span><span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">.</span><span class="mi">0</span> <span class="o">&lt;</span><span class="mi">0</span><span class="p">.</span><span class="mi">7</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">contract</span> <span class="nc">C</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nf">f</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">b</span><span class="p">)</span> <span class="k">public</span> <span class="k">view</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="p">(</span><span class="n">b</span> <span class="o">+</span> <span class="mi">42</span><span class="p">)</span> <span class="o">+</span> <span class="nb">now</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>view 保证函数不修改状态，以下操作会被认为是修改状态</p>
 <ol>
@@ -561,9 +549,9 @@
 <li>使用包含某些操作码的内联汇编。</li>
 </ol>
 <p>一个 pure 修饰的例子如下</p>
-<div class="highlight"><div class="chroma">
+<div class="highlight" id="id-13"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
@@ -572,21 +560,20 @@
 </span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-solidity" data-lang="solidity"><span class="kr">pragma solidity</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">.</span><span class="mi">0</span> <span class="o">&lt;</span><span class="mi">0</span><span class="p">.</span><span class="mi">7</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
-
-<span class="kd">contract</span> <span class="n">C</span> <span class="p">{</span>
-    <span class="kd">function</span> <span class="n">f</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">b</span><span class="p">)</span> <span class="kr">public</span> <span class="kr">pure</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="p">(</span><span class="n">b</span> <span class="o">+</span> <span class="mi">42</span><span class="p">)</span><span class="p">;</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-solidity" data-lang="solidity"><span class="line"><span class="cl"><span class="k">pragma solidity</span> <span class="o">&gt;=</span><span class="mi">0</span><span class="p">.</span><span class="mi">5</span><span class="p">.</span><span class="mi">0</span> <span class="o">&lt;</span><span class="mi">0</span><span class="p">.</span><span class="mi">7</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">contract</span> <span class="nc">C</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">function</span> <span class="nf">f</span><span class="p">(</span><span class="kt">uint</span> <span class="n">a</span><span class="p">,</span> <span class="kt">uint</span> <span class="n">b</span><span class="p">)</span> <span class="k">public</span> <span class="k">pure</span> <span class="k">returns</span> <span class="p">(</span><span class="kt">uint</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="n">a</span> <span class="o">*</span> <span class="p">(</span><span class="n">b</span> <span class="o">+</span> <span class="mi">42</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span></span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="5-浮点数处理">5. 浮点数处理</h2>
 <p>首先声明，Solidity 中支持浮点数定义，但无法赋值和进行计算。文档中对其描述是「目前还不完全支持」，虽然这意味着以后可能会完全支持，但等不及了，下面记录几个可参考的资料。</p>
 <ol>
-<li>来自 <a href="https://ethereum.stackexchange.com/questions/83785/what-fixed-or-float-point-math-libraries-are-available-in-solidity" target="_blank" rel="noopener noreffer">ethereum stackexchange</a> 中的回答，介绍了一些可用的库；</li>
-<li><a href="https://github.com/abdk-consulting/abdk-libraries-solidity/blob/master/ABDKMathQuad.md" target="_blank" rel="noopener noreffer">ABDK Math Quad</a>，包含两个合约库，一个支持定点数，一个支持浮点数；</li>
-<li>Mikhail Vladimirov 的 <a href="https://medium.com/coinmonks/math-in-solidity-part-1-numbers-384c8377f26d" target="_blank" rel="noopener noreffer">Math in Solidity</a> 系列文章，介绍如何在 Solidity 中处理各种数学运算，写的非常棒。</li>
+<li>来自 <a href="https://ethereum.stackexchange.com/questions/83785/what-fixed-or-float-point-math-libraries-are-available-in-solidity"target="_blank" rel="external nofollow noopener noreferrer">ethereum stackexchange</a> 中的回答，介绍了一些可用的库；</li>
+<li><a href="https://github.com/abdk-consulting/abdk-libraries-solidity/blob/master/ABDKMathQuad.md"target="_blank" rel="external nofollow noopener noreferrer">ABDK Math Quad</a>，包含两个合约库，一个支持定点数，一个支持浮点数；</li>
+<li>Mikhail Vladimirov 的 <a href="https://medium.com/coinmonks/math-in-solidity-part-1-numbers-384c8377f26d"target="_blank" rel="external nofollow noopener noreferrer">Math in Solidity</a> 系列文章，介绍如何在 Solidity 中处理各种数学运算，写的非常棒。</li>
 </ol>
 <h2 id="6-地址类型">6. 地址类型</h2>
 <p>在智能合约中显式传入地址类型时，可能会出现如下错误</p>
@@ -594,42 +581,41 @@
 <p>Address checksum</p>
 <p>This looks like an address but has an invalid checksum. If this is not used as an address, please prepend &lsquo;00&rsquo;.</p>
 </blockquote>
-<p>关于该问题的一个讨论见 <a href="https://github.com/ethereum/EIPs/issues/55">https://github.com/ethereum/EIPs/issues/55</a></p>
-<p>这是因为合约中现在使用地址类型必须做一个转换，不是简单的全部大写字母或小写字母，而是遵循一定的规则，这个规则见 <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-55.md" target="_blank" rel="noopener noreffer">ethereum/EIPs#55</a></p>
-<p>但是网上提供的解决方案一般是使用JS库中的转换函数，在智能合约中无法直接解决，好在，web3提供了一个<a href="https://web3-tools.netlify.com/" target="_blank" rel="noopener noreffer">在线API接口</a>，可以调用其<code>checkAddressChecksum</code>函数对地址进行转换，然后将转换后的结果直接用于合约代码。</p>
+<p>关于该问题的一个讨论见 <a href="https://github.com/ethereum/EIPs/issues/55"target="_blank" rel="external nofollow noopener noreferrer">https://github.com/ethereum/EIPs/issues/55</a></p>
+<p>这是因为合约中现在使用地址类型必须做一个转换，不是简单的全部大写字母或小写字母，而是遵循一定的规则，这个规则见 <a href="https://github.com/ethereum/EIPs/blob/master/EIPS/eip-55.md"target="_blank" rel="external nofollow noopener noreferrer">ethereum/EIPs#55</a></p>
+<p>但是网上提供的解决方案一般是使用JS库中的转换函数，在智能合约中无法直接解决，好在，web3提供了一个<a href="https://web3-tools.netlify.com/"target="_blank" rel="external nofollow noopener noreferrer">在线API接口</a>，可以调用其<code>checkAddressChecksum</code>函数对地址进行转换，然后将转换后的结果直接用于合约代码。</p>
 <h2 id="7-gas-limit问题">7. Gas limit问题</h2>
 <p>在搭建的以太坊私链上进行智能合约部署时，出现了以下问题</p>
-<div class="highlight"><div class="chroma">
+<div class="highlight" id="id-14"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">INFO</span> <span class="p">[</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span><span class="o">|</span><span class="mi">13</span><span class="o">:</span><span class="mi">50</span><span class="o">:</span><span class="mf">11.690</span><span class="p">]</span> <span class="nx">Served</span> <span class="nx">eth_sendTransaction</span>               <span class="nx">reqid</span><span class="o">=</span><span class="mi">24</span> <span class="nx">t</span><span class="o">=</span><span class="mf">684.186</span><span class="nx">µs</span>    <span class="nx">err</span><span class="o">=</span><span class="s2">&#34;exceeds block gas limit&#34;</span>
-<span class="nb">Error</span><span class="o">:</span> <span class="nx">exceeds</span> <span class="nx">block</span> <span class="nx">gas</span> <span class="nx">limit</span> <span class="kc">undefined</span>
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">INFO</span> <span class="p">[</span><span class="mi">03</span><span class="o">-</span><span class="mi">21</span><span class="o">|</span><span class="mi">13</span><span class="o">:</span><span class="mi">50</span><span class="o">:</span><span class="mf">11.690</span><span class="p">]</span> <span class="nx">Served</span> <span class="nx">eth_sendTransaction</span>               <span class="nx">reqid</span><span class="o">=</span><span class="mi">24</span> <span class="nx">t</span><span class="o">=</span><span class="mf">684.186</span><span class="nx">µs</span>    <span class="nx">err</span><span class="o">=</span><span class="s2">&#34;exceeds block gas limit&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">Error</span><span class="o">:</span> <span class="nx">exceeds</span> <span class="nx">block</span> <span class="nx">gas</span> <span class="nx">limit</span> <span class="kc">undefined</span></span></span></code></pre></td></tr></table>
 </div>
 </div><p>出现该错误的原因如错误描述，是当前合约所需的gas超过了区块的最大gas。这可能与参数gasLimit有关。在创世区块的配置文件中，我们使用了默认的配置值，为<code>0x2fefd8</code>，转换为10进制即<code>3141592</code>。</p>
-<p>注：<a href="http://tool.oschina.net/hexconvert/" target="_blank" rel="noopener noreffer">在线转换工具</a></p>]]></description></item><item><title>面对疫情区块链可以做些什么</title><link>https://shuzang.github.io/2020/what-can-blockchain-do-during-the-covid-19/</link><pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate><author>作者</author><guid>https://shuzang.github.io/2020/what-can-blockchain-do-during-the-covid-19/</guid><description>这场年初爆发的疫情在国内控制住以后，反而开始在全世界其它国家蔓延，如大数据、5G等技术均在当前这场疫情中产生了自己的作用，区块链能做些什么，</description></item><item><title>区块链方向有参考价值的文章收集</title><link>https://shuzang.github.io/2019/articles-about-blockchain/</link><pubDate>Tue, 26 Nov 2019 00:00:00 +0000</pubDate><author>作者</author><guid>https://shuzang.github.io/2019/articles-about-blockchain/</guid><description>很多区块链领域极有启发性的文章或者介绍极为详细的文章都很值得保存，以前直接将文章完整的转载过来，但最近发现这种方法占用空间而且毫无意义，因此</description></item><item><title>以太坊开发8-Truffle框架安装使用</title><link>https://shuzang.github.io/2019/use-truffle-develop-ethereum-project/</link><pubDate>Wed, 06 Nov 2019 00:00:00 +0000</pubDate><author>作者</author><guid>https://shuzang.github.io/2019/use-truffle-develop-ethereum-project/</guid><description>Truffle和Ganache的安装使用 1. 安装Truffle 在Ubuntu18.04 下安装运行，要求Node.js版本高于v8.9.4 1 2 3</description></item><item><title>区块链学习6-IBFT共识</title><link>https://shuzang.github.io/2019/ibft-consensus/</link><pubDate>Tue, 29 Oct 2019 00:00:00 +0000</pubDate><author>作者</author><guid>https://shuzang.github.io/2019/ibft-consensus/</guid><description>AMIS公司提出的 Istanbul Byzantine Fault Tolerance Consensus（简称IBFT或Istanbul BFT），是一个基于PBFT的交易一致性的共识。因为要考虑可能发</description></item><item><title>提取以太坊的区块产生时间</title><link>https://shuzang.github.io/2019/extract-the-block-generation-time-of-ethereum/</link><pubDate>Fri, 05 Apr 2019 21:35:00 +0800</pubDate><author>作者</author><guid>https://shuzang.github.io/2019/extract-the-block-generation-time-of-ethereum/</guid><description><![CDATA[<h2 id="前言">前言</h2>
+<p>注：<a href="http://tool.oschina.net/hexconvert/"target="_blank" rel="external nofollow noopener noreferrer">在线转换工具</a></p>]]></description></item><item><title>面对疫情区块链可以做些什么</title><link>https://shuzang.github.io/2020/what-can-blockchain-do-during-the-covid-19/</link><pubDate>Mon, 16 Mar 2020 00:00:00 +0000</pubDate><author>Shuzang</author><guid>https://shuzang.github.io/2020/what-can-blockchain-do-during-the-covid-19/</guid><description>这场年初爆发的疫情在国内控制住以后，反而开始在全世界其它国家蔓延，如大数据、5G等技术均在当前这场疫情中产生了自己的作用，区块链能做些什么，</description></item><item><title>区块链方向有参考价值的文章收集</title><link>https://shuzang.github.io/2019/articles-about-blockchain/</link><pubDate>Tue, 26 Nov 2019 00:00:00 +0000</pubDate><author>Shuzang</author><guid>https://shuzang.github.io/2019/articles-about-blockchain/</guid><description>很多区块链领域极有启发性的文章或者介绍极为详细的文章都很值得保存，以前直接将文章完整的转载过来，但最近发现这种方法占用空间而且毫无意义，因此</description></item><item><title>以太坊开发8-Truffle框架安装使用</title><link>https://shuzang.github.io/2019/use-truffle-develop-ethereum-project/</link><pubDate>Wed, 06 Nov 2019 00:00:00 +0000</pubDate><author>Shuzang</author><guid>https://shuzang.github.io/2019/use-truffle-develop-ethereum-project/</guid><description>Truffle和Ganache的安装使用 1. 安装Truffle 在Ubuntu18.04 下安装运行，要求Node.js版本高于v8.9.4 1 2 3</description></item><item><title>区块链学习6-IBFT共识</title><link>https://shuzang.github.io/2019/ibft-consensus/</link><pubDate>Tue, 29 Oct 2019 00:00:00 +0000</pubDate><author>Shuzang</author><guid>https://shuzang.github.io/2019/ibft-consensus/</guid><description>AMIS公司提出的 Istanbul Byzantine Fault Tolerance Consensus（简称IBFT或Istanbul BFT），是一个基于PBFT的交易一致性的共识。因为要考虑可能发</description></item><item><title>提取以太坊的区块产生时间</title><link>https://shuzang.github.io/2019/extract-the-block-generation-time-of-ethereum/</link><pubDate>Fri, 05 Apr 2019 21:35:00 +0800</pubDate><author>Shuzang</author><guid>https://shuzang.github.io/2019/extract-the-block-generation-time-of-ethereum/</guid><description><![CDATA[<h2 id="前言">前言</h2>
 <p>目的是提取以太坊的区块产生时间形成数据集，初步的思路有两种：</p>
 <ul>
 <li>爬取以太坊区块浏览器中的时间数据，然后格式化形成数据集输出</li>
-<li>同步以太坊的所有区块（头），利用以太坊本身提供的接口提取每个区块的时间戳信息，然后将时间戳转换为真实的日期格式形成数据集输出，<a href="https://tool.lu/timestamp/" target="_blank" rel="noopener noreffer">时间戳转换在线工具</a></li>
+<li>同步以太坊的所有区块（头），利用以太坊本身提供的接口提取每个区块的时间戳信息，然后将时间戳转换为真实的日期格式形成数据集输出，<a href="https://tool.lu/timestamp/"target="_blank" rel="external nofollow noopener noreferrer">时间戳转换在线工具</a></li>
 </ul>
-<p>查询资料过程中，了解到谷歌已提供以太坊的区块信息数据集<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>。虽然数据集本身没有时间信息，但可以导出时间戳进行转换，了解到谷歌使用的工具是<a href="https://github.com/blockchain-etl/ethereum-etl#blockscsv" target="_blank" rel="noopener noreffer">ethereum-etl</a>，故最终的解决方案是：使用ethereum-etl导出时间戳，编写Python程序转换时间戳并导出数据集。</p>]]></description></item><item><title>以太坊开发7-swarm存储网络使用</title><link>https://shuzang.github.io/2019/swarm-storage-network-using/</link><pubDate>Thu, 28 Mar 2019 19:59:00 +0800</pubDate><author>作者</author><guid>https://shuzang.github.io/2019/swarm-storage-network-using/</guid><description><![CDATA[<p>说实话，swarm的资料比较难找，倒是IPFS的比较多一点。最后只在<a href="http://medium.com/" target="_blank" rel="noopener noreffer">Medium</a>找到了一些，本篇文章就是在实践其中的一些项目，并通过这样来学习swarm。</p>
-<p>参考链接：<a href="https://swarm-gateways.net/bzz:/theswarm.eth/" target="_blank" rel="noopener noreffer">swarm官网</a>，<a href="https://swarm-guide.readthedocs.io/en/latest/introduction.html" target="_blank" rel="noopener noreffer">swarm文档</a>，<a href="https://github.com/ethersphere" target="_blank" rel="noopener noreffer">github项目</a></p>
+<p>查询资料过程中，了解到谷歌已提供以太坊的区块信息数据集<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>。虽然数据集本身没有时间信息，但可以导出时间戳进行转换，了解到谷歌使用的工具是<a href="https://github.com/blockchain-etl/ethereum-etl#blockscsv"target="_blank" rel="external nofollow noopener noreferrer">ethereum-etl</a>，故最终的解决方案是：使用ethereum-etl导出时间戳，编写Python程序转换时间戳并导出数据集。</p>]]></description></item><item><title>以太坊开发7-swarm存储网络使用</title><link>https://shuzang.github.io/2019/swarm-storage-network-using/</link><pubDate>Thu, 28 Mar 2019 19:59:00 +0800</pubDate><author>Shuzang</author><guid>https://shuzang.github.io/2019/swarm-storage-network-using/</guid><description><![CDATA[<p>说实话，swarm的资料比较难找，倒是IPFS的比较多一点。最后只在<a href="http://medium.com/"target="_blank" rel="external nofollow noopener noreferrer">Medium</a>找到了一些，本篇文章就是在实践其中的一些项目，并通过这样来学习swarm。</p>
+<p>参考链接：<a href="https://swarm-gateways.net/bzz:/theswarm.eth/"target="_blank" rel="external nofollow noopener noreferrer">swarm官网</a>，<a href="https://swarm-guide.readthedocs.io/en/latest/introduction.html"target="_blank" rel="external nofollow noopener noreferrer">swarm文档</a>，<a href="https://github.com/ethersphere"target="_blank" rel="external nofollow noopener noreferrer">github项目</a></p>
 <p>还有一些帮助理解的资料：</p>
 <ul>
 <li>
-<p><a href="https://ethereum.stackexchange.com/questions/55027/swarm-in-a-private-network" target="_blank" rel="noopener noreffer">关于swarm的三个理解上的问题</a></p>
+<p><a href="https://ethereum.stackexchange.com/questions/55027/swarm-in-a-private-network"target="_blank" rel="external nofollow noopener noreferrer">关于swarm的三个理解上的问题</a></p>
 </li>
 <li>
-<p><a href="https://github.com/ethersphere/go-ethereum/wiki/IPFS-&amp;-SWARM" target="_blank" rel="noopener noreffer">swarm和ipfs的比较</a></p>
+<p><a href="https://github.com/ethersphere/go-ethereum/wiki/IPFS-&amp;-SWARM"target="_blank" rel="external nofollow noopener noreferrer">swarm和ipfs的比较</a></p>
 </li>
-</ul>]]></description></item><item><title>以太坊开发6-Docker搭建以太坊私链</title><link>https://shuzang.github.io/2019/use-docker-to-build-ethereum-private-chain/</link><pubDate>Tue, 12 Mar 2019 11:24:00 +0800</pubDate><author>作者</author><guid>https://shuzang.github.io/2019/use-docker-to-build-ethereum-private-chain/</guid><description><![CDATA[<p>在以太坊github的<a href="https://github.com/ethereum/go-ethereum" target="_blank" rel="noopener noreffer">官方项目地址</a>发现其支持Docker启动，同时因为Docker相对于虚拟机的易用性，决定尝试使用Docker搭建以太坊联盟链</p>
-<p>Docker安装部分查看自官方说明，搭建过程主要参考<a href="https://www.jianshu.com/p/7994db7a2b89?from=singlemessage" target="_blank" rel="noopener noreffer">简书-使用Docker搭建以太坊私有链并部署合约</a></p>
+</ul>]]></description></item><item><title>以太坊开发6-Docker搭建以太坊私链</title><link>https://shuzang.github.io/2019/use-docker-to-build-ethereum-private-chain/</link><pubDate>Tue, 12 Mar 2019 11:24:00 +0800</pubDate><author>Shuzang</author><guid>https://shuzang.github.io/2019/use-docker-to-build-ethereum-private-chain/</guid><description><![CDATA[<p>在以太坊github的<a href="https://github.com/ethereum/go-ethereum"target="_blank" rel="external nofollow noopener noreferrer">官方项目地址</a>发现其支持Docker启动，同时因为Docker相对于虚拟机的易用性，决定尝试使用Docker搭建以太坊联盟链</p>
+<p>Docker安装部分查看自官方说明，搭建过程主要参考<a href="https://www.jianshu.com/p/7994db7a2b89?from=singlemessage"target="_blank" rel="external nofollow noopener noreferrer">简书-使用Docker搭建以太坊私有链并部署合约</a></p>
 <h2 id="一docker安装">一、Docker安装</h2>
 <p>OS环境：Ubuntu 18.04 LTS(bionic)</p>
 <p>内核版本：4.18.0-16-generic</p>
 <p>处理器架构：amd64</p>
-<p>官方的安装说明位于：<a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/" target="_blank" rel="noopener noreffer">Get Docker CE for Ubuntu</a></p>]]></description></item></channel></rss>
+<p>官方的安装说明位于：<a href="https://docs.docker.com/install/linux/docker-ce/ubuntu/"target="_blank" rel="external nofollow noopener noreferrer">Get Docker CE for Ubuntu</a></p>]]></description></item></channel></rss>

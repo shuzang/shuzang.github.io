@@ -11,3 +11,9 @@
 总之，在这起事件中可以看到大家的情绪似乎很容易被引导，以及看待事情很容易陷入极端。
 
 在文章发布 5 小时后，腾讯游戏就发布了《[腾讯推出游戏未保「双减双打」新措施](https://mp.weixin.qq.com/s/65RUvnhl4HzOHhEk9Lgz4Q)》，所以最后官媒的文章虽然撤回，但目的似乎已经达到了。
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2021/recent-discussions-about-games/  
+

@@ -160,3 +160,9 @@ github上open-vm-tools项目的[#253](https://github.com/vmware/open-vm-tools/is
 ## 参考
 
 [1] [陆小呆-虚拟机网络NAT模式配置静态IP](https://www.cnblogs.com/luxiaodai/p/9947343.html)
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2019/vmware-usage/  
+

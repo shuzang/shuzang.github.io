@@ -78,3 +78,9 @@ KrASIA上的一篇文章，介绍了为什么弹幕网站在中日两国之外�
 ![A Man Feeding Swans in the Snow](https://picped-1301226557.cos.ap-beijing.myqcloud.com/ZK_20200124_雪地摄影作品.jpg)
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/life-weekly-4/  
+

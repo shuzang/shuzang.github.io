@@ -267,3 +267,9 @@ SSL/TLS 通过证书机制进行身份鉴别，通过协商一个对称会话密
 | Server           | 服务器名字。Servlet一般不设置这个值，而是由Web服务器自己设置。 |
 | Set-Cookie       | 设置和页面关联的Cookie。Servlet不应使用response.setHeader("Set-Cookie", ...)，而是应使用HttpServletResponse提供的专用方法addCookie。参见下文有关Cookie设置的讨论。 |
 | WWW-Authenticate | 客户应该在Authorization头中提供什么类型的授权信息？在包含401（Unauthorized）状态行的应答中这个头是必需的。例如，response.setHeader("WWW-Authenticate", "BASIC realm=＼"executives＼"")。 注意Servlet一般不进行这方面的处理，而是让Web服务器的专门机制来控制受密码保护页面的访问（例如.htaccess）。 |
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/http-and-https/  
+

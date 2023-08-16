@@ -172,3 +172,9 @@
 5. 完成任务的私链如何存在公链上
    - 如果存哈希，私链主体内容存在哪里
    - 如果存内容，公链的区块是否能容纳
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/blockchain-for-d2d-cache-or-computing-offload/  
+

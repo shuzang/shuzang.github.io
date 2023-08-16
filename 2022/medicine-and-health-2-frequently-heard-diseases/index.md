@@ -98,3 +98,9 @@
 [2] [上火到底是什么原因？现代医学怎么解释「上火」？ - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/72151328)
 
 [3] 康震，常见疾病谱用药：速查速用手册，化学工业出版社，2014.05.
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2022/medicine-and-health-2-frequently-heard-diseases/  
+

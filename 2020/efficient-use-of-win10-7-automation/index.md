@@ -62,3 +62,9 @@ Get-ChildItem $temPath | Rename-Item -NewName {$_.Name -replace ".jpg",""}
 [3] Microsoft Doc，[Rename-Item (Microsoft.PowerShell.Management)](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.management/rename-item?view=powershell-7)，Accessed：2021-05-07.
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/efficient-use-of-win10-7-automation/  
+

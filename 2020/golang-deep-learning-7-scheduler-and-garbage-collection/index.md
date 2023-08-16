@@ -207,3 +207,9 @@ fmt.Printf("%d Kb\n", m.Alloc / 1024)
 [2] 博客园，[搞懂Go垃圾回收](https://www.cnblogs.com/CodeWithTxT/p/11366643.html)
 
 [3] 知乎专栏，张三毛，[Go垃圾回收系列](https://zhuanlan.zhihu.com/p/101132283)
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/golang-deep-learning-7-scheduler-and-garbage-collection/  
+

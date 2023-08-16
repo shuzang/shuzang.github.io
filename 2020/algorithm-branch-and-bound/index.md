@@ -75,3 +75,9 @@ While 当前扩展结点非叶结点
 
 - 左子树：从顶点i到已选入的顶点集中每一个顶点都有边， 否则剪枝
 - 右子树：顶点数上界小于当前最优值时剪枝，顶点数上界 = 已确定的顶点数 + 未确定的顶点数的上界
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/algorithm-branch-and-bound/  
+

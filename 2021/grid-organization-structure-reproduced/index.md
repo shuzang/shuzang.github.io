@@ -178,3 +178,9 @@
 4、关于进一步深化电力体制改革的若干意见（中发〔2015〕9 号文）及配套文件 2015.03.15
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2021/grid-organization-structure-reproduced/  
+

@@ -909,3 +909,9 @@ truffle(lightnode2)> Register.deployed().then(function(instance) {instance.getAt
 
 
 
+
+---
+
+> 作者: Shuzang  
+> URL: https://shuzang.github.io/2020/optimize-the-implementation-and-testing-of-the-system/  
+
