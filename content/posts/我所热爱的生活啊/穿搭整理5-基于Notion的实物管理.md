@@ -1,7 +1,7 @@
 ---
 title: 穿搭整理5-基于Notion的实物管理
 date: 2021-05-03
-tags: [生活技能]
+tags: [穿搭整理]
 categories: [我所热爱的生活啊]
 slug: Minimalism and Data-Notion-Based Management Ideas
 ---
