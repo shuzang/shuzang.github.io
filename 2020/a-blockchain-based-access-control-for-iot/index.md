@@ -71,7 +71,7 @@ Keywords: Access control, Blockchain, Smart Contract, Internet of Things
 
 一个新的资源请求者在智能合约中注册的时序图如下
 
-mermaid图
+```mermaid
 sequenceDiagram
     participant Resource Requester
     participant Resource Owner
@@ -81,6 +81,7 @@ sequenceDiagram
 	alt if Registration Response == True
 		Resource Owner ->> ACL Smart Contract: 3. AddToACL(@RR, resource, privilege)
 	end
+```
 
 
 资源请求者在对资源发起访问控制前，必须先在智能合约中定义的ACL里进行注册，然后才能向矿工申请到访问用的token。为了实现这一点，资源请求者发送一个注册请求到资源所有者来申请对特定资源的访问权限，如果资源所有者通过该请求，就会将请求者加入到合约中的ACL中，并返回一个接受注册请求的交易，如果拒绝该请求，就会返回一个拒绝注册请求的交易。

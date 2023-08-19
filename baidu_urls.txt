@@ -90,7 +90,7 @@ https://shuzang.github.io/2020/some-problems-in-research/
 https://shuzang.github.io/2020/hugo-develop-themes-1-content-management/
 https://shuzang.github.io/2020/hugo-develop-themes-2-templates/
 https://shuzang.github.io/2020/basic-concepts-of-photography/
-https://shuzang.github.io/2020/%E6%97%A5%E7%A8%8B%E8%A7%84%E5%88%92%E6%80%9D%E8%80%83-%E4%BE%BF%E7%AD%BE%E5%BE%85%E5%8A%9E%E6%B8%85%E5%8D%95%E5%92%8C%E6%97%A5%E5%8E%86/
+https://shuzang.github.io/2020/%E6%97%A5%E7%A8%8B%E8%A7%84%E5%88%92%E4%BD%93%E7%B3%BB%E5%BB%BA%E7%AB%8B/
 https://shuzang.github.io/2020/storage-of-reals-in-computers/
 https://shuzang.github.io/2020/a-cli-implement-of-2048-game-using-go/
 https://shuzang.github.io/2020/efficient-use-of-win10-7-windows-terminal-and-winget/
