@@ -56,6 +56,8 @@ theme = "FixIt"
     url = "/tags/"
     title = ""
     weight = 3
+      [menu.main.params]
+        icon = "fa-solid fa-tags"
   [[menu.main]]
     identifier = "about"
     pre = ""
@@ -64,9 +66,8 @@ theme = "FixIt"
     url = "/about/"
     title = ""
     weight = 4
-    
-    [menu.main.params]
-      icon = "fa-solid fa-tags"
+      [menu.main.params]
+        icon = "fa-solid fa-info-circle"
 
 # -------------------------------------------------------------------------------------
 # Theme Core Configuration
@@ -79,7 +80,7 @@ theme = "FixIt"
   # site description
   description = "书藏的个人博客，记录学习，记录生活"
   # site keywords
-  keywords = ["Blog", "Blockchain", "reading", "movie", "life"]
+  keywords = ["Blog", "Blockchain", "Book", "Movie", "Life","Journey"]
   # site default theme ["light", "dark", "auto"]
   defaultTheme = "auto"
   # public git repo url only then enableGitInfo is true
@@ -102,7 +103,7 @@ theme = "FixIt"
   # FixIt 0.2.0 | NEW App icon config
   [params.app]
     # optional site title override for the app when added to an iOS home screen or Android launcher
-    title = "FixIt"
+    title = "Shuzang's Blog"
     # whether to omit favicon resource links
     noFavicon = false
     # modern SVG favicon to use in place of older style .png and .ico files
@@ -195,7 +196,7 @@ theme = "FixIt"
     # Site creation year
     since = "2018"
     # FixIt 0.2.14 | NEW whether to show total word count of site content
-    wordCount = true
+    wordCount = false
     # FixIt 0.2.12 | NEW Public network security only in China (HTML format is supported)
     gov = ""
     # ICP info only in China (HTML format is supported)
@@ -227,7 +228,7 @@ theme = "FixIt"
     rss = 10
     # FixIt 0.2.13 | NEW recently updated posts settings
     [params.section.recentlyUpdated]
-      enable = false
+      enable = true
       rss = false
       days = 30
       maxCount = 10
@@ -371,7 +372,7 @@ theme = "FixIt"
   # FixIt 0.2.0 | CHANGED Page config
   [params.page]
     # FixIt 0.2.18 | NEW whether to enable the author's avatar of the post
-    authorAvatar = false
+    authorAvatar = true
     # FixIt 0.2.0 | NEW whether to hide a page from home page
     hiddenFromHomePage = false
     # FixIt 0.2.0 | NEW whether to hide a page from search results
@@ -382,7 +383,7 @@ theme = "FixIt"
     # FixIt 0.2.18 | CHANGED if set to "force", images in the content will be forced to shown as the gallery.
     lightgallery = true
     # FixIt 0.2.0 | NEW whether to enable the ruby extended syntax
-    ruby = false
+    ruby = true
     # FixIt 0.2.0 | NEW whether to enable the fraction extended syntax
     fraction = true
     # FixIt 0.2.0 | NEW whether to enable the fontawesome extended syntax
@@ -423,11 +424,11 @@ theme = "FixIt"
       position = "right"
     # FixIt 0.2.13 | NEW Display a message at the beginning of an article to warn the reader that its content might be expired
     [params.page.expirationReminder]
-      enable = false
+      enable = true
       # Display the reminder if the last modified time is more than 90 days ago
-      reminder = 90
+      reminder = 365
       # Display warning if the last modified time is more than 180 days ago
-      warning = 180
+      warning = 1000
       # If the article expires, close the comment or not
       closeComment = false
     # FixIt 0.2.16 | CHANGED KaTeX mathematical formulas (https://katex.org)
@@ -448,7 +449,7 @@ theme = "FixIt"
       # whether to show the copy button of the code block
       copy = true
       # FixIt 0.2.13 | NEW whether to show the edit button of the code block
-      edit = true
+      edit = false
       # the maximum number of lines of displayed code by default
       maxShownLines = 10
     # FixIt 0.2.14 | NEW Post edit
@@ -476,7 +477,7 @@ theme = "FixIt"
       fullscreen = true
     # FixIt 0.2.17 | NEW Donate (Sponsor) settings
     [params.page.reward]
-      enable = false
+      enable = true
       animation = false
       # position relative to post footer, optional values: ["before", "after"]
       position = "after"
@@ -484,15 +485,15 @@ theme = "FixIt"
       # FixIt 0.2.18 | NEW display mode of QR code images, optional values: ["static", "fixed"], default: `static`
       mode = "static"
       [params.page.reward.ways]
-        # wechatpay = "/images/wechatpay.png"
-        # alipay = "/images/alipay.png"
+         wechatpay = "/images/wechatpay.png"
+         alipay = "/images/alipay.png"
         # paypal = "/images/paypal.png"
         # bitcoin = "/images/bitcoin.png"
     # FixIt 0.2.0 | CHANGED social share links in post page
     [params.page.share]
       enable = true
-      Twitter = true
-      Facebook = true
+      Twitter = false
+      Facebook = false
       Linkedin = false
       Whatsapp = false
       Pinterest = false
@@ -504,7 +505,7 @@ theme = "FixIt"
       Xing = false
       Line = false
       Instapaper = false
-      Pocket = false
+      Pocket = true
       Digg = false
       Stumbleupon = false
       Flipboard = false
@@ -697,7 +698,7 @@ theme = "FixIt"
   # FixIt 0.2.12 | NEW PanguJS config
   [params.pangu]
     # For Chinese writing
-    enable = false
+    enable = true
     selector = "article" # FixIt 0.2.17 | NEW
 
   # FixIt 0.2.12 | NEW Watermark config
@@ -733,7 +734,7 @@ theme = "FixIt"
 
   # Site verification code config for Google/Bing/Yandex/Pinterest/Baidu/360/Sogou
   [params.verification]
-    google = "UA-209130979-1"
+    google = ""
     bing = ""
     yandex = ""
     pinterest = ""
@@ -753,7 +754,7 @@ theme = "FixIt"
     enable = false
     # Google Analytics
     [params.analytics.google]
-      id = ""
+      id = "UA-209130979-1"
       # whether to anonymize IP
       anonymizeIP = true
     # Fathom Analytics
@@ -764,7 +765,7 @@ theme = "FixIt"
 
   # FixIt 0.2.7 | NEW Cookie consent config
   [params.cookieconsent]
-    enable = true
+    enable = false
     # text strings used for Cookie consent banner
     [params.cookieconsent.content]
       message = ""
@@ -788,7 +789,7 @@ theme = "FixIt"
   # FixIt 0.2.14 | NEW GitHub banner in the top-right or top-left corner
   [params.githubCorner]
     enable = true
-    permalink = "https://github.com/shuzang"
+    permalink = "https://github.com/shuzang/shuzang.github.io"
     title = "View source on GitHub"
     position = "right" # ["left", "right"]
 
