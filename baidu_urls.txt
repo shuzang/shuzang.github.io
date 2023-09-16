@@ -30,8 +30,8 @@ https://shuzang.github.io/2022/life-monthly-12/
 https://shuzang.github.io/2022/life-monthly-11/
 https://shuzang.github.io/2022/life-monthly-10/
 https://shuzang.github.io/2022/detailed-cable-model/
-https://shuzang.github.io/2022/medicine-and-health-1-common-diseases-and-medical-kit/
-https://shuzang.github.io/2022/medicine-and-health-2-frequently-heard-diseases/
+https://shuzang.github.io/2022/medicine-and-health-common-diseases-and-medical-kit/
+https://shuzang.github.io/2022/medicine-and-health-frequently-heard-diseases/
 https://shuzang.github.io/2022/life-monthly-9/
 https://shuzang.github.io/2022/shopping-process/
 https://shuzang.github.io/2021/life-monthly-8/
@@ -214,13 +214,13 @@ https://shuzang.github.io/2019/golang-syntax-8-struct-and-method/
 https://shuzang.github.io/2019/golang-syntax-9-interface-and-reflect/
 https://shuzang.github.io/2019/articles-about-blockchain/
 https://shuzang.github.io/2019/golang-syntax-7-function/
-https://shuzang.github.io/2019/medicine-and-health-5-medical-insurance-and-medical-treatment/
+https://shuzang.github.io/2019/medicine-and-health-medical-insurance-and-medical-treatment/
 https://shuzang.github.io/2019/golang-syntax-6-array-slice-and-map/
 https://shuzang.github.io/2019/hugo-blog-themes-collection/
 https://shuzang.github.io/2019/an-abac-model-in-rfid-systems-based-on-dapp-for-healthcare-environments/
 https://shuzang.github.io/2019/golang-syntax-5-string-input-and-output/
 https://shuzang.github.io/2019/insurances-and-public-housing-fund/
-https://shuzang.github.io/2019/medicine-and-health-3-first-aid-knowledge/
+https://shuzang.github.io/2019/medicine-and-health-first-aid-knowledge/
 https://shuzang.github.io/2019/use-truffle-develop-ethereum-project/
 https://shuzang.github.io/2019/summary-of-problems-and-optimization-considerations-about-prototype-system/
 https://shuzang.github.io/2019/golang-syntax-4-operators-and-flow-control/
