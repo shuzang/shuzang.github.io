@@ -1,6 +1,3 @@
-[submodule "themes/LoveIt"]
-	path = themes/LoveIt
-	url = https://github.com/shuzang/LoveIt.git
 [submodule "themes/FixIt"]
 	path = themes/FixIt
 	url = https://github.com/hugo-fixit/FixIt.git
