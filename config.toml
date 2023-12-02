@@ -384,7 +384,7 @@ enableEmoji = true
   # FixIt 0.2.0 | CHANGED Page config
   [params.page]
     # FixIt 0.2.18 | NEW whether to enable the author's avatar of the post
-    authorAvatar = true
+    authorAvatar = false
     # FixIt 0.2.0 | NEW whether to hide a page from home page
     hiddenFromHomePage = false
     # FixIt 0.2.0 | NEW whether to hide a page from search results
