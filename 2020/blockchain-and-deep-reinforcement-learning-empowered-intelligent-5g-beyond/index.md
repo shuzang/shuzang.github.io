@@ -9,7 +9,7 @@ Day Y, Xu D, Maharjan S, 等. Blockchain and Deep Reinforcement Learning Empower
 
 5G 中引入了异构网络和 D2D 通信来提高通信速率和保证无缝覆盖，MEC 同样可以起作用，主要通过计算卸载和分布式内容缓存来减少延迟并避免[回程拥塞]^(backhaul congestion)。但由于无线网络的时变特性，各种新兴应用和未知交通系统的多样化和严格的要求，设计一个解决这些问题（计算卸载或内容缓存）的高性能算法比较困难。AI 可以被引入处理该问题，例如，论文[^dai2018artifi]利用深度强化学习（DRL）解决边缘计算和缓存资源分配的问题。
 
-[^dai2018artifi]:Y. Dai et al., “Artifi cial Intelligence Empowered Edge Computing and Caching for Internet of Vehicles,” IEEE Wireless Commun., accepted, 2018. 
+[^dai2018artifi]:Y. Dai et al., “Artifi cial Intelligence Empowered Edge Computing and Caching for Internet of Vehicles,” IEEE Wireless Commun., accepted, 2018.
 
 无论是区块链还是 AI，将它们引入无线网络的研究都已经存在，但这些研究并没有将两者结合。作者在这篇论文中同时集成了这两种技术到无线网络，提出了一个用于下一代无线网络的架构，该架构可以进行安全和智能的资源管理，例如频谱共享、内容缓存、能量交易和计算卸载。主要思路是，利用联盟链建立安全的内容共享环境，利用 DRL 算法设计缓存策略从而最大化系统[效用]^(utility)。我们的主要关注点如下
 
@@ -20,8 +20,8 @@ Day Y, Xu D, Maharjan S, 等. Blockchain and Deep Reinforcement Learning Empower
 引言部分提到的论文中有几篇值得参考。论文[^kang2017enabling] [^li2017consortium]利用区块链开发了一个安全的本地 P2P 电子交易系统，用于电动汽车间的电力交易。论文[^kang2018blockchain]利用区块链和智能合约设计了一个用于车辆边缘网络的基于信誉的数据共享方案。
 
 [^kang2017enabling]:J. Kang et al., “Enabling Localized Peer-to-Peer Electricity Trading Among Plug-In Hybrid Electric Vehicles Using Consortium Blockchains,” IEEE Trans. Ind. Informat., vol. 13, no. 6, 2017, pp. 3154–64.
-[^li2017consortium]:Z. Li et al., “Consortium Blockchain for Secure Energy Trading in Industrial Internet of Things,” IEEE Trans. Ind. Informat., 2017. 
-[^kang2018blockchain]:J. Kang et al., “Blockchain for Secure and Efficient Data Sharing in Vehicular Edge Computing and Networks,” IEEE Internet of Things J., 2018. 
+[^li2017consortium]:Z. Li et al., “Consortium Blockchain for Secure Energy Trading in Industrial Internet of Things,” IEEE Trans. Ind. Informat., 2017.
+[^kang2018blockchain]:J. Kang et al., “Blockchain for Secure and Efficient Data Sharing in Vehicular Edge Computing and Networks,” IEEE Internet of Things J., 2018.
 
 ## 2. 架构
 
@@ -142,6 +142,7 @@ Day Y, Xu D, Maharjan S, 等. Blockchain and Deep Reinforcement Learning Empower
 更进一步的，我们关心的是计算卸载场景下区块链如何保证 D2D 的安全，因此作者描述的四个资源管理案例有一定的作用。但是，作者的思路是 MBS 作为区块链节点，重新将基站和边缘服务器引入了方案中，我们使用 D2D 进行资源卸载的原因是节省频谱资源并弥补 MEC 场景的不足，将 MBS 引入不太合适。另一方面，MBS 维持区块链意味着这是一个小范围场景，最多整个城市的 MBS 都加入，移动设备或车辆在不同地域间的移动可能会带来数据访问问题，需要不同区块链的协作。最后的担心是，深度强化学习也是一种计算密集型任务，需要不断地训练，将 DRL 算法放在区块链中运行，资源消耗与收益是否匹配犹未可知。最后得到的一个启发是，不必局限于计算卸载，D2D 缓存也是一个方向。
 
 注：插图源自原论文
+
 
 ---
 
