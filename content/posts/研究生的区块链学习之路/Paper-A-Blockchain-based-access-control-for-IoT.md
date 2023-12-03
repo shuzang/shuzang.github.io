@@ -79,14 +79,13 @@ Keywords: Access control, Blockchain, Smart Contract, Internet of Things
 sequenceDiagram
     participant Resource Requester
     participant Resource Owner
-	participant ACL Smart Contract
-	Resource Requester ->> Resource Owner: 1. Registration Request Transaction(resource privilege)
-	Resource Owner ->> Resource Requester: 2. Registration Response Transaction
-	alt if Registration Response == True
-		Resource Owner ->> ACL Smart Contract: 3. AddToACL(@RR, resource, privilege)
-	end
+ participant ACL Smart Contract
+ Resource Requester ->> Resource Owner: 1. Registration Request Transaction(resource privilege)
+ Resource Owner ->> Resource Requester: 2. Registration Response Transaction
+ alt if Registration Response == True
+  Resource Owner ->> ACL Smart Contract: 3. AddToACL(@RR, resource, privilege)
+ end
 ```
-
 
 资源请求者在对资源发起访问控制前，必须先在智能合约中定义的ACL里进行注册，然后才能向矿工申请到访问用的token。为了实现这一点，资源请求者发送一个注册请求到资源所有者来申请对特定资源的访问权限，如果资源所有者通过该请求，就会将请求者加入到合约中的ACL中，并返回一个接受注册请求的交易，如果拒绝该请求，就会返回一个拒绝注册请求的交易。
 
@@ -132,4 +131,3 @@ sequenceDiagram
 
 1. 请求者发起一次访问请求需要经过2~3次通信过程。当第一次发起对某个资源的访问请求时，需要首先向资源所有者发起注册请求并获取回应，然后向矿工发起请求获取token，最后再一次向资源所有者发起请求获取权限，总计3次通信过程，之后每次发起请求，依然需要获取token和获取权限两次通信。由于方案中通信的实质是区块链中的交易，而交易打包到区块并经过验证拥有一段确认时间，多次往返通信会造成一个较大的延迟，不利于物联网环境中的实际操作。
 2. 资源所有者利用ACL定义请求者对资源的访问权限，从方案设计来看，每次有新的请求都需要资源所有者主动识别和确认是否授权，物联网环境设备数量较大，因此单位时间产生的访问请求量级也比较大，这种授权方式工作量较大，不利于操作。
-
