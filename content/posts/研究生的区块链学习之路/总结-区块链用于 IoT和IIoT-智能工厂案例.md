@@ -33,7 +33,6 @@ slug: Blockchain for IoT/IIoT：A smart factory case study
 [^li2018consortium]:Li Z, Kang J, Yu R, et al. Consortium blockchain for secure energy trading in industrial internet of things[J]. IEEE transactions on industrial informatics, 2018, 14(8): 3690-3700.
 [^liang2018distributed]:Liang G, Weller S R, Luo F, et al. Distributed blockchain-based data protection framework for modern power systems against cyber attacks[J]. IEEE Transactions on Smart Grid, 2018.
 [^korpela2017digital]:Korpela K, Hallikas J, Dahlberg T. Digital supply chain transformation toward blockchain integration[C]//proceedings of the 50th Hawaii international conference on system sciences. 2017.
-[^korpela2017digital]:Tian F. An agri-food supply chain traceability system for China based on RFID & blockchain technology[C]//2016 13th international conference on service systems and service management (ICSSSM). IEEE, 2016: 1-6.
 
 区块链和制造工厂结合的相关研究[^lin2018bsein][^kapitonov2018robonomics]，和智能家居场景[^xue2018private][^qu2018hypergraph][^xu2018building]具有一定的相似性。这两个场景的研究通常集中于细粒度的访问控制和安全框架，然而，大部分并不深入，只是区块链和分布式存储技术的简单结合。另外，工业物联网同普通的物联网在诸多方面有着区别，如设备的自动化，低时延高可靠性的要求。但是，两者都更适合使用私有区块链而非公有区块链。
 
@@ -105,7 +104,7 @@ slug: Blockchain for IoT/IIoT：A smart factory case study
 **可扩展性**：如前所述，区块链的数据在不断增长，增加了节点参与的难度。在物联网场景将加剧这一问题，一种解决办法是数据仍然进行传统的中心化存储，而把数据哈希存储在区块链中[^ali2018secure]，这样可以保证数据的完整性，但缺失了解决单点问题的初衷。更合适的办法是采用分布式存储，Wulf Kaal将其划分为六种情况[^wulf2017how]，我们认为其划分有部分重复和缺失，故重新总结如下：
 
 [^ali2018secure]: Ali S, Wang G, Bhuiyan M Z A, et al. Secure Data Provenance in Cloud-Centric Internet of Things via Blockchain Smart Contracts[C]//2018 IEEE SmartWorld, Ubiquitous Intelligence & Computing, Advanced & Trusted Computing, Scalable Computing & Communications, Cloud & Big Data Computing, Internet of People and Smart City Innovation (SmartWorld/SCALCOM/UIC/ATC/CBDCom/IOP/SCI). IEEE, 2018: 991-998.
-[^wulf2017how]:Wulf Kaal. How can blockchain be used as a database to store data[Online]. https://www.quora.com/How-can-blockchain-be-used-as-a-database-to-store-data. 2017.
+[^wulf2017how]:Wulf Kaal. How can blockchain be used as a database to store data[Online]. <https://www.quora.com/How-can-blockchain-be-used-as-a-database-to-store-data>. 2017.
 
 1. 传统的分布式存储：由于关系数据库对大数据存储的支持不是很好，故大数据的存储一般使用NoSQL数据库，[^siddiqa2017bigdata]对市场上出现的大数据存储技术做了全面的调查，关注点主要在于分布式存储技术，大部分都以NoSQL的格式进行存储，包括Google File System(GFS)，Hadoop Distributed File System(HDFS)，BigTable，HBase，MongoDB等，它们速度快、可扩展、容错、支持丰富的查询语言，但它们声称的容错指的是分布式本身带来的容错性能，一个节点被毁，因为副本数据的存在并不会对整个系统造成影响，而缺乏对恶意攻击的抵御性能，集群中的所有节点相互之间完全信任，任何一个恶意节点都能毁掉整个数据库。
 
@@ -117,7 +116,7 @@ slug: Blockchain for IoT/IIoT：A smart factory case study
 4. 巨链数据库BigChainDB：BigChainDB 的目标是将NoSQL数据库的主要优点与区块链技术的优点结合起来，如表3.1[^bigchainDB]所示 ，实际上，结合的正是MongoDB和Tendermint(一种BFT)共识
 
 [^siddiqa2017bigdata]:Siddiqa A, Karim A, Gani A. Big data storage technologies: a survey[J]. Frontiers of Information Technology & Electronic Engineering, 2017, 18(8): 1040-1070.
-[^bigchainDB]:BigchainDB. https://www.bigchaindb.com/features/[Online]. 
+[^bigchainDB]:BigchainDB. <https://www.bigchaindb.com/features/[Online>].
 
 表3.1 Bitcoin，分布式数据库，BigchianDB特性比较
 
@@ -172,7 +171,7 @@ slug: Blockchain for IoT/IIoT：A smart factory case study
 
 但当多个工厂间或与用户通过跨链等技术连接时，需要考虑更多隐私方面的问题，但这不是我们现在需要考虑的。[^cryptonote2018]中提出的环签名方案保证只有交易双方知道身份。同态加密和零知识证明可以解决交易隐私问题，但解决方法都是资源密集型的，在资源受限的IoT设备上适用性有限。
 
-[^cryptonote2018]:CryptoNote’s. Accessed: Apr. 10, 2018. [Online]. Available: https://cryptonote.org
+[^cryptonote2018]:CryptoNote’s. Accessed: Apr. 10, 2018. [Online]. Available: <https://cryptonote.org>
 
 ### 4.2 访问控制
 
@@ -201,4 +200,3 @@ slug: Blockchain for IoT/IIoT：A smart factory case study
 ## 6. 总结
 
 我们讨论了单个工厂内使用区块链的可能性，以及为了提高工厂生产效率和安全，在共识、存储、安全和隐私的各个方面可以做的种种改进，从而为下一步的研究做准备。
-

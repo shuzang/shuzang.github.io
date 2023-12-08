@@ -14,16 +14,16 @@ Truffle和Ganache的安装使用
 在Ubuntu18.04 下安装运行，要求Node.js版本高于v8.9.4
 
 ```bash
-$ sudo apt-get install npm
-$ sudo npm install npm@latest -g
-$ sudo npm install n -g
-$ sudo n lts
+sudo apt-get install npm
+sudo npm install npm@latest -g
+sudo npm install n -g
+sudo n lts
 ```
 
 安装Truffle
 
 ```bash
-$ sudo npm install -g truffle
+sudo npm install -g truffle
 ```
 
 ### 2. 创建项目
@@ -33,7 +33,7 @@ $ sudo npm install -g truffle
 首先为 Truffle 项目创建新目录
 
 ```bash
-$ mkdir MetaCoin && cd MetaCoin
+mkdir MetaCoin && cd MetaCoin
 ```
 
 下载MetaCoin box
@@ -533,7 +533,6 @@ Truffle develop
 
 ### 参考
 
-[1] Truffle Quickstart, https://www.trufflesuite.com/docs/truffle/quickstart
+[1] Truffle Quickstart, <https://www.trufflesuite.com/docs/truffle/quickstart>
 
-[2] Using Truffle Develop and The Console, https://www.trufflesuite.com/docs/truffle/getting-started/using-truffle-develop-and-the-console#truffle-develop
-
+[2] Using Truffle Develop and The Console, <https://www.trufflesuite.com/docs/truffle/getting-started/using-truffle-develop-and-the-console#truffle-develop>

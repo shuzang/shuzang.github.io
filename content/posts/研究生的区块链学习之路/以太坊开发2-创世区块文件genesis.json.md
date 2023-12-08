@@ -42,7 +42,7 @@ categories: [研究生的区块链学习之路]
 }
 ```
 
-##　参数说明
+## 　参数说明
 
 关于示例文件中各参数说明如下。首先config中的内容是区块链相关的基本配置参数。
 
@@ -67,7 +67,7 @@ categories: [研究生的区块链学习之路]
 
 - **parentHash** - 整个父块头的 Keccak 256 位哈希（包括其 nonce 和 mixhash）。指向父块的指针，从而有效地构建块链。创世区块中其值为0，实际上创世区块没有这个参数也可以。
 
-- **extraData** - 可选字段，但最多 32 字节，to conserve smart things for ethernity。 
+- **extraData** - 可选字段，但最多 32 字节，to conserve smart things for ethernity。
 
 - **gasLimit** - 每个区块所消耗的gas限制。自己做测试时需要设置的高一点，以避免在测试期间受到此阈值的限制。注意：这并不表示我们不应该关注合约的汽gas消耗量。
 

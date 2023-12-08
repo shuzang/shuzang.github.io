@@ -5,7 +5,7 @@ tags: [论文笔记]
 categories: [研究生的区块链学习之路] 
 ---
 
-Kumar, Tanesh & Braeken, An & Ramani, Vidhya & Ahmad, Ijaz & Harjula, Erkki & Ylianttila, Mika. (2019). SEC-BlockEdge: Security Threats in Blockchain-Edge based Industrial IoT Networks. 
+Kumar, Tanesh & Braeken, An & Ramani, Vidhya & Ahmad, Ijaz & Harjula, Erkki & Ylianttila, Mika. (2019). SEC-BlockEdge: Security Threats in Blockchain-Edge based Industrial IoT Networks.
 
 以一个木屋建造场景作为IIoT用例，简要介绍了一个区块链-边缘计算框架。然后以此为基础讨论了关键的安全需求，每个层次中可能出现的安全威胁和解决方案。
 
@@ -79,6 +79,3 @@ Kumar, Tanesh & Braeken, An & Ramani, Vidhya & Ahmad, Ijaz & Harjula, Erkki & Yl
 关于认证，原先依赖可信第三方建立PKI体系进行认证的设备现在可以依赖区块链建立信任，但本地短距离通信技术面临的种种威胁区块链无法起作用，智能通过传统的密钥协商方案解决。
 
 如因资源受限使用分层管理的体系，区块链客户端不安装在最底层的IoT设备中，还是会出现单点故障问题，代理网关的沦陷意味着与之连接的所有设备的沦陷，应当采用某种手段如定期的检查代理网关状态，在检测到异常时将网关代理的所有设备技术移交其它网关管理。异常检测依然会在该问题中起到重要作用。
-
-
-

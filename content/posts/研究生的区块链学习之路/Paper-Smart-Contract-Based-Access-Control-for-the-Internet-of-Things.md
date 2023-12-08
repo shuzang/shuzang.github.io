@@ -31,8 +31,6 @@ IoT系统可能遭受入侵，导致相关资源（数据、服务、存储单�
 
 ![](https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/6488907/8709863/8386853/zhang1-2847705-small.gif)
 
-
-
 - 服务器。与IoT设备/存储设备链接，为用户提供服务。交互方式包括
   1. 从传感器收集环境数据，
   2. 向执行器发送命令执行某些操作，
@@ -73,8 +71,6 @@ ACC由object部署，这个object想要控制来自subject的访问请求，假�
 为了记录subject的恶意行为，ACC还维持一个恶意行为列表如下
 
 ![](https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/6488907/8709863/8386853/zhang.t2-2847705-small.gif)
-
-
 
 Misbehavior字段也可能描述恶意行为的细节，便于JC进行判决。ACC还提供一些函数接口如下以便管理策略和实施访问控制
 

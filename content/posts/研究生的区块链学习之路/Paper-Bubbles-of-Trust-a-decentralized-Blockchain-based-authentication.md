@@ -132,8 +132,6 @@ Signature（keccakhash（XX || YY || @@））
 
 ---
 
-
-
 #### B. System's functioning
 
 整个结构完整描述，不过是以图示的方式，可以看原文。
@@ -182,8 +180,6 @@ Master，Follower和一些它们都需要注意的规则。
 #### C. Evaluation results
 
 **安全需求评估**：针对前面提到的各安全需求分析该方案是否满足。
-
-
 
 <br/>
 

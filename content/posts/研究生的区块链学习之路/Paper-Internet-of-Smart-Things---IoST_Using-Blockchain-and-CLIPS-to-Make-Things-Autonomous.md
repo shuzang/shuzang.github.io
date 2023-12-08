@@ -15,7 +15,7 @@ Date of Conference: 25-30 June 2017
 
 被引量：11次
 
-keywords：IoT; Management; Blockchain; Multichain;Smart Things; Autonomy;Self-inferencing; Self-monitoring;Fog; Edge. 
+keywords：IoT; Management; Blockchain; Multichain;Smart Things; Autonomy;Self-inferencing; Self-monitoring;Fog; Edge.
 
 <br/>
 
@@ -133,8 +133,3 @@ Multichain的平均响应时间是389ms。延迟不影响性能。这说明了�
 - 设计并实现了集成区块链的雾网络，可与Smart Things实时通信，并将管理任务分配到Things层的边缘。
 
 未来的工作侧重于评估不同开发板的Smart Things:flushed:
-
-
-
-
-

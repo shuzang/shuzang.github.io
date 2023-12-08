@@ -156,8 +156,6 @@ Zotero 本身只提供 300M 免费的存储空间，这些空间存储 PDF 文�
 
 ![Zotero的数据备份](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20181111_8Mvcvj.png)
 
-
-
 Zotero 的数据和文件的同步是分离的，数据指的是文献的分类、标签和各种元数据信息，文件指的是PDF和笔记等各种附件，这就给了我们机会[^2]。如上图所示，在「同步」设置页面，对数据同步的选项全部勾选，而文件同步的选项全部取消勾选。
 
 [^2]:[利用ONEDRIVE同步ZOTERO数据文件夹的方法](https://www.junjienotes.com/tips/利用onedrive同步zotero数据文件夹的方法/)
@@ -219,4 +217,3 @@ Zotero 有个时间轴功能，可以将所有文献反映在一条时间轴上�
 - [Mendeley](https://www.mendeley.com/) ：2013 年以开源软件身份被 Elsevier 高价收购，背靠大树。
 
 不过很多人推荐[Papers](https://www.papersapp.com/)，除了基本的文献和笔记管理外，还有界面美观和内置PDF阅读器两个优点，说实话很心动，但是要付费订阅，如果走科研道路就算了，可惜并没有打算读博。
-

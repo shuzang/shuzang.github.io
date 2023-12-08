@@ -27,7 +27,7 @@ Date of Conference: 15-18 May **2018**
 
 为了提供智能空间中组件间的互操作性，可以使用本体和本体匹配机制（称为ontology and ontology matching mechanism）,这种机制已在众多项目中做了广泛描述和使用[2-3]。组件间的信任问题由于参与者的异构变得复杂，可通过数字签名和访问控制机制解决，需要一个中心化实体来为IIoT的所有组件提供信任和访问控制。资源和成品分发的控制可以使用一个所有组件都可访问的数据库完成。这些解决方案都相当复杂并且需要复杂的基础架构才能提供容错、性能和可用性。与此同时，区块链技术的活跃发展为以上提到的问题提供了更简单的解决方案。
 
-> [2]. A. Smirnov A. Kashevnik A. Ponomarev N. Shilov M. Shchekotov N. Teslya "Smart space-based intelligent mobile tourist guide: Service-based implementation" Conference of Open Innovation Association FRUCT pp. 126-134 2014. 
+> [2]. A. Smirnov A. Kashevnik A. Ponomarev N. Shilov M. Shchekotov N. Teslya "Smart space-based intelligent mobile tourist guide: Service-based implementation" Conference of Open Innovation Association FRUCT pp. 126-134 2014.
 >
 > [3]. A. Smirnov A. Kashevnik N. Shilov S. Balandin I. Oliver S. Boldyrev "On-the-fly ontology matching in smart spaces: A multi-model approach" Lect. Notes Comput. Sci. (including Subser. Lect. Notes Artif. Intell. Lect. Notes Bioinformatics) vol. 6294 pp. 72-83 2010.  
 
@@ -45,7 +45,7 @@ Date of Conference: 15-18 May **2018**
 
 由于区块链技术不久前才流行起来，许多项目还处于早期阶段，因此它们没有定性地描述算法来支持所声称的保证，因此不适用于实际项目的实施。已有的区块链技术的实现，尤其是共识机制的实现在[6]中得到总结。本文基本上研究了[6]中的所有共识和共识机制之外他们工作的特点，并和具体项目的需求相关联。下一部分将详细描述这些共识机制。
 
-> [6] C. Cachin M. Vukolic Blockchain Consensus Protocols in the Wild Jul. 2017. 
+> [6] C. Cachin M. Vukolic Blockchain Consensus Protocols in the Wild Jul. 2017.
 
 ## III. Consensus Mechanisms
 
@@ -78,7 +78,7 @@ PoET类似于PoW，但对于随机块创建，解决方案不是基于资源密�
 
 可以将区块链分为公链和私链，两种网络的对比如表1所示
 
-表1. 
+表1.
 
 ![](https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/8457083/8468260/8468276/Tes-table-1-source-large.gif)
 

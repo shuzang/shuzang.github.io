@@ -71,17 +71,17 @@ resource, action,duty,rule,algorithm
 $$
 其中，$duty$ 是实施完访问控制需要做的事；一个策略可能包含多个规则，一个 $rule$ 由 $SA,OA,EA,resource,action,result$ 六部分组成；$algorithm$ 用来在规则产生矛盾时进行判定；返回的结果有两种：$allow$ 和 $deny$。一个示例为
 
-> policy: [resource:switch] [action:on] [duty:record] [algorithm:denyoverrides] 
+> policy: [resource:switch] [action:on] [duty:record] [algorithm:denyoverrides]
 >
-> rule1: 
+> rule1:
 >
-> ​	subject attribute: [group:owner] [role:parent] [type:remotecontrol]
+> ​ subject attribute: [group:owner] [role:parent] [type:remotecontrol]
 >
-> ​	object attribute: [type:TV] [location:livingroom]
+> ​ object attribute: [type:TV] [location:livingroom]
 >
-> ​	environment attribute: [time: 21:00 - 23:00]
+> ​ environment attribute: [time: 21:00 - 23:00]
 >
-> ​	result: allow
+> ​ result: allow
 
 PC 提供如下函数功能：
 
