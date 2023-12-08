@@ -171,7 +171,8 @@ enableEmoji = true
     # FixIt 0.2.0 | NEW Header title config
     [params.header.title]
       # URL of the LOGO
-      logo = "/images/avatar.png"
+      # logo = "/images/avatar.png"
+      logo = "https://picped-1301226557.cos.ap-beijing.myqcloud.com/avatar.png"
       # title name
       name = "Shuzang's Blog"
       # you can add extra information before the name (HTML format is supported), such as icons
@@ -272,7 +273,8 @@ enableEmoji = true
       # Gravatar Email for preferred avatar in home page
       gravatarEmail = ""
       # URL of avatar shown in home page
-      avatarURL = "/images/avatar.png"
+      # avatarURL = "/images/avatar.png"
+      avatarURL = "https://picped-1301226557.cos.ap-beijing.myqcloud.com/avatar.png"
       # FixIt 0.2.17 | NEW identifier of avatar menu link
       avatarMenu = ""
       # FixIt 0.2.7 | CHANGED title shown in home page (HTML format is supported)
@@ -497,8 +499,10 @@ enableEmoji = true
       # FixIt 0.2.18 | NEW display mode of QR code images, optional values: ["static", "fixed"], default: `static`
       mode = "static"
       [params.page.reward.ways]
-         wechatpay = "/images/wechatpay.png"
-         alipay = "/images/alipay.png"
+        wechatpay = "https://picped-1301226557.cos.ap-beijing.myqcloud.com/wechatpay.png"
+        alipay = "https://picped-1301226557.cos.ap-beijing.myqcloud.com/alipay.png"
+        # wechatpay = "/images/wechatpay.png"
+        # alipay = "/images/alipay.png"
         # paypal = "/images/paypal.png"
         # bitcoin = "/images/bitcoin.png"
     # FixIt 0.2.0 | CHANGED social share links in post page
@@ -898,7 +902,8 @@ enableEmoji = true
   name = "Shuzang"
   email = "liuyang8443@qq.com"
   link = ""
-  avatar = "/images/avatar.png" # FixIt 0.2.18 | 新增
+  # avatar = "/images/avatar.png" # FixIt 0.2.18 | 新增
+  avatar = "https://picped-1301226557.cos.ap-beijing.myqcloud.com/avatar.png"
 
 # 网站地图配置
 [sitemap]
