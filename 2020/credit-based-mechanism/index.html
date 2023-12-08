@@ -27,23 +27,23 @@ $$</p><h4 id=332-一些考虑>3.3.2 一些考虑</h4><p>将设计方案时的一
 </span><span class=lnt>3
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>MC部署账户(系统管理者)：0x4542ED8d83107Db8e9Cab06d9A8D7a02b896f7d9
 </span></span><span class=line><span class=cl>返回：
-</span></span><span class=line><span class=cl>	MC合约地址：0x1f1e534ff105d9e697a1c9afabcd02560de55bbe</span></span></code></pre></td></tr></table></div></div></li><li><p>监管机构部署RC</p><div class=highlight id=id-2><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></span><span class=line><span class=cl> MC合约地址：0x1f1e534ff105d9e697a1c9afabcd02560de55bbe</span></span></code></pre></td></tr></table></div></div></li><li><p>监管机构部署RC</p><div class=highlight id=id-2><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>RC部署账户(监管机构)：0x5521Ba0bC012bE5dC12855f4972c48505Dc88c4A
 </span></span><span class=line><span class=cl>传入：
-</span></span><span class=line><span class=cl>	MC合约地址：0x1f1e534ff105d9e697a1c9afabcd02560de55bbe
+</span></span><span class=line><span class=cl> MC合约地址：0x1f1e534ff105d9e697a1c9afabcd02560de55bbe
 </span></span><span class=line><span class=cl>返回：
-</span></span><span class=line><span class=cl>	RC合约地址：0x644e0e3b47ad746be213e1553928f96f70a2655c</span></span></code></pre></td></tr></table></div></div></li><li><p>系统管理者调用 MC中的 setRC() 进行设置</p><div class=highlight id=id-3><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></span><span class=line><span class=cl> RC合约地址：0x644e0e3b47ad746be213e1553928f96f70a2655c</span></span></code></pre></td></tr></table></div></div></li><li><p>系统管理者调用 MC中的 setRC() 进行设置</p><div class=highlight id=id-3><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>调用账户(系统管理者)：0x4542ED8d83107Db8e9Cab06d9A8D7a02b896f7d9
 </span></span><span class=line><span class=cl>传入：
-</span></span><span class=line><span class=cl>	RC合约地址：0x644e0e3b47ad746be213e1553928f96f70a2655c
-</span></span><span class=line><span class=cl>	监管机构账户：0x5521Ba0bC012bE5dC12855f4972c48505Dc88c4A</span></span></code></pre></td></tr></table></div></div></li><li><p>设备管理者部署 ACC</p><div class=highlight id=id-4><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></span><span class=line><span class=cl> RC合约地址：0x644e0e3b47ad746be213e1553928f96f70a2655c
+</span></span><span class=line><span class=cl> 监管机构账户：0x5521Ba0bC012bE5dC12855f4972c48505Dc88c4A</span></span></code></pre></td></tr></table></div></div></li><li><p>设备管理者部署 ACC</p><div class=highlight id=id-4><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -52,11 +52,11 @@ $$</p><h4 id=332-一些考虑>3.3.2 一些考虑</h4><p>将设计方案时的一
 </span><span class=lnt>7
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>ACC部署账户(设备管理者)：0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
 </span></span><span class=line><span class=cl>传入：
-</span></span><span class=line><span class=cl>	MC合约地址：0x1f1e534ff105d9e697a1c9afabcd02560de55bbe
-</span></span><span class=line><span class=cl>	RC合约地址：0x644e0e3b47ad746be213e1553928f96f70a2655c
-</span></span><span class=line><span class=cl>	设备管理者地址：0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
+</span></span><span class=line><span class=cl> MC合约地址：0x1f1e534ff105d9e697a1c9afabcd02560de55bbe
+</span></span><span class=line><span class=cl> RC合约地址：0x644e0e3b47ad746be213e1553928f96f70a2655c
+</span></span><span class=line><span class=cl> 设备管理者地址：0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
 </span></span><span class=line><span class=cl>返回：
-</span></span><span class=line><span class=cl>	ACC合约地址：0x19455cac7bd27705661d467e20ee82b1cc48737b</span></span></code></pre></td></tr></table></div></div></li><li><p>设备管理者调用 MC 中的 deviceRegister() 函数，注册自身</p><div class=highlight id=id-5><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></span><span class=line><span class=cl> ACC合约地址：0x19455cac7bd27705661d467e20ee82b1cc48737b</span></span></code></pre></td></tr></table></div></div></li><li><p>设备管理者调用 MC 中的 deviceRegister() 函数，注册自身</p><div class=highlight id=id-5><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -66,12 +66,12 @@ $$</p><h4 id=332-一些考虑>3.3.2 一些考虑</h4><p>将设计方案时的一
 </span><span class=lnt>8
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>调用账户(设备管理者)：0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
 </span></span><span class=line><span class=cl>传入参数为：
-</span></span><span class=line><span class=cl>	设备地址：0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
-</span></span><span class=line><span class=cl>	管理者地址：0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
-</span></span><span class=line><span class=cl>	合约地址：0x19455cac7bd27705661d467e20ee82b1cc48737b
-</span></span><span class=line><span class=cl>	设备ID：gateway33
-</span></span><span class=line><span class=cl>	设备类型：gateway
-</span></span><span class=line><span class=cl>	设备角色：manager</span></span></code></pre></td></tr></table></div></div></li><li><p>设备部署 ACC</p><div class=highlight id=id-6><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></span><span class=line><span class=cl> 设备地址：0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
+</span></span><span class=line><span class=cl> 管理者地址：0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
+</span></span><span class=line><span class=cl> 合约地址：0x19455cac7bd27705661d467e20ee82b1cc48737b
+</span></span><span class=line><span class=cl> 设备ID：gateway33
+</span></span><span class=line><span class=cl> 设备类型：gateway
+</span></span><span class=line><span class=cl> 设备角色：manager</span></span></code></pre></td></tr></table></div></div></li><li><p>设备部署 ACC</p><div class=highlight id=id-6><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -80,11 +80,11 @@ $$</p><h4 id=332-一些考虑>3.3.2 一些考虑</h4><p>将设计方案时的一
 </span><span class=lnt>7
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>ACC部署账户(设备)：0xB52fd79681f876af9dac92d1ED9a23Aac3fdBfa1
 </span></span><span class=line><span class=cl>传入：
-</span></span><span class=line><span class=cl>	MC合约地址：0x1f1e534ff105d9e697a1c9afabcd02560de55bbe
-</span></span><span class=line><span class=cl>	RC合约地址：0x644e0e3b47ad746be213e1553928f96f70a2655c
-</span></span><span class=line><span class=cl>	设备管理者地址：0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
+</span></span><span class=line><span class=cl> MC合约地址：0x1f1e534ff105d9e697a1c9afabcd02560de55bbe
+</span></span><span class=line><span class=cl> RC合约地址：0x644e0e3b47ad746be213e1553928f96f70a2655c
+</span></span><span class=line><span class=cl> 设备管理者地址：0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
 </span></span><span class=line><span class=cl>返回：
-</span></span><span class=line><span class=cl>	ACC合约地址：0x54d463eca95c313077815ce0a893b4036199e28e</span></span></code></pre></td></tr></table></div></div></li><li><p>设备管理者调用 MC 中的 deviceRegister() 函数，注册设备固定属性</p><div class=highlight id=id-7><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></span><span class=line><span class=cl> ACC合约地址：0x54d463eca95c313077815ce0a893b4036199e28e</span></span></code></pre></td></tr></table></div></div></li><li><p>设备管理者调用 MC 中的 deviceRegister() 函数，注册设备固定属性</p><div class=highlight id=id-7><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -94,46 +94,46 @@ $$</p><h4 id=332-一些考虑>3.3.2 一些考虑</h4><p>将设计方案时的一
 </span><span class=lnt>8
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>调用账户(设备管理者)：0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
 </span></span><span class=line><span class=cl>传入参数为：
-</span></span><span class=line><span class=cl>	设备地址：0xB52fd79681f876af9dac92d1ED9a23Aac3fdBfa1
-</span></span><span class=line><span class=cl>	管理者地址：0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
-</span></span><span class=line><span class=cl>	合约地址：0x54d463eca95c313077815ce0a893b4036199e28e
-</span></span><span class=line><span class=cl>	设备ID：pallat23
-</span></span><span class=line><span class=cl>	设备类型：pallat
-</span></span><span class=line><span class=cl>	设备角色：device</span></span></code></pre></td></tr></table></div></div></li><li><p>设备管理者调用 MC 中的 addAttribute() 函数，添加额外属性</p><div class=highlight id=id-8><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></span><span class=line><span class=cl> 设备地址：0xB52fd79681f876af9dac92d1ED9a23Aac3fdBfa1
+</span></span><span class=line><span class=cl> 管理者地址：0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
+</span></span><span class=line><span class=cl> 合约地址：0x54d463eca95c313077815ce0a893b4036199e28e
+</span></span><span class=line><span class=cl> 设备ID：pallat23
+</span></span><span class=line><span class=cl> 设备类型：pallat
+</span></span><span class=line><span class=cl> 设备角色：device</span></span></code></pre></td></tr></table></div></div></li><li><p>设备管理者调用 MC 中的 addAttribute() 函数，添加额外属性</p><div class=highlight id=id-8><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>调用账户(设备管理者): 0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
 </span></span><span class=line><span class=cl>传入参数：
-</span></span><span class=line><span class=cl>	设备地址：0xB52fd79681f876af9dac92d1ED9a23Aac3fdBfa1
-</span></span><span class=line><span class=cl>	属性名：currentFruit
-</span></span><span class=line><span class=cl>	属性值：apple</span></span></code></pre></td></tr></table></div></div></li><li><p>调用 MC 中的 get 类函数，查看设备属性，包括 getFixedAttribute(), getDeviceRelatedAddress(), getCustomedAttribute() 三个函数</p></li><li><p>设备管理者调用 MC 中的 updateAttribute() 函数，更改属性</p><div class=highlight id=id-9><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></span><span class=line><span class=cl> 设备地址：0xB52fd79681f876af9dac92d1ED9a23Aac3fdBfa1
+</span></span><span class=line><span class=cl> 属性名：currentFruit
+</span></span><span class=line><span class=cl> 属性值：apple</span></span></code></pre></td></tr></table></div></div></li><li><p>调用 MC 中的 get 类函数，查看设备属性，包括 getFixedAttribute(), getDeviceRelatedAddress(), getCustomedAttribute() 三个函数</p></li><li><p>设备管理者调用 MC 中的 updateAttribute() 函数，更改属性</p><div class=highlight id=id-9><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>调用账户(设备管理者): 0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
 </span></span><span class=line><span class=cl>传入参数：
-</span></span><span class=line><span class=cl>	设备地址：0xB52fd79681f876af9dac92d1ED9a23Aac3fdBfa1
-</span></span><span class=line><span class=cl>	属性名：currentFruit
-</span></span><span class=line><span class=cl>	属性值：peer</span></span></code></pre></td></tr></table></div></div><p>调用 MC 中的 getCustomedAttribute() 函数，查看更改后的属性，确认无误</p></li><li><p>设备管理者调用 MC 中的 deleteAttribute() 函数，删除 currentFruit 属性</p><div class=highlight id=id-10><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></span><span class=line><span class=cl> 设备地址：0xB52fd79681f876af9dac92d1ED9a23Aac3fdBfa1
+</span></span><span class=line><span class=cl> 属性名：currentFruit
+</span></span><span class=line><span class=cl> 属性值：peer</span></span></code></pre></td></tr></table></div></div><p>调用 MC 中的 getCustomedAttribute() 函数，查看更改后的属性，确认无误</p></li><li><p>设备管理者调用 MC 中的 deleteAttribute() 函数，删除 currentFruit 属性</p><div class=highlight id=id-10><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>调用账户(设备管理者): 0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
 </span></span><span class=line><span class=cl>传入参数：
-</span></span><span class=line><span class=cl>	设备地址：0xB52fd79681f876af9dac92d1ED9a23Aac3fdBfa1
-</span></span><span class=line><span class=cl>	属性名：currentFruit</span></span></code></pre></td></tr></table></div></div><p>调用 MC 中的 getCustomedAttribute() 函数，会返回 Attribute not exist! 错误</p></li></ol><h3 id=42-访问测试>4.2 访问测试</h3><ol><li><p>设备管理者调用 ACC 的 addResourceAttr() 函数添加资源属性</p><div class=highlight id=id-11><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></span><span class=line><span class=cl> 设备地址：0xB52fd79681f876af9dac92d1ED9a23Aac3fdBfa1
+</span></span><span class=line><span class=cl> 属性名：currentFruit</span></span></code></pre></td></tr></table></div></div><p>调用 MC 中的 getCustomedAttribute() 函数，会返回 Attribute not exist! 错误</p></li></ol><h3 id=42-访问测试>4.2 访问测试</h3><ol><li><p>设备管理者调用 ACC 的 addResourceAttr() 函数添加资源属性</p><div class=highlight id=id-11><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span><span class=lnt>5
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>调用账户(设备管理者): 0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
 </span></span><span class=line><span class=cl>传入参数：
-</span></span><span class=line><span class=cl>	资源名：GPS
-</span></span><span class=line><span class=cl>	属性名：currentLocation
-</span></span><span class=line><span class=cl>	属性值：116.309551, 39.896559 </span></span></code></pre></td></tr></table></div></div><p>然后调用 getResourceAttr() 函数查看</p></li><li><p>设备管理者调用 ACC 的 updateResourceAttr() 函数更新资源属性，继续查看；最后调用 deleteResourceAttr() 函数删除资源属性，查看返回 Resource attribute not exist! 错误</p></li><li><p>设备管理者调用 ACC 的 addPolicy() 函数添加策略</p><div class=highlight id=id-12><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></span><span class=line><span class=cl> 资源名：GPS
+</span></span><span class=line><span class=cl> 属性名：currentLocation
+</span></span><span class=line><span class=cl> 属性值：116.309551, 39.896559 </span></span></code></pre></td></tr></table></div></div><p>然后调用 getResourceAttr() 函数查看</p></li><li><p>设备管理者调用 ACC 的 updateResourceAttr() 函数更新资源属性，继续查看；最后调用 deleteResourceAttr() 函数删除资源属性，查看返回 Resource attribute not exist! 错误</p></li><li><p>设备管理者调用 ACC 的 addPolicy() 函数添加策略</p><div class=highlight id=id-12><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
@@ -144,20 +144,20 @@ $$</p><h4 id=332-一些考虑>3.3.2 一些考虑</h4><p>将设计方案时的一
 </span><span class=lnt>9
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>调用账户(设备管理者): 0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
 </span></span><span class=line><span class=cl>传入参数：
-</span></span><span class=line><span class=cl>	资源名：truck
-</span></span><span class=line><span class=cl>	操作：read
-</span></span><span class=line><span class=cl>	属性所有者：subject
-</span></span><span class=line><span class=cl>	属性名：deviceType
-</span></span><span class=line><span class=cl>	操作符：=
-</span></span><span class=line><span class=cl>	属性值：gateway
-</span></span><span class=line><span class=cl>	重要级别：0</span></span></code></pre></td></tr></table></div></div><p>成功后调用 getPolicy() 查看策略</p></li><li><p>设备管理者调用 ACC 的 accessControl() 函数，测试访问控制</p><div class=highlight id=id-13><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></span><span class=line><span class=cl> 资源名：truck
+</span></span><span class=line><span class=cl> 操作：read
+</span></span><span class=line><span class=cl> 属性所有者：subject
+</span></span><span class=line><span class=cl> 属性名：deviceType
+</span></span><span class=line><span class=cl> 操作符：=
+</span></span><span class=line><span class=cl> 属性值：gateway
+</span></span><span class=line><span class=cl> 重要级别：0</span></span></code></pre></td></tr></table></div></div><p>成功后调用 getPolicy() 查看策略</p></li><li><p>设备管理者调用 ACC 的 accessControl() 函数，测试访问控制</p><div class=highlight id=id-13><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span><span class=lnt>3
 </span><span class=lnt>4
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>调用账户(设备管理者): 0x8f3dA5cD93Eb378Cdd27631C1757075B25D65B18
 </span></span><span class=line><span class=cl>传入参数：
-</span></span><span class=line><span class=cl>	资源名：truck
-</span></span><span class=line><span class=cl>	操作：read</span></span></code></pre></td></tr></table></div></div></li></ol><p>以上为访问成功的测试，之后将所有可能的情况都测试一遍，包括：策略未定义、频繁访问、策略检查未通过、重要策略检查未通过。</p><p>除此之外，还要测试算法为 denyoverrides 和 allowoverrides 两种情况下对于冲突策略的处理结果，每一种测试都要注意返回的 event 中 behaviorID 和 finalResult 是否对应。</p><h3 id=43-rc测试>4.3 RC测试</h3><p>暂时去除 reputationCompute() 函数前的 require 验证，测试该函数</p><h3 id=44-其它>4.4 其它</h3><p>应当使用某种工具对合约进行审计，验证其安全性，本来打算使用曾用过的 Mythx，但 Mythx 已转为收费，其它工具类似，因此放弃了审计工作，仅使用 Remix 自带的安全性验证。</p><p>所有功能测试完成后，统计所有类型合约 deploy 所需要的 Gas 梳理，统计编译后元数据的大小，用于之后的结果对比与分析。</p><h2 id=附录i-所做调整>附录I 所做调整</h2><p><span id=jump></span>下面是所作的调整总结</p><ul><li><i class="fa-regular fa-check-square fa-fw" aria-hidden=true></i> 功能-策略冲突解决机制</li><li><i class="fa-regular fa-check-square fa-fw" aria-hidden=true></i> 功能-无匹配策略时的处理</li><li><i class="fa-regular fa-check-square fa-fw" aria-hidden=true></i> 功能-恶意行为检测</li><li><i class="fa-regular fa-square fa-fw" aria-hidden=true></i> 架构-策略定义拆分单独的合约（提供重用性）</li><li><i class="fa-regular fa-check-square fa-fw" aria-hidden=true></i> 架构-部分函数迁移到单独的库文件 Utils.sol（for gas save）</li><li><i class="fa-regular fa-check-square fa-fw" aria-hidden=true></i> 语法-匹配最新版本编译器</li><li><i class="fa-regular fa-check-square fa-fw" aria-hidden=true></i> 语法-统一代码风格</li><li><i class="fa-regular fa-check-square fa-fw" aria-hidden=true></i> 实验过程-去除合约审计（MythX 转为收费）</li><li><i class="fa-regular fa-check-square fa-fw" aria-hidden=true></i> 实验过程-移除树莓派节点（在家的时候没有树莓派）</li><li><i class="fa-regular fa-check-square fa-fw" aria-hidden=true></i> 实验过程-恶意行为的测试方案</li><li><i class="fa-regular fa-check-square fa-fw" aria-hidden=true></i> 实验过程-测试新的性能指标（必要的）</li><li><i class="fa-regular fa-square fa-fw" aria-hidden=true></i> 实验过程-利用 JavaScript 和 Bash 交互迁移到利用 Go</li><li><i class="fa-regular fa-check-square fa-fw" aria-hidden=true></i> 思路-明晰背景（为什么做这件事）</li><li><i class="fa-regular fa-check-square fa-fw" aria-hidden=true></i> 思路-信誉算法设计</li></ul><h2 id=附录ii-参考的信誉算法>附录II 参考的信誉算法</h2><p>根据节点 $i$ 的行为，将其信誉值 $Cr_i$ 划分为两部分，公式如下
+</span></span><span class=line><span class=cl> 资源名：truck
+</span></span><span class=line><span class=cl> 操作：read</span></span></code></pre></td></tr></table></div></div></li></ol><p>以上为访问成功的测试，之后将所有可能的情况都测试一遍，包括：策略未定义、频繁访问、策略检查未通过、重要策略检查未通过。</p><p>除此之外，还要测试算法为 denyoverrides 和 allowoverrides 两种情况下对于冲突策略的处理结果，每一种测试都要注意返回的 event 中 behaviorID 和 finalResult 是否对应。</p><h3 id=43-rc测试>4.3 RC测试</h3><p>暂时去除 reputationCompute() 函数前的 require 验证，测试该函数</p><h3 id=44-其它>4.4 其它</h3><p>应当使用某种工具对合约进行审计，验证其安全性，本来打算使用曾用过的 Mythx，但 Mythx 已转为收费，其它工具类似，因此放弃了审计工作，仅使用 Remix 自带的安全性验证。</p><p>所有功能测试完成后，统计所有类型合约 deploy 所需要的 Gas 梳理，统计编译后元数据的大小，用于之后的结果对比与分析。</p><h2 id=附录i-所做调整>附录I 所做调整</h2><p><span id=jump></span>下面是所作的调整总结</p><ul><li><i class="fa-regular fa-check-square fa-fw" aria-hidden=true></i> 功能-策略冲突解决机制</li><li><i class="fa-regular fa-check-square fa-fw" aria-hidden=true></i> 功能-无匹配策略时的处理</li><li><i class="fa-regular fa-check-square fa-fw" aria-hidden=true></i> 功能-恶意行为检测</li><li><i class="fa-regular fa-square fa-fw" aria-hidden=true></i> 架构-策略定义拆分单独的合约（提供重用性）</li><li><i class="fa-regular fa-check-square fa-fw" aria-hidden=true></i> 架构-部分函数迁移到单独的库文件 Utils.sol（for gas save）</li><li><i class="fa-regular fa-check-square fa-fw" aria-hidden=true></i> 语法-匹配最新版本编译器</li><li><i class="fa-regular fa-check-square fa-fw" aria-hidden=true></i> 语法-统一代码风格</li><li><i class="fa-regular fa-check-square fa-fw" aria-hidden=true></i> 实验过程-去除合约审计（MythX 转为收费）</li><li><i class="fa-regular fa-check-square fa-fw" aria-hidden=true></i> 实验过程-移除树莓派节点（在家的时候没有树莓派）</li><li><i class="fa-regular fa-check-square fa-fw" aria-hidden=true></i> 实验过程-恶意行为的测试方案</li><li><i class="fa-regular fa-check-square fa-fw" aria-hidden=true></i> 实验过程-测试新的性能指标（必要的）</li><li><i class="fa-regular fa-square fa-fw" aria-hidden=true></i> 实验过程-利用 JavaScript 和 Bash 交互迁移到利用 Go</li><li><i class="fa-regular fa-check-square fa-fw" aria-hidden=true></i> 思路-明晰背景（为什么做这件事）</li><li><i class="fa-regular fa-check-square fa-fw" aria-hidden=true></i> 思路-信誉算法设计</li></ul><h2 id=附录ii-参考的信誉算法>附录II 参考的信誉算法</h2><p>根据节点 $i$ 的行为，将其信誉值 $Cr_i$ 划分为两部分，公式如下
 $$
 Cr_i = \lambda_1 Cr_i^P + \lambda_2 Cr_i^N
 $$

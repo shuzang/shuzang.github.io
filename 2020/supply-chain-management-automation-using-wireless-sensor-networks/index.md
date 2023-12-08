@@ -41,7 +41,7 @@ L. Evers and P. Havinga, “Supply Chain Management Automation using Wireless Se
 
 实验开始时，在农场位置（一个桌子上）对托盘上的 mote 进行编程，然后将它们放到安装了 mote 的一个盒子中，充当场景中的卡车。然后，参与者将这个盒子移动到另一个代表港口船坞位置的桌子，到达该位置后，可以看到图3所示的屏幕上的信息， mote 上的 LED 状态指示灯也会给出指示。在这里，安装了 motes 的托盘被重新放到另一个代表集装箱的盒子里，并移回到第一个位置的桌子，现在这个位置代表配送中心。只有整个运输过程无差错，才不会出现任何警报，否则，笔记本电脑的屏幕会出现警告信息，根据情况， mote 的 LED 也会闪烁提示。运输过程的最后，货物到达配送中心，将读取每个设备的日志文件，其中包括整个旅程中传感器记录的温度信息和所有不当操作触发的警报记录。
 
-[^moteiv]:Moteiv, “Tmote sky,” http://www.moteiv.com/products/tmotesky.php.
+[^moteiv]:Moteiv, “Tmote sky,” <http://www.moteiv.com/products/tmotesky.php>.
 
 ![图3 仓库访问点的屏幕信息](https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/4428591/4428592/4428689/4428689-fig-2-source-small.gif)
 
@@ -57,6 +57,7 @@ L. Evers and P. Havinga, “Supply Chain Management Automation using Wireless Se
 4. 托盘上的节点对农场、码头、配送中心的访问点发起访问，验证是否在正确的时间到达了正确的地点
 
 我们通过实施这几个访问控制操作验证我们方案的有效性，所有的记录都收集到区块链中，从而保证不可篡改，农场主、货运商、分销商等不同角色对日志的访问权限也受到限制。恶意的请求行为（如短时间高频率的请求）会被记录并判定设备是否被入侵。
+
 
 ---
 

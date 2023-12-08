@@ -11,10 +11,10 @@ Dey S. A Proof of Work: Securing Majority-Attack in Blockchain Using Machine Lea
 
 根据[Rosenfeld](https://arxiv.org/pdf/1402.2009.pdf)的研究，确保攻击者攻击成功（双花攻击）的概率在10%，1%和0.1%以下需要确认的区块数分别为2，4和6次，而一旦攻击者的hashrate超过全网hashrate的一半，不论确认多少区块，都将无法阻止攻击。与此同时，考虑实际执行攻击的可能性，假设商品价值为v，攻击者挖了o个区块，每个区块的价值为B，如果攻击成功，攻击者将获得价值v，如果攻击失败，攻击者将失去价值v+oB。综合考虑这两个方面，攻击者的回报`payoff(s)`符合如下公式：
 $$
-s = \begin{cases} 
-	{ v , } & { \text { if } q \ge 0.5 } \\ 
-	{ - ( v + o B ) , } & { \text { if } q < 0.5 } 
-	\end{cases} \tag{1}
+s = \begin{cases}
+ { v , } & { \text { if } q \ge 0.5 } \\
+ { - ( v + o B ) , } & { \text { if } q < 0.5 }
+ \end{cases} \tag{1}
 $$
 
 其中q是hashrate。该回报函数可以用来对是否可能发起攻击进行判定。由于攻击的结果只有两种：成功或失败，因此可以从博弈论的视角进行分析，一些博弈论的术语如下：
@@ -27,9 +27,9 @@ $$
 回报函数`payoff(s)`可以重新表示如下：
 $$
 u(a)=\begin{cases}
-	{v,} & {\text { if } q \ge 0.5} \\ 
-	{-(v+o B),} & {\text { if } q \lt 0.5}
-	\end{cases} \tag{2}
+ {v,} & {\text { if } q \ge 0.5} \\
+ {-(v+o B),} & {\text { if } q \lt 0.5}
+ \end{cases} \tag{2}
 $$
 其中u是效用，a是攻击者采取的动作，q是攻击者的哈希速率，v是商品/服务的价值，o是挖掘的区块数，B是每个区块的价值。
 
@@ -54,7 +54,6 @@ C -->|Yes| D[Block Released For Further Validation]
 ## Discussion
 
 短短四页的论文仅仅是阐述了一个基本思想，作者可能只是想占一个坑，但这一思路却非常值得借鉴。至于异常检测的逻辑是定义在智能合约中还是定义在共识代码中，就有待之后仔细分析了。
-
 
 
 ---

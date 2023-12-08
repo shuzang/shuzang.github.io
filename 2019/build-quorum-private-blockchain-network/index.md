@@ -99,8 +99,8 @@ LoRa/GPS HAT，CC1350 LaunchPad都内置一个温度传感器，LoRa/GPS HAT除�
 更新源和系统
 
 ```bash
-$ sudo apt-get update
-$ sudo apt-get upgrade
+sudo apt-get update
+sudo apt-get upgrade
 ```
 
 调整系统时间
@@ -122,7 +122,7 @@ $ timedatectl set-timezone Asia/Shanghai
 设置主机名
 
 ```bash
-$ sudo hostnamectl set-hostname validator
+sudo hostnamectl set-hostname validator
 ```
 
 重启终端查看新的主机名
@@ -145,7 +145,7 @@ $ hostnamectl
 执行`ifconfig`命令需要安装`net-tools`工具
 
 ```bash
-$ sudo apt-get install net-tools
+sudo apt-get install net-tools
 ```
 
 Ubuntu18.04 必须使用[netplan](https://ubuntu.com/blog/ubuntu-bionic-netplan)管理网络，但因为这里是 Desktop 版，可以可视化设置，所以暂时不需要理解。
@@ -291,8 +291,8 @@ deb-src http://mirror.tuna.tsinghua.edu.cn/raspberrypi/ buster main ui
 更新源文件列表，更新软件
 
 ```bash
-$ sudo apt-get update
-$ sudo apt-get upgrade
+sudo apt-get update
+sudo apt-get upgrade
 ```
 
 #### B. 安装xrdp供远程连接
@@ -319,7 +319,7 @@ ii  vsftpd                                3.0.3-12                              
 编辑配置文件
 
 ```bash
-$ sudo nano /etc/vsftpd.conf
+sudo nano /etc/vsftpd.conf
 ```
 
 启用对树莓派的写入权限
@@ -332,13 +332,13 @@ write command.write_enable=YES
 保存退出，启用vsftpd
 
 ```bash
-$ sudo service vsftpd start
+sudo service vsftpd start
 ```
 
 #### D. 修改pi账户密码，时区和主机名
 
 ```bash
-$ sudo raspi-config
+sudo raspi-config
 ```
 
 选择第一项`Change User Password`，键入新密码并确定，
@@ -361,7 +361,7 @@ OK
 设置主机名
 
 ```bash
-$ sudo hostnamectl set-hostname node5
+sudo hostnamectl set-hostname node5
 ```
 
 编辑/etc/hosts文件，将127.0.1.1对应的raspberry更改为node5
@@ -382,7 +382,7 @@ ff02::2         ip6-allrouters
 编辑`/etc/dhcpcd.conf`文件
 
 ```bash
-$ sudo nano /etc/dhcpcd.conf
+sudo nano /etc/dhcpcd.conf
 ```
 
 在末尾添加如下内容
@@ -402,10 +402,10 @@ static domain_name_servers=192.168.191.1
 已经交叉编译过了，这里下载的是最后生成的文件，放到了Github上。交叉编译的过程可以参考本系列文章的两篇补充说明。
 
 ```bash
-$ git clone -b gethonly https://github.com/shuzang/quorum-raspbian.git
-$ cd quorum-raspbian
-$ sudo cp geth /usr/local/bin
-$ sudo chmod +x /usr/local/bin/geth
+git clone -b gethonly https://github.com/shuzang/quorum-raspbian.git
+cd quorum-raspbian
+sudo cp geth /usr/local/bin
+sudo chmod +x /usr/local/bin/geth
 ```
 
 测试安装是否成功
@@ -432,15 +432,15 @@ GOROOT=/usr/lib/go-1.11
 各节点数据和相关文件的前期生成都在台式电脑中由 istanbul-tools 工具完成。切换到台式电脑，在 istanbul 目录下创建各节点的工作目录
 
 ```bash
-$ cd ~/istanbul
-$ mkdir node0 node1 node2 node3
+cd ~/istanbul
+mkdir node0 node1 node2 node3
 ```
 
 进入领导节点（这里是node0）目录，使用 istanbul-tools 工具为各节点生成文件，该命令会为所有的初始验证者节点生成 `static-nodes.json`, `genesis.json`和 nodekeys 三种文件。
 
 ```bash
-$ cd node0
-$ ../istanbul-tools/build/bin/istanbul setup --num 4 --nodes --quorum --save --verbose
+cd node0
+../istanbul-tools/build/bin/istanbul setup --num 4 --nodes --quorum --save --verbose
 ```
 
 将输出生成的文件信息
@@ -448,34 +448,34 @@ $ ../istanbul-tools/build/bin/istanbul setup --num 4 --nodes --quorum --save --v
 ```json
 validators
 {
-	"Address": "0x7fec892a867a2da2e4f1ae1646c29e40d0d7a5c6",
-	"Nodekey": "d698db367eeb7a43c6eb6c79213482ba6ca6f2781c03e8bc8b6d4d2b9bbfd7e5",
-	"NodeInfo": "enode://7117f995cdb2d79eb90bc4a575c5f82bbe4aa6ac87f966b18e2e19bd29e728ba9ca85062a6af5c188bb159641392e2ac3559712d9a31e965220659412a4a8c3e@0.0.0.0:30303?discport=0"
+ "Address": "0x7fec892a867a2da2e4f1ae1646c29e40d0d7a5c6",
+ "Nodekey": "d698db367eeb7a43c6eb6c79213482ba6ca6f2781c03e8bc8b6d4d2b9bbfd7e5",
+ "NodeInfo": "enode://7117f995cdb2d79eb90bc4a575c5f82bbe4aa6ac87f966b18e2e19bd29e728ba9ca85062a6af5c188bb159641392e2ac3559712d9a31e965220659412a4a8c3e@0.0.0.0:30303?discport=0"
 }
 {
-	"Address": "0x65cc0df8e88fa0fbda0337b3e0b10be9c27325c3",
-	"Nodekey": "0010d6506fe219d1e0c35f481ee4bd1fc26cadb84c0510128f186e32d7be3f0f",
-	"NodeInfo": "enode://cb790b57310d70bfb13e417e9dc22f3b0afc0065f4c5babc2f95e3ff75e99d343547585a0b2ad6be6f0497f401e93c16dadec5a68d820cb918fa0255696940f2@0.0.0.0:30303?discport=0"
+ "Address": "0x65cc0df8e88fa0fbda0337b3e0b10be9c27325c3",
+ "Nodekey": "0010d6506fe219d1e0c35f481ee4bd1fc26cadb84c0510128f186e32d7be3f0f",
+ "NodeInfo": "enode://cb790b57310d70bfb13e417e9dc22f3b0afc0065f4c5babc2f95e3ff75e99d343547585a0b2ad6be6f0497f401e93c16dadec5a68d820cb918fa0255696940f2@0.0.0.0:30303?discport=0"
 }
 {
-	"Address": "0x786083c93b12404fd4100ec497810b5cfa0a7191",
-	"Nodekey": "51fbf8274352fe6d39dbe99be75b13a2a882af210e84ea16935a5b52aa68c662",
-	"NodeInfo": "enode://0e6118122721993e84da84416cb9752a4b5c1b0077a915eb89d0cdff00862c3f13d9edc676c583997f6d9051245ba0f5587750d09d04482774a11f6d13a1c43b@0.0.0.0:30303?discport=0"
+ "Address": "0x786083c93b12404fd4100ec497810b5cfa0a7191",
+ "Nodekey": "51fbf8274352fe6d39dbe99be75b13a2a882af210e84ea16935a5b52aa68c662",
+ "NodeInfo": "enode://0e6118122721993e84da84416cb9752a4b5c1b0077a915eb89d0cdff00862c3f13d9edc676c583997f6d9051245ba0f5587750d09d04482774a11f6d13a1c43b@0.0.0.0:30303?discport=0"
 }
 {
-	"Address": "0x28cd575468829f98dabe99f22fd6f3f09b658700",
-	"Nodekey": "e2ebbcdb7a82c3cac3f0d25a14b57f21dd4a2616f6797a73ab51e8c10b522055",
-	"NodeInfo": "enode://8d510973b1b245cb8cec8369948080b7e5adca90730112739307096ab445182415e92967de7096c013644f4b92025c7e29db23a145040cb3b9d46831fab0e8e2@0.0.0.0:30303?discport=0"
+ "Address": "0x28cd575468829f98dabe99f22fd6f3f09b658700",
+ "Nodekey": "e2ebbcdb7a82c3cac3f0d25a14b57f21dd4a2616f6797a73ab51e8c10b522055",
+ "NodeInfo": "enode://8d510973b1b245cb8cec8369948080b7e5adca90730112739307096ab445182415e92967de7096c013644f4b92025c7e29db23a145040cb3b9d46831fab0e8e2@0.0.0.0:30303?discport=0"
 }
 
 
 
 static-nodes.json
 [
-	"enode://7117f995cdb2d79eb90bc4a575c5f82bbe4aa6ac87f966b18e2e19bd29e728ba9ca85062a6af5c188bb159641392e2ac3559712d9a31e965220659412a4a8c3e@0.0.0.0:30303?discport=0",
-	"enode://cb790b57310d70bfb13e417e9dc22f3b0afc0065f4c5babc2f95e3ff75e99d343547585a0b2ad6be6f0497f401e93c16dadec5a68d820cb918fa0255696940f2@0.0.0.0:30303?discport=0",
-	"enode://0e6118122721993e84da84416cb9752a4b5c1b0077a915eb89d0cdff00862c3f13d9edc676c583997f6d9051245ba0f5587750d09d04482774a11f6d13a1c43b@0.0.0.0:30303?discport=0",
-	"enode://8d510973b1b245cb8cec8369948080b7e5adca90730112739307096ab445182415e92967de7096c013644f4b92025c7e29db23a145040cb3b9d46831fab0e8e2@0.0.0.0:30303?discport=0"
+ "enode://7117f995cdb2d79eb90bc4a575c5f82bbe4aa6ac87f966b18e2e19bd29e728ba9ca85062a6af5c188bb159641392e2ac3559712d9a31e965220659412a4a8c3e@0.0.0.0:30303?discport=0",
+ "enode://cb790b57310d70bfb13e417e9dc22f3b0afc0065f4c5babc2f95e3ff75e99d343547585a0b2ad6be6f0497f401e93c16dadec5a68d820cb918fa0255696940f2@0.0.0.0:30303?discport=0",
+ "enode://0e6118122721993e84da84416cb9752a4b5c1b0077a915eb89d0cdff00862c3f13d9edc676c583997f6d9051245ba0f5587750d09d04482774a11f6d13a1c43b@0.0.0.0:30303?discport=0",
+ "enode://8d510973b1b245cb8cec8369948080b7e5adca90730112739307096ab445182415e92967de7096c013644f4b92025c7e29db23a145040cb3b9d46831fab0e8e2@0.0.0.0:30303?discport=0"
 ]
 
 genesis.json
@@ -542,21 +542,21 @@ drwxr-xr-x 2 shuzang shuzang 4096 Dec 23 18:40 3
 $ cat static-nodes.json
 ....更新ip和端口号如下
 [
-	"enode://7117f995cdb2d79eb90bc4a575c5f82bbe4aa6ac87f966b18e2e19bd29e728ba9ca85062a6af5c188bb159641392e2ac3559712d9a31e965220659412a4a8c3e@192.168.191.2:30300?discport=0",
-	"enode://cb790b57310d70bfb13e417e9dc22f3b0afc0065f4c5babc2f95e3ff75e99d343547585a0b2ad6be6f0497f401e93c16dadec5a68d820cb918fa0255696940f2@192.168.191.2:30301?discport=0",
-	"enode://0e6118122721993e84da84416cb9752a4b5c1b0077a915eb89d0cdff00862c3f13d9edc676c583997f6d9051245ba0f5587750d09d04482774a11f6d13a1c43b@192.168.191.2:30302?discport=0",
-	"enode://8d510973b1b245cb8cec8369948080b7e5adca90730112739307096ab445182415e92967de7096c013644f4b92025c7e29db23a145040cb3b9d46831fab0e8e2@192.168.191.2:30303?discport=0"
+ "enode://7117f995cdb2d79eb90bc4a575c5f82bbe4aa6ac87f966b18e2e19bd29e728ba9ca85062a6af5c188bb159641392e2ac3559712d9a31e965220659412a4a8c3e@192.168.191.2:30300?discport=0",
+ "enode://cb790b57310d70bfb13e417e9dc22f3b0afc0065f4c5babc2f95e3ff75e99d343547585a0b2ad6be6f0497f401e93c16dadec5a68d820cb918fa0255696940f2@192.168.191.2:30301?discport=0",
+ "enode://0e6118122721993e84da84416cb9752a4b5c1b0077a915eb89d0cdff00862c3f13d9edc676c583997f6d9051245ba0f5587750d09d04482774a11f6d13a1c43b@192.168.191.2:30302?discport=0",
+ "enode://8d510973b1b245cb8cec8369948080b7e5adca90730112739307096ab445182415e92967de7096c013644f4b92025c7e29db23a145040cb3b9d46831fab0e8e2@192.168.191.2:30303?discport=0"
 ]
 ```
 
 在每个节点的工作目录创建名为`data`的数据目录，在`data`目录创建`geth`目录
 
 ```bash
-$ cd ..
-$ mkdir -p node0/data/geth
-$ mkdir -p node1/data/geth
-$ mkdir -p node2/data/geth
-$ mkdir -p node3/data/geth
+cd ..
+mkdir -p node0/data/geth
+mkdir -p node1/data/geth
+mkdir -p node2/data/geth
+mkdir -p node3/data/geth
 ```
 
 挑选部分节点，在各自节点的工作目录为其生成初始账户，账户地址会显示在终端，记住为每个节点账户所设的密码
@@ -643,19 +643,19 @@ $ cat node0/genesis.json
 将之前步骤中产生的初始化文件移动到相应节点的工作目录。这些文件现在位于领导节点的工作目录。`genesis.json`放到每个节点的工作目录, `static-nodes.json`放到每个节点的`data`目录。`X/nodekey`放到对应节点的`data/geth`
 
 ```bash
-$ cp node0/genesis.json node1
-$ cp node0/genesis.json node2
-$ cp node0/genesis.json node3
+cp node0/genesis.json node1
+cp node0/genesis.json node2
+cp node0/genesis.json node3
 
-$ cp node0/static-nodes.json node0/data/
-$ cp node0/static-nodes.json node1/data/
-$ cp node0/static-nodes.json node2/data/
-$ cp node0/static-nodes.json node3/data/
+cp node0/static-nodes.json node0/data/
+cp node0/static-nodes.json node1/data/
+cp node0/static-nodes.json node2/data/
+cp node0/static-nodes.json node3/data/
 
-$ cp node0/0/nodekey node0/data/geth
-$ cp node0/1/nodekey node1/data/geth
-$ cp node0/2/nodekey node2/data/geth
-$ cp node0/3/nodekey node3/data/geth
+cp node0/0/nodekey node0/data/geth
+cp node0/1/nodekey node1/data/geth
+cp node0/2/nodekey node2/data/geth
+cp node0/3/nodekey node3/data/geth
 ```
 
 分别在各自节点工作目录执行节点初始化工作
@@ -765,7 +765,7 @@ $ ps
 在台式电脑中创建节点工作目录
 
 ```bash
-$ mkdir node4
+mkdir node4
 ```
 
 进入工作目录，生成相关文件
@@ -775,9 +775,9 @@ $ cd node4
 $ ../istanbul-tools/build/bin/istanbul setup --num 1 --verbose --quorum --save
 validators
 {
-	"Address": "0x93b770a0d6f1b4eb8a96daf8a3f1e9a2d860696c",
-	"Nodekey": "244857df9699fab362c80864888a497caa5d98d48cd87a9cebd12696fcb0289b",
-	"NodeInfo": "enode://195c4a09528db47ba3625cbb21de2c8f0f15cf1a821a95e2decd46837369e7b1d192a7108b627a3840ece306baba38ca6c11ab0dc236a3542bc56ab9204eb75e@0.0.0.0:30303?discport=0"
+ "Address": "0x93b770a0d6f1b4eb8a96daf8a3f1e9a2d860696c",
+ "Nodekey": "244857df9699fab362c80864888a497caa5d98d48cd87a9cebd12696fcb0289b",
+ "NodeInfo": "enode://195c4a09528db47ba3625cbb21de2c8f0f15cf1a821a95e2decd46837369e7b1d192a7108b627a3840ece306baba38ca6c11ab0dc236a3542bc56ab9204eb75e@0.0.0.0:30303?discport=0"
 }
 
 
@@ -822,37 +822,37 @@ genesis.json
 
 ```json
 [
-	"enode://7117f995cdb2d79eb90bc4a575c5f82bbe4aa6ac87f966b18e2e19bd29e728ba9ca85062a6af5c188bb159641392e2ac3559712d9a31e965220659412a4a8c3e@192.168.191.2:30300?discport=0",
-	"enode://cb790b57310d70bfb13e417e9dc22f3b0afc0065f4c5babc2f95e3ff75e99d343547585a0b2ad6be6f0497f401e93c16dadec5a68d820cb918fa0255696940f2@192.168.191.2:30301?discport=0",
-	"enode://0e6118122721993e84da84416cb9752a4b5c1b0077a915eb89d0cdff00862c3f13d9edc676c583997f6d9051245ba0f5587750d09d04482774a11f6d13a1c43b@192.168.191.2:30302?discport=0",
-	"enode://8d510973b1b245cb8cec8369948080b7e5adca90730112739307096ab445182415e92967de7096c013644f4b92025c7e29db23a145040cb3b9d46831fab0e8e2@192.168.191.2:30303?discport=0",
-	"enode://195c4a09528db47ba3625cbb21de2c8f0f15cf1a821a95e2decd46837369e7b1d192a7108b627a3840ece306baba38ca6c11ab0dc236a3542bc56ab9204eb75e@192.168.191.3:30303?discport=0"
+ "enode://7117f995cdb2d79eb90bc4a575c5f82bbe4aa6ac87f966b18e2e19bd29e728ba9ca85062a6af5c188bb159641392e2ac3559712d9a31e965220659412a4a8c3e@192.168.191.2:30300?discport=0",
+ "enode://cb790b57310d70bfb13e417e9dc22f3b0afc0065f4c5babc2f95e3ff75e99d343547585a0b2ad6be6f0497f401e93c16dadec5a68d820cb918fa0255696940f2@192.168.191.2:30301?discport=0",
+ "enode://0e6118122721993e84da84416cb9752a4b5c1b0077a915eb89d0cdff00862c3f13d9edc676c583997f6d9051245ba0f5587750d09d04482774a11f6d13a1c43b@192.168.191.2:30302?discport=0",
+ "enode://8d510973b1b245cb8cec8369948080b7e5adca90730112739307096ab445182415e92967de7096c013644f4b92025c7e29db23a145040cb3b9d46831fab0e8e2@192.168.191.2:30303?discport=0",
+ "enode://195c4a09528db47ba3625cbb21de2c8f0f15cf1a821a95e2decd46837369e7b1d192a7108b627a3840ece306baba38ca6c11ab0dc236a3542bc56ab9204eb75e@192.168.191.3:30303?discport=0"
 ]
 ```
 
 复制已运行区块链的`static-nodes.json`和`genesis.json`文件到当前节点相应目录
 
 ```bash
-$ cp ../node0/genesis.json .
+cp ../node0/genesis.json .
 ```
 
 复制新的`static-nodes.json`文件到所有节点的`data`目录
 
 ```bash
-$ mkdir -p data/geth
-$ cp ../node0/static-nodes.json data
-$ cd ..
-$ cp node0/static-nodes.json node0/data
-$ cp node0/static-nodes.json node1/data
-$ cp node0/static-nodes.json node2/data
-$ cp node0/static-nodes.json node3/data
+mkdir -p data/geth
+cp ../node0/static-nodes.json data
+cd ..
+cp node0/static-nodes.json node0/data
+cp node0/static-nodes.json node1/data
+cp node0/static-nodes.json node2/data
+cp node0/static-nodes.json node3/data
 ```
 
 复制之前生成的 nodekey 到新节点工作目录的geth目录
 
 ```bash
-$ cd node4
-$ cp 0/nodekey data/geth
+cd node4
+cp 0/nodekey data/geth
 ```
 
 利用 win10 的远程桌面连接(xrdp已安装)或者 ftp 等文件(vsftpd已安装)传输协议，将 node4 整个工作目录复制到 raspberry pi 3B+ 中
@@ -860,14 +860,14 @@ $ cp 0/nodekey data/geth
 生成节点账户并记录账户地址
 
 ```bash
-$ cd node4
-$ geth --datadir data account new
+cd node4
+geth --datadir data account new
 ```
 
 初始化节点
 
 ```bash
-$ geth --datadir data init genesis.json
+geth --datadir data init genesis.json
 ```
 
 创建 start.sh 脚本用于启动节点，脚本基本内容如下
@@ -895,9 +895,6 @@ $ ps | grep geth
 接下来可在任一设备的节点目录下通过 websocket 进行操作。
 
 至此利用 Quorum 搭建私链网络完毕，用作之后的实验平台，接下来进行交易验证、合约部署和测试。
-
-
-
 
 
 ---

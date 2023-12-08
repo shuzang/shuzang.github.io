@@ -20,7 +20,7 @@ geth --bootnodes enode://pubkey1@ip1:port1,enode://pubkey2@ip2:port2,enode://pub
 - 本地时钟错误。以太坊连接需要一个准确的时钟，因此，需要检查操作系统的时间并和网络进行同步，不然，即使相差12秒也会造成连接失败。一个时间同步的命令例如：
 
   ```c
-  $ sudo ntpdate -s time.nist.gov
+  sudo ntpdate -s time.nist.gov
   ```
 
 - 防火墙配置错误导致阻止了UDP连接。此时可以使用静态节点进行连接或使用`admin.addPeer()`手动配置连接
@@ -107,6 +107,7 @@ admin.addPeer("enode://f4642fa65af50cfdea8fa7414a5def7bb7991478b768e296f5e4a54e8
 ```
 
 目前控制台不支持移除节点、增加节点数量以及增加非静态节点（断开连接时不重连的节点）
+
 
 ---
 

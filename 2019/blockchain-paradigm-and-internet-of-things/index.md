@@ -6,7 +6,7 @@ Valentin Rakovic， Jovan Karamachoski，Vladimir Atanasovski，Liljana Gavrilov
 Published online: 21 March 2019
 
 Wireless Personal Communications (2019) 106:219–235
-https://doi.org/10.1007/s11277-019-06270-9
+<https://doi.org/10.1007/s11277-019-06270-9>
 
 ## Abstract
 
@@ -56,7 +56,7 @@ Section5阐述未来可能的研究方向
 
 - 架构：声称应使用完全分布式的架构，该结论由以下论文得出
 
-  > Liao, C., Bao, S., Cheng, C., & Chen, K. (2017). On design issues and architectural styles for blockchain-driven iot services. In 2017 IEEE international conference on consumer electronics-Taiwan (ICCE-TW) (pp. 351–352). https://doi.org/10.1109/ICCE-China.2017.7991140.
+  > Liao, C., Bao, S., Cheng, C., & Chen, K. (2017). On design issues and architectural styles for blockchain-driven iot services. In 2017 IEEE international conference on consumer electronics-Taiwan (ICCE-TW) (pp. 351–352). <https://doi.org/10.1109/ICCE-China.2017.7991140>.
 
 - 数据管理和存储：物联网设备的广泛部署将导致IoT网络中的大规模数据流，对大规模数据存储的需求将决定特定场景的架构方案。
 
@@ -70,7 +70,7 @@ Section5阐述未来可能的研究方向
 
 - 软件定义：伴随最佳架构选择的，是所部署网络管理的复杂性。集中式的管理很麻烦，尤其是在软件版本和配置版本控制方面。软件定义物联网（SDIoT）的分布式网络设计和实现，使物联网网络具有增强的网络管理方法。公共可用版本控制系统的存在将增强节点的安全性和网络的稳定性。在论文[26-29]中，作者提出了基于区块链技术的软件版本控制机制，它将使物联网网络保持最新。网络的稳定性本质上是基于bug修复和正确的固件更新。此外，软件版本和配置版本在物联网网络中的可验证性将增强SD-IoT网络的安全性。通过定义，软件定义网络提出了两种平面抽象，将流量划分为：数据和控制平面流量。尽管可以利用节点的有效性，但是可以虚拟化由IoT设备生成的数据平面或数据资源。通过区块链技术对SD-IoT进行虚拟资源管理在[30]中进行了描述，并得到了实验结果的支持。Blockchain也被用于尖端的无线概念，如多接入边缘计算（MEC）和分层架构[31]
 
-  > [30] Azzar, A., & Mottola, L. (2015). Virtual resources for the internet of things. In 2015 IEEE 2nd world forum on internet of things (WF-IoT) (pp. 245–250). https://doi.org/10.1109/WFIoT.2015.7389060.
+  > [30] Azzar, A., & Mottola, L. (2015). Virtual resources for the internet of things. In 2015 IEEE 2nd world forum on internet of things (WF-IoT) (pp. 245–250). <https://doi.org/10.1109/WFIoT.2015.7389060>.
 
 - 机器学习方面
 
@@ -91,9 +91,6 @@ Section5阐述未来可能的研究方向
 ## Conclusions
 
 区块链技术在物联网领域的潜在整合将促进多个行业的重大转变，促进新的商业模式和机遇。区块链代表了一种引发许多技术挑战的新技术。将其与多功能和复杂的生态系统（如物联网）相结合，会触发许多未解决的问题，这些问题必须在商业推广和部署之前解决。
-
-
-
 
 
 ---

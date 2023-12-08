@@ -30,15 +30,15 @@ OS环境：Ubuntu 18.04 LTS(bionic)
 2. 进入下载文件所在目录，执行下列安装命令
 
    ```bash
-   $ sudo dpkg -i docker-ce-cli_18.09.3_3-0_ubuntu-bionic_amd64.deb
-   $ sudo dpkg -i containerd.io_1.2.4-1_amd64.deb
-   $ sudo dpkg -i docker-ce_18.09.3_3-0_ubuntu-bionic_amd64.deb
+   sudo dpkg -i docker-ce-cli_18.09.3_3-0_ubuntu-bionic_amd64.deb
+   sudo dpkg -i containerd.io_1.2.4-1_amd64.deb
+   sudo dpkg -i docker-ce_18.09.3_3-0_ubuntu-bionic_amd64.deb
    ```
 
 3. 通过运行`hello-world`镜像验证安装完成
 
    ```bash
-   $ sudo docker run hello-world
+   sudo docker run hello-world
    ```
 
     该命令会下载一个测试镜像并在容器中运行它，运行时可以从终端看到如下信息说明安装成功，运行结束自动退出。
@@ -56,22 +56,22 @@ OS环境：Ubuntu 18.04 LTS(bionic)
 [docker hub](https://hub.docker.com/r/ethereum/client-go)上有现成的geth镜像，使用`pull`命令直接获取。
 
 ```bash
-$ sudo docker pull ethereum/client-go
+sudo docker pull ethereum/client-go
 ```
 
 默认安装latest版，试运行
 
 ```bash
-$ sudo docker run -it --rm -v /workspace:/workspace --entrypoint /bin/sh ethereum/client-go
+sudo docker run -it --rm -v /workspace:/workspace --entrypoint /bin/sh ethereum/client-go
 ```
 
  `-i`：打开STDIN，用于控制台交互，常与-t一起使用
 
-` -t`：分配tty设备，支持终端登陆，默认为false，常与-i一起使用
+`-t`：分配tty设备，支持终端登陆，默认为false，常与-i一起使用
 
  `--rm`：指定容器停止后自动删除容器（不支持以docker run -d启动的容器 ）
 
-` -v`：给容器挂载存储卷，挂载到容器的某个目录，这里讲本地的/workspace挂载到了容器的/workspace目录，用来在容器和宿主机之间共享文件
+`-v`：给容器挂载存储卷，挂载到容器的某个目录，这里讲本地的/workspace挂载到了容器的/workspace目录，用来在容器和宿主机之间共享文件
 
  `--entrypoint`：覆盖image的入口点，ubuntu环境下docker默认入口点其实是/bin/bash，修改默认入口点是为了不让节点自动运行，稍后会对节点进行自定义配置使其成为私有链节点
 
@@ -100,7 +100,7 @@ hello-world          latest              fce289e99eb9        2 months ago       
 使用如下命令创建该网络
 
 ```bash
-$ sudo docker network create -d bridge --subnet=172.18.0.0/16 ethnet
+sudo docker network create -d bridge --subnet=172.18.0.0/16 ethnet
 ```
 
 `-d`：指定网络类型
@@ -124,7 +124,7 @@ b88630402852        bridge              bridge              local
 运行如下命令进入一个容器
 
 ```bash
-$ sudo docker run -it --rm --network ethnet --ip 172.18.0.50 -v /workspace:/workspace --entrypoint /bin/sh ethereum/client-go
+sudo docker run -it --rm --network ethnet --ip 172.18.0.50 -v /workspace:/workspace --entrypoint /bin/sh ethereum/client-go
 ```
 
 `--network ethnet`指定了该容器加入刚才创建的ethnet网络
@@ -236,7 +236,7 @@ geth -datadir ~/data/ --networkid 88 --rpc --rpcaddr "172.18.0.50" --rpcapi admi
 
 第一行命令是将刚才生成的账户私钥文件拷贝到容器的`~/data`目录下。因为/workspace是宿主目录挂载的，并不是linux文件系统，直接将datadir指定到该目录会导致geth报错。
 
-第二行命令是启动以太坊节点的命令。 
+第二行命令是启动以太坊节点的命令。
 
 - --networkid 88指定了networkid，这个必须与genesis.json内设置保持一致
 - --rpc --rpcaddr "172.18.0.50" --rpcapi .... 这些参数表示该节点接受rpc，并且指定了rpc的协议
@@ -248,13 +248,13 @@ geth -datadir ~/data/ --networkid 88 --rpc --rpcaddr "172.18.0.50" --rpcapi admi
 因为我们没有授予普通用户直接执行docker的权力，所以这里要先给与执行两个脚本的权力
 
 ```bash
-$ sudo chmod +x init.sh mine.sh
+sudo chmod +x init.sh mine.sh
 ```
 
 创建容器
 
 ```bash
-$ sudo docker run -it --name=miner --network ethnet --ip 172.18.0.50 --hostname node -v /workspace:/workspace --entrypoint /workspace/dapp/init.sh ethereum/client-go /workspace/dapp/mine.sh
+sudo docker run -it --name=miner --network ethnet --ip 172.18.0.50 --hostname node -v /workspace:/workspace --entrypoint /workspace/dapp/init.sh ethereum/client-go /workspace/dapp/mine.sh
 ```
 
 `--name=miner`指定容器名为miner
@@ -289,13 +289,13 @@ geth -datadir ~/data/ --networkid 88 console
 授予执行权限
 
 ```bash
-$ sudo chmod +x node.sh
+sudo chmod +x node.sh
 ```
 
 创建容器
 
 ```bash
-$ sudo docker run -it --name=node1 --network ethnet --ip 172.18.0.51 --hostname node1 -v /workspace:/workspace --entrypoint /workspace/dapp/init.sh ethereum/client-go:v1.8.12 /workspace/dapp/node.sh
+sudo docker run -it --name=node1 --network ethnet --ip 172.18.0.51 --hostname node1 -v /workspace:/workspace --entrypoint /workspace/dapp/init.sh ethereum/client-go:v1.8.12 /workspace/dapp/node.sh
 ```
 
 这里的容器名指定为node1，查看当前容器创建情况
@@ -424,7 +424,7 @@ shuzang@ubuntu:~$
 此时使用`docker ps`命令会发现正在运行的容器列表为空，此时使用`start`命令可启动关闭的容器
 
 ```bash
-$ sudo docker start -i miner
+sudo docker start -i miner
 ```
 
 继续进入miner容器的geth环境，然后使用`Ctrl+P+Q`快捷键可以退出但不关闭当前容器，此时使用`docker ps`查看则发现miner容器还在运行列表
@@ -432,7 +432,7 @@ $ sudo docker start -i miner
 然后使用如下命令可进入容器bash环境而不进入geth环境，这种情况下便于我们进行一些需要在容器环境下执行的操作，比如编辑静态节点文件`static-nodes.json`
 
 ```bash
-$ sudo docker exec -it miner /bin/sh
+sudo docker exec -it miner /bin/sh
 ```
 
 我们之前创建的脚本都是把/keystore拷贝到容器中`~/data`目录下执行的，现在来查看该目录的路径和有哪些文件
@@ -448,6 +448,7 @@ geth      geth.ipc  history   keystore
 此时可使用`exit`命令退出容器，注意，因为我们这次是用`exec`命令登入的，所以退出时不关闭容器，使用`ps`命令仍能在运行容器列表中看到miner
 
 当然，也可以使用`attach`命令而不是`exec`命令进入，但这样退出会直接退出容器，不会出现在运行列表中
+
 
 ---
 

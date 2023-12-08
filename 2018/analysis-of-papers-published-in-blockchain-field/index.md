@@ -352,16 +352,16 @@ SCI作者统计图片丢失
 
 - 广东工业大学，Kang Jiawen，2篇
 - 华南理工大学，Xia Qi
-- 湘潭大学，Li Zhetao, [Consortium Blockchain for Secure Energy Trading in Industrial Internet of Things](http://apps.webofknowledge.com/full_record.do?product=WOS&search_mode=GeneralSearch&qid=107&SID=8AwkL1E67zOjrP8lBCU&page=1&doc=3&cacheurlFromRightClick=no) 
-- 中山大学，Zheng Zibin,  [Blockchain challenges and opportunities: a survey](http://apps.webofknowledge.com/full_record.do?product=WOS&search_mode=GeneralSearch&qid=107&SID=8AwkL1E67zOjrP8lBCU&page=1&doc=4&cacheurlFromRightClick=no) 
+- 湘潭大学，Li Zhetao, [Consortium Blockchain for Secure Energy Trading in Industrial Internet of Things](http://apps.webofknowledge.com/full_record.do?product=WOS&search_mode=GeneralSearch&qid=107&SID=8AwkL1E67zOjrP8lBCU&page=1&doc=3&cacheurlFromRightClick=no)
+- 中山大学，Zheng Zibin,  [Blockchain challenges and opportunities: a survey](http://apps.webofknowledge.com/full_record.do?product=WOS&search_mode=GeneralSearch&qid=107&SID=8AwkL1E67zOjrP8lBCU&page=1&doc=4&cacheurlFromRightClick=no)
 - 中山大学，Liu Hong
 - 韩山师范，Lin Qun
-- 丹麦技术大学，Meng Weizhi,  [When Intrusion Detection Meets Blockchain Technology: A Review](http://apps.webofknowledge.com/full_record.do?product=WOS&search_mode=GeneralSearch&qid=107&SID=8AwkL1E67zOjrP8lBCU&page=1&doc=6&cacheurlFromRightClick=no) 
+- 丹麦技术大学，Meng Weizhi,  [When Intrusion Detection Meets Blockchain Technology: A Review](http://apps.webofknowledge.com/full_record.do?product=WOS&search_mode=GeneralSearch&qid=107&SID=8AwkL1E67zOjrP8lBCU&page=1&doc=6&cacheurlFromRightClick=no)
 - 华北电力大学， Guan Zhitao
 - 西安邮电大学，Zhang Yinghui
 - 西安邮电大学，Guo Rui
 - 上海大学，Su Zhou
-- 奈良先端科学技术大学院大学，Zhang Yuanyu， [Smart Contract-Based Access Control for the Internet of Things](http://apps.webofknowledge.com/full_record.do?product=WOS&search_mode=GeneralSearch&qid=107&SID=8AwkL1E67zOjrP8lBCU&page=2&doc=13&cacheurlFromRightClick=no) 
+- 奈良先端科学技术大学院大学，Zhang Yuanyu， [Smart Contract-Based Access Control for the Internet of Things](http://apps.webofknowledge.com/full_record.do?product=WOS&search_mode=GeneralSearch&qid=107&SID=8AwkL1E67zOjrP8lBCU&page=2&doc=13&cacheurlFromRightClick=no)
 - 中国电子科技大学，Chen Yi
 - 北京理工大学，Gai Keke
 
@@ -386,9 +386,6 @@ EI的统计则是以全名为依据，重复概率较小，以柱状图来看，
 - 中美是区块链领域成果发表的主要国家
 - 北邮、中科院、电子科大、北航、清华、西电、上交、国防科大、北大、中山、广东工业、北京理工是中国区块链的主要阵地，中山和广东工业在高被引论文方面位于前列
 - 作者中，中科院自动化所的袁勇成果最为突出
-
-
-
 
 
 ---

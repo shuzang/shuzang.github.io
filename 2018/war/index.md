@@ -7,7 +7,6 @@
 
  将Michael Jackson的Heal The World放在这里，真的是表达了最真实的心情。
 
-<meting-js auto=" https://y.qq.com/n/yqq/song/002bmfKd2GHJ9p.html " autoplay="true" volume="0.2"></meting-js> 
 
 ---
 

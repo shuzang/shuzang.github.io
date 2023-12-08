@@ -119,8 +119,6 @@ Remix 编译时的一些 warning 可以总结一下作为一部分实现上的�
 > V. A. Siris, D. Dimopoulos, N. Fotiou, S. Voulgaris and G. C. Polyzos, "Trusted D2D-Based IoT Resource Access Using Smart Contracts," 2019 IEEE 20th International Symposium on "A World of Wireless, Mobile and Multimedia Networks" (WoWMoM), Washington, DC, USA, 2019, pp. 1-9, doi: 10.1109/WoWMoM.2019.8793041.
 
 
-
-
 ---
 
 > 作者: Shuzang  

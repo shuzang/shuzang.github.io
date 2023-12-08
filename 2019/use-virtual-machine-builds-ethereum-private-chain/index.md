@@ -14,9 +14,9 @@
 分别执行`geth init`命令初始化创世区块
 
 ```bash
-$ geth --datadir ~/Desktop/NodeA/dataA init genesis.json
-$ geth --datadir ~/Desktop/NodeB/dataB init genesis.json
-$ geth --datadir ~/Desktip/NodeC/dataC init genesis.json
+geth --datadir ~/Desktop/NodeA/dataA init genesis.json
+geth --datadir ~/Desktop/NodeB/dataB init genesis.json
+geth --datadir ~/Desktip/NodeC/dataC init genesis.json
 ```
 
 ### 3. 分别启动三个节点
@@ -24,14 +24,14 @@ $ geth --datadir ~/Desktip/NodeC/dataC init genesis.json
 启动NodeA
 
 ```bash
-$ geth --datadir ~/Desktop/NodeA/dataA --networkid 22 --nodiscover console
+geth --datadir ~/Desktop/NodeA/dataA --networkid 22 --nodiscover console
 ```
 
 默认的端口是30303，因为三个节点在同一个操作系统中，所以接下来启动其它两个节点时我们要指定使用其它的接口
 
 ```bash
-$ geth --datadir ~/Desktop/NodeA/dataB --port 30304 --networkid 22 --nodiscover console
-$ geth --datadir ~/Desktop/NodeA/dataC --port 30305 --networkid 22 --nodiscover console
+geth --datadir ~/Desktop/NodeA/dataB --port 30304 --networkid 22 --nodiscover console
+geth --datadir ~/Desktop/NodeA/dataC --port 30305 --networkid 22 --nodiscover console
 ```
 
 ### 4. 连接各节点
@@ -56,16 +56,16 @@ $ geth --datadir ~/Desktop/NodeA/dataC --port 30305 --networkid 22 --nodiscover 
 1. 安装网络工具
 
     ```bash
-   $ sudo apt-get install -y net-tools
+   sudo apt-get install -y net-tools
    ```
 
 2. 安装geth
 
     ```bash
-   $ sudo add-apt-repository -y ppa:ethereum/ethereum
-   $ sudo apt-get update
-   $ sudo apt-get install ethereum
-   $ geth --help
+   sudo add-apt-repository -y ppa:ethereum/ethereum
+   sudo apt-get update
+   sudo apt-get install ethereum
+   geth --help
    ```
 
     详细过程可以查看[Installing Go Ethereum](https://ethereum.github.io/go-ethereum/install/)
@@ -73,9 +73,9 @@ $ geth --datadir ~/Desktop/NodeA/dataC --port 30305 --networkid 22 --nodiscover 
 3. 创建创世区块文件
 
     ```bash
-   $ mkdir ~/nodeA
-   $ cd ~/nodeA
-   $ touch genesis.json
+   mkdir ~/nodeA
+   cd ~/nodeA
+   touch genesis.json
    ```
 
 4. 编辑`genesis.json`文件内容如下
@@ -105,7 +105,7 @@ $ geth --datadir ~/Desktop/NodeA/dataC --port 30305 --networkid 22 --nodiscover 
 5. 创建data文件夹供存储区块链数据
 
     ```bash
-   $ mkdir ~/nodeA/data & cd ~/nodeA
+   mkdir ~/nodeA/data & cd ~/nodeA
    ```
 
 6. 初始化创世区块
@@ -156,7 +156,7 @@ $ geth --datadir ~/Desktop/NodeA/dataC --port 30305 --networkid 22 --nodiscover 
 
 ### 补充说明
 
-1. `genesis.json`文件的相关说明可参见[以太坊-创世区块文件genesis.json](https://shuzang.github.io/2019/以太坊-创世区块文件genesis.json/) 
+1. `genesis.json`文件的相关说明可参见[以太坊-创世区块文件genesis.json](https://shuzang.github.io/2019/以太坊-创世区块文件genesis.json/)
 
 2. `geth`命令的参数说明参见[以太坊-geth命令参数说明](https://shuzang.github.io/2019/%E4%BB%A5%E5%A4%AA%E5%9D%8A-geth%E5%91%BD%E4%BB%A4%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E/)
 
@@ -164,10 +164,10 @@ $ geth --datadir ~/Desktop/NodeA/dataC --port 30305 --networkid 22 --nodiscover 
 
 4. 本文使用了`admin.addPeer()`命令进行节点连接，但实际上还有其它方式，具体每种方式的使用参见[以太坊-节点连接到网络的几种方式](https://shuzang.github.io/2019/%E4%BB%A5%E5%A4%AA%E5%9D%8A-%E8%8A%82%E7%82%B9%E8%BF%9E%E6%8E%A5%E5%88%B0%E7%BD%91%E7%BB%9C%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F/)
 
-5. geth命令和控制台命令有时候能实现同样的功能，比如 
+5. geth命令和控制台命令有时候能实现同样的功能，比如
 
    ```bash
-   $ geth --datadir data/ account new
+   geth --datadir data/ account new
    ```
 
    ```bash
@@ -180,7 +180,7 @@ $ geth --datadir ~/Desktop/NodeA/dataC --port 30305 --networkid 22 --nodiscover 
 
 ## 三、多虚拟机详细过程
 
-主要内容来自 https://blog.51cto.com/clovemfong/2280872
+主要内容来自 <https://blog.51cto.com/clovemfong/2280872>
 
 使用了多个虚拟机搭建，每个虚拟机代表一个区块链节点。自编译了以太坊源码，并且由于区块链的特性，对Linux的时间做了一定的配置，同时为了多个节点间的连接，对IP地址做了配置处理。以上这些不是必须的，但能让我们思路清晰，明白构建一个区块链应该保证什么条件。
 
@@ -207,7 +207,7 @@ $ geth --datadir ~/Desktop/NodeA/dataC --port 30305 --networkid 22 --nodiscover 
 根据自己需要选择是否需要更换软件源，此处用的是原生的即可。
 
 ```bash
-$ sudo apt-get  update
+sudo apt-get  update
 ```
 
 #### 1.2 安装相关工具
@@ -219,7 +219,7 @@ sudo apt-get  install vim openssh-server ntp ntpdate make gcc net-tools  -y
 #### 1.3 配置主机名
 
 ```bash
-$ sudo hostname nodeA.shuzang.com
+sudo hostname nodeA.shuzang.com
 ```
 
 #### 1.4 配置地址解析
@@ -244,19 +244,19 @@ nodeA.shuzang.com
 修改时区
 
 ```bash
-$ sudo timedatectl set-timezone "Asia/Shanghai" 
+sudo timedatectl set-timezone "Asia/Shanghai" 
 ```
 
 手动同步
 
 ```bash
-$ sudo ntpdate time1.aliyun.com    
+sudo ntpdate time1.aliyun.com    
 ```
 
 同步硬件时间
 
 ```bash
-$ sudo hwclock  -w # 系统时间同步至硬件
+sudo hwclock  -w # 系统时间同步至硬件
 ```
 
 手动设置完毕后，再通过如下方式进行 ntp 服务的配置，可以选择现有或者自建的时间服务器
@@ -272,8 +272,8 @@ server 203.107.6.88, stratum 2, offset 0.050751, delay 0.06232
 修改配置文件
 
 ```bash
-$ sudo cp /etc/ntp.conf  /etc/ntp.conf_shuzang_201809231208 #备份配置文件
-$ sudo vim /etc/ntp.conf //修改配置文件
+sudo cp /etc/ntp.conf  /etc/ntp.conf_shuzang_201809231208 #备份配置文件
+sudo vim /etc/ntp.conf //修改配置文件
 ```
 
 修改信息如下
@@ -299,7 +299,7 @@ server time7.aliyun.com
 启动 ntp 服务
 
 ```bash
-$ sudo systemctl  restart ntp  #启动ntp服务
+sudo systemctl  restart ntp  #启动ntp服务
 ```
 
 ### 2. 配置 Golang 环境
@@ -307,14 +307,14 @@ $ sudo systemctl  restart ntp  #启动ntp服务
 下载 go 安装包
 
 ```bash
-$ mkdir ethereum ;cd ethereum
-$ wget https://dl.google.com/go/go1.11.linux-amd64.tar.gz
+mkdir ethereum ;cd ethereum
+wget https://dl.google.com/go/go1.11.linux-amd64.tar.gz
 ```
 
 解压安装包
 
 ```bash
-$ sudo tar zxvf  go1.11.linux-amd64.tar.gz   -C /usr/local/
+sudo tar zxvf  go1.11.linux-amd64.tar.gz   -C /usr/local/
 
 ```
 
@@ -364,17 +364,17 @@ https://github.com/ethereum/go-ethereum
 下载源码包
 
 ```bash
-$ cd /home/ubuntu/ethereum
-$ wget  https://github.com/ethereum/go-ethereum/archive/master.zip
+cd /home/ubuntu/ethereum
+wget  https://github.com/ethereum/go-ethereum/archive/master.zip
 ```
 
 解压源码包
 
 ```bash
-$ unzip master.zip
-$ mkdir ~/workspace/github.com/
-$ mv go-ethereum-master/   ~/workspace/github.com/go-ethereum
-$ cd ~/workspace/github.com/go-ethereum ; make geth  #编译安装
+unzip master.zip
+mkdir ~/workspace/github.com/
+mv go-ethereum-master/   ~/workspace/github.com/go-ethereum
+cd ~/workspace/github.com/go-ethereum ; make geth  #编译安装
 ```
 
 添加环境变量
@@ -389,8 +389,8 @@ export PATH=$PATH:$GOROOT/bin:$GETH/bin
 测试生效
 
 ```bash
-$ source /etc/profile
-$ geth --help
+source /etc/profile
+geth --help
 ```
 
 至此环境配置完成，可以完成后进行虚拟机复制，得到三个虚拟机，然后再对主机名等进行修改，也可以等genesis.json文件创建完成后在进行虚拟机复制，然后修改相关名称。这样可以免去重复的环境配置工作，节省大量时间。
@@ -400,8 +400,8 @@ $ geth --help
 创建数据存储目录
 
 ```bash
-$ mkdir -p /home/ubuntu/nodeA/data0
-$ cd /home/ubuntu/nodeA
+mkdir -p /home/ubuntu/nodeA/data0
+cd /home/ubuntu/nodeA
 ```
 
 创世区块配置文件`genesis.json`
@@ -431,7 +431,7 @@ $ cd /home/ubuntu/nodeA
 初始化创世区块
 
 ```bash
-$ geth  --datadir data0/  init genesis.json
+geth  --datadir data0/  init genesis.json
 ```
 
 ![](https://s1.51cto.com/images/blog/201809/23/3cbb855f451fe1cb71b6b3efa7c598ac.png?x-oss-process=image/watermark,size_16,text_QDUxQ1RP5Y2a5a6i,color_FFFFFF,t_100,g_se,x_10,y_10,shadow_90,type_ZmFuZ3poZW5naGVpdGk=)
@@ -495,7 +495,7 @@ NodeC
 返回`true`表示加入成功，注意
 
 - 将 [::] 修改为正确节点的 IP 地址，是之前用ifconfig命令查询并记录的本地地址，不支持DNS解析的域名地址，只支持点分十进制格式的IP地址
-- 删除` ?discport=0`
+- 删除`?discport=0`
 
 #### 4.4 查看新加入的节点
 
@@ -841,7 +841,6 @@ data0 目录中的相关文件列表
 | web3                     | 包含了以上对象以及单位换算等方法               |
 | web3.fromWei()           | Wei 换算成 ether 或者其他单位                  |
 | web3.toWei()             | 将 ether 或者其他单位换算成 Wei                |
-
 
 
 ---

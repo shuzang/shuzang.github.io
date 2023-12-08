@@ -30,7 +30,7 @@ RFID 是执行数据捕获和共享的关键技术，对任何 RFID 系统来说
 2. 通信通道威胁（如窃听、浏览、重放攻击）
 3. 全局系统威胁（如欺骗，DoS， 「tracing and tracking」 ）。
 
-[^figueroa2019comprehensive]:Figueroa Lorenzo, S.; Añorga Benito, J.; García Cardarelli, P.; Alberdi Garaia, J.; Arrizabalaga Juaristi, S. A comprehensive review of RFID and bluetooth security: Practical analysis. Technologies 2019, 7, 15. 
+[^figueroa2019comprehensive]:Figueroa Lorenzo, S.; Añorga Benito, J.; García Cardarelli, P.; Alberdi Garaia, J.; Arrizabalaga Juaristi, S. A comprehensive review of RFID and bluetooth security: Practical analysis. Technologies 2019, 7, 15.
 
 访问控制（AC）是解决安全问题的核心，这里首先介绍本文方案使用的器械标识方法：在 GS1 的基础上，用 GTIN 标记 SMI（使用无源 RFID 标签）。编码方案如下，包括一个公司前缀（例如，医院 A:000389）、一个产品类型用以对资产进行分类（例如，剪刀：000162）以及一个序列号用以识别特定资产（例如，序列号：000169740）。
 $$
@@ -39,8 +39,6 @@ $$
 图2用于详细说明医疗系统的工作流程。源房间（如灭菌室）将一些资产（如SMI）运送到目的房间（如0号手术室、1号手术室）。由于 $Asset_1$ 已被分配到目的房间1（例如，1号手术室），假如由于人为错误试图访问目的房间0（例如，0号手术室），其访问将被拒绝。简而言之，论文所提出的系统的目的是建立医疗资产（如SMI）访问控制系统，防止由于人为错误或外部安全威胁导致不需要的资产进入错误区域（如房间）。
 
 ![图2 Healthcare system](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20191111_医疗系统.png)
-
-
 
 访问控制机制通常部署在图1所示 RFID 系统的中间件部分，传统的实现通常是基于 RBAC 的中心化结构，而本文提出的方案中，利用 DApp 执行访问控制策略，智能合约用作 Dapp 和区块链间的接口，从而实现了分布式的访问控制，使允许或阻止某个资产进入某个确定的区域（如手术室）成为可能。该论文提出的方案还将将资产（如 SMI）和 GTIN 代码相关联，用于追踪资产。
 
@@ -82,7 +80,7 @@ DApp 收到访问请求后执行的过程如下所述
 [^samarati2011access]:Samarati, P.; de Vimercati, S.C. Access Control Policies, Models, and Mechanisms. In International School on Foundations of Security Analysis and Design; Springer: Berlin/Heidelberg, Germany, 2011.
 
 $$
-if:(rdr_nm = "roomA" \cap loc = "41.40338,2.17403" \cap cmp\_pfr = 000389 \cap \\\ iem\_ref = 000162 \cap ser\_nmb = 000169740 \cap st = "STERILIZED" \cap \\\ time\_out - time\_in \lt 600), C = True  \\\ 
+if:(rdr_nm = "roomA" \cap loc = "41.40338,2.17403" \cap cmp\_pfr = 000389 \cap \\\ iem\_ref = 000162 \cap ser\_nmb = 000169740 \cap st = "STERILIZED" \cap \\\ time\_out - time\_in \lt 600), C = True  \\\
 otherwise: C = False
 $$
 
@@ -108,10 +106,9 @@ RFID reader 附加标签的资产以及 LLRP 服务器直接交互。其中 LLRP
 
 属性解析器 AP 从LLRP服务器收到 RFID 标签的电子产品代码，然后使用一个基于Node.js库的GTIN 转换系统，将 RFID标签 的电子产品代码转换成 EPC 标签 URL。如下表达式所示，属性解析器解析得到公司前缀、产品类型和序列号等属性，同时也控制其它的属性如时间戳、reader name和位置。
 $$
-RFID \ Tag \ EPC: 3074257bf7194e4000001a85 \\\ 
+RFID \ Tag \ EPC: 3074257bf7194e4000001a85 \\\
 EPC \ Tag \ URI: urn:epc:tag:sgtin-96:3.0614141.812345.6789,
 $$
-
 
 区块链接口构建基于Truffle框架，使用 Drizzle 库与 web3.js 服务器交互。Drizzle 是一个编写DApp 前端的前端库集合。DApp 和 RFID 部分通过执行 GET 和 POST 方法通信，例如，ABAC-SP 决定是否允许或拒绝对资产的访问，它设置一个变量，该变量通过 POST 方法发送到 LLRP 服务器。因此，LLRP 服务器发送一个 XML 消息 「keepalive」来保持与 RFID 标签的交互，或者只是断开连接。
 
@@ -204,6 +201,7 @@ $$
 作者利用区块链实现ABAC的思路没有值得称道的地方，但给出了针对医疗资产转移场景的一个完整方案设计，包括具体的属性管理、使用的工具、测量的参数以及详细的实验过程，这对于我们自己进行一个完整的实验是有很大借鉴意义的。
 
 鉴于本文提到的内容，我们在实现一个基于IoT的访问控制系统时，首先要明确具体的场景并给出示例，基于智能合约实施核心功能后，要实现一个前端界面，以及使用本文提到的诸多工具测量所有相关的参数。对于我们现有的工作，欠缺的是一个前端实现和参数测量。
+
 
 ---
 

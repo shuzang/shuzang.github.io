@@ -17,7 +17,7 @@
 
 查看影响因子和版面费情况查看[SinoScript](http://www.sinoscript.com/search.html#opennewwindow)
 
-SCI的收录查询网址为 [Master Journal List](https://mjl.clarivate.com/home) 
+SCI的收录查询网址为 [Master Journal List](https://mjl.clarivate.com/home)
 
 以上都是完整的目录，包含各个领域，而对收录区块链方向论文的期刊列表，虽然理论上计算机和通信领域的期刊应该都是收录的，但还是根据上次对区块链领域已发布文献的总结，列举曾收录过区块链方向的论文数量较多的一些期刊。
 
@@ -74,10 +74,10 @@ SCI的收录查询网址为 [Master Journal List](https://mjl.clarivate.com/home
 
 会议以CCF推荐会议列表，CPCI-S会议列表，和EI会议列表为准，可以从以下这些网站查询
 
-- SCIEI Upcoming conferences： http://sciei.org/list-32-1.html 
-- 中国学术会议网： http://conf.cnki.net/ 
-- 中科院国际会议服务平台： http://csp.escience.cn/dct/page/1 
-- world conference alerts： https://www.worldconferencealerts.com/ 
+- SCIEI Upcoming conferences： <http://sciei.org/list-32-1.html>
+- 中国学术会议网： <http://conf.cnki.net/>
+- 中科院国际会议服务平台： <http://csp.escience.cn/dct/page/1>
+- world conference alerts： <https://www.worldconferencealerts.com/>
 
 不过最好用的还是[WikiCFP](http://www.wikicfp.com/cfp/home )，以下关于区块链的会议列表大部分来自于该网站的查询，剩下的来自于上次总结的收录区块链方向论文较多的会议列表。Deadline置空意味找不到下一届的信息，会议缩写没有链接意味着本届会议官网已失效，无法找到。
 
@@ -159,7 +159,7 @@ NSF SBIR Phase I topics：[Distributed Ledger (DL)](https://seedfund.nsf.gov/top
 有两个已获资助项目
 
 1. [SBIR Phase I: Blockchain based Logging Management System for IoT Devices](https://www.nsf.gov/awardsearch/showAward?AWD_ID=1819962)
-2.  [SBIR Phase I: Subspace: A Decentralized Database of End-User Devices | SBIR.gov](https://www.sbir.gov/sbirsearch/detail/1585183) 
+2. [SBIR Phase I: Subspace: A Decentralized Database of End-User Devices | SBIR.gov](https://www.sbir.gov/sbirsearch/detail/1585183)
 
 注：SBIR，即[Small Business Innovation Research](https://www.nsf.gov/pubs/2019/nsf19554/nsf19554.htm)
 
@@ -217,13 +217,6 @@ NSF SBIR Phase I topics：[Distributed Ledger (DL)](https://seedfund.nsf.gov/top
 | 赵相福 | 浙江师范大学                 | 面向区块链智能合约漏洞自动检测与修复的符号逻辑建模与推理     | 计算机科学       | 计算机应用技术     | 新应用领域中的基础研究   | 面上项目     |
 | 朱晓荣 | 南京邮电大学                 | 基于区块链和机器学习的移动边缘云网络可信协作机制和资源优化方法 | 电子学与信息系统 | 移动通信           | 移动通信系统             | 面上项目     |
 | 徐志宇 | 同济大学                     | 区块链赋能的下一代智能电网主动能量体社群P2P交易行为建模、规则设计与复杂性分析 | 自动化           | 系统工程理论与技术 | 资源、能源管理系统与优化 | 面上项目     |
-
-
-
-
-
-
-
 
 
 ---

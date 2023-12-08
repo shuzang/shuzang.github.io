@@ -15,9 +15,9 @@
 
 论文[^3]中采用的是一种叫做轻量级可扩展区块链(LSB)的区块链技术，LSB没有使用PoW，避开了节点算力有限的问题，同时也没有看到关于激励机制的描述，采用的是称为“scheduled block generation process”的方式，每个节点在固定的时间间隔只被存一个块。
 
-[^1]:Wang W, Niyato D, Wang P, et al. Decentralized Caching for Content Delivery Based on Blockchain: A Game Theoretic Perspective[J]. arXiv: Networking and Internet Architecture, 2018. 
-[^2]: Xiong Zehui, Feng Shaohan, Niyato Dusit, et al.  Edge Computing Resource Management and Pricing for Mobile Blockchain. 
-[^3]: Xiong Zehui, Zhang Yang, Niyato Dusit,等. When Mobile Blockchain Meets Edge Computing[J]. IEEE Communications Magazine, 56(8):33-39. 
+[^1]:Wang W, Niyato D, Wang P, et al. Decentralized Caching for Content Delivery Based on Blockchain: A Game Theoretic Perspective[J]. arXiv: Networking and Internet Architecture, 2018.
+[^2]: Xiong Zehui, Feng Shaohan, Niyato Dusit, et al.  Edge Computing Resource Management and Pricing for Mobile Blockchain.
+[^3]: Xiong Zehui, Zhang Yang, Niyato Dusit,等. When Mobile Blockchain Meets Edge Computing[J]. IEEE Communications Magazine, 56(8):33-39.
 
 如果LSB能成功满足两个条件的话，这一技术显然是最适合使用的；而PoS机制和借用边缘服务器的算力两种方法，现在更偏向PoS，因为借用边缘服务器的算例很容易造成算力的集中，从而达成51%攻击，这种情况类似于加密货币领域现在的“矿池”，矿池的出现曾一度面临算力几近超过50%的情况，依赖于部分参与者主动离开算力最大的矿池才避免这个问题。
 
@@ -25,7 +25,7 @@
 
 论文[^4]中提到基于区块链的智能车辆的安全与隐私的方案继承了区块链的种种优点，但也继承了缺点。指关于隐私的一个缺点，区块链使用密码学技术构造的地址和其它节点通信，但攻击者可以通过把用户行为（如交易数据）和地址做关联，从而达成去匿名化，这会危害用户隐私。
 
-[^4]: Dorri A, Steger M, Kanhere S S, et al. BlockChain: A Distributed Solution to Automotive Security and Privacy[J]. IEEE Communications Magazine, 2017, 55(12): 119-125. 
+[^4]: Dorri A, Steger M, Kanhere S S, et al. BlockChain: A Distributed Solution to Automotive Security and Privacy[J]. IEEE Communications Magazine, 2017, 55(12): 119-125.
 
 **问题：无限传输损耗(延迟、同步、丢包等)对区块链的影响**
 
@@ -75,7 +75,6 @@ Analysis of the Communication Traffic for Blockchain Synchronization of IoT Devi
 
 - 基于第三方的身份认证：每加入一个新的节点都需要与某一个可靠的第三方节点进行身份验证。
 - 纯分布式的身份认证：每加入一个新的节点都需要获得当前网络中所有可靠节点的认证，这种方法采用了随机密钥分发验证的公钥体制的认证方式，需要获得网络中大多数节点的认证才能加入该网络。
-
 
 一个通俗的解释，女巫攻击就是分身诈骗术，几种应对方法分别是：
 
@@ -256,7 +255,7 @@ Blockchain: A distributed solution to automotive security and privacy中在Futur
 物联网下的区块链访问控制综述一文的展望中提到，未来面临的问题包括
 
 >存储优化
->区块链的存储是一个增量的过程,即只能增加而不能减少,所以会给存储带来巨大的负担.因此,如何降低区块链存储的代价,是物联网访问控制需要解决的另一个问题.目前的解决方法有两种:第一,压缩区块链中存储的数据,使相同大小的区块存储更多的内容[28];第二,将区块链与区块链存储解耦[69],区块链中存储的是指向某个内容的哈希值[39]. 
+>区块链的存储是一个增量的过程,即只能增加而不能减少,所以会给存储带来巨大的负担.因此,如何降低区块链存储的代价,是物联网访问控制需要解决的另一个问题.目前的解决方法有两种:第一,压缩区块链中存储的数据,使相同大小的区块存储更多的内容[28];第二,将区块链与区块链存储解耦[69],区块链中存储的是指向某个内容的哈希值[39].
 
 故应对1中基于合约的访问控制进行存储优化，一是区块链存储哈希值，二是区块链压缩改进（SCC : Storage Compression Consensus for Blockchain in Lightweight IoT Network）
 
@@ -479,6 +478,7 @@ IoT节点不一定是实际的传感器
 2. 输入数据集（即输入文件中的多列数据），可以试着用机器学习的方式做一下检测，看一下结果，老师推荐了 weka;
 
 3. 恶意行为添加了对特殊策略条目的处理，实验时如何把它加入输入数据集；
+
 
 ---
 

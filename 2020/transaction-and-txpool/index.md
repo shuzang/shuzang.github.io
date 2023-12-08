@@ -23,16 +23,16 @@
 
 ```go
 type SendTxArgs struct {
-	PrivateTxArgs // Quorum
+ PrivateTxArgs // Quorum
 
-	From     common.Address  `json:"from"`
-	To       *common.Address `json:"to"`
-	Gas      *hexutil.Uint64 `json:"gas"`
-	GasPrice *hexutil.Big    `json:"gasPrice"`
-	Value    *hexutil.Big    `json:"value"`
-	Nonce    *hexutil.Uint64 `json:"nonce"`
-	Data  *hexutil.Bytes `json:"data"`
-	Input *hexutil.Bytes `json:"input"`
+ From     common.Address  `json:"from"`
+ To       *common.Address `json:"to"`
+ Gas      *hexutil.Uint64 `json:"gas"`
+ GasPrice *hexutil.Big    `json:"gasPrice"`
+ Value    *hexutil.Big    `json:"value"`
+ Nonce    *hexutil.Uint64 `json:"nonce"`
+ Data  *hexutil.Bytes `json:"data"`
+ Input *hexutil.Bytes `json:"input"`
 }
 ```
 
@@ -42,7 +42,7 @@ type SendTxArgs struct {
 2. 设置交易默认参数
 3. 对交易进行序列化，变为可存储和传输的形式。
 4. 根据 To 字段决定是创建部署合约交易还是调用合约交易
-5.  对交易进行 RLP 编码并根据之前获得的账户密钥对交易进行签名
+5. 对交易进行 RLP 编码并根据之前获得的账户密钥对交易进行签名
 6. 提交交易到交易池
 
 序列化主要处理 SendTxArgs 结构中的 Data 和 Input 字段，Data 字段主要用于向前兼容，应尽量使用 Input 字段。当部署合约的时候，Input 是合约代码，当发送交易的时候，Input 是交易的内容。
@@ -58,7 +58,7 @@ SendTransaction 最后调用 `SubmitTransaction` 函数将交易提交到交易�
 ```go
 type TxPool struct {
     pending map[common.Address]*txList   // All currently processable transactions
-	queue   map[common.Address]*txList   // Queued but non-processable transactions
+ queue   map[common.Address]*txList   // Queued but non-processable transactions
 }
 ```
 
@@ -137,6 +137,7 @@ type TxPool struct {
 更全面的描述可以参考 [以太坊技术与实现：交易池](https://learnblockchain.cn/books/geth/part2/txpool.html)
 
 我们关心发起交易的时间和智能合约执行并返回结果的时间是否有区别
+
 
 ---
 

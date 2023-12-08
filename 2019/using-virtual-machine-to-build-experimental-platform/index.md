@@ -20,7 +20,6 @@ IBFT 共识允许的最小节点数量为 4，所以设置了 4 个节点，其�
 2. 树莓派启动和环境配置
 3. Quorum 私链网络搭建和测试运行
 
-
 ## 二. 计算机环境配置
 
 ### 1. 设备和操作系统选择
@@ -56,8 +55,8 @@ IBFT 共识允许的最小节点数量为 4，所以设置了 4 个节点，其�
 根据自己需要选择是否更换软件源，此处我使用了原生的源
 
 ```bash
-$ sudo apt-get update
-$ sudo apt-get upgrade
+sudo apt-get update
+sudo apt-get upgrade
 ```
 
 **(2) 调整系统时间**
@@ -78,13 +77,13 @@ systemd-timesyncd.service active: yes
 若不正确，使用下列命令设置时区，时区根据自己所处位置调整
 
 ```bash
-$ timedatectl set-timezone Asia/Shanghai
+timedatectl set-timezone Asia/Shanghai
 ```
 
 **(3) 设置主机名**
 
 ```bash
-$ sudo hostnamectl set-hostname NodeA
+sudo hostnamectl set-hostname NodeA
 ```
 
 重启终端查看新的主机名
@@ -107,13 +106,13 @@ $ hostnamectl
 安装 `net-tools` 工具
 
 ```bash
-$ sudo apt-get install net-tools
+sudo apt-get install net-tools
 ```
 
 设置虚拟机网络为桥接模式，桥接到无线网卡。在`/etc/netplan`目录下创建配置文件
 
 ```bash
-$ sudo nano /etc/netplan/02_config.yaml
+sudo nano /etc/netplan/02_config.yaml
 ```
 
 在配置文件中添加如下信息
@@ -161,9 +160,9 @@ lo: ...
 获取与安装 go1.13
 
 ```bash
-$ wget https://dl.google.com/go/go1.13.linux-amd64.tar.gz
-$ sudo tar -xzf go1.13.linux-amd64.tar.gz -C /usr/local
-$ rm go1.13.linux-amd64.tar.gz
+wget https://dl.google.com/go/go1.13.linux-amd64.tar.gz
+sudo tar -xzf go1.13.linux-amd64.tar.gz -C /usr/local
+rm go1.13.linux-amd64.tar.gz
 ```
 
 设置环境变量
@@ -190,14 +189,14 @@ go version go1.13 linux/amd64
 获取编译后的二进制包
 
 ```bash
-$ wget https://bintray.com/quorumengineering/quorum/download_file?file_path=v2.2.5/geth_v2.2.5_linux_amd64.tar.gz
+wget https://bintray.com/quorumengineering/quorum/download_file?file_path=v2.2.5/geth_v2.2.5_linux_amd64.tar.gz
 ```
 
 解压缩并安装
 
 ```bash
-$ sudo tar -xzf download_file?file_path=v2.2.5%2Fgeth_v2.2.5_linux_amd64.tar.gz -C /usr/local/bin
-$ rm download_file?file_path=v2.2.5%2Fgeth_v2.2.5_linux_amd64.tar.gz
+sudo tar -xzf download_file?file_path=v2.2.5%2Fgeth_v2.2.5_linux_amd64.tar.gz -C /usr/local/bin
+rm download_file?file_path=v2.2.5%2Fgeth_v2.2.5_linux_amd64.tar.gz
 ```
 
 测试安装
@@ -223,17 +222,17 @@ GOROOT=/home/travis/.gimme/versions/go1.11.12.linux.amd64
 istanbul-tools 用来初始化 istanbul-BFT 共识网络及进行网络测试
 
 ```bash
-$ sudo apt-get install git
-$ mkdir istanbul && cd istanbul
-$ git clone https://github.com/jpmorganchase/istanbul-tools.git
-$ cd istanbul-tools
+sudo apt-get install git
+mkdir istanbul && cd istanbul
+git clone https://github.com/jpmorganchase/istanbul-tools.git
+cd istanbul-tools
 ```
 
 执行编译
 
 ```bash
-$ sudo apt-get install -y build-essential
-$ make
+sudo apt-get install -y build-essential
+make
 ```
 
 编译后的文件位于/build/bin目录下，执行测试
@@ -300,14 +299,14 @@ deb-src http://mirror.tuna.tsinghua.edu.cn/raspberrypi/ buster main ui
 更新源文件列表，更新软件
 
 ```bash
-$ sudo apt-get update
-$ sudo apt-get upgrade
+sudo apt-get update
+sudo apt-get upgrade
 ```
 
 **(2) 安装xrdp供远程连接**
 
 ```bash
-$ sudo apt-get install xrdp
+sudo apt-get install xrdp
 ```
 
 **(3) 开启ftp供文件传输**
@@ -315,13 +314,13 @@ $ sudo apt-get install xrdp
 安装vsftpd
 
 ```bash
-$ sudo apt-get install vsftpd
+sudo apt-get install vsftpd
 ```
 
 编辑配置文件
 
 ```bash
-$ sudo nano /etc/vsftpd.conf
+sudo nano /etc/vsftpd.conf
 ```
 
 启用对树莓派的写入权限
@@ -334,13 +333,13 @@ write command.write_enable=YES
 保存退出，启用vsftpd
 
 ```bash
-$ sudo service vsftpd start
+sudo service vsftpd start
 ```
 
 **(4) 修改pi账户密码，时区和主机名**
 
 ```bash
-$ sudo raspi-config
+sudo raspi-config
 ```
 
 选择第一项`Change User Password`，键入新密码并确定，
@@ -363,7 +362,7 @@ OK
 设置主机名
 
 ```bash
-$ sudo hostnamectl set-hostname NodeC
+sudo hostnamectl set-hostname NodeC
 ```
 
 编辑/etc/hosts文件，将127.0.1.1对应的raspberry更改为NodeC
@@ -384,7 +383,7 @@ ff02::2         ip6-allrouters
 编辑`/etc/dhcpcd.conf`文件
 
 ```bash
-$ sudo nano /etc/dhcpcd.conf
+sudo nano /etc/dhcpcd.conf
 ```
 
 在末尾添加如下内容
@@ -402,10 +401,10 @@ static domain_name_servers=192.168.191.1
 (6) 获取并安装geth
 
 ```bash
-$ git clone -b gethonly https://github.com/shuzang/quorum-raspbian.git
-$ cd quorum-raspbian
-$ sudo cp geth /usr/local/bin
-$ sudo chmod +x /usr/local/bin/geth
+git clone -b gethonly https://github.com/shuzang/quorum-raspbian.git
+cd quorum-raspbian
+sudo cp geth /usr/local/bin
+sudo chmod +x /usr/local/bin/geth
 ```
 
 测试安装是否成功
@@ -431,15 +430,15 @@ GOROOT=/usr/lib/go-1.11
  各节点数据和相关文件的前期生成都在NodeA中由istanbul-tools工具完成。切换到NodeA节点的PC，在istanbul目录下创建四个节点的工作目录
 
 ```bash
-$ cd ~/istanbul
-$ mkdir NodeA NodeB NodeC NodeD
+cd ~/istanbul
+mkdir NodeA NodeB NodeC NodeD
 ```
 
 进入领导节点（这里是NodeA）目录，使用istanbul-tools工具为四个节点生成安装玩家，该命令会为所有的初始验证者节点生成 `static-nodes.json`, `genesis.json`和 nodekeys三种文件。
 
 ```bash
-$ cd NodeA
-$ ../istanbul-tools/build/bin/istanbul setup --num 4 --nodes --quorum --save --verbose
+cd NodeA
+../istanbul-tools/build/bin/istanbul setup --num 4 --nodes --quorum --save --verbose
 ```
 
 将输出生成的文件信息
@@ -447,34 +446,34 @@ $ ../istanbul-tools/build/bin/istanbul setup --num 4 --nodes --quorum --save --v
 ```json
 validators
 {
-	"Address": "0x93c20b1ffa9bf8738bf194d5203e3d2e2a48428d",
-	"Nodekey": "6f17ec19de39281ea72a6d91d1e780bf5a0e35602f0e844e82dcc9d6a9ba7716",
-	"NodeInfo": "enode://faa50654f681a890c28be2faeef9211afaf1563c08ddb8990f6b39c561e002ea687707be68c16363f65c0755f785cb16e3b7be84e5e4eb260b0d4a6f6f83ef87@0.0.0.0:30303?discport=0"
+ "Address": "0x93c20b1ffa9bf8738bf194d5203e3d2e2a48428d",
+ "Nodekey": "6f17ec19de39281ea72a6d91d1e780bf5a0e35602f0e844e82dcc9d6a9ba7716",
+ "NodeInfo": "enode://faa50654f681a890c28be2faeef9211afaf1563c08ddb8990f6b39c561e002ea687707be68c16363f65c0755f785cb16e3b7be84e5e4eb260b0d4a6f6f83ef87@0.0.0.0:30303?discport=0"
 }
 {
-	"Address": "0xff75bd429c43de6719c2983c1e991b0279909559",
-	"Nodekey": "b7c11c512d33e3c1de97abd8a690cdbcfac9c6802a43a6ff850b244d90258908",
-	"NodeInfo": "enode://c286de4e89f4f209a6b32284b31829251ccb23bf5ab3bbe57ba08754392635ae755848dd6c4f367c7d92284e54e4b9f0d1a896924309380eb947e3b8c6641392@0.0.0.0:30303?discport=0"
+ "Address": "0xff75bd429c43de6719c2983c1e991b0279909559",
+ "Nodekey": "b7c11c512d33e3c1de97abd8a690cdbcfac9c6802a43a6ff850b244d90258908",
+ "NodeInfo": "enode://c286de4e89f4f209a6b32284b31829251ccb23bf5ab3bbe57ba08754392635ae755848dd6c4f367c7d92284e54e4b9f0d1a896924309380eb947e3b8c6641392@0.0.0.0:30303?discport=0"
 }
 {
-	"Address": "0xf22670e572a42729a2c10fb26f57bba46cbc3a42",
-	"Nodekey": "9b3740640431f0d6543f730308509fb9bc35307f826b1dd838b6812a6067f477",
-	"NodeInfo": "enode://cb50baa67204df2246b143e2982e40a89b2924e5c19e2834876c34042f0a81a2e2604ab210d19a048762f5355258d9840932ba868227857d928495d398c04af0@0.0.0.0:30303?discport=0"
+ "Address": "0xf22670e572a42729a2c10fb26f57bba46cbc3a42",
+ "Nodekey": "9b3740640431f0d6543f730308509fb9bc35307f826b1dd838b6812a6067f477",
+ "NodeInfo": "enode://cb50baa67204df2246b143e2982e40a89b2924e5c19e2834876c34042f0a81a2e2604ab210d19a048762f5355258d9840932ba868227857d928495d398c04af0@0.0.0.0:30303?discport=0"
 }
 {
-	"Address": "0x350686ae7615e87a046fc4261fe58fda3872aa65",
-	"Nodekey": "b6fd16bc88c8f96430b9ec0c4f6991c0f958e70026fce1abc959b295774f4e94",
-	"NodeInfo": "enode://214dce3278a2b45fb0bf2a1d53c24eb213c5cbb08307e842feab0202cad4f685c5c62a4197d29318f07eb813bf4189db05096b551849039bf81fb74f0211320f@0.0.0.0:30303?discport=0"
+ "Address": "0x350686ae7615e87a046fc4261fe58fda3872aa65",
+ "Nodekey": "b6fd16bc88c8f96430b9ec0c4f6991c0f958e70026fce1abc959b295774f4e94",
+ "NodeInfo": "enode://214dce3278a2b45fb0bf2a1d53c24eb213c5cbb08307e842feab0202cad4f685c5c62a4197d29318f07eb813bf4189db05096b551849039bf81fb74f0211320f@0.0.0.0:30303?discport=0"
 }
 
 
 
 static-nodes.json
 [
-	"enode://faa50654f681a890c28be2faeef9211afaf1563c08ddb8990f6b39c561e002ea687707be68c16363f65c0755f785cb16e3b7be84e5e4eb260b0d4a6f6f83ef87@0.0.0.0:30303?discport=0",
-	"enode://c286de4e89f4f209a6b32284b31829251ccb23bf5ab3bbe57ba08754392635ae755848dd6c4f367c7d92284e54e4b9f0d1a896924309380eb947e3b8c6641392@0.0.0.0:30303?discport=0",
-	"enode://cb50baa67204df2246b143e2982e40a89b2924e5c19e2834876c34042f0a81a2e2604ab210d19a048762f5355258d9840932ba868227857d928495d398c04af0@0.0.0.0:30303?discport=0",
-	"enode://214dce3278a2b45fb0bf2a1d53c24eb213c5cbb08307e842feab0202cad4f685c5c62a4197d29318f07eb813bf4189db05096b551849039bf81fb74f0211320f@0.0.0.0:30303?discport=0"
+ "enode://faa50654f681a890c28be2faeef9211afaf1563c08ddb8990f6b39c561e002ea687707be68c16363f65c0755f785cb16e3b7be84e5e4eb260b0d4a6f6f83ef87@0.0.0.0:30303?discport=0",
+ "enode://c286de4e89f4f209a6b32284b31829251ccb23bf5ab3bbe57ba08754392635ae755848dd6c4f367c7d92284e54e4b9f0d1a896924309380eb947e3b8c6641392@0.0.0.0:30303?discport=0",
+ "enode://cb50baa67204df2246b143e2982e40a89b2924e5c19e2834876c34042f0a81a2e2604ab210d19a048762f5355258d9840932ba868227857d928495d398c04af0@0.0.0.0:30303?discport=0",
+ "enode://214dce3278a2b45fb0bf2a1d53c24eb213c5cbb08307e842feab0202cad4f685c5c62a4197d29318f07eb813bf4189db05096b551849039bf81fb74f0211320f@0.0.0.0:30303?discport=0"
 ]
 
 
@@ -542,21 +541,21 @@ drwxr-xr-x 2 shuzang shuzang 4096 Sep 14 10:05 3
 ```bash
 $ cat static-nodes.json
 ....更新ip如下
-[	"enode://faa50654f681a890c28be2faeef9211afaf1563c08ddb8990f6b39c561e002ea687707be68c16363f65c0755f785cb16e3b7be84e5e4eb260b0d4a6f6f83ef87@192.168.191.2:30303?discport=0",
-	"enode://c286de4e89f4f209a6b32284b31829251ccb23bf5ab3bbe57ba08754392635ae755848dd6c4f367c7d92284e54e4b9f0d1a896924309380eb947e3b8c6641392@192.168.191.3:30303?discport=0",
-	"enode://cb50baa67204df2246b143e2982e40a89b2924e5c19e2834876c34042f0a81a2e2604ab210d19a048762f5355258d9840932ba868227857d928495d398c04af0@192.168.191.4:30303?discport=0",
-	"enode://214dce3278a2b45fb0bf2a1d53c24eb213c5cbb08307e842feab0202cad4f685c5c62a4197d29318f07eb813bf4189db05096b551849039bf81fb74f0211320f@192.168.191.5:30303?discport=0"
+[ "enode://faa50654f681a890c28be2faeef9211afaf1563c08ddb8990f6b39c561e002ea687707be68c16363f65c0755f785cb16e3b7be84e5e4eb260b0d4a6f6f83ef87@192.168.191.2:30303?discport=0",
+ "enode://c286de4e89f4f209a6b32284b31829251ccb23bf5ab3bbe57ba08754392635ae755848dd6c4f367c7d92284e54e4b9f0d1a896924309380eb947e3b8c6641392@192.168.191.3:30303?discport=0",
+ "enode://cb50baa67204df2246b143e2982e40a89b2924e5c19e2834876c34042f0a81a2e2604ab210d19a048762f5355258d9840932ba868227857d928495d398c04af0@192.168.191.4:30303?discport=0",
+ "enode://214dce3278a2b45fb0bf2a1d53c24eb213c5cbb08307e842feab0202cad4f685c5c62a4197d29318f07eb813bf4189db05096b551849039bf81fb74f0211320f@192.168.191.5:30303?discport=0"
 ]
 ```
 
 在每个节点的工作目录创建名为`data`的数据目录，在`data`目录创建`geth`目录
 
 ```bash
-$ cd ..
-$ mkdir -p NodeA/data/geth
-$ mkdir -p NodeB/data/geth
-$ mkdir -p NodeC/data/geth
-$ mkdir -p NodeD/data/geth
+cd ..
+mkdir -p NodeA/data/geth
+mkdir -p NodeB/data/geth
+mkdir -p NodeC/data/geth
+mkdir -p NodeD/data/geth
 ```
 
 在四个节点的工作目录中分别为各自节点生成初始账户，账户地址会显示在终端，记住为每个节点账户所设的密码
@@ -643,17 +642,17 @@ $ cat NodeA/genesis.json
 将之前步骤中产生的初始化文件移动到相应节点的工作目录。这些文件现在位于领导节点的工作目录。`genesis.json`放到每个节点的工作目录, `static-nodes.json`放到每个节点的`data`目录。`X/nodekey`放到对应节点的`data/geth`
 
 ```bash
-$ cp NodeA/genesis.json NodeB
-$ cp NodeA/genesis.json NodeC
-$ cp NodeA/genesis.json NodeD
-$ cp NodeA/static-nodes.json NodeA/data/
-$ cp NodeA/static-nodes.json NodeB/data/
-$ cp NodeA/static-nodes.json NodeC/data/
-$ cp NodeA/static-nodes.json NodeD/data/
-$ cp NodeA/0/nodekey NodeA/data/geth
-$ cp NodeA/1/nodekey NodeB/data/geth
-$ cp NodeA/2/nodekey NodeC/data/geth
-$ cp NodeA/3/nodekey NodeD/data/geth
+cp NodeA/genesis.json NodeB
+cp NodeA/genesis.json NodeC
+cp NodeA/genesis.json NodeD
+cp NodeA/static-nodes.json NodeA/data/
+cp NodeA/static-nodes.json NodeB/data/
+cp NodeA/static-nodes.json NodeC/data/
+cp NodeA/static-nodes.json NodeD/data/
+cp NodeA/0/nodekey NodeA/data/geth
+cp NodeA/1/nodekey NodeB/data/geth
+cp NodeA/2/nodekey NodeC/data/geth
+cp NodeA/3/nodekey NodeD/data/geth
 ```
 
 将NodeB，NodeC，NodeD文件夹使用ftp文件传输协议分别移动到对应的三个设备的用户主目录下，使用的软件是FileZilla。
@@ -843,8 +842,8 @@ TRACE[09-14|10:56:00.422] Dial error                               task="staticd
 安装golang
 
 ```bash
-$ sudo snap install go --classic
-$ go version
+sudo snap install go --classic
+go version
 ```
 
 [安装docker(使用脚本)](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
@@ -861,7 +860,7 @@ $ sudo usermod -aG docker your-user
 下载quorum
 
 ```bash
-$ git clone https://github.com/jpmorganchase/quorum.git
+git clone https://github.com/jpmorganchase/quorum.git
 ```
 
 执行交叉编译
@@ -944,7 +943,7 @@ Swap:          99Mi          0B        99Mi
 树莓派使用`dphys-swapfile`文件定义交换空间大小，打开配置文件
 
 ```
-$ sudo nano /etc/dphys-swapfile
+sudo nano /etc/dphys-swapfile
 ```
 
 启用内容只有一行
@@ -956,7 +955,7 @@ CONF_SWAPSIZE=100
 代表默认100M交换空间大小，把数值改成合适的内容，我直接改了1024。然后重新启用新的配置文件。
 
 ```
-$ sudo /etc/init.d/dphys-swapfile restart
+sudo /etc/init.d/dphys-swapfile restart
 ```
 
 完成后再用`free -h`命令查看交换空间大小就变了，此时重新编译，编译速度会大大加快，等待一段时间后，编译顺利执行完毕。将编译得到的文件复制到/usr/local/bin目录下。
@@ -1034,7 +1033,6 @@ GOROOT=/usr/local/go
 ```
 
 走了好多弯路。。。原来一开始的结果就可以。
-
 
 
 ---

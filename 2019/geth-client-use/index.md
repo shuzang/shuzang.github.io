@@ -13,13 +13,13 @@ github的项目wiki也有一份命令说明：[Command Line Options](https://git
 geth [选项] 命令 [命令选项] [参数…]
 ```
 
-### 版本：
+### 版本
 
 ```bash
 1.8.11-stable
 ```
 
-### 命令:
+### 命令
 
 即“命令用法”部分`命令`字段的内容，是geth的主体功能
 
@@ -45,7 +45,7 @@ wallet     管理Ethereum预售钱包
 help,h     显示一个命令或帮助一个命令列表
 ```
 
-### ETHEREUM选项:
+### ETHEREUM选项
 
 即”命令用法“部分`[选项]`字段的内容
 
@@ -65,7 +65,7 @@ help,h     显示一个命令或帮助一个命令列表
 --lightkdf              在KDF强度消费时降低key-derivation RAM&CPU使用
 ```
 
-### 开发者（模式）选项:
+### 开发者（模式）选项
 
 本节及以下到”版权“部分为止，均是”命令用法“部分`[命令选项]`字段的内容
 
@@ -74,7 +74,7 @@ help,h     显示一个命令或帮助一个命令列表
 --dev.period value  开发者模式下挖矿周期 (0 = 仅在交易时) (默认: 0)
 ```
 
-### ETHASH 选项:
+### ETHASH 选项
 
 ```bash
 --ethash.cachedir                        ethash验证缓存目录(默认 = datadir目录内)
@@ -85,7 +85,7 @@ help,h     显示一个命令或帮助一个命令列表
 --ethash.dagsondisk value                在磁盘保存的最近的ethash DAGs 个数 (每个1GB以上) (默认: 2)
 ```
 
-### 交易池选项:
+### 交易池选项
 
 ```bash
 --txpool.nolocals            为本地提交交易禁用价格豁免
@@ -100,21 +100,21 @@ help,h     显示一个命令或帮助一个命令列表
 --txpool.lifetime value      非可执行交易最大入队时间(默认: 3小时)
 ```
 
-### 性能调优的选项:
+### 性能调优的选项
 
 ```bash
 --cache value                分配给内部缓存的内存MB数量，缓存值(最低16 mb /数据库强制要求)(默认:128)
 --trie-cache-gens value      保持在内存中产生的trie node数量(默认:120)
 ```
 
-### 帐户选项:
+### 帐户选项
 
 ```bash
 --unlock value              需解锁账户用逗号分隔
 --password value            用于非交互式密码输入的密码文件
 ```
 
-### API和控制台选项:
+### API和控制台选项
 
 ```bash
 --rpc                       启用HTTP-RPC服务器
@@ -142,7 +142,7 @@ help,h     显示一个命令或帮助一个命令列表
 
 如果想只允许本地网络的主机连接，使用 `127.0.0.1`，如果想只允许自己的主机连接，应该使用自己的网络ip，一般是`192.169.1.1`，如果使用`0.0.0.0`，任何人都能连接
 
-### 网络选项:
+### 网络选项
 
 ```bash
 --bootnodes value    用于P2P发现引导的enode urls(逗号分隔)(对于light servers用v4+v5代替)
@@ -158,7 +158,7 @@ help,h     显示一个命令或帮助一个命令列表
 --nodekeyhex value      十六进制的P2P节点密钥(用于测试)
 ```
 
-### 矿工选项:
+### 矿工选项
 
 ```bash
 --mine                  打开挖矿
@@ -169,20 +169,20 @@ help,h     显示一个命令或帮助一个命令列表
 --extradata value       矿工设置的额外块数据(默认=client version)
 ```
 
-### GAS价格选项:
+### GAS价格选项
 
 ```bash
 --gpoblocks value      用于检查gas价格的最近块的个数  (默认: 10)
 --gpopercentile value  建议gas价参考最近交易的gas价的百分位数，(默认: 50)
 ```
 
-### 虚拟机的选项:
+### 虚拟机的选项
 
 ```bash
 --vmdebug        记录VM及合约调试信息
 ```
 
-### 日志和调试选项:
+### 日志和调试选项
 
 ```bash
 --metrics            启用metrics收集和报告
@@ -200,7 +200,7 @@ help,h     显示一个命令或帮助一个命令列表
 --trace value               将execution trace写入指定文件
 ```
 
-### WHISPER实验选项:
+### WHISPER实验选项
 
 ```bash
 --shh                        启用Whisper
@@ -208,14 +208,14 @@ help,h     显示一个命令或帮助一个命令列表
 --shh.pow value              可接受的最小的POW (默认值: 0.2)
 ```
 
-### 弃用选项：
+### 弃用选项
 
 ```bash
 --fast     开启快速同步
 --light    启用轻客户端模式
 ```
 
-### 其他选项:
+### 其他选项
 
 该部分和”命令“部分的`help`是不同的，用于查询`[命令选项]`字段命令的使用说明
 
@@ -223,7 +223,7 @@ help,h     显示一个命令或帮助一个命令列表
 –help, -h    显示帮助
 ```
 
-### 版权：
+### 版权
 
 ```bash
 Copyright 2013-2017 The go-ethereum Authors
@@ -234,25 +234,25 @@ Copyright 2013-2017 The go-ethereum Authors
 创建账户
 
 ```bash
-$ geth --datadir data/ account new
+geth --datadir data/ account new
 ```
 
 创建节点
 
 ```bash
-$ geth --datadir data/ init genesis.json
+geth --datadir data/ init genesis.json
 ```
 
 启动geth
 
 ```bash
-$ geth --datadir data/ --networkid 72 --nodiscover --port 30306 --etherbase 0x4c283287839fd441b8c8d18771321bc06a81edae --mine --minerthreads 1 console
+geth --datadir data/ --networkid 72 --nodiscover --port 30306 --etherbase 0x4c283287839fd441b8c8d18771321bc06a81edae --mine --minerthreads 1 console
 ```
 
 同步节点
 
 ```bash
-$ geth --syncmode "fast" --cache 512 
+geth --syncmode "fast" --cache 512 
 ```
 
 查询`account`命令的说明及参数
@@ -295,7 +295,6 @@ COMMANDS:
 OPTIONS:
    --help, -h  show help
 ```
-
 
 
 ---

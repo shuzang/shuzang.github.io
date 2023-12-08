@@ -48,7 +48,7 @@
 3. ~~Securing Majority-Attack in Blockchain Using Machine Learning and Algorithmic Game Theory: A Proof of Work~~
 
     多数人攻击(majority-attack)对公链来说不是威胁，但对于私链/联盟链来讲，可能会有部分节点串通作恶。这篇文章的作者提出使用智能软件代理来监控区块链网络中利益相关者的活动，从容检测节点串通作恶。主要使用的是监督机器学习算法和算法博弈理论来阻止多数人作恶的发生。
-    
+
 5. Bitcoin Concepts, Threats, and Machine-Learning Security Solutions
 
     介绍比特币系统及其主要技术（包括区块链协议）的现有威胁和弱点，总结现有的安全研究和解决方案，提出面临的挑战和未来的研究趋势。
@@ -61,7 +61,7 @@
 
     提出针对可交互性优化的用于异常检测的在线机器学习方法，将系统特性以图形方式表达，适用于任何时间序列的数据，数据存储在以太坊区块链中保证不可篡改。
 
-9.  A Collaborative Intrusion Detection Approach Using Blockchain for Multimicrogrid Systems
+9. A Collaborative Intrusion Detection Approach Using Blockchain for Multimicrogrid Systems
 
     实例场景：Multimicrogrid(mmg) 系统，设计了一种使用区块链的协作入侵检测（CID）用于保护该系统安全，不需要可信权威和中心服务器，同时以协作方式提高了检测准确性。它结合了周期性和触发性模式来生成CID目标，即提案生成。根据生成的提案和mmg模型，利用共识实现CID。最终的结果存在区块链上，使用激励机制促进单个微电网参与共识。最后通过一个mmg实例分析了方法有效性。
 
@@ -80,7 +80,7 @@
 7. ~~When Intrusion Detection Meets Blockchain Technology：A Review~~
 
     区块链和侵入检测交叉综述，蛮有意思，竟然已经有人写这个了
-    
+
 14. ~~Anomaly Detection in Bitcoin Network Using Unsupervised Learning Methods~~
 
     构建了以用户为节点和以交易为节点的两个图，进行特征量提取，并使用K-means、马氏距离和无监督支持向量机三种异常检测算法，检测比特币网络中的可疑交易和可疑用户。
@@ -228,7 +228,7 @@
 
 ### 3.1 异常智能合约
 
-两类异常检测系统：detection of anomalies on BC and BC helps anomaly detection. 
+两类异常检测系统：detection of anomalies on BC and BC helps anomaly detection.
 
 当前考虑的系统是BC based access control in IIoT. 常规意义的异常检测有大量可用的算法，但需要找到有效的监测参数。
 其实区块链的验证机制有抑制异常智能合约的功能。以我们的系统为例，我有以下几个问题：
@@ -246,6 +246,7 @@
    网关部署的访问控制合约需要在注册合约中进行注册，在注册时进行安全性检查，比对合约ABI是否被篡改。
 4. 如果问题3的回答是可行，谁负责组织实施发现和锁定操作？
    注册合约，通过对ABI进行检查确认合约内容未经篡改。不过实际上ABI由网关提交，网关有可能部署恶意合约但提交正常合约的ABI。
+
 
 ---
 

@@ -1,7 +1,7 @@
 # LVChain： A Lightweight and Vote-based Blockchain for Access Control in the IoT
 
 
-Yu, Yue & Zhang, Sheng & Chen, Chao & Zhong, Xiaoxiong. (2018). LVChain: A Lightweight and Vote-based Blockchain for Access Control in the IoT. 870-874. 
+Yu, Yue & Zhang, Sheng & Chen, Chao & Zhong, Xiaoxiong. (2018). LVChain: A Lightweight and Vote-based Blockchain for Access Control in the IoT. 870-874.
 
 DOI: [10.1109/CompComm.2018.8780687](https://www.researchgate.net/deref/http%3A%2F%2Fdx.doi.org%2F10.1109%2FCompComm.2018.8780687)
 
@@ -27,15 +27,15 @@ IoT与生活联系的越来越紧密，因此安全和隐私问题逐渐得到�
 
 FairAccess[^1]利用智能合约实现了基于token的访问控制，但是有较大的计算和时间开销，预设的授权规则也不可变。
 
-[^1]:A. Ouaddah, A. Abou Elkalam, and A. Ait Ouahman, “Fairaccess: a new blockchain-based access control framework for the internet of things.” Security and Communication Networks, pp. n/a–n/a, 2017, sCN-16-0184. 
+[^1]:A. Ouaddah, A. Abou Elkalam, and A. Ait Ouahman, “Fairaccess: a new blockchain-based access control framework for the internet of things.” Security and Communication Networks, pp. n/a–n/a, 2017, sCN-16-0184.
 
 BlendCAC[^2]同样基于token，利用智能合约完成访问授权的注册、传播和撤销。该模型具有较大的计算和存储开销，并且在具有足够资源的树莓派上实现，无法代表多数IoT设备。
 
-[^2]:R.H. Xu, Y. Chen, et al, "BlendCAC: A BLockchain-ENabled Decentralized Capability-based Access Control for IoTs." IEEE Internal Conference on Blockchain IEEE, 2018. 
+[^2]:R.H. Xu, Y. Chen, et al, "BlendCAC: A BLockchain-ENabled Decentralized Capability-based Access Control for IoTs." IEEE Internal Conference on Blockchain IEEE, 2018.
 
 ControlChain[^3]使用了四种区块链，分别负责记录设备和用户的关系、存储传感器收集的环境信息、存储授权或拒绝访问的权限信息和保存授权规则。该架构只是理论没有仿真或实现，复杂性较高而兼容性较差。
 
-[^3]: Pinno, Otto Julio Ahlert, A. R. A. Gregio, and L. C. E. D. Bona, "ControlChain: Blockchain as a Central Enabler for Access Control Authorizations in the IoT." GLOBECOM 2017 - 2017 IEEE Global Communications Conference IEEE, 2018. 
+[^3]: Pinno, Otto Julio Ahlert, A. R. A. Gregio, and L. C. E. D. Bona, "ControlChain: Blockchain as a Central Enabler for Access Control Authorizations in the IoT." GLOBECOM 2017 - 2017 IEEE Global Communications Conference IEEE, 2018.
 
 ## 3. 方案
 
@@ -125,6 +125,7 @@ ControlChain[^3]使用了四种区块链，分别负责记录设备和用户的�
 不过，家庭自组织网络中，授权用户的数量不会太多，受到攻击时，一半以上的授权用户被控制的概率比较大，因此，这种场景使用区块链完成访问控制是否有必要值得讨论。
 
 最后，家庭自组织网络中，蓝牙、WIFI和ZigBee三种协议都有使用，限于一种协议显然是不适合的，以设备为终端节点，需要对各种无线协议做适配，工作量大且更新繁琐，不是最好的选择。
+
 
 ---
 

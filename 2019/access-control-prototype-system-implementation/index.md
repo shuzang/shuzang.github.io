@@ -146,18 +146,18 @@ step6：访问控制结束后，结果同时返回给 subject 和 object
    ```
 
    不建议直接使用`npm install web3`，默认会安装web3@1.2.1版本，函数调用出现了`Transaction has been reverted by the EVM`的问题，[论坛](https://github.com/ethereum/web3.js/issues/2518)提到这是版本问题，切换了不少版本，但直到1.0.0-beta.18才执行成功。已安装高级版本情况下可以使用如下命令覆盖
-   
+
    ```bash
-   $ npm install web3@1.0.0-beta.18 --save
+   npm install web3@1.0.0-beta.18 --save
    ```
-   
+
 2. 在 node0 根目录启动 geth
 
    ```bash
-   $ ps | grep geth
-   $ killall -INT geth
-   $ ./startall.sh
-   $ geth attach data/geth.ipc
+   ps | grep geth
+   killall -INT geth
+   ./startall.sh
+   geth attach data/geth.ipc
    ```
 
     解锁账户（之后执行操作脚本都有实现解锁账户，默认账户解锁维持5分钟）
@@ -254,70 +254,70 @@ step6：访问控制结束后，结果同时返回给 subject 和 object
     var methodName = "Access Control";
     var register = new web3.eth.Contract(rcAbi, rcAddr);
     register.methods.getContractAddr(methodName).call({
-    	from: "0x9abf7020cc405fce60fdfb84168fb9457bde52e2",
-    	gas: 10000000
+     from: "0x9abf7020cc405fce60fdfb84168fb9457bde52e2",
+     gas: 10000000
     },function(error,result){
-    	if(!error) {
-    		sendAccessControl(result);
-    	}
+     if(!error) {
+      sendAccessControl(result);
+     }
     });
     
     function sendAccessControl(accAddr) {
-    	var myACC = new web3.eth.Contract(accAbi, accAddr);
+     var myACC = new web3.eth.Contract(accAbi, accAddr);
     
-    	var previousTxHash = 0;
-    	var currentTxHash = 0;
+     var previousTxHash = 0;
+     var currentTxHash = 0;
     
-    	var rl = readline.createInterface({
-    	    input: process.stdin,
-    		output: process.stdout,
-    		prompt: 'Send access request?(y/n)'
-    	});
+     var rl = readline.createInterface({
+         input: process.stdin,
+      output: process.stdout,
+      prompt: 'Send access request?(y/n)'
+     });
     
-    	rl.prompt();
-    	rl.on('line',(answer) => {
-    	    if('y' == answer) {
-    		var currentTime = new Date().getTime()/1000;
-    		myACC.methods.accessControl("File A", "read", currentTime).send({
-    				from: "0x9abf7020cc405fce60fdfb84168fb9457bde52e2",
-    				gas: 10000000
-    			},function(error,result){
-    				if(!error){
-    					currentTxHash = result
-    					console.log("currentTxHash", result)
-    				}
-    			})
+     rl.prompt();
+     rl.on('line',(answer) => {
+         if('y' == answer) {
+      var currentTime = new Date().getTime()/1000;
+      myACC.methods.accessControl("File A", "read", currentTime).send({
+        from: "0x9abf7020cc405fce60fdfb84168fb9457bde52e2",
+        gas: 10000000
+       },function(error,result){
+        if(!error){
+         currentTxHash = result
+         console.log("currentTxHash", result)
+        }
+       })
     
-    		myACC.events.ReturnAccessResult({
-    				fromBlock: 0
-    			}, function(error, result){
-    		    if(!error) {
-    		        if(previousTxHash != result.transactionHash && currentTxHash == result.transactionHash) {
-    		            console.log("Contract: "+result.address);
-    		            console.log("Block Number: "+result.blockNumber);
-    		            console.log("Tx Hash: "+result.transactionHash);
-    		            console.log("Block Hash: "+result.blockHash);
-    		            console.log("Time: "+result.returnValues._time);
-    		            console.log("Message: "+result.returnValues._errmsg);
-    		            console.log("Result: "+result.returnValues._result);
-    		            if (result.returnValues._penalty > 0) {
-    		                console.log("Requests are blocked for " + result.returnValues._penalty +"seconds!")
-    		            }
-    		            console.log('\n');
-    		            previousTxHash = result.transactionHash;
-    		            rl.prompt();
-    		        }
-    		    }
-    		})
-    	    }
-    	    else{
-    		console.log("access request doesn't send!")
-    		rl.prompt();
-    	    }
-    	}).on('close',() =>{
-    	    console.log('All actions had executed!');
-    	    process.exit(0);
-    	});
+      myACC.events.ReturnAccessResult({
+        fromBlock: 0
+       }, function(error, result){
+          if(!error) {
+              if(previousTxHash != result.transactionHash && currentTxHash == result.transactionHash) {
+                  console.log("Contract: "+result.address);
+                  console.log("Block Number: "+result.blockNumber);
+                  console.log("Tx Hash: "+result.transactionHash);
+                  console.log("Block Hash: "+result.blockHash);
+                  console.log("Time: "+result.returnValues._time);
+                  console.log("Message: "+result.returnValues._errmsg);
+                  console.log("Result: "+result.returnValues._result);
+                  if (result.returnValues._penalty > 0) {
+                      console.log("Requests are blocked for " + result.returnValues._penalty +"seconds!")
+                  }
+                  console.log('\n');
+                  previousTxHash = result.transactionHash;
+                  rl.prompt();
+              }
+          }
+      })
+         }
+         else{
+      console.log("access request doesn't send!")
+      rl.prompt();
+         }
+     }).on('close',() =>{
+         console.log('All actions had executed!');
+         process.exit(0);
+     });
     }
     ```
 
@@ -326,10 +326,9 @@ step6：访问控制结束后，结果同时返回给 subject 和 object
 13. 在台式电脑中开启两个控制台界面，先后执行两个脚本。requester.js 发起的访问控制返回的结果，monitor.js 都能检测到。
 
     ```bash
-    $ node monitor.js
-    $ node requester.js
+    node monitor.js
+    node requester.js
     ```
-    
 
 ## 4. 附录
 
@@ -347,10 +346,10 @@ step6：访问控制结束后，结果同时返回给 subject 和 object
 > 4: Create an ACC instance acc with addr, abi.  
 > 5: Send a transaction containing parameters (resource, action, time) to the accessControl ABI of acc.  
 > 6: while ture do  
-> 7: 	if Event returnResult() is captured then  
-> 8: 		(result, penalty) 4— returnResult().  
-> 9: 		break.  
-> 10: 	end if  
+> 7:  if Event returnResult() is captured then  
+> 8:   (result, penalty) 4— returnResult().  
+> 9:   break.  
+> 10:  end if  
 > 11: end while  
 > 12: return result, penalty  
 <br>
@@ -362,17 +361,17 @@ step6：访问控制结束后，结果同时返回给 subject 和 object
 > 3: (addr, abi)4— register.getContract(method).  
 > 4: Create an ACC instance acc with addr, abi.  
 > 5: while ture do  
-> 6: 	if Event returnResult() is captured then  
-> 7: 		(result, penalty) 4— returnResult().  
-> 8: 		Display result, penalty.  
-> 9: 	end if  
+> 6:  if Event returnResult() is captured then  
+> 7:   (result, penalty) 4— returnResult().  
+> 8:   Display result, penalty.  
+> 9:  end if  
 > 10: end while
 
 ### 附录2 web3.js与节点交互的参考文档
 
-https://blog.csdn.net/dieju8330/article/details/83090660
+<https://blog.csdn.net/dieju8330/article/details/83090660>
 
-https://blog.csdn.net/dieju8330/article/details/83149164
+<https://blog.csdn.net/dieju8330/article/details/83149164>
 
 ### 附录3 可能遇到的问题及解决方案
 
@@ -440,10 +439,11 @@ geth --exec 'loadScript("request.js")' attach data/geth.ipc
  **方法3**：使用node直接运行
 
 ```bash
-$ node requester.js
+node requester.js
 ```
 
 方法3是唯一执行成功的。
+
 
 ---
 

@@ -112,7 +112,7 @@ Win10 Home Edition 不支持 Docker，且实验中涉及的组件比较多，我
 全局安装 quorum-wizard
 
 ```bash
-$ npm install -g quorum-wizard
+npm install -g quorum-wizard
 ```
 
 运行向导，建立测试网络，`-v` 参数用于输出日志记录。
@@ -233,7 +233,7 @@ Cakeshop started at http://localhost:8999
 Successfully started Quorum network.
 ```
 
-此时浏览器打开 http://localhost:8999 页面，可以看到网络情况
+此时浏览器打开 <http://localhost:8999> 页面，可以看到网络情况
 
 ![YJS_20200601_网络情况](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20200601_网络情况.png)
 
@@ -249,10 +249,10 @@ Successfully started Quorum network.
 
 | 节点  | url                                                          |
 | ----- | ------------------------------------------------------------ |
-| Node1 | Quorum RPC：http://localhost:22000<br>Tessera：http://localhost:9081 |
-| Node2 | Quorum RPC：http://localhost:22001<br>Tessera：http://localhost:9082 |
-| Node3 | Quorum RPC：http://localhost:22002<br/>Tessera：http://localhost:9083 |
-| Node4 | Quorum RPC：http://localhost:22003<br/>Tessera：http://localhost:9084 |
+| Node1 | Quorum RPC：<http://localhost:22000><br>Tessera：<http://localhost:9081> |
+| Node2 | Quorum RPC：<http://localhost:22001><br>Tessera：<http://localhost:9082> |
+| Node3 | Quorum RPC：<http://localhost:22002><br/>Tessera：<http://localhost:9083> |
+| Node4 | Quorum RPC：<http://localhost:22003><br/>Tessera：<http://localhost:9084> |
 
 输入 Node1 的 Quroum RPC 和 Tessera 的 url，点击确认，得到如下的侧面板
 
@@ -269,7 +269,7 @@ Quorum-Remix 插件使用 Remix 的 Solidity 编译器的结果，所以在 Remi
 如果我们编写了交互用的 js 脚本，假设脚本名为 test.js，可以使用如下命令执行
 
 ```bash
-$ ./runscript.sh test.js
+./runscript.sh test.js
 ```
 
 有输入参数的情况下，可以使用 Bash 、Python 或 Go 有选择的批量执行脚本。
@@ -467,8 +467,8 @@ done
 其中，requester_legal.js 是完成访问控制的 JS 文件，接下来授予 xtime 和 runscript.sh 执行权限
 
 ```bash
-$ chmod 777 xtime
-$ chmod 777 runscript.sh
+chmod 777 xtime
+chmod 777 runscript.sh
 ```
 
 执行 Shell 脚本之前，我们需要先解锁发起访问的账户，由于我们会一次性进行 500 次测试，每次间隔 5 s，因此一次性将账户解锁 2500s 以上，这里我们设置 4000s。解锁相应账户的命令如下，第二个参数为密码，第三个参数为时间。
@@ -511,14 +511,14 @@ var accAddr = "这里是合约地址"
 var myACC = new web3.eth.Contract(accAbi, accAddr);
 
 myACC.methods.accessControl("这里是传入的参数列表").send({
-	from: "这里是发起访问的账户地址",
-	gas: 10000000,
-	gasPrice: 0
+ from: "这里是发起访问的账户地址",
+ gas: 10000000,
+ gasPrice: 0
 }).then(function(receipt){
-	if (receipt.status) {
-	    console.log(receipt)
+ if (receipt.status) {
+     console.log(receipt)
         process.exit(0);        
-	}
+ }
 })
 ```
 
@@ -752,7 +752,6 @@ $$
 F(x) = 1 - e^{-\lambda x}
 $$
 
-
 ![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/YJS_20200601_exponential-curve.png)
 
 其含义是，随之时间的流逝，在世界上某个地方发生地震的可能性不断增大，这里「指数」的含义是指数衰减，随着时间流逝，不发生地震的可能性逐渐趋近于0，相应的，发生至少一场地震的可能性也趋向于1。
@@ -784,22 +783,22 @@ Donald Knuth 在 「The Art of Computer Programming」一书的 3.4.1(D) 一节�
 package main
 
 import (
-	"fmt"
-	"math"
-	"math/rand"
-	"time"
+ "fmt"
+ "math"
+ "math/rand"
+ "time"
 )
 
 func main() {
-	rand.Seed(time.Now().UnixNano())
-	for i := 0; i < 5; i++ {
-		fmt.Println(nextTime(1 / 40.0))
-	}
+ rand.Seed(time.Now().UnixNano())
+ for i := 0; i < 5; i++ {
+  fmt.Println(nextTime(1 / 40.0))
+ }
 
 }
 
 func nextTime(rateParameter float64) float64 {
-	return -math.Log(1.0-rand.Float64()) / rateParameter
+ return -math.Log(1.0-rand.Float64()) / rateParameter
 }
 // Output:
 3.645968256349058
@@ -815,19 +814,19 @@ func nextTime(rateParameter float64) float64 {
 package main
 
 import (
-	"fmt"
-	"testing"
+ "fmt"
+ "testing"
 )
 
 func TestNextTime(t *testing.T) {
-	var sum float64
-	for k := 0; k < 10; k++ {
-		for i := 0; i < 1000000; i++ {
-			sum += nextTime(1 / 40.0)
-		}
-		fmt.Println(sum / 1000000)
-		sum = 0
-	}
+ var sum float64
+ for k := 0; k < 10; k++ {
+  for i := 0; i < 1000000; i++ {
+   sum += nextTime(1 / 40.0)
+  }
+  fmt.Println(sum / 1000000)
+  sum = 0
+ }
 }
 // Output:
 === RUN   TestNextTime
@@ -843,7 +842,7 @@ func TestNextTime(t *testing.T) {
 40.029867240804506
 --- PASS: TestNextTime (0.42s)
 PASS
-ok  	github.com/shuzang/test	0.652s
+ok   github.com/shuzang/test 0.652s
 ```
 
 实际上，Go 在 math/rand 库中本身就提供了一个生成符合指数分布的随机数的函数，叫做 `rand.ExpFloat64()`。实现的算法使用的是 Marsaglia 和 Tsang 在 2000 年发布的论文 [The Ziggurat Method for Generating Random Variables](https://www.jstatsoft.org/v05/i08/paper)
@@ -851,6 +850,7 @@ ok  	github.com/shuzang/test	0.652s
 ### 4. 其它仿真器
 
 [The One](http://akeranen.github.io/the-one/) 是一个 opportunistic Network Environment simulator，可以设置一个仿真的 IoT 网络，参数包括网络中设备数目、带宽、通信到达时间等，使用不同的模型生成随机的运动和通信，并将过程可视化。
+
 
 ---
 

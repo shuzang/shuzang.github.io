@@ -28,9 +28,9 @@ Ethereum swarm是一个分布式文件存储系统，开发这个项目是因为
 详细的安装方式见[这里](<https://swarm-guide.readthedocs.io/en/latest/installation.html>)，这里只介绍在Ubuntu上通过PPA安装，虽然这种方式安装的是stable版本，但版本号同样在0.3，所以就不使用更麻烦的自编译源码安装了。
 
 ```bash
-$ sudo add-apt-repository -y ppa:ethereum/ethereum
-$ sudo apt-get update
-$ sudo apt-get install ethereum-swarm
+sudo add-apt-repository -y ppa:ethereum/ethereum
+sudo apt-get update
+sudo apt-get install ethereum-swarm
 ```
 
 安装完成后查看swarm版本
@@ -51,15 +51,15 @@ OS: linux
 运行swarm需要以太坊账户，我们通过geth命令来创建账户，需要已经进行过[geth安装](https://github.com/ethereum/go-ethereum/wiki/Installing-Geth)。
 
 ```bash
-$ mkdir swarmNode1
-$ geth --datadir swarmNode1/ account new
-$ export BZZKEY1="your new account address"
+mkdir swarmNode1
+geth --datadir swarmNode1/ account new
+export BZZKEY1="your new account address"
 ```
 
 将返回的账户地址设置为环境变量`BZZKEY1`，然后启动第一个节点。
 
 ```bash
-$ swarm --bzzaccount $BZZKEY1 --datadir swarmNode1/ --keystore swarmNode1/keystore --ens-api "" --bzzport 5000
+swarm --bzzaccount $BZZKEY1 --datadir swarmNode1/ --keystore swarmNode1/keystore --ens-api "" --bzzport 5000
 ```
 
 - **bzzaccount**：设置节点账户地址
@@ -75,10 +75,10 @@ $ swarm --bzzaccount $BZZKEY1 --datadir swarmNode1/ --keystore swarmNode1/keysto
 启动多个节点的时候不能仅仅改动`--bzzport`参数，还需要改动UDP端口号，这一点文档中没有提到，启动第二个节点的示例如下：
 
 ```bash
-$ mkdir swarmNode2
-$ geth --datadir swarmNode2/ account new
-$ export BZZKEY2="your new account address"
-$ swarm --bzzaccount $BZZKEY2 --datadir swarmNode2/ --keystore swarmNode2/keystore --ens-api "" --bzzport 5500 --port 9000
+mkdir swarmNode2
+geth --datadir swarmNode2/ account new
+export BZZKEY2="your new account address"
+swarm --bzzaccount $BZZKEY2 --datadir swarmNode2/ --keystore swarmNode2/keystore --ens-api "" --bzzport 5500 --port 9000
 ```
 
 ### 3.3 连接swarm节点
@@ -98,7 +98,7 @@ enode://4ae5ee37b365e316b1d2b3d07e5cb1f620919ff39b89f5640b461e64bb92cf8a2caa3995
 复制结果并添加到如下命令，连接两个节点
 
 ```bash
-$ geth --exec='admin.addPeer("your enode address")' attach swarmNode1/bzzd.ipc
+geth --exec='admin.addPeer("your enode address")' attach swarmNode1/bzzd.ipc
 ```
 
 `your enode address`即我们上面得到的
@@ -121,7 +121,7 @@ $ swarm --bzzapi "http://localhost:5000" up fileToUpload.txt
 复制该哈希作为地址从swarmNode2查询
 
 ```bash
-$ curl http://localhost:5500/bzz:/your hash comes here/
+curl http://localhost:5500/bzz:/your hash comes here/
 ```
 
 该条命令将返回哈希对应的文件内容`test file`
@@ -129,6 +129,7 @@ $ curl http://localhost:5500/bzz:/your hash comes here/
 <br>
 
 可查看[swarm文档](<https://swarm-guide.readthedocs.io/en/latest/introduction.html>)阅读更多细节
+
 
 ---
 

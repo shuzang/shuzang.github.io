@@ -1,7 +1,7 @@
 # 提取以太坊的区块产生时间
 
 
-##  前言
+## 前言
 
 目的是提取以太坊的区块产生时间形成数据集，初步的思路有两种：
 
@@ -19,20 +19,20 @@
 系统环境为Ubuntu18.04，已安装python环境。安装Ethereum ETL：
 
 ```bash
-$ pip3 install ethereum-etl
+pip3 install ethereum-etl
 ```
 
 安装依赖模块
 
 ```bash
-$ pip3 install mythril
-$ pip3 install pyetherchain
+pip3 install mythril
+pip3 install pyetherchain
 ```
 
 导出区块信息，导出速度和国家有关，国内较慢。
 
 ```bash
-$ ethereumetl export_blocks_and_transactions -s 1 -e 200000 -p https://mainnet.infura.io -b 100 -w 3 --blocks-output blocks.csv
+ethereumetl export_blocks_and_transactions -s 1 -e 200000 -p https://mainnet.infura.io -b 100 -w 3 --blocks-output blocks.csv
 ```
 
 所有的参数使用可以通过`-h`参数查看，更多信息详见[ethereum-etl](<https://github.com/blockchain-etl/ethereum-etl#blockscsv>)。
@@ -158,6 +158,7 @@ Number,Timestamp,Block generation time
 [Kaggle-Beyond Queries: Exploring the BigQuery API](<https://www.kaggle.com/sohier/beyond-queries-exploring-the-bigquery-api>)
 
 [Kaggle-Visualizing average Ether costs over time](<https://www.kaggle.com/mrisdal/visualizing-average-ether-costs-over-time/data>)
+
 
 ---
 

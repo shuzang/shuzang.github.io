@@ -27,8 +27,6 @@ IoT系统可能遭受入侵，导致相关资源（数据、服务、存储单�
 
 ![](https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/6488907/8709863/8386853/zhang1-2847705-small.gif)
 
-
-
 - 服务器。与IoT设备/存储设备链接，为用户提供服务。交互方式包括
   1. 从传感器收集环境数据，
   2. 向执行器发送命令执行某些操作，
@@ -69,8 +67,6 @@ ACC由object部署，这个object想要控制来自subject的访问请求，假�
 为了记录subject的恶意行为，ACC还维持一个恶意行为列表如下
 
 ![](https://ieeexplore.ieee.org/mediastore_new/IEEE/content/media/6488907/8709863/8386853/zhang.t2-2847705-small.gif)
-
-
 
 Misbehavior字段也可能描述恶意行为的细节，便于JC进行判决。ACC还提供一些函数接口如下以便管理策略和实施访问控制
 
@@ -129,6 +125,7 @@ JC的subject和object字段留空。依据查找表，RC提供以下函数接口
 ## Conclusion
 
 本文研究了物联网中的访问控制问题，为此我们提出了一个基于智能合约的架构来实现分布式和可信赖的访问控制。该框架包括用于系统中多个subject - object对的访问控制的多个ACC，一个用于在访问控制期间判断subject的恶意行为的JC，以及一个用于管理ACC和JC的RC。还为物联网系统中的访问控制提供了案例研究，其中包括一台台式计算机，一台笔记本电脑和两台Raspberry Pi。案例研究证明了所提架构在实现物联网分布式和可信赖访问控制方面的可行性
+
 
 ---
 

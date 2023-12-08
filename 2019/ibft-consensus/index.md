@@ -99,11 +99,7 @@ IBFT使用一个和Clique相似的验证者投票机制，每个epoch交易都�
 
 - proposer可以投一票提议更改验证者列表
 
-
-
 未完待续
-
-
 
 ## 问题
 
@@ -111,6 +107,7 @@ IBFT使用一个和Clique相似的验证者投票机制，每个epoch交易都�
 - [Correctness Analysis of Istanbul Byzantine Fault Tolerance](https://arxiv.org/pdf/1901.07160.pdf)
 
 - 没有激励机制
+
 
 ---
 

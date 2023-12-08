@@ -26,7 +26,7 @@
 2. 分别提交每个人脸进行识别；
 3. 将与会者列表返回给用户。
 
-假设第 1 步需要  15 秒，第2步需要 10 秒，第 3 步需要 6 秒，不使用 MAC 移动用户总共需要 15+10*50+6 = 512s，如果使用 MAC，任务 2 被分配给 10 个 MAC 参与者（provider），时间将大幅减少，假设与所有 provider 的通信开销是3s，那么总时间为 15+3 +10 * 5+6 = 74s。
+假设第 1 步需要  15 秒，第2步需要 10 秒，第 3 步需要 6 秒，不使用 MAC 移动用户总共需要 15+10*50+6 = 512s，如果使用 MAC，任务 2 被分配给 10 个 MAC 参与者（provider），时间将大幅减少，假设与所有 provider 的通信开销是3s，那么总时间为 15+3 +10* 5+6 = 74s。
 
 实际的过程更加复杂，面对的问题包括：[构成 MAC 的移动设备的发现]^(MAC formation)、[任务卸载]^(task offloading)，任务调度与分配，安全与隐私，[移动性和激励]^(mobility and incentives)，资源管理。按这种分类总结相关解决方案如下图
 
@@ -72,7 +72,7 @@
 
 除了这篇论文外还有一篇值得参考的论文[^zhou2019BCEdge]
 
-[^zhou2019BCEdge]:Zhou, Ao, Qibo Sun和Jinglin Li. BCEdge: Blockchain‐based Resource Management in D2D‐assisted Mobile Edge Computing. *Software: Practice and Experience*, 2019年10月21日, spe.2758. https://doi.org/10.1002/spe.2758.  
+[^zhou2019BCEdge]:Zhou, Ao, Qibo Sun和Jinglin Li. BCEdge: Blockchain‐based Resource Management in D2D‐assisted Mobile Edge Computing. *Software: Practice and Experience*, 2019年10月21日, spe.2758. <https://doi.org/10.1002/spe.2758>.  
 
 ## 4. 问题与思考
 
@@ -110,8 +110,8 @@
 
 13. 会不会以及什么时候用到访问控制系统。
 
-[^huang2019towards]:Huang, Junqin, Linghe Kong, Guihai Chen, Min-You Wu, Xue Liu和Peng Zeng. Towards Secure Industrial IoT: Blockchain System With Credit-Based Consensus Mechanism. *IEEE Transactions on Industrial Informatics* 15, 期 6 (2019年6月): 3680–89. https://doi.org/10.1109/TII.2019.2903342. 
-[^zyskind2015decentralizing]:Zyskind, Guy, Oz Nathan和Alex Sandy Pentland. Decentralizing Privacy: Using Blockchain to Protect Personal Data. 收入 *2015 IEEE Security and Privacy Workshops*, 180–84. San Jose, CA: IEEE, 2015. https://doi.org/10.1109/SPW.2015.27.
+[^huang2019towards]:Huang, Junqin, Linghe Kong, Guihai Chen, Min-You Wu, Xue Liu和Peng Zeng. Towards Secure Industrial IoT: Blockchain System With Credit-Based Consensus Mechanism. *IEEE Transactions on Industrial Informatics* 15, 期 6 (2019年6月): 3680–89. <https://doi.org/10.1109/TII.2019.2903342>.
+[^zyskind2015decentralizing]:Zyskind, Guy, Oz Nathan和Alex Sandy Pentland. Decentralizing Privacy: Using Blockchain to Protect Personal Data. 收入 *2015 IEEE Security and Privacy Workshops*, 180–84. San Jose, CA: IEEE, 2015. <https://doi.org/10.1109/SPW.2015.27>.
 
 下面是一个简单的流程描述，首先，所有参与任务分发的节点在链上进行注册，当任务发布者有一个计算任务或资源需求时，会签名后将其发布到链上，其它拥有资源节点根据签名验证任务有效性后，可以选择接取该任务，合约会自动根据任务需求和节点能力、位置、历史信誉进行匹配（隐私信息会进行密文匹配），然后确定接取任务的节点。角色确定后，任务发布者获取接任务节点的位置信息，通过 D2D 通信将计算任务和计算数据传输过去，计算完的结果直接利用区块链返回，而不是 D2D 连接，任务发布者确认后，将触发抵押作为酬劳的代币转移，同时计算信誉历史，如果接任务的节点发生了恶意行为，如不返回计算结果（中途推出）、故意返回错误结果等，均会计入信誉系统，影响下次接任务。
 
@@ -172,6 +172,7 @@
 5. 完成任务的私链如何存在公链上
    - 如果存哈希，私链主体内容存在哪里
    - 如果存内容，公链的区块是否能容纳
+
 
 ---
 

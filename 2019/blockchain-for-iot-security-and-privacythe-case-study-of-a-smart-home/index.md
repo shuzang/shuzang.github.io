@@ -1,7 +1,7 @@
 # Blockchain for IoT Security and Privacy:The Case Study of a Smart Home
 
 
-Dorri, Ali & Kanhere, Salil & Jurdak, Raja & Gauravaram, Praveen. (2017). Blockchain for IoT Security and Privacy: The Case Study of a Smart Home. 10.1109/PERCOMW.2017.7917634. 
+Dorri, Ali & Kanhere, Salil & Jurdak, Raja & Gauravaram, Praveen. (2017). Blockchain for IoT Security and Privacy: The Case Study of a Smart Home. 10.1109/PERCOMW.2017.7917634.
 
 ### Abstract
 
@@ -133,19 +133,18 @@ Section VI：结论
 
 首先是两篇论文说明了现有的智能家居场景确认有效的安全防御手段
 
-14. S. Notra M. Siddiqi H. H. Gharakheili V. Sivaraman R. Boreli "An experimental study of security and privacy risks with emerging household appliances" Communications and Network Security (CNS) 2014 IEEE Conference on pp. 79-84 2014. 
-15. V. Sivaraman D. Chan D. Earl R. Boreli "Smart-phones attacking smart-homes" Proceedings of the 9th ACM Conference on Security &amp; Privacy in Wireless and Mobile Networks pp. 195-200 2016. 
+14. S. Notra M. Siddiqi H. H. Gharakheili V. Sivaraman R. Boreli "An experimental study of security and privacy risks with emerging household appliances" Communications and Network Security (CNS) 2014 IEEE Conference on pp. 79-84 2014.
+15. V. Sivaraman D. Chan D. Earl R. Boreli "Smart-phones attacking smart-homes" Proceedings of the 9th ACM Conference on Security &amp; Privacy in Wireless and Mobile Networks pp. 195-200 2016.
 
 以及一个现有的处理智能家居场景安全和隐私的方案，通过使用两个数据集保证真实用户对数据的访问权，但对服务提供商无法提供有效的隐私保证。
 
-3. A. Chakravorty T. Wlodarczyk C. Rong "Privacy preserving data analytics for smart homes" Security and Privacy Workshops (SPW) 2013 IEEE pp. 23-27 2013. 
+3. A. Chakravorty T. Wlodarczyk C. Rong "Privacy preserving data analytics for smart homes" Security and Privacy Workshops (SPW) 2013 IEEE pp. 23-27 2013.
 
 <br/>
 
 ### VI. Conclusion
 
 如今，物联网安全正受到学术界和工业界的广泛关注。由于高能耗和处理开销，现有的安全解决方案不适合物联网。我们提出的方法通过利用BC来解决这些挑战。使用智能家居场景为例研究讨论了这个想法。在本文中，我们概述了智能家居层的各核心组件，并讨论了与之相关的各种交易和程序。我们还提供了有关其安全性和隐私的全面分析。我们的仿真结果表明，对于低资源IoT设备，我们的方法产生的开销很低且易于管理。我们认为，鉴于提供的安全性和隐私优势，引入的开销是值得的。
-
 
 
 ---

@@ -21,7 +21,7 @@ ABAC 是一个逻辑访问控制模型，它通过对实体（[主体]^(subject)
 
 由于缺乏对 ABAC 特性的共识，用户无法准确评估与该模型相关的好处和挑战。为了解决这个问题，国家标准与技术研究所（NIST）发布了《Guide to Attribute Based Access Control (ABAC) Definition and Considerations》[^hu2014guide]。这个文档有两个作用，首先，它提供了 ABAC 的定义和功能组件的描述。其次，它描述了在企业中使用 ABAC 控制信息的计划、设计、实现和操作考虑。这本指南的重点是 ABAC 的实现，而不是成本和效率的权衡。
 
-[^hu2014guide]:V.C. Hu et al., Guide to Attribute Based Access Control (ABAC) Definition and Considerations, Nat’l Institute of Standards and Technology, Jan. 2014, [online] Available: http://nvlpubs.nist.gov/nistpubs/specialpublications/NIST.sp.800-162.pdf.
+[^hu2014guide]:V.C. Hu et al., Guide to Attribute Based Access Control (ABAC) Definition and Considerations, Nat’l Institute of Standards and Technology, Jan. 2014, [online] Available: <http://nvlpubs.nist.gov/nistpubs/specialpublications/NIST.sp.800-162.pdf>.
 
 当跨企业部署 ABAC 用以增加不同组织之间的信息共享时，其实现可能会变得更加复杂，需要一个属性管理的基础设施、机器可执行的策略以及一系列支持访问决策和策略执行的功能。如下图所示，除了基本的策略、属性和访问控制机制要求外，企业还必须支持企业策略开发和分发、企业身份和主体属性、主体属性共享、企业对象属性、身份验证等管理功能，以及访问控制机制的部署和分发。启用这些功能需要仔细考虑影响企业 ABAC 解决方案设计、安全性和互操作性的许多因素，上面提到的指南可以帮助 ABAC 系统规划者、架构师、管理者和实现者来分阶段完成这些功能。
 
@@ -41,9 +41,10 @@ AP 是提供主体、对象（或资源）或环境条件属性的任何人或�
 
 ## 5. 总结与收获
 
-基于属性的访问控制是一种灵活的访问控制方法，它只受计算语言和可用属性丰富性的限制。这种灵活性使最大范围的主体能够访问最大范围的对象，而无需指定每个主体和每个对象之间的关系，使ABAC成为许多分布式或快速变化的环境的理想选择。更多关于保证属性准确性和可靠性的工作可以查看 http://csrc.nist.gov/projects/abac/index.html
+基于属性的访问控制是一种灵活的访问控制方法，它只受计算语言和可用属性丰富性的限制。这种灵活性使最大范围的主体能够访问最大范围的对象，而无需指定每个主体和每个对象之间的关系，使ABAC成为许多分布式或快速变化的环境的理想选择。更多关于保证属性准确性和可靠性的工作可以查看 <http://csrc.nist.gov/projects/abac/index.html>
 
 了解了 ABAC 的主要优点，了解了 ABAC 在企业环境实现需要考虑很多的问题，实现比较复杂。不过最大的收获是知道了实现 ABAC 可以查看文章提到的指南。最后一部分 Attribute Assurance 没有看懂，似乎是属性定义需要满足的几个特性。
+
 
 ---
 

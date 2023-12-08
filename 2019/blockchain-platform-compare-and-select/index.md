@@ -11,7 +11,7 @@
 
 IPFS在2016年就正式在以太坊分叉（ETH）上推出了它的分布式文件存储网络，在概念上与Swarm完全相似。虽然与以太坊没有直接关联，但可与以太坊集成。
 
-Swarm和ETH的区别见：[IPFS&Swarm](https://github.com/ethersphere/go-ethereum/wiki/IPFS-&-SWARM)      
+Swarm和ETH的区别见：[IPFS&Swarm](https://github.com/ethersphere/go-ethereum/wiki/IPFS-&-SWARM)
 
 在以太坊生态中，智能合约smart contract实现了分布式逻辑，Swarm实现了分布式存储，Whisper实现了分布式消息，整体结构如下所示
 
@@ -85,7 +85,7 @@ Hyperledger是一项旨在推动跨行业开源协作的区块链技术。合作
 >
 > Nathan Aw
 >
-> **A**：There is no intent to integrate 'directly' with IPFS or BigchainDB. With the Fabric architecture, blocks are distributed at the node layer, and each node maintains it's own dedicated data store. This is in contrast to IPFS and BigchainDB, where data is distributed across the data store itself. 
+> **A**：There is no intent to integrate 'directly' with IPFS or BigchainDB. With the Fabric architecture, blocks are distributed at the node layer, and each node maintains it's own dedicated data store. This is in contrast to IPFS and BigchainDB, where data is distributed across the data store itself.
 >
 > There are valid design patterns where you can integrate 'indirectly' with such distributed/decentralized data stores however. For example in your solution the client application could store data on a distributed/decentralized data store to share data with business partners, and then store a hash (and perhaps a URL to the data) in Fabric as decentralized 'proof' of the data.
 >
@@ -109,7 +109,7 @@ Hyperledger是联盟链的典型代表，不过联盟链实际上就是一个范
 
 Hyperledger支持智能合约
 
-## 3. Multichain 
+## 3. Multichain
 
 号称90秒创建一个私有区块链， 多链(MultiChain)是一个即用型的私有区块链创建平台。隐私与控制的争议是比特币成为行业性金融机构的障碍。而用多链(MultiChain)创建的私有链则克服了这个困难。其特性包括：
 
@@ -122,16 +122,16 @@ Hyperledger支持智能合约
 
 Multichain在2018.12.19发布了2.0 beta版，有了重大改进，正好有我们需要的功能：
 
- - **Smart Filters**. These allow custom rules to be coded for validating transactions or data. Smart Filters are written in JavaScript and run within a deterministic version of the high-performance V8 engine that powers Google Chrome. Click for [more on Smart Filters](https://www.multichain.com/developers/smart-filters/) or a [comparison with Fabric, Ethereum and Corda](https://www.multichain.com/blog/2018/12/smart-contract-showdown/).
- - **Off-chain data**. Any item published in a MultiChain stream can optionally be stored off-chain, in order to save bandwidth and storage space. Off-chain data (up to 1 GB per item) is automatically hashed into the blockchain, with the data itself delivered rapidly over the peer-to-peer network. Click for [more about off-chain data](https://www.multichain.com/blog/2018/06/scaling-blockchains-off-chain-data/).
+- **Smart Filters**. These allow custom rules to be coded for validating transactions or data. Smart Filters are written in JavaScript and run within a deterministic version of the high-performance V8 engine that powers Google Chrome. Click for [more on Smart Filters](https://www.multichain.com/developers/smart-filters/) or a [comparison with Fabric, Ethereum and Corda](https://www.multichain.com/blog/2018/12/smart-contract-showdown/).
+- **Off-chain data**. Any item published in a MultiChain stream can optionally be stored off-chain, in order to save bandwidth and storage space. Off-chain data (up to 1 GB per item) is automatically hashed into the blockchain, with the data itself delivered rapidly over the peer-to-peer network. Click for [more about off-chain data](https://www.multichain.com/blog/2018/06/scaling-blockchains-off-chain-data/).
 
 第一个Smart Filters是对智能合约的支持，只是换了个说法，第二个Off-chain data是解决数据存储的问题。
 
-关于测试的问题，多链本就是为私链而生的，其各项功能显然有利于我们的实验。但这同时带来一个问题，我们虽然在私链环境下测试，因为这有利于我们对链的控制和对结果的分析，但最终的目标显然是要推广到更广的范围的，现在还不清楚Multichain支持的项目体积。    
+关于测试的问题，多链本就是为私链而生的，其各项功能显然有利于我们的实验。但这同时带来一个问题，我们虽然在私链环境下测试，因为这有利于我们对链的控制和对结果的分析，但最终的目标显然是要推广到更广的范围的，现在还不清楚Multichain支持的项目体积。
 
-参考链接：[Multichain](https://www.multichain.com/)，[Multichain blog](https://www.multichain.com/blog/) 
+参考链接：[Multichain](https://www.multichain.com/)，[Multichain blog](https://www.multichain.com/blog/)
 
-## 4. HydraChain     
+## 4. HydraChain
 
 HydraChain是基于以太坊的扩展，用于支持私链和联盟链的构建，100%的兼容以太坊的API和智能合约，唯一大的区别在于共识协议，原文的描述是
 
@@ -141,10 +141,9 @@ it relies on a registered and accountable set of validators which propose and va
 
 理论上我们在以太坊部分描述的方式这边能实现，同时，相比于用geth构建私链做实验，这个专门针对私链和联盟链的项目应该拥有更好的特性。唯一的问题正如项目Issue里的第一条：`still active`
 
-
 github的项目状态处于”Work in Progress"，但最近的版本记录是2016年的。。。很尴尬的情况:joy:
 
-## 5. Openchain 
+## 5. Openchain
 
  项目社区蛮小的，网上的资料也不多，[官网](https://www.openchain.org/)描述的用例是这样的
 
@@ -163,7 +162,7 @@ Bluemix 是一个基于开放标准的云平台，用于构建、运行和管理
 - 一个由 4 个对等节点组成的区块链网络
 - 一个证书颁发机构服务器
 - 智能合约代码（使用 Golang 开发的链代码）
-- 全球/账本状态，其中包含智能合约数据的当前值（所有事务的历史记录也包含在区块链中）   
+- 全球/账本状态，其中包含智能合约数据的当前值（所有事务的历史记录也包含在区块链中）
 
 总的来说应该归到2.hyperledgrer里，以下第三个链接的项目里有一个名为marbles的子项目，好像和Composer的作用类似，还给了例子。
 
@@ -171,9 +170,9 @@ Bluemix 是一个基于开放标准的云平台，用于构建、运行和管理
 
 ## 7. Chain
 
-目标指向为金融领域，而且非开源 。官网地址https://chain.com/
+目标指向为金融领域，而且非开源 。官网地址<https://chain.com/>
 
-## 8. IOTA        
+## 8. IOTA
 
 IOTA专为物联网设计，但却不是真正的区块链结构，而是一种基于有向无环图（DAG）的称为Tangle(缠结)的结构。
 
@@ -239,7 +238,7 @@ EOS.IO 软件引入一种新的区块链架构设计，它使得去中心化的�
 
 1、Aad van Moorsel. [Benchmarks and Models for Blockchain](https://www.researchgate.net/publication/324235866_Benchmarks_and_Models_for_Blockchain). 2018. 主要介绍区块链基准测试应该测哪些方面
 
-2、Anuj Das Gupta, Andrew Dickson, [Analyzing Performance in Blockchain-Based Systems](https://github.com/stratumn/performance/blob/master/Analyzing Performance in Blockchain-Based Systems.pdf). 2017.11. 介绍区块链性能分析的方法，写的很好，虽然只放在 Github 上，但如果研究这个方向，强烈推荐阅读。
+2、Anuj Das Gupta, Andrew Dickson, [Analyzing Performance in Blockchain-Based Systems](<https://github.com/stratumn/performance/blob/master/Analyzing> Performance in Blockchain-Based Systems.pdf). 2017.11. 介绍区块链性能分析的方法，写的很好，虽然只放在 Github 上，但如果研究这个方向，强烈推荐阅读。
 
 3、Harry Kalodner. et.al. [BlockSci: Design and applications of a blockchain analysis paltform](https://github.com/citp/BlockSci). 2018. 声称比其它比较工具好，但没细看。唯一能确认的是，这是该领域直接相关的一篇论文。
 
@@ -251,7 +250,6 @@ EOS.IO 软件引入一种新的区块链架构设计，它使得去中心化的�
 - [Untangling Blockchain: A Data Processing View of Blockchain Systems](https://www.comp.nus.edu.sg/~ooibc/blockchainsurvey.pdf)
 - [BLOCKBENCH: A Framework for Analyzing Private Blockchains](https://www.comp.nus.edu.sg/~ooibc/blockbench.pdf)
 - [Performance Evaluation of the Quorum Blockchain Platform](https://www.researchgate.net/publication/327570196_Performance_Evaluation_of_the_Quorum_Blockchain_Platform)
-
 
 
 ---
