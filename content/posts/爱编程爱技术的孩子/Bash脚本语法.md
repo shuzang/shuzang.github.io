@@ -1,10 +1,10 @@
 ---
-title: Bash脚本语法1
+title: Bash脚本语法
 date: 2020-08-18T11:37:00+08:00
 lastmod: 2020-08-18
 tags: [linux]
 categories: [爱编程爱技术的孩子]
-slug: Bash script grammer 1 
+slug: Bash script grammer
 ---
 
 很多时候都要求能使用 Shell 脚本进行编程，本文是根据阮一峰大神的 [系列教程](https://wangdoc.com/bash/intro.html) 总结的基本知识。
