@@ -1,4 +1,4 @@
-# Bash脚本语法1
+# Bash脚本语法
 
 
 很多时候都要求能使用 Shell 脚本进行编程，本文是根据阮一峰大神的 [系列教程](https://wangdoc.com/bash/intro.html) 总结的基本知识。
@@ -512,5 +512,5 @@ REPLY = 'a b c d'
 ---
 
 > 作者: Shuzang  
-> URL: https://shuzang.github.io/2020/bash-script-grammer-1/  
+> URL: https://shuzang.github.io/2020/bash-script-grammer/  
 

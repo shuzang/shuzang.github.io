@@ -45,11 +45,11 @@ https://shuzang.github.io/2021/dormitory-renovation-plan/
 https://shuzang.github.io/2021/topics-and-techniques-for-small-chat/
 https://shuzang.github.io/2021/life-monthly-5/
 https://shuzang.github.io/2021/future/
-https://shuzang.github.io/2021/sense-of-security-future/
+https://shuzang.github.io/2021/build-a-sense-of-self-security-about-future/
 https://shuzang.github.io/2021/life-monthly-4/
-https://shuzang.github.io/2021/sense-of-security-travel/
-https://shuzang.github.io/2021/sense-of-security-live-alone/
-https://shuzang.github.io/2021/sense-of-security-disaster/
+https://shuzang.github.io/2021/build-a-sense-of-self-security-travel/
+https://shuzang.github.io/2021/build-a-sense-of-self-security-live-alone/
+https://shuzang.github.io/2021/build-a-sense-of-self-security-about-disaster/
 https://shuzang.github.io/2021/recent-discussions-about-games/
 https://shuzang.github.io/2021/clear-usb-falsh-disk-read-only-status/
 https://shuzang.github.io/2021/life-monthly-3/
@@ -107,8 +107,7 @@ https://shuzang.github.io/2020/transaction-and-txpool/
 https://shuzang.github.io/2020/windows-linux-unix-and-macos/
 https://shuzang.github.io/2020/regular-expression-basic-syntax/
 https://shuzang.github.io/2020/algorithm-stings/
-https://shuzang.github.io/2020/bash-script-grammer-2/
-https://shuzang.github.io/2020/bash-script-grammer-1/
+https://shuzang.github.io/2020/bash-script-grammer/
 https://shuzang.github.io/2020/operate-system-6-file-management/
 https://shuzang.github.io/2020/operate-system-5-device-management/
 https://shuzang.github.io/2020/golang-deep-learning-9-call-stack/

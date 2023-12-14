@@ -23,7 +23,7 @@
 
 6. 学会辨识和挑选各种蔬菜水果，这里推荐软件——果识（现在叫果蔬百科）
 
-   ![](https://picped-1301226557.cos.ap-beijing.myqcloud.com/ZK_20200110_%e6%9e%9c%e8%af%861.png)
+   ![果识软件](https://picped-1301226557.cos.ap-beijing.myqcloud.com/ZK_20200110_%e6%9e%9c%e8%af%861.png)
 
 7. 尽量购买小包装的食品和调味品，不要被商家活动蛊惑，牢记你买东西的前提一定是能在保质期前用完
 
@@ -81,7 +81,7 @@
 
 :point_right:[掌握伤口自处理的小方法，帮你抓住自救和求助时机 - 少数派 (sspai.com)](https://sspai.com/post/63189)
 
-![](https://gimg2.baidu.com/image_search/src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fimages%2F20190616%2F8f1757415c7f46a89955a6908d8608cc.jpeg&refer=http%3A%2F%2F5b0988e595225.cdn.sohucs.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1632110582&t=0a1479f8a738dc94e6cafb460b0d22d2)
+![急诊](https://cdn.sspai.com/2021/08/21/article/6a08c03bc3498115508a091d7e6d981e?imageView2/2/w/1120/q/90/interlace/1/ignore-error/1)
 
 由疾病更深一层的，关于独居的最大担忧是什么，是因为各种意外或突发疾病死在出租屋里无人所知，对这种意外我们除了建立豁达的死亡观外，还可以做如下准备
 
@@ -93,7 +93,7 @@
 
 ![《我是遗物整理师》第一集中在出租屋孤独死去的金宣宇](https://picped-1301226557.cos.ap-beijing.myqcloud.com/SH_20210817_独居死亡.jpg)
 
-最担心的事情讨论完，现在我们可以聊一些发生几率不是那么大的事了。对停水、停电这两种情况，我们主要是准备蜡烛、应急手电、充电宝、储水桶和纯净水等物资，对于火灾，应对方法如下 
+最担心的事情讨论完，现在我们可以聊一些发生几率不是那么大的事了。对停水、停电这两种情况，我们主要是准备蜡烛、应急手电、充电宝、储水桶和纯净水等物资，对于火灾，应对方法如下
 
 1. 了解常见火灾安全隐患，比如老化电线、密集堆放的易燃物品等，平时多注意；
 2. 安装烟雾报警器，准备灭火器、灭火毯、火灾专用防烟面罩等预警和求生工具，如果住在高楼，还可以准备求生绳，但切记不要跳楼（消防用具可以通过中国消防产品信息网查询是否合格）；
@@ -101,7 +101,7 @@
 
 拥有一些最基本的电器、电路常识不仅在预防火灾时有用，在日常生活中也至关重要，有时候停电只是因为跳闸，有时候插座没电只是因为线路松动，电池也不一定没电，你可以自己拿个万用表量一下电压，最离谱的是，只要你不怕麻烦，家里常备五金工具，就算你不会修，只是简单的拆开和复原，问题有时候就没了。当然，如果你真的不想自己动手，那就预先存好电工师傅的电话吧，与之类似的还有开锁师傅、送水师傅、漏水维修师傅等等各种师傅的电话，否则只有到用的时候才会后悔莫及。
 
-![](https://images.unsplash.com/photo-1508873535684-277a3cbcc4e8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80)
+![维修工具](https://images.unsplash.com/photo-1508873535684-277a3cbcc4e8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80)
 
 让我们看看余下的还有什么，入室盗窃？遇到直接报警吧，不过由此引申出来的，恐怕是隐私保护的问题，毕竟排除熟人作案和随机作案的情况，也就是自己的隐私泄露了，所以独居的时候可以
 
@@ -144,9 +144,8 @@
 至于我自己，可预见的可能很长一段时间都需要独居了，以后遇到没考虑到的事，会继续添加到知识库的。
 
 
-
 ---
 
 > 作者: Shuzang  
-> URL: https://shuzang.github.io/2021/sense-of-security-live-alone/  
+> URL: https://shuzang.github.io/2021/build-a-sense-of-self-security-live-alone/  
 
