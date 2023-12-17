@@ -296,6 +296,6 @@ GitHub 项目的 README.md 中可以添加徽章（Badge）对项目进行标记
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/git-learning-deep-into/  
 

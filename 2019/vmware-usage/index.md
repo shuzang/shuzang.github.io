@@ -163,6 +163,6 @@ github上open-vm-tools项目的[#253](https://github.com/vmware/open-vm-tools/is
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/vmware-usage/  
 

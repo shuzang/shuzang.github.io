@@ -183,6 +183,6 @@ IoT设备数量迅速增长并逐渐对许多关键领域产生重要影响，�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2018/blockchain-meets-iotan-architecture-for-scalable-access-management-in-iot/  
 

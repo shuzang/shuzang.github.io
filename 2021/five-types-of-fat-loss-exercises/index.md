@@ -259,6 +259,6 @@ EMOM循环训练是时间效率最高的循环训练模式，使用EMOM循环训
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2021/five-types-of-fat-loss-exercises/  
 

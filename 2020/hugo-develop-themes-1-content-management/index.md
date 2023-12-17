@@ -48,6 +48,6 @@ archetypes/  config.toml  content/  data/  layouts/  static/  themes/
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/hugo-develop-themes-1-content-management/  
 

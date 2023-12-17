@@ -68,6 +68,6 @@ CPS的应用非常丰富，通过智能设备获取现实物体的客观信息�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/industry-4.0-development-and-application-of-intelligent-manufacturing/  
 

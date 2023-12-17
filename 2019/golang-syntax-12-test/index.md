@@ -287,6 +287,6 @@ $ pkg.test -test.v -myflag testdata -test.cpuprofile=prof.out
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/golang-syntax-12-test/  
 

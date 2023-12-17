@@ -166,6 +166,6 @@
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2022/medicine-and-health-common-diseases-and-medical-kit/  
 

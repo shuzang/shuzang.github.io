@@ -27,6 +27,6 @@ void merge_sort(一个数组) {
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/algorithm-divide-and-conquer/  
 

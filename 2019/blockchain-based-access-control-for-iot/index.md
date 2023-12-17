@@ -470,6 +470,6 @@ IoT 设备性能不足以作为区块链节点；节点越多达成共识时间�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/blockchain-based-access-control-for-iot/  
 

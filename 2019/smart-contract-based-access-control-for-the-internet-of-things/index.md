@@ -129,6 +129,6 @@ JC的subject和object字段留空。依据查找表，RC提供以下函数接口
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/smart-contract-based-access-control-for-the-internet-of-things/  
 

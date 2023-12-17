@@ -372,6 +372,6 @@ func main() {
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/golang-syntax-4-operators-and-flow-control/  
 

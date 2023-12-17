@@ -25,6 +25,6 @@ PS：突然想到，学生时代时间被娱乐侵占，上班以后时间被工
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2021/time-management-1/  
 

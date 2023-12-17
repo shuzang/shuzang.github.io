@@ -128,6 +128,6 @@ latex 书写伪代码主要有三种排版格式：algorithm+algorithmic、algor
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2021/pseudocode-specification/  
 

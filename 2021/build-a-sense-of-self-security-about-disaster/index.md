@@ -459,6 +459,6 @@ A：由于含水量的不同，南北方的积雪重量有一定区别，在北�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2021/build-a-sense-of-self-security-about-disaster/  
 

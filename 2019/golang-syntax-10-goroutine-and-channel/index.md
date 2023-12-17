@@ -634,6 +634,6 @@ func main() {
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/golang-syntax-10-goroutine-and-channel/  
 

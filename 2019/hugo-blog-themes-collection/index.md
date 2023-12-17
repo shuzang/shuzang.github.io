@@ -30,6 +30,6 @@
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/hugo-blog-themes-collection/  
 

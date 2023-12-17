@@ -116,6 +116,6 @@ section II介绍系统架构，section III介绍工作机制，section IV为性�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/distributed-blockchain-based-data-protection-framework-for-modern-power-systems/  
 

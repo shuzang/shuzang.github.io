@@ -110,6 +110,6 @@
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2018/consortium-blockchain-for-secure-energy-trading-in-industrial-internet-of-things/  
 

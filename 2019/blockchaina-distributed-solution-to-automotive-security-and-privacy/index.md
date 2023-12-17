@@ -110,6 +110,6 @@ OBM管理簇成员避免了流量攻击。
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/blockchaina-distributed-solution-to-automotive-security-and-privacy/  
 

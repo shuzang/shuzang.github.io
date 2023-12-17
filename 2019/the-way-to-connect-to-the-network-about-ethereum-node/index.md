@@ -111,6 +111,6 @@ admin.addPeer("enode://f4642fa65af50cfdea8fa7414a5def7bb7991478b768e296f5e4a54e8
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/the-way-to-connect-to-the-network-about-ethereum-node/  
 

@@ -202,6 +202,6 @@ $ sudo rm -rf Origami-1.0.5.zip
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/using-virtual-machine-as-raspberry-pi-server-to-build-dynamic-blog/  
 

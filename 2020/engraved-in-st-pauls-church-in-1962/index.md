@@ -36,6 +36,6 @@
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/engraved-in-st-pauls-church-in-1962/  
 

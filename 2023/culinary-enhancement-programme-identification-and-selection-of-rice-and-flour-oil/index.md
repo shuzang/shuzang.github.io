@@ -115,6 +115,6 @@
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2023/culinary-enhancement-programme-identification-and-selection-of-rice-and-flour-oil/  
 

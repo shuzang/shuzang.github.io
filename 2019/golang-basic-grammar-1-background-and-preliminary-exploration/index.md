@@ -458,6 +458,6 @@ goreturns
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/golang-basic-grammar-1-background-and-preliminary-exploration/  
 

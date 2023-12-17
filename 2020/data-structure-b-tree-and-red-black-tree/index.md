@@ -269,6 +269,6 @@ $$
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/data-structure-b-tree-and-red-black-tree/  
 

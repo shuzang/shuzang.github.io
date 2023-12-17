@@ -130,6 +130,6 @@ $$
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/edgechain-an-edge-iot-framework-and-prototype/  
 

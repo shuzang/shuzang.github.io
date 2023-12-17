@@ -205,6 +205,6 @@ Blockchain, IoT, Access Control 是核心的三个关键词。该领域的研究
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/analysis-and-selection-of-experimental-scenes/  
 

@@ -149,6 +149,6 @@ Section VI：结论
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/blockchain-for-iot-security-and-privacythe-case-study-of-a-smart-home/  
 

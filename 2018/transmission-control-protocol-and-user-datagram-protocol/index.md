@@ -302,6 +302,6 @@ B 只要收到了 A 发出的确认，就进入 CLOSED 状态。同样，B 在�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2018/transmission-control-protocol-and-user-datagram-protocol/  
 

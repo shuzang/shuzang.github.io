@@ -174,6 +174,6 @@ CodePen 是一个在线的前端代码编辑和展示网站，能够编写代码
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/life-weekly-6/  
 

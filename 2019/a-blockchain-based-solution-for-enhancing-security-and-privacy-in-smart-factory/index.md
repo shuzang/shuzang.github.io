@@ -186,6 +186,6 @@ $$
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/a-blockchain-based-solution-for-enhancing-security-and-privacy-in-smart-factory/  
 

@@ -383,6 +383,6 @@ fType1 = func f(a type1, b type2)
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/golang-syntax-11-error-and-panic/  
 

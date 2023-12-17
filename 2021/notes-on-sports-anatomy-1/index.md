@@ -126,6 +126,6 @@ Keep的健身时长已经超过了一万六千分钟， 但各种健身的知识
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2021/notes-on-sports-anatomy-1/  
 

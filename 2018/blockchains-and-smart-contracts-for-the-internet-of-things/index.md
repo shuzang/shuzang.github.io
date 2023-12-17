@@ -68,6 +68,6 @@ Filament提供一种服务，传感器不接入区块链从而降低部署成本
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2018/blockchains-and-smart-contracts-for-the-internet-of-things/  
 

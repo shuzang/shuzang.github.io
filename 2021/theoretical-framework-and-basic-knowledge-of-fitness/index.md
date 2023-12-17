@@ -224,6 +224,6 @@
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2021/theoretical-framework-and-basic-knowledge-of-fitness/  
 

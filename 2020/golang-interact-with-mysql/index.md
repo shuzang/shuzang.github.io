@@ -399,6 +399,6 @@ https://weread.qq.com/web/reader/df83279071b1ee24df86404k07c32570311607cdfd23f04
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/golang-interact-with-mysql/  
 

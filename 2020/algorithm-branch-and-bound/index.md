@@ -78,6 +78,6 @@ While 当前扩展结点非叶结点
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/algorithm-branch-and-bound/  
 

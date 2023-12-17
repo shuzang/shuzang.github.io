@@ -189,6 +189,6 @@ TranslucentTB可以直接从 Win10 商店里下载。
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/efficient-use-of-win10-3-desktop-management/  
 

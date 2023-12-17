@@ -210,6 +210,6 @@ fmt.Printf("%d Kb\n", m.Alloc / 1024)
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/golang-deep-learning-7-scheduler-and-garbage-collection/  
 

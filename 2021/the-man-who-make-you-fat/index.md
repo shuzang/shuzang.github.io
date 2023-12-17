@@ -81,6 +81,6 @@ PS：以上分析对网游等行业同样适用，资本操作了很多东西，
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2021/the-man-who-make-you-fat/  
 

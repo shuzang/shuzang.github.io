@@ -677,6 +677,6 @@ func buildTree(inorder []int, postorder []int) *TreeNode {
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/data-structure-tree-and-binary-tree/  
 

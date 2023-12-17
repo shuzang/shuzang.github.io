@@ -250,6 +250,6 @@
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/blockchain-and-anomaly-detection/  
 

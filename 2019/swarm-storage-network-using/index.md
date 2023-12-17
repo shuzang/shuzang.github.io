@@ -133,6 +133,6 @@ curl http://localhost:5500/bzz:/your hash comes here/
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/swarm-storage-network-using/  
 

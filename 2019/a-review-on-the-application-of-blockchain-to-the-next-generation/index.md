@@ -247,6 +247,6 @@ IIoT一词指的是传统物联网（IoT）技术[55]  -  [56] [57] [58] [59]在
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/a-review-on-the-application-of-blockchain-to-the-next-generation/  
 

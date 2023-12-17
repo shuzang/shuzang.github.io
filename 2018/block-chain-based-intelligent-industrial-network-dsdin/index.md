@@ -232,6 +232,6 @@ DSDIN已经建立了一个ISA平台的特殊生态奖励基金，它使用DSDIN�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2018/block-chain-based-intelligent-industrial-network-dsdin/  
 

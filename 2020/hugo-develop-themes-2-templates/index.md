@@ -264,6 +264,6 @@ single page 是 Hugo 最主要的一个模板，用来渲染每一篇 Markdown �
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/hugo-develop-themes-2-templates/  
 

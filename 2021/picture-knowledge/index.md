@@ -64,6 +64,6 @@ OLED（Organic Light-Emitting Diode，有机发光二极管）就是这种思路
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2021/picture-knowledge/  
 

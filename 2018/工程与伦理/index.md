@@ -87,6 +87,6 @@
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2018/%E5%B7%A5%E7%A8%8B%E4%B8%8E%E4%BC%A6%E7%90%86/  
 

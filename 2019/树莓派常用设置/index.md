@@ -191,6 +191,6 @@ static domain_name_servers=192.168.191.1
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/%E6%A0%91%E8%8E%93%E6%B4%BE%E5%B8%B8%E7%94%A8%E8%AE%BE%E7%BD%AE/  
 

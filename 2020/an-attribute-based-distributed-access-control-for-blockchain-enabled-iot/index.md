@@ -117,6 +117,6 @@ PC 提供的函数功能如下
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/an-attribute-based-distributed-access-control-for-blockchain-enabled-iot/  
 

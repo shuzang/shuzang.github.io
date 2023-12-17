@@ -845,6 +845,6 @@ data0 目录中的相关文件列表
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/use-virtual-machine-builds-ethereum-private-chain/  
 

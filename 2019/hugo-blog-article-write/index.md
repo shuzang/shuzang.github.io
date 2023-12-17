@@ -512,6 +512,6 @@ Hugo写文章的主要格式是Markdown，但是很多高级的语法默认的�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/hugo-blog-article-write/  
 

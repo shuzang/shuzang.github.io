@@ -175,6 +175,6 @@ AOSP项目结构和我上文的描述非常类似.repo工具对应RepoUtil,mainf
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2018/android-system-migration/  
 

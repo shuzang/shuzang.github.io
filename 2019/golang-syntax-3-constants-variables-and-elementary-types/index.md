@@ -526,6 +526,6 @@ fmt.Println(a, b, c, d)
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/golang-syntax-3-constants-variables-and-elementary-types/  
 

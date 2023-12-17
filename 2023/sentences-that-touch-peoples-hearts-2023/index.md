@@ -66,6 +66,6 @@
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2023/sentences-that-touch-peoples-hearts-2023/  
 

@@ -189,6 +189,6 @@ T恤：将T恤对折，接着在底部折一小块，袖子也对折，然后由
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/ironing-and-storage/  
 

@@ -137,6 +137,6 @@
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/how-to-do-if-no-enough-time/  
 

@@ -62,6 +62,6 @@ Auth将在本地注册的实体的凭据和访问策略存在数据库中，授�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/authentication-and-authorization-for-the-internet-of-things/  
 

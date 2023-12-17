@@ -489,6 +489,6 @@ Go是编译型的语言，因此函数的编写顺序无关紧要，但鉴于可
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/golang-syntax-7-function/  
 

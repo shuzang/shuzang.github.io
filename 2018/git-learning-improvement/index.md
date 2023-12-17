@@ -509,6 +509,6 @@ Body部分的格式是固定的，必须写成`This reverts commit <hash>.`，�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2018/git-learning-improvement/  
 

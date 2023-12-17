@@ -207,6 +207,6 @@ Ziggurat：基于区块链提供文字、图片、音视频版权资产的登记
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2018/overview-of-blockchain/  
 

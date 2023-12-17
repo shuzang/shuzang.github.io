@@ -436,6 +436,6 @@ $ mount rw -o remount /
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2018/migration-of-debian-system/  
 

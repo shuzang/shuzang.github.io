@@ -129,6 +129,6 @@ ControlChain[^3]使用了四种区块链，分别负责记录设备和用户的�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/lvchain-a-lightweight-and-vote-based-blockchain-for-access-control-in-the-iot/  
 

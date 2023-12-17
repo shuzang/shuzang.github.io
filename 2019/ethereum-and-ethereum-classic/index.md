@@ -109,6 +109,6 @@ PoW需要挖矿，挖矿的本质是哈希运算，而每秒能做多少次哈�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/ethereum-and-ethereum-classic/  
 

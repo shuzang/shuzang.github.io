@@ -575,6 +575,6 @@ r.HandleFunc("/debug/pprof/trace", pprof.Trace)
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/golang-deep-learning-6-performance-analysis-pprof/  
 

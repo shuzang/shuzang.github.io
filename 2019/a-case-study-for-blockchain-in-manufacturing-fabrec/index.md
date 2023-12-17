@@ -145,6 +145,6 @@ FabRec原型提供了连接计算节点和物理设备（如Arduino / Raspberry 
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/a-case-study-for-blockchain-in-manufacturing-fabrec/  
 

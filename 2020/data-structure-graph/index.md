@@ -638,6 +638,6 @@ Prim算法时间复杂度为$O(n^2)$，只和顶点个数 n 有关，与边的�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/data-structure-graph/  
 

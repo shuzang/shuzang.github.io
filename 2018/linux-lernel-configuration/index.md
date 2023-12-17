@@ -189,6 +189,6 @@ BSD进程记账支持.用户空间程序可以要求内核将进程的统计信�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2018/linux-lernel-configuration/  
 

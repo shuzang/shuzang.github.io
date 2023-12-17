@@ -50,6 +50,6 @@ func Sum256(data []byte) [Size]byte
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/golang-cryptographic-algorithm/  
 

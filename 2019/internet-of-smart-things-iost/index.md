@@ -133,6 +133,6 @@ Multichain的平均响应时间是389ms。延迟不影响性能。这说明了�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/internet-of-smart-things-iost/  
 

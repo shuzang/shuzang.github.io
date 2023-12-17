@@ -19,6 +19,6 @@ Unix 可以算作操作系统的鼻祖，macOS 是 FreeBSD 的衍生，Linux 是
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/windows-linux-unix-and-macos/  
 

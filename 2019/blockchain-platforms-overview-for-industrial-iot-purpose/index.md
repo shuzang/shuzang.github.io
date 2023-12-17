@@ -115,6 +115,6 @@ PoET类似于PoW，但对于随机块创建，解决方案不是基于资源密�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/blockchain-platforms-overview-for-industrial-iot-purpose/  
 

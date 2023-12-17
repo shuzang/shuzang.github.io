@@ -101,6 +101,6 @@ $$
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2021/the-exploration-of-quit-novels-ends-with-understanding-the-mechanism-of-addiction/  
 

@@ -280,6 +280,6 @@ func getIntersectionNode(headA, headB *LinkedList) *Node {
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/data-structure-linkedlist/  
 

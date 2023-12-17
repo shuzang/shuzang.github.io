@@ -221,6 +221,6 @@ NSF SBIR Phase I topics：[Distributed Ledger (DL)](https://seedfund.nsf.gov/top
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2018/conference-journal-and-foundation-information-in-blockchain-field/  
 

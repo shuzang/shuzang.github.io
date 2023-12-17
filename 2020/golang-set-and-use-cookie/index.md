@@ -178,6 +178,6 @@ for _, cookie := range r.Cookies() {
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/golang-set-and-use-cookie/  
 

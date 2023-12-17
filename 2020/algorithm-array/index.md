@@ -150,6 +150,6 @@ func minSubArrayLen(s int, nums []int) int {
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/algorithm-array/  
 

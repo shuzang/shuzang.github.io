@@ -482,6 +482,6 @@ IoT节点不一定是实际的传感器
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2021/summary-of-issues-discussed-with-the-teacher/  
 

@@ -82,6 +82,6 @@ func GreedySelector(n int, s,f []int, A []bool) {
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/algorithm-greedu/  
 

@@ -258,6 +258,6 @@ Office 或者编程基本上是对字符串的匹配，因此一般使用正则�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/regular-expression-basic-syntax/  
 

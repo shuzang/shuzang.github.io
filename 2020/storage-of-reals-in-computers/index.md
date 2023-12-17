@@ -121,6 +121,6 @@ IEEE 制定的 754 标准是关于计算机软硬件浮点数表示和运算的�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/storage-of-reals-in-computers/  
 

@@ -162,6 +162,6 @@ Number,Timestamp,Block generation time
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/extract-the-block-generation-time-of-ethereum/  
 

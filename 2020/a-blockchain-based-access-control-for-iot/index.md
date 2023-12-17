@@ -131,6 +131,6 @@ sequenceDiagram
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/a-blockchain-based-access-control-for-iot/  
 

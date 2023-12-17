@@ -215,6 +215,6 @@ A/C类、增强型会直接表现在基金的名字中，比如”汇安沪深30
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2023/financial-learning-index-funds-in-detail/  
 

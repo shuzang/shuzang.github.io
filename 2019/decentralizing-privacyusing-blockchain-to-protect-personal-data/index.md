@@ -156,6 +156,6 @@ $$
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/decentralizing-privacyusing-blockchain-to-protect-personal-data/  
 

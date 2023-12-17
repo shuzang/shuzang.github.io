@@ -120,6 +120,6 @@ MAC地址的前三字节由 IEEE 的注册管理机构 RA 分配给世界上所�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2018/data-link-layer/  
 

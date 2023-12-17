@@ -224,6 +224,6 @@ Engineering Village现归爱思唯尔所有，因此EI收录的期刊列表从El
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2018/academic-basic-knowledge/  
 

@@ -117,6 +117,6 @@ timeout 5 & c:\nircmd\nircmd.exe savescreenshot c:\\screenshot.png
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/efficient-use-of-win10-2-lockscreen-and-login/  
 

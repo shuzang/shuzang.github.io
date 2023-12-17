@@ -534,6 +534,6 @@ Truffle develop
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/use-truffle-develop-ethereum-project/  
 

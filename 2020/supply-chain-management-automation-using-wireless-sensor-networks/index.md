@@ -61,6 +61,6 @@ L. Evers and P. Havinga, “Supply Chain Management Automation using Wireless Se
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/supply-chain-management-automation-using-wireless-sensor-networks/  
 

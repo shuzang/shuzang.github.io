@@ -78,6 +78,6 @@ DMA 方式中，数据的传送方向、存放数据的内存地址、传送的�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/operate-system-5-device-management/  
 

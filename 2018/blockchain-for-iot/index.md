@@ -202,6 +202,6 @@ Filament 的一种服务是，传感器不接入区块链但连到网关从而�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2018/blockchain-for-iot/  
 

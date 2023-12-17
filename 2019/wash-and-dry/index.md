@@ -225,6 +225,6 @@ PS：洗涤剂去除污垢实际上涉及到了很复杂的一个过程，这里
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/wash-and-dry/  
 

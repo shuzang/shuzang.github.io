@@ -95,6 +95,6 @@ Section5阐述未来可能的研究方向
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/blockchain-paradigm-and-internet-of-things/  
 

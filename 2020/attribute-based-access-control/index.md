@@ -48,6 +48,6 @@ AP 是提供主体、对象（或资源）或环境条件属性的任何人或�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/attribute-based-access-control/  
 

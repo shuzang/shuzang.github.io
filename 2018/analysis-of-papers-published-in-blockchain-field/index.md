@@ -390,6 +390,6 @@ EI的统计则是以全名为依据，重复概率较小，以柱状图来看，
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2018/analysis-of-papers-published-in-blockchain-field/  
 

@@ -92,6 +92,6 @@ Custom Log 是其它任何我们想要的记录，比如食物记录、睡眠记
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2021/the-bullet-journal-method/  
 

@@ -205,6 +205,6 @@ $$
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/an-abac-model-in-rfid-systems-based-on-dapp-for-healthcare-environments/  
 

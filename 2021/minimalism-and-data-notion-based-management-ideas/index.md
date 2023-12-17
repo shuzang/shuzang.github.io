@@ -65,6 +65,6 @@
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2021/minimalism-and-data-notion-based-management-ideas/  
 

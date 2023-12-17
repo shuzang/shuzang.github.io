@@ -167,6 +167,6 @@ I度烧伤无须特殊治疗就能自愈；浅Ⅱ度烧伤若仅为单个水疱�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/medicine-and-health-first-aid-knowledge/  
 

@@ -89,6 +89,6 @@
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/%E4%BB%A5%E5%A4%AA%E5%9D%8A%E5%BC%80%E5%8F%912-%E5%88%9B%E4%B8%96%E5%8C%BA%E5%9D%97%E6%96%87%E4%BB%B6genesis.json/  
 

@@ -76,6 +76,6 @@ Xmind也可以将思维导图导出为markdown格式存储。但是Xmind Zen软�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2018/markdown-usage/  
 

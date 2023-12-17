@@ -145,6 +145,6 @@
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2021/2018-2020-research-history/  
 

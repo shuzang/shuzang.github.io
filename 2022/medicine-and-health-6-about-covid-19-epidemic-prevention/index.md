@@ -280,6 +280,6 @@ F. 向事实核查机构求证
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2022/medicine-and-health-6-about-covid-19-epidemic-prevention/  
 

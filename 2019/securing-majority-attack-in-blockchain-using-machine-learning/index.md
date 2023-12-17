@@ -58,6 +58,6 @@ C -->|Yes| D[Block Released For Further Validation]
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/securing-majority-attack-in-blockchain-using-machine-learning/  
 

@@ -10,6 +10,6 @@ B站有一禅的动漫，画风虽然变了，但一样好看。
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/%E4%B8%80%E7%A6%85%E5%B0%8F%E5%92%8C%E5%B0%9A/  
 

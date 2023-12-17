@@ -235,6 +235,6 @@ Execute方法将解析好的模板应用到data上，并将输出写入wr，唯�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/golang-template/  
 

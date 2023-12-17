@@ -146,6 +146,6 @@ Day Y, Xu D, Maharjan S, 等. Blockchain and Deep Reinforcement Learning Empower
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/blockchain-and-deep-reinforcement-learning-empowered-intelligent-5g-beyond/  
 

@@ -453,6 +453,6 @@ hexo+github模式的个人博客部署好了之后，hexo_blog文件夹中存在
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2018/using-hexo-build-persoanl-blog/  
 

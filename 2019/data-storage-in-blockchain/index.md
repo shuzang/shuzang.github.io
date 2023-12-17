@@ -160,6 +160,6 @@ Multichain 虽然针对的是金融领域，但是在 2.0 中推出了一种称�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/data-storage-in-blockchain/  
 

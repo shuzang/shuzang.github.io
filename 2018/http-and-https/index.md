@@ -270,6 +270,6 @@ SSL/TLS 通过证书机制进行身份鉴别，通过协商一个对称会话密
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2018/http-and-https/  
 

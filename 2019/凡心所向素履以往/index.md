@@ -12,6 +12,6 @@
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/%E5%87%A1%E5%BF%83%E6%89%80%E5%90%91%E7%B4%A0%E5%B1%A5%E4%BB%A5%E5%BE%80/  
 

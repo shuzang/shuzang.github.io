@@ -193,6 +193,6 @@
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/medicine-and-health-medical-insurance-and-medical-treatment/  
 

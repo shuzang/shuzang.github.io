@@ -321,6 +321,6 @@ EDC还可以参考乔老师的 [一个防身术教官眼中的 EDC](https://sspa
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2021/build-a-sense-of-self-security-travel/  
 

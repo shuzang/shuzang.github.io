@@ -65,6 +65,6 @@ Get-ChildItem $temPath | Rename-Item -NewName {$_.Name -replace ".jpg",""}
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/efficient-use-of-win10-7-automation/  
 

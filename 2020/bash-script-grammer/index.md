@@ -511,6 +511,6 @@ REPLY = 'a b c d'
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/bash-script-grammer/  
 

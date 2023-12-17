@@ -91,6 +91,6 @@ Meng W, Tischhauser E, Wang Q, et al. When Intrusion Detection Meets Blockchain 
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/when-intrusion-detection-meets-blockchain-technology-a-review/  
 

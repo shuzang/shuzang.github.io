@@ -183,6 +183,6 @@ main.go:3:6: can inline main
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/golang-deep-learning-8-stack-heap-and-escape-analysis/  
 

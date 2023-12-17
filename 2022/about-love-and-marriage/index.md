@@ -110,6 +110,6 @@ A：不太支持，但是我不为自己考虑，谁为我考虑。
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2022/about-love-and-marriage/  
 

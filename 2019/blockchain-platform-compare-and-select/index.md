@@ -254,6 +254,6 @@ EOS.IO 软件引入一种新的区块链架构设计，它使得去中心化的�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/blockchain-platform-compare-and-select/  
 

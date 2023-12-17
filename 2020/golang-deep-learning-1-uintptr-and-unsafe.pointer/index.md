@@ -173,6 +173,6 @@ type itab struct {
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/golang-deep-learning-1-uintptr-and-unsafe.pointer/  
 

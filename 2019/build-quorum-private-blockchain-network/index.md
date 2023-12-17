@@ -899,6 +899,6 @@ $ ps | grep geth
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/build-quorum-private-blockchain-network/  
 

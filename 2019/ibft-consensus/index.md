@@ -111,6 +111,6 @@ IBFT使用一个和Clique相似的验证者投票机制，每个epoch交易都�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/ibft-consensus/  
 

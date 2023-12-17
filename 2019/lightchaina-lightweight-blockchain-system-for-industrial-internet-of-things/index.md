@@ -137,6 +137,6 @@ Chainbase：管理本地交易池，验证交易，拥有添加或过滤Cache la
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/lightchaina-lightweight-blockchain-system-for-industrial-internet-of-things/  
 

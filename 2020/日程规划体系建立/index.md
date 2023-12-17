@@ -105,6 +105,6 @@ PC端当然可以直接加入稍后读，手机端的安卓阵营简悦并没有
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/%E6%97%A5%E7%A8%8B%E8%A7%84%E5%88%92%E4%BD%93%E7%B3%BB%E5%BB%BA%E7%AB%8B/  
 

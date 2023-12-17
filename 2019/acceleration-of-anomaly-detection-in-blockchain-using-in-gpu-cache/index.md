@@ -34,6 +34,6 @@ Pham等人提出的方法使用图来代表以用户为中心的交易流，如�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/acceleration-of-anomaly-detection-in-blockchain-using-in-gpu-cache/  
 

@@ -502,6 +502,6 @@ func loginActionHandler(w http.ResponseWriter, r *http.Request) {
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/golang-start-http-server/  
 

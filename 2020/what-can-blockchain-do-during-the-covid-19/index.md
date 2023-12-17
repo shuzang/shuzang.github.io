@@ -57,6 +57,6 @@
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/what-can-blockchain-do-during-the-covid-19/  
 

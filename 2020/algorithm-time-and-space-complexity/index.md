@@ -182,6 +182,6 @@ InsertSort(A[0...n-1])
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/algorithm-time-and-space-complexity/  
 

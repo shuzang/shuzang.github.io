@@ -47,6 +47,6 @@ Date of Conference: 6-10 Nov. **2017**
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/blockchain-based-platform-architecture-for-industrial-iot/  
 

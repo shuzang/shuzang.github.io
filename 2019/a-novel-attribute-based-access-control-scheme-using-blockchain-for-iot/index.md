@@ -108,6 +108,6 @@ Alice和Bob之间的访问控制协议如图4所示执行：
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/a-novel-attribute-based-access-control-scheme-using-blockchain-for-iot/  
 

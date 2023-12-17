@@ -34,6 +34,6 @@
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2018/work-in-progress-integrating-low-power-iot-devices-to/  
 

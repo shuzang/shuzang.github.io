@@ -200,6 +200,6 @@ Master，Follower和一些它们都需要注意的规则。
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2019/bubbles-of-trusta-decentralized-blockchain-based-authentication-system-for-iot/  
 

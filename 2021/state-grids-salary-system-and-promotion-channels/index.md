@@ -4,6 +4,6 @@
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2021/state-grids-salary-system-and-promotion-channels/  
 

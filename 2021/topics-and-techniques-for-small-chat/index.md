@@ -81,6 +81,6 @@
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2021/topics-and-techniques-for-small-chat/  
 

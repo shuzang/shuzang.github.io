@@ -120,6 +120,6 @@ Markdown文档编辑器，所见即所得，写作工具。[下载地址](https:
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/efficient-use-of-win10-6-software-collection/  
 

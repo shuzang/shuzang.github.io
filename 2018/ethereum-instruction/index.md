@@ -238,6 +238,6 @@ ENS（Ethereum Name Service，以太坊域名服务）是建立在以太坊区�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2018/ethereum-instruction/  
 

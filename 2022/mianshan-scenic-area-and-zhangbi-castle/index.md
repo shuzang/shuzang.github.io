@@ -233,6 +233,6 @@
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2022/mianshan-scenic-area-and-zhangbi-castle/  
 

@@ -75,6 +75,6 @@ Manu Moreale关于极简主义的一个系列文章，他提到所谓的「极�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/life-weekly-9/  
 

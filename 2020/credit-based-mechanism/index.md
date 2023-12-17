@@ -371,6 +371,6 @@ $$
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2020/credit-based-mechanism/  
 

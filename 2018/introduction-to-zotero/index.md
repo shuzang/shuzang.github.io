@@ -215,6 +215,6 @@ Zotero 有个时间轴功能，可以将所有文献反映在一条时间轴上�
 
 ---
 
-> 作者: Shuzang  
+> 作者:   
 > URL: https://shuzang.github.io/2018/introduction-to-zotero/  
 
