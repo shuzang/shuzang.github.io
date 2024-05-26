@@ -1,7 +1,7 @@
-# 想做的事
+# 生命清单
 
 
-本页面记录想做的事
+本页面记录生命清单
 
 ### 旅行 
 
@@ -154,5 +154,5 @@
 ---
 
 > 作者:   
-> URL: https://shuzang.github.io/collection/things-todo/  
+> URL: https://shuzang.github.io/collection/life-list/  
 

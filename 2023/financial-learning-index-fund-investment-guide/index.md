@@ -1,7 +1,7 @@
-# 理财学习-指数基金详解
+# 指数基金投资指南
 
 
-本篇对指数基金进行详细学习。
+本篇记录指数基金投资要注意的事情。
 
 <!--more-->
 
@@ -213,8 +213,9 @@ A/C类、增强型会直接表现在基金的名字中，比如”汇安沪深30
 另外，长期来看，随着收入的增长，定投的资金也可以随之增长。
 
 
+
 ---
 
 > 作者:   
-> URL: https://shuzang.github.io/2023/financial-learning-index-funds-in-detail/  
+> URL: https://shuzang.github.io/2023/financial-learning-index-fund-investment-guide/  
 
